@@ -4,7 +4,7 @@
   cursor: pointer;
   max-width: 350px;
   margin: auto;
-  color: salmon;
+  color: #33b5e5;
 }
 
 .markerItem {
@@ -14,5 +14,5 @@
 }
 
 .markerItem:hover {
-  border-bottom: 1px solid salmon;
+  border-bottom: 1px solid #33b5e5;
 }

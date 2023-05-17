@@ -12,6 +12,7 @@ export default defineConfig({
       examples: path.resolve("src/examples"),
       assets: path.resolve("src/assets"),
       layouts: path.resolve("src/layouts"),
+      util: path.resolve("src/util"),
       "footer.routes": path.resolve("src/footer.routes.jsx"),
       "routes": path.resolve("src/routes.jsx"),
     },
