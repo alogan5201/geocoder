@@ -1,29 +1,28 @@
+/**
+=========================================================
+* Material Kit 2 PRO React - v2.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*/
+
 import React from "react";
-import ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Root from "./routes/root";
-import ErrorPage from "./error-page";
-import Contact from "./routes/contact";
+import * as ReactDOMClient from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "src/App";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "contacts/:contactId",
-        element: <Contact />,
-      },
-    ],
-  },
-]);
+const container = document.getElementById("root");
+const root = ReactDOMClient.createRoot(container);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
