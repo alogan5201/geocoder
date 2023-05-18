@@ -1,10 +1,8 @@
 import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
-import MKInput from "components/MKInput";
-import L from "leaflet";
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
@@ -16,30 +14,33 @@ const CustomTab = ({ children, ...otherProps }) => (
 );
 
 CustomTab.tabsRole = "Tab"; 
-function PopupDetails({coords}){
+function PopupDetails({coords,geoData}){
 const [latLng,setLatLng] = useState([])
 
 useEffect(() => {
   if(coords){
-    console.log(coords); 
     if(coords[0]){
 
       if(coords[0].lat){
         let lat = coords[0].lat
         let lng = coords[0].lng
-        console.log([lat, lng]);
         setLatLng([lat,lng])
+        if(geoData){
+          console.log("GEO DATA",geoData)
+        }
       }
     }
   }
-}, [coords])
+}, [coords,geoData])
   return (
     <MKBox component="form" method="post" autoComplete="off">
       <MKBox py={3}>
         <Grid container spacing={3} sx={{ mb: 3 }}>
           <Grid item xs={12} sx={{ my: 1 }}>
-            {latLng && latLng.length > 0 ? (
+            {latLng && latLng.length > 0 && geoData && geoData.length >  0 ? (
               <>
+                <div> Address is {geoData[0].display_name}</div>
+                <br />
                 <div> Latitude is {latLng[0]}</div>
                 <br />
                 <div> Longitude is {latLng[1]}</div>
@@ -81,22 +82,21 @@ const content = [
     link: "https://en.wikipedia.org/wiki/Town_Hall_Tower,_Krak%C3%B3w",
   },
 ];
-function DisplayPosition({ map,coords }) {
+function DisplayPosition({ map,coords,geoData }) {
   const [position, setPosition] = useState(() => map.getCenter())
   useEffect(() => {
-    if(coords && map){
-      console.log(coords)
-        if(coords[0]){
-            console.log(coords[0])
+    if(coords && map && geoData){
+      console.log("GEO DATA");
+      console.log(geoData);
+      if(coords[0]){
             if(coords[0].lat){
                 let lat = coords[0].lat
                 let lng = coords[0].lng
                 map.setView([lat,lng],12)
             }
  }
-// map.setView([lat,lng], zoom)
     }
-  }, [coords,map]);
+  }, [coords,map,geoData]);
   const onClick = useCallback(() => {
     map.setView(center, zoom)
   }, [map])
@@ -120,7 +120,7 @@ function DisplayPosition({ map,coords }) {
   )
 }
 
-function MapExternal({coords}) {
+function MapExternal({coords,geoData}) {
   const [map, setMap] = useState(null)
 
   const displayMap = useMemo(
@@ -138,7 +138,7 @@ function MapExternal({coords}) {
         />
         <LocationButton map={map} />
         {coords && coords.length > 0 ? (
-          <Marker position={[coords[0].lat,coords[0].lng]}>
+          <Marker position={[coords[0].lat, coords[0].lng]}>
             <Popup maxWidth={320}>
               <Tabs>
                 <TabList>
@@ -158,14 +158,19 @@ function MapExternal({coords}) {
                         → show more
                       </a>
                     </div>
-                    {coords && coords.length > 0 ? <PopupDetails coords={coords}/> : "" }
-                    
+                    {coords && coords.length > 0 && geoData && geoData.length > 0 ? (
+                      <PopupDetails coords={coords} geoData={geoData} />
+                    ) : (
+                      ""
+                    )}
                   </TabPanel>
                 ))}
               </Tabs>
             </Popup>
           </Marker>
-        ) : ""}
+        ) : (
+          ""
+        )}
       </MapContainer>
     ),
     [coords]

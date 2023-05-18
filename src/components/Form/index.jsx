@@ -9,55 +9,25 @@ import MKTypography from "components/MKTypography";
 import MapExternal from "components/Maps/MapExternal";
 import { useEffect, useRef, useState } from "react";
 import { extractWords } from "util/helpers";
-import { useGlobalValue } from "util/mapState";
+import { useGlobalValue,useGlobalGeoData } from "util/mapState";
 
 function Form({ name, description }) {
-
-const InputProps = {
-  startAdornment: (
-    <InputAdornment position="start">
-      <ContentCopyIcon style={{visibility:"hidden"}} className="copyIcon"/>
-    </InputAdornment>
-  ),
-};
-  const [formName, setFormName] = useState("");
-  const [coords, setValue] = useGlobalValue();
-   const [lat, setLat] = useState("");
-   const [lng, setLng] = useState("");
-   const [selected, setSelected] = useState(false);
-   const [blurred,setBlurred] = useState(false)
-   const [currInputProps, setCurrInputProps] = useState(InputProps);
+  /* -------------------------------------------------------------------------- */
+  /*                                    HOOKS                                   */
+  /* -------------------------------------------------------------------------- */
+  const [coords, setCoords] = useGlobalValue();
+  const [geoData, setGeoData] = useGlobalGeoData();
    const latInputElm = useRef(null);
    const lngInputElm = useRef(null);
-useEffect(() => {
-  if(selected){
-const CopyInputProps = {
-  startAdornment: (
-    <InputAdornment position="start">
-      <ContentCopyIcon className="copyIcon" />
-    </InputAdornment>
-  ),
-};
-setCurrInputProps(CopyInputProps);
-  }
-else if(blurred) {
-  
-  setCurrInputProps(InputProps)
-}
-
-}, [selected, blurred]);
-       
+   /* -------------------------------------------------------------------------- */
+   /*                                  FUNCTIONS                                 */
+   /* -------------------------------------------------------------------------- */
   async function handleSubmit(e) {
     e.preventDefault();
-
     const inputOne = e.target[0].value;
-    // const inputTwo = e.target[1].value;
-    // const inputThree = e.target[2].value;
     if (inputOne) {
       let extracted = extractWords(inputOne);
-      console.log(extracted);
       let withPlus = extracted.join("+");
-      console.log(withPlus);
       const response = await fetch(
         `https://nominatim.openstreetmap.org/?addressdetails=1&q=${withPlus}&format=json&limit=1`
       );
@@ -68,18 +38,11 @@ else if(blurred) {
         const coords = { lat: lat, lng: lng };
         latInputElm.current.value = lat;
         lngInputElm.current.value = lng;
-        console.log(latInputElm.current)
-        //atInputElm.current.focus();
-      
-        setValue([coords]);
-        
+        console.log(data)
+        setGeoData(data)
+        setCoords([coords]);
       }
     }
-
-    /* else if (inputOne && inputThree) {
-      const coords = { lat: inputOne, lng: inputTwo };
-      setValue([coords]);
-    } */
   }
   function handleSelect(e){
     setBlurred(false)
@@ -91,12 +54,14 @@ else if(blurred) {
   }
   function handleChange (e){
     let val = e.target.value
-
 if(val.length === 0){
  latInputElm.current.value = "";
  lngInputElm.current.value = "";
 }
   }
+  /* -------------------------------------------------------------------------- */
+  /*                                   RETURN                                   */
+  /* -------------------------------------------------------------------------- */
   return (
     <>
       <MKBox component="section" py={{ xs: 2, md: 4 }}>
@@ -176,7 +141,7 @@ if(val.length === 0){
               md={6}
               sx={{ mr: { xs: 0, md: "auto" }, ml: { xs: 0, md: 6 }, mb: { xs: 4, md: 0 } }}
             >
-              <MapExternal coords={coords} />
+              <MapExternal coords={coords} geoData={geoData}/>
             </Grid>
           </Grid>
         </Container>
