@@ -5,15 +5,21 @@ import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
 import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKInput from "components/MKInput";
-import MKTypography from "components/MKTypography";
 // Maps
-import { useGlobalValue } from "util/mapState";
+import Stack from "@mui/material/Stack";
 import { extractWords } from "util/helpers";
-import MapExternal from "components/Maps/MapExternal";
+import { useGlobalValue } from "util/mapState";
 
-function FormMap({name}) {
+// Material Kit 2 PRO React components
+import MKTypography from "components/MKTypography";
+
+// Material Kit 2 PRO React components
+
+// Material Kit 2 PRO React components
+
+// Material Kit 2 PRO React examples
+import SimpleInfoCard from "examples/Cards/InfoCards/SimpleInfoCard";
+function FormMap({name, description}) {
   const [formName, setFormName] = useState("")
   const [coords, setValue] = useGlobalValue();
   async function handleSubmit(e) {
@@ -46,87 +52,71 @@ function FormMap({name}) {
   }
   return (
     <>
-      <MKBox component="section" py={{ xs: 0, lg: 6 }}>
+      <MKBox component="section" py={3}>
         <Container>
-          <Grid container item xs={12} lg={6} flexDirection="column" py={2}>
-            <MKTypography variant="h3" mt={3} mb={1}>
-              Build something great
+          <Grid
+            container
+            item
+            flexDirection="column"
+            alignItems="center"
+            xs={12}
+            lg={6}
+            sx={{ textAlign: "center", mx: "auto" }}
+          >
+       
+            <MKTypography variant="h2" mb={1}>
+              Explore our places in London{" "}
             </MKTypography>
-            <MKTypography variant="body2" color="text" mb={2}>
-              We&apos;re constantly trying to express ourselves and actualize our dreams. If you
-              have the opportunity to play this game of life you need to appreciate every moment.
+            <MKTypography variant="body2" color="text">
+              If you can&apos;t decide, the answer is no. If two equally difficult paths, choose the
+              one more painful in the short term (pain avoidance is creating an illusion of
+              equality).
             </MKTypography>
           </Grid>
-          <Grid container item px={6}>
-            <MKBox
-              width="100%"
-              bgColor="white"
-              borderRadius="xl"
-              shadow="xl"
-              mb={6}
-              sx={{ overflow: "hidden" }}
+      
+        </Container>
+      </MKBox>
+      <MKBox component="section" py={{ xs: 6, md: 12 }}>
+        <Container>
+          <Grid container item xs={12} justifyContent="center">
+            <Grid
+              item
+              xs={12}
+              md={4}
+              sx={{ ml: { xs: 0, md: "auto" }, mr: { xs: 0, md: 6 }, mb: { xs: 4, md: 0 } }}
             >
-              <Grid container spacing={3}>
-                <Grid item xs={12} lg={5}>
-                  <MKBox component="form" p={2} method="post" onSubmit={handleSubmit}>
-                
-                    <MKBox pt={0.5} pb={3} px={3}>
-                      <Grid container>
-                        <Grid item xs={12} pr={1} mb={3}>
-                          <MKInput
-                            variant="standard"
-                            label="Latitude"
-                            InputLabelProps={{ shrink: true }}
-                            fullWidth
-                          />
-                        </Grid>
-                        <Grid item xs={12} pr={1} mb={3}>
-                          <MKInput
-                            variant="standard"
-                            label="Longitude"
-                            InputLabelProps={{ shrink: true }}
-                            fullWidth
-                          />
-                        </Grid>
-                        <Grid item xs={12} pr={1} mb={3}>
-                          <MKInput
-                            variant="standard"
-                            label="Address"
-                            InputLabelProps={{ shrink: true }}
-                            fullWidth
-                          />
-                        </Grid>
-                      </Grid>
-                      <Grid
-                        container
-                        item
-                        xs={12}
-                        md={6}
-                        justifyContent="flex-end"
-                        textAlign="right"
-                        ml="auto"
-                      >
-                        <MKButton variant="gradient" color="info" type="submit">
-                          Submit
-                        </MKButton>
-                      </Grid>
-                      <Grid
-                        container
-                        item
-                        xs={12}
-                        md={6}
-                        justifyContent="flex-end"
-                        textAlign="right"
-                        ml="auto"
-                      ></Grid>
-                    </MKBox>
-                  </MKBox>
-                </Grid>
-                <Grid item xs={12} lg={7} position="relative" px={0}>
-                  <MapExternal coords={coords} />
-                </Grid>
-              </Grid>
-            </MKBox>
+              <Stack spacing={{ xs: 4, md: 8 }}>
+                <SimpleInfoCard
+                  icon="payment"
+                  title="Modular Components"
+                  description="The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever."
+                />
+                <SimpleInfoCard
+                  icon="insights"
+                  title="Great Features"
+                  description="People are so scared to lose that they don't even try. Like, one thing people can't say is that I'm not trying, and I'm not trying my hardest."
+                />
+              </Stack>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={4}
+              sx={{ mr: { xs: 0, md: "auto" }, ml: { xs: 0, md: 6 }, mb: { xs: 4, md: 0 } }}
+            >
+              <Stack spacing={{ xs: 4, md: 8 }}>
+                <SimpleInfoCard
+                  icon="access_alarms"
+                  title="Awesome Support"
+                  description="The time is now for it to be okay to be great. People in this world shun people for being great. For being a bright color. What else could rust?"
+                />
+                <SimpleInfoCard
+                  icon="sentiment_satisfied"
+                  title="Modern Interface"
+                  description="If everything I did failed - which it doesn't, it actually succeeds - just the fact that I'm willing to fail is an inspiration."
+                />
+              </Stack>
+            </Grid>
           </Grid>
         </Container>
       </MKBox>

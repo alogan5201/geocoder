@@ -1,57 +1,38 @@
-/*
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
-import Card from "@mui/material/Card";
 import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
+import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
+import MKTypography from "components/MKTypography";
+
+// Material Kit 2 PRO React components
+import Card from "@mui/material/Card";
+import SimpleBlogCard from "examples/Cards/BlogCards/SimpleBlogCard";
+
+// Material Kit 2 PRO React components
+import MKButton from "components/MKButton";
 
 // Material Kit 2 PRO React examples
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
-// HomePage page sections
-
-// HomePage page components
-import FormMap from "components/FormMap";
-// import FormMap from "components/FormMap"
-// Routes
-import footerRoutes from "footer.routes";
-import routes from "routes";
-
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
-
-// Material Kit 2 PRO React components
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
-
-// Material Kit 2 PRO React examples
-
 // Coworking page sections
 
 // Routes
-
-// Images
-import bgImage from "assets/images/bg-coworking.jpeg";
+import footerRoutes from "footer.routes";
+import routes from "routes";
+import FormMap from "components/FormMap";
 
 // Images
 
 function HomePage() {
+  const actionProps = {
+    type: "internal",
+    route: "/pages/landing-pages/coworking",
+    color: "dark",
+    label: "find more",
+  };
   return (
     <>
       <DefaultNavbar
@@ -65,15 +46,13 @@ function HomePage() {
         sticky
       />
       <MKBox
-        minHeight="5vh"
+        py={8}
         width="100%"
         sx={{
           display: "grid",
           placeItems: "center",
         }}
-      >
-      
-      </MKBox>
+      ></MKBox>
       <Card
         sx={{
           p: 2,
@@ -85,12 +64,8 @@ function HomePage() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        <Container sx={{ mt: 6 }}>
-          <FormMap
-            name="Address To Latitude & Longitude"
-            description="To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates."
-          />
-        </Container>
+    
+     <FormMap />
       </Card>
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
