@@ -27,8 +27,8 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 // AddressToLatLngPage page sections
 
 // AddressToLatLngPage page components
-import FormMap from "components/FormMap";
-// import FormMap from "components/FormMap"
+import Form from "components/Form";
+// import Form from "components/Form"
 // Routes
 import footerRoutes from "footer.routes";
 import routes from "routes";
@@ -68,7 +68,7 @@ function AddressToLatLngPage() {
         }}
       >
         <Container sx={{ mt: 6 }}>
-          <FormMap />
+          <Form />
         </Container>
       </Card>
       <MKBox pt={6} px={1} mt={6}>

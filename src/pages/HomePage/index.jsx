@@ -22,7 +22,7 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 // Routes
 import footerRoutes from "footer.routes";
 import routes from "routes";
-import FormMap from "components/FormMap";
+import Form from "components/Form";
 
 // Images
 
@@ -64,8 +64,10 @@ function HomePage() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-    
-     <FormMap />
+        <Form
+          name="Address to Latitude & Longitude"
+          description="To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates."
+        />
       </Card>
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
