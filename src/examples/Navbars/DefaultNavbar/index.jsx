@@ -472,11 +472,23 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           <MKBox
             component={Link}
             to="/"
+            display="flex"
+            alignItems="baseline"
             lineHeight={1}
             py={transparent ? 1.5 : 0.75}
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
           >
-            <MKTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
+            <div className="brand-icon position-relative ms-2 me-2">
+              <div className="pin"></div>
+              <div className="pulse"></div>
+            </div>
+            <MKTypography
+              variant="button"
+              fontWeight="regular"
+              textTransform="capitalize"
+              color={light ? "white" : "dark"}
+              sx={{ fontWeight: "100%", ml: 1, mr: 0.25 }}
+            >
               {brand}
             </MKTypography>
           </MKBox>
@@ -551,7 +563,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
 
 // Setting default values for the props of DefaultNavbar
 DefaultNavbar.defaultProps = {
-  brand: "Material Kit 2",
+  brand: "GeoTools",
   transparent: false,
   light: false,
   action: false,

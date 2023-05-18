@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import styles from "./location-button.module.css";
 const center = [39.7072, -98.1736];
-const zoom = 4
+const zoom = 3
 // const center = [39.7072,-98.0837]
 function DisplayPosition({ map,coords }) {
   const [position, setPosition] = useState(() => map.getCenter())
@@ -14,7 +14,7 @@ function DisplayPosition({ map,coords }) {
             if(coords[0].lat){
                 let lat = coords[0].lat
                 let lng = coords[0].lng
-                map.setView([lat,lng],zoom)
+                map.setView([lat,lng],8)
             }
  }
 // map.setView([lat,lng], zoom)

@@ -97,8 +97,20 @@ import SocialButtons from "layouts/sections/elements/social-buttons";
 import Tables from "layouts/sections/elements/tables";
 import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
-
+import AddressToLatLngPage from "pages/GeoTools/AddressToLatLngPage"
 const routes = [
+  {
+    name: "tools",
+    icon: <Icon>article</Icon>,
+    collapse: [
+      {
+        name: "Address to Latitude & Longitude",
+        description: "Convert an address to Latitude and Longitude",
+        route: "/address-to-lat-lng",
+        component: <AddressToLatLngPage />,
+      },
+    ],
+  },
   {
     name: "pages",
     icon: <Icon>dashboard</Icon>,

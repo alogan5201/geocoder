@@ -24,34 +24,18 @@ import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
-// HomePage page sections
+// AddressToLatLngPage page sections
 
-// HomePage page components
+// AddressToLatLngPage page components
 import FormMap from "components/FormMap";
 // import FormMap from "components/FormMap"
 // Routes
 import footerRoutes from "footer.routes";
 import routes from "routes";
 
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
-
-// Material Kit 2 PRO React components
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
-
-// Material Kit 2 PRO React examples
-
-// Coworking page sections
-
-// Routes
-
-// Images
-import bgImage from "assets/images/bg-coworking.jpeg";
-
 // Images
 
-function HomePage() {
+function AddressToLatLngPage() {
   return (
     <>
       <DefaultNavbar
@@ -65,15 +49,13 @@ function HomePage() {
         sticky
       />
       <MKBox
-        minHeight="5vh"
+        minHeight="10vh"
         width="100%"
         sx={{
           display: "grid",
           placeItems: "center",
         }}
-      >
-      
-      </MKBox>
+      ></MKBox>
       <Card
         sx={{
           p: 2,
@@ -86,10 +68,7 @@ function HomePage() {
         }}
       >
         <Container sx={{ mt: 6 }}>
-          <FormMap
-            name="Address To Latitude & Longitude"
-            description="To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates."
-          />
+          <FormMap />
         </Container>
       </Card>
       <MKBox pt={6} px={1} mt={6}>
@@ -99,4 +78,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default AddressToLatLngPage;
