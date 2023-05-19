@@ -38,7 +38,7 @@ function Form({ name, description }) {
         const coords = { lat: lat, lng: lng };
         latInputElm.current.value = lat;
         lngInputElm.current.value = lng;
-        console.log(data)
+        
         setGeoData(data)
         setCoords([coords]);
       }
@@ -141,7 +141,7 @@ if(val.length === 0){
               md={6}
               sx={{ mr: { xs: 0, md: "auto" }, ml: { xs: 0, md: 6 }, mb: { xs: 4, md: 0 } }}
             >
-              <MapExternal coords={coords} geoData={geoData}/>
+              <MapExternal/>
             </Grid>
           </Grid>
         </Container>

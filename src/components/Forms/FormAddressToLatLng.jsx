@@ -23,9 +23,9 @@ function FormAddressToLatLng() {
     const inputThree = e.target[2].value;
   if(inputThree){
     let extracted = extractWords(inputThree);
-    console.log(extracted)
+    
   let withPlus = extracted.join("+");
-  console.log(withPlus)
+  
        const response = await fetch(
          `https://nominatim.openstreetmap.org/?addressdetails=1&q=${withPlus}&format=json&limit=1`
        );
