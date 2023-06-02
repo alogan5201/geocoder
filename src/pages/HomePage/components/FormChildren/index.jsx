@@ -4,13 +4,16 @@ import MKBox from "components/MKBox";
 
 // Material Kit 2 PRO React components
 import Grid from "@mui/material/Grid";
+import AddressInput from "components/AddressInput";
 import MKButton from "components/MKButton";
 import MKInput from "components/MKInput";
-import MapExternal from "components/Maps/MapExternal";
 import { useRef } from "react";
 import { extractWords } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
-import AddressInput from "components/AddressInput";
+// @mui material components
+
+// Material Kit 2 PRO React components
+import MKTypography from "components/MKTypography";
 // Material Kit 2 PRO React components
 
 // Material Kit 2 PRO React examples
@@ -70,41 +73,35 @@ if(val.length === 0){
     }
   }
   return (
-    <Grid container item xs={12} justifyContent="center">
-    <Grid
-      item
-      xs={12}
-      md={4}
-      sx={{
-        ml: { xs: 0, md: "auto" },
-        mr: { xs: 0, md: 6 },
-        mb: { xs: 4, md: 0 },
-        mt: { xs: 0, md: 8 },
-      }}
-    >
-      <MKBox component="form" method="post" autoComplete="off">
-        <MKBox py={3}>
-        <AddressInput handleChild={handleChild}/>
-          <Grid container>
-            <Grid item xs={12}>
-              <MKButton type="submit" variant="gradient" color="info">
-                Submit
-              </MKButton>
-            </Grid>
-          </Grid>
-        </MKBox>
+    <MKBox component="form" p={2} method="post">
+      <MKBox px={3} py={{ xs: 2, sm: 6 }}>
+        <MKTypography variant="h3" mb={1}>
+          Address to Latitude & Longitude
+        </MKTypography>
+        <MKTypography variant="body2" color="text" mb={2}>
+          To pinpoint a location, you can type in the name of a place, city, state, or address, or
+          click the location on the map to get the coordinates.
+        </MKTypography>
       </MKBox>
-      <MKBox py={3}>
-        <Grid container spacing={3} sx={{ mb: 3 }}>
-          <Grid item xs={12} sx={{ my: 1 }}>
-         <MKInput                       
-                label={latInputElm ? "" : "Longitude"}
-                type="text"
-                fullWidth
-                inputRef={latInputElm}
-              />
+      <MKBox pt={0.5} pb={3} px={3}>
+        <Grid container>
+          {/* ============ AddressInput ============ */}
+          <AddressInput handleChild={handleChild} />
+          <Grid item xs={12} pr={1} mb={3}>
+            <MKButton type="submit" variant="gradient" color="info">
+              Submit
+            </MKButton>
           </Grid>
-          <Grid item xs={12} sx={{ my: 1 }}>
+
+          <Grid item xs={12} pr={1} mb={3}>
+            <MKInput
+              label={latInputElm ? "" : "Longitude"}
+              type="text"
+              fullWidth
+              inputRef={latInputElm}
+            />
+          </Grid>
+          <Grid item xs={12} pr={1} mb={3}>
             <MKInput
               label={lngInputElm ? "" : "Longitude"}
               type="text"
@@ -114,17 +111,8 @@ if(val.length === 0){
           </Grid>
         </Grid>
       </MKBox>
-    </Grid>
-    <Grid
-      item
-      xs={12}
-      md={6}
-      sx={{ mr: { xs: 0, md: "auto" }, ml: { xs: 0, md: 6 }, mb: { xs: 4, md: 0 } }}
-    >
-      <MapExternal/>
-    </Grid>
-  </Grid>
-  )
+    </MKBox>
+  );
 }
 
 

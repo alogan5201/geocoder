@@ -1,71 +1,117 @@
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import InputAdornment from "@mui/material/InputAdornment";
+// Material Kit 2 PRO React components
 import MKBox from "components/MKBox";
+
+// Material Kit 2 PRO React components
+import Grid from "@mui/material/Grid";
+import AddressInput from "components/AddressInput";
 import MKButton from "components/MKButton";
 import MKInput from "components/MKInput";
-import MKTypography from "components/MKTypography";
-import MapExternal from "components/Maps/MapExternal";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { extractWords } from "util/helpers";
-import { useGlobalValue,useGlobalGeoData } from "util/mapState";
+import { useGlobalGeoData, useGlobalValue } from "util/mapState";
+// @mui material components
 
-function Form({ name, description, children }) {
-  /* -------------------------------------------------------------------------- */
-  /*                                    HOOKS                                   */
-  /* -------------------------------------------------------------------------- */
+// Material Kit 2 PRO React components
+import MKTypography from "components/MKTypography";
+// Material Kit 2 PRO React components
+
+// Material Kit 2 PRO React examples
+// Coworking page sections
+
+// Routes
+
+// Images
+function Form() {
+  const handleChild = (callback) => {
+    // Here, you have the function from the child.
+    callback();
+  };
   const [coords, setCoords] = useGlobalValue();
   const [geoData, setGeoData] = useGlobalGeoData();
-   const latInputElm = useRef(null);
-   const lngInputElm = useRef(null);
-   /* -------------------------------------------------------------------------- */
-   /*                                  FUNCTIONS                                 */
-   /* -------------------------------------------------------------------------- */
+  const latInputElm = useRef(null);
+  const lngInputElm = useRef(null);
+  /* -------------------------------------------------------------------------- */
+  /*                                  FUNCTIONS                                 */
+  /* -------------------------------------------------------------------------- */
 
-  function handleSelect(e){
-    setBlurred(false)
-   setSelected(true)
+  function handleSelect(e) {
+    setBlurred(false);
+    setSelected(true);
   }
-  function handleBlur(e){
-    setSelected(false)
-   setBlurred(true)
+  function handleBlur(e) {
+    setSelected(false);
+    setBlurred(true);
   }
-  function handleChange (e){
-    let val = e.target.value
-if(val.length === 0){
- latInputElm.current.value = "";
- lngInputElm.current.value = "";
-}
+  function handleChange(e) {
+    let val = e.target.value;
+    if (val.length === 0) {
+      latInputElm.current.value = "";
+      lngInputElm.current.value = "";
+    }
   }
-  /* -------------------------------------------------------------------------- */
-  /*                                   RETURN                                   */
-  /* -------------------------------------------------------------------------- */
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const inputOne = e.target[0].value;
+    if (inputOne) {
+      let extracted = extractWords(inputOne);
+      let withPlus = extracted.join("+");
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/?addressdetails=1&q=${withPlus}&format=json&limit=1`
+      );
+      const data = await response.json();
+      if (data && data.length > 0) {
+        let lat = data[0].lat;
+        let lng = data[0].lon;
+        const coords = { lat: lat, lng: lng };
+        latInputElm.current.value = lat;
+        lngInputElm.current.value = lng;
+
+        setGeoData(data);
+        setCoords([coords]);
+      }
+    }
+  }
   return (
-    <>
-      <MKBox component="section" py={{ xs: 2, md: 2 }}>
-        <Container>
-          <Grid container item xs={12} justifyContent="center">
-            <Grid item xs={12} md={6} sx={{ ml: { xs: 0, md: 10 }, mr: { xs: 0, md: "auto" } }}>
-              <MKTypography variant="h2" mb={1}>
-                {name}
-              </MKTypography>
-              <MKTypography variant="body2" color="text">
-                {description}
-              </MKTypography>
-            </Grid>
+    <MKBox component="form" p={2} method="post">
+      <MKBox px={3} py={{ xs: 2, sm: 6 }}>
+        <MKTypography variant="h3" mb={1}>
+          Address to Latitude & Longitude
+        </MKTypography>
+        <MKTypography variant="body2" color="text" mb={2}>
+          To pinpoint a location, you can type in the name of a place, city, state, or address, or
+          click the location on the map to get the coordinates.
+        </MKTypography>
+      </MKBox>
+      <MKBox pt={0.5} pb={3} px={3}>
+        <Grid container>
+          {/* ============ AddressInput ============ */}
+          <AddressInput handleChild={handleChild} />
+          <Grid item xs={12} pr={1} mb={3}>
+            <MKButton type="submit" variant="gradient" color="info">
+              Submit
+            </MKButton>
           </Grid>
-        </Container>
+
+          <Grid item xs={12} pr={1} mb={3}>
+            <MKInput
+              label={latInputElm ? "" : "Longitude"}
+              type="text"
+              fullWidth
+              inputRef={latInputElm}
+            />
+          </Grid>
+          <Grid item xs={12} pr={1} mb={3}>
+            <MKInput
+              label={lngInputElm ? "" : "Longitude"}
+              type="text"
+              fullWidth
+              inputRef={lngInputElm}
+            />
+          </Grid>
+        </Grid>
       </MKBox>
-      <MKBox component="section" py={{ xs: 3, md: 3 }}>
-        <Container>
-        {children}
-        </Container>
-      </MKBox>
-    </>
+    </MKBox>
   );
 }
-Form.defaultProps = {
-  name: "Geocoder",
-};
+
 export default Form;
