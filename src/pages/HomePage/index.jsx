@@ -1,30 +1,30 @@
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
 
 // Material Kit 2 PRO React components
 import Card from "@mui/material/Card";
-import SimpleBlogCard from "examples/Cards/BlogCards/SimpleBlogCard";
-
-// Material Kit 2 PRO React components
+import Grid from "@mui/material/Grid";
 import MKButton from "components/MKButton";
+import MKInput from "components/MKInput";
+import MapExternal from "components/Maps/MapExternal";
+import { useRef } from "react";
+import { extractWords } from "util/helpers";
+import { useGlobalGeoData, useGlobalValue } from "util/mapState";
+// Material Kit 2 PRO React components
 
 // Material Kit 2 PRO React examples
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-
 // Coworking page sections
 
 // Routes
+import Form from "components/Form";
 import footerRoutes from "footer.routes";
 import routes from "routes";
-import Form from "components/Form";
-
+import FormChildren from "./components/FormChildren";
 // Images
+
 
 function HomePage() {
   const actionProps = {
@@ -67,6 +67,7 @@ function HomePage() {
         <Form
           name="Address to Latitude & Longitude"
           description="To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates."
+          children={<FormChildren/>}
         />
       </Card>
       <MKBox pt={6} px={1} mt={6}>

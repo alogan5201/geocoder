@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import { extractWords } from "util/helpers";
 import { useGlobalValue,useGlobalGeoData } from "util/mapState";
 
-function Form({ name, description }) {
+function Form({ name, description, children }) {
   /* -------------------------------------------------------------------------- */
   /*                                    HOOKS                                   */
   /* -------------------------------------------------------------------------- */
@@ -22,28 +22,7 @@ function Form({ name, description }) {
    /* -------------------------------------------------------------------------- */
    /*                                  FUNCTIONS                                 */
    /* -------------------------------------------------------------------------- */
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const inputOne = e.target[0].value;
-    if (inputOne) {
-      let extracted = extractWords(inputOne);
-      let withPlus = extracted.join("+");
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/?addressdetails=1&q=${withPlus}&format=json&limit=1`
-      );
-      const data = await response.json();
-      if (data && data.length > 0) {
-        let lat = data[0].lat;
-        let lng = data[0].lon;
-        const coords = { lat: lat, lng: lng };
-        latInputElm.current.value = lat;
-        lngInputElm.current.value = lng;
-        
-        setGeoData(data)
-        setCoords([coords]);
-      }
-    }
-  }
+
   function handleSelect(e){
     setBlurred(false)
    setSelected(true)
@@ -80,70 +59,7 @@ if(val.length === 0){
       </MKBox>
       <MKBox component="section" py={{ xs: 3, md: 6 }}>
         <Container>
-          <Grid container item xs={12} justifyContent="center">
-            <Grid
-              item
-              xs={12}
-              md={4}
-              sx={{
-                ml: { xs: 0, md: "auto" },
-                mr: { xs: 0, md: 6 },
-                mb: { xs: 4, md: 0 },
-                mt: { xs: 0, md: 8 },
-              }}
-            >
-              <MKBox component="form" method="post" autoComplete="off" onSubmit={handleSubmit}>
-                <MKBox py={3}>
-                  <Grid container spacing={3} sx={{ mb: 3 }}>
-                    <Grid item xs={12} sx={{ my: 1 }}>
-                      <MKInput
-                      defaultValue="Atlanta, GA"
-                        onChange={handleChange}
-                        variant="standard"
-                        placeholder="Address"
-                        fullWidth
-                      />
-                    </Grid>
-                  </Grid>
-                  <Grid container>
-                    <Grid item xs={12}>
-                      <MKButton type="submit" variant="gradient" color="info">
-                        Submit
-                      </MKButton>
-                    </Grid>
-                  </Grid>
-                </MKBox>
-              </MKBox>
-              <MKBox py={3}>
-                <Grid container spacing={3} sx={{ mb: 3 }}>
-                  <Grid item xs={12} sx={{ my: 1 }}>
-                 <MKInput                       
-                        label={latInputElm ? "" : "Longitude"}
-                        type="text"
-                        fullWidth
-                        inputRef={latInputElm}
-                      />
-                  </Grid>
-                  <Grid item xs={12} sx={{ my: 1 }}>
-                    <MKInput
-                      label={lngInputElm ? "" : "Longitude"}
-                      type="text"
-                      fullWidth
-                      inputRef={lngInputElm}
-                    />
-                  </Grid>
-                </Grid>
-              </MKBox>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              md={6}
-              sx={{ mr: { xs: 0, md: "auto" }, ml: { xs: 0, md: 6 }, mb: { xs: 4, md: 0 } }}
-            >
-              <MapExternal/>
-            </Grid>
-          </Grid>
+        {children}
         </Container>
       </MKBox>
     </>
