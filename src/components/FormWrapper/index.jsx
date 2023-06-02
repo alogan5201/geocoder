@@ -64,7 +64,18 @@ if(val.length === 0){
                 </Grid>
                 {/*================= RIGHT COLUMN - MAP ================= */}
                 <Grid item xs={12} lg={7} position="relative" px={0}>
+                  <div
+                    style={{
+                      position: "relative",
+                      paddingBottom: "26.25%",
+                      paddingTop: "padding-top: 30px;",
+                      height: "500px",
+                    }}
+                  >
+
                   <MapBoxMap />
+
+                  </div>
                 </Grid>
               </Grid>
             </MKBox>
