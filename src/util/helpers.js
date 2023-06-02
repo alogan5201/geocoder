@@ -3,10 +3,21 @@ import Reactotron from "reactotron-react-js";
 
 
 export const tron = {
-  log: function (args) {Reactotron.log(args);},
-  warn: function (args) {Reactotron.warn(args);},
-  error: function (args) {Reactotron.error(args);},
-  display: function (args) {Reactotron.display(args);},
+  log: function (args) {
+    Reactotron.log(args);
+  },
+  warn: function (args) {
+    Reactotron.warn(args);
+  },
+  error: function (args) {
+    Reactotron.error(args);
+  },
+  display: function (args) {
+    Reactotron.display(args);
+  },
+  logImportant: function (args) {
+    Reactotron.logImportant(args);
+  },
 };
 
 

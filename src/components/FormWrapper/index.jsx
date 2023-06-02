@@ -11,8 +11,12 @@ import { useEffect, useRef, useState } from "react";
 import { extractWords,tron } from "util/helpers";
 import { useGlobalValue,useGlobalGeoData } from "util/mapState";
 import { create } from "apisauce";
-function FormWrapper({ name, description, children }) {
-
+function FormWrapper({props,form}) {
+useEffect(() => {
+  if(props){
+    
+  }
+}, [props]);
   /* -------------------------------------------------------------------------- */
   /*                                    HOOKS                                   */
   /* -------------------------------------------------------------------------- */
@@ -23,7 +27,6 @@ function FormWrapper({ name, description, children }) {
    /* -------------------------------------------------------------------------- */
    /*                                  FUNCTIONS                                 */
    /* -------------------------------------------------------------------------- */
-
   function handleSelect(e){
     setBlurred(false)
    setSelected(true)
@@ -58,7 +61,8 @@ if(val.length === 0){
               <Grid container spacing={3}>
                 {/*================= LEFT COLUMN - FormWrapper / FormChildren =================*/}
                 <Grid item xs={12} lg={5}>
-                  {children}
+                {form}
+                  {/* {children} */}
                 </Grid>
                 {/*================= RIGHT COLUMN - MAP ================= */}
                 <Grid
@@ -67,7 +71,6 @@ if(val.length === 0){
                   lg={7}
                   position="relative"
                   px={0}
-           
                 >
                   <MKBox
                     display="flex"

@@ -14,8 +14,18 @@ import FormChildren from "./components/FormChildren";
 import ContactUsTwo from "./test";
 import { Troubleshoot } from "@mui/icons-material";
 import Form from "components/Form";
+import { formStyles } from "src/styles";
+import {tron} from 'util/helpers'
 function HomePage() {
+const formWrapperStyles = formStyles.mapForm.formWrapper
+const formWrapperProps = {
+  styles: formWrapperStyles,
+  name: "Address to Latitude & Longitude",
+  description:
+    "To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates.",
+};
 
+// formStyles.formWrapper
   const actionProps = {
     type: "internal",
     route: "/pages/landing-pages/coworking",
@@ -24,19 +34,13 @@ function HomePage() {
   };
   return (
     <>
-        <BaseLayout
-    >
- 
-        <FormWrapper
-          name="Address to Latitude & Longitude"
-          description="To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates."
-          children={<Form addressToLatLng={true} />}
-        />
-     
-      <MKBox pt={6} px={1} mt={6}>
-        <DefaultFooter content={footerRoutes} />
-      </MKBox>
-    </BaseLayout>
+      <BaseLayout>
+        <FormWrapper props={formWrapperProps} form={<Form addressToLatLng={true} />} />
+
+        <MKBox pt={6} px={1} mt={6}>
+          <DefaultFooter content={footerRoutes} />
+        </MKBox>
+      </BaseLayout>
     </>
   );
 }

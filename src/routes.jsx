@@ -98,6 +98,7 @@ import Tables from "layouts/sections/elements/tables";
 import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
 import AddressToLatLngPage from "pages/GeoTools/AddressToLatLngPage"
+
 const routes = [
   {
     name: "tools",
