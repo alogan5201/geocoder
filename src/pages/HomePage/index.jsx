@@ -17,7 +17,7 @@ import { useGlobalGeoData, useGlobalValue } from "util/mapState";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 // Coworking page sections
-
+import BaseLayout from "layouts/sections/components/BaseLayout";
 // Routes
 import Form from "components/Form";
 import footerRoutes from "footer.routes";
@@ -35,16 +35,9 @@ function HomePage() {
   };
   return (
     <>
-      <DefaultNavbar
-        routes={routes}
-        action={{
-          type: "external",
-          route: "https://www.creative-tim.com/product/material-kit-pro-react",
-          label: "buy now",
-          color: "info",
-        }}
-        sticky
-      />
+        <BaseLayout
+    
+    >
       <MKBox
         py={8}
         width="100%"
@@ -73,6 +66,8 @@ function HomePage() {
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
+    </BaseLayout>
+
     </>
   );
 }

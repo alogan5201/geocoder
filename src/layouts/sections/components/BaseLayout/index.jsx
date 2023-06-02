@@ -27,12 +27,11 @@ import MKTypography from "components/MKTypography";
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import CenteredFooter from "examples/Footers/CenteredFooter";
-import Breadcrumbs from "examples/Breadcrumbs";
 
 // Routes
 import routes from "routes";
 
-function BaseLayout({ breadcrumb, title, children }) {
+function BaseLayout({  children }) {
   return (
     <MKBox display="flex" flexDirection="column" bgColor="white" minHeight="100vh">
       <MKBox bgColor="white" shadow="sm" py={0.25}>
@@ -48,14 +47,10 @@ function BaseLayout({ breadcrumb, title, children }) {
           relative
         />
       </MKBox>
-      <Container sx={{ mt: 6 }}>
+      <Container sx={{ mt: 0 }}>
         <Grid container item xs={12} flexDirection="column" justifyContent="center" mx="auto">
-          <MKBox width={{ xs: "100%", md: "50%", lg: "25%" }} mb={3}>
-            <Breadcrumbs routes={breadcrumb} />
-          </MKBox>
-          <MKTypography variant="h3" mb={1}>
-            {title}
-          </MKTypography>
+         
+        
           {children}
         </Grid>
       </Container>
@@ -68,8 +63,6 @@ function BaseLayout({ breadcrumb, title, children }) {
 
 // Typechecking props for the BaseLayout
 BaseLayout.propTypes = {
-  breadcrumb: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
-  title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 

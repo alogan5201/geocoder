@@ -43,7 +43,7 @@ if(val.length === 0){
   /* -------------------------------------------------------------------------- */
   return (
     <>
-      <MKBox component="section" py={{ xs: 2, md: 4 }}>
+      <MKBox component="section" py={{ xs: 2, md: 2 }}>
         <Container>
           <Grid container item xs={12} justifyContent="center">
             <Grid item xs={12} md={6} sx={{ ml: { xs: 0, md: 10 }, mr: { xs: 0, md: "auto" } }}>
@@ -57,7 +57,7 @@ if(val.length === 0){
           </Grid>
         </Container>
       </MKBox>
-      <MKBox component="section" py={{ xs: 3, md: 6 }}>
+      <MKBox component="section" py={{ xs: 3, md: 3 }}>
         <Container>
         {children}
         </Container>
