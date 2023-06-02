@@ -13,6 +13,7 @@ export default defineConfig({
       assets: path.resolve("src/assets"),
       layouts: path.resolve("src/layouts"),
       util: path.resolve("src/util"),
+      hooks: path.resolve("src/hooks"),
       "footer.routes": path.resolve("src/footer.routes.jsx"),
       "routes": path.resolve("src/routes.jsx"),
     },

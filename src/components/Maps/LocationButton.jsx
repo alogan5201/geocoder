@@ -139,8 +139,10 @@ const LocationButton = () => {
         });
       },
     });
-
+    L.mapbox.accessToken =
+      "pk.eyJ1IjoibmluYTU2ODIiLCJhIjoiY2xoNnFvYTJwMDhzczNtcXFiZ3c4Y3BoYiJ9.QsbZzVVQmdUqEpce-hq49A";
     // adding new button to map controll
+    L.mapbox.styleLayer("mapbox://styles/mapbox/streets-v11").addTo(map); // add your tiles to the map
     map.addControl(new customControl());
   }, [map]);
 
