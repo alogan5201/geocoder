@@ -6,6 +6,7 @@ import {
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
@@ -32,32 +33,34 @@ export default function WhatChanged() {
 
   // useEffect, useCallback or useMemo
 
-  useWhatChanged([a, b, c, d]); // debugs the below useEffect
+  useWhatChanged([a, b, c, d], "a, b, c, d"); // debugs the below useEffect
 
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
   }, [a, b, c, d]);
 
-  return <div>
-   <Box component="section" py={12}>
-      <Container>
-        <Grid container justifyContent="center">
-          <Stack direction="row" alignItems="flex-end" spacing={1}>
-            <Button variant="outlined" color="info">
-              info
-            </Button>
-            
-            <Button variant="outlined" color="secondary">
-              secondary
-            </Button>
-            <Button variant="outlined" color="success">
-              success
-            </Button>
-           
-          </Stack>
-        </Grid>
-      </Container>
-    </Box>
-
-  </div>;
+  return (
+    <div>
+      <Box component="section" py={12}>
+        <Container>
+          <Grid container justifyContent="center">
+            <Grid item xs={12} sm={9}>
+              <Typography variant="h3">A = {a}</Typography>
+            </Grid>
+            <Stack direction="row" alignItems="flex-end" spacing={1}>
+              <Button variant="outlined" color="info" onClick={() => setA(a+1)}>
+                info
+              </Button>
+              <Button variant="outlined" color="secondary">
+                secondary
+              </Button>
+              <Button variant="outlined" color="success">
+                success
+              </Button>
+            </Stack>
+          </Grid>
+        </Container>
+      </Box>
+    </div>
+  );
 }

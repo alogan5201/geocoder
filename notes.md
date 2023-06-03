@@ -65,3 +65,9 @@ pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Y
 
 projection='globe'
 
+
+# Development packages 
+- These packages should be checked before going to production as they should only be used in dev mode
+
+- callerPath
+  - helper.js

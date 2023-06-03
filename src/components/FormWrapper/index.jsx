@@ -6,16 +6,12 @@ import Typography from "components/Typography";
 import { useEffect, useRef } from "react";
 import { tron } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
-import GlobeMapBoxMap from "components/Maps/GlobeMapBoxMap";
+import MapExternal from "components/Maps/MapExternal";
 import Sandbox from "components/Sandbox";
 
 function FormWrapper({props, form, map}) {
   const sectionStyles = props.styles.section.py
-useEffect(() => {
-  if(props){
-    tron.log(props)
-  }
-}, [props]);
+
   /* -------------------------------------------------------------------------- */
   /*                                    HOOKS                                   */
   /* -------------------------------------------------------------------------- */
@@ -76,7 +72,7 @@ if(val.length === 0){
                     }}
                   >
 
-                  <GlobeMapBoxMap />
+                  <MapExternal />
 
                   </div>
                 </Grid>

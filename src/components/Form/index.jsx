@@ -10,6 +10,7 @@ import { useRef } from "react";
 import { extractWords } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
 import Typography from "components/Typography";
+
 function Form() {
   const handleChild = (callback) => {
     // Here, you have the function from the child.

@@ -1,4 +1,3 @@
-
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 
@@ -10,45 +9,35 @@ import Input from "components/Input";
 import { useRef } from "react";
 import { extractWords } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
-// @mui material components
-
-// Material Kit 2 PRO React components
 import Typography from "components/Typography";
-// Material Kit 2 PRO React components
 
-// Material Kit 2 PRO React examples
-// Coworking page sections
-
-// Routes
-
-// Images
-function FormChildren(){
+function Form() {
   const handleChild = (callback) => {
     // Here, you have the function from the child.
     callback();
   };
   const [coords, setCoords] = useGlobalValue();
   const [geoData, setGeoData] = useGlobalGeoData();
-   const latInputElm = useRef(null);
-   const lngInputElm = useRef(null);
-   /* -------------------------------------------------------------------------- */
-   /*                                  FUNCTIONS                                 */
-   /* -------------------------------------------------------------------------- */
+  const latInputElm = useRef(null);
+  const lngInputElm = useRef(null);
+  /* -------------------------------------------------------------------------- */
+  /*                                  FUNCTIONS                                 */
+  /* -------------------------------------------------------------------------- */
 
-  function handleSelect(e){
-    setBlurred(false)
-   setSelected(true)
+  function handleSelect(e) {
+    setBlurred(false);
+    setSelected(true);
   }
-  function handleBlur(e){
-    setSelected(false)
-   setBlurred(true)
+  function handleBlur(e) {
+    setSelected(false);
+    setBlurred(true);
   }
-  function handleChange (e){
-    let val = e.target.value
-if(val.length === 0){
- latInputElm.current.value = "";
- lngInputElm.current.value = "";
-}
+  function handleChange(e) {
+    let val = e.target.value;
+    if (val.length === 0) {
+      latInputElm.current.value = "";
+      lngInputElm.current.value = "";
+    }
   }
   async function handleSubmit(e) {
     e.preventDefault();
@@ -66,8 +55,8 @@ if(val.length === 0){
         const coords = { lat: lat, lng: lng };
         latInputElm.current.value = lat;
         lngInputElm.current.value = lng;
-        
-        setGeoData(data)
+
+        setGeoData(data);
         setCoords([coords]);
       }
     }
@@ -115,6 +104,4 @@ if(val.length === 0){
   );
 }
 
-
-
-export default FormChildren;
+export default Form;
