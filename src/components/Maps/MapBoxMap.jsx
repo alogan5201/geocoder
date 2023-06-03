@@ -12,7 +12,7 @@ const MapBoxMap = () => {
       center={position}
       zoom={4.5}
       scrollWheelZoom={true}
-    
+      projection='globe'
     >
       <TileLayer
         attribution='Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'

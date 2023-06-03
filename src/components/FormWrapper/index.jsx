@@ -6,7 +6,7 @@ import MKTypography from "components/MKTypography";
 import { useEffect, useRef } from "react";
 import { tron } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
-import MapBoxMap from "components/Maps/MapBoxMap";
+import GlobeMapBoxMap from "components/Maps/GlobeMapBoxMap";
 
 function FormWrapper({props, form, map}) {
   const sectionStyles = props.styles.section.py
@@ -56,6 +56,7 @@ if(val.length === 0){
               mb={6}
               sx={{ overflow: "hidden" }}
             >
+           
               <Grid container spacing={3}>
                 {/*================= LEFT COLUMN - FormWrapper / FormChildren =================*/}
                 <Grid item xs={12} lg={5}>
@@ -68,12 +69,12 @@ if(val.length === 0){
                     style={{
                       position: "relative",
                       paddingBottom: "26.25%",
-                      paddingTop: "padding-top: 30px;",
+                      paddingTop: "30px",
                       height: "500px",
                     }}
                   >
 
-                  <MapBoxMap />
+                  <GlobeMapBoxMap />
 
                   </div>
                 </Grid>

@@ -9,18 +9,7 @@ import MKInput from "components/MKInput";
 import { useRef } from "react";
 import { extractWords } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
-// @mui material components
-
-// Material Kit 2 PRO React components
 import MKTypography from "components/MKTypography";
-// Material Kit 2 PRO React components
-
-// Material Kit 2 PRO React examples
-// Coworking page sections
-
-// Routes
-
-// Images
 function Form() {
   const handleChild = (callback) => {
     // Here, you have the function from the child.

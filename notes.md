@@ -54,3 +54,14 @@ https://github.com/infinitered/apisauce
   "description": "To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates.",
   "map": true
 }
+
+mapbox://styles/logan5201/
+
+clie67dle008i01qp5yti5z4x
+
+pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Yao_mmdgrgjPA
+
+pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Yao_mmdgrgjPA
+
+projection='globe'
+
