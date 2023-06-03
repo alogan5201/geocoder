@@ -21,14 +21,14 @@ import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
 function TransparentTeamCard({ image, name, position, description, socials }) {
   return (
     <Box display="flex" flexDirection="column">
       <Box position="relative" width="max-content">
-        <MKAvatar
+        <Avatar
           variant="rounded"
           size="xxl"
           src={image}

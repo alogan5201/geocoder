@@ -20,7 +20,7 @@ import Tooltip from "@mui/material/Tooltip";
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 import Typography from "components/Typography";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 
 // Images
 import team1 from "assets/images/team-1.jpg";
@@ -49,16 +49,16 @@ function Messages() {
         </Typography>
         <Box display="flex">
           <Tooltip title="2 New Messages" placement="top">
-            <MKAvatar src={team1} alt="team-1" size="sm" sx={messagesAvatarStyles} />
+            <Avatar src={team1} alt="team-1" size="sm" sx={messagesAvatarStyles} />
           </Tooltip>
           <Tooltip title="1 New Messages" placement="top">
-            <MKAvatar src={team2} alt="team-2" size="sm" sx={messagesAvatarStyles} />
+            <Avatar src={team2} alt="team-2" size="sm" sx={messagesAvatarStyles} />
           </Tooltip>
           <Tooltip title="13 New Messages" placement="top">
-            <MKAvatar src={team3} alt="team-3" size="sm" sx={messagesAvatarStyles} />
+            <Avatar src={team3} alt="team-3" size="sm" sx={messagesAvatarStyles} />
           </Tooltip>
           <Tooltip title="7 New Messages" placement="top">
-            <MKAvatar src={team4} alt="team-4" size="sm" sx={messagesAvatarStyles} />
+            <Avatar src={team4} alt="team-4" size="sm" sx={messagesAvatarStyles} />
           </Tooltip>
         </Box>
       </Box>

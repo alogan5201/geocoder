@@ -22,7 +22,7 @@ import Grid from "@mui/material/Grid";
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 import Button from "components/Button";
-import Snackbar from "components/Snackbar";
+import MKSnackbar from "components/SnackbarComp";
 
 function ToastBasic() {
   const [show, setShow] = useState(false);
@@ -36,7 +36,7 @@ function ToastBasic() {
             Show Snackbar
           </Button>
         </Grid>
-        <Snackbar
+        <MKSnackbar
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
           color="dark"
           icon="notifications"

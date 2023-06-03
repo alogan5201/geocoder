@@ -27,10 +27,10 @@ import Fade from "@mui/material/Fade";
 import Box from "components/Box";
 import Typography from "components/Typography";
 
-// Custom styles for the Snackbar
-import MKSnackbarIconRoot from "components/Snackbar/MKSnackbarIconRoot";
+// Custom styles for the MKSnackbar
+import MKSnackbarIconRoot from "components/SnackbarComp/MKSnackbarIconRoot";
 
-function Snackbar({ color, icon, title, dateTime, content, close, bgWhite, ...rest }) {
+function SnackbarComp({ color, icon, title, dateTime, content, close, bgWhite, ...rest }) {
   let titleColor;
   let dateTimeColor;
   let dividerColor;
@@ -131,14 +131,14 @@ function Snackbar({ color, icon, title, dateTime, content, close, bgWhite, ...re
   );
 }
 
-// Setting default values for the props of Snackbar
-Snackbar.defaultProps = {
+// Setting default values for the props of SnackbarComp
+SnackbarComp.defaultProps = {
   bgWhite: false,
   color: "info",
 };
 
-// Typechecking props for Snackbar
-Snackbar.propTypes = {
+// Typechecking props for SnackbarComp
+SnackbarComp.propTypes = {
   color: PropTypes.oneOf([
     "primary",
     "secondary",
@@ -157,4 +157,4 @@ Snackbar.propTypes = {
   bgWhite: PropTypes.bool,
 };
 
-export default Snackbar;
+export default SnackbarComp;

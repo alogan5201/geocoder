@@ -20,7 +20,7 @@ import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 
 // Images
 import team4 from "assets/images/team-4.jpg";
@@ -31,12 +31,12 @@ function AvatarSize() {
       <Container>
         <Grid container justifyContent="center">
           <Stack direction="row" alignItems="flex-end" spacing={1}>
-            <MKAvatar src={team4} alt="xs" size="xs" />
-            <MKAvatar src={team4} alt="sm" size="sm" />
-            <MKAvatar src={team4} alt="md" size="md" />
-            <MKAvatar src={team4} alt="lg" size="lg" />
-            <MKAvatar src={team4} alt="xl" size="xl" />
-            <MKAvatar src={team4} alt="xxl" size="xxl" />
+            <Avatar src={team4} alt="xs" size="xs" />
+            <Avatar src={team4} alt="sm" size="sm" />
+            <Avatar src={team4} alt="md" size="md" />
+            <Avatar src={team4} alt="lg" size="lg" />
+            <Avatar src={team4} alt="xl" size="xl" />
+            <Avatar src={team4} alt="xxl" size="xxl" />
           </Stack>
         </Grid>
       </Container>

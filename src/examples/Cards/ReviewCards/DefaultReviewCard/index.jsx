@@ -21,7 +21,7 @@ import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
 function DefaultReviewCard({ color, image, name, date, review, rating }) {
@@ -107,7 +107,7 @@ function DefaultReviewCard({ color, image, name, date, review, rating }) {
       p={3}
     >
       {image && (
-        <MKAvatar
+        <Avatar
           src={image}
           alt={name}
           variant="rounded"

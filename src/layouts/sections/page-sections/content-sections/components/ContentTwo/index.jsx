@@ -23,7 +23,7 @@ import Divider from "@mui/material/Divider";
 import Box from "components/Box";
 import Badge from "components/Badge";
 import Button from "components/Button";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 import SocialButton from "components/SocialButton";
 
@@ -60,7 +60,7 @@ function ContentTwo() {
             </Grid>
             <Divider sx={{ mt: 1 }} />
             <Box display="flex" alignItems="center">
-              <MKAvatar
+              <Avatar
                 src={profilePicture}
                 alt="Alec Thompson"
                 size="xxl"

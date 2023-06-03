@@ -22,7 +22,7 @@ import Icon from "@mui/material/Icon";
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 import Button from "components/Button";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
@@ -85,7 +85,7 @@ function VirtualReality() {
                 mb={{ xs: 8, md: 0 }}
               >
                 <Tooltip title="My Profile" placement="right">
-                  <MKAvatar
+                  <Avatar
                     src={team1}
                     alt="Profile Picture"
                     size="lg"

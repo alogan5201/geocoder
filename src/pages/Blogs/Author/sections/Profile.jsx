@@ -20,7 +20,7 @@ import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 import Button from "components/Button";
 import Typography from "components/Typography";
 
@@ -33,7 +33,7 @@ function Profile() {
       <Container>
         <Grid container item xs={12} justifyContent="center" mx="auto">
           <Box mt={{ xs: -16, md: -20 }} textAlign="center">
-            <MKAvatar src={profilePicture} alt="Burce Mars" size="xxl" shadow="xl" />
+            <Avatar src={profilePicture} alt="Burce Mars" size="xxl" shadow="xl" />
           </Box>
           <Grid container justifyContent="center" py={6}>
             <Grid item xs={12} md={7} mx={{ xs: "auto", sm: 6, md: 1 }}>

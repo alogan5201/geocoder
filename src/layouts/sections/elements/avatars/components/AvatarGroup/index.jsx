@@ -20,7 +20,7 @@ import MuiAvatarGroup from "@mui/material/AvatarGroup";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 
 // Images
 import team1 from "assets/images/team-1.jpg";
@@ -34,10 +34,10 @@ function AvatarGroup() {
       <Container>
         <Grid container justifyContent="center">
           <MuiAvatarGroup spacing={12}>
-            <MKAvatar src={team1} alt="team 1" size="lg" />
-            <MKAvatar src={team2} alt="team 2" size="lg" />
-            <MKAvatar src={team3} alt="team 3" size="lg" />
-            <MKAvatar src={team4} alt="team 4" size="lg" />
+            <Avatar src={team1} alt="team 1" size="lg" />
+            <Avatar src={team2} alt="team 2" size="lg" />
+            <Avatar src={team3} alt="team 3" size="lg" />
+            <Avatar src={team4} alt="team 4" size="lg" />
           </MuiAvatarGroup>
         </Grid>
       </Container>

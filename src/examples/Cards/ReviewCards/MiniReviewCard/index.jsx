@@ -18,7 +18,7 @@ import PropTypes from "prop-types";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
 function MiniReviewCard({ color, review, author }) {
@@ -38,7 +38,7 @@ function MiniReviewCard({ color, review, author }) {
         &quot;{review}&quot;
       </Typography>
       <Box display="flex" alignItems="center" mt={3}>
-        <MKAvatar src={author.image} alt={author.name} shadow="md" />
+        <Avatar src={author.image} alt={author.name} shadow="md" />
         <Box pl={1.5} lineHeight={1}>
           <Typography
             display="block"

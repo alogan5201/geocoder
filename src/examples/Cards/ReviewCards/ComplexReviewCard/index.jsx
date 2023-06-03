@@ -21,7 +21,7 @@ import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
 function ComplexReviewCard({ image, color, title, review, author }) {
@@ -50,7 +50,7 @@ function ComplexReviewCard({ image, color, title, review, author }) {
           <em>&quot;{review}&quot;</em>
         </Typography>
         <Box display="flex" alignItems="center">
-          <MKAvatar
+          <Avatar
             src={author.logo}
             alt="Logo"
             size="md"

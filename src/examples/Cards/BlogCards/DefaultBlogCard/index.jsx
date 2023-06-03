@@ -26,7 +26,7 @@ import MuiLink from "@mui/material/Link";
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 import Typography from "components/Typography";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 
 function DefaultBlogCard({ image, category, title, description, author, raised, action }) {
   const imageTemplate = (
@@ -116,7 +116,7 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
         </Typography>
         {author && (
           <Box display="flex" alignItems="center" mt={3}>
-            <MKAvatar
+            <Avatar
               src={author.image}
               alt={author.name}
               shadow="md"

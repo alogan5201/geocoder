@@ -29,7 +29,7 @@ import TableRow from "@mui/material/TableRow";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
 function Table({ columns, rows }) {
@@ -89,7 +89,7 @@ function Table({ columns, rows }) {
           >
             <Box display="flex" alignItems="center" py={0.5} px={1}>
               <Box mr={2}>
-                <MKAvatar src={row[name][0]} name={row[name][1]} variant="rounded" size="sm" />
+                <Avatar src={row[name][0]} name={row[name][1]} variant="rounded" size="sm" />
               </Box>
               <Typography variant="button" fontWeight="medium" sx={{ width: "max-content" }}>
                 {row[name][1]}

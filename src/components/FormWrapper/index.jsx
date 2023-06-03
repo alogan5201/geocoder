@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import { tron } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
 import GlobeMapBoxMap from "components/Maps/GlobeMapBoxMap";
+import Sandbox from "components/Sandbox";
 
 function FormWrapper({props, form, map}) {
   const sectionStyles = props.styles.section.py
@@ -47,6 +48,7 @@ if(val.length === 0){
     <>
       <Box component="section" py={sectionStyles}>
         <Container>
+          <Sandbox />
           <Grid container item px={0}>
             <Box
               width="100%"

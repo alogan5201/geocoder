@@ -22,13 +22,13 @@ import Card from "@mui/material/Card";
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 import Typography from "components/Typography";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 
 function SimpleReviewCard({ image, name, username, review }) {
   return (
     <Card>
       <Box display="grid" justifyContent="center" position="relative" mt={-7}>
-        <MKAvatar
+        <Avatar
           src={image}
           alt={name}
           size="xxl"

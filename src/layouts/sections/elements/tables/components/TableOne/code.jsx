@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 import Badge from "components/Badge";
-import MKAvatar from "components/MKAvatar";
+import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
@@ -24,7 +24,7 @@ function Author({ image, name, email }) {
   return (
     <Box display="flex" alignItems="center" px={1} py={0.5}>
       <Box mr={2}>
-        <MKAvatar src={image} alt={name} size="sm" variant="rounded" />
+        <Avatar src={image} alt={name} size="sm" variant="rounded" />
       </Box>
       <Box display="flex" flexDirection="column">
         <Typography variant="button" fontWeight="medium">
