@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Sections components
 import BaseLayout from "layouts/sections/components/BaseLayout";
@@ -40,9 +40,9 @@ function Cta() {
       ]}
     >
       <View title="Prefooter 1" code={ctaOneCode}>
-        <MKBox bgColor="white">
+        <Box bgColor="white">
           <CtaOne />
-        </MKBox>
+        </Box>
       </View>
       <View title="Prefooter 2" code={ctaTwoCode}>
         <CtaTwo />

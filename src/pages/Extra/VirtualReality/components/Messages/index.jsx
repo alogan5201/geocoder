@@ -18,8 +18,8 @@ import Card from "@mui/material/Card";
 import Tooltip from "@mui/material/Tooltip";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 import MKAvatar from "components/MKAvatar";
 
 // Images
@@ -43,11 +43,11 @@ function Messages() {
 
   return (
     <Card>
-      <MKBox display="flex" alignItems="center" justifyContent="space-between" p={3}>
-        <MKTypography variant="body2" color="text">
+      <Box display="flex" alignItems="center" justifyContent="space-between" p={3}>
+        <Typography variant="body2" color="text">
           Messages
-        </MKTypography>
-        <MKBox display="flex">
+        </Typography>
+        <Box display="flex">
           <Tooltip title="2 New Messages" placement="top">
             <MKAvatar src={team1} alt="team-1" size="sm" sx={messagesAvatarStyles} />
           </Tooltip>
@@ -60,8 +60,8 @@ function Messages() {
           <Tooltip title="7 New Messages" placement="top">
             <MKAvatar src={team4} alt="team-4" size="sm" sx={messagesAvatarStyles} />
           </Tooltip>
-        </MKBox>
-      </MKBox>
+        </Box>
+      </Box>
     </Card>
   );
 }

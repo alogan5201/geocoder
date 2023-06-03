@@ -20,8 +20,8 @@ import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-// import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+// import Typography from "components/Typography";
 
 // Material Kit 2 PRO React example components
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -32,8 +32,8 @@ import routes from "routes";
 
 function CoverLayout({ coverHeight, image, children }) {
   return (
-    <MKBox height="calc(100vh - 1rem)">
-      <MKBox width="100%" position="absolute" top="0.25rem">
+    <Box height="calc(100vh - 1rem)">
+      <Box width="100%" position="absolute" top="0.25rem">
         <DefaultNavbar
           routes={routes}
           action={{
@@ -44,8 +44,8 @@ function CoverLayout({ coverHeight, image, children }) {
           transparent
           light
         />
-      </MKBox>
-      <MKBox
+      </Box>
+      <Box
         width="calc(100% - 2rem)"
         minHeight={coverHeight}
         borderRadius="xl"
@@ -65,17 +65,17 @@ function CoverLayout({ coverHeight, image, children }) {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <MKBox mt={{ xs: -20, lg: -18 }} px={1} width="calc(100% - 2rem)" mx="auto">
+      <Box mt={{ xs: -20, lg: -18 }} px={1} width="calc(100% - 2rem)" mx="auto">
         <Grid container spacing={1} justifyContent="center">
           <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
             {children}
           </Grid>
         </Grid>
-      </MKBox>
-      <MKBox width="100%" position="absolute" bottom="1.625rem">
+      </Box>
+      <Box width="100%" position="absolute" bottom="1.625rem">
         <SimpleFooter />
-      </MKBox>
-    </MKBox>
+      </Box>
+    </Box>
   );
 }
 

@@ -14,8 +14,8 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function Separator() {
   const separatorStyles = {
@@ -28,8 +28,8 @@ function Separator() {
   };
 
   return (
-    <MKBox my={3} position="relative" textAlign="center">
-      <MKTypography
+    <Box my={3} position="relative" textAlign="center">
+      <Typography
         variant="button"
         fontWeight="bold"
         color="secondary"
@@ -58,8 +58,8 @@ function Separator() {
         }}
       >
         or continue with
-      </MKTypography>
-    </MKBox>
+      </Typography>
+    </Box>
   );
 }
 

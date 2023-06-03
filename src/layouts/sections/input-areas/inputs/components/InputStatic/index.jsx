@@ -19,15 +19,15 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
+import Box from "components/Box";
+import Input from "components/Input";
 
 function InputStatic() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container item xs={12} lg={4} py={1} mx="auto">
-          <MKInput
+          <Input
             variant="standard"
             label="Full Name"
             placeholder="eg. Thomas Shelby"
@@ -36,7 +36,7 @@ function InputStatic() {
           />
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

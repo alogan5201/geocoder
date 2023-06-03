@@ -19,8 +19,8 @@ import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultReviewCard from "examples/Cards/ReviewCards/DefaultReviewCard";
@@ -34,7 +34,7 @@ import digitalOceanLogo from "assets/images/logos/gray-logos/logo-digitalocean.s
 
 function Information() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid
           container
@@ -44,14 +44,14 @@ function Information() {
           justifyContent="center"
           sx={{ mx: "auto", textAlign: "center" }}
         >
-          <MKTypography variant="h2">Trusted by over</MKTypography>
-          <MKTypography variant="h2" color="info" textGradient mb={2}>
+          <Typography variant="h2">Trusted by over</Typography>
+          <Typography variant="h2" color="info" textGradient mb={2}>
             1,679,477+ web developers
-          </MKTypography>
-          <MKTypography variant="body1" color="text" mb={2}>
+          </Typography>
+          <Typography variant="body1" color="text" mb={2}>
             Many Fortune 500 companies, startups, universities and governmental institutions love
             Creative Tim&apos;s products.
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 8 }}>
           <Grid item xs={12} md={6} lg={4}>
@@ -83,19 +83,19 @@ function Information() {
         <Divider sx={{ my: 6 }} />
         <Grid container spacing={3} justifyContent="center">
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={appleLogo} alt="Apple" width="100%" opacity={0.6} />
+            <Box component="img" src={appleLogo} alt="Apple" width="100%" opacity={0.6} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={facebookLogo} alt="Facebook" width="100%" opacity={0.6} />
+            <Box component="img" src={facebookLogo} alt="Facebook" width="100%" opacity={0.6} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={nasaLogo} alt="Nasa" width="100%" opacity={0.6} />
+            <Box component="img" src={nasaLogo} alt="Nasa" width="100%" opacity={0.6} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={vodafoneLogo} alt="Vodafone" width="100%" opacity={0.6} />
+            <Box component="img" src={vodafoneLogo} alt="Vodafone" width="100%" opacity={0.6} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox
+            <Box
               component="img"
               src={digitalOceanLogo}
               alt="DigitalOcean"
@@ -105,7 +105,7 @@ function Information() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

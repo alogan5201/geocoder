@@ -20,13 +20,13 @@ import PropTypes from "prop-types";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function AboutUsOption({ icon, content }) {
   return (
-    <MKBox display="flex" alignItems="center" p={2}>
-      <MKBox
+    <Box display="flex" alignItems="center" p={2}>
+      <Box
         width="3rem"
         height="3rem"
         variant="gradient"
@@ -39,11 +39,11 @@ function AboutUsOption({ icon, content }) {
         borderRadius="xl"
       >
         <Icon fontSize="small">{icon}</Icon>
-      </MKBox>
-      <MKTypography variant="body2" color="text" pl={2}>
+      </Box>
+      <Typography variant="body2" color="text" pl={2}>
         {content}
-      </MKTypography>
-    </MKBox>
+      </Typography>
+    </Box>
   );
 }
 

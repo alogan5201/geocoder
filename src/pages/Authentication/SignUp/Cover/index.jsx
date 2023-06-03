@@ -21,10 +21,10 @@ import Card from "@mui/material/Card";
 import Checkbox from "@mui/material/Checkbox";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Input from "components/Input";
+import Button from "components/Button";
 
 // Authentication layout components
 import CoverLayout from "pages/Authentication/components/CoverLayout";
@@ -36,7 +36,7 @@ function Cover() {
   return (
     <CoverLayout image={bgImage}>
       <Card>
-        <MKBox
+        <Box
           variant="gradient"
           bgColor="info"
           borderRadius="lg"
@@ -47,35 +47,35 @@ function Cover() {
           mb={1}
           textAlign="center"
         >
-          <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
+          <Typography variant="h4" fontWeight="medium" color="white" mt={1}>
             Join us today
-          </MKTypography>
-          <MKTypography display="block" variant="button" color="white" my={1}>
+          </Typography>
+          <Typography display="block" variant="button" color="white" my={1}>
             Enter your email and password to register
-          </MKTypography>
-        </MKBox>
-        <MKBox p={3}>
-          <MKBox component="form" role="form">
-            <MKBox mb={2}>
-              <MKInput type="text" label="Name" fullWidth />
-            </MKBox>
-            <MKBox mb={2}>
-              <MKInput type="email" label="Email" fullWidth />
-            </MKBox>
-            <MKBox mb={2}>
-              <MKInput type="password" label="Password" fullWidth />
-            </MKBox>
-            <MKBox display="flex" alignItems="center" ml={-1}>
+          </Typography>
+        </Box>
+        <Box p={3}>
+          <Box component="form" role="form">
+            <Box mb={2}>
+              <Input type="text" label="Name" fullWidth />
+            </Box>
+            <Box mb={2}>
+              <Input type="email" label="Email" fullWidth />
+            </Box>
+            <Box mb={2}>
+              <Input type="password" label="Password" fullWidth />
+            </Box>
+            <Box display="flex" alignItems="center" ml={-1}>
               <Checkbox />
-              <MKTypography
+              <Typography
                 variant="button"
                 fontWeight="regular"
                 color="text"
                 sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
               >
                 &nbsp;&nbsp;I agree the&nbsp;
-              </MKTypography>
-              <MKTypography
+              </Typography>
+              <Typography
                 component="a"
                 href="#"
                 variant="button"
@@ -84,17 +84,17 @@ function Cover() {
                 textGradient
               >
                 Terms and Conditions
-              </MKTypography>
-            </MKBox>
-            <MKBox mt={3} mb={1}>
-              <MKButton variant="gradient" color="info" fullWidth>
+              </Typography>
+            </Box>
+            <Box mt={3} mb={1}>
+              <Button variant="gradient" color="info" fullWidth>
                 sign in
-              </MKButton>
-            </MKBox>
-            <MKBox mt={3} mb={1} textAlign="center">
-              <MKTypography variant="button" color="text">
+              </Button>
+            </Box>
+            <Box mt={3} mb={1} textAlign="center">
+              <Typography variant="button" color="text">
                 Already have an account?{" "}
-                <MKTypography
+                <Typography
                   component={Link}
                   to="/authentication/sign-in/cover"
                   variant="button"
@@ -103,11 +103,11 @@ function Cover() {
                   textGradient
                 >
                   Sign In
-                </MKTypography>
-              </MKTypography>
-            </MKBox>
-          </MKBox>
-        </MKBox>
+                </Typography>
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
       </Card>
     </CoverLayout>
   );

@@ -17,10 +17,10 @@ Coded by www.creative-tim.com
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Input from "components/Input";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -36,7 +36,7 @@ import bgImage from "assets/images/illustrations/illustration-reset.jpg";
 function ContactUs() {
   return (
     <>
-      <MKBox position="fixed" top="0.5rem" width="100%">
+      <Box position="fixed" top="0.5rem" width="100%">
         <DefaultNavbar
           routes={routes}
           action={{
@@ -46,10 +46,10 @@ function ContactUs() {
             color: "info",
           }}
         />
-      </MKBox>
+      </Box>
       <Grid container spacing={3} alignItems="center">
         <Grid item xs={12} lg={6}>
-          <MKBox
+          <Box
             display={{ xs: "none", lg: "flex" }}
             width="calc(100% - 2rem)"
             height="calc(100vh - 2rem)"
@@ -69,7 +69,7 @@ function ContactUs() {
           ml={{ xs: "auto", lg: 6 }}
           mr={{ xs: "auto", lg: 6 }}
         >
-          <MKBox
+          <Box
             bgColor="white"
             borderRadius="xl"
             shadow="lg"
@@ -80,7 +80,7 @@ function ContactUs() {
             mb={{ xs: 20, sm: 18, md: 20 }}
             mx={3}
           >
-            <MKBox
+            <Box
               variant="gradient"
               bgColor="info"
               coloredShadow="info"
@@ -89,19 +89,19 @@ function ContactUs() {
               mx={2}
               mt={-3}
             >
-              <MKTypography variant="h3" color="white">
+              <Typography variant="h3" color="white">
                 Contact us
-              </MKTypography>
-            </MKBox>
-            <MKBox p={3}>
-              <MKTypography variant="body2" color="text" mb={3}>
+              </Typography>
+            </Box>
+            <Box p={3}>
+              <Typography variant="body2" color="text" mb={3}>
                 For further questions, including partnership opportunities, please email
                 hello@creative-tim.com or contact using our contact form.
-              </MKTypography>
-              <MKBox width="100%" component="form" method="post" autoComplete="off">
+              </Typography>
+              <Box width="100%" component="form" method="post" autoComplete="off">
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={6}>
-                    <MKInput
+                    <Input
                       variant="standard"
                       label="Full Name"
                       InputLabelProps={{ shrink: true }}
@@ -109,7 +109,7 @@ function ContactUs() {
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <MKInput
+                    <Input
                       type="email"
                       variant="standard"
                       label="Email"
@@ -118,7 +118,7 @@ function ContactUs() {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <MKInput
+                    <Input
                       variant="standard"
                       label="What can we help you?"
                       placeholder="Describe your problem in at least 250 characters"
@@ -130,18 +130,18 @@ function ContactUs() {
                   </Grid>
                 </Grid>
                 <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
-                  <MKButton type="submit" variant="gradient" color="info">
+                  <Button type="submit" variant="gradient" color="info">
                     Send Message
-                  </MKButton>
+                  </Button>
                 </Grid>
-              </MKBox>
-            </MKBox>
-          </MKBox>
+              </Box>
+            </Box>
+          </Box>
         </Grid>
       </Grid>
-      <MKBox pt={6} px={1} mt={6}>
+      <Box pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      </Box>
     </>
   );
 }

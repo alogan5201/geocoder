@@ -18,10 +18,10 @@ import { forwardRef } from "react";
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
 
-// Custom styles for MKButton
-import MKButtonRoot from "components/MKButton/MKButtonRoot";
+// Custom styles for Button
+import MKButtonRoot from "components/Button/MKButtonRoot";
 
-const MKButton = forwardRef(
+const Button = forwardRef(
   ({ color, variant, size, circular, iconOnly, children, ...rest }, ref) => (
     <MKButtonRoot
       {...rest}
@@ -36,8 +36,8 @@ const MKButton = forwardRef(
   )
 );
 
-// Setting default values for the props of MKButton
-MKButton.defaultProps = {
+// Setting default values for the props of Button
+Button.defaultProps = {
   size: "medium",
   variant: "contained",
   color: "white",
@@ -45,8 +45,8 @@ MKButton.defaultProps = {
   iconOnly: false,
 };
 
-// Typechecking props for the MKButton
-MKButton.propTypes = {
+// Typechecking props for the Button
+Button.propTypes = {
   size: PropTypes.oneOf(["small", "medium", "large"]),
   variant: PropTypes.oneOf(["text", "contained", "outlined", "gradient"]),
   color: PropTypes.oneOf([
@@ -66,4 +66,4 @@ MKButton.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default MKButton;
+export default Button;

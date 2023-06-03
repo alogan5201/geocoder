@@ -22,7 +22,7 @@ import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 function RotatingCard({ children }) {
   const [rotate, setRotate] = useState(false);
@@ -31,7 +31,7 @@ function RotatingCard({ children }) {
   const rotate180 = () => setRotate(true);
 
   return (
-    <MKBox sx={{ perspective: "50rem" }} onMouseEnter={rotate180} onMouseLeave={rotate0}>
+    <Box sx={{ perspective: "50rem" }} onMouseEnter={rotate180} onMouseLeave={rotate0}>
       <Card
         sx={{
           backgroundColor: "transparent",
@@ -44,7 +44,7 @@ function RotatingCard({ children }) {
       >
         {children}
       </Card>
-    </MKBox>
+    </Box>
   );
 }
 

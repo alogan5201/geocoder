@@ -24,14 +24,14 @@ import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Button from "components/Button";
 
 function DefaultPricingCard({ color, badge, price, specifications, action, shadow }) {
   const renderSpecifications = specifications.map(({ label, includes }) => (
-    <MKBox key={label} display="flex" alignItems="center" p={1}>
-      <MKBox
+    <Box key={label} display="flex" alignItems="center" p={1}>
+      <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
@@ -40,32 +40,32 @@ function DefaultPricingCard({ color, badge, price, specifications, action, shado
         mr={2}
         mt={-0.125}
       >
-        <MKTypography
+        <Typography
           variant="body1"
           color={color === "white" ? "text" : "white"}
           sx={{ lineHeight: 0 }}
         >
           <Icon>{includes ? "done" : "remove"}</Icon>
-        </MKTypography>
-      </MKBox>
-      <MKTypography
+        </Typography>
+      </Box>
+      <Typography
         variant="body2"
         color={color === "white" ? "text" : "white"}
         fontWeight="regular"
       >
         {label}
-      </MKTypography>
-    </MKBox>
+      </Typography>
+    </Box>
   ));
 
   return (
     <Card sx={{ boxShadow: ({ boxShadows: { lg } }) => (shadow ? lg : "none") }}>
-      <MKBox
+      <Box
         bgColor={color}
         variant={color === "white" ? "contained" : "gradient"}
         borderRadius="xl"
       >
-        <MKBox
+        <Box
           bgColor={badge.color}
           width="max-content"
           px={4}
@@ -76,19 +76,19 @@ function DefaultPricingCard({ color, badge, price, specifications, action, shado
           borderRadius="section"
           lineHeight={1}
         >
-          <MKTypography
+          <Typography
             variant="caption"
             textTransform="uppercase"
             fontWeight="medium"
             color={badge.color === "light" ? "dark" : "white"}
           >
             {badge.label}
-          </MKTypography>
-        </MKBox>
-        <MKBox pt={3} pb={2} px={2} textAlign="center">
-          <MKBox my={1}>
-            <MKTypography variant="h1" color={color === "white" ? "dark" : "white"}>
-              <MKTypography
+          </Typography>
+        </Box>
+        <Box pt={3} pb={2} px={2} textAlign="center">
+          <Box my={1}>
+            <Typography variant="h1" color={color === "white" ? "dark" : "white"}>
+              <Typography
                 display="inline"
                 component="small"
                 variant="h5"
@@ -96,19 +96,19 @@ function DefaultPricingCard({ color, badge, price, specifications, action, shado
                 verticalAlign="top"
               >
                 {price.currency}
-              </MKTypography>
+              </Typography>
               {price.value}
-              <MKTypography display="inline" component="small" variant="h5" color="inherit">
+              <Typography display="inline" component="small" variant="h5" color="inherit">
                 /{price.type}
-              </MKTypography>
-            </MKTypography>
-          </MKBox>
-        </MKBox>
-        <MKBox pb={3} px={3}>
+              </Typography>
+            </Typography>
+          </Box>
+        </Box>
+        <Box pb={3} px={3}>
           {renderSpecifications}
           {action.type === "internal" ? (
-            <MKBox mt={3}>
-              <MKButton
+            <Box mt={3}>
+              <Button
                 component={Link}
                 to={action.route}
                 variant="gradient"
@@ -117,11 +117,11 @@ function DefaultPricingCard({ color, badge, price, specifications, action, shado
               >
                 {action.label}&nbsp;
                 <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-              </MKButton>
-            </MKBox>
+              </Button>
+            </Box>
           ) : (
-            <MKBox mt={3}>
-              <MKButton
+            <Box mt={3}>
+              <Button
                 component="a"
                 href={action.route}
                 target="_blank"
@@ -132,11 +132,11 @@ function DefaultPricingCard({ color, badge, price, specifications, action, shado
               >
                 {action.label}&nbsp;
                 <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-              </MKButton>
-            </MKBox>
+              </Button>
+            </Box>
           )}
-        </MKBox>
-      </MKBox>
+        </Box>
+      </Box>
     </Card>
   );
 }

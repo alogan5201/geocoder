@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Sections components
 import BaseLayout from "layouts/sections/components/BaseLayout";
@@ -43,14 +43,14 @@ function Testimonials() {
         <TestimonialsOne />
       </View>
       <View title="Testimonials 2" code={testimonialTwoCode}>
-        <MKBox bgColor="white">
+        <Box bgColor="white">
           <TestimonialsTwo />
-        </MKBox>
+        </Box>
       </View>
       <View title="Testimonials 3" code={testimonialThreeCode}>
-        <MKBox bgColor="white">
+        <Box bgColor="white">
           <TestimonialsThree />
-        </MKBox>
+        </Box>
       </View>
     </BaseLayout>
   );

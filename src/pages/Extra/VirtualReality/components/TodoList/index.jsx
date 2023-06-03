@@ -20,70 +20,70 @@ import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function TodoList() {
   return (
     <Card sx={{ height: "100%", overflow: "hidden" }}>
-      <MKBox p={3}>
-        <MKBox display="flex" lineHeight={1}>
-          <MKBox mr={2}>
-            <MKTypography variant="h6" fontWeight="medium">
+      <Box p={3}>
+        <Box display="flex" lineHeight={1}>
+          <Box mr={2}>
+            <Typography variant="h6" fontWeight="medium">
               08:00
-            </MKTypography>
-          </MKBox>
-          <MKBox>
-            <MKTypography variant="h6" fontWeight="medium">
+            </Typography>
+          </Box>
+          <Box>
+            <Typography variant="h6" fontWeight="medium">
               Synk up with Mark
-            </MKTypography>
-            <MKTypography variant="button" fontWeight="regular" color="secondary">
+            </Typography>
+            <Typography variant="button" fontWeight="regular" color="secondary">
               Hangouts
-            </MKTypography>
-          </MKBox>
-        </MKBox>
+            </Typography>
+          </Box>
+        </Box>
         <Divider />
-        <MKBox display="flex" lineHeight={0}>
-          <MKBox mr={2}>
-            <MKTypography variant="h6" fontWeight="medium">
+        <Box display="flex" lineHeight={0}>
+          <Box mr={2}>
+            <Typography variant="h6" fontWeight="medium">
               09:30
-            </MKTypography>
-          </MKBox>
-          <MKBox>
-            <MKTypography variant="h6" fontWeight="medium">
+            </Typography>
+          </Box>
+          <Box>
+            <Typography variant="h6" fontWeight="medium">
               Gym
-            </MKTypography>
-            <MKTypography variant="button" fontWeight="regular" color="secondary">
+            </Typography>
+            <Typography variant="button" fontWeight="regular" color="secondary">
               World Class
-            </MKTypography>
-          </MKBox>
-        </MKBox>
+            </Typography>
+          </Box>
+        </Box>
         <Divider />
-        <MKBox display="flex" lineHeight={1}>
-          <MKBox mr={2}>
-            <MKTypography variant="h6" fontWeight="medium">
+        <Box display="flex" lineHeight={1}>
+          <Box mr={2}>
+            <Typography variant="h6" fontWeight="medium">
               11:00
-            </MKTypography>
-          </MKBox>
-          <MKBox>
-            <MKTypography variant="h6" fontWeight="medium">
+            </Typography>
+          </Box>
+          <Box>
+            <Typography variant="h6" fontWeight="medium">
               Design Review
-            </MKTypography>
-            <MKTypography variant="button" fontWeight="regular" color="secondary">
+            </Typography>
+            <Typography variant="button" fontWeight="regular" color="secondary">
               Zoom
-            </MKTypography>
-          </MKBox>
-        </MKBox>
-      </MKBox>
-      <MKBox bgColor="grey-100" mt="auto">
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+      <Box bgColor="grey-100" mt="auto">
         <Tooltip title="Show More" placement="top" sx={{ cursor: "pointer" }}>
-          <MKBox textAlign="center" py={0.5} color="info" lineHeight={0}>
+          <Box textAlign="center" py={0.5} color="info" lineHeight={0}>
             <Icon sx={{ fontWeight: "bold" }} color="inherit" fontSize="default">
               keyboard_arrow_down
             </Icon>
-          </MKBox>
+          </Box>
         </Tooltip>
-      </MKBox>
+      </Box>
     </Card>
   );
 }

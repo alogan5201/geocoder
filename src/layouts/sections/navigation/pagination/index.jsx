@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Sections components
 import BaseLayout from "layouts/sections/components/BaseLayout";
@@ -40,19 +40,19 @@ function Pagination() {
       ]}
     >
       <View title="Pagination simple" code={paginationSimpleCode}>
-        <MKBox py={3}>
+        <Box py={3}>
           <PaginationSimple />
-        </MKBox>
+        </Box>
       </View>
       <View title="Pagination sizing" code={paginationSizingCode}>
-        <MKBox p={3}>
+        <Box p={3}>
           <PaginationSizing />
-        </MKBox>
+        </Box>
       </View>
       <View title="Pagination Variant" code={paginationVariantsCode}>
-        <MKBox p={3}>
+        <Box p={3}>
           <PaginationVariants />
-        </MKBox>
+        </Box>
       </View>
     </BaseLayout>
   );

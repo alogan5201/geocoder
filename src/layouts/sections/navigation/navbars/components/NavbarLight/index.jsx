@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -25,7 +25,7 @@ import routes from "routes";
 
 function NavbarLight() {
   return (
-    <MKBox bgColor="white" shadow="sm" py={0.25}>
+    <Box bgColor="white" shadow="sm" py={0.25}>
       <DefaultNavbar
         routes={routes}
         action={{
@@ -38,7 +38,7 @@ function NavbarLight() {
         relative
         center
       />
-    </MKBox>
+    </Box>
   );
 }
 

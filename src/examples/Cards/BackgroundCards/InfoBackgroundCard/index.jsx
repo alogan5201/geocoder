@@ -21,8 +21,8 @@ import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function InfoBackgroundCard({ image, icon, title, label }) {
   return (
@@ -45,17 +45,17 @@ function InfoBackgroundCard({ image, icon, title, label }) {
         justifyContent: "space-between",
       })}
     >
-      <MKBox width="100%" p={3}>
-        <MKTypography variant="h3" color="white">
+      <Box width="100%" p={3}>
+        <Typography variant="h3" color="white">
           {typeof icon === "string" ? <Icon>{icon}</Icon> : icon}
-        </MKTypography>
-      </MKBox>
-      <MKBox width="100%" pt={1} pb={2} px={3} lineHeight={1}>
-        <MKTypography variant="h4" color="white">
+        </Typography>
+      </Box>
+      <Box width="100%" pt={1} pb={2} px={3} lineHeight={1}>
+        <Typography variant="h4" color="white">
           {title}
-        </MKTypography>
+        </Typography>
         {label && (
-          <MKTypography
+          <Typography
             variant="caption"
             textTransform="uppercase"
             fontWeight="bold"
@@ -63,9 +63,9 @@ function InfoBackgroundCard({ image, icon, title, label }) {
             opacity={0.7}
           >
             {label}
-          </MKTypography>
+          </Typography>
         )}
-      </MKBox>
+      </Box>
     </Card>
   );
 }

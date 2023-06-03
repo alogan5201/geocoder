@@ -23,10 +23,10 @@ import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Input from "components/Input";
+import Button from "components/Button";
 
 // Authentication layout components
 import SimpleLayout from "pages/Authentication/components/SimpleLayout";
@@ -41,7 +41,7 @@ function SignInSimple() {
   return (
     <SimpleLayout>
       <Card>
-        <MKBox
+        <Box
           variant="gradient"
           bgColor="info"
           borderRadius="lg"
@@ -54,24 +54,24 @@ function SignInSimple() {
           textAlign="center"
           lineHeight={1}
         >
-          <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
+          <Typography variant="h4" fontWeight="medium" color="white" mt={1}>
             Sign in
-          </MKTypography>
-          <MKTypography variant="button" color="white">
+          </Typography>
+          <Typography variant="button" color="white">
             Welcome back
-          </MKTypography>
-        </MKBox>
-        <MKBox p={3}>
-          <MKBox component="form" role="form">
-            <MKBox mb={2}>
-              <MKInput type="email" label="Email" fullWidth />
-            </MKBox>
-            <MKBox mb={2}>
-              <MKInput type="password" label="Password" fullWidth />
-            </MKBox>
-            <MKBox display="flex" alignItems="center" ml={-1}>
+          </Typography>
+        </Box>
+        <Box p={3}>
+          <Box component="form" role="form">
+            <Box mb={2}>
+              <Input type="email" label="Email" fullWidth />
+            </Box>
+            <Box mb={2}>
+              <Input type="password" label="Password" fullWidth />
+            </Box>
+            <Box display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-              <MKTypography
+              <Typography
                 variant="button"
                 fontWeight="regular"
                 color="text"
@@ -79,19 +79,19 @@ function SignInSimple() {
                 sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
               >
                 &nbsp;&nbsp;Remember me
-              </MKTypography>
-            </MKBox>
-            <MKBox mt={2} mb={1}>
-              <MKButton variant="gradient" color="info" fullWidth>
+              </Typography>
+            </Box>
+            <Box mt={2} mb={1}>
+              <Button variant="gradient" color="info" fullWidth>
                 sign in
-              </MKButton>
-            </MKBox>
+              </Button>
+            </Box>
             <Separator />
             <Socials />
-            <MKBox mt={3} textAlign="center">
-              <MKTypography variant="button" color="text">
+            <Box mt={3} textAlign="center">
+              <Typography variant="button" color="text">
                 Don&apos;t have an account?{" "}
-                <MKTypography
+                <Typography
                   component={Link}
                   to="/authentication/sign-up/cover"
                   variant="button"
@@ -100,11 +100,11 @@ function SignInSimple() {
                   textGradient
                 >
                   Sign up
-                </MKTypography>
-              </MKTypography>
-            </MKBox>
-          </MKBox>
-        </MKBox>
+                </Typography>
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
       </Card>
     </SimpleLayout>
   );

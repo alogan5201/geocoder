@@ -22,13 +22,13 @@ import PropTypes from "prop-types";
 import Fade from "@mui/material/Fade";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
-// Custom styles for the MKAlert
-import MKAlertRoot from "components/MKAlert/MKAlertRoot";
-import MKAlertCloseIcon from "components/MKAlert/MKAlertCloseIcon";
+// Custom styles for the Alert
+import MKAlertRoot from "components/Alert/MKAlertRoot";
+import MKAlertCloseIcon from "components/Alert/MKAlertCloseIcon";
 
-function MKAlert({ color, dismissible, children, ...rest }) {
+function Alert({ color, dismissible, children, ...rest }) {
   const [alertStatus, setAlertStatus] = useState("mount");
 
   const handleAlertStatus = () => setAlertStatus("fadeOut");
@@ -37,7 +37,7 @@ function MKAlert({ color, dismissible, children, ...rest }) {
   const alertTemplate = (mount = true) => (
     <Fade in={mount} timeout={300}>
       <MKAlertRoot ownerState={{ color }} {...rest}>
-        <MKBox
+        <Box
           display="flex"
           alignItems="center"
           fontSize="1rem"
@@ -45,7 +45,7 @@ function MKAlert({ color, dismissible, children, ...rest }) {
           color={color === "light" ? "dark" : "white"}
         >
           {children}
-        </MKBox>
+        </Box>
         {dismissible ? (
           <MKAlertCloseIcon onClick={mount ? handleAlertStatus : null}>&times;</MKAlertCloseIcon>
         ) : null}
@@ -67,14 +67,14 @@ function MKAlert({ color, dismissible, children, ...rest }) {
   return null;
 }
 
-// Setting default values for the props of MKAlert
-MKAlert.defaultProps = {
+// Setting default values for the props of Alert
+Alert.defaultProps = {
   color: "info",
   dismissible: false,
 };
 
-// Typechecking props of the MKAlert
-MKAlert.propTypes = {
+// Typechecking props of the Alert
+Alert.propTypes = {
   color: PropTypes.oneOf([
     "primary",
     "secondary",
@@ -89,4 +89,4 @@ MKAlert.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default MKAlert;
+export default Alert;

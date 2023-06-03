@@ -23,8 +23,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Button from "components/Button";
 
 function DropdownAndDropup() {
   const [dropdown, setDropdown] = useState(null);
@@ -54,13 +54,13 @@ function DropdownAndDropup() {
   };
 
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={6} textAlign="center">
-            <MKButton variant="gradient" color="info" onClick={openDropdown}>
+            <Button variant="gradient" color="info" onClick={openDropdown}>
               Dropdown <Icon sx={dropdownIconStyles}>expand_more</Icon>
-            </MKButton>
+            </Button>
             <Menu anchorEl={dropdown} open={Boolean(dropdown)} onClose={closeDropdown}>
               <MenuItem onClick={closeDropdown}>Action</MenuItem>
               <MenuItem onClick={closeDropdown}>Another action</MenuItem>
@@ -68,9 +68,9 @@ function DropdownAndDropup() {
             </Menu>
           </Grid>
           <Grid item xs={12} lg={6} textAlign="center">
-            <MKButton variant="gradient" color="info" onClick={openDropup}>
+            <Button variant="gradient" color="info" onClick={openDropup}>
               Dropup <Icon sx={dropupIconStyles}>expand_more</Icon>
-            </MKButton>
+            </Button>
             <Menu
               anchorEl={dropup}
               open={Boolean(dropup)}
@@ -91,7 +91,7 @@ function DropdownAndDropup() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

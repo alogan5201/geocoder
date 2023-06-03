@@ -19,9 +19,9 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -54,7 +54,7 @@ function HelpCenter() {
         transparent
         light
       />
-      <MKBox
+      <Box
         minHeight="50vh"
         width="100%"
         sx={{
@@ -80,7 +80,7 @@ function HelpCenter() {
             alignItems="center"
             sx={{ mx: "auto", textAlign: "center" }}
           >
-            <MKTypography
+            <Typography
               variant="h2"
               color="white"
               mb={2}
@@ -91,13 +91,13 @@ function HelpCenter() {
               })}
             >
               How can we help you?
-            </MKTypography>
-            <MKButton variant="gradient" color="info">
+            </Typography>
+            <Button variant="gradient" color="info">
               search issue
-            </MKButton>
+            </Button>
           </Grid>
         </Container>
-      </MKBox>
+      </Box>
       <Card
         sx={{
           p: 2,
@@ -115,9 +115,9 @@ function HelpCenter() {
         <Features />
         <Contact />
       </Card>
-      <MKBox pt={6} px={1} mt={6}>
+      <Box pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      </Box>
     </>
   );
 }

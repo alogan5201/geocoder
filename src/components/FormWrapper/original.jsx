@@ -2,10 +2,10 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import InputAdornment from "@mui/material/InputAdornment";
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKInput from "components/MKInput";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Input from "components/Input";
+import Typography from "components/Typography";
 import MapExternal from "components/Maps/MapExternal";
 import { useEffect, useRef, useState } from "react";
 import { extractWords } from "util/helpers";
@@ -64,21 +64,21 @@ if(val.length === 0){
   /* -------------------------------------------------------------------------- */
   return (
     <>
-      <MKBox component="section" py={{ xs: 2, md: 4 }}>
+      <Box component="section" py={{ xs: 2, md: 4 }}>
         <Container>
           <Grid container item xs={12} justifyContent="center">
             <Grid item xs={12} md={6} sx={{ ml: { xs: 0, md: 10 }, mr: { xs: 0, md: "auto" } }}>
-              <MKTypography variant="h2" mb={1}>
+              <Typography variant="h2" mb={1}>
                 {name}
-              </MKTypography>
-              <MKTypography variant="body2" color="text">
+              </Typography>
+              <Typography variant="body2" color="text">
                 {description}
-              </MKTypography>
+              </Typography>
             </Grid>
           </Grid>
         </Container>
-      </MKBox>
-      <MKBox component="section" py={{ xs: 3, md: 6 }}>
+      </Box>
+      <Box component="section" py={{ xs: 3, md: 6 }}>
         <Container>
           <Grid container item xs={12} justifyContent="center">
             <Grid
@@ -92,12 +92,12 @@ if(val.length === 0){
                 mt: { xs: 0, md: 8 },
               }}
             >
-              <MKBox component="form" method="post" autoComplete="off" onSubmit={handleSubmit}>
-                <MKBox py={3}>
+              <Box component="form" method="post" autoComplete="off" onSubmit={handleSubmit}>
+                <Box py={3}>
                   <Grid container spacing={3} sx={{ mb: 3 }}>
                     <Grid item xs={12} sx={{ my: 1 }}>
-                    <MKInput fullWidth type="search" label="Search" defaultValue="Atlanta, GA" />
-                    {/*   <MKInput
+                    <Input fullWidth type="search" label="Search" defaultValue="Atlanta, GA" />
+                    {/*   <Input
                       defaultValue="Atlanta, GA"
                         onChange={handleChange}
                         variant="standard"
@@ -108,17 +108,17 @@ if(val.length === 0){
                   </Grid>
                   <Grid container>
                     <Grid item xs={12}>
-                      <MKButton type="submit" variant="gradient" color="info">
+                      <Button type="submit" variant="gradient" color="info">
                         Submit
-                      </MKButton>
+                      </Button>
                     </Grid>
                   </Grid>
-                </MKBox>
-              </MKBox>
-              <MKBox py={3}>
+                </Box>
+              </Box>
+              <Box py={3}>
                 <Grid container spacing={3} sx={{ mb: 3 }}>
                   <Grid item xs={12} sx={{ my: 1 }}>
-                 <MKInput                       
+                 <Input                       
                         label={latInputElm ? "" : "Longitude"}
                         type="text"
                         fullWidth
@@ -126,7 +126,7 @@ if(val.length === 0){
                       />
                   </Grid>
                   <Grid item xs={12} sx={{ my: 1 }}>
-                    <MKInput
+                    <Input
                       label={lngInputElm ? "" : "Longitude"}
                       type="text"
                       fullWidth
@@ -134,7 +134,7 @@ if(val.length === 0){
                     />
                   </Grid>
                 </Grid>
-              </MKBox>
+              </Box>
             </Grid>
             <Grid
               item
@@ -146,7 +146,7 @@ if(val.length === 0){
             </Grid>
           </Grid>
         </Container>
-      </MKBox>
+      </Box>
     </>
   );
 }

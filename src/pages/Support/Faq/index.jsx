@@ -21,8 +21,8 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -50,7 +50,7 @@ function Faq() {
         }}
         sticky
       />
-      <MKBox component="section" pt={20} pb={12}>
+      <Box component="section" pt={20} pb={12}>
         <Container sx={{ mb: 8 }}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
@@ -83,7 +83,7 @@ function Faq() {
           <Grid container justifyContent="center">
             <Grid item xs={12}>
               <Card>
-                <MKBox
+                <Box
                   variant="gradient"
                   bgColor="info"
                   borderRadius="lg"
@@ -92,17 +92,17 @@ function Faq() {
                   mt={-3}
                   mx={2}
                 >
-                  <MKTypography variant="h3" color="white">
+                  <Typography variant="h3" color="white">
                     FAQ
-                  </MKTypography>
-                  <MKTypography variant="body2" color="white" opacity={0.8}>
+                  </Typography>
+                  <Typography variant="body2" color="white" opacity={0.8}>
                     Last modified: Sept 07 2021
-                  </MKTypography>
-                </MKBox>
-                <MKBox p={6}>
-                  <MKTypography variant="h5" my={3}>
+                  </Typography>
+                </Box>
+                <Box p={6}>
+                  <Typography variant="h5" my={3}>
                     Basics
-                  </MKTypography>
+                  </Typography>
                   <FaqCollapse
                     title="How do I order?"
                     open={collapse === 1}
@@ -175,9 +175,9 @@ function Faq() {
                     you&apos;re taught you can&apos;t do anything, you won&apos;t do anything. I was
                     taught I could do everything.
                   </FaqCollapse>
-                  <MKTypography variant="h5" mt={6} mb={3}>
+                  <Typography variant="h5" mt={6} mb={3}>
                     Account & Settings
-                  </MKTypography>
+                  </Typography>
                   <FaqCollapse
                     title="How do I change my password?"
                     open={collapse === 6}
@@ -221,9 +221,9 @@ function Faq() {
                     doers. Because I&apos;m here to follow my dreams and inspire other people to
                     follow their dreams, too.
                   </FaqCollapse>
-                  <MKTypography variant="h5" mt={6} mb={3}>
+                  <Typography variant="h5" mt={6} mb={3}>
                     Licenses
-                  </MKTypography>
+                  </Typography>
                   <FaqCollapse
                     title="What are the differences between the licenses on the website?"
                     open={collapse === 10}
@@ -266,15 +266,15 @@ function Faq() {
                     that we give them all we have. Then we lose family over time. What else could
                     rust the heart more over time? Blackgold.
                   </FaqCollapse>
-                </MKBox>
+                </Box>
               </Card>
             </Grid>
           </Grid>
         </Container>
-      </MKBox>
-      <MKBox pt={{ xs: 0, lg: 3 }} pb={3}>
+      </Box>
+      <Box pt={{ xs: 0, lg: 3 }} pb={3}>
         <SimpleFooter />
-      </MKBox>
+      </Box>
     </>
   );
 }

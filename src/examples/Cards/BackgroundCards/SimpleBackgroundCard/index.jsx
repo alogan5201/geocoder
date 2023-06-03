@@ -20,8 +20,8 @@ import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function SimpleBackgroundCard({ image, title, description }) {
   return (
@@ -43,14 +43,14 @@ function SimpleBackgroundCard({ image, title, description }) {
         justifyContent: "end",
       })}
     >
-      <MKBox pt={32} pb={3} px={3}>
-        <MKTypography variant="h4" color="white" mb={1}>
+      <Box pt={32} pb={3} px={3}>
+        <Typography variant="h4" color="white" mb={1}>
           {title}
-        </MKTypography>
-        <MKTypography variant="body2" color="white" mb={2}>
+        </Typography>
+        <Typography variant="body2" color="white" mb={2}>
           {description}
-        </MKTypography>
-      </MKBox>
+        </Typography>
+      </Box>
     </Card>
   );
 }

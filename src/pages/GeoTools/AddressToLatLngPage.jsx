@@ -18,7 +18,7 @@ import Card from "@mui/material/Card";
 import Container from "@mui/material/Container";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Material Kit 2 PRO React examples
 import DefaultFooter from "examples/Footers/DefaultFooter";
@@ -48,14 +48,14 @@ function AddressToLatLngPage() {
         }}
         sticky
       />
-      <MKBox
+      <Box
         minHeight="10vh"
         width="100%"
         sx={{
           display: "grid",
           placeItems: "center",
         }}
-      ></MKBox>
+      ></Box>
       <Card
         sx={{
           p: 2,
@@ -71,9 +71,9 @@ function AddressToLatLngPage() {
           <Form />
         </Container>
       </Card>
-      <MKBox pt={6} px={1} mt={6}>
+      <Box pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      </Box>
     </>
   );
 }

@@ -14,13 +14,13 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 PRO React components
-import MKButton from "components/MKButton";
-import MKBox from "components/MKBox";
+import Button from "components/Button";
+import Box from "components/Box";
 
 function Socials() {
   return (
-    <MKBox display="flex" justifyContent="center">
-      <MKButton variant="outlined" color="light" sx={{ py: 1.75, px: 1.25 }}>
+    <Box display="flex" justifyContent="center">
+      <Button variant="outlined" color="light" sx={{ py: 1.75, px: 1.25 }}>
         <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
           <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g transform="translate(3.000000, 3.000000)" fillRule="nonzero">
@@ -32,9 +32,9 @@ function Socials() {
             </g>
           </g>
         </svg>
-      </MKButton>
-      <MKBox px={1}>
-        <MKButton variant="outlined" color="light" sx={{ py: 1.75, px: 1.25 }}>
+      </Button>
+      <Box px={1}>
+        <Button variant="outlined" color="light" sx={{ py: 1.75, px: 1.25 }}>
           <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
               <g transform="translate(7.000000, 0.564551)" fill="#000000" fillRule="nonzero">
@@ -42,9 +42,9 @@ function Socials() {
               </g>
             </g>
           </svg>
-        </MKButton>
-      </MKBox>
-      <MKButton variant="outlined" color="light" sx={{ py: 1.75, px: 1.25 }}>
+        </Button>
+      </Box>
+      <Button variant="outlined" color="light" sx={{ py: 1.75, px: 1.25 }}>
         <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
           {" "}
           <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -68,8 +68,8 @@ function Socials() {
             </g>
           </g>
         </svg>
-      </MKButton>
-    </MKBox>
+      </Button>
+    </Box>
   );
 }
 

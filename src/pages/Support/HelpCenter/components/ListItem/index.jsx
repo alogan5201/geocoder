@@ -17,19 +17,19 @@ Coded by www.creative-tim.com
 import PropTypes from "prop-types";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function ListItem({ title, children }) {
   return (
-    <MKBox p={2}>
-      <MKTypography variant="h5" mb={1}>
+    <Box p={2}>
+      <Typography variant="h5" mb={1}>
         {title}
-      </MKTypography>
-      <MKTypography variant="body2" color="text" mb={2}>
+      </Typography>
+      <Typography variant="body2" color="text" mb={2}>
         {children}
-      </MKTypography>
-    </MKBox>
+      </Typography>
+    </Box>
   );
 }
 

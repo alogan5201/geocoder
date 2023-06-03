@@ -21,13 +21,13 @@ import Icon from "@mui/material/Icon";
 import Collapse from "@mui/material/Collapse";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function FaqCollapse({ title, open, children, ...rest }) {
   return (
-    <MKBox mb={2}>
-      <MKBox
+    <Box mb={2}>
+      <Box
         {...rest}
         display="flex"
         justifyContent="space-between"
@@ -39,23 +39,23 @@ function FaqCollapse({ title, open, children, ...rest }) {
             `${borderWidth[1]} solid ${borderColor}`,
         }}
       >
-        <MKTypography variant="h5" color={open ? "dark" : "text"} sx={{ userSelect: "none" }}>
+        <Typography variant="h5" color={open ? "dark" : "text"} sx={{ userSelect: "none" }}>
           {title}
-        </MKTypography>
-        <MKBox color={open ? "dark" : "text"}>
+        </Typography>
+        <Box color={open ? "dark" : "text"}>
           <Icon sx={{ fontWeight: "bold" }} fontSize="small">
             {open ? "remove" : "add"}
           </Icon>
-        </MKBox>
-      </MKBox>
+        </Box>
+      </Box>
       <Collapse timeout={400} in={open}>
-        <MKBox py={2} lineHeight={1}>
-          <MKTypography variant="button" color="text" opacity={0.8} fontWeight="regular">
+        <Box py={2} lineHeight={1}>
+          <Typography variant="button" color="text" opacity={0.8} fontWeight="regular">
             {children}
-          </MKTypography>
-        </MKBox>
+          </Typography>
+        </Box>
       </Collapse>
-    </MKBox>
+    </Box>
   );
 }
 

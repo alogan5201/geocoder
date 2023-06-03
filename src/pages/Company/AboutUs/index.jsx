@@ -27,9 +27,9 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Button from "components/Button";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -88,7 +88,7 @@ function AboutUs() {
         transparent
         light
       />
-      <MKBox
+      <Box
         ref={headerRef}
         minHeight="75vh"
         width="100%"
@@ -115,7 +115,7 @@ function AboutUs() {
             flexDirection="column"
             sx={{ mx: "auto", textAlign: "center" }}
           >
-            <MKTypography
+            <Typography
               variant="h1"
               color="white"
               sx={({ breakpoints, typography: { size } }) => ({
@@ -125,34 +125,34 @@ function AboutUs() {
               })}
             >
               Work with an amazing <span ref={typedJSRef} />
-            </MKTypography>
-            <MKTypography variant="body1" color="white" opacity={0.8} mt={1} mb={3}>
+            </Typography>
+            <Typography variant="body1" color="white" opacity={0.8} mt={1} mb={3}>
               We&apos;re constantly trying to express ourselves and actualize our dreams. If you
               have the opportunity to play this game
-            </MKTypography>
-            <MKButton color="default" sx={{ color: ({ palette: { dark } }) => dark.main }}>
+            </Typography>
+            <Button color="default" sx={{ color: ({ palette: { dark } }) => dark.main }}>
               create account
-            </MKButton>
-            <MKTypography variant="h6" color="white" mt={8} mb={1}>
+            </Button>
+            <Typography variant="h6" color="white" mt={8} mb={1}>
               Find us on
-            </MKTypography>
-            <MKBox display="flex" justifyContent="center" alignItems="center">
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+            </Typography>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <Typography component="a" variant="body1" color="white" href="#" mr={3}>
                 <i className="fab fa-facebook" />
-              </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+              </Typography>
+              <Typography component="a" variant="body1" color="white" href="#" mr={3}>
                 <i className="fab fa-instagram" />
-              </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+              </Typography>
+              <Typography component="a" variant="body1" color="white" href="#" mr={3}>
                 <i className="fab fa-twitter" />
-              </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#">
+              </Typography>
+              <Typography component="a" variant="body1" color="white" href="#">
                 <i className="fab fa-google-plus" />
-              </MKTypography>
-            </MKBox>
+              </Typography>
+            </Box>
           </Grid>
         </Container>
-      </MKBox>
+      </Box>
       <Card
         sx={{
           p: 2,
@@ -167,9 +167,9 @@ function AboutUs() {
         <Featuring />
         <Newsletter />
       </Card>
-      <MKBox pt={6} px={1} mt={6}>
+      <Box pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      </Box>
     </>
   );
 }

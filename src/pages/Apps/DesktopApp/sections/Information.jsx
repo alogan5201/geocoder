@@ -18,14 +18,14 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Material Kit 2 PRO React examples
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
 function Information() {
   return (
-    <MKBox component="section" py={3} mt={8}>
+    <Box component="section" py={3} mt={8}>
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
@@ -66,7 +66,7 @@ function Information() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

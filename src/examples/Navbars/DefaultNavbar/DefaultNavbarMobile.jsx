@@ -26,8 +26,8 @@ import Collapse from "@mui/material/Collapse";
 import MuiLink from "@mui/material/Link";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbarDropdown from "examples/Navbars/DefaultNavbar/DefaultNavbarDropdown";
@@ -49,13 +49,13 @@ function DefaultNavbarMobile({ routes, open }) {
         route={route}
         collapse={Boolean(navCollapse)}
       >
-        <MKBox sx={{ height: "15rem", maxHeight: "15rem", overflowY: "scroll" }}>
+        <Box sx={{ height: "15rem", maxHeight: "15rem", overflowY: "scroll" }}>
           {routeCollapses &&
             routeCollapses.map((item) => (
-              <MKBox key={item.name} px={2}>
+              <Box key={item.name} px={2}>
                 {item.collapse ? (
                   <>
-                    <MKTypography
+                    <Typography
                       display="block"
                       variant="button"
                       fontWeight="bold"
@@ -64,9 +64,9 @@ function DefaultNavbarMobile({ routes, open }) {
                       px={0.5}
                     >
                       {item.name}
-                    </MKTypography>
+                    </Typography>
                     {item.collapse.map((el) => (
-                      <MKTypography
+                      <Typography
                         key={el.name}
                         component={el.route ? Link : MuiLink}
                         to={el.route ? el.route : ""}
@@ -93,11 +93,11 @@ function DefaultNavbarMobile({ routes, open }) {
                         })}
                       >
                         {el.name}
-                      </MKTypography>
+                      </Typography>
                     ))}
                   </>
                 ) : (
-                  <MKBox
+                  <Box
                     key={item.key}
                     display="block"
                     component={item.route ? Link : MuiLink}
@@ -122,15 +122,15 @@ function DefaultNavbarMobile({ routes, open }) {
                       },
                     })}
                   >
-                    <MKTypography
+                    <Typography
                       display="block"
                       variant="button"
                       fontWeight="bold"
                       textTransform="capitalize"
                     >
                       {item.name}
-                    </MKTypography>
-                    <MKTypography
+                    </Typography>
+                    <Typography
                       display="block"
                       variant="button"
                       color="text"
@@ -138,21 +138,21 @@ function DefaultNavbarMobile({ routes, open }) {
                       sx={{ transition: "all 300ms linear" }}
                     >
                       {item.description}
-                    </MKTypography>
-                  </MKBox>
+                    </Typography>
+                  </Box>
                 )}
-              </MKBox>
+              </Box>
             ))}
-        </MKBox>
+        </Box>
       </DefaultNavbarDropdown>
     )
   );
 
   return (
     <Collapse in={Boolean(open)} timeout="auto" unmountOnExit>
-      <MKBox width="calc(100% + 1.625rem)" my={2} ml={-2}>
+      <Box width="calc(100% + 1.625rem)" my={2} ml={-2}>
         {renderNavbarItems}
-      </MKBox>
+      </Box>
     </Collapse>
   );
 }

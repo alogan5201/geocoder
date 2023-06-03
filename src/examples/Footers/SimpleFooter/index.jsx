@@ -22,8 +22,8 @@ import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React base styles
 import typography from "assets/theme/base/typography";
@@ -34,7 +34,7 @@ function SimpleFooter({ company, links, light }) {
 
   const renderLinks = () =>
     links.map((link, key) => (
-      <MKBox
+      <Box
         key={link.name}
         component="li"
         pl={key === 0 ? 0 : 2}
@@ -42,23 +42,23 @@ function SimpleFooter({ company, links, light }) {
         lineHeight={1}
       >
         <Link href={link.href} target="_blank">
-          <MKTypography variant="button" fontWeight="regular" color={light ? "white" : "text"}>
+          <Typography variant="button" fontWeight="regular" color={light ? "white" : "text"}>
             {link.name}
-          </MKTypography>
+          </Typography>
         </Link>
-      </MKBox>
+      </Box>
     ));
 
   return (
     <Container>
-      <MKBox
+      <Box
         width="100%"
         display="flex"
         flexDirection={{ xs: "column", lg: "row" }}
         justifyContent="space-between"
         alignItems="center"
       >
-        <MKBox
+        <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
@@ -67,20 +67,20 @@ function SimpleFooter({ company, links, light }) {
           fontSize={size.sm}
         >
           &copy; {new Date().getFullYear()}, made with
-          <MKBox fontSize={size.md} color={light ? "white" : "text"} mb={-0.5} mx={0.25}>
+          <Box fontSize={size.md} color={light ? "white" : "text"} mb={-0.5} mx={0.25}>
             <Icon color="inherit" fontSize="inherit">
               favorite
             </Icon>
-          </MKBox>
+          </Box>
           by
           <Link href={href} target="_blank">
-            <MKTypography variant="button" fontWeight="medium" color={light ? "white" : "dark"}>
+            <Typography variant="button" fontWeight="medium" color={light ? "white" : "dark"}>
               &nbsp;{name}&nbsp;
-            </MKTypography>
+            </Typography>
           </Link>
           for a better web.
-        </MKBox>
-        <MKBox
+        </Box>
+        <Box
           component="ul"
           sx={({ breakpoints }) => ({
             display: "flex",
@@ -98,8 +98,8 @@ function SimpleFooter({ company, links, light }) {
           })}
         >
           {renderLinks()}
-        </MKBox>
-      </MKBox>
+        </Box>
+      </Box>
     </Container>
   );
 }

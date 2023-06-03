@@ -22,8 +22,8 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
@@ -31,7 +31,7 @@ import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 function Header({ image, label, title, description, cards }) {
   return (
     <>
-      <MKBox
+      <Box
         minHeight="75vh"
         width="100%"
         sx={{
@@ -56,10 +56,10 @@ function Header({ image, label, title, description, cards }) {
             flexDirection="column"
             sx={{ px: { xs: 1, lg: 0 } }}
           >
-            <MKTypography variant="h4" color="white">
+            <Typography variant="h4" color="white">
               {label}
-            </MKTypography>
-            <MKTypography
+            </Typography>
+            <Typography
               variant="h1"
               color="white"
               mb={1}
@@ -70,13 +70,13 @@ function Header({ image, label, title, description, cards }) {
               })}
             >
               {title}
-            </MKTypography>
-            <MKTypography variant="body1" color="white" opacity={0.8}>
+            </Typography>
+            <Typography variant="body1" color="white" opacity={0.8}>
               {description}
-            </MKTypography>
+            </Typography>
           </Grid>
         </Container>
-      </MKBox>
+      </Box>
       <Card
         sx={{
           p: 2,

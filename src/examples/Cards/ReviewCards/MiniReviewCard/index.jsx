@@ -17,47 +17,47 @@ Coded by www.creative-tim.com
 import PropTypes from "prop-types";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 import MKAvatar from "components/MKAvatar";
-import MKTypography from "components/MKTypography";
+import Typography from "components/Typography";
 
 function MiniReviewCard({ color, review, author }) {
   return (
-    <MKBox
+    <Box
       variant={color === "transparent" ? "contained" : "gradient"}
       bgColor={color}
       borderRadius="xl"
       coloredShadow={color === "transparent" ? "none" : color}
       p={3}
     >
-      <MKTypography
+      <Typography
         variant="body2"
         color={color === "transparent" || color === "light" ? "text" : "white"}
         my={2}
       >
         &quot;{review}&quot;
-      </MKTypography>
-      <MKBox display="flex" alignItems="center" mt={3}>
+      </Typography>
+      <Box display="flex" alignItems="center" mt={3}>
         <MKAvatar src={author.image} alt={author.name} shadow="md" />
-        <MKBox pl={1.5} lineHeight={1}>
-          <MKTypography
+        <Box pl={1.5} lineHeight={1}>
+          <Typography
             display="block"
             variant="button"
             fontWeight="bold"
             color={color === "transparent" || color === "light" ? "dark" : "white"}
           >
             {author.name}
-          </MKTypography>
-          <MKTypography
+          </Typography>
+          <Typography
             variant="caption"
             fontWeight="regular"
             color={color === "transparent" || color === "light" ? "text" : "white"}
           >
             {author.date}
-          </MKTypography>
-        </MKBox>
-      </MKBox>
-    </MKBox>
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
   );
 }
 

@@ -3,55 +3,55 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKSocialButton from "components/MKSocialButton";
+import Box from "components/Box";
+import SocialButton from "components/SocialButton";
 
 function SocialButtonsIcon() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container justifyContent="center">
-          <MKBox display="flex" flexWrap="wrap" justifyContent="center" gap={1}>
-            <MKSocialButton color="facebook" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-facebook" />
-            </MKSocialButton>
-            <MKSocialButton color="twitter" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-twitter" />
-            </MKSocialButton>
-            <MKSocialButton color="instagram" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-instagram" />
-            </MKSocialButton>
-            <MKSocialButton color="github" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-github" />
-            </MKSocialButton>
-            <MKSocialButton color="pinterest" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-pinterest" />
-            </MKSocialButton>
-            <MKSocialButton color="youtube" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-youtube" />
-            </MKSocialButton>
-            <MKSocialButton color="vimeo" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-vimeo" />
-            </MKSocialButton>
-            <MKSocialButton color="slack" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-slack" />
-            </MKSocialButton>
-            <MKSocialButton color="dribbble" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-dribbble" />
-            </MKSocialButton>
-            <MKSocialButton color="reddit" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-reddit" />
-            </MKSocialButton>
-            <MKSocialButton color="tumblr" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-tumblr" />
-            </MKSocialButton>
-            <MKSocialButton color="linkedin" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-linkedin" />
-            </MKSocialButton>
-          </MKBox>
+          <Box display="flex" flexWrap="wrap" justifyContent="center" gap={1}>
+            <SocialButton color="facebook" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-facebook" />
+            </SocialButton>
+            <SocialButton color="twitter" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-twitter" />
+            </SocialButton>
+            <SocialButton color="instagram" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-instagram" />
+            </SocialButton>
+            <SocialButton color="github" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-github" />
+            </SocialButton>
+            <SocialButton color="pinterest" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-pinterest" />
+            </SocialButton>
+            <SocialButton color="youtube" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-youtube" />
+            </SocialButton>
+            <SocialButton color="vimeo" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-vimeo" />
+            </SocialButton>
+            <SocialButton color="slack" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-slack" />
+            </SocialButton>
+            <SocialButton color="dribbble" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-dribbble" />
+            </SocialButton>
+            <SocialButton color="reddit" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-reddit" />
+            </SocialButton>
+            <SocialButton color="tumblr" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-tumblr" />
+            </SocialButton>
+            <SocialButton color="linkedin" iconOnly>
+              <Box component="i" color="inherit" className="fab fa-linkedin" />
+            </SocialButton>
+          </Box>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

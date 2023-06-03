@@ -4,8 +4,8 @@ import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React components
 import ColoredBackgroundCard from "examples/Cards/BackgroundCards/ColoredBackgroundCard";
@@ -13,7 +13,7 @@ import InfoBackgroundCard from "examples/Cards/BackgroundCards/InfoBackgroundCar
 
 function BlogPostOne() {
   return (
-    <MKBox component="section" py={2}>
+    <Box component="section" py={2}>
       <Container>
         <Grid
           container
@@ -25,8 +25,8 @@ function BlogPostOne() {
           mx="auto"
           mb={6}
         >
-          <MKBox py={2} px={6} textAlign="center">
-            <MKBox
+          <Box py={2} px={6} textAlign="center">
+            <Box
               width="4rem"
               height="4rem"
               display="flex"
@@ -40,15 +40,15 @@ function BlogPostOne() {
               mx="auto"
             >
               <Icon fontSize="medium">person</Icon>
-            </MKBox>
-            <MKTypography variant="h2" mt={2} mb={1}>
+            </Box>
+            <Typography variant="h2" mt={2} mb={1}>
               Check out what&apos;s new
-            </MKTypography>
-            <MKTypography variant="body2" color="text">
+            </Typography>
+            <Typography variant="body2" color="text">
               We get insulted by others, lose trust for those others. We get back freezes every
               winter
-            </MKTypography>
-          </MKBox>
+            </Typography>
+          </Box>
         </Grid>
         <Grid container spacing={3} mb={6}>
           <Grid item xs={12} md={6} lg={4}>
@@ -100,7 +100,7 @@ function BlogPostOne() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

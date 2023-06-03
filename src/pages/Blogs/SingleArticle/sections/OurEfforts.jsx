@@ -18,16 +18,16 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function OurEfforts() {
   const bgImage =
     "https://images.unsplash.com/photo-1585975438803-350463f9c9b6?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1867&amp;q=80";
 
   return (
-    <MKBox component="section">
-      <MKBox
+    <Box component="section">
+      <Box
         mx={-2}
         minHeight="18.75rem"
         sx={{
@@ -41,7 +41,7 @@ function OurEfforts() {
       />
       <Container>
         <Grid container item flexDirection="column" xs={12} lg={8} mt={12} mx="auto">
-          <MKTypography
+          <Typography
             component="h6"
             variant="button"
             textTransform="uppercase"
@@ -50,17 +50,17 @@ function OurEfforts() {
             mb={1}
           >
             Our effort
-          </MKTypography>
-          <MKTypography variant="h3" mb={3}>
+          </Typography>
+          <Typography variant="h3" mb={3}>
             The powerfull design system
-          </MKTypography>
-          <MKTypography variant="body2">
+          </Typography>
+          <Typography variant="body2">
             The way to survive in modern society is to be an ascetic. It is to retreat from society.
             There&apos;s too much society everywhere you go…The only solution is turn it off.
-          </MKTypography>
+          </Typography>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

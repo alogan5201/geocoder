@@ -4,28 +4,28 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Button from "components/Button";
 
 function ButtonsContained() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container justifyContent="center">
           <Stack direction="row" alignItems="flex-end" spacing={1}>
-            <MKButton color="primary">primary</MKButton>
-            <MKButton color="secondary">secondary</MKButton>
-            <MKButton color="info">info</MKButton>
-            <MKButton color="success">success</MKButton>
-            <MKButton color="warning">warning</MKButton>
-            <MKButton color="error">error</MKButton>
-            <MKButton color="light">light</MKButton>
-            <MKButton color="dark">dark</MKButton>
-            <MKButton color="white">White</MKButton>
+            <Button color="primary">primary</Button>
+            <Button color="secondary">secondary</Button>
+            <Button color="info">info</Button>
+            <Button color="success">success</Button>
+            <Button color="warning">warning</Button>
+            <Button color="error">error</Button>
+            <Button color="light">light</Button>
+            <Button color="dark">dark</Button>
+            <Button color="white">White</Button>
           </Stack>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

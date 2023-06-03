@@ -3,41 +3,41 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Input from "components/Input";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 function NewsletterOne() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={5} mr="auto">
-            <MKTypography variant="h4" mb={1}>
+            <Typography variant="h4" mb={1}>
               Get Tips &amp; Tricks every Week!
-            </MKTypography>
-            <MKTypography variant="body2" color="text">
+            </Typography>
+            <Typography variant="body2" color="text">
               Join our newsletter and get news in your inbox every week!
-            </MKTypography>
+            </Typography>
           </Grid>
           <Grid item xs={12} lg={6} flexDirection="column" justifyContent="center" ml="auto">
-            <MKBox component="form" method="" action="">
+            <Box component="form" method="" action="">
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={8}>
-                  <MKInput label="Your Email..." fullWidth />
+                  <Input label="Your Email..." fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                  <MKButton variant="gradient" color="info" fullWidth sx={{ height: "100%" }}>
+                  <Button variant="gradient" color="info" fullWidth sx={{ height: "100%" }}>
                     Subscribe
-                  </MKButton>
+                  </Button>
                 </Grid>
               </Grid>
-            </MKBox>
+            </Box>
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

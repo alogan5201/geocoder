@@ -33,10 +33,10 @@ import Tab from "@mui/material/Tab";
 import Slide from "@mui/material/Slide";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKAlert from "components/MKAlert";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Alert from "components/Alert";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React base styles
 import colors from "assets/theme/base/colors";
@@ -54,7 +54,7 @@ function View({ children, code, title, height, ...rest }) {
   }, [success]);
 
   return (
-    <MKBox
+    <Box
       width="100%"
       position="relative"
       borderRadius="xl"
@@ -63,7 +63,7 @@ function View({ children, code, title, height, ...rest }) {
       sx={{ overflow: "hidden" }}
       {...rest}
     >
-      <MKBox
+      <Box
         px={3}
         sx={{
           borderBottom: ({ borders: { borderWidth, borderColor } }) =>
@@ -72,16 +72,16 @@ function View({ children, code, title, height, ...rest }) {
       >
         <Grid container spacing={2} justifyContent="space-between" py={1}>
           <Grid item xs={12} lg={3}>
-            <MKTypography variant="body1" pt={0.5}>
+            <Typography variant="body1" pt={0.5}>
               {title}
-            </MKTypography>
+            </Typography>
           </Grid>
           <Grid item xs={12} lg={3}>
             <AppBar position="static">
               <Tabs value={activeTab} onChange={handleTabType}>
                 <Tab
                   icon={
-                    <MKBox
+                    <Box
                       component="i"
                       color="dark"
                       mr={1.25}
@@ -93,7 +93,7 @@ function View({ children, code, title, height, ...rest }) {
                 />
                 <Tab
                   icon={
-                    <MKBox
+                    <Box
                       component="i"
                       color="dark"
                       mr={1.25}
@@ -107,10 +107,10 @@ function View({ children, code, title, height, ...rest }) {
             </AppBar>
           </Grid>
         </Grid>
-      </MKBox>
-      <MKBox display={activeTab === 0 ? "block" : "none"}>
-        <MKBox width="100%" p={3}>
-          <MKBox
+      </Box>
+      <Box display={activeTab === 0 ? "block" : "none"}>
+        <Box width="100%" p={3}>
+          <Box
             bgColor="grey-100"
             width="100%"
             height={height}
@@ -119,11 +119,11 @@ function View({ children, code, title, height, ...rest }) {
             sx={{ overflowX: "hidden", overflowY: "scroll" }}
           >
             {children}
-          </MKBox>
-        </MKBox>
-      </MKBox>
-      <MKBox display={activeTab === 1 ? "block" : "none"} p={3}>
-        <MKBox
+          </Box>
+        </Box>
+      </Box>
+      <Box display={activeTab === 1 ? "block" : "none"} p={3}>
+        <Box
           bgColor="grey-100"
           position="relative"
           width="100%"
@@ -131,29 +131,29 @@ function View({ children, code, title, height, ...rest }) {
           sx={{ overflow: "hidden" }}
         >
           <CopyToClipboard text={code}>
-            <MKButton
+            <Button
               variant="gradient"
               color="dark"
               size="small"
               sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
               onClick={() => setSuccess(true)}
             >
-              <MKBox color="white" mr={0.5} className="fas fa-copy" /> Copy
-            </MKButton>
+              <Box color="white" mr={0.5} className="fas fa-copy" /> Copy
+            </Button>
           </CopyToClipboard>
           <Slide direction="down" in={success} unmountOnExit>
-            <MKBox position="absolute" top="0.5rem" left={0} width="100%">
-              <MKAlert
+            <Box position="absolute" top="0.5rem" left={0} width="100%">
+              <Alert
                 width="25%"
                 mx="auto"
                 color="success"
                 sx={{ minHeight: "2.5rem !important", py: 1, justifyContent: "center" }}
               >
-                <MKTypography variant="body2" color="white" fontWeight="regular">
+                <Typography variant="body2" color="white" fontWeight="regular">
                   Code successfully copied!
-                </MKTypography>
-              </MKAlert>
-            </MKBox>
+                </Typography>
+              </Alert>
+            </Box>
           </Slide>
           <SyntaxHighlighter
             language="jsx"
@@ -171,9 +171,9 @@ function View({ children, code, title, height, ...rest }) {
           >
             {code}
           </SyntaxHighlighter>
-        </MKBox>
-      </MKBox>
-    </MKBox>
+        </Box>
+      </Box>
+    </Box>
   );
 }
 

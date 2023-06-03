@@ -19,8 +19,8 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -43,12 +43,12 @@ function Privacy() {
         }}
         sticky
       />
-      <MKBox component="section" pt={20} pb={12}>
+      <Box component="section" pt={20} pb={12}>
         <Container>
           <Grid container justifyContent="center">
             <Grid item xs={12}>
               <Card>
-                <MKBox
+                <Box
                   variant="gradient"
                   bgColor="dark"
                   borderRadius="lg"
@@ -57,20 +57,20 @@ function Privacy() {
                   mt={-3}
                   mx={2}
                 >
-                  <MKTypography variant="h3" color="white">
+                  <Typography variant="h3" color="white">
                     Privacy & Policy
-                  </MKTypography>
-                  <MKTypography variant="body2" color="white" opacity={0.8}>
+                  </Typography>
+                  <Typography variant="body2" color="white" opacity={0.8}>
                     Last modified: Sept 07 2021
-                  </MKTypography>
-                </MKBox>
-                <MKBox pb={6} px={6}>
-                  <MKTypography variant="h5" mt={6} mb={3}>
+                  </Typography>
+                </Box>
+                <Box pb={6} px={6}>
+                  <Typography variant="h5" mt={6} mb={3}>
                     Introduction
-                  </MKTypography>
-                  <MKTypography variant="body2" color="text">
+                  </Typography>
+                  <Typography variant="body2" color="text">
                     At Creative Tim, accessible{" "}
-                    <MKTypography
+                    <Typography
                       variant="body2"
                       color="dark"
                       component="a"
@@ -80,7 +80,7 @@ function Privacy() {
                       sx={{ "&:hover": { color: ({ palette: { info } }) => info.main } }}
                     >
                       here
-                    </MKTypography>
+                    </Typography>
                     , one of our main priorities is the privacy of our visitors. This Privacy Policy
                     document contains types of information that is collected and recorded by Website
                     Name and how we use it.
@@ -93,7 +93,7 @@ function Privacy() {
                     This privacy policy applies only to our online activities and is valid for
                     visitors to our website with regards to the information that they shared and/or
                     collect in{" "}
-                    <MKTypography
+                    <Typography
                       variant="body2"
                       color="dark"
                       component="a"
@@ -103,48 +103,48 @@ function Privacy() {
                       sx={{ "&:hover": { color: ({ palette: { info } }) => info.main } }}
                     >
                       Creative Tim
-                    </MKTypography>
+                    </Typography>
                     . This policy is not applicable to any information collected offline or via
                     channels other than this website.
-                  </MKTypography>
-                  <MKTypography variant="h5" mt={6} mb={3}>
+                  </Typography>
+                  <Typography variant="h5" mt={6} mb={3}>
                     Managing Your Information
-                  </MKTypography>
-                  <MKTypography variant="body2" color="text">
+                  </Typography>
+                  <Typography variant="body2" color="text">
                     Unless otherwise stated, Creative Tim and/or its licensors own the intellectual
                     property rights for all material on Creative Tim. All intellectual property
                     rights are reserved. You may access this from Creative Tim for your own personal
                     use subjected to restrictions set in these terms and conditions.
-                  </MKTypography>
-                  <MKTypography variant="body2" color="text">
+                  </Typography>
+                  <Typography variant="body2" color="text">
                     You must not:
-                  </MKTypography>
-                  <MKBox component="ul" my={3} ml={6}>
-                    <MKBox component="li">
-                      <MKTypography variant="body2" color="text" fontWeight="regular">
+                  </Typography>
+                  <Box component="ul" my={3} ml={6}>
+                    <Box component="li">
+                      <Typography variant="body2" color="text" fontWeight="regular">
                         Republish material from Creative Tim
-                      </MKTypography>
-                    </MKBox>
-                    <MKBox component="li">
-                      <MKTypography variant="body2" color="text" fontWeight="regular">
+                      </Typography>
+                    </Box>
+                    <Box component="li">
+                      <Typography variant="body2" color="text" fontWeight="regular">
                         Sell, rent or sub-license material from Creative Tim
-                      </MKTypography>
-                    </MKBox>
-                    <MKBox component="li">
-                      <MKTypography variant="body2" color="text" fontWeight="regular">
+                      </Typography>
+                    </Box>
+                    <Box component="li">
+                      <Typography variant="body2" color="text" fontWeight="regular">
                         Reproduce, duplicate or copy material from Creative Tim
-                      </MKTypography>
-                    </MKBox>
-                    <MKBox component="li">
-                      <MKTypography variant="body2" color="text" fontWeight="regular">
+                      </Typography>
+                    </Box>
+                    <Box component="li">
+                      <Typography variant="body2" color="text" fontWeight="regular">
                         Redistribute content from Creative Tim
-                      </MKTypography>
-                    </MKBox>
-                  </MKBox>
-                  <MKTypography variant="body2" color="text">
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Typography variant="body2" color="text">
                     This Agreement shall begin on the date hereof. Our Terms and Conditions were
                     created with the help of the{" "}
-                    <MKTypography
+                    <Typography
                       variant="body2"
                       color="text"
                       component="a"
@@ -153,9 +153,9 @@ function Privacy() {
                       rel="noreferrer"
                     >
                       Terms And Conditions Generator
-                    </MKTypography>{" "}
+                    </Typography>{" "}
                     and the{" "}
-                    <MKTypography
+                    <Typography
                       variant="body2"
                       color="dark"
                       component="a"
@@ -165,10 +165,10 @@ function Privacy() {
                       sx={{ "&:hover": { color: ({ palette: { info } }) => info.main } }}
                     >
                       Privacy Policy Generator
-                    </MKTypography>
+                    </Typography>
                     .
-                  </MKTypography>
-                  <MKTypography variant="body2" color="text">
+                  </Typography>
+                  <Typography variant="body2" color="text">
                     Parts of this website offer an opportunity for users to post and exchange
                     opinions and information in certain areas of the website. Creative Tim does not
                     filter, edit, publish or review Comments prior to their presence on the website.
@@ -178,31 +178,31 @@ function Privacy() {
                     shall not be liable for the Comments or for any liability, damages or expenses
                     caused and/or suffered as a result of any use of and/or posting of and/or
                     appearance of the Comments on this website.
-                  </MKTypography>
-                  <MKTypography variant="body2" color="text">
+                  </Typography>
+                  <Typography variant="body2" color="text">
                     Creative Tim reserves the right to monitor all Comments and to remove any
                     Comments which can be considered inappropriate, offensive or causes breach of
                     these Terms and Conditions.
-                  </MKTypography>
-                  <MKTypography variant="h5" mt={6} mb={3}>
+                  </Typography>
+                  <Typography variant="h5" mt={6} mb={3}>
                     Security
-                  </MKTypography>
-                  <MKTypography variant="body2" color="text" fontWeight="regular">
+                  </Typography>
+                  <Typography variant="body2" color="text" fontWeight="regular">
                     We shall not be hold responsible for any content that appears on your Website.
                     You agree to protect and defend us against all claims that is rising on your
                     Website. No link(s) should appear on any Website that may be interpreted as
                     libelous, obscene or criminal, or which infringes, otherwise violates, or
                     advocates the infringement or other violation of, any third party rights.
-                  </MKTypography>
-                </MKBox>
+                  </Typography>
+                </Box>
               </Card>
             </Grid>
           </Grid>
         </Container>
-      </MKBox>
-      <MKBox pt={6} px={1} mt={6}>
+      </Box>
+      <Box pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      </Box>
     </>
   );
 }

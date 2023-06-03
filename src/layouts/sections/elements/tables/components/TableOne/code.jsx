@@ -6,10 +6,10 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKBadge from "components/MKBadge";
+import Box from "components/Box";
+import Badge from "components/Badge";
 import MKAvatar from "components/MKAvatar";
-import MKTypography from "components/MKTypography";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import Table from "examples/Tables/Table";
@@ -22,19 +22,19 @@ import team4 from "assets/images/team-4.jpg";
 // Components
 function Author({ image, name, email }) {
   return (
-    <MKBox display="flex" alignItems="center" px={1} py={0.5}>
-      <MKBox mr={2}>
+    <Box display="flex" alignItems="center" px={1} py={0.5}>
+      <Box mr={2}>
         <MKAvatar src={image} alt={name} size="sm" variant="rounded" />
-      </MKBox>
-      <MKBox display="flex" flexDirection="column">
-        <MKTypography variant="button" fontWeight="medium">
+      </Box>
+      <Box display="flex" flexDirection="column">
+        <Typography variant="button" fontWeight="medium">
           {name}
-        </MKTypography>
-        <MKTypography variant="caption" color="secondary">
+        </Typography>
+        <Typography variant="caption" color="secondary">
           {email}
-        </MKTypography>
-      </MKBox>
-    </MKBox>
+        </Typography>
+      </Box>
+    </Box>
   );
 }
 
@@ -47,14 +47,14 @@ Author.propTypes = {
 
 function Role({ job, org }) {
   return (
-    <MKBox display="flex" flexDirection="column">
-      <MKTypography variant="caption" fontWeight="medium" color="text">
+    <Box display="flex" flexDirection="column">
+      <Typography variant="caption" fontWeight="medium" color="text">
         {job}
-      </MKTypography>
-      <MKTypography variant="caption" color="secondary">
+      </Typography>
+      <Typography variant="caption" color="secondary">
         {org}
-      </MKTypography>
-    </MKBox>
+      </Typography>
+    </Box>
   );
 }
 
@@ -79,15 +79,15 @@ function TableOne() {
         author: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
         function: <Role job="Manager" org="Organization" />,
         status: (
-          <MKBadge variant="contained" badgeContent="online" color="success" size="xs" container />
+          <Badge variant="contained" badgeContent="online" color="success" size="xs" container />
         ),
         employed: (
-          <MKTypography variant="caption" color="secondary" fontWeight="medium">
+          <Typography variant="caption" color="secondary" fontWeight="medium">
             23/04/18
-          </MKTypography>
+          </Typography>
         ),
         action: (
-          <MKTypography
+          <Typography
             component="a"
             href="#"
             variant="caption"
@@ -95,14 +95,14 @@ function TableOne() {
             fontWeight="medium"
           >
             Edit
-          </MKTypography>
+          </Typography>
         ),
       },
       {
         author: <Author image={team3} name="Alexa Liras" email="alexa@creative-tim.com" />,
         function: <Role job="Programator" org="Developer" />,
         status: (
-          <MKBadge
+          <Badge
             variant="contained"
             badgeContent="offline"
             color="secondary"
@@ -111,12 +111,12 @@ function TableOne() {
           />
         ),
         employed: (
-          <MKTypography variant="caption" color="secondary" fontWeight="medium">
+          <Typography variant="caption" color="secondary" fontWeight="medium">
             11/01/19
-          </MKTypography>
+          </Typography>
         ),
         action: (
-          <MKTypography
+          <Typography
             component="a"
             href="#"
             variant="caption"
@@ -124,22 +124,22 @@ function TableOne() {
             fontWeight="medium"
           >
             Edit
-          </MKTypography>
+          </Typography>
         ),
       },
       {
         author: <Author image={team4} name="Laurent Perrier" email="laurent@creative-tim.com" />,
         function: <Role job="Executive" org="Projects" />,
         status: (
-          <MKBadge variant="contained" badgeContent="online" color="success" size="xs" container />
+          <Badge variant="contained" badgeContent="online" color="success" size="xs" container />
         ),
         employed: (
-          <MKTypography variant="caption" color="secondary" fontWeight="medium">
+          <Typography variant="caption" color="secondary" fontWeight="medium">
             19/09/17
-          </MKTypography>
+          </Typography>
         ),
         action: (
-          <MKTypography
+          <Typography
             component="a"
             href="#"
             variant="caption"
@@ -147,22 +147,22 @@ function TableOne() {
             fontWeight="medium"
           >
             Edit
-          </MKTypography>
+          </Typography>
         ),
       },
       {
         author: <Author image={team3} name="Michael Levi" email="michael@creative-tim.com" />,
         function: <Role job="Programator" org="Developer" />,
         status: (
-          <MKBadge variant="contained" badgeContent="online" color="success" size="xs" container />
+          <Badge variant="contained" badgeContent="online" color="success" size="xs" container />
         ),
         employed: (
-          <MKTypography variant="caption" color="secondary" fontWeight="medium">
+          <Typography variant="caption" color="secondary" fontWeight="medium">
             24/12/08
-          </MKTypography>
+          </Typography>
         ),
         action: (
-          <MKTypography
+          <Typography
             component="a"
             href="#"
             variant="caption"
@@ -170,14 +170,14 @@ function TableOne() {
             fontWeight="medium"
           >
             Edit
-          </MKTypography>
+          </Typography>
         ),
       },
       {
         author: <Author image={team2} name="Richard Gran" email="richard@creative-tim.com" />,
         function: <Role job="Manager" org="Executive" />,
         status: (
-          <MKBadge
+          <Badge
             variant="contained"
             badgeContent="offline"
             color="secondary"
@@ -186,12 +186,12 @@ function TableOne() {
           />
         ),
         employed: (
-          <MKTypography variant="caption" color="secondary" fontWeight="medium">
+          <Typography variant="caption" color="secondary" fontWeight="medium">
             04/10/21
-          </MKTypography>
+          </Typography>
         ),
         action: (
-          <MKTypography
+          <Typography
             component="a"
             href="#"
             variant="caption"
@@ -199,14 +199,14 @@ function TableOne() {
             fontWeight="medium"
           >
             Edit
-          </MKTypography>
+          </Typography>
         ),
       },
       {
         author: <Author image={team4} name="Miriam Eric" email="miriam@creative-tim.com" />,
         function: <Role job="Programtor" org="Developer" />,
         status: (
-          <MKBadge
+          <Badge
             variant="contained"
             badgeContent="offline"
             color="secondary"
@@ -215,12 +215,12 @@ function TableOne() {
           />
         ),
         employed: (
-          <MKTypography variant="caption" color="secondary" fontWeight="medium">
+          <Typography variant="caption" color="secondary" fontWeight="medium">
             14/09/20
-          </MKTypography>
+          </Typography>
         ),
         action: (
-          <MKTypography
+          <Typography
             component="a"
             href="#"
             variant="caption"
@@ -228,20 +228,20 @@ function TableOne() {
             fontWeight="medium"
           >
             Edit
-          </MKTypography>
+          </Typography>
         ),
       },
     ],
   };
 
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container item xs={12} lg={10} mx="auto">
           <Table columns={columns} rows={rows} />
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

@@ -19,8 +19,8 @@ import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function AboutUs() {
   const data = [
@@ -57,44 +57,44 @@ function AboutUs() {
   ];
 
   return (
-    <MKBox component="section" py={12} px={1}>
+    <Box component="section" py={12} px={1}>
       <Container>
         <Grid container item xs={12} lg={8}>
-          <MKTypography variant="h3">Read More About Us</MKTypography>
-          <MKTypography variant="body2" fontWeight="regular" color="text">
+          <Typography variant="h3">Read More About Us</Typography>
+          <Typography variant="body2" fontWeight="regular" color="text">
             Pain is what we go through as we become older. We get insulted by others, lose trust for
             those others. We get back stabbed by friends. It becomes harder for us to give others a
             hand.
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid container sx={{ mt: 6 }}>
           {data.map(({ icon, title, items }) => (
             <Grid key={icon} item xs={12} md={4}>
-              <MKBox py={2} pr={2}>
-                <MKTypography variant="h3" color="info">
+              <Box py={2} pr={2}>
+                <Typography variant="h3" color="info">
                   <Icon>{icon}</Icon>
-                </MKTypography>
-                <MKTypography variant="h5" mt={2} mb={3}>
+                </Typography>
+                <Typography variant="h5" mt={2} mb={3}>
                   {title}
-                </MKTypography>
+                </Typography>
                 {items.map((item) => (
-                  <MKBox key={item} display="flex" lineHeight={1.25}>
-                    <MKTypography variant="body1" color="info">
+                  <Box key={item} display="flex" lineHeight={1.25}>
+                    <Typography variant="body1" color="info">
                       <Icon sx={{ fontWeight: "bold" }}>done</Icon>
-                    </MKTypography>
-                    <MKBox pl={2}>
-                      <MKTypography variant="button" color="text" fontWeight="bold">
+                    </Typography>
+                    <Box pl={2}>
+                      <Typography variant="button" color="text" fontWeight="bold">
                         {item}
-                      </MKTypography>
-                    </MKBox>
-                  </MKBox>
+                      </Typography>
+                    </Box>
+                  </Box>
                 ))}
-              </MKBox>
+              </Box>
             </Grid>
           ))}
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

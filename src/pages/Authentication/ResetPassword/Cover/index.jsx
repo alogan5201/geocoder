@@ -17,10 +17,10 @@ Coded by www.creative-tim.com
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Input from "components/Input";
+import Button from "components/Button";
 
 // Authentication layout components
 import CoverLayout from "pages/Authentication/components/CoverLayout";
@@ -32,7 +32,7 @@ function Cover() {
   return (
     <CoverLayout coverHeight="50vh" image={bgImage}>
       <Card>
-        <MKBox
+        <Box
           variant="gradient"
           bgColor="info"
           borderRadius="lg"
@@ -43,17 +43,17 @@ function Cover() {
           mb={1}
           textAlign="center"
         >
-          <MKTypography variant="h3" fontWeight="medium" color="white" mt={1}>
+          <Typography variant="h3" fontWeight="medium" color="white" mt={1}>
             Reset Password
-          </MKTypography>
-          <MKTypography display="block" variant="button" color="white" my={1}>
+          </Typography>
+          <Typography display="block" variant="button" color="white" my={1}>
             You will receive an e-mail in maximum 60 seconds
-          </MKTypography>
-        </MKBox>
-        <MKBox pt={4} pb={3} px={3}>
-          <MKBox component="form" role="form">
-            <MKBox mb={4}>
-              <MKInput
+          </Typography>
+        </Box>
+        <Box pt={4} pb={3} px={3}>
+          <Box component="form" role="form">
+            <Box mb={4}>
+              <Input
                 type="email"
                 label="Email"
                 variant="standard"
@@ -61,14 +61,14 @@ function Cover() {
                 InputLabelProps={{ shrink: true }}
                 placeholder="john@email.com"
               />
-            </MKBox>
-            <MKBox mt={6} mb={1}>
-              <MKButton variant="gradient" color="info" fullWidth>
+            </Box>
+            <Box mt={6} mb={1}>
+              <Button variant="gradient" color="info" fullWidth>
                 reset
-              </MKButton>
-            </MKBox>
-          </MKBox>
-        </MKBox>
+              </Button>
+            </Box>
+          </Box>
+        </Box>
       </Card>
     </CoverLayout>
   );

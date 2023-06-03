@@ -25,9 +25,9 @@ import Icon from "@mui/material/Icon";
 import Divider from "@mui/material/Divider";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Button from "components/Button";
 
 function SimplePricingCard({ variant, color, title, description, price, specifications, action }) {
   let titleColor = "white";
@@ -45,8 +45,8 @@ function SimplePricingCard({ variant, color, title, description, price, specific
   }
 
   const renderSpecifications = specifications.map((specification) => (
-    <MKBox key={specification} display="flex" alignItems="center" pb={2}>
-      <MKBox
+    <Box key={specification} display="flex" alignItems="center" pb={2}>
+      <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
@@ -56,11 +56,11 @@ function SimplePricingCard({ variant, color, title, description, price, specific
         mt={-0.125}
         lineHeight={0}
       >
-        <MKTypography variant="body1" color={titleColor} sx={{ lineHeight: 0 }}>
+        <Typography variant="body1" color={titleColor} sx={{ lineHeight: 0 }}>
           <Icon>done</Icon>
-        </MKTypography>
-      </MKBox>
-      <MKTypography
+        </Typography>
+      </Box>
+      <Typography
         variant="button"
         color={
           variant === "contained" || (variant === "gradient" && color === "light")
@@ -70,18 +70,18 @@ function SimplePricingCard({ variant, color, title, description, price, specific
         fontWeight="regular"
       >
         {specification}
-      </MKTypography>
-    </MKBox>
+      </Typography>
+    </Box>
   ));
 
   return (
     <Card sx={{ width: "100%", height: "100%", overflow: "hidden" }}>
-      <MKBox variant={variant} bgColor={variant === "gradient" ? color : "white"} height="100%">
-        <MKBox p={3} lineHeight={1}>
-          <MKTypography variant="h5" fontWeight="bold" color={titleColor} mb={0.5}>
+      <Box variant={variant} bgColor={variant === "gradient" ? color : "white"} height="100%">
+        <Box p={3} lineHeight={1}>
+          <Typography variant="h5" fontWeight="bold" color={titleColor} mb={0.5}>
             {title}
-          </MKTypography>
-          <MKTypography
+          </Typography>
+          <Typography
             variant="button"
             color={
               variant === "contained" || (variant === "gradient" && color === "light")
@@ -91,11 +91,11 @@ function SimplePricingCard({ variant, color, title, description, price, specific
             mb={2}
           >
             {description}
-          </MKTypography>
-          <MKTypography variant="h3" color={priceColor} mt={2} mb={1}>
+          </Typography>
+          <Typography variant="h3" color={priceColor} mt={2} mb={1}>
             {price.value}&nbsp;
             {price.type && (
-              <MKTypography
+              <Typography
                 display="inline"
                 component="small"
                 variant="h6"
@@ -109,12 +109,12 @@ function SimplePricingCard({ variant, color, title, description, price, specific
                 }}
               >
                 / {price.type}
-              </MKTypography>
+              </Typography>
             )}
-          </MKTypography>
+          </Typography>
           {action.type === "internal" ? (
-            <MKBox mt={3}>
-              <MKButton
+            <Box mt={3}>
+              <Button
                 component={Link}
                 to={action.route}
                 variant={variant === "gradient" ? "contained" : "gradient"}
@@ -123,11 +123,11 @@ function SimplePricingCard({ variant, color, title, description, price, specific
                 fullWidth
               >
                 {action.label}
-              </MKButton>
-            </MKBox>
+              </Button>
+            </Box>
           ) : (
-            <MKBox mt={3}>
-              <MKButton
+            <Box mt={3}>
+              <Button
                 component="a"
                 href={action.route}
                 target="_blank"
@@ -138,16 +138,16 @@ function SimplePricingCard({ variant, color, title, description, price, specific
                 fullWidth
               >
                 {action.label}
-              </MKButton>
-            </MKBox>
+              </Button>
+            </Box>
           )}
-        </MKBox>
+        </Box>
         <Divider
           light={variant === "gradient" || (variant === "gradient" && color === "light")}
           sx={{ my: 0, opacity: variant === "gradient" ? 0.5 : 0.25 }}
         />
-        <MKBox p={3}>{renderSpecifications}</MKBox>
-      </MKBox>
+        <Box p={3}>{renderSpecifications}</Box>
+      </Box>
     </Card>
   );
 }

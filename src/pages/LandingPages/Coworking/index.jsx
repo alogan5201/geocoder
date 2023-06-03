@@ -20,9 +20,9 @@ import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Button from "components/Button";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -54,7 +54,7 @@ function Coworking() {
         }}
         sticky
       />
-      <MKBox
+      <Box
         minHeight="75vh"
         width="100%"
         sx={{
@@ -78,7 +78,7 @@ function Coworking() {
             justifyContent={{ xs: "center", md: "start" }}
             sx={{ textAlign: { xs: "center", md: "left" } }}
           >
-            <MKTypography
+            <Typography
               variant="h1"
               color="white"
               sx={({ breakpoints, typography: { size } }) => ({
@@ -88,8 +88,8 @@ function Coworking() {
               })}
             >
               Your Perfect Place for Work
-            </MKTypography>
-            <MKTypography
+            </Typography>
+            <Typography
               variant="body1"
               color="white"
               mt={1}
@@ -98,18 +98,18 @@ function Coworking() {
             >
               The time is now for it be okay to be great. People in this world shun people for being
               nice.
-            </MKTypography>
+            </Typography>
             <Stack direction="row" spacing={1} mt={6} mb={3}>
-              <MKButton variant="gradient" color="info">
+              <Button variant="gradient" color="info">
                 get started
-              </MKButton>
-              <MKButton variant="text" color="white">
+              </Button>
+              <Button variant="text" color="white">
                 read more
-              </MKButton>
+              </Button>
             </Stack>
           </Grid>
         </Container>
-      </MKBox>
+      </Box>
       <Card
         sx={{
           p: 2,
@@ -126,7 +126,7 @@ function Coworking() {
         <AboutUs />
         <Places />
         <Container>
-          <MKBox
+          <Box
             display="flex"
             justifyContent="space-between"
             alignItems="center"
@@ -140,25 +140,25 @@ function Coworking() {
           >
             <Grid container spacing={3} alignItems="center">
               <Grid item xs={12} md={8} lg={5}>
-                <MKTypography variant="h5" color="white" fontWeight="bold">
+                <Typography variant="h5" color="white" fontWeight="bold">
                   For being a bright color. For standing out. But the time is now to be okay to be
                   the greatest you.
-                </MKTypography>
+                </Typography>
               </Grid>
               <Grid item xs={12} lg={6} sx={{ ml: "auto" }}>
-                <MKBox width="12rem" ml="auto">
-                  <MKButton variant="gradient" color="warning" fullWidth sx={{ boxShadow: "none" }}>
+                <Box width="12rem" ml="auto">
+                  <Button variant="gradient" color="warning" fullWidth sx={{ boxShadow: "none" }}>
                     start now
-                  </MKButton>
-                </MKBox>
+                  </Button>
+                </Box>
               </Grid>
             </Grid>
-          </MKBox>
+          </Box>
         </Container>
       </Card>
-      <MKBox pt={6} px={1} mt={6}>
+      <Box pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      </Box>
     </>
   );
 }

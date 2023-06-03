@@ -18,8 +18,8 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultBlogCard from "examples/Cards/BlogCards/DefaultBlogCard";
@@ -34,17 +34,17 @@ import author3 from "assets/images/marie.jpg";
 
 function Posts() {
   return (
-    <MKBox component="section" py={7}>
+    <Box component="section" py={7}>
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={9} textAlign="center" mx="auto">
-            <MKTypography variant="h3" mb={0.5}>
+            <Typography variant="h3" mb={0.5}>
               See other articles
-            </MKTypography>
-            <MKTypography variant="body2" color="text" px={{ xs: 0, md: 6 }} mb={4}>
+            </Typography>
+            <Typography variant="body2" color="text" px={{ xs: 0, md: 6 }} mb={4}>
               Create a unique and beautiful blog posts. You can also connect your blog directly to
               Google Analytics to have a more detailed look.
-            </MKTypography>
+            </Typography>
           </Grid>
           <Grid item xs={12} lg={4} mb={{ xs: 3, lg: 0 }}>
             <DefaultBlogCard
@@ -90,7 +90,7 @@ function Posts() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

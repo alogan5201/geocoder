@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -48,8 +48,8 @@ function Author() {
         transparent
         light
       />
-      <MKBox bgColor="white">
-        <MKBox
+      <Box bgColor="white">
+        <Box
           minHeight="25rem"
           width="100%"
           sx={{
@@ -80,7 +80,7 @@ function Author() {
         </Card>
         <Contact />
         <Footer />
-      </MKBox>
+      </Box>
     </>
   );
 }

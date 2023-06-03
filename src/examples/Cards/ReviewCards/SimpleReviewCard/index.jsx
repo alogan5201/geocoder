@@ -20,14 +20,14 @@ import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 import MKAvatar from "components/MKAvatar";
 
 function SimpleReviewCard({ image, name, username, review }) {
   return (
     <Card>
-      <MKBox display="grid" justifyContent="center" position="relative" mt={-7}>
+      <Box display="grid" justifyContent="center" position="relative" mt={-7}>
         <MKAvatar
           src={image}
           alt={name}
@@ -35,7 +35,7 @@ function SimpleReviewCard({ image, name, username, review }) {
           shadow="lg"
           sx={{ position: "relative", zIndex: 2 }}
         />
-        <MKBox
+        <Box
           width="6.875rem"
           height="6.875rem"
           borderRadius="50%"
@@ -50,22 +50,22 @@ function SimpleReviewCard({ image, name, username, review }) {
             filter: "blur(12px)",
           }}
         />
-      </MKBox>
-      <MKBox pt={3} px={3} textAlign="center">
-        <MKTypography variant="h4" fontWeight="bold">
+      </Box>
+      <Box pt={3} px={3} textAlign="center">
+        <Typography variant="h4" fontWeight="bold">
           {name}
-        </MKTypography>
+        </Typography>
         {username && (
-          <MKTypography variant="body2" color="text" mb={2}>
+          <Typography variant="body2" color="text" mb={2}>
             @{username}
-          </MKTypography>
+          </Typography>
         )}
-        <MKTypography variant="body2" color="text" mt={1} mb={2}>
+        <Typography variant="body2" color="text" mt={1} mb={2}>
           {review}
-        </MKTypography>
-      </MKBox>
-      <MKBox textAlign="center" pt={1} pb={3} px={3}>
-        <MKBox
+        </Typography>
+      </Box>
+      <Box textAlign="center" pt={1} pb={3} px={3}>
+        <Box
           component="svg"
           width="60px"
           height="60px"
@@ -84,8 +84,8 @@ function SimpleReviewCard({ image, name, username, review }) {
               transform="translate(135.311778, 134.872794) scale(-1, -1) translate(-135.311778, -134.872794) "
             />
           </g>
-        </MKBox>
-      </MKBox>
+        </Box>
+      </Box>
     </Card>
   );
 }

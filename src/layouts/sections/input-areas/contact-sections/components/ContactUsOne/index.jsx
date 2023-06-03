@@ -18,14 +18,14 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Input from "components/Input";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 function ContactUsOne() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid
           container
@@ -37,38 +37,38 @@ function ContactUsOne() {
           mb={{ xs: 0, md: 6 }}
           textAlign="center"
         >
-          <MKTypography variant="h3" mb={1}>
+          <Typography variant="h3" mb={1}>
             Contact Us
-          </MKTypography>
-          <MKTypography variant="body2" color="text">
+          </Typography>
+          <Typography variant="body2" color="text">
             For further questions, including partnership opportunities, please email
             hello@creative-tim.com or contact using our contact form.
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid container item xs={12} lg={8} sx={{ mx: "auto" }}>
-          <MKBox width="100%" component="form" method="post" autoComplete="off">
-            <MKBox p={3}>
+          <Box width="100%" component="form" method="post" autoComplete="off">
+            <Box p={3}>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
-                  <MKInput label="Full Name" fullWidth />
+                  <Input label="Full Name" fullWidth />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <MKInput type="email" label="Email" fullWidth />
+                  <Input type="email" label="Email" fullWidth />
                 </Grid>
                 <Grid item xs={12}>
-                  <MKInput label="What can we help you?" multiline fullWidth rows={6} />
+                  <Input label="What can we help you?" multiline fullWidth rows={6} />
                 </Grid>
               </Grid>
               <Grid container item justifyContent="center" xs={12} my={6}>
-                <MKButton type="submit" variant="gradient" color="info">
+                <Button type="submit" variant="gradient" color="info">
                   Send Message
-                </MKButton>
+                </Button>
               </Grid>
-            </MKBox>
-          </MKBox>
+            </Box>
+          </Box>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

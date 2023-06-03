@@ -20,8 +20,8 @@ import PropTypes from "prop-types";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function SimpleInfoCard({ color, icon, title, description, direction }) {
   let alignment = "flex-start";
@@ -33,7 +33,7 @@ function SimpleInfoCard({ color, icon, title, description, direction }) {
   }
 
   return (
-    <MKBox
+    <Box
       display="flex"
       flexDirection="column"
       alignItems={alignment}
@@ -41,7 +41,7 @@ function SimpleInfoCard({ color, icon, title, description, direction }) {
       p={direction === "center" ? 2 : 0}
       lineHeight={1}
     >
-      <MKBox
+      <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
@@ -54,14 +54,14 @@ function SimpleInfoCard({ color, icon, title, description, direction }) {
         coloredShadow={color}
       >
         {typeof icon === "string" ? <Icon fontSize="small">{icon}</Icon> : icon}
-      </MKBox>
-      <MKTypography display="block" variant="5" fontWeight="bold" mt={2.5} mb={1.5}>
+      </Box>
+      <Typography display="block" variant="5" fontWeight="bold" mt={2.5} mb={1.5}>
         {title}
-      </MKTypography>
-      <MKTypography display="block" variant="body2" color="text">
+      </Typography>
+      <Typography display="block" variant="body2" color="text">
         {description}
-      </MKTypography>
-    </MKBox>
+      </Typography>
+    </Box>
   );
 }
 

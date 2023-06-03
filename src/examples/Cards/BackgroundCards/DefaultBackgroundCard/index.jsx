@@ -23,9 +23,9 @@ import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 function DefaultBackgroundCard({ image, label, title, description, action }) {
   return (
@@ -44,24 +44,24 @@ function DefaultBackgroundCard({ image, label, title, description, action }) {
         borderRadius: borderRadius.xl,
       })}
     >
-      <MKBox textAlign="center" pt={12} pb={3} px={3}>
+      <Box textAlign="center" pt={12} pb={3} px={3}>
         {label && (
-          <MKTypography variant="body2" color="white" textTransform="uppercase" mb={2}>
+          <Typography variant="body2" color="white" textTransform="uppercase" mb={2}>
             {label}
-          </MKTypography>
+          </Typography>
         )}
-        <MKTypography variant="h3" color="white">
+        <Typography variant="h3" color="white">
           {title}
-        </MKTypography>
-        <MKTypography variant="body2" color="white" opacity={0.8} mb={2}>
+        </Typography>
+        <Typography variant="body2" color="white" opacity={0.8} mb={2}>
           {description}
-        </MKTypography>
+        </Typography>
         {action.type === "internal" ? (
-          <MKButton component={Link} to={action.route} color="white" size="small" sx={{ my: 2 }}>
+          <Button component={Link} to={action.route} color="white" size="small" sx={{ my: 2 }}>
             {action.label}
-          </MKButton>
+          </Button>
         ) : (
-          <MKButton
+          <Button
             component="a"
             href={action.route}
             target="_blank"
@@ -71,9 +71,9 @@ function DefaultBackgroundCard({ image, label, title, description, action }) {
             sx={{ my: 2 }}
           >
             {action.label}
-          </MKButton>
+          </Button>
         )}
-      </MKBox>
+      </Box>
     </Card>
   );
 }

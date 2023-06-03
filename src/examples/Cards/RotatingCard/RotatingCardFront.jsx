@@ -20,12 +20,12 @@ import PropTypes from "prop-types";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function RotatingCardFront({ color, image, icon, title, description }) {
   return (
-    <MKBox
+    <Box
       display="flex"
       justifyContent="center"
       alignContent="center"
@@ -44,20 +44,20 @@ function RotatingCardFront({ color, image, icon, title, description }) {
         backfaceVisibility: "hidden",
       }}
     >
-      <MKBox py={12} px={3} textAlign="center" lineHeight={1}>
+      <Box py={12} px={3} textAlign="center" lineHeight={1}>
         {icon && (
-          <MKTypography variant="h2" color="white" my={2}>
+          <Typography variant="h2" color="white" my={2}>
             {typeof icon === "string" ? <Icon>{icon}</Icon> : icon}
-          </MKTypography>
+          </Typography>
         )}
-        <MKTypography variant="h3" color="white" gutterBottom>
+        <Typography variant="h3" color="white" gutterBottom>
           {title}
-        </MKTypography>
-        <MKTypography variant="body2" color="white" opacity={0.8}>
+        </Typography>
+        <Typography variant="body2" color="white" opacity={0.8}>
           {description}
-        </MKTypography>
-      </MKBox>
-    </MKBox>
+        </Typography>
+      </Box>
+    </Box>
   );
 }
 

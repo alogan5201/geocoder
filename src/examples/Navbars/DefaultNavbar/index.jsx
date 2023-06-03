@@ -32,9 +32,9 @@ import Divider from "@mui/material/Divider";
 import MuiLink from "@mui/material/Link";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Button from "components/Button";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbarDropdown from "examples/Navbars/DefaultNavbar/DefaultNavbarDropdown";
@@ -129,7 +129,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
               <Grid key={gridKey} item xs={12 / columns} sx={{ position: "relative" }}>
                 {cols.map((col, index) => (
                   <Fragment key={col.name}>
-                    <MKTypography
+                    <Typography
                       display="block"
                       variant="button"
                       fontWeight="bold"
@@ -139,9 +139,9 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                       mt={index !== 0 ? 2 : 0}
                     >
                       {col.name}
-                    </MKTypography>
+                    </Typography>
                     {col.collapse.map((item) => (
-                      <MKTypography
+                      <Typography
                         key={item.name}
                         component={item.route ? Link : MuiLink}
                         to={item.route ? item.route : ""}
@@ -168,7 +168,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                         })}
                       >
                         {item.name}
-                      </MKTypography>
+                      </Typography>
                     ))}
                   </Fragment>
                 ))}
@@ -207,7 +207,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
         };
 
         return (
-          <MKTypography
+          <Typography
             key={item.name}
             {...(item.route ? routeComponent : linkComponent)}
             display="flex"
@@ -248,9 +248,9 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             }}
           >
             {item.description ? (
-              <MKBox>
+              <Box>
                 {item.name}
-                <MKTypography
+                <Typography
                   display="block"
                   variant="button"
                   color="text"
@@ -258,8 +258,8 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                   sx={{ transition: "all 300ms linear" }}
                 >
                   {item.description}
-                </MKTypography>
-              </MKBox>
+                </Typography>
+              </Box>
             ) : (
               item.name
             )}
@@ -271,7 +271,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                 keyboard_arrow_right
               </Icon>
             )}
-          </MKTypography>
+          </Typography>
         );
       });
     }
@@ -313,16 +313,16 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             background: ({ palette: { white } }) => white.main,
           }}
         >
-          <MKBox borderRadius="lg">
-            <MKTypography variant="h1" color="white">
+          <Box borderRadius="lg">
+            <Typography variant="h1" color="white">
               <Icon ref={setArrowRef} sx={{ mt: -3 }}>
                 arrow_drop_up
               </Icon>
-            </MKTypography>
-            <MKBox shadow="lg" borderRadius="lg" p={2} mt={2}>
+            </Typography>
+            <Box shadow="lg" borderRadius="lg" p={2} mt={2}>
               {renderRoutes}
-            </MKBox>
-          </MKBox>
+            </Box>
+          </Box>
         </Grow>
       )}
     </Popper>
@@ -351,7 +351,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                 };
 
                 return (
-                  <MKTypography
+                  <Typography
                     key={item.name}
                     {...(item.route ? routeComponent : linkComponent)}
                     display="flex"
@@ -380,9 +380,9 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                     })}
                   >
                     {item.description ? (
-                      <MKBox>
+                      <Box>
                         {item.name}
-                        <MKTypography
+                        <Typography
                           display="block"
                           variant="button"
                           color="text"
@@ -390,8 +390,8 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                           sx={{ transition: "all 300ms linear" }}
                         >
                           {item.description}
-                        </MKTypography>
-                      </MKBox>
+                        </Typography>
+                      </Box>
                     ) : (
                       item.name
                     )}
@@ -403,7 +403,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                         keyboard_arrow_right
                       </Icon>
                     )}
-                  </MKTypography>
+                  </Typography>
                 );
               });
           }
@@ -439,11 +439,11 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             background: ({ palette: { white } }) => white.main,
           }}
         >
-          <MKBox ml={2.5} mt={-2.5} borderRadius="lg">
-            <MKBox shadow="lg" borderRadius="lg" py={1.5} px={1} mt={2}>
+          <Box ml={2.5} mt={-2.5} borderRadius="lg">
+            <Box shadow="lg" borderRadius="lg" py={1.5} px={1} mt={2}>
               {renderNestedRoutes}
-            </MKBox>
-          </MKBox>
+            </Box>
+          </Box>
         </Grow>
       )}
     </Popper>
@@ -451,7 +451,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
 
   return (
     <Container sx={sticky ? { position: "sticky", top: 0, zIndex: 10 } : null}>
-      <MKBox
+      <Box
         py={1}
         px={{ xs: 4, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}
         my={relative ? 0 : 2}
@@ -468,8 +468,8 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           backdropFilter: transparent ? "none" : `saturate(200%) blur(30px)`,
         })}
       >
-        <MKBox display="flex" justifyContent="space-between" alignItems="center">
-          <MKBox
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Box
             component={Link}
             to="/"
             display="flex"
@@ -482,7 +482,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
               <div className="pin"></div>
               <div className="pulse"></div>
             </div>
-            <MKTypography
+            <Typography
               variant="button"
               fontWeight="regular"
               textTransform="capitalize"
@@ -490,20 +490,20 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
               sx={{ fontWeight: "100%", ml: 1, mr: 0.25 }}
             >
               {brand}
-            </MKTypography>
-          </MKBox>
-          <MKBox
+            </Typography>
+          </Box>
+          <Box
             color="inherit"
             display={{ xs: "none", lg: "flex" }}
             ml="auto"
             mr={center ? "auto" : 0}
           >
             {renderNavbarItems}
-          </MKBox>
-          <MKBox ml={{ xs: "auto", lg: 0 }}>
+          </Box>
+          <Box ml={{ xs: "auto", lg: 0 }}>
             {action &&
               (action.type === "internal" ? (
-                <MKButton
+                <Button
                   component={Link}
                   to={action.route}
                   variant={
@@ -515,9 +515,9 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                   size="small"
                 >
                   {action.label}
-                </MKButton>
+                </Button>
               ) : (
-                <MKButton
+                <Button
                   component="a"
                   href={action.route}
                   target="_blank"
@@ -531,10 +531,10 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                   size="small"
                 >
                   {action.label}
-                </MKButton>
+                </Button>
               ))}
-          </MKBox>
-          <MKBox
+          </Box>
+          <Box
             display={{ xs: "inline-block", lg: "none" }}
             lineHeight={0}
             py={1.5}
@@ -544,17 +544,17 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             onClick={openMobileNavbar}
           >
             <Icon fontSize="default">{mobileNavbar ? "close" : "menu"}</Icon>
-          </MKBox>
-        </MKBox>
-        <MKBox
+          </Box>
+        </Box>
+        <Box
           bgColor={transparent ? "white" : "transparent"}
           shadow={transparent ? "lg" : "none"}
           borderRadius="xl"
           px={transparent ? 2 : 0}
         >
           {mobileView && <DefaultNavbarMobile routes={routes} open={mobileNavbar} />}
-        </MKBox>
-      </MKBox>
+        </Box>
+      </Box>
       {dropdownMenu}
       {nestedDropdownMenu}
     </Container>

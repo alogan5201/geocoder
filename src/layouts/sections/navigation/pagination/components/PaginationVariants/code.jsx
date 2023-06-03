@@ -4,96 +4,96 @@ import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKPagination from "components/MKPagination";
+import Pagination from "components/Pagination";
 
 function PaginationVariants() {
   return (
     <Container sx={{ height: "100%" }}>
       <Grid container spacing={3} alignItems="center" mx="auto" height="100%">
         <Grid item xs={12}>
-          <MKPagination color="primary" placement="center">
-            <MKPagination item>
+          <Pagination color="primary" placement="center">
+            <Pagination item>
               <Icon>keyboard_arrow_left</Icon>
-            </MKPagination>
-            <MKPagination item active>
+            </Pagination>
+            <Pagination item active>
               1
-            </MKPagination>
-            <MKPagination item>2</MKPagination>
-            <MKPagination item>3</MKPagination>
-            <MKPagination item>4</MKPagination>
-            <MKPagination item>5</MKPagination>
-            <MKPagination item>
+            </Pagination>
+            <Pagination item>2</Pagination>
+            <Pagination item>3</Pagination>
+            <Pagination item>4</Pagination>
+            <Pagination item>5</Pagination>
+            <Pagination item>
               <Icon>keyboard_arrow_right</Icon>
-            </MKPagination>
-          </MKPagination>
+            </Pagination>
+          </Pagination>
         </Grid>
         <Grid item xs={12}>
-          <MKPagination color="info" placement="center">
-            <MKPagination item>
+          <Pagination color="info" placement="center">
+            <Pagination item>
               <Icon>keyboard_arrow_left</Icon>
-            </MKPagination>
-            <MKPagination item active>
+            </Pagination>
+            <Pagination item active>
               1
-            </MKPagination>
-            <MKPagination item>2</MKPagination>
-            <MKPagination item>3</MKPagination>
-            <MKPagination item>4</MKPagination>
-            <MKPagination item>5</MKPagination>
-            <MKPagination item>
+            </Pagination>
+            <Pagination item>2</Pagination>
+            <Pagination item>3</Pagination>
+            <Pagination item>4</Pagination>
+            <Pagination item>5</Pagination>
+            <Pagination item>
               <Icon>keyboard_arrow_right</Icon>
-            </MKPagination>
-          </MKPagination>
+            </Pagination>
+          </Pagination>
         </Grid>
         <Grid item xs={12}>
-          <MKPagination color="success" placement="center">
-            <MKPagination item>
+          <Pagination color="success" placement="center">
+            <Pagination item>
               <Icon>keyboard_arrow_left</Icon>
-            </MKPagination>
-            <MKPagination item active>
+            </Pagination>
+            <Pagination item active>
               1
-            </MKPagination>
-            <MKPagination item>2</MKPagination>
-            <MKPagination item>3</MKPagination>
-            <MKPagination item>4</MKPagination>
-            <MKPagination item>5</MKPagination>
-            <MKPagination item>
+            </Pagination>
+            <Pagination item>2</Pagination>
+            <Pagination item>3</Pagination>
+            <Pagination item>4</Pagination>
+            <Pagination item>5</Pagination>
+            <Pagination item>
               <Icon>keyboard_arrow_right</Icon>
-            </MKPagination>
-          </MKPagination>
+            </Pagination>
+          </Pagination>
         </Grid>
         <Grid item xs={12}>
-          <MKPagination color="warning" placement="center">
-            <MKPagination item>
+          <Pagination color="warning" placement="center">
+            <Pagination item>
               <Icon>keyboard_arrow_left</Icon>
-            </MKPagination>
-            <MKPagination item active>
+            </Pagination>
+            <Pagination item active>
               1
-            </MKPagination>
-            <MKPagination item>2</MKPagination>
-            <MKPagination item>3</MKPagination>
-            <MKPagination item>4</MKPagination>
-            <MKPagination item>5</MKPagination>
-            <MKPagination item>
+            </Pagination>
+            <Pagination item>2</Pagination>
+            <Pagination item>3</Pagination>
+            <Pagination item>4</Pagination>
+            <Pagination item>5</Pagination>
+            <Pagination item>
               <Icon>keyboard_arrow_right</Icon>
-            </MKPagination>
-          </MKPagination>
+            </Pagination>
+          </Pagination>
         </Grid>
         <Grid item xs={12}>
-          <MKPagination color="error" placement="center">
-            <MKPagination item>
+          <Pagination color="error" placement="center">
+            <Pagination item>
               <Icon>keyboard_arrow_left</Icon>
-            </MKPagination>
-            <MKPagination item active>
+            </Pagination>
+            <Pagination item active>
               1
-            </MKPagination>
-            <MKPagination item>2</MKPagination>
-            <MKPagination item>3</MKPagination>
-            <MKPagination item>4</MKPagination>
-            <MKPagination item>5</MKPagination>
-            <MKPagination item>
+            </Pagination>
+            <Pagination item>2</Pagination>
+            <Pagination item>3</Pagination>
+            <Pagination item>4</Pagination>
+            <Pagination item>5</Pagination>
+            <Pagination item>
               <Icon>keyboard_arrow_right</Icon>
-            </MKPagination>
-          </MKPagination>
+            </Pagination>
+          </Pagination>
         </Grid>
       </Grid>
     </Container>

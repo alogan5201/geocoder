@@ -20,9 +20,9 @@ import PropTypes from "prop-types";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 import MKAvatar from "components/MKAvatar";
-import MKTypography from "components/MKTypography";
+import Typography from "components/Typography";
 
 function DefaultReviewCard({ color, image, name, date, review, rating }) {
   const ratings = {
@@ -99,7 +99,7 @@ function DefaultReviewCard({ color, image, name, date, review, rating }) {
   };
 
   return (
-    <MKBox
+    <Box
       variant={color === "transparent" ? "contained" : "gradient"}
       bgColor={color}
       borderRadius="xl"
@@ -116,8 +116,8 @@ function DefaultReviewCard({ color, image, name, date, review, rating }) {
           sx={{ mt: -5, mb: 1 }}
         />
       )}
-      <MKBox lineHeight={1}>
-        <MKTypography
+      <Box lineHeight={1}>
+        <Typography
           display="block"
           variant={image ? "button" : "h6"}
           fontWeight="bold"
@@ -125,8 +125,8 @@ function DefaultReviewCard({ color, image, name, date, review, rating }) {
           mb={0.5}
         >
           {name}
-        </MKTypography>
-        <MKTypography
+        </Typography>
+        <Typography
           variant={image ? "caption" : "button"}
           fontWeight="regular"
           lineHeight={1}
@@ -135,16 +135,16 @@ function DefaultReviewCard({ color, image, name, date, review, rating }) {
         >
           <Icon>schedule</Icon>&nbsp;
           {date}
-        </MKTypography>
-      </MKBox>
-      <MKTypography
+        </Typography>
+      </Box>
+      <Typography
         variant="body2"
         color={color === "transparent" || color === "light" ? "text" : "white"}
         my={4}
       >
         &quot;{review}&quot;
-      </MKTypography>
-      <MKTypography
+      </Typography>
+      <Typography
         variant="h4"
         color={color === "transparent" || color === "light" ? "text" : "white"}
         sx={{
@@ -158,8 +158,8 @@ function DefaultReviewCard({ color, image, name, date, review, rating }) {
         }}
       >
         {ratings[rating]}
-      </MKTypography>
-    </MKBox>
+      </Typography>
+    </Box>
   );
 }
 

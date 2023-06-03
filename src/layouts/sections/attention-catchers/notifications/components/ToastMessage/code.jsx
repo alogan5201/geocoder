@@ -9,8 +9,8 @@ import Snackbar from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Button from "components/Button";
 
 function ToastMessage() {
   const [show, setShow] = useState(false);
@@ -34,23 +34,23 @@ function ToastMessage() {
   });
 
   const toastTemplate = (
-    <MKBox display="flex" justifyContent="space-between" alignItems="center" color="white">
+    <Box display="flex" justifyContent="space-between" alignItems="center" color="white">
       Hello, world! This is a notification message.
       <CloseIcon
         fontSize="medium"
         sx={{ ml: 4, mr: -1, cursor: "pointer" }}
         onClick={toggleSnackbar}
       />
-    </MKBox>
+    </Box>
   );
 
   return (
-    <MKBox component="section" py={6}>
+    <Box component="section" py={6}>
       <Container>
         <Grid container item xs={12} lg={10} justifyContent="center" mx="auto">
-          <MKButton variant="gradient" color="info" onClick={toggleSnackbar}>
+          <Button variant="gradient" color="info" onClick={toggleSnackbar}>
             Show Snackbar
-          </MKButton>
+          </Button>
         </Grid>
         <Snackbar
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
@@ -62,7 +62,7 @@ function ToastMessage() {
           sx={toastStyles}
         />
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

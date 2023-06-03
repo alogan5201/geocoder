@@ -20,14 +20,14 @@ import PropTypes from "prop-types";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function DefaultInfoCard({ color, icon, title, description, direction, small }) {
   return (
-    <MKBox lineHeight={1} p={direction === "center" ? 2 : 0} textAlign={direction}>
+    <Box lineHeight={1} p={direction === "center" ? 2 : 0} textAlign={direction}>
       {typeof icon === "string" ? (
-        <MKTypography
+        <Typography
           display="block"
           variant={direction === "center" ? "h2" : "h3"}
           color={color}
@@ -35,11 +35,11 @@ function DefaultInfoCard({ color, icon, title, description, direction, small }) 
         >
           {" "}
           <Icon>{icon}</Icon>{" "}
-        </MKTypography>
+        </Typography>
       ) : (
         icon
       )}
-      <MKTypography
+      <Typography
         display="block"
         variant="5"
         fontWeight="bold"
@@ -47,8 +47,8 @@ function DefaultInfoCard({ color, icon, title, description, direction, small }) 
         mb={1.5}
       >
         {title}
-      </MKTypography>
-      <MKTypography
+      </Typography>
+      <Typography
         display="block"
         variant={small ? "button" : "body2"}
         color="text"
@@ -56,8 +56,8 @@ function DefaultInfoCard({ color, icon, title, description, direction, small }) 
         pl={direction === "right" ? 6 : 0}
       >
         {description}
-      </MKTypography>
-    </MKBox>
+      </Typography>
+    </Box>
   );
 }
 

@@ -19,8 +19,8 @@ import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React components
 import MiniReviewCard from "examples/Cards/ReviewCards/MiniReviewCard";
@@ -38,7 +38,7 @@ import pinterest from "assets/images/logos/gray-logos/logo-pinterest.svg";
 
 function Testimonials() {
   return (
-    <MKBox py={6}>
+    <Box py={6}>
       <Container>
         <Grid
           container
@@ -50,16 +50,16 @@ function Testimonials() {
           mx="auto"
           sx={{ textAlign: "center" }}
         >
-          <MKTypography variant="h2" color="warning" textGradient>
+          <Typography variant="h2" color="warning" textGradient>
             What random people
-          </MKTypography>
-          <MKTypography variant="h2" mb={2}>
+          </Typography>
+          <Typography variant="h2" mb={2}>
             Think about us
-          </MKTypography>
-          <MKTypography variant="body2" color="text">
+          </Typography>
+          <Typography variant="body2" color="text">
             That&apos;s the main thing people are controlled by! Thoughts- their perception of
             themselves!{" "}
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid container spacing={3} mt={8}>
           <Grid item xs={12} md={8} lg={4}>
@@ -85,26 +85,26 @@ function Testimonials() {
         <Divider sx={{ my: 6 }} />
         <Grid container spacing={3}>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={apple} alt="apple" width="100%" opacity={0.6} />
+            <Box component="img" src={apple} alt="apple" width="100%" opacity={0.6} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={facebook} alt="facebook" width="100%" opacity={0.6} />
+            <Box component="img" src={facebook} alt="facebook" width="100%" opacity={0.6} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={behance} alt="behance" width="100%" opacity={0.6} />
+            <Box component="img" src={behance} alt="behance" width="100%" opacity={0.6} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={spotify} alt="spotify" width="100%" opacity={0.6} />
+            <Box component="img" src={spotify} alt="spotify" width="100%" opacity={0.6} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={coinbase} alt="coinbase" width="100%" opacity={0.6} />
+            <Box component="img" src={coinbase} alt="coinbase" width="100%" opacity={0.6} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={pinterest} alt="pinterest" width="100%" opacity={0.6} />
+            <Box component="img" src={pinterest} alt="pinterest" width="100%" opacity={0.6} />
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

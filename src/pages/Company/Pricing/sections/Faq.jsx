@@ -21,8 +21,8 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Pricing page components
 import FaqCollapse from "pages/Company/Pricing/components/FaqCollapse";
@@ -31,12 +31,12 @@ function Faq() {
   const [collapse, setCollapse] = useState(false);
 
   return (
-    <MKBox component="section" py={6}>
+    <Box component="section" py={6}>
       <Container>
         <Grid container justifyContent="center">
           <Grid item xs={12} md={10}>
             <Card>
-              <MKBox
+              <Box
                 variant="gradient"
                 bgColor="error"
                 borderRadius="lg"
@@ -45,14 +45,14 @@ function Faq() {
                 mt={-3}
                 mx={2}
               >
-                <MKTypography variant="h4" color="white">
+                <Typography variant="h4" color="white">
                   Frequently Asked Questions
-                </MKTypography>
-                <MKTypography variant="body2" color="white" opacity={0.8}>
+                </Typography>
+                <Typography variant="body2" color="white" opacity={0.8}>
                   Last modified: Sept 07 2021
-                </MKTypography>
-              </MKBox>
-              <MKBox py={2} px={3}>
+                </Typography>
+              </Box>
+              <Box py={2} px={3}>
                 <FaqCollapse
                   title="How do I order?"
                   open={collapse === 1}
@@ -125,12 +125,12 @@ function Faq() {
                   you can&apos;t do anything, you won&apos;t do anything. I was taught I could do
                   everything.
                 </FaqCollapse>
-              </MKBox>
+              </Box>
             </Card>
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

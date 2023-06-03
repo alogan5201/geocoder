@@ -23,13 +23,13 @@ import { Link } from "react-router-dom";
 import MuiLink from "@mui/material/Link";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Button from "components/Button";
 
 function RotatingCard({ color, image, title, description, action }) {
   return (
-    <MKBox
+    <Box
       display="flex"
       justifyContent="center"
       alignItems="center"
@@ -52,17 +52,17 @@ function RotatingCard({ color, image, title, description, action }) {
         transform: "rotateY(180deg)",
       }}
     >
-      <MKBox pt={12} pb={2} px={2} textAlign="center" lineHeight={1}>
-        <MKTypography variant="h3" color="white" gutterBottom>
+      <Box pt={12} pb={2} px={2} textAlign="center" lineHeight={1}>
+        <Typography variant="h3" color="white" gutterBottom>
           {title}
-        </MKTypography>
-        <MKTypography variant="body2" color="white" opacity={0.8}>
+        </Typography>
+        <Typography variant="body2" color="white" opacity={0.8}>
           {description}
-        </MKTypography>
+        </Typography>
         {action && (
-          <MKBox width="50%" mt={4} mb={2} mx="auto">
+          <Box width="50%" mt={4} mb={2} mx="auto">
             {action.type === "external" ? (
-              <MKButton
+              <Button
                 component={MuiLink}
                 href={action.route}
                 target="_blank"
@@ -72,16 +72,16 @@ function RotatingCard({ color, image, title, description, action }) {
                 fullWidth
               >
                 {action.label}
-              </MKButton>
+              </Button>
             ) : (
-              <MKButton component={Link} to={action.route} color="white" size="small" fullWidth>
+              <Button component={Link} to={action.route} color="white" size="small" fullWidth>
                 {action.label}
-              </MKButton>
+              </Button>
             )}
-          </MKBox>
+          </Box>
         )}
-      </MKBox>
-    </MKBox>
+      </Box>
+    </Box>
   );
 }
 

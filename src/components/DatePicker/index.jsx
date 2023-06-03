@@ -23,27 +23,27 @@ import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/flatpickr.css";
 
 // Material Kit 2 PRO React components
-import MKInput from "components/MKInput";
+import Input from "components/Input";
 
-function MKDatePicker({ input, ...rest }) {
+function DatePicker({ input, ...rest }) {
   return (
     <Flatpickr
       {...rest}
       render={({ defaultValue }, ref) => (
-        <MKInput {...input} defaultValue={defaultValue} inputRef={ref} />
+        <Input {...input} defaultValue={defaultValue} inputRef={ref} />
       )}
     />
   );
 }
 
-// Setting default values for the props of MKDatePicker
-MKDatePicker.defaultProps = {
+// Setting default values for the props of DatePicker
+DatePicker.defaultProps = {
   input: {},
 };
 
-// Typechecking props for the MKDatePicker
-MKDatePicker.propTypes = {
+// Typechecking props for the DatePicker
+DatePicker.propTypes = {
   input: PropTypes.objectOf(PropTypes.any),
 };
 
-export default MKDatePicker;
+export default DatePicker;

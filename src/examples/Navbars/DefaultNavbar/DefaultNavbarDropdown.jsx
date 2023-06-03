@@ -24,8 +24,8 @@ import Collapse from "@mui/material/Collapse";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function DefaultNavbarDropdown({
   name,
@@ -52,7 +52,7 @@ function DefaultNavbarDropdown({
 
   return (
     <>
-      <MKBox
+      <Box
         {...rest}
         mx={1}
         p={1}
@@ -64,15 +64,15 @@ function DefaultNavbarDropdown({
         {...(route && routeComponent)}
         {...(href && linkComponent)}
       >
-        <MKTypography
+        <Typography
           variant="body2"
           lineHeight={1}
           color="inherit"
           sx={{ alignSelf: "center", "& *": { verticalAlign: "middle" } }}
         >
           {icon}
-        </MKTypography>
-        <MKTypography
+        </Typography>
+        <Typography
           variant="button"
           fontWeight="regular"
           textTransform="capitalize"
@@ -80,13 +80,13 @@ function DefaultNavbarDropdown({
           sx={{ fontWeight: "100%", ml: 1, mr: 0.25 }}
         >
           {name}
-        </MKTypography>
-        <MKTypography variant="body2" color={light ? "white" : "dark"} ml="auto">
+        </Typography>
+        <Typography variant="body2" color={light ? "white" : "dark"} ml="auto">
           <Icon sx={{ fontWeight: "normal", verticalAlign: "middle" }}>
             {collapse && "keyboard_arrow_down"}
           </Icon>
-        </MKTypography>
-      </MKBox>
+        </Typography>
+      </Box>
       {children && (
         <Collapse in={Boolean(collapseStatus)} timeout={400} unmountOnExit>
           {children}

@@ -18,7 +18,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Material Kit 2 PRO React examples
 import RotatingCard from "examples/Cards/RotatingCard";
@@ -32,7 +32,7 @@ import bgBack from "assets/images/rotating-card-bg-back.jpeg";
 
 function Information() {
   return (
-    <MKBox component="section" py={6} my={6}>
+    <Box component="section" py={6} my={6}>
       <Container>
         <Grid container item xs={11} spacing={3} alignItems="center" sx={{ mx: "auto" }}>
           <Grid item xs={12} lg={4} sx={{ mx: "auto" }}>
@@ -98,7 +98,7 @@ function Information() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

@@ -1,5 +1,5 @@
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 // Material Kit 2 PRO React components
 import Card from "@mui/material/Card";
 // Material Kit 2 PRO React components
@@ -44,9 +44,9 @@ const formWrapperProps = {
      
         />} />
 
-        <MKBox pt={6} px={1} mt={6}>
+        <Box pt={6} px={1} mt={6}>
           <DefaultFooter content={footerRoutes} />
-        </MKBox>
+        </Box>
       </BaseLayout>
     </>
   );

@@ -20,16 +20,16 @@ import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 import MKAvatar from "components/MKAvatar";
-import MKTypography from "components/MKTypography";
+import Typography from "components/Typography";
 
 function ComplexReviewCard({ image, color, title, review, author }) {
   return (
     <Grid container alignItems="center" spacing={3}>
       <Grid item xs={12} md={5} sx={{ ml: { xs: 0, lg: "auto" } }}>
-        <MKBox p={{ xs: 0, lg: 6 }}>
-          <MKBox
+        <Box p={{ xs: 0, lg: 6 }}>
+          <Box
             component="img"
             src={image}
             alt={title}
@@ -37,19 +37,19 @@ function ComplexReviewCard({ image, color, title, review, author }) {
             borderRadius="md"
             shadow="md"
           />
-        </MKBox>
+        </Box>
       </Grid>
       <Grid item xs={12} md={7} lg={5} sx={{ mr: { xs: 0, lg: "auto" } }}>
-        <MKTypography variant="button" color="text" fontWeight="bold" mb={0.5}>
+        <Typography variant="button" color="text" fontWeight="bold" mb={0.5}>
           - Customer Story
-        </MKTypography>
-        <MKTypography variant="h3" color={color}>
+        </Typography>
+        <Typography variant="h3" color={color}>
           {title}
-        </MKTypography>
-        <MKTypography variant="body2" color="text" my={3}>
+        </Typography>
+        <Typography variant="body2" color="text" my={3}>
           <em>&quot;{review}&quot;</em>
-        </MKTypography>
-        <MKBox display="flex" alignItems="center">
+        </Typography>
+        <Box display="flex" alignItems="center">
           <MKAvatar
             src={author.logo}
             alt="Logo"
@@ -58,16 +58,16 @@ function ComplexReviewCard({ image, color, title, review, author }) {
             bgColor={color}
             sx={{ p: 0.5 }}
           />
-          <MKBox pl={1.5}>
-            <MKTypography display="block" variant="button" color={color} fontWeight="bold">
+          <Box pl={1.5}>
+            <Typography display="block" variant="button" color={color} fontWeight="bold">
               {author.name}
-            </MKTypography>
-            <MKTypography display="block" variant="button" color="text" fontWeight="regular">
+            </Typography>
+            <Typography display="block" variant="button" color="text" fontWeight="regular">
               {author.role}
-            </MKTypography>
-          </MKBox>
-        </MKBox>
-        <MKBox width="25%" mt={-16} ml="auto" opacity={0.2}>
+            </Typography>
+          </Box>
+        </Box>
+        <Box width="25%" mt={-16} ml="auto" opacity={0.2}>
           <svg
             width="110px"
             height="110px"
@@ -86,7 +86,7 @@ function ComplexReviewCard({ image, color, title, review, author }) {
               />
             </g>
           </svg>
-        </MKBox>
+        </Box>
       </Grid>
     </Grid>
   );

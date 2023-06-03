@@ -18,8 +18,8 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React components
 import TransparentBlogCard from "examples/Cards/BlogCards/TransparentBlogCard";
@@ -33,12 +33,12 @@ import post4 from "assets/images/examples/blog2.jpg";
 
 function Places() {
   return (
-    <MKBox component="section" py={2}>
+    <Box component="section" py={2}>
       <Container>
         <Grid container item xs={12} lg={6}>
-          <MKTypography variant="h3" mb={6}>
+          <Typography variant="h3" mb={6}>
             Check my latest blogposts
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} lg={3}>
@@ -94,7 +94,7 @@ function Places() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

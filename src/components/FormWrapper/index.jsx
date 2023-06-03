@@ -1,8 +1,8 @@
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 import { useEffect, useRef } from "react";
 import { tron } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
@@ -45,10 +45,10 @@ if(val.length === 0){
   /* -------------------------------------------------------------------------- */
   return (
     <>
-      <MKBox component="section" py={sectionStyles}>
+      <Box component="section" py={sectionStyles}>
         <Container>
           <Grid container item px={0}>
-            <MKBox
+            <Box
               width="100%"
               bgColor="white"
               borderRadius="xl"
@@ -79,10 +79,10 @@ if(val.length === 0){
                   </div>
                 </Grid>
               </Grid>
-            </MKBox>
+            </Box>
           </Grid>
         </Container>
-      </MKBox>
+      </Box>
     </>
   );
 }

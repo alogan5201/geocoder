@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Sections components
 import BaseLayout from "layouts/sections/components/BaseLayout";
@@ -41,9 +41,9 @@ function Teams() {
         <TeamOne />
       </View>
       <View title="Team 2" code={teamTwoCode}>
-        <MKBox bgColor="white">
+        <Box bgColor="white">
           <TeamTwo />
-        </MKBox>
+        </Box>
       </View>
     </BaseLayout>
   );

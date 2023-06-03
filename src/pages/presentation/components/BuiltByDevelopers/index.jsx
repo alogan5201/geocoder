@@ -19,15 +19,15 @@ import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function BuiltByDevelopers() {
   const bgImage =
     "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/desktop.jpg";
 
   return (
-    <MKBox
+    <Box
       display="flex"
       alignItems="center"
       borderRadius="xl"
@@ -45,18 +45,18 @@ function BuiltByDevelopers() {
     >
       <Container>
         <Grid container item xs={12} lg={6} sx={{ ml: { xs: 0, lg: 6 } }}>
-          <MKTypography variant="h4" color="white" fontWeight="bold">
+          <Typography variant="h4" color="white" fontWeight="bold">
             Built by developers
-          </MKTypography>
-          <MKTypography variant="h1" color="white" mb={1}>
+          </Typography>
+          <Typography variant="h1" color="white" mb={1}>
             Complex Documentation
-          </MKTypography>
-          <MKTypography variant="body1" color="white" opacity={0.8} mb={2}>
+          </Typography>
+          <Typography variant="body1" color="white" opacity={0.8} mb={2}>
             From colors, cards, typography to complex elements, you will find the full
             documentation. Play with the utility classes and you will create unlimited combinations
             for our components.
-          </MKTypography>
-          <MKTypography
+          </Typography>
+          <Typography
             component="a"
             href="https://www.creative-tim.com/learning-lab/react/overview/material-kit/"
             target="_blank"
@@ -80,10 +80,10 @@ function BuiltByDevelopers() {
             }}
           >
             Read docs <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-          </MKTypography>
+          </Typography>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

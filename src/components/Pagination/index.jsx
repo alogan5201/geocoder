@@ -19,15 +19,15 @@ import { forwardRef, createContext, useContext } from "react";
 import PropTypes from "prop-types";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
-// Custom styles for MKPagination
-import MKPaginationItemRoot from "components/MKPagination/MKPaginationItemRoot";
+// Custom styles for Pagination
+import MKPaginationItemRoot from "components/Pagination/MKPaginationItemRoot";
 
 // The Pagination main context
 const Context = createContext();
 
-const MKPagination = forwardRef(
+const Pagination = forwardRef(
   ({ item, variant, color, size, active, children, placement, ...rest }, ref) => {
     const context = item ? useContext(Context) : null;
     const paginationSize = context ? context.size : null;
@@ -54,22 +54,22 @@ const MKPagination = forwardRef(
             {children}
           </MKPaginationItemRoot>
         ) : (
-          <MKBox
+          <Box
             display="flex"
             justifyContent={placementValue}
             alignItems="center"
             sx={{ listStyle: "none" }}
           >
             {children}
-          </MKBox>
+          </Box>
         )}
       </Context.Provider>
     );
   }
 );
 
-// Setting default values for the props of MKPagination
-MKPagination.defaultProps = {
+// Setting default values for the props of Pagination
+Pagination.defaultProps = {
   item: false,
   variant: "gradient",
   color: "info",
@@ -78,8 +78,8 @@ MKPagination.defaultProps = {
   placement: "right",
 };
 
-// Typechecking props for the MKPagination
-MKPagination.propTypes = {
+// Typechecking props for the Pagination
+Pagination.propTypes = {
   item: PropTypes.bool,
   variant: PropTypes.oneOf(["gradient", "contained"]),
   color: PropTypes.oneOf([
@@ -99,4 +99,4 @@ MKPagination.propTypes = {
   placement: PropTypes.oneOf(["left", "right", "center"]),
 };
 
-export default MKPagination;
+export default Pagination;

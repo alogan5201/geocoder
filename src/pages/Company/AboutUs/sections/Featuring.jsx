@@ -18,7 +18,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Material Kit 2 PRO React examples
 import DefaultCounterCard from "examples/Cards/CounterCards/DefaultCounterCard";
@@ -33,26 +33,26 @@ import vodafone from "assets/images/logos/gray-logos/logo-vodafone.svg";
 
 function Featuring() {
   return (
-    <MKBox component="section" pt={3} pb={8}>
+    <Box component="section" pt={3} pb={8}>
       <Container>
         <Grid container spacing={3} sx={{ mb: 12 }}>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={coinbase} alt="coinbase" width="100%" opacity={0.7} />
+            <Box component="img" src={coinbase} alt="coinbase" width="100%" opacity={0.7} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={nasa} alt="nasa" width="100%" opacity={0.7} />
+            <Box component="img" src={nasa} alt="nasa" width="100%" opacity={0.7} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={netflix} alt="netflix" width="100%" opacity={0.7} />
+            <Box component="img" src={netflix} alt="netflix" width="100%" opacity={0.7} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={pinterest} alt="pinterest" width="100%" opacity={0.7} />
+            <Box component="img" src={pinterest} alt="pinterest" width="100%" opacity={0.7} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={spotify} alt="spotify" width="100%" opacity={0.7} />
+            <Box component="img" src={spotify} alt="spotify" width="100%" opacity={0.7} />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={vodafone} alt="vodafone" width="100%" opacity={0.7} />
+            <Box component="img" src={vodafone} alt="vodafone" width="100%" opacity={0.7} />
           </Grid>
         </Grid>
         <Grid container justifyContent="center" sx={{ textAlign: "center" }}>
@@ -83,7 +83,7 @@ function Featuring() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

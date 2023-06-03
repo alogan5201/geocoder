@@ -19,14 +19,14 @@ import Grid from "@mui/material/Grid";
 import Switch from "@mui/material/Switch";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Input from "components/Input";
+import Button from "components/Button";
 
 function Contact() {
   return (
-    <MKBox
+    <Box
       component="section"
       display="grid"
       position="relative"
@@ -36,7 +36,7 @@ function Contact() {
       mb={{ xs: 0, lg: -2 }}
       sx={{ overflow: { xs: "hidden", lg: "visible" }, placeItems: "center" }}
     >
-      <MKBox
+      <Box
         component="img"
         alt="lake house"
         src="https://images.unsplash.com/photo-1539803442075-48618f39bb3d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=963&amp;q=80"
@@ -54,7 +54,7 @@ function Contact() {
       <Container>
         <Grid container spacing={{ xs: 0, lg: 3 }} sx={{ mt: { xs: 0, lg: 12 } }}>
           <Grid item xs={12} lg={7} justifyContent="center" flexDirection="column">
-            <MKBox
+            <Box
               display="flex"
               justifyContent="center"
               alignItems="center"
@@ -71,14 +71,14 @@ function Contact() {
                 mt: { xs: 0, lg: -6 },
               }}
             >
-              <MKTypography variant="h3" textAlign="center" mb={2}>
+              <Typography variant="h3" textAlign="center" mb={2}>
                 Contact us
-              </MKTypography>
-              <MKBox component="form" method="post" autoComplete="off">
-                <MKBox py={3} px={{ xs: 3, md: 12, lg: 6, xl: 12 }}>
+              </Typography>
+              <Box component="form" method="post" autoComplete="off">
+                <Box py={3} px={{ xs: 3, md: 12, lg: 6, xl: 12 }}>
                   <Grid container spacing={3} sx={{ mb: 3 }}>
                     <Grid item xs={12} md={6} lg={12} xl={6}>
-                      <MKInput
+                      <Input
                         variant="standard"
                         placeholder="eg. Michael"
                         label="First Name"
@@ -87,7 +87,7 @@ function Contact() {
                       />
                     </Grid>
                     <Grid item xs={12} md={6} lg={12} xl={6}>
-                      <MKInput
+                      <Input
                         variant="standard"
                         placeholder="eg. Prior"
                         label="Last Name"
@@ -96,7 +96,7 @@ function Contact() {
                       />
                     </Grid>
                     <Grid item xs={12} sx={{ my: 1 }}>
-                      <MKInput
+                      <Input
                         variant="standard"
                         type="email"
                         placeholder="eg. material@design.com"
@@ -106,7 +106,7 @@ function Contact() {
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <MKInput
+                      <Input
                         variant="standard"
                         label="Your Message"
                         rows={4}
@@ -119,7 +119,7 @@ function Contact() {
                   <Grid container>
                     <Grid item xs={12} sx={{ mb: 3, ml: -1 }}>
                       <Switch id="flexSwitchCheckDefault" defaultChecked />
-                      <MKTypography
+                      <Typography
                         component="label"
                         variant="button"
                         color="text"
@@ -128,25 +128,25 @@ function Contact() {
                         sx={{ userSelect: "none", cursor: "pointer" }}
                       >
                         I agree to the{" "}
-                        <MKTypography component="a" href="#" variant="button" fontWeight="regular">
+                        <Typography component="a" href="#" variant="button" fontWeight="regular">
                           <u>Terms and Conditions</u>
-                        </MKTypography>
+                        </Typography>
                         .
-                      </MKTypography>
+                      </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                      <MKButton type="submit" variant="gradient" color="dark" fullWidth>
+                      <Button type="submit" variant="gradient" color="dark" fullWidth>
                         Send Message
-                      </MKButton>
+                      </Button>
                     </Grid>
                   </Grid>
-                </MKBox>
-              </MKBox>
-            </MKBox>
+                </Box>
+              </Box>
+            </Box>
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

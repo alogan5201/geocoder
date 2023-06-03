@@ -30,10 +30,10 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Input from "components/Input";
+import Button from "components/Button";
 
 // Authentication pages components
 import BasicLayout from "pages/Authentication/components/BasicLayout";
@@ -49,7 +49,7 @@ function SignInBasic() {
   return (
     <BasicLayout image={bgImage}>
       <Card>
-        <MKBox
+        <Box
           variant="gradient"
           bgColor="info"
           borderRadius="lg"
@@ -60,38 +60,38 @@ function SignInBasic() {
           mb={1}
           textAlign="center"
         >
-          <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
+          <Typography variant="h4" fontWeight="medium" color="white" mt={1}>
             Sign in
-          </MKTypography>
+          </Typography>
           <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
             <Grid item xs={2}>
-              <MKTypography component={MuiLink} href="#" variant="body1" color="white">
+              <Typography component={MuiLink} href="#" variant="body1" color="white">
                 <FacebookIcon color="inherit" />
-              </MKTypography>
+              </Typography>
             </Grid>
             <Grid item xs={2}>
-              <MKTypography component={MuiLink} href="#" variant="body1" color="white">
+              <Typography component={MuiLink} href="#" variant="body1" color="white">
                 <GitHubIcon color="inherit" />
-              </MKTypography>
+              </Typography>
             </Grid>
             <Grid item xs={2}>
-              <MKTypography component={MuiLink} href="#" variant="body1" color="white">
+              <Typography component={MuiLink} href="#" variant="body1" color="white">
                 <GoogleIcon color="inherit" />
-              </MKTypography>
+              </Typography>
             </Grid>
           </Grid>
-        </MKBox>
-        <MKBox pt={4} pb={3} px={3}>
-          <MKBox component="form" role="form">
-            <MKBox mb={2}>
-              <MKInput type="email" label="Email" fullWidth />
-            </MKBox>
-            <MKBox mb={2}>
-              <MKInput type="password" label="Password" fullWidth />
-            </MKBox>
-            <MKBox display="flex" alignItems="center" ml={-1}>
+        </Box>
+        <Box pt={4} pb={3} px={3}>
+          <Box component="form" role="form">
+            <Box mb={2}>
+              <Input type="email" label="Email" fullWidth />
+            </Box>
+            <Box mb={2}>
+              <Input type="password" label="Password" fullWidth />
+            </Box>
+            <Box display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-              <MKTypography
+              <Typography
                 variant="button"
                 fontWeight="regular"
                 color="text"
@@ -99,17 +99,17 @@ function SignInBasic() {
                 sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
               >
                 &nbsp;&nbsp;Remember me
-              </MKTypography>
-            </MKBox>
-            <MKBox mt={4} mb={1}>
-              <MKButton variant="gradient" color="info" fullWidth>
+              </Typography>
+            </Box>
+            <Box mt={4} mb={1}>
+              <Button variant="gradient" color="info" fullWidth>
                 sign in
-              </MKButton>
-            </MKBox>
-            <MKBox mt={3} mb={1} textAlign="center">
-              <MKTypography variant="button" color="text">
+              </Button>
+            </Box>
+            <Box mt={3} mb={1} textAlign="center">
+              <Typography variant="button" color="text">
                 Don&apos;t have an account?{" "}
-                <MKTypography
+                <Typography
                   component={Link}
                   to="/authentication/sign-up/cover"
                   variant="button"
@@ -118,11 +118,11 @@ function SignInBasic() {
                   textGradient
                 >
                   Sign up
-                </MKTypography>
-              </MKTypography>
-            </MKBox>
-          </MKBox>
-        </MKBox>
+                </Typography>
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
       </Card>
     </BasicLayout>
   );

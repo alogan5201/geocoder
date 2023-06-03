@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import MuiAvatarGroup from "@mui/material/AvatarGroup";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 import MKAvatar from "components/MKAvatar";
 
 // Images
@@ -15,7 +15,7 @@ import team4 from "assets/images/team-4.jpg";
 
 function AvatarGroup() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container justifyContent="center">
           <MuiAvatarGroup spacing={12}>
@@ -26,7 +26,7 @@ function AvatarGroup() {
           </MuiAvatarGroup>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

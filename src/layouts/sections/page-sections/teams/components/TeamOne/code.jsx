@@ -5,8 +5,8 @@ import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import TransparentTeamCard from "examples/Cards/TeamCards/TransparentTeamCard";
@@ -20,7 +20,7 @@ function Team1() {
   const socialIcons = (
     <>
       <Tooltip placement="top" title="Follow me!">
-        <MKBox
+        <Box
           component="i"
           fontSize="1.125rem"
           className="fab fa-twitter"
@@ -31,7 +31,7 @@ function Team1() {
         />
       </Tooltip>
       <Tooltip placement="top" title="Follow me!">
-        <MKBox
+        <Box
           component="i"
           fontSize="1.125rem"
           className="fab fa-dribbble"
@@ -42,7 +42,7 @@ function Team1() {
         />
       </Tooltip>
       <Tooltip placement="top" title="Follow me!">
-        <MKBox
+        <Box
           component="i"
           fontSize="1.125rem"
           className="fab fa-linkedin"
@@ -56,10 +56,10 @@ function Team1() {
   );
 
   return (
-    <MKBox component="section" py={6}>
+    <Box component="section" py={6}>
       <Container>
         <Grid container item flexDirection="column" xs={12} lg={7} mb={6}>
-          <MKBox
+          <Box
             display="flex"
             alignItems="center"
             justifyContent="center"
@@ -73,14 +73,14 @@ function Team1() {
             mb={2}
           >
             <Icon>supervisor_account</Icon>
-          </MKBox>
-          <MKTypography variant="h3" mb={1}>
+          </Box>
+          <Typography variant="h3" mb={1}>
             Our Awesome Team
-          </MKTypography>
-          <MKTypography variant="body2" color="text">
+          </Typography>
+          <Typography variant="body2" color="text">
             This is the paragraph where you can write more details about your team. Keep you user
             engaged by providing meaningful information.
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid container spacing={3} mt={6}>
           <Grid item xs={12} md={6} lg={4}>
@@ -112,7 +112,7 @@ function Team1() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

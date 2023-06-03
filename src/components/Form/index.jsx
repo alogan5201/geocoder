@@ -1,15 +1,15 @@
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Material Kit 2 PRO React components
 import Grid from "@mui/material/Grid";
 import AddressInput from "components/AddressInput";
-import MKButton from "components/MKButton";
-import MKInput from "components/MKInput";
+import Button from "components/Button";
+import Input from "components/Input";
 import { useRef } from "react";
 import { extractWords } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
-import MKTypography from "components/MKTypography";
+import Typography from "components/Typography";
 function Form() {
   const handleChild = (callback) => {
     // Here, you have the function from the child.
@@ -61,28 +61,28 @@ function Form() {
     }
   }
   return (
-    <MKBox component="form" p={2} method="post">
-      <MKBox px={3} py={{ xs: 2, sm: 6 }}>
-        <MKTypography variant="h3" mb={1}>
+    <Box component="form" p={2} method="post">
+      <Box px={3} py={{ xs: 2, sm: 6 }}>
+        <Typography variant="h3" mb={1}>
           Address to Latitude & Longitude
-        </MKTypography>
-        <MKTypography variant="body2" color="text" mb={2}>
+        </Typography>
+        <Typography variant="body2" color="text" mb={2}>
           To pinpoint a location, you can type in the name of a place, city, state, or address, or
           click the location on the map to get the coordinates.
-        </MKTypography>
-      </MKBox>
-      <MKBox pt={0.5} pb={3} px={3}>
+        </Typography>
+      </Box>
+      <Box pt={0.5} pb={3} px={3}>
         <Grid container>
           {/* ============ AddressInput ============ */}
           <AddressInput handleChild={handleChild} />
           <Grid item xs={12} pr={1} mb={3}>
-            <MKButton type="submit" variant="gradient" color="info">
+            <Button type="submit" variant="gradient" color="info">
               Submit
-            </MKButton>
+            </Button>
           </Grid>
 
           <Grid item xs={12} pr={1} mb={3}>
-            <MKInput
+            <Input
               label={latInputElm ? "" : "Longitude"}
               type="text"
               fullWidth
@@ -90,7 +90,7 @@ function Form() {
             />
           </Grid>
           <Grid item xs={12} pr={1} mb={3}>
-            <MKInput
+            <Input
               label={lngInputElm ? "" : "Longitude"}
               type="text"
               fullWidth
@@ -98,8 +98,8 @@ function Form() {
             />
           </Grid>
         </Grid>
-      </MKBox>
-    </MKBox>
+      </Box>
+    </Box>
   );
 }
 

@@ -21,8 +21,8 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -33,8 +33,8 @@ import routes from "routes";
 
 function BaseLayout({  children }) {
   return (
-    <MKBox display="flex" flexDirection="column" bgColor="white" minHeight="100vh">
-      <MKBox bgColor="white" shadow="sm" py={0.25}>
+    <Box display="flex" flexDirection="column" bgColor="white" minHeight="100vh">
+      <Box bgColor="white" shadow="sm" py={0.25}>
         <DefaultNavbar
           routes={routes}
           action={{
@@ -46,7 +46,7 @@ function BaseLayout({  children }) {
           transparent
           relative
         />
-      </MKBox>
+      </Box>
       <Container sx={{ mt: 0 }}>
         <Grid container item xs={12} flexDirection="column" justifyContent="center" mx="auto">
          
@@ -54,10 +54,10 @@ function BaseLayout({  children }) {
           {children}
         </Grid>
       </Container>
-      <MKBox mt="auto">
+      <Box mt="auto">
         <CenteredFooter />
-      </MKBox>
-    </MKBox>
+      </Box>
+    </Box>
   );
 }
 

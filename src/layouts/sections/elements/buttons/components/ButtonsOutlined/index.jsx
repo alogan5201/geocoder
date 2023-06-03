@@ -19,46 +19,46 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Button from "components/Button";
 
 function ButtonsOutlined() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container justifyContent="center">
           <Stack direction="row" alignItems="flex-end" spacing={1}>
-            <MKButton variant="outlined" color="primary">
+            <Button variant="outlined" color="primary">
               primary
-            </MKButton>
-            <MKButton variant="outlined" color="secondary">
+            </Button>
+            <Button variant="outlined" color="secondary">
               secondary
-            </MKButton>
-            <MKButton variant="outlined" color="info">
+            </Button>
+            <Button variant="outlined" color="info">
               info
-            </MKButton>
-            <MKButton variant="outlined" color="success">
+            </Button>
+            <Button variant="outlined" color="success">
               success
-            </MKButton>
-            <MKButton variant="outlined" color="warning">
+            </Button>
+            <Button variant="outlined" color="warning">
               warning
-            </MKButton>
-            <MKButton variant="outlined" color="error">
+            </Button>
+            <Button variant="outlined" color="error">
               error
-            </MKButton>
-            <MKButton variant="outlined" color="light">
+            </Button>
+            <Button variant="outlined" color="light">
               light
-            </MKButton>
-            <MKButton variant="outlined" color="dark">
+            </Button>
+            <Button variant="outlined" color="dark">
               dark
-            </MKButton>
-            <MKButton variant="outlined" color="white">
+            </Button>
+            <Button variant="outlined" color="white">
               White
-            </MKButton>
+            </Button>
           </Stack>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

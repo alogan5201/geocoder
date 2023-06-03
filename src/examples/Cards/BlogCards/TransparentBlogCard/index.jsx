@@ -25,8 +25,8 @@ import Icon from "@mui/material/Icon";
 import MuiLink from "@mui/material/Link";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function TransparentBlogCard({ image, title, description, action }) {
   const cardActionStyles = {
@@ -46,8 +46,8 @@ function TransparentBlogCard({ image, title, description, action }) {
   };
 
   const imageTemplate = (
-    <MKBox position="relative" borderRadius="lg">
-      <MKBox
+    <Box position="relative" borderRadius="lg">
+      <Box
         component="img"
         src={image}
         alt={title}
@@ -57,7 +57,7 @@ function TransparentBlogCard({ image, title, description, action }) {
         position="relative"
         zIndex={1}
       />
-      <MKBox
+      <Box
         borderRadius="lg"
         shadow="md"
         width="100%"
@@ -72,7 +72,7 @@ function TransparentBlogCard({ image, title, description, action }) {
           backgroundSize: "cover",
         }}
       />
-    </MKBox>
+    </Box>
   );
 
   return (
@@ -90,25 +90,25 @@ function TransparentBlogCard({ image, title, description, action }) {
           {imageTemplate}
         </MuiLink>
       )}
-      <MKBox pt={2} pb={3}>
+      <Box pt={2} pb={3}>
         {action.type === "internal" ? (
           <Link to={action.route} sx={cardActionStyles}>
-            <MKTypography variant="h5" gutterBottom>
+            <Typography variant="h5" gutterBottom>
               {title}
-            </MKTypography>
+            </Typography>
           </Link>
         ) : (
           <MuiLink href={action.route} target="_blank" rel="noreferrer" sx={cardActionStyles}>
-            <MKTypography variant="h5" gutterBottom>
+            <Typography variant="h5" gutterBottom>
               {title}
-            </MKTypography>
+            </Typography>
           </MuiLink>
         )}
-        <MKTypography variant="body2" component="p" color="text" mb={3}>
+        <Typography variant="body2" component="p" color="text" mb={3}>
           {description}
-        </MKTypography>
+        </Typography>
         {action.type === "internal" ? (
-          <MKTypography
+          <Typography
             component={Link}
             to={action.route}
             variant="body2"
@@ -119,9 +119,9 @@ function TransparentBlogCard({ image, title, description, action }) {
           >
             {action.label}
             <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-          </MKTypography>
+          </Typography>
         ) : (
-          <MKTypography
+          <Typography
             component={MuiLink}
             href={action.route}
             target="_blank"
@@ -134,9 +134,9 @@ function TransparentBlogCard({ image, title, description, action }) {
           >
             {action.label}
             <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-          </MKTypography>
+          </Typography>
         )}
-      </MKBox>
+      </Box>
     </Card>
   );
 }

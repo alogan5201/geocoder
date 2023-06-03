@@ -22,9 +22,9 @@ import Stack from "@mui/material/Stack";
 import Popover from "@mui/material/Popover";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 function Popovers() {
   const [popover, setPopover] = useState(null);
@@ -44,21 +44,21 @@ function Popovers() {
 
   const popoverTemplate = (
     <Popover open={Boolean(popover)} anchorEl={popover} onClose={closePopover} {...popoverOrigin}>
-      <MKBox bgColor="white" py={1.5} px={2} lineHeight={0.8}>
-        <MKTypography variant="caption" color="text">
+      <Box bgColor="white" py={1.5} px={2} lineHeight={0.8}>
+        <Typography variant="caption" color="text">
           That&apos;s the main thing people are controlled
           <br /> by! Thoughts- their perception of themselves!
-        </MKTypography>
-      </MKBox>
+        </Typography>
+      </Box>
     </Popover>
   );
 
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container justifyContent="center">
           <Stack direction="row" spacing={1}>
-            <MKButton
+            <Button
               variant="gradient"
               color="info"
               onClick={(event) => {
@@ -76,8 +76,8 @@ function Popovers() {
               }}
             >
               popover on top
-            </MKButton>
-            <MKButton
+            </Button>
+            <Button
               variant="gradient"
               color="info"
               onClick={(event) => {
@@ -95,8 +95,8 @@ function Popovers() {
               }}
             >
               popover on right
-            </MKButton>
-            <MKButton
+            </Button>
+            <Button
               variant="gradient"
               color="info"
               onClick={(event) => {
@@ -114,8 +114,8 @@ function Popovers() {
               }}
             >
               popover on left
-            </MKButton>
-            <MKButton
+            </Button>
+            <Button
               variant="gradient"
               color="info"
               onClick={(event) => {
@@ -133,12 +133,12 @@ function Popovers() {
               }}
             >
               popover on bottom
-            </MKButton>
+            </Button>
           </Stack>
         </Grid>
         {popoverTemplate}
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

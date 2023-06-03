@@ -20,8 +20,8 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Sections components
 import BaseLayout from "layouts/sections/components/BaseLayout";
@@ -45,19 +45,19 @@ function Faq() {
       ]}
     >
       <View title="Faq" code={faqCode}>
-        <MKBox component="section" py={12}>
+        <Box component="section" py={12}>
           <Container>
             <Grid container justifyContent="center">
               <Grid item xs={12} md={6} my={6}>
-                <MKTypography variant="h2" align="center" fontWeight="bold" gutterBottom>
+                <Typography variant="h2" align="center" fontWeight="bold" gutterBottom>
                   Frequently Asked Questions
-                </MKTypography>
-                <MKBox mb={2}>
-                  <MKTypography variant="body2" align="center" color="text">
+                </Typography>
+                <Box mb={2}>
+                  <Typography variant="body2" align="center" color="text">
                     A lot of people don&apos;t appreciate the moment until it&apos;s passed.
                     I&apos;m not trying my hardest, and I&apos;m not trying to do
-                  </MKTypography>
-                </MKBox>
+                  </Typography>
+                </Box>
               </Grid>
               <Grid item xs={12} md={10}>
                 <FaqCollapse
@@ -135,7 +135,7 @@ function Faq() {
               </Grid>
             </Grid>
           </Container>
-        </MKBox>
+        </Box>
       </View>
     </BaseLayout>
   );

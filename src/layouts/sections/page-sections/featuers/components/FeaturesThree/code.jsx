@@ -3,15 +3,15 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import SimpleInfoCard from "examples/Cards/InfoCards/SimpleInfoCard";
 
 function FeaturesThree() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid
           container
@@ -23,13 +23,13 @@ function FeaturesThree() {
           textAlign="center"
           pb={6}
         >
-          <MKTypography variant="h2" mb={1}>
+          <Typography variant="h2" mb={1}>
             Turn your idea into a startup
-          </MKTypography>
-          <MKTypography variant="body1" color="text">
+          </Typography>
+          <Typography variant="body1" color="text">
             We&apos;re constantly trying to express ourselves and actualize our dreams. If you have
             the opportunity to play{" "}
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={4}>
@@ -60,7 +60,7 @@ function FeaturesThree() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

@@ -25,26 +25,26 @@ import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function DetailedFooter({ content }) {
   const { brand, socials, menus, copyright } = content;
 
   return (
-    <MKBox component="footer">
+    <Box component="footer">
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={3} mb={{ xs: 6, lg: 0 }}>
-            <MKTypography variant="h6" textTransform="uppercase" mb={1}>
+            <Typography variant="h6" textTransform="uppercase" mb={1}>
               {brand.name}
-            </MKTypography>
-            <MKTypography variant="body2" color="text" mb={3} pb={1} pr={3}>
+            </Typography>
+            <Typography variant="body2" color="text" mb={3} pb={1} pr={3}>
               {brand.description}
-            </MKTypography>
-            <MKBox display="flex" alignItems="center">
+            </Typography>
+            <Box display="flex" alignItems="center">
               {socials.map(({ icon, link }, key) => (
-                <MKTypography
+                <Typography
                   key={link}
                   component="a"
                   href={link}
@@ -56,13 +56,13 @@ function DetailedFooter({ content }) {
                   sx={{ fontSize: "1.125rem" }}
                 >
                   {icon}
-                </MKTypography>
+                </Typography>
               ))}
-            </MKBox>
+            </Box>
           </Grid>
           {menus.map(({ name: title, items }, key) => (
             <Grid key={title} item xs={6} md={2} ml={key === 0 ? { xs: 0, lg: "auro" } : 0}>
-              <MKTypography
+              <Typography
                 component="h6"
                 variant="button"
                 fontWeight="bold"
@@ -70,12 +70,12 @@ function DetailedFooter({ content }) {
                 mb={1}
               >
                 {title}
-              </MKTypography>
-              <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
+              </Typography>
+              <Box component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
                 {items.map(({ name, route, href }) => (
-                  <MKBox key={name} component="li" p={0} m={0} lineHeight={1.25}>
+                  <Box key={name} component="li" p={0} m={0} lineHeight={1.25}>
                     {href ? (
-                      <MKTypography
+                      <Typography
                         component="a"
                         href={href}
                         target="_blank"
@@ -87,9 +87,9 @@ function DetailedFooter({ content }) {
                         pb={0.5}
                       >
                         {name}
-                      </MKTypography>
+                      </Typography>
                     ) : (
-                      <MKTypography
+                      <Typography
                         component={Link}
                         to={route}
                         variant="button"
@@ -99,11 +99,11 @@ function DetailedFooter({ content }) {
                         pb={0.5}
                       >
                         {name}
-                      </MKTypography>
+                      </Typography>
                     )}
-                  </MKBox>
+                  </Box>
                 ))}
-              </MKBox>
+              </Box>
             </Grid>
           ))}
           <Grid item xs={12} pr={3} sx={{ textAlign: "center", mb: 3 }}>
@@ -112,7 +112,7 @@ function DetailedFooter({ content }) {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

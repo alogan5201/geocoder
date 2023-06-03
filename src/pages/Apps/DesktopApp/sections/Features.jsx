@@ -18,9 +18,9 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
@@ -35,28 +35,28 @@ import webdev from "assets/images/logos/small-logos/logo-webdev.svg";
 
 function Features() {
   return (
-    <MKBox component="section" py={{ xs: 6, lg: 12 }}>
+    <Box component="section" py={{ xs: 6, lg: 12 }}>
       <Container>
         <Grid container alignItems="center">
           <Grid item xs={12} lg={6}>
-            <MKTypography variant="h2" mb={1}>
+            <Typography variant="h2" mb={1}>
               Get your own app
-            </MKTypography>
-            <MKTypography variant="body2" mb={2}>
+            </Typography>
+            <Typography variant="body2" mb={2}>
               The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer,
               and that process will continue whatever.
-            </MKTypography>
+            </Typography>
           </Grid>
           <Grid item xs={12} lg={6} textAlign="right">
-            <MKButton variant="gradient" color="warning">
+            <Button variant="gradient" color="warning">
               Contact Us
-            </MKButton>
+            </Button>
           </Grid>
         </Grid>
         <Grid container spacing={3} mt={6}>
           <Grid item xs={12} sm={6} lg={4} mb={3}>
             <DefaultInfoCard
-              icon={<MKBox component="img" src={atlassian} alt="atlassian" width="12%" />}
+              icon={<Box component="img" src={atlassian} alt="atlassian" width="12%" />}
               title="Payment vendor"
               description="Check out our proven methods, guides, and exercises that help make work better, and people happier."
               small
@@ -64,7 +64,7 @@ function Features() {
           </Grid>
           <Grid item xs={12} sm={6} lg={4} mb={3}>
             <DefaultInfoCard
-              icon={<MKBox component="img" src={asana} alt="asana" width="12%" />}
+              icon={<Box component="img" src={asana} alt="asana" width="12%" />}
               title="Organize your team"
               description="Check out our proven methods, guides, and exercises that help make work better, and people happier."
               small
@@ -72,7 +72,7 @@ function Features() {
           </Grid>
           <Grid item xs={12} sm={6} lg={4} mb={3}>
             <DefaultInfoCard
-              icon={<MKBox component="img" src={shopify} alt="shopify" width="12%" />}
+              icon={<Box component="img" src={shopify} alt="shopify" width="12%" />}
               title="E-commerce"
               description="Check out our proven methods, guides, and exercises that help make work better, and people happier."
               small
@@ -80,7 +80,7 @@ function Features() {
           </Grid>
           <Grid item xs={12} sm={6} lg={4} mb={3}>
             <DefaultInfoCard
-              icon={<MKBox component="img" src={invision} alt="invision" width="12%" />}
+              icon={<Box component="img" src={invision} alt="invision" width="12%" />}
               title="Digital Product Design"
               description="Check out our proven methods, guides, and exercises that help make work better, and people happier."
               small
@@ -88,7 +88,7 @@ function Features() {
           </Grid>
           <Grid item xs={12} sm={6} lg={4} mb={3}>
             <DefaultInfoCard
-              icon={<MKBox component="img" src={slack} alt="slack" width="12%" />}
+              icon={<Box component="img" src={slack} alt="slack" width="12%" />}
               title="Better Communication"
               description="Check out our proven methods, guides, and exercises that help make work better, and people happier."
               small
@@ -96,7 +96,7 @@ function Features() {
           </Grid>
           <Grid item xs={12} sm={6} lg={4} mb={3}>
             <DefaultInfoCard
-              icon={<MKBox component="img" src={webdev} alt="webdev" width="12%" />}
+              icon={<Box component="img" src={webdev} alt="webdev" width="12%" />}
               title="Logo design"
               description="Check out our proven methods, guides, and exercises that help make work better, and people happier."
               small
@@ -104,7 +104,7 @@ function Features() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

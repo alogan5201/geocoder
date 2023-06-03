@@ -30,8 +30,8 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function Steps() {
   // install SwiperJS modules
@@ -107,7 +107,7 @@ function Steps() {
   };
 
   return (
-    <MKBox component="section" py={12} position="relative">
+    <Box component="section" py={12} position="relative">
       <Container>
         <Swiper
           onInit={(swiper) => {
@@ -132,8 +132,8 @@ function Steps() {
             <SwiperSlide key={label}>
               <Grid container spacing={3} alignItems="center" sx={{ mb: { xs: 6, md: 0 } }}>
                 <Grid item xs={12} md={5} ml={{ xs: 0, lg: "auto" }}>
-                  <MKBox p={2}>
-                    <MKBox
+                  <Box p={2}>
+                    <Box
                       component="img"
                       src={image}
                       alt={title}
@@ -141,10 +141,10 @@ function Steps() {
                       borderRadius="xl"
                       maxHeight="37.5rem"
                     />
-                  </MKBox>
+                  </Box>
                 </Grid>
                 <Grid item xs={12} md={5} mr={{ xs: 0, lg: "auto" }} position="relative">
-                  <MKTypography
+                  <Typography
                     component="h6"
                     variant="button"
                     opacity={0.7}
@@ -152,8 +152,8 @@ function Steps() {
                     fontWeight="bold"
                   >
                     {label}
-                  </MKTypography>
-                  <MKTypography
+                  </Typography>
+                  <Typography
                     variant="h1"
                     fontWeight="bold"
                     sx={{
@@ -164,39 +164,39 @@ function Steps() {
                     }}
                   >
                     {title}
-                  </MKTypography>
-                  <MKTypography variant="body1" my={3}>
+                  </Typography>
+                  <Typography variant="body1" my={3}>
                     {description}
-                  </MKTypography>
+                  </Typography>
                 </Grid>
               </Grid>
             </SwiperSlide>
           ))}
-          <MKBox
+          <Box
             display="flex"
             position="absolute"
             bottom={{ xs: 0, lg: "10%" }}
             right="5%"
             zIndex={2}
           >
-            <MKTypography
+            <Typography
               variant="h2"
               ref={navigationPrevRef}
               color="dark"
               mr={{ xs: 8, md: 2, lg: 8 }}
               sx={navigationStyles}
             >
-              <MKBox className="fas fa-chevron-left" />
-            </MKTypography>
-            <MKTypography variant="h2" ref={navigationNextRef} color="dark" sx={navigationStyles}>
-              <MKBox className="fas fa-chevron-right" />
-            </MKTypography>
-          </MKBox>
+              <Box className="fas fa-chevron-left" />
+            </Typography>
+            <Typography variant="h2" ref={navigationNextRef} color="dark" sx={navigationStyles}>
+              <Box className="fas fa-chevron-right" />
+            </Typography>
+          </Box>
         </Swiper>
         <Grid container mt={16}>
           {steps.map(({ number, label }, index) => (
             <Grid key={label} item xs={6} lg={3} textAlign="center">
-              <MKTypography
+              <Typography
                 variant="body1"
                 color="success"
                 fontWeight="bold"
@@ -205,16 +205,16 @@ function Steps() {
                 sx={{ fontFamily: ({ typography: { h1 } }) => h1.fontFamily, cursor: "pointer" }}
                 onClick={() => slideTo(index + 1)}
               >
-                <MKBox component="span">{number}</MKBox>
-                <MKBox component="span" ml={1}>
+                <Box component="span">{number}</Box>
+                <Box component="span" ml={1}>
                   {label}
-                </MKBox>
-              </MKTypography>
+                </Box>
+              </Typography>
             </Grid>
           ))}
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

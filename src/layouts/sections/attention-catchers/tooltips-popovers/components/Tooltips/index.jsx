@@ -20,39 +20,39 @@ import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Button from "components/Button";
 
 function Tooltips() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container justifyContent="center">
           <Stack direction="row" spacing={1}>
             <Tooltip title="Tooltip on top" placement="top">
-              <MKButton variant="gradient" color="info">
+              <Button variant="gradient" color="info">
                 tooltip on top
-              </MKButton>
+              </Button>
             </Tooltip>
             <Tooltip title="Tooltip on right" placement="right">
-              <MKButton variant="gradient" color="info">
+              <Button variant="gradient" color="info">
                 tooltip on right
-              </MKButton>
+              </Button>
             </Tooltip>
             <Tooltip title="Tooltip on bottom" placement="bottom">
-              <MKButton variant="gradient" color="info">
+              <Button variant="gradient" color="info">
                 tooltip on bottom
-              </MKButton>
+              </Button>
             </Tooltip>
             <Tooltip title="Tooltip on left" placement="left">
-              <MKButton variant="gradient" color="info">
+              <Button variant="gradient" color="info">
                 tooltip on left
-              </MKButton>
+              </Button>
             </Tooltip>
           </Stack>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

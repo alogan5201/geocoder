@@ -4,8 +4,8 @@ import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKPagination from "components/MKPagination";
+import Box from "components/Box";
+import Pagination from "components/Pagination";
 
 // Material Kit 2 PRO React components
 import SimpleBookingCard from "examples/Cards/BookingCards/SimpleBookingCard";
@@ -27,11 +27,11 @@ function BlogPostTwo() {
   };
 
   return (
-    <MKBox component="section" py={3}>
+    <Box component="section" py={3}>
       <Container>
         <Grid container spacing={3} sx={{ mt: 3 }}>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBookingCard
                 image={product2}
                 title="Lovely and cosy apartment"
@@ -39,10 +39,10 @@ function BlogPostTwo() {
                 categories={["Entire Apartment", "3 Guests", "2 Beds"]}
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBookingCard
                 image={product1}
                 title="Single room in the center of the city"
@@ -50,10 +50,10 @@ function BlogPostTwo() {
                 categories={["Private Room", "1 Guest", "1 Sofa"]}
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBookingCard
                 image={product3}
                 title="Independent house bedroom kitchen"
@@ -61,10 +61,10 @@ function BlogPostTwo() {
                 categories={["Entire Apartment", "4 Guests", "2 Beds"]}
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBookingCard
                 image={product4}
                 title="Zen Gateway with pool and garden"
@@ -72,10 +72,10 @@ function BlogPostTwo() {
                 categories={["Entire Apartment", "2 Guests", "1 Bed"]}
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBookingCard
                 image={product5}
                 title="Cheapest hotels for a luxury vacation"
@@ -83,10 +83,10 @@ function BlogPostTwo() {
                 categories={["Entire Flat", "8 Guests", "3 Rooms"]}
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBookingCard
                 image={product6}
                 title="Cozy Double Room Near Station"
@@ -94,28 +94,28 @@ function BlogPostTwo() {
                 categories={["Entire Apartment", "2 Guests", "1 Bed"]}
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
         </Grid>
-        <MKBox mt={5}>
-          <MKPagination>
-            <MKPagination item>
+        <Box mt={5}>
+          <Pagination>
+            <Pagination item>
               <Icon>keyboard_arrow_left</Icon>
-            </MKPagination>
-            <MKPagination item active>
+            </Pagination>
+            <Pagination item active>
               1
-            </MKPagination>
-            <MKPagination item>2</MKPagination>
-            <MKPagination item>3</MKPagination>
-            <MKPagination item>4</MKPagination>
-            <MKPagination item>5</MKPagination>
-            <MKPagination item>
+            </Pagination>
+            <Pagination item>2</Pagination>
+            <Pagination item>3</Pagination>
+            <Pagination item>4</Pagination>
+            <Pagination item>5</Pagination>
+            <Pagination item>
               <Icon>keyboard_arrow_right</Icon>
-            </MKPagination>
-          </MKPagination>
-        </MKBox>
+            </Pagination>
+          </Pagination>
+        </Box>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

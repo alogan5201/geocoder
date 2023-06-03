@@ -7,16 +7,16 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 // Images
 import bgImage from "assets/images/bg3.jpg";
 
 function CtaThree() {
   return (
-    <MKBox
+    <Box
       display="flex"
       my={24}
       py={6}
@@ -27,21 +27,21 @@ function CtaThree() {
       <Container>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} md={8} lg={5}>
-            <MKTypography variant="h5" color="white" fontWeight="bold">
+            <Typography variant="h5" color="white" fontWeight="bold">
               For being a bright color. For standing out. But the time is now to be okay to be the
               greatest you.
-            </MKTypography>
+            </Typography>
           </Grid>
           <Grid item xs={12} lg={6} sx={{ ml: "auto" }}>
-            <MKBox width="12rem" ml="auto">
-              <MKButton variant="gradient" color="warning" fullWidth sx={{ boxShadow: "none" }}>
+            <Box width="12rem" ml="auto">
+              <Button variant="gradient" color="warning" fullWidth sx={{ boxShadow: "none" }}>
                 start now
-              </MKButton>
-            </MKBox>
+              </Button>
+            </Box>
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

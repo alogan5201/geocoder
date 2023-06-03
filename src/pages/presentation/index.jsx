@@ -19,10 +19,10 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKBadge from "components/MKBadge";
-import MKTypography from "components/MKTypography";
-import MKSocialButton from "components/MKSocialButton";
+import Box from "components/Box";
+import Badge from "components/Badge";
+import Typography from "components/Typography";
+import SocialButton from "components/SocialButton";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -61,7 +61,7 @@ function Presentation() {
         }}
         sticky
       />
-      <MKBox
+      <Box
         minHeight="75vh"
         width="100%"
         sx={{
@@ -74,7 +74,7 @@ function Presentation() {
       >
         <Container>
           <Grid container item xs={12} lg={7} justifyContent="center" mx="auto">
-            <MKTypography
+            <Typography
               variant="h1"
               color="white"
               mt={-6}
@@ -86,7 +86,7 @@ function Presentation() {
               })}
             >
               Material Kit 2 React{" "}
-              <MKBadge
+              <Badge
                 badgeContent="pro"
                 size="lg"
                 variant="contained"
@@ -94,13 +94,13 @@ function Presentation() {
                 container
                 sx={{ mt: -4 }}
               />
-            </MKTypography>
-            <MKTypography variant="body1" color="white" textAlign="center" px={6} mt={1}>
+            </Typography>
+            <Typography variant="body1" color="white" textAlign="center" px={6} mt={1}>
               Start the Development with a ReactJS & MUI Design System inspired by Material Design.
-            </MKTypography>
+            </Typography>
           </Grid>
         </Container>
-      </MKBox>
+      </Box>
       <Card
         sx={{
           p: 2,
@@ -166,16 +166,16 @@ function Presentation() {
         </Container>
         <Testimonials />
         <Pricing />
-        <MKBox pt={18} pb={6}>
+        <Box pt={18} pb={6}>
           <Container>
             <Grid container spacing={3}>
               <Grid item xs={12} lg={5} ml="auto" sx={{ textAlign: { xs: "center", lg: "left" } }}>
-                <MKTypography variant="h4" fontWeight="bold" mb={0.5}>
+                <Typography variant="h4" fontWeight="bold" mb={0.5}>
                   Thank you for your support!
-                </MKTypography>
-                <MKTypography variant="body1" color="text">
+                </Typography>
+                <Typography variant="body1" color="text">
                   We deliver the best web products
-                </MKTypography>
+                </Typography>
               </Grid>
               <Grid
                 item
@@ -185,7 +185,7 @@ function Presentation() {
                 mr={{ xs: 0, lg: "auto" }}
                 sx={{ textAlign: { xs: "center", lg: "right" } }}
               >
-                <MKSocialButton
+                <SocialButton
                   component="a"
                   href="https://twitter.com/intent/tweet?text=Check%20Material%20Design%20System%20made%20by%20%40CreativeTim%20%23webdesign%20%23designsystem%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fmaterial-design-system-pro"
                   target="_blank"
@@ -194,8 +194,8 @@ function Presentation() {
                 >
                   <i className="fab fa-twitter" />
                   &nbsp;Tweet
-                </MKSocialButton>
-                <MKSocialButton
+                </SocialButton>
+                <SocialButton
                   component="a"
                   href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-design-system-pro"
                   target="_blank"
@@ -204,8 +204,8 @@ function Presentation() {
                 >
                   <i className="fab fa-facebook" />
                   &nbsp;Share
-                </MKSocialButton>
-                <MKSocialButton
+                </SocialButton>
+                <SocialButton
                   component="a"
                   href="https://www.pinterest.com/pin/create/button/?url=https://www.creative-tim.com/product/material-design-system-pro"
                   target="_blank"
@@ -213,15 +213,15 @@ function Presentation() {
                 >
                   <i className="fab fa-pinterest" />
                   &nbsp;Pin it
-                </MKSocialButton>
+                </SocialButton>
               </Grid>
             </Grid>
           </Container>
-        </MKBox>
+        </Box>
       </Card>
-      <MKBox pt={6} px={1} mt={6}>
+      <Box pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      </Box>
     </>
   );
 }

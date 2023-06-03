@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Sections components
 import BaseLayout from "layouts/sections/components/BaseLayout";
@@ -43,14 +43,14 @@ function Pricing() {
         <PricingOne />
       </View>
       <View title="Pricing 2" code={pricingTwoCode}>
-        <MKBox bgColor="white">
+        <Box bgColor="white">
           <PricingTwo />
-        </MKBox>
+        </Box>
       </View>
       <View title="Features 3" code={pricingThreeCode}>
-        <MKBox bgColor="grey-200">
+        <Box bgColor="grey-200">
           <PricingThree />
-        </MKBox>
+        </Box>
       </View>
     </BaseLayout>
   );

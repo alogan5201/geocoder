@@ -19,9 +19,9 @@ import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Button from "components/Button";
 
 function MediaPlayer() {
   const bgImage =
@@ -46,17 +46,17 @@ function MediaPlayer() {
         backgroundPosition: "center",
       })}
     >
-      <MKBox p={3} position="relative" lineHeight={0}>
-        <MKTypography variant="h5" color="white" fontWeight="medium">
+      <Box p={3} position="relative" lineHeight={0}>
+        <Typography variant="h5" color="white" fontWeight="medium">
           Some Kind Of Blues
-        </MKTypography>
-        <MKTypography variant="button" color="white" fontWeight="regular">
+        </Typography>
+        <Typography variant="button" color="white" fontWeight="regular">
           Deftones
-        </MKTypography>
-        <MKBox display="flex" mt={6} pt={1}>
-          <MKBox display="flex" alignItems="center" justifyContent="center">
+        </Typography>
+        <Box display="flex" mt={6} pt={1}>
+          <Box display="flex" alignItems="center" justifyContent="center">
             <Tooltip title="Prev" placement="top">
-              <MKButton
+              <Button
                 variant="outlined"
                 size="large"
                 circular
@@ -64,10 +64,10 @@ function MediaPlayer() {
                 sx={mediaPlayerButtonStyles}
               >
                 <Icon>skip_previous</Icon>
-              </MKButton>
+              </Button>
             </Tooltip>
             <Tooltip title="Pause" placement="top">
-              <MKButton
+              <Button
                 variant="outlined"
                 size="large"
                 circular
@@ -75,10 +75,10 @@ function MediaPlayer() {
                 sx={mediaPlayerButtonStyles}
               >
                 <Icon>play_arrow</Icon>
-              </MKButton>
+              </Button>
             </Tooltip>
             <Tooltip title="Next" placement="top">
-              <MKButton
+              <Button
                 variant="outlined"
                 size="large"
                 circular
@@ -86,11 +86,11 @@ function MediaPlayer() {
                 sx={mediaPlayerButtonStyles}
               >
                 <Icon>skip_next</Icon>
-              </MKButton>
+              </Button>
             </Tooltip>
-          </MKBox>
-        </MKBox>
-      </MKBox>
+          </Box>
+        </Box>
+      </Box>
     </Card>
   );
 }

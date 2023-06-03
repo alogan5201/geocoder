@@ -19,46 +19,46 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Button from "components/Button";
 
 function ButtonsGradient() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container justifyContent="center">
           <Stack direction="row" alignItems="flex-end" spacing={1}>
-            <MKButton variant="gradient" color="primary">
+            <Button variant="gradient" color="primary">
               primary
-            </MKButton>
-            <MKButton variant="gradient" color="secondary">
+            </Button>
+            <Button variant="gradient" color="secondary">
               secondary
-            </MKButton>
-            <MKButton variant="gradient" color="info">
+            </Button>
+            <Button variant="gradient" color="info">
               info
-            </MKButton>
-            <MKButton variant="gradient" color="success">
+            </Button>
+            <Button variant="gradient" color="success">
               success
-            </MKButton>
-            <MKButton variant="gradient" color="warning">
+            </Button>
+            <Button variant="gradient" color="warning">
               warning
-            </MKButton>
-            <MKButton variant="gradient" color="error">
+            </Button>
+            <Button variant="gradient" color="error">
               error
-            </MKButton>
-            <MKButton variant="gradient" color="light">
+            </Button>
+            <Button variant="gradient" color="light">
               light
-            </MKButton>
-            <MKButton variant="gradient" color="dark">
+            </Button>
+            <Button variant="gradient" color="dark">
               dark
-            </MKButton>
-            <MKButton variant="gradient" color="white">
+            </Button>
+            <Button variant="gradient" color="white">
               White
-            </MKButton>
+            </Button>
           </Stack>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

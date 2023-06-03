@@ -20,20 +20,20 @@ import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 // Images
 import bgImage from "assets/images/bg-coworking.jpeg";
 
 function HeaderOne() {
   return (
-    <MKBox component="header" position="relative" height="100%">
-      <MKBox component="nav" position="absolute" top="0.5rem" width="100%">
+    <Box component="header" position="relative" height="100%">
+      <Box component="nav" position="absolute" top="0.5rem" width="100%">
         <Container>
           <Grid container flexDirection="row" alignItems="center">
-            <MKTypography
+            <Typography
               component={Link}
               href="#"
               variant="button"
@@ -43,15 +43,15 @@ function HeaderOne() {
               mr={2}
             >
               Material Design
-            </MKTypography>
-            <MKButton
+            </Typography>
+            <Button
               variant="outlined"
               color="white"
               sx={{ display: { xs: "block", lg: "none" }, ml: "auto" }}
             >
-              <MKBox component="i" color="white" className="fas fa-bars" />
-            </MKButton>
-            <MKBox
+              <Box component="i" color="white" className="fas fa-bars" />
+            </Button>
+            <Box
               component="ul"
               display={{ xs: "none", lg: "flex" }}
               p={0}
@@ -59,8 +59,8 @@ function HeaderOne() {
               mx="auto"
               sx={{ listStyle: "none" }}
             >
-              <MKBox component="li">
-                <MKTypography
+              <Box component="li">
+                <Typography
                   component={Link}
                   href="#"
                   variant="button"
@@ -70,10 +70,10 @@ function HeaderOne() {
                   onClick={(e) => e.preventDefault()}
                 >
                   Home
-                </MKTypography>
-              </MKBox>
-              <MKBox component="li">
-                <MKTypography
+                </Typography>
+              </Box>
+              <Box component="li">
+                <Typography
                   component={Link}
                   href="#"
                   variant="button"
@@ -83,10 +83,10 @@ function HeaderOne() {
                   onClick={(e) => e.preventDefault()}
                 >
                   About Us
-                </MKTypography>
-              </MKBox>
-              <MKBox component="li">
-                <MKTypography
+                </Typography>
+              </Box>
+              <Box component="li">
+                <Typography
                   component={Link}
                   href="#"
                   variant="button"
@@ -96,54 +96,54 @@ function HeaderOne() {
                   onClick={(e) => e.preventDefault()}
                 >
                   Contact Us
-                </MKTypography>
-              </MKBox>
-            </MKBox>
-            <MKBox
+                </Typography>
+              </Box>
+            </Box>
+            <Box
               component="ul"
               display={{ xs: "none", lg: "flex" }}
               p={0}
               m={0}
               sx={{ listStyle: "none" }}
             >
-              <MKBox component="li">
-                <MKTypography
+              <Box component="li">
+                <Typography
                   component={Link}
                   href="#"
                   variant="button"
                   p={1}
                   onClick={(e) => e.preventDefault()}
                 >
-                  <MKBox component="i" color="white" className="fab fa-twitter" />
-                </MKTypography>
-              </MKBox>
-              <MKBox component="li">
-                <MKTypography
+                  <Box component="i" color="white" className="fab fa-twitter" />
+                </Typography>
+              </Box>
+              <Box component="li">
+                <Typography
                   component={Link}
                   href="#"
                   variant="button"
                   p={1}
                   onClick={(e) => e.preventDefault()}
                 >
-                  <MKBox component="i" color="white" className="fab fa-facebook" />
-                </MKTypography>
-              </MKBox>
-              <MKBox component="li">
-                <MKTypography
+                  <Box component="i" color="white" className="fab fa-facebook" />
+                </Typography>
+              </Box>
+              <Box component="li">
+                <Typography
                   component={Link}
                   href="#"
                   variant="button"
                   p={1}
                   onClick={(e) => e.preventDefault()}
                 >
-                  <MKBox component="i" color="white" className="fab fa-instagram" />
-                </MKTypography>
-              </MKBox>
-            </MKBox>
+                  <Box component="i" color="white" className="fab fa-instagram" />
+                </Typography>
+              </Box>
+            </Box>
           </Grid>
         </Container>
-      </MKBox>
-      <MKBox
+      </Box>
+      <Box
         display="flex"
         alignItems="center"
         minHeight="100%"
@@ -159,7 +159,7 @@ function HeaderOne() {
       >
         <Container>
           <Grid container item xs={12} md={7} lg={6} flexDirection="column" justifyContent="center">
-            <MKTypography
+            <Typography
               variant="h1"
               color="white"
               mb={3}
@@ -170,21 +170,21 @@ function HeaderOne() {
               })}
             >
               Material Kit
-            </MKTypography>
-            <MKTypography variant="body1" color="white" opacity={0.8} pr={6} mr={6}>
+            </Typography>
+            <Typography variant="body1" color="white" opacity={0.8} pr={6} mr={6}>
               The time is now for it be okay to be great. People in this world shun people for being
               nice.
-            </MKTypography>
+            </Typography>
             <Stack direction="row" spacing={1} mt={3}>
-              <MKButton color="white">Get Started</MKButton>
-              <MKButton variant="text" color="white">
+              <Button color="white">Get Started</Button>
+              <Button variant="text" color="white">
                 Read more
-              </MKButton>
+              </Button>
             </Stack>
           </Grid>
         </Container>
-      </MKBox>
-    </MKBox>
+      </Box>
+    </Box>
   );
 }
 

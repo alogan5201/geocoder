@@ -1,5 +1,5 @@
 const navbarDarkCode = `// Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -9,7 +9,7 @@ import routes from "routes";
 
 function NavbarDark() {
   return (
-    <MKBox variant="gradient" bgColor="dark" shadow="sm" py={0.25}>
+    <Box variant="gradient" bgColor="dark" shadow="sm" py={0.25}>
       <DefaultNavbar
         routes={routes}
         action={{
@@ -23,7 +23,7 @@ function NavbarDark() {
         light
         center
       />
-    </MKBox>
+    </Box>
   );
 }
 

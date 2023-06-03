@@ -23,9 +23,9 @@ import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 function ColoredBackgroundCard({ color, image, label, title, description, action }) {
   return (
@@ -47,9 +47,9 @@ function ColoredBackgroundCard({ color, image, label, title, description, action
         placeItems: "center",
       })}
     >
-      <MKBox textAlign="center" p={3} my={12}>
+      <Box textAlign="center" p={3} my={12}>
         {label && (
-          <MKTypography
+          <Typography
             display="block"
             variant="caption"
             color={color === "light" ? "text" : "white"}
@@ -59,21 +59,21 @@ function ColoredBackgroundCard({ color, image, label, title, description, action
             mb={2}
           >
             {label}
-          </MKTypography>
+          </Typography>
         )}
-        <MKTypography variant="h4" color={color === "light" ? "dark" : "white"}>
+        <Typography variant="h4" color={color === "light" ? "dark" : "white"}>
           {title}
-        </MKTypography>
-        <MKTypography
+        </Typography>
+        <Typography
           variant="body2"
           color={color === "light" ? "text" : "white"}
           opacity={0.8}
           mb={3}
         >
           {description}
-        </MKTypography>
+        </Typography>
         {action.type === "internal" ? (
-          <MKButton
+          <Button
             component={Link}
             to={action.route}
             variant={color === "light" ? "gradient" : "contained"}
@@ -81,9 +81,9 @@ function ColoredBackgroundCard({ color, image, label, title, description, action
             size="small"
           >
             {action.label}
-          </MKButton>
+          </Button>
         ) : (
-          <MKButton
+          <Button
             component="a"
             href={action.route}
             target="_blank"
@@ -93,9 +93,9 @@ function ColoredBackgroundCard({ color, image, label, title, description, action
             size="small"
           >
             {action.label}
-          </MKButton>
+          </Button>
         )}
-      </MKBox>
+      </Box>
     </Card>
   );
 }

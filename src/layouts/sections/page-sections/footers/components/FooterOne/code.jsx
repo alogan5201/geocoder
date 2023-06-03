@@ -1,5 +1,5 @@
 const footerOneCode = `// Material Kit 2 PRO React components
-import MKTypography from "components/MKTypography";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DetailedFooter from "examples/Footers/DetailedFooter";
@@ -73,9 +73,9 @@ function FooterOne() {
       },
     ],
     copyright: (
-      <MKTypography variant="button" color="secondary">
+      <Typography variant="button" color="secondary">
         Copyright &copy; {date} Material Design by{" "}
-        <MKTypography
+        <Typography
           component="a"
           href="https://www.creative-tim.com"
           target="_blank"
@@ -84,9 +84,9 @@ function FooterOne() {
           color="secondary"
         >
           Creative Tim
-        </MKTypography>
+        </Typography>
         .
-      </MKTypography>
+      </Typography>
     ),
   };
 

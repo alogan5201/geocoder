@@ -5,23 +5,23 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKSnackbar from "components/MKSnackbar";
+import Box from "components/Box";
+import Button from "components/Button";
+import Snackbar from "components/Snackbar";
 
 function ToastBasic() {
   const [show, setShow] = useState(false);
   const toggleSnackbar = () => setShow(!show);
 
   return (
-    <MKBox component="section" py={6}>
+    <Box component="section" py={6}>
       <Container>
         <Grid container item xs={12} lg={10} justifyContent="center" mx="auto">
-          <MKButton variant="gradient" color="dark" onClick={toggleSnackbar}>
+          <Button variant="gradient" color="dark" onClick={toggleSnackbar}>
             Show Snackbar
-          </MKButton>
+          </Button>
         </Grid>
-        <MKSnackbar
+        <Snackbar
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
           color="dark"
           icon="notifications"
@@ -32,7 +32,7 @@ function ToastBasic() {
           close={toggleSnackbar}
         />
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

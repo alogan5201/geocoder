@@ -20,14 +20,14 @@ import PropTypes from "prop-types";
 import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 import MKAvatar from "components/MKAvatar";
-import MKTypography from "components/MKTypography";
+import Typography from "components/Typography";
 
 function TransparentTeamCard({ image, name, position, description, socials }) {
   return (
-    <MKBox display="flex" flexDirection="column">
-      <MKBox position="relative" width="max-content">
+    <Box display="flex" flexDirection="column">
+      <Box position="relative" width="max-content">
         <MKAvatar
           variant="rounded"
           size="xxl"
@@ -39,7 +39,7 @@ function TransparentTeamCard({ image, name, position, description, socials }) {
             zIndex: 2,
           }}
         />
-        <MKBox
+        <Box
           borderRadius="lg"
           shadow="md"
           width="100%"
@@ -55,20 +55,20 @@ function TransparentTeamCard({ image, name, position, description, socials }) {
             backgroundSize: "cover",
           }}
         />
-      </MKBox>
-      <MKBox py={2}>
-        <MKTypography variant="h5">{name}</MKTypography>
-        <MKTypography variant="body2" color="text" mb={2}>
+      </Box>
+      <Box py={2}>
+        <Typography variant="h5">{name}</Typography>
+        <Typography variant="body2" color="text" mb={2}>
           {position}
-        </MKTypography>
-        <MKTypography variant="body2" color="text" mb={2}>
+        </Typography>
+        <Typography variant="body2" color="text" mb={2}>
           {description}
-        </MKTypography>
+        </Typography>
         <Stack direction="row" spacing={4} mt={3}>
           {socials}
         </Stack>
-      </MKBox>
-    </MKBox>
+      </Box>
+    </Box>
   );
 }
 

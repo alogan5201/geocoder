@@ -17,13 +17,13 @@ Coded by www.creative-tim.com
 import PropTypes from "prop-types";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function ExampleCard({ image, name, count, ...rest }) {
   return (
-    <MKBox>
-      <MKBox
+    <Box>
+      <Box
         bgColor="white"
         borderRadius="xl"
         shadow="lg"
@@ -42,23 +42,23 @@ function ExampleCard({ image, name, count, ...rest }) {
         }}
         {...rest}
       >
-        <MKBox component="img" src={image} alt={name} width="100%" my="auto" />
-      </MKBox>
+        <Box component="img" src={image} alt={name} width="100%" my="auto" />
+      </Box>
       {name || count > 0 ? (
-        <MKBox mt={1} ml={1} lineHeight={1}>
+        <Box mt={1} ml={1} lineHeight={1}>
           {name && (
-            <MKTypography variant="h6" fontWeight="bold">
+            <Typography variant="h6" fontWeight="bold">
               {name}
-            </MKTypography>
+            </Typography>
           )}
           {count > 0 && (
-            <MKTypography variant="button" fontWeight="regular" color="secondary">
+            <Typography variant="button" fontWeight="regular" color="secondary">
               {count} {count === 1 ? "Example" : "Examples"}
-            </MKTypography>
+            </Typography>
           )}
-        </MKBox>
+        </Box>
       ) : null}
-    </MKBox>
+    </Box>
   );
 }
 

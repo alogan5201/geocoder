@@ -20,10 +20,10 @@ import Tooltip from "@mui/material/Tooltip";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Button from "components/Button";
 import MKAvatar from "components/MKAvatar";
-import MKTypography from "components/MKTypography";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -57,7 +57,7 @@ function VirtualReality() {
           color: "dark",
         }}
       />
-      <MKBox
+      <Box
         component="header"
         minHeight="100vh"
         width="100%"
@@ -76,7 +76,7 @@ function VirtualReality() {
         <Container>
           <Grid container spacing={3} justifyContent="center" pt={{ xs: 16, lg: 6 }}>
             <Grid item xs={12} md={1}>
-              <MKBox
+              <Box
                 display="flex"
                 flexDirection={{ xs: "row", md: "column" }}
                 justifyContent="center"
@@ -94,9 +94,9 @@ function VirtualReality() {
                   />
                 </Tooltip>
 
-                <MKBox my={{ xs: 0, md: 2 }} mx={{ xs: 2, md: 0 }}>
+                <Box my={{ xs: 0, md: 2 }} mx={{ xs: 2, md: 0 }}>
                   <Tooltip title="Home" placement="right">
-                    <MKButton
+                    <Button
                       iconOnly
                       size="large"
                       sx={({ palette: { black }, borders: { borderRadius } }) => ({
@@ -105,12 +105,12 @@ function VirtualReality() {
                       })}
                     >
                       <Icon color="inherit">home</Icon>
-                    </MKButton>
+                    </Button>
                   </Tooltip>
-                </MKBox>
-                <MKBox mb={{ xs: 0, md: 2 }} mr={{ xs: 2, md: 0 }}>
+                </Box>
+                <Box mb={{ xs: 0, md: 2 }} mr={{ xs: 2, md: 0 }}>
                   <Tooltip title="Search" placement="right">
-                    <MKButton
+                    <Button
                       iconOnly
                       size="large"
                       sx={({ palette: { black }, borders: { borderRadius } }) => ({
@@ -119,11 +119,11 @@ function VirtualReality() {
                       })}
                     >
                       <Icon color="inherit">search</Icon>
-                    </MKButton>
+                    </Button>
                   </Tooltip>
-                </MKBox>
+                </Box>
                 <Tooltip title="Minimize" placement="right">
-                  <MKButton
+                  <Button
                     iconOnly
                     size="large"
                     sx={({ palette: { black }, borders: { borderRadius } }) => ({
@@ -132,20 +132,20 @@ function VirtualReality() {
                     })}
                   >
                     <Icon color="inherit">more_horiz</Icon>
-                  </MKButton>
+                  </Button>
                 </Tooltip>
-              </MKBox>
+              </Box>
             </Grid>
             <Grid item xs={12} lg={11} xl={8}>
-              <MKBox
+              <Box
                 display="flex"
                 justifyContent="space-between"
                 alignItems={{ xs: "center", md: "flex-start" }}
                 ml={{ xs: 1, md: 4 }}
                 mt={-1}
               >
-                <MKBox>
-                  <MKTypography
+                <Box>
+                  <Typography
                     variant="h1"
                     sx={{
                       fontSize: ({ typography: { d1, h2 } }) => ({
@@ -157,44 +157,44 @@ function VirtualReality() {
                     lineHeight={1}
                   >
                     28&deg;C
-                  </MKTypography>
-                  <MKTypography
+                  </Typography>
+                  <Typography
                     variant="h6"
                     color="white"
                     fontWeight="medium"
                     textTransform="uppercase"
                   >
                     cloudy
-                  </MKTypography>
-                </MKBox>
-                <MKBox component="img" src={sunCloud} width="30%" />
-              </MKBox>
-              <MKBox mt={3} mb={8} ml={{ xs: 1, md: 4 }} mr={{ xs: 1, md: 0 }}>
+                  </Typography>
+                </Box>
+                <Box component="img" src={sunCloud} width="30%" />
+              </Box>
+              <Box mt={3} mb={8} ml={{ xs: 1, md: 4 }} mr={{ xs: 1, md: 0 }}>
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={4}>
                     <TodoList />
                   </Grid>
                   <Grid item xs={12} md={4}>
-                    <MKBox mb={3}>
+                    <Box mb={3}>
                       <TodoCard />
-                    </MKBox>
+                    </Box>
                     <Emails />
                   </Grid>
                   <Grid item xs={12} md={4}>
-                    <MKBox mb={3}>
+                    <Box mb={3}>
                       <MediaPlayer />
-                    </MKBox>
+                    </Box>
                     <Messages />
                   </Grid>
                 </Grid>
-              </MKBox>
+              </Box>
             </Grid>
           </Grid>
         </Container>
-      </MKBox>
-      <MKBox pt={6} px={1} mt={6}>
+      </Box>
+      <Box pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      </Box>
     </>
   );
 }

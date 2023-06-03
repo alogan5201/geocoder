@@ -19,8 +19,8 @@ Coded by www.creative-tim.com
 // import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-// import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+// import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -51,8 +51,8 @@ function DesktopApp() {
         transparent
         light
       />
-      <MKBox bgColor="white">
-        <MKBox
+      <Box bgColor="white">
+        <Box
           minHeight="50vh"
           width="100%"
           sx={{
@@ -65,10 +65,10 @@ function DesktopApp() {
         <Features />
         <Testimonials />
         <Pricing />
-        <MKBox pt={6} px={1} mt={6}>
+        <Box pt={6} px={1} mt={6}>
           <DefaultFooter content={footerRoutes} />
-        </MKBox>
-      </MKBox>
+        </Box>
+      </Box>
     </>
   );
 }

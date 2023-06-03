@@ -18,15 +18,15 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
 function SocialAnalytics() {
   return (
-    <MKBox component="section" py={6}>
+    <Box component="section" py={6}>
       <Container>
         <Grid
           container
@@ -36,16 +36,16 @@ function SocialAnalytics() {
           lg={6}
           sx={{ mx: "auto", pb: 3, textAlign: "center" }}
         >
-          <MKTypography variant="h4" color="info" textGradient>
+          <Typography variant="h4" color="info" textGradient>
             Social Analytics
-          </MKTypography>
-          <MKTypography variant="h2" my={1}>
+          </Typography>
+          <Typography variant="h2" my={1}>
             Turn your idea into a startup
-          </MKTypography>
-          <MKTypography variant="body1" color="text">
+          </Typography>
+          <Typography variant="body1" color="text">
             We&apos;re constantly trying to express ourselves and actualize our dreams. If you have
             the opportunity to play
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 3 }}>
           <Grid item xs={12} md={6} lg={4}>
@@ -77,7 +77,7 @@ function SocialAnalytics() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

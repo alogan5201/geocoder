@@ -24,8 +24,8 @@ import Icon from "@mui/material/Icon";
 import MuiLink from "@mui/material/Link";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function FilledInfoCard({ variant, color, icon, title, description, action }) {
   const buttonStyles = {
@@ -53,7 +53,7 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
   }
 
   return (
-    <MKBox
+    <Box
       display={{ xs: "block", md: "flex" }}
       variant={variant}
       bgColor={variant === "contained" ? "grey-100" : color}
@@ -62,7 +62,7 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
       pb={3}
       px={3}
     >
-      <MKTypography
+      <Typography
         display="block"
         variant="h3"
         color={iconColor}
@@ -70,9 +70,9 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
         mt={-0.625}
       >
         {typeof icon === "string" ? <Icon>{icon}</Icon> : icon}
-      </MKTypography>
-      <MKBox pt={{ xs: 3, md: 0 }} pl={{ xs: 0, md: 2 }} lineHeight={1}>
-        <MKTypography
+      </Typography>
+      <Box pt={{ xs: 3, md: 0 }} pl={{ xs: 0, md: 2 }} lineHeight={1}>
+        <Typography
           display="block"
           variant="5"
           color={variant === "contained" || color === "light" ? "dark" : "white"}
@@ -80,17 +80,17 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
           mb={1}
         >
           {title}
-        </MKTypography>
-        <MKTypography
+        </Typography>
+        <Typography
           display="block"
           variant="body2"
           color={variant === "contained" || color === "light" ? "text" : "white"}
           mb={2}
         >
           {description}
-        </MKTypography>
+        </Typography>
         {action && action.type === "external" ? (
-          <MKTypography
+          <Typography
             component={MuiLink}
             href={action.route}
             target="_blank"
@@ -101,10 +101,10 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
             sx={buttonStyles}
           >
             {action.label} <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-          </MKTypography>
+          </Typography>
         ) : null}
         {action && action.type === "internal" ? (
-          <MKTypography
+          <Typography
             component={Link}
             to={action.route}
             variant="body2"
@@ -113,10 +113,10 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
             sx={buttonStyles}
           >
             {action.label} <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-          </MKTypography>
+          </Typography>
         ) : null}
-      </MKBox>
-    </MKBox>
+      </Box>
+    </Box>
   );
 }
 

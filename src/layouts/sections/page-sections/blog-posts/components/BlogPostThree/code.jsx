@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Material Kit 2 PRO React examples
 import DefaultBlogCard from "examples/Cards/BlogCards/DefaultBlogCard";
@@ -22,7 +22,7 @@ function BlogPostThree() {
     "https://images.unsplash.com/photo-1444877466744-dc2f2af2b931?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2300&q=80";
 
   return (
-    <MKBox component="section" py={7}>
+    <Box component="section" py={7}>
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={4} mb={{ xs: 3, lg: 0 }}>
@@ -69,7 +69,7 @@ function BlogPostThree() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

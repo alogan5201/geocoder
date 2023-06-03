@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Sections components
 import BaseLayout from "layouts/sections/components/BaseLayout";
@@ -40,19 +40,19 @@ function NavTabs() {
       ]}
     >
       <View title="Tabs simple" code={tabsSimpleCode}>
-        <MKBox bgColor="white" py={6}>
+        <Box bgColor="white" py={6}>
           <TabsSimple />
-        </MKBox>
+        </Box>
       </View>
       <View title="Tabs with icon" code={tabsWithIconsCode}>
-        <MKBox bgColor="white" py={6}>
+        <Box bgColor="white" py={6}>
           <TabsWithIcons />
-        </MKBox>
+        </Box>
       </View>
       <View title="Tabs vertical" code={tabsVerticalCode}>
-        <MKBox bgColor="white" py={6}>
+        <Box bgColor="white" py={6}>
           <TabsVertical />
-        </MKBox>
+        </Box>
       </View>
     </BaseLayout>
   );

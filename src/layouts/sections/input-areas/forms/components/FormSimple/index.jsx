@@ -21,10 +21,10 @@ import Grid from "@mui/material/Grid";
 import Switch from "@mui/material/Switch";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Input from "components/Input";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 function FormSimple() {
   const [checked, setChecked] = useState(true);
@@ -32,32 +32,32 @@ function FormSimple() {
   const handleChecked = () => setChecked(!checked);
 
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container item justifyContent="center" xs={10} lg={7} mx="auto" textAlign="center">
-          <MKTypography variant="h3" mb={1}>
+          <Typography variant="h3" mb={1}>
             Contact Us
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid container item xs={12} lg={7} sx={{ mx: "auto" }}>
-          <MKBox width="100%" component="form" method="post" autoComplete="off">
-            <MKBox p={3}>
+          <Box width="100%" component="form" method="post" autoComplete="off">
+            <Box p={3}>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
-                  <MKInput variant="standard" label="First Name" fullWidth />
+                  <Input variant="standard" label="First Name" fullWidth />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <MKInput variant="standard" label="Last Name" fullWidth />
+                  <Input variant="standard" label="Last Name" fullWidth />
                 </Grid>
                 <Grid item xs={12}>
-                  <MKInput variant="standard" type="email" label="Email Address" fullWidth />
+                  <Input variant="standard" type="email" label="Email Address" fullWidth />
                 </Grid>
                 <Grid item xs={12}>
-                  <MKInput variant="standard" label="Your Message" multiline fullWidth rows={6} />
+                  <Input variant="standard" label="Your Message" multiline fullWidth rows={6} />
                 </Grid>
                 <Grid item xs={12} alignItems="center" ml={-1}>
                   <Switch checked={checked} onChange={handleChecked} />
-                  <MKTypography
+                  <Typography
                     variant="button"
                     fontWeight="regular"
                     color="text"
@@ -66,8 +66,8 @@ function FormSimple() {
                     onClick={handleChecked}
                   >
                     &nbsp;&nbsp;I agree the&nbsp;
-                  </MKTypography>
-                  <MKTypography
+                  </Typography>
+                  <Typography
                     component="a"
                     href="#"
                     variant="button"
@@ -75,19 +75,19 @@ function FormSimple() {
                     color="dark"
                   >
                     Terms and Conditions
-                  </MKTypography>
+                  </Typography>
                 </Grid>
               </Grid>
               <Grid container item justifyContent="center" xs={12} my={2}>
-                <MKButton type="submit" variant="gradient" color="dark" fullWidth>
+                <Button type="submit" variant="gradient" color="dark" fullWidth>
                   Send Message
-                </MKButton>
+                </Button>
               </Grid>
-            </MKBox>
-          </MKBox>
+            </Box>
+          </Box>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

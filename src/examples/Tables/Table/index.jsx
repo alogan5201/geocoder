@@ -28,9 +28,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 import MKAvatar from "components/MKAvatar";
-import MKTypography from "components/MKTypography";
+import Typography from "components/Typography";
 
 function Table({ columns, rows }) {
   const renderColumns = columns.map(({ name, align, width }, key) => {
@@ -49,7 +49,7 @@ function Table({ columns, rows }) {
     }
 
     return (
-      <MKBox
+      <Box
         key={name}
         component="th"
         width={width || "auto"}
@@ -67,7 +67,7 @@ function Table({ columns, rows }) {
         })}
       >
         {name.toUpperCase()}
-      </MKBox>
+      </Box>
     );
   });
 
@@ -79,7 +79,7 @@ function Table({ columns, rows }) {
 
       if (Array.isArray(row[name])) {
         template = (
-          <MKBox
+          <Box
             key={uuidv4()}
             component="td"
             p={1}
@@ -87,19 +87,19 @@ function Table({ columns, rows }) {
               borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
             })}
           >
-            <MKBox display="flex" alignItems="center" py={0.5} px={1}>
-              <MKBox mr={2}>
+            <Box display="flex" alignItems="center" py={0.5} px={1}>
+              <Box mr={2}>
                 <MKAvatar src={row[name][0]} name={row[name][1]} variant="rounded" size="sm" />
-              </MKBox>
-              <MKTypography variant="button" fontWeight="medium" sx={{ width: "max-content" }}>
+              </Box>
+              <Typography variant="button" fontWeight="medium" sx={{ width: "max-content" }}>
                 {row[name][1]}
-              </MKTypography>
-            </MKBox>
-          </MKBox>
+              </Typography>
+            </Box>
+          </Box>
         );
       } else {
         template = (
-          <MKBox
+          <Box
             key={uuidv4()}
             component="td"
             p={1}
@@ -108,15 +108,15 @@ function Table({ columns, rows }) {
               borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
             })}
           >
-            <MKTypography
+            <Typography
               variant="button"
               fontWeight="regular"
               color="secondary"
               sx={{ display: "inline-block", width: "max-content" }}
             >
               {row[name]}
-            </MKTypography>
-          </MKBox>
+            </Typography>
+          </Box>
         );
       }
 
@@ -130,9 +130,9 @@ function Table({ columns, rows }) {
     () => (
       <TableContainer>
         <MuiTable>
-          <MKBox component="thead">
+          <Box component="thead">
             <TableRow>{renderColumns}</TableRow>
-          </MKBox>
+          </Box>
           <TableBody>{renderRows}</TableBody>
         </MuiTable>
       </TableContainer>

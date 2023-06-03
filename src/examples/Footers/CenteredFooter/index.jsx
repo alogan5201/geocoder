@@ -29,8 +29,8 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function CenteredFooter({ company, links, socials, light }) {
   const { href, name } = company;
@@ -38,7 +38,7 @@ function CenteredFooter({ company, links, socials, light }) {
   const year = new Date().getFullYear();
 
   const renderLinks = links.map((link) => (
-    <MKTypography
+    <Typography
       key={link.name}
       component={Link}
       href={link.href}
@@ -47,11 +47,11 @@ function CenteredFooter({ company, links, socials, light }) {
       fontWeight="regular"
     >
       {link.name}
-    </MKTypography>
+    </Typography>
   ));
 
   const renderSocials = socials.map((social) => (
-    <MKTypography
+    <Typography
       key={social.link}
       component={Link}
       href={social.link}
@@ -60,11 +60,11 @@ function CenteredFooter({ company, links, socials, light }) {
       fontWeight="regular"
     >
       {social.icon}
-    </MKTypography>
+    </Typography>
   ));
 
   return (
-    <MKBox component="footer" py={6}>
+    <Box component="footer" py={6}>
       <Grid container justifyContent="center">
         <Grid item xs={10} lg={8}>
           <Stack
@@ -83,9 +83,9 @@ function CenteredFooter({ company, links, socials, light }) {
           </Stack>
         </Grid>
         <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
-          <MKTypography variant="body2" color={light ? "white" : "secondary"}>
+          <Typography variant="body2" color={light ? "white" : "secondary"}>
             Copyright &copy; {year} Material by{" "}
-            <MKTypography
+            <Typography
               component={Link}
               href={href}
               target="_blank"
@@ -94,12 +94,12 @@ function CenteredFooter({ company, links, socials, light }) {
               color={light ? "white" : "secondary"}
             >
               {name}
-            </MKTypography>
+            </Typography>
             .
-          </MKTypography>
+          </Typography>
         </Grid>
       </Grid>
-    </MKBox>
+    </Box>
   );
 }
 

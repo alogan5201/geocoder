@@ -20,7 +20,7 @@ import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Material Kit 2 PRO React example components
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -43,7 +43,7 @@ function BasicLayout({ image, children }) {
         transparent
         light
       />
-      <MKBox
+      <Box
         position="absolute"
         top={0}
         left={0}
@@ -62,16 +62,16 @@ function BasicLayout({ image, children }) {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <MKBox px={1} width="100%" height="100vh" mx="auto" position="relative" zIndex={2}>
+      <Box px={1} width="100%" height="100vh" mx="auto" position="relative" zIndex={2}>
         <Grid container spacing={1} justifyContent="center" alignItems="center" height="100%">
           <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
             {children}
           </Grid>
         </Grid>
-      </MKBox>
-      <MKBox width="100%" position="absolute" zIndex={2} bottom="1.625rem">
+      </Box>
+      <Box width="100%" position="absolute" zIndex={2} bottom="1.625rem">
         <SimpleFooter light />
-      </MKBox>
+      </Box>
     </>
   );
 }

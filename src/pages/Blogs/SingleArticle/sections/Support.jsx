@@ -19,22 +19,22 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKSocialButton from "components/MKSocialButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import SocialButton from "components/SocialButton";
 
 function Support() {
   return (
-    <MKBox component="section" mt={6} py={{ xs: 0, lg: 6 }}>
+    <Box component="section" mt={6} py={{ xs: 0, lg: 6 }}>
       <Container>
         <Grid container alignItems="center">
           <Grid item xs={12} lg={6} mb={{ xs: 3, lg: 0 }}>
-            <MKTypography variant="h4" mb={0.5}>
+            <Typography variant="h4" mb={0.5}>
               Thank you for your support!
-            </MKTypography>
-            <MKTypography variant="body1" color="text">
+            </Typography>
+            <Typography variant="body1" color="text">
               Delivering the best products
-            </MKTypography>
+            </Typography>
           </Grid>
           <Grid item xs={12} lg={6}>
             <Stack
@@ -43,27 +43,27 @@ function Support() {
               flexWrap="wrap"
               justifyContent={{ xs: "flex-start", lg: "flex-end" }}
             >
-              <MKSocialButton color="twitter">
+              <SocialButton color="twitter">
                 <i className="fab fa-twitter" />
                 &nbsp; twitter
-              </MKSocialButton>
-              <MKSocialButton color="facebook">
+              </SocialButton>
+              <SocialButton color="facebook">
                 <i className="fab fa-facebook" />
                 &nbsp; facebook
-              </MKSocialButton>
-              <MKSocialButton color="tumblr">
+              </SocialButton>
+              <SocialButton color="tumblr">
                 <i className="fab fa-tumblr" />
                 &nbsp; tumblr
-              </MKSocialButton>
-              <MKSocialButton color="dribbble">
+              </SocialButton>
+              <SocialButton color="dribbble">
                 <i className="fab fa-dribbble" />
                 &nbsp; dribbble
-              </MKSocialButton>
+              </SocialButton>
             </Stack>
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

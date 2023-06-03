@@ -18,15 +18,15 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function Information() {
   return (
-    <MKBox component="section" py={6} mt={6}>
+    <Box component="section" py={6} mt={6}>
       <Container>
         <Grid container spacing={3} item xs={12} lg={8} mx="auto">
-          <MKTypography
+          <Typography
             component="h6"
             variant="button"
             opacity={0.7}
@@ -34,11 +34,11 @@ function Information() {
             fontWeight="bold"
           >
             The Idea
-          </MKTypography>
-          <MKTypography variant="h3" mb={3}>
+          </Typography>
+          <Typography variant="h3" mb={3}>
             Create a design system that can be used in any product available
-          </MKTypography>
-          <MKTypography variant="body2">
+          </Typography>
+          <Typography variant="body2">
             This is the paragraph where you can write more details about your product. Keep you user
             engaged by providing meaningful information. Remember that by this time, the user is
             curious, otherwise he wouldn&apos;t scroll to get here. Add a button if you want the
@@ -50,10 +50,10 @@ function Information() {
             <br /> <br />
             The way to survive in modern society is to be an ascetic. It is to retreat from society.
             There&aposl;s too much society everywhere you go…The only solution is turn it off.
-          </MKTypography>
+          </Typography>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

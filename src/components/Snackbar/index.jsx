@@ -24,13 +24,13 @@ import Divider from "@mui/material/Divider";
 import Fade from "@mui/material/Fade";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
-// Custom styles for the MKSnackbar
-import MKSnackbarIconRoot from "components/MKSnackbar/MKSnackbarIconRoot";
+// Custom styles for the Snackbar
+import MKSnackbarIconRoot from "components/Snackbar/MKSnackbarIconRoot";
 
-function MKSnackbar({ color, icon, title, dateTime, content, close, bgWhite, ...rest }) {
+function Snackbar({ color, icon, title, dateTime, content, close, bgWhite, ...rest }) {
   let titleColor;
   let dateTimeColor;
   let dividerColor;
@@ -64,7 +64,7 @@ function MKSnackbar({ color, icon, title, dateTime, content, close, bgWhite, ...
         </IconButton>
       }
     >
-      <MKBox
+      <Box
         variant={bgWhite ? "contained" : "gradient"}
         bgColor={bgWhite ? "white" : color}
         minWidth="21.875rem"
@@ -76,30 +76,30 @@ function MKSnackbar({ color, icon, title, dateTime, content, close, bgWhite, ...
           backgroundColor: ({ palette }) => palette[color] || palette.white.main,
         }}
       >
-        <MKBox
+        <Box
           display="flex"
           justifyContent="space-between"
           alignItems="center"
           color="dark"
           p={1.5}
         >
-          <MKBox display="flex" alignItems="center" lineHeight={0}>
+          <Box display="flex" alignItems="center" lineHeight={0}>
             <MKSnackbarIconRoot fontSize="small" ownerState={{ color, bgWhite }}>
               {icon}
             </MKSnackbarIconRoot>
-            <MKTypography
+            <Typography
               variant="button"
               fontWeight="medium"
               color={titleColor}
               textGradient={bgWhite}
             >
               {title}
-            </MKTypography>
-          </MKBox>
-          <MKBox display="flex" alignItems="center" lineHeight={0}>
-            <MKTypography variant="caption" color={dateTimeColor}>
+            </Typography>
+          </Box>
+          <Box display="flex" alignItems="center" lineHeight={0}>
+            <Typography variant="caption" color={dateTimeColor}>
               {dateTime}
-            </MKTypography>
+            </Typography>
             <Icon
               sx={{
                 color: ({ palette: { dark, white } }) =>
@@ -113,10 +113,10 @@ function MKSnackbar({ color, icon, title, dateTime, content, close, bgWhite, ...
             >
               close
             </Icon>
-          </MKBox>
-        </MKBox>
+          </Box>
+        </Box>
         <Divider sx={{ margin: 0 }} light={dividerColor} />
-        <MKBox
+        <Box
           p={1.5}
           sx={{
             fontSize: ({ typography: { size } }) => size.sm,
@@ -125,20 +125,20 @@ function MKSnackbar({ color, icon, title, dateTime, content, close, bgWhite, ...
           }}
         >
           {content}
-        </MKBox>
-      </MKBox>
+        </Box>
+      </Box>
     </Snackbar>
   );
 }
 
-// Setting default values for the props of MKSnackbar
-MKSnackbar.defaultProps = {
+// Setting default values for the props of Snackbar
+Snackbar.defaultProps = {
   bgWhite: false,
   color: "info",
 };
 
-// Typechecking props for MKSnackbar
-MKSnackbar.propTypes = {
+// Typechecking props for Snackbar
+Snackbar.propTypes = {
   color: PropTypes.oneOf([
     "primary",
     "secondary",
@@ -157,4 +157,4 @@ MKSnackbar.propTypes = {
   bgWhite: PropTypes.bool,
 };
 
-export default MKSnackbar;
+export default Snackbar;

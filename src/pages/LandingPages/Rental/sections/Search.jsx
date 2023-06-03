@@ -19,51 +19,51 @@ import Grid from "@mui/material/Grid";
 import Autocomplete from "@mui/material/Autocomplete";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKInput from "components/MKInput";
-// import MKDatePicker from "components/MKDatePicker";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Input from "components/Input";
+// import DatePicker from "components/DatePicker";
+import Button from "components/Button";
 
 function Search() {
   return (
-    <MKBox component="section">
+    <Box component="section">
       <Container>
         <Grid container spacing={{ xs: 0, lg: 3 }} sx={{ pt: 2, pb: 3, px: 2, mx: "auto" }}>
           <Grid item xs={12} lg={3} sx={{ mt: 2 }}>
-            <MKTypography display="block" variant="button" fontWeight="regular" color="text" mb={1}>
+            <Typography display="block" variant="button" fontWeight="regular" color="text" mb={1}>
               Leave From
-            </MKTypography>
+            </Typography>
             <Autocomplete
               defaultValue="Bucharest"
               options={["Brazil", "Bucharest", "London", "USA"]}
-              renderInput={(params) => <MKInput {...params} variant="standard" />}
+              renderInput={(params) => <Input {...params} variant="standard" />}
             />
           </Grid>
           <Grid item xs={12} lg={3} sx={{ mt: 2 }}>
-            <MKTypography display="block" variant="button" fontWeight="regular" color="text" mb={1}>
+            <Typography display="block" variant="button" fontWeight="regular" color="text" mb={1}>
               To
-            </MKTypography>
+            </Typography>
             <Autocomplete
               defaultValue="Italy"
               options={["Denmark", "Italy", "Poland", "Spain"]}
-              renderInput={(params) => <MKInput {...params} variant="standard" />}
+              renderInput={(params) => <Input {...params} variant="standard" />}
             />
           </Grid>
           <Grid item xs={12} lg={3} sx={{ mt: 2 }}>
-            <MKTypography display="block" variant="button" fontWeight="regular" color="text" mb={1}>
+            <Typography display="block" variant="button" fontWeight="regular" color="text" mb={1}>
               Depart
-            </MKTypography>
-            <MKInput type="date" variant="standard" placeholder="Please select date" fullWidth />
+            </Typography>
+            <Input type="date" variant="standard" placeholder="Please select date" fullWidth />
           </Grid>
           <Grid item xs={12} lg={3} sx={{ mt: 4 }}>
-            <MKButton variant="gradient" color="info" fullWidth>
+            <Button variant="gradient" color="info" fullWidth>
               search
-            </MKButton>
+            </Button>
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

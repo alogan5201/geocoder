@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Button from "components/Button";
 import { useEffect, useState } from 'react';
 import { Tab } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -30,8 +30,8 @@ useEffect(() => {
   }
 }, [coords,geoData])
   return (
-    <MKBox component="form" method="post" autoComplete="off">
-      <MKBox py={3}>
+    <Box component="form" method="post" autoComplete="off">
+      <Box py={3}>
         <Grid container spacing={3} sx={{ mb: 3 }}>
           <Grid item xs={12} sx={{ my: 1 }}>
             {latLng && latLng.length > 0 && geoData && geoData.length >  0 ? (
@@ -49,13 +49,13 @@ useEffect(() => {
         </Grid>
         <Grid container>
           <Grid item xs={12}>
-            <MKButton type="submit" variant="gradient" color="info">
+            <Button type="submit" variant="gradient" color="info">
               Submit
-            </MKButton>
+            </Button>
           </Grid>
         </Grid>
-      </MKBox>
-    </MKBox>
+      </Box>
+    </Box>
   );
 }
 
@@ -97,8 +97,8 @@ function PopupDetails({coords,geoData}){
       }
     }, [coords,geoData])
       return (
-        <MKBox component="form" method="post" autoComplete="off">
-          <MKBox py={3}>
+        <Box component="form" method="post" autoComplete="off">
+          <Box py={3}>
             <Grid container spacing={3} sx={{ mb: 3 }}>
               <Grid item xs={12} sx={{ my: 1 }}>
                 {latLng && latLng.length > 0 && geoData && geoData.length >  0 ? (
@@ -116,12 +116,12 @@ function PopupDetails({coords,geoData}){
             </Grid>
             <Grid container>
               <Grid item xs={12}>
-                <MKButton type="submit" variant="gradient" color="info">
+                <Button type="submit" variant="gradient" color="info">
                   Submit
-                </MKButton>
+                </Button>
               </Grid>
             </Grid>
-          </MKBox>
-        </MKBox>
+          </Box>
+        </Box>
       );
     }

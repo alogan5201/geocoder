@@ -18,9 +18,9 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 // Images
 import bgPattern from "assets/images/shapes/pattern-lines.svg";
@@ -28,7 +28,7 @@ import laptop from "assets/images/macbook-2.png";
 
 function Banner() {
   return (
-    <MKBox
+    <Box
       variant="gradient"
       bgColor="warning"
       position="relative"
@@ -39,7 +39,7 @@ function Banner() {
       px={3}
       sx={{ overflow: "hidden" }}
     >
-      <MKBox
+      <Box
         component="img"
         src={bgPattern}
         alt="pattern-lines"
@@ -52,23 +52,23 @@ function Banner() {
       <Container sx={{ position: "relative" }}>
         <Grid container justifyContent="center" alignItems="center">
           <Grid item xs={12} md={7} lg={5} py={{ xs: 0, sm: 6 }} mr="auto" position="relative">
-            <MKTypography variant="h2" color="white" mb={1}>
+            <Typography variant="h2" color="white" mb={1}>
               Start building your awesome application
-            </MKTypography>
-            <MKTypography variant="body1" color="white" mb={6}>
+            </Typography>
+            <Typography variant="body1" color="white" mb={6}>
               Elegance is the end result of hard work, not the starting point. Strive to make your
               work so invisible that the reader thinks they could have written what you published.
               Trusted by 5.000+ clients from all around the world.
-            </MKTypography>
-            <MKButton variant="gradient" color="dark">
+            </Typography>
+            <Button variant="gradient" color="dark">
               Start now
-            </MKButton>
-            <MKButton variant="text" color="white" sx={{ ml: 1 }}>
+            </Button>
+            <Button variant="text" color="white" sx={{ ml: 1 }}>
               Read more
-            </MKButton>
+            </Button>
           </Grid>
           <Grid item xs={12} position="absolute" left="50%" mr={-32} width="75%">
-            <MKBox
+            <Box
               component="img"
               src={laptop}
               alt="macbook"
@@ -78,7 +78,7 @@ function Banner() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

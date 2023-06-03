@@ -25,8 +25,8 @@ import MuiLink from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function BackgroundBlogCard({ image, title, description, action }) {
   const cardActionStyles = {
@@ -53,9 +53,9 @@ function BackgroundBlogCard({ image, title, description, action }) {
         backgroundSize: "cover",
       }}
     >
-      <MKBox p={3}>
-        <MKBox minHeight="20.625rem" my="auto" py={3}>
-          <MKTypography
+      <Box p={3}>
+        <Box minHeight="20.625rem" my="auto" py={3}>
+          <Typography
             variant="h2"
             color="white"
             mb={1}
@@ -66,12 +66,12 @@ function BackgroundBlogCard({ image, title, description, action }) {
             })}
           >
             {title}
-          </MKTypography>
-          <MKTypography variant="body2" color="white" my={3}>
+          </Typography>
+          <Typography variant="body2" color="white" my={3}>
             {description}
-          </MKTypography>
+          </Typography>
           {action.type === "internal" ? (
-            <MKTypography
+            <Typography
               component={Link}
               to={action.route}
               variant="body2"
@@ -82,9 +82,9 @@ function BackgroundBlogCard({ image, title, description, action }) {
             >
               {action.label}
               <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-            </MKTypography>
+            </Typography>
           ) : (
-            <MKTypography
+            <Typography
               component={MuiLink}
               href={action.route}
               target="_blank"
@@ -97,10 +97,10 @@ function BackgroundBlogCard({ image, title, description, action }) {
             >
               {action.label}
               <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-            </MKTypography>
+            </Typography>
           )}
-        </MKBox>
-      </MKBox>
+        </Box>
+      </Box>
     </Card>
   );
 }

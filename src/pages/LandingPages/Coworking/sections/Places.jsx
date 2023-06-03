@@ -18,9 +18,9 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKBadge from "components/MKBadge";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Badge from "components/Badge";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React components
 import SimpleBlogCard from "examples/Cards/BlogCards/SimpleBlogCard";
@@ -34,7 +34,7 @@ function Places() {
   };
 
   return (
-    <MKBox component="section" py={3}>
+    <Box component="section" py={3}>
       <Container>
         <Grid
           container
@@ -45,7 +45,7 @@ function Places() {
           lg={6}
           sx={{ textAlign: "center", mx: "auto" }}
         >
-          <MKBadge
+          <Badge
             variant="contained"
             color="info"
             badgeContent="Co-working"
@@ -53,78 +53,78 @@ function Places() {
             circular
             sx={{ mb: 1 }}
           />
-          <MKTypography variant="h2" mb={1}>
+          <Typography variant="h2" mb={1}>
             Explore our places in London{" "}
-          </MKTypography>
-          <MKTypography variant="body2" color="text">
+          </Typography>
+          <Typography variant="body2" color="text">
             If you can&apos;t decide, the answer is no. If two equally difficult paths, choose the
             one more painful in the short term (pain avoidance is creating an illusion of equality).
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 3 }}>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBlogCard
                 image="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
                 title="Campus 6"
                 description="Website visitors today demand a frictionless user expericence. Applies to mobile applications too."
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBlogCard
                 image="https://images.unsplash.com/photo-1498677231914-50deb6ba4217?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
                 title="Cozy Spots"
                 description="If you're more passionate about founding a business than the business itself technology."
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBlogCard
                 image="https://images.unsplash.com/photo-1587578932405-7c740a762f7f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
                 title="Home Office"
                 description="Website visitors today demand a frictionless user expericence — especially when using search."
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBlogCard
                 image="https://images.unsplash.com/photo-1589884629108-3193400c7cc9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
                 title="Virtual Office"
                 description="If you're more passionate about founding a business than the business itself, you can fall into."
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBlogCard
                 image="https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
                 title="Co-working Spaces"
                 description="Smart money is just dumb money that's been through a crash. Business than the business itself."
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <MKBox mt={3}>
+            <Box mt={3}>
               <SimpleBlogCard
                 image="https://images.unsplash.com/photo-1461988625982-7e46a099bf4f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
                 title="Private Space"
                 description="Technology is not only the thing that moves the human race forward, but it's the only thing that has."
                 action={actionProps}
               />
-            </MKBox>
+            </Box>
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

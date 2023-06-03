@@ -20,14 +20,14 @@ import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Input from "components/Input";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 function NewsletterTwo() {
   return (
-    <MKBox component="section" py={20}>
+    <Box component="section" py={20}>
       <Container>
         <Grid
           container
@@ -39,7 +39,7 @@ function NewsletterTwo() {
           textAlign="center"
           mx="auto"
         >
-          <MKBox
+          <Box
             width="3rem"
             height="3rem"
             display="flex"
@@ -54,13 +54,13 @@ function NewsletterTwo() {
             mb={3}
           >
             <Icon>person</Icon>
-          </MKBox>
-          <MKTypography variant="h3" mb={1}>
+          </Box>
+          <Typography variant="h3" mb={1}>
             Subscribe
-          </MKTypography>
-          <MKTypography variant="body2" color="text">
+          </Typography>
+          <Typography variant="body2" color="text">
             This is the paragraph where you can write more details about your product.
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid
           container
@@ -72,21 +72,21 @@ function NewsletterTwo() {
           mx="auto"
           mt={6}
         >
-          <MKBox component="form" method="" action="">
+          <Box component="form" method="" action="">
             <Grid container spacing={2}>
               <Grid item xs={12} sm={8}>
-                <MKInput label="Your Email..." fullWidth />
+                <Input label="Your Email..." fullWidth />
               </Grid>
               <Grid item xs={12} sm={4}>
-                <MKButton variant="gradient" color="warning" fullWidth sx={{ height: "100%" }}>
+                <Button variant="gradient" color="warning" fullWidth sx={{ height: "100%" }}>
                   Subscribe
-                </MKButton>
+                </Button>
               </Grid>
             </Grid>
-          </MKBox>
+          </Box>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

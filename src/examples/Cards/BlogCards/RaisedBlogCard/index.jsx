@@ -25,8 +25,8 @@ import Icon from "@mui/material/Icon";
 import MuiLink from "@mui/material/Link";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function RaisedBlogCard({ image, title, description, action }) {
   const cardActionStyles = {
@@ -46,8 +46,8 @@ function RaisedBlogCard({ image, title, description, action }) {
 
   return (
     <Card>
-      <MKBox position="relative" borderRadius="lg" mx={2} mt={-3}>
-        <MKBox
+      <Box position="relative" borderRadius="lg" mx={2} mt={-3}>
+        <Box
           component="img"
           src={image}
           alt={title}
@@ -57,7 +57,7 @@ function RaisedBlogCard({ image, title, description, action }) {
           position="relative"
           zIndex={1}
         />
-        <MKBox
+        <Box
           borderRadius="lg"
           shadow="md"
           width="100%"
@@ -72,18 +72,18 @@ function RaisedBlogCard({ image, title, description, action }) {
             backgroundSize: "cover",
           }}
         />
-      </MKBox>
-      <MKBox p={3} mt={-2}>
-        <MKTypography display="inline" variant="h4" textTransform="capitalize">
+      </Box>
+      <Box p={3} mt={-2}>
+        <Typography display="inline" variant="h4" textTransform="capitalize">
           {title}
-        </MKTypography>
-        <MKBox mt={1} mb={3}>
-          <MKTypography variant="body2" component="p" color="text">
+        </Typography>
+        <Box mt={1} mb={3}>
+          <Typography variant="body2" component="p" color="text">
             {description}
-          </MKTypography>
-        </MKBox>
+          </Typography>
+        </Box>
         {action.type === "external" ? (
-          <MKTypography
+          <Typography
             component={MuiLink}
             href={action.route}
             target="_blank"
@@ -95,9 +95,9 @@ function RaisedBlogCard({ image, title, description, action }) {
           >
             {action.label}
             <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-          </MKTypography>
+          </Typography>
         ) : (
-          <MKTypography
+          <Typography
             component={Link}
             to={action.route}
             variant="body2"
@@ -107,9 +107,9 @@ function RaisedBlogCard({ image, title, description, action }) {
           >
             {action.label}
             <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-          </MKTypography>
+          </Typography>
         )}
-      </MKBox>
+      </Box>
     </Card>
   );
 }

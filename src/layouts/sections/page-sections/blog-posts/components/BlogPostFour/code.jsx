@@ -6,8 +6,8 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import SimpleBackgroundCard from "examples/Cards/BackgroundCards/SimpleBackgroundCard";
@@ -19,16 +19,16 @@ import post3 from "assets/images/examples/blog3.jpg";
 
 function BlogPostFour() {
   return (
-    <MKBox component="section" py={6}>
+    <Box component="section" py={6}>
       <Container>
         <Grid container item xs={12} lg={6} flexDirection="column">
-          <MKTypography variant="h3" mt={3} mb={1}>
+          <Typography variant="h3" mt={3} mb={1}>
             Build something great
-          </MKTypography>
-          <MKTypography variant="body2" color="text" mb={2}>
+          </Typography>
+          <Typography variant="body2" color="text" mb={2}>
             We&apos;re constantly trying to express ourselves and actualize our dreams. If you have
             the opportunity to play this game of life you need to appreciate every moment.
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid container spacing={3} mt={3}>
           <Grid item xs={12} lg={4}>
@@ -63,7 +63,7 @@ function BlogPostFour() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

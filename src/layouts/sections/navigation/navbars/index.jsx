@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Sections components
 import BaseLayout from "layouts/sections/components/BaseLayout";
@@ -42,24 +42,24 @@ function Navbars() {
       ]}
     >
       <View title="Navbar dark" code={navbarDarkCode}>
-        <MKBox py={6}>
+        <Box py={6}>
           <NavbarDark />
-        </MKBox>
+        </Box>
       </View>
       <View title="Navbar light" code={navbarLightCode}>
-        <MKBox py={6}>
+        <Box py={6}>
           <NavbarLight />
-        </MKBox>
+        </Box>
       </View>
       <View title="Navbar transparent" code={navbarTransparentCode}>
-        <MKBox py={6}>
+        <Box py={6}>
           <NavbarTransparent />
-        </MKBox>
+        </Box>
       </View>
       <View title="Navbar blur" code={navbarBlurCode}>
-        <MKBox py={6} variant="gradient" bgColor="dark">
+        <Box py={6} variant="gradient" bgColor="dark">
           <NavbarBlur />
-        </MKBox>
+        </Box>
       </View>
     </BaseLayout>
   );

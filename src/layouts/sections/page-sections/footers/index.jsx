@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Sections components
 import BaseLayout from "layouts/sections/components/BaseLayout";
@@ -40,14 +40,14 @@ function Footers() {
       ]}
     >
       <View title="Footer 1" code={footerOneCode}>
-        <MKBox bgColor="white" pt={3} pl={{ xs: 3, lg: 0 }}>
+        <Box bgColor="white" pt={3} pl={{ xs: 3, lg: 0 }}>
           <FooterOne />
-        </MKBox>
+        </Box>
       </View>
       <View title="Footer 2" code={footerTwoCode}>
-        <MKBox pt={3}>
+        <Box pt={3}>
           <FooterTwo />
-        </MKBox>
+        </Box>
       </View>
       <View title="Footer 3" code={footerThreeCode}>
         <FooterThree />

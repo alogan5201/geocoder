@@ -18,15 +18,15 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import ColoredBackgroundCard from "examples/Cards/BackgroundCards/ColoredBackgroundCard";
 
 function ApplicationOne() {
   return (
-    <MKBox component="section" py={6}>
+    <Box component="section" py={6}>
       <Container>
         <Grid
           container
@@ -38,7 +38,7 @@ function ApplicationOne() {
           mx="auto"
           mb={3}
         >
-          <MKTypography
+          <Typography
             variant="body2"
             color="info"
             fontWeight="bold"
@@ -46,8 +46,8 @@ function ApplicationOne() {
             textGradient
           >
             Our Work
-          </MKTypography>
-          <MKTypography variant="h3">Some of our awesome projects - 3</MKTypography>
+          </Typography>
+          <Typography variant="h3">Some of our awesome projects - 3</Typography>
         </Grid>
         <Grid container spacing={3} mt={4}>
           <Grid item xs={12} md={6} lg={4}>
@@ -97,7 +97,7 @@ function ApplicationOne() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

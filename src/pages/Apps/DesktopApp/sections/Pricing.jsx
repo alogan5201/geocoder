@@ -22,8 +22,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import SimplePricingCard from "examples/Cards/PricingCards/SimplePricingCard";
@@ -34,13 +34,13 @@ function Pricing() {
   const handleTabType = (event, newValue) => setActiveTab(newValue);
 
   return (
-    <MKBox component="section" py={{ xs: 0, md: 12 }}>
+    <Box component="section" py={{ xs: 0, md: 12 }}>
       <Container>
         <Grid container item xs={12} justifyContent="center" md={8} mx="auto" textAlign="center">
-          <MKTypography variant="h3">Pick the best plan for you</MKTypography>
-          <MKTypography variant="body2" color="text">
+          <Typography variant="h3">Pick the best plan for you</Typography>
+          <Typography variant="body2" color="text">
             You have Free Unlimited Updates and Premium Support on each package.
-          </MKTypography>
+          </Typography>
         </Grid>
         <Grid
           container
@@ -58,17 +58,17 @@ function Pricing() {
               <Tab
                 id="monthly"
                 label={
-                  <MKBox py={0.5} px={2} color="inherit">
+                  <Box py={0.5} px={2} color="inherit">
                     Monthly
-                  </MKBox>
+                  </Box>
                 }
               />
               <Tab
                 id="annual"
                 label={
-                  <MKBox py={0.5} px={2} color="inherit">
+                  <Box py={0.5} px={2} color="inherit">
                     Annual
-                  </MKBox>
+                  </Box>
                 }
               />
             </Tabs>
@@ -133,7 +133,7 @@ function Pricing() {
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

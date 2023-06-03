@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import MKInput from "components/MKInput";
+import Input from "components/Input";
 // @mui material components
 import InputAdornment from "@mui/material/InputAdornment";
 
@@ -13,7 +13,7 @@ function AddressInput({handleAddressChange}){
       };
   return (
     <Grid item xs={12} pr={1} mb={3}>
-      <MKInput
+      <Input
         fullWidth
      type="text"
         label="Search"

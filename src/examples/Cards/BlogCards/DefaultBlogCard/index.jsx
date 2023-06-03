@@ -24,14 +24,14 @@ import Card from "@mui/material/Card";
 import MuiLink from "@mui/material/Link";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 import MKAvatar from "components/MKAvatar";
 
 function DefaultBlogCard({ image, category, title, description, author, raised, action }) {
   const imageTemplate = (
     <>
-      <MKBox
+      <Box
         component="img"
         src={image}
         alt={title}
@@ -41,7 +41,7 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
         position="relative"
         zIndex={1}
       />
-      <MKBox
+      <Box
         borderRadius="lg"
         shadow={raised ? "md" : "none"}
         width="100%"
@@ -65,7 +65,7 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
 
   return (
     <Card>
-      <MKBox position="relative" borderRadius="lg" mx={2} mt={raised ? -3 : 2}>
+      <Box position="relative" borderRadius="lg" mx={2} mt={raised ? -3 : 2}>
         {action.type === "internal" ? (
           <Link to={action.route}>{imageTemplate}</Link>
         ) : (
@@ -73,10 +73,10 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
             {imageTemplate}
           </MuiLink>
         )}
-      </MKBox>
-      <MKBox p={3}>
+      </Box>
+      <Box p={3}>
         {category && (
-          <MKTypography
+          <Typography
             variant="caption"
             color={category.color}
             textTransform="uppercase"
@@ -85,22 +85,22 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
             sx={{ display: "block" }}
           >
             {category.label}
-          </MKTypography>
+          </Typography>
         )}
         {action.type === "internal" ? (
           <Link to={action.route}>
-            <MKTypography
+            <Typography
               variant="h5"
               textTransform="capitalize"
               my={1}
               sx={{ display: "inline-block" }}
             >
               {title}
-            </MKTypography>
+            </Typography>
           </Link>
         ) : (
           <MuiLink href={action.route} target="_blank" rel="noreferrer">
-            <MKTypography
+            <Typography
               variant="h5"
               textTransform="capitalize"
               mt={2}
@@ -108,31 +108,31 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
               sx={{ display: "inline-block" }}
             >
               {title}
-            </MKTypography>
+            </Typography>
           </MuiLink>
         )}
-        <MKTypography variant="body2" component="p" color="text">
+        <Typography variant="body2" component="p" color="text">
           {description}
-        </MKTypography>
+        </Typography>
         {author && (
-          <MKBox display="flex" alignItems="center" mt={3}>
+          <Box display="flex" alignItems="center" mt={3}>
             <MKAvatar
               src={author.image}
               alt={author.name}
               shadow="md"
               variant={raised ? "circular" : "rounded"}
             />
-            <MKBox pl={2} lineHeight={0}>
-              <MKTypography component="h6" variant="button" fontWeight="medium" gutterBottom>
+            <Box pl={2} lineHeight={0}>
+              <Typography component="h6" variant="button" fontWeight="medium" gutterBottom>
                 {author.name}
-              </MKTypography>
-              <MKTypography variant="caption" color="text">
+              </Typography>
+              <Typography variant="caption" color="text">
                 {author.date}
-              </MKTypography>
-            </MKBox>
-          </MKBox>
+              </Typography>
+            </Box>
+          </Box>
         )}
-      </MKBox>
+      </Box>
     </Card>
   );
 }

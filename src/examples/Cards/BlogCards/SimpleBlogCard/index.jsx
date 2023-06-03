@@ -24,15 +24,15 @@ import Card from "@mui/material/Card";
 import MuiLink from "@mui/material/Link";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Button from "components/Button";
 
 function SimpleBlogCard({ image, title, description, action }) {
   return (
     <Card>
-      <MKBox position="relative" borderRadius="lg" mx={2} mt={-3}>
-        <MKBox
+      <Box position="relative" borderRadius="lg" mx={2} mt={-3}>
+        <Box
           component="img"
           src={image}
           alt={title}
@@ -42,7 +42,7 @@ function SimpleBlogCard({ image, title, description, action }) {
           position="relative"
           zIndex={1}
         />
-        <MKBox
+        <Box
           borderRadius="lg"
           shadow="md"
           width="100%"
@@ -57,18 +57,18 @@ function SimpleBlogCard({ image, title, description, action }) {
             backgroundSize: "cover",
           }}
         />
-      </MKBox>
-      <MKBox p={3} mt={-2}>
-        <MKTypography display="inline" variant="h5" textTransform="capitalize" fontWeight="regular">
+      </Box>
+      <Box p={3} mt={-2}>
+        <Typography display="inline" variant="h5" textTransform="capitalize" fontWeight="regular">
           {title}
-        </MKTypography>
-        <MKBox mt={1} mb={3}>
-          <MKTypography variant="body2" component="p" color="text">
+        </Typography>
+        <Box mt={1} mb={3}>
+          <Typography variant="body2" component="p" color="text">
             {description}
-          </MKTypography>
-        </MKBox>
+          </Typography>
+        </Box>
         {action.type === "external" ? (
-          <MKButton
+          <Button
             component={MuiLink}
             href={action.route}
             target="_blank"
@@ -78,9 +78,9 @@ function SimpleBlogCard({ image, title, description, action }) {
             color={action.color ? action.color : "dark"}
           >
             {action.label}
-          </MKButton>
+          </Button>
         ) : (
-          <MKButton
+          <Button
             component={Link}
             to={action.route}
             variant="outlined"
@@ -88,9 +88,9 @@ function SimpleBlogCard({ image, title, description, action }) {
             color={action.color ? action.color : "dark"}
           >
             {action.label}
-          </MKButton>
+          </Button>
         )}
-      </MKBox>
+      </Box>
     </Card>
   );
 }

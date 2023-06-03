@@ -24,8 +24,8 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -60,7 +60,7 @@ function SingleArticle() {
 
   return (
     <>
-      <MKBox bgColor="white" py={0.25}>
+      <Box bgColor="white" py={0.25}>
         <DefaultNavbar
           routes={routes}
           action={{
@@ -72,8 +72,8 @@ function SingleArticle() {
           transparent
           relative
         />
-      </MKBox>
-      <MKBox
+      </Box>
+      <Box
         ref={headerRef}
         minHeight="85vh"
         width="100%"
@@ -91,7 +91,7 @@ function SingleArticle() {
       >
         <Container>
           <Grid container item xs={12} lg={7} justifyContent="center" flexDirection="column">
-            <MKTypography
+            <Typography
               variant="h1"
               color="white"
               sx={({ breakpoints, typography: { size } }) => ({
@@ -101,8 +101,8 @@ function SingleArticle() {
               })}
             >
               Material Design - News
-            </MKTypography>
-            <MKTypography
+            </Typography>
+            <Typography
               variant="body1"
               color="white"
               opacity={0.8}
@@ -112,27 +112,27 @@ function SingleArticle() {
             >
               The time is now for it be okay to be great. People in this world shun people for being
               nice.
-            </MKTypography>
-            <MKTypography variant="h5" color="white" mt={2} mb={1}>
+            </Typography>
+            <Typography variant="h5" color="white" mt={2} mb={1}>
               Connect with us on
-            </MKTypography>
-            <MKBox display="flex" alignItems="center">
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+            </Typography>
+            <Box display="flex" alignItems="center">
+              <Typography component="a" variant="body1" color="white" href="#" mr={3}>
                 <i className="fab fa-facebook" />
-              </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+              </Typography>
+              <Typography component="a" variant="body1" color="white" href="#" mr={3}>
                 <i className="fab fa-instagram" />
-              </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+              </Typography>
+              <Typography component="a" variant="body1" color="white" href="#" mr={3}>
                 <i className="fab fa-twitter" />
-              </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#">
+              </Typography>
+              <Typography component="a" variant="body1" color="white" href="#">
                 <i className="fab fa-google-plus" />
-              </MKTypography>
-            </MKBox>
+              </Typography>
+            </Box>
           </Grid>
         </Container>
-      </MKBox>
+      </Box>
       <Card
         sx={{
           p: 2,
@@ -149,9 +149,9 @@ function SingleArticle() {
         <Posts />
         <Support />
       </Card>
-      <MKBox pt={6} px={1} mt={6}>
+      <Box pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      </Box>
     </>
   );
 }

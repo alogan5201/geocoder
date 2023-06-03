@@ -18,24 +18,24 @@ import Card from "@mui/material/Card";
 import Tooltip from "@mui/material/Tooltip";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 function Emails() {
   return (
     <Card>
-      <MKBox display="flex" justifyContent="space-between" p={3} lineHeight={1}>
-        <MKTypography variant="body2" color="text">
+      <Box display="flex" justifyContent="space-between" p={3} lineHeight={1}>
+        <Typography variant="body2" color="text">
           Emails (21)
-        </MKTypography>
+        </Typography>
         <Tooltip title="Check your emails" placement="top">
-          <MKBox component="a" href="#">
-            <MKTypography variant="body2" fontWeight="regular">
+          <Box component="a" href="#">
+            <Typography variant="body2" fontWeight="regular">
               Check
-            </MKTypography>
-          </MKBox>
+            </Typography>
+          </Box>
         </Tooltip>
-      </MKBox>
+      </Box>
     </Card>
   );
 }

@@ -22,10 +22,10 @@ import { Link } from "react-router-dom";
 import Switch from "@mui/material/Switch";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Input from "components/Input";
+import Button from "components/Button";
 
 // Authentication layout components
 import IllustrationLayout from "pages/Authentication/components/IllustrationLayout";
@@ -44,16 +44,16 @@ function Illustration() {
       description="Enter your email and password to sign in"
       illustration={bgImage}
     >
-      <MKBox component="form" role="form">
-        <MKBox mb={2}>
-          <MKInput type="email" label="Email" fullWidth />
-        </MKBox>
-        <MKBox mb={2}>
-          <MKInput type="password" label="Password" fullWidth />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" ml={-1}>
+      <Box component="form" role="form">
+        <Box mb={2}>
+          <Input type="email" label="Email" fullWidth />
+        </Box>
+        <Box mb={2}>
+          <Input type="password" label="Password" fullWidth />
+        </Box>
+        <Box display="flex" alignItems="center" ml={-1}>
           <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-          <MKTypography
+          <Typography
             variant="button"
             fontWeight="regular"
             color="text"
@@ -61,17 +61,17 @@ function Illustration() {
             sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
           >
             &nbsp;&nbsp;Remember me
-          </MKTypography>
-        </MKBox>
-        <MKBox mt={4} mb={1}>
-          <MKButton variant="gradient" color="info" size="large" fullWidth>
+          </Typography>
+        </Box>
+        <Box mt={4} mb={1}>
+          <Button variant="gradient" color="info" size="large" fullWidth>
             sign in
-          </MKButton>
-        </MKBox>
-        <MKBox mt={3} textAlign="center">
-          <MKTypography variant="button" color="text">
+          </Button>
+        </Box>
+        <Box mt={3} textAlign="center">
+          <Typography variant="button" color="text">
             Don&apos;t have an account?{" "}
-            <MKTypography
+            <Typography
               component={Link}
               to="/authentication/sign-up/cover"
               variant="button"
@@ -80,10 +80,10 @@ function Illustration() {
               textGradient
             >
               Sign up
-            </MKTypography>
-          </MKTypography>
-        </MKBox>
-      </MKBox>
+            </Typography>
+          </Typography>
+        </Box>
+      </Box>
     </IllustrationLayout>
   );
 }

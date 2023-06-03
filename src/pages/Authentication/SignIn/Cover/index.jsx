@@ -23,10 +23,10 @@ import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Typography from "components/Typography";
+import Input from "components/Input";
+import Button from "components/Button";
 
 // Authentication layout components
 import CoverLayout from "pages/Authentication/components/CoverLayout";
@@ -42,7 +42,7 @@ function SignInCover() {
   return (
     <CoverLayout image={bgImage}>
       <Card>
-        <MKBox
+        <Box
           variant="gradient"
           bgColor="info"
           borderRadius="lg"
@@ -53,17 +53,17 @@ function SignInCover() {
           mb={1}
           textAlign="center"
         >
-          <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
+          <Typography variant="h4" fontWeight="medium" color="white" mt={1}>
             Sign in
-          </MKTypography>
-          <MKTypography display="block" variant="button" color="white" my={1}>
+          </Typography>
+          <Typography display="block" variant="button" color="white" my={1}>
             Enter your email and password to Sign In
-          </MKTypography>
-        </MKBox>
-        <MKBox pt={4} pb={3} px={3}>
-          <MKBox component="form" role="form">
-            <MKBox mb={2}>
-              <MKInput
+          </Typography>
+        </Box>
+        <Box pt={4} pb={3} px={3}>
+          <Box component="form" role="form">
+            <Box mb={2}>
+              <Input
                 type="email"
                 label="Email"
                 variant="standard"
@@ -71,9 +71,9 @@ function SignInCover() {
                 placeholder="john@example.com"
                 InputLabelProps={{ shrink: true }}
               />
-            </MKBox>
-            <MKBox mb={2}>
-              <MKInput
+            </Box>
+            <Box mb={2}>
+              <Input
                 type="password"
                 label="Password"
                 variant="standard"
@@ -81,10 +81,10 @@ function SignInCover() {
                 placeholder="************"
                 InputLabelProps={{ shrink: true }}
               />
-            </MKBox>
-            <MKBox display="flex" alignItems="center" ml={-1}>
+            </Box>
+            <Box display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-              <MKTypography
+              <Typography
                 variant="button"
                 fontWeight="regular"
                 color="text"
@@ -92,17 +92,17 @@ function SignInCover() {
                 sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
               >
                 &nbsp;&nbsp;Remember me
-              </MKTypography>
-            </MKBox>
-            <MKBox mt={4} mb={1}>
-              <MKButton variant="gradient" color="info" fullWidth>
+              </Typography>
+            </Box>
+            <Box mt={4} mb={1}>
+              <Button variant="gradient" color="info" fullWidth>
                 sign in
-              </MKButton>
-            </MKBox>
-            <MKBox mt={3} mb={1} textAlign="center">
-              <MKTypography variant="button" color="text">
+              </Button>
+            </Box>
+            <Box mt={3} mb={1} textAlign="center">
+              <Typography variant="button" color="text">
                 Don&apos;t have an account?{" "}
-                <MKTypography
+                <Typography
                   component={Link}
                   to="/authentication/sign-up/cover"
                   variant="button"
@@ -111,11 +111,11 @@ function SignInCover() {
                   textGradient
                 >
                   Sign up
-                </MKTypography>
-              </MKTypography>
-            </MKBox>
-          </MKBox>
-        </MKBox>
+                </Typography>
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
       </Card>
     </CoverLayout>
   );

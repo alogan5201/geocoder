@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 // import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
+import Box from "components/Box";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -50,17 +50,17 @@ function Pricing() {
         light
       />
       <Header />
-      <MKBox p={3}>
+      <Box p={3}>
         <AboutUs />
         <PricingSection />
         <LifetimeMembership />
         <Testimonials />
         <Trust />
         <Faq />
-      </MKBox>
-      <MKBox pt={6} px={1} mt={6}>
+      </Box>
+      <Box pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      </Box>
     </>
   );
 }

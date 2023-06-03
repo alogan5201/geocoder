@@ -4,51 +4,51 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKBadge from "components/MKBadge";
+import Box from "components/Box";
+import Badge from "components/Badge";
 
 function BadgesSimpleRounded() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container justifyContent="center">
           <Stack direction="row" alignItems="flex-end" spacing={0.5}>
-            <MKBadge
+            <Badge
               badgeContent="primary"
               variant="contained"
               color="primary"
               container
               circular
             />
-            <MKBadge
+            <Badge
               badgeContent="secondary"
               variant="contained"
               color="secondary"
               container
               circular
             />
-            <MKBadge
+            <Badge
               badgeContent="success"
               variant="contained"
               color="success"
               container
               circular
             />
-            <MKBadge badgeContent="error" variant="contained" color="error" container circular />
-            <MKBadge
+            <Badge badgeContent="error" variant="contained" color="error" container circular />
+            <Badge
               badgeContent="warning"
               variant="contained"
               color="warning"
               container
               circular
             />
-            <MKBadge badgeContent="info" variant="contained" color="info" container circular />
-            <MKBadge badgeContent="light" variant="contained" color="light" container circular />
-            <MKBadge badgeContent="dark" variant="contained" color="dark" container circular />
+            <Badge badgeContent="info" variant="contained" color="info" container circular />
+            <Badge badgeContent="light" variant="contained" color="light" container circular />
+            <Badge badgeContent="dark" variant="contained" color="dark" container circular />
           </Stack>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

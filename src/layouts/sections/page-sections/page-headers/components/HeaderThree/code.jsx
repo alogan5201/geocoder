@@ -9,20 +9,20 @@ import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 // Images
 import bgImage from "assets/images/bg-presentation.jpg";
 
 function HeaderThree() {
   return (
-    <MKBox component="header" position="relative">
-      <MKBox component="nav" position="absolute" top="0.5rem" width="100%">
+    <Box component="header" position="relative">
+      <Box component="nav" position="absolute" top="0.5rem" width="100%">
         <Container>
           <Grid container flexDirection="row" alignItems="center">
-            <MKTypography
+            <Typography
               component={Link}
               href="#"
               variant="button"
@@ -32,15 +32,15 @@ function HeaderThree() {
               mr={2}
             >
               Material Design
-            </MKTypography>
-            <MKButton
+            </Typography>
+            <Button
               variant="outlined"
               color="white"
               sx={{ display: { xs: "block", lg: "none" }, ml: "auto" }}
             >
-              <MKBox component="i" color="white" className="fas fa-bars" />
-            </MKButton>
-            <MKBox
+              <Box component="i" color="white" className="fas fa-bars" />
+            </Button>
+            <Box
               component="ul"
               display={{ xs: "none", lg: "flex" }}
               p={0}
@@ -48,8 +48,8 @@ function HeaderThree() {
               mx="auto"
               sx={{ listStyle: "none" }}
             >
-              <MKBox component="li">
-                <MKTypography
+              <Box component="li">
+                <Typography
                   component={Link}
                   href="#"
                   variant="button"
@@ -59,10 +59,10 @@ function HeaderThree() {
                   onClick={(e) => e.preventDefault()}
                 >
                   Home
-                </MKTypography>
-              </MKBox>
-              <MKBox component="li">
-                <MKTypography
+                </Typography>
+              </Box>
+              <Box component="li">
+                <Typography
                   component={Link}
                   href="#"
                   variant="button"
@@ -72,10 +72,10 @@ function HeaderThree() {
                   onClick={(e) => e.preventDefault()}
                 >
                   About Us
-                </MKTypography>
-              </MKBox>
-              <MKBox component="li">
-                <MKTypography
+                </Typography>
+              </Box>
+              <Box component="li">
+                <Typography
                   component={Link}
                   href="#"
                   variant="button"
@@ -85,14 +85,14 @@ function HeaderThree() {
                   onClick={(e) => e.preventDefault()}
                 >
                   Contact Us
-                </MKTypography>
-              </MKBox>
-            </MKBox>
-            <MKButton color="default">buy now</MKButton>
+                </Typography>
+              </Box>
+            </Box>
+            <Button color="default">buy now</Button>
           </Grid>
         </Container>
-      </MKBox>
-      <MKBox
+      </Box>
+      <Box
         display="flex"
         alignItems="center"
         minHeight="100vh"
@@ -114,7 +114,7 @@ function HeaderThree() {
             textAlign="center"
             mx="auto"
           >
-            <MKTypography
+            <Typography
               variant="h1"
               color="white"
               sx={({ breakpoints, typography: { size } }) => ({
@@ -125,52 +125,52 @@ function HeaderThree() {
               mb={3}
             >
               Work with an amazing
-            </MKTypography>
-            <MKTypography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
+            </Typography>
+            <Typography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
               We&apos;re constantly trying to express ourselves and actualize our dreams. If you
               have the opportunity to play this game. If you have the opportunity to play this game.
-            </MKTypography>
-            <MKTypography variant="h6" color="white" textTransform="uppercase" mb={3}>
+            </Typography>
+            <Typography variant="h6" color="white" textTransform="uppercase" mb={3}>
               connect with us on:
-            </MKTypography>
+            </Typography>
             <Stack direction="row" spacing={6} mx="auto">
-              <MKTypography
+              <Typography
                 component={Link}
                 href="#"
                 variant="body2"
                 onClick={(e) => e.preventDefault()}
               >
-                <MKBox component="i" color="white" className="fab fa-facebook" />
-              </MKTypography>
-              <MKTypography
+                <Box component="i" color="white" className="fab fa-facebook" />
+              </Typography>
+              <Typography
                 component={Link}
                 href="#"
                 variant="body2"
                 onClick={(e) => e.preventDefault()}
               >
-                <MKBox component="i" color="white" className="fab fa-instagram" />
-              </MKTypography>
-              <MKTypography
+                <Box component="i" color="white" className="fab fa-instagram" />
+              </Typography>
+              <Typography
                 component={Link}
                 href="#"
                 variant="body2"
                 onClick={(e) => e.preventDefault()}
               >
-                <MKBox component="i" color="white" className="fab fa-twitter" />
-              </MKTypography>
-              <MKTypography
+                <Box component="i" color="white" className="fab fa-twitter" />
+              </Typography>
+              <Typography
                 component={Link}
                 href="#"
                 variant="body2"
                 onClick={(e) => e.preventDefault()}
               >
-                <MKBox component="i" color="white" className="fab fa-google-plus" />
-              </MKTypography>
+                <Box component="i" color="white" className="fab fa-google-plus" />
+              </Typography>
             </Stack>
           </Grid>
         </Container>
-      </MKBox>
-    </MKBox>
+      </Box>
+    </Box>
   );
 }
 

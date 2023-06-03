@@ -19,23 +19,23 @@ import Grid from "@mui/material/Grid";
 import Autocomplete from "@mui/material/Autocomplete";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
+import Box from "components/Box";
+import Input from "components/Input";
 
 function SelectPicker() {
   return (
-    <MKBox component="section" py={12}>
+    <Box component="section" py={12}>
       <Container>
         <Grid container justifyContent="center">
           <Autocomplete
             defaultValue="Washington"
             options={["Brazil", "Bucharest", "London", "Washington"]}
             sx={{ width: 300 }}
-            renderInput={(params) => <MKInput {...params} variant="standard" />}
+            renderInput={(params) => <Input {...params} variant="standard" />}
           />
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

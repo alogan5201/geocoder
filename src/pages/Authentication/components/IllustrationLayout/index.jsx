@@ -20,8 +20,8 @@ import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React example components
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -31,8 +31,8 @@ import routes from "routes";
 
 function IllustrationLayout({ header, title, description, illustration, children }) {
   return (
-    <MKBox width="100%" height="100%" bgColor="white">
-      <MKBox position="absolute" width="100%" mt={1}>
+    <Box width="100%" height="100%" bgColor="white">
+      <Box position="absolute" width="100%" mt={1}>
         <DefaultNavbar
           routes={routes}
           action={{
@@ -42,10 +42,10 @@ function IllustrationLayout({ header, title, description, illustration, children
             color: "dark",
           }}
         />
-      </MKBox>
+      </Box>
       <Grid container>
         <Grid item xs={12} lg={6}>
-          <MKBox
+          <Box
             display={{ xs: "none", lg: "flex" }}
             width="calc(100% - 2rem)"
             height="calc(100vh - 2rem)"
@@ -56,28 +56,28 @@ function IllustrationLayout({ header, title, description, illustration, children
           />
         </Grid>
         <Grid item xs={11} sm={8} md={5} lg={4} xl={3} sx={{ mx: "auto" }}>
-          <MKBox display="flex" flexDirection="column" justifyContent="center" height="100vh">
-            <MKBox p={3} textAlign="center">
+          <Box display="flex" flexDirection="column" justifyContent="center" height="100vh">
+            <Box p={3} textAlign="center">
               {!header ? (
                 <>
-                  <MKBox mb={1} textAlign="center">
-                    <MKTypography variant="h4" fontWeight="bold">
+                  <Box mb={1} textAlign="center">
+                    <Typography variant="h4" fontWeight="bold">
                       {title}
-                    </MKTypography>
-                  </MKBox>
-                  <MKTypography variant="body2" color="text">
+                    </Typography>
+                  </Box>
+                  <Typography variant="body2" color="text">
                     {description}
-                  </MKTypography>
+                  </Typography>
                 </>
               ) : (
                 header
               )}
-            </MKBox>
-            <MKBox p={3}>{children}</MKBox>
-          </MKBox>
+            </Box>
+            <Box p={3}>{children}</Box>
+          </Box>
         </Grid>
       </Grid>
-    </MKBox>
+    </Box>
   );
 }
 

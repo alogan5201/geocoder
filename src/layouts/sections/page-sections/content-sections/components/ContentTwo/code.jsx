@@ -5,46 +5,46 @@ import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKBadge from "components/MKBadge";
-import MKButton from "components/MKButton";
+import Box from "components/Box";
+import Badge from "components/Badge";
+import Button from "components/Button";
 import MKAvatar from "components/MKAvatar";
-import MKTypography from "components/MKTypography";
-import MKSocialButton from "components/MKSocialButton";
+import Typography from "components/Typography";
+import SocialButton from "components/SocialButton";
 
 // Images
 import profilePicture from "assets/images/team-2.jpg";
 
 function ContentTwo() {
   return (
-    <MKBox component="section" py={20}>
+    <Box component="section" py={20}>
       <Container>
         <Grid container>
           <Grid item xs={12} lg={8} mx="auto">
             <Grid container justifyContent="space-betweeb" alignItems="center">
               <Grid xs={12} md={6}>
-                <MKBox ml={-1}>
-                  <MKBadge badgeContent="Photography" variant="contained" color="info" />
-                  <MKBadge badgeContent="Stories" variant="contained" color="info" />
-                  <MKBadge badgeContent="Castle" variant="contained" color="info" />
-                </MKBox>
+                <Box ml={-1}>
+                  <Badge badgeContent="Photography" variant="contained" color="info" />
+                  <Badge badgeContent="Stories" variant="contained" color="info" />
+                  <Badge badgeContent="Castle" variant="contained" color="info" />
+                </Box>
               </Grid>
               <Grid xs={12} md={6}>
                 <Stack direction="row" spacing={1} justifyContent="flex-end">
-                  <MKSocialButton color="facebook" size="sm">
-                    <MKBox className="fab fa-facebook" color="inherit" mr={1} /> 872
-                  </MKSocialButton>
-                  <MKSocialButton color="twitter" size="sm">
-                    <MKBox className="fab fa-twitter" color="inherit" mr={1} /> 910
-                  </MKSocialButton>
-                  <MKSocialButton color="pinterest" size="sm">
-                    <MKBox className="fab fa-pinterest" color="inherit" mr={1} /> 232
-                  </MKSocialButton>
+                  <SocialButton color="facebook" size="sm">
+                    <Box className="fab fa-facebook" color="inherit" mr={1} /> 872
+                  </SocialButton>
+                  <SocialButton color="twitter" size="sm">
+                    <Box className="fab fa-twitter" color="inherit" mr={1} /> 910
+                  </SocialButton>
+                  <SocialButton color="pinterest" size="sm">
+                    <Box className="fab fa-pinterest" color="inherit" mr={1} /> 232
+                  </SocialButton>
                 </Stack>
               </Grid>
             </Grid>
             <Divider sx={{ mt: 1 }} />
-            <MKBox display="flex" alignItems="center">
+            <Box display="flex" alignItems="center">
               <MKAvatar
                 src={profilePicture}
                 alt="Alec Thompson"
@@ -52,26 +52,26 @@ function ContentTwo() {
                 variant="rounded"
                 shadow="xl"
               />
-              <MKBox ml={3}>
-                <MKTypography variant="h5" mb={1}>
+              <Box ml={3}>
+                <Typography variant="h5" mb={1}>
                   Alec Thompson
-                </MKTypography>
-                <MKTypography variant="button" color="text">
+                </Typography>
+                <Typography variant="button" color="text">
                   I&apos;ve been trying to figure out the bed design for the master bedroom at our
                   Hidden Hills compound...I like good music from Youtube.
-                </MKTypography>
-              </MKBox>
-              <MKBox display={{ xs: "none", lg: "block" }} ml={1}>
-                <MKButton color="dark">Follow</MKButton>
-              </MKBox>
-            </MKBox>
-            <MKBox display={{ xs: "block", lg: "none" }} mt={1}>
-              <MKButton color="dark">Follow</MKButton>
-            </MKBox>
+                </Typography>
+              </Box>
+              <Box display={{ xs: "none", lg: "block" }} ml={1}>
+                <Button color="dark">Follow</Button>
+              </Box>
+            </Box>
+            <Box display={{ xs: "block", lg: "none" }} mt={1}>
+              <Button color="dark">Follow</Button>
+            </Box>
           </Grid>
         </Grid>
       </Container>
-    </MKBox>
+    </Box>
   );
 }
 

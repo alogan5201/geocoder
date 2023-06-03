@@ -23,9 +23,9 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKBadge from "components/MKBadge";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Badge from "components/Badge";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import DefaultPricingCard from "examples/Cards/PricingCards/DefaultPricingCard";
@@ -44,8 +44,8 @@ function Pricing() {
   };
 
   return (
-    <MKBox component="section" py={{ xs: 0, lg: 7 }}>
-      <MKBox
+    <Box component="section" py={{ xs: 0, lg: 7 }}>
+      <Box
         borderRadius="xl"
         shadow="lg"
         sx={{
@@ -67,23 +67,23 @@ function Pricing() {
             md={8}
             sx={{ mx: "auto", textAlign: "center" }}
           >
-            <MKBadge
+            <Badge
               badgeContent="pricing"
               variant="gradient"
               container
               color="dark"
               sx={{ mb: 1 }}
             />
-            <MKTypography variant="h3" color="white" mb={2}>
+            <Typography variant="h3" color="white" mb={2}>
               See our pricing
-            </MKTypography>
-            <MKTypography variant="body2" color="white">
+            </Typography>
+            <Typography variant="body2" color="white">
               You have Free Unlimited Updates and Premium Support on each package.
-            </MKTypography>
+            </Typography>
           </Grid>
         </Container>
-      </MKBox>
-      <MKBox mt={-16}>
+      </Box>
+      <Box mt={-16}>
         <Container>
           <Grid container sx={{ mb: 6 }}>
             <Grid item xs={7} md={6} lg={4} sx={{ mx: "auto", textAlign: "center" }}>
@@ -92,24 +92,24 @@ function Pricing() {
                   <Tab
                     id="monthly"
                     label={
-                      <MKBox py={0.5} px={2} color="inherit">
+                      <Box py={0.5} px={2} color="inherit">
                         Monthly
-                      </MKBox>
+                      </Box>
                     }
                   />
                   <Tab
                     id="annual"
                     label={
-                      <MKBox py={0.5} px={2} color="inherit">
+                      <Box py={0.5} px={2} color="inherit">
                         Annual
-                      </MKBox>
+                      </Box>
                     }
                   />
                 </Tabs>
               </AppBar>
             </Grid>
           </Grid>
-          <MKBox position="relative" zIndex={10} px={{ xs: 1, sm: 0 }}>
+          <Box position="relative" zIndex={10} px={{ xs: 1, sm: 0 }}>
             <Grid container spacing={3} justifyContent="center">
               <Grid item xs={12} lg={4}>
                 <DefaultPricingCard
@@ -173,10 +173,10 @@ function Pricing() {
                 />
               </Grid>
             </Grid>
-          </MKBox>
+          </Box>
         </Container>
-      </MKBox>
-    </MKBox>
+      </Box>
+    </Box>
   );
 }
 

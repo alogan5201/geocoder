@@ -30,8 +30,8 @@ import Container from "@mui/material/Container";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Box from "components/Box";
+import Typography from "components/Typography";
 
 // Material Kit 2 PRO React examples
 import ComplexReviewCard from "examples/Cards/ReviewCards/ComplexReviewCard";
@@ -71,7 +71,7 @@ function TestimonialsTwo() {
   const navigationNextRef = useRef(null);
 
   return (
-    <MKBox py={8} position="relative">
+    <Box py={8} position="relative">
       <Swiper
         onInit={({ params, navigation }) => {
           const { navigation: nav } = params;
@@ -115,7 +115,7 @@ function TestimonialsTwo() {
             />
           </Container>
         </SwiperSlide>
-        <MKTypography
+        <Typography
           variant="h2"
           color="dark"
           sx={{
@@ -125,8 +125,8 @@ function TestimonialsTwo() {
           ref={navigationPrevRef}
         >
           <Icon>chevron_left</Icon>
-        </MKTypography>
-        <MKTypography
+        </Typography>
+        <Typography
           variant="h2"
           color="dark"
           sx={{
@@ -136,9 +136,9 @@ function TestimonialsTwo() {
           ref={navigationNextRef}
         >
           <Icon>chevron_right</Icon>
-        </MKTypography>
+        </Typography>
       </Swiper>
-    </MKBox>
+    </Box>
   );
 }
 
