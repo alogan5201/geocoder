@@ -71,12 +71,30 @@ const MyMarkers = ({ data, selectedIndex }) => {
 const PointMarker = ({ center, content, openPopup }) => {
   const map = useMap();
   const markerRef = useRef(null);
+  const geoData = useStore((state) => state.geoData);
+  useEffect(() => {
+    if(geoData){
+      console.log("HERES GEO DATA!!!!")
+      let lat = geoData.center[1]
+      let lng = geoData.center[0]
+      console.log(lat,lng)
+      const coords = [
+        {
+            "lat": lat,
+            "lng": lng
+        }
+    ]
 
+     map.flyToBounds(coords);
+    }
+  }, [geoData]);
   useEffect(() => {
     if (openPopup) {
+      console.log("center",[center])
       map.flyToBounds([center]);
       markerRef.current.openPopup();
     }
+    
   }, [map, center, openPopup]);
 
   return (
@@ -87,23 +105,12 @@ const PointMarker = ({ center, content, openPopup }) => {
 };
 
 const MapExternal = () => {
-  const geoData = useStore((state) => state.geoData);
   const [selected, setSelected] = useState();
  const [map, setMap] = useState(null);
   function handleItemClick(index) {
     setSelected(index);
   }
-useEffect(() => {
-  if(geoData){
-    console.log("HERES GEO DATA!!!!")
-    console.log(geoData)
-    let lat = geoData[0].lat
-    let lng = geoData[0].lon
-    let coords = [parseFloat(lat), parseFloat(lng)];
-   console.log(coords)
-     //map.flyToBounds(coords);
-  }
-}, [geoData]);
+
   return (
     <>
       <MapContainer

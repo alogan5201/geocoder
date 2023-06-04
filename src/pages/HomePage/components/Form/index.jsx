@@ -6,13 +6,13 @@ import Grid from "@mui/material/Grid";
 import AddressInput from "components/AddressInput";
 import Button from "components/Button";
 import Input from "components/Input";
-import { useRef } from "react";
-import { extractWords} from "util/helpers";
+import { useRef,useEffect } from "react";
+import { extractWords, test} from "util/helpers";
+import {covertAddressToLatLng} from "util/geocoder"
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
 import Typography from "components/Typography";
 import InputOutlined from "components/InputOutlined";
 import useStore from "store/mapStore";
-import {covertAddressToLatLng} from 'utils/geocoder'
 function DisplayGeoData() {
   const geoData = useStore((state) => state.geoData);
   return (
@@ -27,6 +27,9 @@ function DisplayGeoData() {
   );
 }
 function Form() {
+  useEffect(() => {
+    test()
+  }, []);
   const handleChild = (callback) => {
     // Here, you have the function from the child.
     callback();
@@ -61,22 +64,17 @@ function Form() {
       let extracted = extractWords(inputOne);
       let withPlus = extracted.join("+");
       const mapBoxData = await covertAddressToLatLng(inputOne);
-      console.log("mapBoxData", mapBoxData)
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/?addressdetails=1&q=${withPlus}&format=json&limit=1`
-      );
-      const data = await response.json();
-      if (data && data.length > 0) {
-        let lat = data[0].lat;
-        let lng = data[0].lon;
-        const coords = { lat: lat, lng: lng };
-        latInputElm.current.value = lat;
-        lngInputElm.current.value = lng;
-        updateGeoData(data);
-        //const geoData = useStore((state) => state.geoData);
-        //  useStore((data) => state.setGeoData(data))
+      if (mapBoxData && mapBoxData.features.length > 0) {
+
+let lat = mapBoxData.features[0].geometry.coordinates[1]
+let lng = mapBoxData.features[0].geometry.coordinates[0]
+        console.log(lat,lng)
         setCoords([coords]);
+        updateGeoData(mapBoxData.features[0]);
       }
+     
+   
+
     }
   }
     

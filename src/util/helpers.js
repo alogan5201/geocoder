@@ -158,10 +158,15 @@ function covertAddressToLatLng(address){
   });
 }
 
+export function test(){
+  console.log("this is a test")
+}
+
 export default {
   extractWords,
   calculateDMS,
   convertLatLngToDMS,
   convertDMStoLatLng,
   covertAddressToLatLng,
+  test
 };
