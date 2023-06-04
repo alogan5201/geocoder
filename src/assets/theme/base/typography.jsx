@@ -24,15 +24,12 @@ import colors from "assets/theme/base/colors";
 
 // Material Kit 2 PRO React Helper Functions
 import pxToRem from "assets/theme/functions/pxToRem";
-import "assets/fonts/XavieraPro/XavieraPro-Regular.eot";
-import "assets/fonts/XavieraPro/XavieraPro-Regular.ttf";
-import "assets/fonts/XavieraPro/XavieraPro-Regular.woff";
-import "assets/fonts/XavieraPro/XavieraPro-Regular.woff2";
-const { dark } = colors;
 
+const { dark } = colors;
+//  '"Montserrat", "Raleway", sans-serif'
 const baseProperties = {
-  fontFamily: '"Open Sans", sans-serif',
-  fontFamily2: '"Xaviera Pro"',
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontFamily2: '"Roboto Serif", serif',
   fontWeightLighter: 100,
   fontWeightLight: 300,
   fontWeightRegular: 400,
@@ -90,12 +87,6 @@ const typography = {
   },
 
   h4: {
-    fontFamily: baseProperties.fontFamily,
-    fontSize: pxToRem(24),
-    lineHeight: 1.375,
-    ...baseHeadingProperties,
-  },
-  brand: {
     fontFamily: baseProperties.fontFamily2,
     fontSize: pxToRem(24),
     lineHeight: 1.375,
@@ -111,7 +102,7 @@ const typography = {
 
   h6: {
     fontFamily: baseProperties.fontFamily,
-    fontSize: pxToRem(16),
+    fontSize: pxToRem(15),
     lineHeight: 1.625,
     ...baseHeadingProperties,
   },

@@ -65,7 +65,7 @@ function Form() {
   return (
     <Box component="form" p={2} method="post">
       <Box px={3} py={{ xs: 2, sm: 6 }}>
-        <Typography variant="h3" mb={1}>
+        <Typography variant="h4" mb={1}>
           Address to Latitude & Longitude
         </Typography>
         <Typography variant="body2" color="text" mb={2}>
@@ -82,11 +82,11 @@ function Form() {
               Submit
             </Button>
           </Grid>
-       
-            {/* ============ LatInput ============ */}
+
+          {/* ============ LatInput ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Box>
-              <Typography display="inline" variant="h6" color="secondary">
+              <Typography display="inline" variant="h6" fontWeight="regular" color="secondary">
                 Latitude
               </Typography>
             </Box>
@@ -94,7 +94,7 @@ function Form() {
               <InputOutlined />
             </Box>
           </Grid>
-            {/* ============ LngInput ============ */}
+          {/* ============ LngInput ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Box>
               <Typography display="inline" variant="h6" fontWeight="regular" color="secondary">
@@ -108,7 +108,6 @@ function Form() {
               inputRef={latInputElm}
             />
           </Grid>
-        
         </Grid>
       </Box>
     </Box>
