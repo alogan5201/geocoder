@@ -6,7 +6,7 @@ import DisplayPosition from './DisplayPosition';
 import tileLayer from 'util/tileLayer'
 import styles from "./controlling-the-map-from-outside-the-map.module.css";
 
-const center = [52.2295, 21.01];
+const center = [37.090240, -95.712891];
 
 const points = [
   {
@@ -93,7 +93,7 @@ const MapExternal = () => {
 
   return (
     <>
-      <MapContainer center={center} zoom={16} scrollWheelZoom={false}>
+      <MapContainer center={center} zoom={3} scrollWheelZoom={false}>
         <TileLayer {...tileLayer} />
 
         <MyMarkers selectedIndex={selected} data={points} />

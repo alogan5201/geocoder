@@ -44,7 +44,7 @@ if(val.length === 0){
     <>
       <Box component="section" py={sectionStyles}>
         <Container>
-          <Sandbox />
+     
           <Grid container item px={0}>
             <Box
               width="100%"
@@ -79,6 +79,7 @@ if(val.length === 0){
               </Grid>
             </Box>
           </Grid>
+          <Sandbox />
         </Container>
       </Box>
     </>

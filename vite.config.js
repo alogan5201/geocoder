@@ -11,6 +11,7 @@ export default defineConfig({
       components: path.resolve("src/components"),
       examples: path.resolve("src/examples"),
       assets: path.resolve("src/assets"),
+      store: path.resolve("src/store"),
       layouts: path.resolve("src/layouts"),
       util: path.resolve("src/util"),
       hooks: path.resolve("src/hooks"),
