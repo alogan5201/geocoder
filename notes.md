@@ -71,3 +71,7 @@ projection='globe'
 
 - callerPath
   - helper.js
+
+
+git config --global user.email "drewthomaslogan5201@gmail.com"
+git config --global user.name "alogan5201"
