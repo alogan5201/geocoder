@@ -133,7 +133,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                       display="block"
                       variant="button"
                       fontWeight="bold"
-                      textTransform="capitalize"
+                      
                       py={1}
                       px={0.5}
                       mt={index !== 0 ? 2 : 0}
@@ -152,7 +152,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                         display="block"
                         variant="button"
                         color="text"
-                        textTransform="capitalize"
+                        
                         fontWeight="regular"
                         py={0.625}
                         px={2}
@@ -214,7 +214,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             justifyContent="space-between"
             alignItems="center"
             variant="button"
-            textTransform="capitalize"
+            
             minWidth={item.description ? "14rem" : "12rem"}
             color={item.description ? "dark" : "text"}
             fontWeight={item.description ? "bold" : "regular"}
@@ -358,7 +358,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                     justifyContent="space-between"
                     alignItems="center"
                     variant="button"
-                    textTransform="capitalize"
+                    
                     minWidth={item.description ? "14rem" : "12rem"}
                     color={item.description ? "dark" : "text"}
                     fontWeight={item.description ? "bold" : "regular"}
@@ -483,9 +483,9 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
               <div className="pulse"></div>
             </div>
             <Typography
-              variant="button"
-              fontWeight="regular"
-              textTransform="capitalize"
+              variant="brand"
+              fontWeight="bold"
+              
               color={light ? "white" : "dark"}
               sx={{ fontWeight: "100%", ml: 1, mr: 0.25 }}
             >
@@ -563,7 +563,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
 
 // Setting default values for the props of DefaultNavbar
 DefaultNavbar.defaultProps = {
-  brand: "GeoTools",
+  brand: "geotools",
   transparent: false,
   light: false,
   action: false,

@@ -24,16 +24,19 @@ import colors from "assets/theme/base/colors";
 
 // Material Kit 2 PRO React Helper Functions
 import pxToRem from "assets/theme/functions/pxToRem";
-
+import "assets/fonts/XavieraPro/XavieraPro-Regular.eot";
+import "assets/fonts/XavieraPro/XavieraPro-Regular.ttf";
+import "assets/fonts/XavieraPro/XavieraPro-Regular.woff";
+import "assets/fonts/XavieraPro/XavieraPro-Regular.woff2";
 const { dark } = colors;
 
 const baseProperties = {
-  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-  fontFamily2: '"Roboto Slab", sans-serif',
+  fontFamily: '"Open Sans", sans-serif',
+  fontFamily2: '"Xaviera Pro"',
   fontWeightLighter: 100,
   fontWeightLight: 300,
   fontWeightRegular: 400,
-  fontWeightMedium: 600,
+  fontWeightMedium: 500,
   fontWeightBold: 700,
   fontSizeXXS: pxToRem(10.4),
   fontSizeXS: pxToRem(12),
@@ -47,7 +50,7 @@ const baseProperties = {
 
 const baseHeadingProperties = {
   color: dark.main,
-  fontWeight: baseProperties.fontWeightBold,
+  fontWeight: baseProperties.fontWeightMedium,
 };
 
 const baseDisplayProperties = {
@@ -88,6 +91,12 @@ const typography = {
 
   h4: {
     fontFamily: baseProperties.fontFamily,
+    fontSize: pxToRem(24),
+    lineHeight: 1.375,
+    ...baseHeadingProperties,
+  },
+  brand: {
+    fontFamily: baseProperties.fontFamily2,
     fontSize: pxToRem(24),
     lineHeight: 1.375,
     ...baseHeadingProperties,

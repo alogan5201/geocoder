@@ -10,6 +10,7 @@ import { useRef } from "react";
 import { extractWords } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
 import Typography from "components/Typography";
+import InputOutlined from "components/InputOutlined";
 
 function Form() {
   const handleChild = (callback) => {
@@ -76,13 +77,30 @@ function Form() {
         <Grid container>
           {/* ============ AddressInput ============ */}
           <AddressInput handleChild={handleChild} />
-          <Grid item xs={12} pr={1} mb={3}>
+          <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">
               Submit
             </Button>
           </Grid>
-
-          <Grid item xs={12} pr={1} mb={3}>
+       
+            {/* ============ LatInput ============ */}
+          <Grid item xs={12} pr={1} mb={2}>
+            <Box>
+              <Typography display="inline" variant="h6" color="secondary">
+                Latitude
+              </Typography>
+            </Box>
+            <Box>
+              <InputOutlined />
+            </Box>
+          </Grid>
+            {/* ============ LngInput ============ */}
+          <Grid item xs={12} pr={1} mb={2}>
+            <Box>
+              <Typography display="inline" variant="h6" fontWeight="regular" color="secondary">
+                Longitude
+              </Typography>
+            </Box>
             <Input
               label={latInputElm ? "" : "Longitude"}
               type="text"
@@ -90,14 +108,7 @@ function Form() {
               inputRef={latInputElm}
             />
           </Grid>
-          <Grid item xs={12} pr={1} mb={3}>
-            <Input
-              label={lngInputElm ? "" : "Longitude"}
-              type="text"
-              fullWidth
-              inputRef={lngInputElm}
-            />
-          </Grid>
+        
         </Grid>
       </Box>
     </Box>
