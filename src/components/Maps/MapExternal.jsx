@@ -6,6 +6,8 @@ import DisplayPosition from './DisplayPosition';
 import tileLayer from 'util/tileLayer'
 import styles from "./controlling-the-map-from-outside-the-map.module.css";
 import LocationButton from './LocationButton';
+import useStore from "store/mapStore";
+
 const center = [37.090240, -95.712891];
 
 const points = [
@@ -85,12 +87,23 @@ const PointMarker = ({ center, content, openPopup }) => {
 };
 
 const MapExternal = () => {
+  const geoData = useStore((state) => state.geoData);
   const [selected, setSelected] = useState();
  const [map, setMap] = useState(null);
   function handleItemClick(index) {
     setSelected(index);
   }
-
+useEffect(() => {
+  if(geoData){
+    console.log("HERES GEO DATA!!!!")
+    console.log(geoData)
+    let lat = geoData[0].lat
+    let lng = geoData[0].lon
+    let coords = [parseFloat(lat), parseFloat(lng)];
+   console.log(coords)
+     //map.flyToBounds(coords);
+  }
+}, [geoData]);
   return (
     <>
       <MapContainer
