@@ -5,7 +5,7 @@ import { useGlobalGeoData } from "util/mapState";
 import DisplayPosition from './DisplayPosition';
 import tileLayer from 'util/tileLayer'
 import styles from "./controlling-the-map-from-outside-the-map.module.css";
-
+import LocationButton from './LocationButton';
 const center = [37.090240, -95.712891];
 
 const points = [
@@ -86,20 +86,27 @@ const PointMarker = ({ center, content, openPopup }) => {
 
 const MapExternal = () => {
   const [selected, setSelected] = useState();
-
+ const [map, setMap] = useState(null);
   function handleItemClick(index) {
     setSelected(index);
   }
 
   return (
     <>
-      <MapContainer center={center} zoom={3} scrollWheelZoom={true}>
+      <MapContainer
+        whenCreated={setMap}
+        center={center}
+        zoom={3}
+        scrollWheelZoom={true}
+        zoomControl={false}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
         ;
         <MyMarkers selectedIndex={selected} data={points} />
+        <LocationButton map={map} />
       </MapContainer>
 
       <ListMarkers data={points} onItemClick={handleItemClick} />

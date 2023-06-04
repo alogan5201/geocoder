@@ -11,16 +11,30 @@ import { extractWords } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
 import Typography from "components/Typography";
 import InputOutlined from "components/InputOutlined";
+import useStore from "store/mapStore";
 
+function DisplayGeoData() {
+  const geoData = useStore((state) => state.geoData);
+  return (
+    <Box>
+      <Typography variant="h4" mb={1}>
+        GeoData
+      </Typography>
+      <Typography variant="body2" color="text" mb={2}>
+        {JSON.stringify(geoData)}
+      </Typography>
+    </Box>
+  );
+}
 function Form() {
   const handleChild = (callback) => {
     // Here, you have the function from the child.
     callback();
   };
   const [coords, setCoords] = useGlobalValue();
-  const [geoData, setGeoData] = useGlobalGeoData();
   const latInputElm = useRef(null);
   const lngInputElm = useRef(null);
+  const updateGeoData = useStore((state) => state.setGeoData);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -56,14 +70,17 @@ function Form() {
         const coords = { lat: lat, lng: lng };
         latInputElm.current.value = lat;
         lngInputElm.current.value = lng;
-
-        setGeoData(data);
+        updateGeoData(data);
+        //const geoData = useStore((state) => state.geoData);
+        //  useStore((data) => state.setGeoData(data))
         setCoords([coords]);
       }
     }
   }
+    
+
   return (
-    <Box component="form" p={2} method="post">
+    <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={3} py={{ xs: 2, sm: 6 }}>
         <Typography variant="h4" mb={1}>
           Address to Latitude & Longitude
@@ -77,6 +94,7 @@ function Form() {
         <Grid container>
           {/* ============ AddressInput ============ */}
           <AddressInput handleChild={handleChild} />
+          {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">
               Submit
@@ -91,7 +109,12 @@ function Form() {
               </Typography>
             </Box>
             <Box>
-              <InputOutlined />
+              <Input
+                label={latInputElm ? "" : "Longitude"}
+                type="text"
+                fullWidth
+                inputRef={latInputElm}
+              />
             </Box>
           </Grid>
           {/* ============ LngInput ============ */}
@@ -102,11 +125,16 @@ function Form() {
               </Typography>
             </Box>
             <Input
-              label={latInputElm ? "" : "Longitude"}
+              label={lngInputElm ? "" : "Longitude"}
               type="text"
               fullWidth
-              inputRef={latInputElm}
+              inputRef={lngInputElm}
             />
+          </Grid>
+          <Grid item xs={12} pr={1} mb={2}>
+            <Box>
+            </Box>
+          
           </Grid>
         </Grid>
       </Box>
