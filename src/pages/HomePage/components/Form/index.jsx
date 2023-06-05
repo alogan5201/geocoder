@@ -7,7 +7,7 @@ import AddressInput from "components/AddressInput";
 import Button from "components/Button";
 import Input from "components/Input";
 import { useRef,useEffect } from "react";
-import { extractWords, test} from "util/helpers";
+import { extractWords, test,tron} from "util/helpers";
 import {covertAddressToLatLng} from "util/geocoder"
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
 import Typography from "components/Typography";
@@ -38,6 +38,7 @@ function Form() {
   const latInputElm = useRef(null);
   const lngInputElm = useRef(null);
   const updateGeoData = useStore((state) => state.setGeoData);
+  const updateMarkerData = useStore((state) => state.setMarkerData);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -68,9 +69,20 @@ function Form() {
 
 let lat = mapBoxData.features[0].geometry.coordinates[1]
 let lng = mapBoxData.features[0].geometry.coordinates[0]
-        console.log(lat,lng)
         setCoords([coords]);
+        const address = mapBoxData.features[0].place_name
+      
+        const markerData = [
+          {
+           id: "1",
+           lat: lat,
+           lng: lng,
+           title: address
+             }
+      ]
+      updateMarkerData(markerData)
         updateGeoData(mapBoxData.features[0]);
+
       }
      
    

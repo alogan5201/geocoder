@@ -500,40 +500,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           >
             {renderNavbarItems}
           </Box>
-          <Box ml={{ xs: "auto", lg: 0 }}>
-            {action &&
-              (action.type === "internal" ? (
-                <Button
-                  component={Link}
-                  to={action.route}
-                  variant={
-                    action.color === "white" || action.color === "default"
-                      ? "contained"
-                      : "gradient"
-                  }
-                  color={action.color ? action.color : "info"}
-                  size="small"
-                >
-                  {action.label}
-                </Button>
-              ) : (
-                <Button
-                  component="a"
-                  href={action.route}
-                  target="_blank"
-                  rel="noreferrer"
-                  variant={
-                    action.color === "white" || action.color === "default"
-                      ? "contained"
-                      : "gradient"
-                  }
-                  color={action.color ? action.color : "info"}
-                  size="small"
-                >
-                  {action.label}
-                </Button>
-              ))}
-          </Box>
+     
           <Box
             display={{ xs: "inline-block", lg: "none" }}
             lineHeight={0}
@@ -595,7 +562,7 @@ DefaultNavbar.propTypes = {
         "default",
         "white",
       ]),
-      label: PropTypes.string.isRequired,
+    
     }),
   ]),
   sticky: PropTypes.bool,

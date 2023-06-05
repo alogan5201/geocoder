@@ -7,34 +7,17 @@ import tileLayer from 'util/tileLayer'
 import styles from "./controlling-the-map-from-outside-the-map.module.css";
 import LocationButton from './LocationButton';
 import useStore from "store/mapStore";
+import { extractWords, test,tron} from "util/helpers";
 
 const center = [37.090240, -95.712891];
 
 const points = [
   {
     id: "1",
-    lat: 52.228785157729114,
-    lng: 21.006867885589603,
+    lat: 0,
+    lng: 0,
     title: "Marker 1",
-  },
-  {
-    id: "2",
-    lat: 52.22923201880194,
-    lng: 21.00897073745728,
-    title: "Marker 2",
-  },
-  {
-    id: "3",
-    lat: 52.22963944703663,
-    lng: 21.01091265678406,
-    title: "Marker 3",
-  },
-  {
-    id: "4",
-    lat: 52.229928587386496,
-    lng: 21.01218938827515,
-    title: "Marker 4",
-  },
+  }
 ];
 
 const ListMarkers = ({ onItemClick }) => {
@@ -58,12 +41,23 @@ const ListMarkers = ({ onItemClick }) => {
 };
 
 const MyMarkers = ({ data, selectedIndex }) => {
-  return data.map((item, index) => (
+  const markerData = useStore((state) => state.markerData);
+  const [markerPoints, setMarkerPoints] = useState(data)
+  const [popupOpen, setPopupOpen] = useState(false);
+  useEffect(() => {
+    if(markerData){
+    // tron.log(markerData)
+ setMarkerPoints(markerData)
+ setPopupOpen(true)
+    }
+  }, [markerData]);
+
+  return markerPoints.map((item, index) => (
     <PointMarker
       key={index}
       content={item.title}
       center={{ lat: item.lat, lng: item.lng }}
-      openPopup={selectedIndex === index}
+      openPopup={popupOpen}
     />
   ));
 };
@@ -71,23 +65,7 @@ const MyMarkers = ({ data, selectedIndex }) => {
 const PointMarker = ({ center, content, openPopup }) => {
   const map = useMap();
   const markerRef = useRef(null);
-  const geoData = useStore((state) => state.geoData);
-  useEffect(() => {
-    if(geoData){
-      console.log("HERES GEO DATA!!!!")
-      let lat = geoData.center[1]
-      let lng = geoData.center[0]
-      console.log(lat,lng)
-      const coords = [
-        {
-            "lat": lat,
-            "lng": lng
-        }
-    ]
 
-     map.flyToBounds(coords);
-    }
-  }, [geoData]);
   useEffect(() => {
     if (openPopup) {
       console.log("center",[center])
@@ -107,6 +85,7 @@ const PointMarker = ({ center, content, openPopup }) => {
 const MapExternal = () => {
   const [selected, setSelected] = useState();
  const [map, setMap] = useState(null);
+
   function handleItemClick(index) {
     setSelected(index);
   }
@@ -124,7 +103,7 @@ const MapExternal = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
-        ;
+      
         <MyMarkers selectedIndex={selected} data={points} />
         <LocationButton map={map} />
       </MapContainer>
