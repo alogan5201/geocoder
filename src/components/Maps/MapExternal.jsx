@@ -8,7 +8,8 @@ import styles from "./controlling-the-map-from-outside-the-map.module.css";
 import LocationButton from './LocationButton';
 import useStore from "store/mapStore";
 import { extractWords, test,tron} from "util/helpers";
-
+import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
+import PopupMarker from 'components/PopupMarker';
 const center = [37.090240, -95.712891];
 
 const points = [
@@ -20,29 +21,10 @@ const points = [
   }
 ];
 
-const ListMarkers = ({ onItemClick }) => {
-  
-  return (
-    <div className={styles.markersList}>
-      {points.map(({ title }, index) => (
-        <div
-          className={styles.markerItem}
-          key={index}
-          onClick={(e) => {
-            e.preventDefault();
-            onItemClick(index);
-          }}
-        >
-          {title}
-        </div>
-      ))}
-    </div>
-  );
-};
 
-const MyMarkers = ({ data, selectedIndex }) => {
+const MyMarkers = () => {
   const markerData = useStore((state) => state.markerData);
-  const [markerPoints, setMarkerPoints] = useState(data)
+  const [markerPoints, setMarkerPoints] = useState(null)
   const [popupOpen, setPopupOpen] = useState(false);
   useEffect(() => {
     if(markerData){
@@ -52,14 +34,14 @@ const MyMarkers = ({ data, selectedIndex }) => {
     }
   }, [markerData]);
 
-  return markerPoints.map((item, index) => (
+  return markerPoints && markerPoints.length > 0 ?  markerPoints.map((item, index) => (
     <PointMarker
       key={index}
       content={item.title}
       center={{ lat: item.lat, lng: item.lng }}
       openPopup={popupOpen}
     />
-  ));
+  )) : null
 };
 
 const PointMarker = ({ center, content, openPopup }) => {
@@ -69,15 +51,22 @@ const PointMarker = ({ center, content, openPopup }) => {
   useEffect(() => {
     if (openPopup) {
       console.log("center",[center])
-      map.flyToBounds([center]);
-      markerRef.current.openPopup();
+     map.fitBounds([center])
+     //map.flyToBounds([center],{ maxZoom: 13});
+      setTimeout(() => {
+        markerRef.current.openPopup();
+        
+      }, 500);
+  
     }
     
   }, [map, center, openPopup]);
 
   return (
     <Marker ref={markerRef} position={center}>
-      <Popup>{content}</Popup>
+      <Popup>
+<PopupMarker content={content}/>
+      </Popup>
     </Marker>
   );
 };
@@ -86,9 +75,6 @@ const MapExternal = () => {
   const [selected, setSelected] = useState();
  const [map, setMap] = useState(null);
 
-  function handleItemClick(index) {
-    setSelected(index);
-  }
 
   return (
     <>
@@ -104,11 +90,10 @@ const MapExternal = () => {
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
       
-        <MyMarkers selectedIndex={selected} data={points} />
+        <MyMarkers />
         <LocationButton map={map} />
       </MapContainer>
 
-      <ListMarkers data={points} onItemClick={handleItemClick} />
     </>
   );
 };

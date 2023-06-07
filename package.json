@@ -7,14 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server --watch ./server/fakeServer/db.json"
   },
   "dependencies": {
     "@emotion/cache": "11.10.7",
-    "@emotion/react": "11.10.6",
-    "@emotion/styled": "11.10.6",
-    "@mui/icons-material": "5.11.16",
-    "@mui/material": "5.12.0",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.4",
     "@mui/styled-engine": "5.12.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "14.0.0",

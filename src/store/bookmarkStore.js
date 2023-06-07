@@ -1,7 +1,7 @@
 import { create } from 'zustand'
-import { tron } from 'util/helpers'
-import {calculateDMS} from 'util/geocoder'
- const useStore = create((set) => ({
+
+
+ const useBookmarkStore = create((set) => ({
   bears: 0,
   geoData: null,
   markerData: null,
@@ -10,8 +10,7 @@ import {calculateDMS} from 'util/geocoder'
   setGeoData: (data) => {
     set({ geoData: data })},
   setMarkerData: (data) => {
-
     set({ markerData: data })},
 }))
 
-export default useStore
+export default useBookmarkStore

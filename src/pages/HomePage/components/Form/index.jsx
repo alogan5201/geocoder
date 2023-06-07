@@ -13,6 +13,7 @@ import { useGlobalGeoData, useGlobalValue } from "util/mapState";
 import Typography from "components/Typography";
 import InputOutlined from "components/InputOutlined";
 import useStore from "store/mapStore";
+import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 function DisplayGeoData() {
   const geoData = useStore((state) => state.geoData);
   return (
@@ -150,6 +151,7 @@ let lng = mapBoxData.features[0].geometry.coordinates[0]
           </Grid>
         </Grid>
       </Box>
+
     </Box>
   );
 }

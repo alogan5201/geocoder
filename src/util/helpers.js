@@ -9,23 +9,25 @@ const mapBoxapi = create({
   headers: { Accept: "application/vnd.github.v3+json" },
 });
 
+export const lowercaseFirst = (str) => `${str.charAt(0).toLowerCase()}${str.slice(1)}`;
+
 
 
 export const tron = {
-  log: function (args) {
-    Reactotron.log(args);
+  log: function (...args) {
+    Reactotron.log(...args);
   },
-  warn: function (args) {
-    Reactotron.warn(args);
+  warn: function (...args) {
+    Reactotron.warn(...args);
   },
-  error: function (args) {
-    Reactotron.error(args);
+  error: function (...args) {
+    Reactotron.error(...args);
   },
-  display: function (args) {
-    Reactotron.display(args);
+  display: function (...args) {
+    Reactotron.display(...args);
   },
-  logImportant: function (args) {
-    Reactotron.logImportant(args);
+  logImportant: function (...args) {
+    Reactotron.logImportant(...args);
   },
 };
 
@@ -67,7 +69,7 @@ export function latLongToDMS(latitude, longitude) {
     '"'
   );
 }
-function calculateDMS(lat, lng) {
+export function convertLatLngToDMS(lat, lng) {
   let a = 0,
     b = 0,
     c = 0,
@@ -99,30 +101,12 @@ function calculateDMS(lat, lng) {
   }
 }
 // This function takes in a string argument in the format of 'degrees minutes seconds' (e.g. '41 19 47') and parses it into its respective degree, minute, and second components for conversion to latitude and longitude.
-export function convertLatLngToDMS(geoLocation) {
-  // Split geoLocation string argument into array
-  let geoArray = geoLocation.split(" ");
 
-  // Parse each component of the geoArray into its respective degree, minute, and second components
-  let degree = parseInt(geoArray[0]);
-  let minute = parseInt(geoArray[1]);
-  let second = parseInt(geoArray[2]);
 
-  // Calculate latitude and longitude by converting each component into its decimal equivalent
-  let latitude = degree + minute / 60 + second / 3600;
-  let longitude = degree + minute / 60 + second / 3600;
-
-  // Return the converted latitude and longitude
-  return {
-    latitude: latitude,
-    longitude: longitude,
-  };
-}
-
-function isNumber(e) {
+export function isNumber(e) {
   return !isNaN(parseFloat(e)) && isFinite(e);
 }
-function convertDMStoLatLng(dms) {
+export function convertDMStoLatLng(dms) {
   var t = !1,
     n = dms.latDegrees;
   0 > n && (t = !0);
@@ -145,10 +129,10 @@ function convertDMStoLatLng(dms) {
   return [lat, lng];
 }
 
-function convertLatLngToAddress(){
+export function convertLatLngToAddress(){
   // "https://api.mapbox.com/geocoding/v5/mapbox.places/-73.989,40.733.json?access_token=pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Yao_mmdgrgjPA"
 }
-function covertAddressToLatLng(address){
+export function covertAddressToLatLng(address){
   let location = encodeURIComponent(address);
   
   // "https://api.mapbox.com/geocoding/v5/mapbox.places/Lagrange,GA.json?limit=2&access_token=pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Yao_mmdgrgjPA"
@@ -162,11 +146,4 @@ export function test(){
   console.log("this is a test")
 }
 
-export default {
-  extractWords,
-  calculateDMS,
-  convertLatLngToDMS,
-  convertDMStoLatLng,
-  covertAddressToLatLng,
-  test
-};
+

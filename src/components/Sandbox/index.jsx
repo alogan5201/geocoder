@@ -3,6 +3,7 @@ import Wrapper from './Wrapper'
 import UseObjectState from './UseObjectState'
 import WhatChanged from "./WhatChanged";
 import useStore from "store/mapStore"
+import BasicList from "./BasicList";
 function BearCounter() {
   const bears = useStore((state) => state.bears)
   return <h1>{bears} bears around here...</h1>
@@ -15,6 +16,7 @@ function Controls() {
 function Sandbox() {
   return (
     <div>
+      <BasicList />
         {/* <WhatChanged/>
    <Wrapper children={<UseObjectState/>} /> */}
 <BearCounter />

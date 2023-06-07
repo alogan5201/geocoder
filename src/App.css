@@ -279,3 +279,18 @@
 .transitional {
   font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
 }
+.leaflet-container a.leaflet-popup-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 7px 6px 0 0;
+  border: none;
+  text-align: center;
+  width: 24px;
+  height: 27px;
+  font: 20px/17px Tahoma,Verdana,sans-serif;
+  color: #c3c3c3;
+  text-decoration: none;
+  font-weight: 700;
+  background: 0 0
+}

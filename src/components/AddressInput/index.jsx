@@ -7,10 +7,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 
 // Material Kit 2 PRO React components
-function AddressInput({handleAddressChange}){
-    const func = () => {
-        console.log("child function");
-      };
+function AddressInput(){
+
   return (
     <Grid item xs={12} pr={1} mb={3}>
       <Input
@@ -18,7 +16,7 @@ function AddressInput({handleAddressChange}){
      type="text"
         label="Search"
         defaultValue="Atlanta, GA"
-        onChange={() => handleAddressChange(func)}
+      
         InputProps={{
           endAdornment: (
             <InputAdornment position="start">

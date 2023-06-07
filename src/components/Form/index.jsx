@@ -75,7 +75,7 @@ function Form() {
       <Box pt={0.5} pb={3} px={3}>
         <Grid container>
           {/* ============ AddressInput ============ */}
-          <AddressInput handleChild={handleChild} />
+          <AddressInput/>
           <Grid item xs={12} pr={1} mb={3}>
             <Button type="submit" variant="gradient" color="info">
               Submit
