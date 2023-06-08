@@ -28,7 +28,32 @@ const MyMarkers = () => {
   const [popupOpen, setPopupOpen] = useState(false);
   useEffect(() => {
     if(markerData){
+   
     // tron.log(markerData)
+/*     [
+      {
+        "id": "1",
+        "lat": 33.748992,
+        "lng": -84.390264,
+        "title": "Atlanta, Georgia, United States",
+        "dms": {
+          "lat": {
+            "degrees": 33,
+            "minutes": 44,
+            "seconds": 56.3712,
+            "lat": 33.748992,
+            "display": "33° 44' 56.3712''"
+          },
+          "lng": {
+            "degrees": 84,
+            "minutes": 23,
+            "seconds": 24.9504,
+            "lng": 84.390264,
+            "display": "84° 23' 24.9504'' 84.390264"
+          }
+        }
+      }
+    ] */
  setMarkerPoints(markerData)
  setPopupOpen(true)
     }
@@ -37,7 +62,7 @@ const MyMarkers = () => {
   return markerPoints && markerPoints.length > 0 ?  markerPoints.map((item, index) => (
     <PointMarker
       key={index}
-      content={item.title}
+      content={index}
       center={{ lat: item.lat, lng: item.lng }}
       openPopup={popupOpen}
     />
@@ -50,7 +75,8 @@ const PointMarker = ({ center, content, openPopup }) => {
 
   useEffect(() => {
     if (openPopup) {
-      console.log("center",[center])
+
+  
      map.fitBounds([center])
      //map.flyToBounds([center],{ maxZoom: 13});
       setTimeout(() => {

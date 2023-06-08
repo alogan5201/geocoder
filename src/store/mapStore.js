@@ -1,6 +1,7 @@
 import { create } from 'zustand'
-import { tron } from 'util/helpers'
-import {calculateDMS} from 'util/geocoder'
+import { tron,shallowCopy } from 'util/helpers'
+import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
+
  const useStore = create((set) => ({
   bears: 0,
   geoData: null,
@@ -10,8 +11,19 @@ import {calculateDMS} from 'util/geocoder'
   setGeoData: (data) => {
     set({ geoData: data })},
   setMarkerData: (data) => {
+const markerData = []
 
-    set({ markerData: data })},
+for (let index = 0; index < data.length; index++) {
+  const element = data[index];
+  let obj = data[index]
+ let lat = obj['lat']
+ let lng = obj['lng']
+  let dms = convertLatLngToDMS(lat,lng)
+  obj['dms'] = dms
+markerData.push(obj)
+}
+
+    set({ markerData: markerData })},
 }))
 
 export default useStore

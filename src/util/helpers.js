@@ -141,9 +141,15 @@ export function covertAddressToLatLng(address){
     return response.json();
   });
 }
-
+export const shallowCopy = obj => Object.assign({}, obj);
 export function test(){
-  console.log("this is a test")
+
 }
 
-
+/* export default {
+  extractWords,
+  convertLatLngToDMS,
+  convertDMStoLatLng,
+  covertAddressToLatLng,
+  test
+}; */

@@ -3,6 +3,11 @@ import L from "leaflet";
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 import styles from "./location-button.module.css";
+function PopupTest() {
+  return (
+    <div>test123 you are here</div>
+  )
+}
 const LocationButton = () => {
   const map = useMap();
 
@@ -121,7 +126,7 @@ const LocationButton = () => {
             iconSize: L.point(17, 17),
             popupAnchor: [0, -15],
           }),
-        }).bindPopup("Your are here :)");
+        }).bindPopup(<PopupTest/>);
       },
       removeLocate: function () {
         this._map.eachLayer(function (layer) {

@@ -12,7 +12,7 @@ async function getFakeData(input) {
 
 async function main(){
     const data = await getFakeData("addresses/atlanta")
-    console.log(data)
+  
 }
 
 main()
