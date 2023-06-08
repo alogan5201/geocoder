@@ -78,7 +78,7 @@ export function convertLatLngToDMS(lat, lng) {
       let display = displayA + "° " + displayB + "' " + displayC + "''";
       
       let text = a.toFixed(2)
-      tron.log("test",a,b,c)
+     
     let latOutput = {
   degrees: a,
   minutes: b,

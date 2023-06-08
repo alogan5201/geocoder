@@ -1,4 +1,3 @@
-import Reactotron from "reactotron-react-js";
 // ! Remove For production
 import { create } from "apisauce";
 const { VITE_USERNAME, VITE_STYLE_ID, VITE_ACCESS_TOKEN } = import.meta.env;
@@ -15,20 +14,8 @@ export const lowercaseFirst = (str) => `${str.charAt(0).toLowerCase()}${str.slic
 
 export const tron = {
   log: function (...args) {
-    Reactotron.log(...args);
-  },
-  warn: function (...args) {
-    Reactotron.warn(...args);
-  },
-  error: function (...args) {
-    Reactotron.error(...args);
-  },
-  display: function (...args) {
-    Reactotron.display(...args);
-  },
-  logImportant: function (...args) {
-    Reactotron.logImportant(...args);
-  },
+    console.log(...args);
+  }
 };
 
 

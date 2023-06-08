@@ -58,15 +58,33 @@ const PointMarker = ({ center, content, openPopup }) => {
     leafletElement.panTo(newLatlng, { animate: true });
   }
 } */
+function handlePopup(e) {
+  if(!map) return
+   var px = map.project(e.target._popup._latlng); // find the pixel location on the map where the popup anchor is
+    px.y -= e.target._popup._container.clientHeight/2; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+    map.panTo(map.unproject(px),{animate: true});
+}
   useEffect(() => {
     if (openPopup) {
 
   
-     map.fitBounds([center])
-     //map.flyToBounds([center],{ maxZoom: 13});
+      //map.flyToBounds([center],{ maxZoom: 13});
       setTimeout(() => {
-        tron.log(markerRef.current)
-        markerRef.current.openPopup();
+          markerRef.current.openPopup();
+        let x = markerRef.current._popup._container.clientHeight / 2
+          map.fitBounds([center]);
+   /*      const zoom = map.getZoom();
+        const popupLatlng = markerRef.current._latlng;
+    console.log(popupLatlng)     
+    console.log(center)   
+        let px = map.project(popupLatlng); 
+        const point = map.project(popupLatlng, zoom);
+        let newYPoint = point.y -x
+        const newPoint = point.subtract([0, 0]);
+         const newLatlng = map.unproject(newPoint, zoom);
+         map.panTo(newLatlng, { animate: true }); */
+
+      
         
       }, 500);
   
@@ -76,7 +94,10 @@ const PointMarker = ({ center, content, openPopup }) => {
 
   return (
     <Marker ref={markerRef} position={center}>
-      <Popup className={styles.newPopup}  minWidth={300}>
+      <Popup
+        className={styles.newPopup}
+        minWidth={300}
+      >
         <PopupMarker content={content} />
       </Popup>
     </Marker>
