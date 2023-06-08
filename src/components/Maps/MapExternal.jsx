@@ -4,7 +4,7 @@ import "react-tabs/style/react-tabs.css";
 import { useGlobalGeoData } from "util/mapState";
 import DisplayPosition from './DisplayPosition';
 import tileLayer from 'util/tileLayer'
-import styles from "./controlling-the-map-from-outside-the-map.module.css";
+import styles from "./custom-marker-and-popup.module.css";
 import LocationButton from './LocationButton';
 import useStore from "store/mapStore";
 import { extractWords, test,tron} from "util/helpers";
@@ -28,32 +28,7 @@ const MyMarkers = () => {
   const [popupOpen, setPopupOpen] = useState(false);
   useEffect(() => {
     if(markerData){
-   
-    // tron.log(markerData)
-/*     [
-      {
-        "id": "1",
-        "lat": 33.748992,
-        "lng": -84.390264,
-        "title": "Atlanta, Georgia, United States",
-        "dms": {
-          "lat": {
-            "degrees": 33,
-            "minutes": 44,
-            "seconds": 56.3712,
-            "lat": 33.748992,
-            "display": "33° 44' 56.3712''"
-          },
-          "lng": {
-            "degrees": 84,
-            "minutes": 23,
-            "seconds": 24.9504,
-            "lng": 84.390264,
-            "display": "84° 23' 24.9504'' 84.390264"
-          }
-        }
-      }
-    ] */
+
  setMarkerPoints(markerData)
  setPopupOpen(true)
     }
@@ -72,7 +47,17 @@ const MyMarkers = () => {
 const PointMarker = ({ center, content, openPopup }) => {
   const map = useMap();
   const markerRef = useRef(null);
-
+/* function centerMapView(e) {
+  const { leafletElement } = mapRef.current;
+  if (e) {
+    const popupLatlng = e.popup._latlng;
+    const zoom = leafletElement.getZoom();
+    const point = leafletElement.project(popupLatlng, zoom);
+    const newPoint = point.subtract([0, 180]);
+    const newLatlng = leafletElement.unproject(newPoint, zoom);
+    leafletElement.panTo(newLatlng, { animate: true });
+  }
+} */
   useEffect(() => {
     if (openPopup) {
 
@@ -80,6 +65,7 @@ const PointMarker = ({ center, content, openPopup }) => {
      map.fitBounds([center])
      //map.flyToBounds([center],{ maxZoom: 13});
       setTimeout(() => {
+        tron.log(markerRef.current)
         markerRef.current.openPopup();
         
       }, 500);
@@ -90,8 +76,8 @@ const PointMarker = ({ center, content, openPopup }) => {
 
   return (
     <Marker ref={markerRef} position={center}>
-      <Popup>
-<PopupMarker content={content}/>
+      <Popup className={styles.newPopup}  minWidth={300}>
+        <PopupMarker content={content} />
       </Popup>
     </Marker>
   );

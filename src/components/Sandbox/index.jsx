@@ -4,6 +4,7 @@ import UseObjectState from './UseObjectState'
 import WhatChanged from "./WhatChanged";
 import useStore from "store/mapStore"
 import BasicList from "./BasicList";
+import PassingFunction from "./PassingFunction";
 function BearCounter() {
   const bears = useStore((state) => state.bears)
   return <h1>{bears} bears around here...</h1>
@@ -16,12 +17,14 @@ function Controls() {
 function Sandbox() {
   return (
     <div>
-      <BasicList />
-        {/* <WhatChanged/>
-   <Wrapper children={<UseObjectState/>} /> */}
+      <Wrapper children={<PassingFunction />} />
+      {/*
+   <BasicList />
+       <WhatChanged/>
+   <Wrapper children={<UseObjectState/>} /> 
 <BearCounter />
-<Controls />
+<Controls />*/}
     </div>
-  )
+  );
 }
 export default Sandbox;
