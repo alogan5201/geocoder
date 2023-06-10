@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { MapContainer, useMap, TileLayer, Marker, Popup,useMapEvents } from "react-leaflet";
+import { MapContainer, useMap, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import "react-tabs/style/react-tabs.css";
 import { useGlobalGeoData } from "util/mapState";
 import DisplayPosition from "./DisplayPosition";
@@ -11,7 +11,6 @@ import { extractWords, test, tron } from "util/helpers";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 import PopupMarker from "components/PopupMarker";
 const center = [37.09024, -95.712891];
-
 const points = [
   {
     id: "1",
@@ -20,7 +19,6 @@ const points = [
     title: "Marker 1",
   },
 ];
-
 const MyMarkers = () => {
   const markerData = useStore((state) => state.markerData);
   const [markerPoints, setMarkerPoints] = useState(null);
@@ -31,7 +29,6 @@ const MyMarkers = () => {
       setPopupOpen(true);
     }
   }, [markerData]);
-
   return markerPoints && markerPoints.length > 0
     ? markerPoints.map((item, index) => (
         <PointMarker
@@ -43,31 +40,24 @@ const MyMarkers = () => {
       ))
     : null;
 };
-
 const PointMarker = ({ center, content, openPopup }) => {
-    const [position, setPosition] = useState(null);
-    const [popupOpened, setPopupOpened] = useState(false);
-    const map = useMapEvents({
-      popupopen(e) {
-        // setPosition(e.target._popup._latlng);
-        setTimeout(() => {
-          
-          var px = map.project(e.target._popup._latlng);
-       
-          // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
-          px.y -= e.target._popup._container.clientHeight / 2;
-          
-          console.log("POPUP OPEN!",px)
-            map.panTo(map.unproject(px), { animate: true});
-        }, 500);
-        },
-    });
+  const [position, setPosition] = useState(null);
+  const [popupOpened, setPopupOpened] = useState(false);
+  const map = useMapEvents({
+    popupopen(e) {
+      // setPosition(e.target._popup._latlng);
+      var px = map.project(e.target._popup._latlng);
+      // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+      px.y -= e.target._popup._container.clientHeight / 2;
+      console.log("POPUP OPEN!", px);
+      map.panTo(map.unproject(px), { animate: true });
+     
+    },
+  });
   const markerRef = useRef(null);
-
   useEffect(() => {
     if (openPopup) {
       let open = markerRef.current.isPopupOpen();
-
       if (open) {
         markerRef.current.closePopup();
         console.log("popupOpen");
@@ -76,29 +66,36 @@ const PointMarker = ({ center, content, openPopup }) => {
       //  map.fitBounds([[lat, lon]], { padding: [50, 50], maxZoom: 13 });
       //  map.fitBounds([[center.lat, center.lng]], { padding: [50, 50], maxZoom: 13 });
       // {autoPan: true, keepInView: true}
-      map.fitBounds([[center.lat, center.lng]], { padding: [50, 50], maxZoom: 13 });
       markerRef.current.openPopup();
       setTimeout(() => {
+         map.setView([center.lat, center.lng], 13, { animate: true })
+       // map.zoomIn(13, { animate: true });
+        //map.fitBounds([[center.lat, center.lng]], { padding: [50, 50], maxZoom: 13 });
         var px = map.project(markerRef.current._popup._latlng);
-        console.log("firstRender",px)
-      }, 500);
-     
+        // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+        px.y -= markerRef.current._popup._container.clientHeight / 2;
+        console.log("POPUP OPEN!", px);
+        map.panTo(map.unproject(px), { animate: true });
+      }, 100);
     }
   }, [map, center, openPopup]);
-
   return (
     <Marker ref={markerRef} position={center}>
-      <Popup className={styles.newPopup} minWidth={300} position={position} autoPan={true} keepInView={true}>
+      <Popup
+        className={styles.newPopup}
+        minWidth={300}
+        position={position}
+        autoPan={true}
+        keepInView={true}
+      >
         <PopupMarker content={content} />
       </Popup>
     </Marker>
   );
 };
-
 const MapExternal = () => {
   const [selected, setSelected] = useState();
   const [map, setMap] = useState(null);
-
   return (
     <>
       <MapContainer
@@ -112,12 +109,10 @@ const MapExternal = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
-
         <MyMarkers />
         <LocationButton map={map} />
       </MapContainer>
     </>
   );
 };
-
 export default MapExternal;
