@@ -1,15 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import { MapContainer, useMap, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
-import "react-tabs/style/react-tabs.css";
-import { useGlobalGeoData } from "util/mapState";
-import DisplayPosition from "./DisplayPosition";
-import tileLayer from "util/tileLayer";
-import styles from "./custom-marker-and-popup.module.css";
-import LocationButton from "./LocationButton";
-import useStore from "store/mapStore";
-import { extractWords, test, tron } from "util/helpers";
-import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 import PopupMarker from "components/PopupMarker";
+import { useEffect, useRef, useState } from "react";
+import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet";
+import "react-tabs/style/react-tabs.css";
+import useStore from "store/mapStore";
+import LocationButton from "./LocationButton";
+import styles from "./custom-marker-and-popup.module.css";
+import { useMeasure } from "react-use";
+
 const center = [37.09024, -95.712891];
 const points = [
   {
@@ -68,14 +65,14 @@ const PointMarker = ({ center, content, openPopup }) => {
       // {autoPan: true, keepInView: true}
       markerRef.current.openPopup();
       setTimeout(() => {
-         map.setView([center.lat, center.lng], 13, { animate: true })
+         map.setView([center.lat, center.lng], 13, { animate: true, noMoveStart: true });
        // map.zoomIn(13, { animate: true });
         //map.fitBounds([[center.lat, center.lng]], { padding: [50, 50], maxZoom: 13 });
         var px = map.project(markerRef.current._popup._latlng);
         // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
         px.y -= markerRef.current._popup._container.clientHeight / 2;
         console.log("POPUP OPEN!", px);
-        map.panTo(map.unproject(px), { animate: true });
+        map.panTo(map.unproject(px), { animate: true, easeLinearity: 0.5 });
       }, 100);
     }
   }, [map, center, openPopup]);
@@ -93,9 +90,16 @@ const PointMarker = ({ center, content, openPopup }) => {
     </Marker>
   );
 };
+
+const PlaceHolder = () => {
+  return (
+    <div style={{minWidth:"500px", backgroundColor:"red", minHeight:"500px"}}>test</div>
+  )
+}
 const MapExternal = () => {
   const [selected, setSelected] = useState();
   const [map, setMap] = useState(null);
+
   return (
     <>
       <MapContainer
@@ -104,6 +108,7 @@ const MapExternal = () => {
         zoom={3}
         scrollWheelZoom={true}
         zoomControl={false}
+        placeholder={<PlaceHolder />}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'

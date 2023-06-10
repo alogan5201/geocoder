@@ -8,13 +8,15 @@ import Input from "components/Input";
 import Button from "components/Button";
 import Typography from "components/Typography";
 
-function Wrapper({children}) {
+function Wrapper({children,name}) {
   return (
     <Box component="section" py={12}>
       <Container>
+        <Typography variant="h4" mb={6}>
+          {name}
+        </Typography>
         <Grid container spacing={3}>
-         {children}
-        
+          {children}
         </Grid>
       </Container>
     </Box>

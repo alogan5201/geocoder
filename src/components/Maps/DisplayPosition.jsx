@@ -1,10 +1,14 @@
-import { useCallback, useEffect, useState } from "react";
+import {useState} from 'react';
 
-const center = [39.7072, -98.1736];
-const zoom = 3;
+const center = [51.505, -0.09];
+const zoom = 13;
 
 function DisplayPosition({ map }) {
   const [position, setPosition] = useState(() => map.getCenter());
+
+  const onClick = useCallback(() => {
+    map.setView(center, zoom);
+  }, [map]);
 
   const onMove = useCallback(() => {
     setPosition(map.getCenter());
@@ -17,7 +21,12 @@ function DisplayPosition({ map }) {
     };
   }, [map, onMove]);
 
-  return null;
+  return (
+    <p>
+      latitude: {position.lat.toFixed(4)}, longitude: {position.lng.toFixed(4)}{" "}
+      <button onClick={onClick}>reset</button>
+    </p>
+  );
 }
 
 export default DisplayPosition;

@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 import AddressInput from "components/AddressInput";
 import Button from "components/Button";
 import Input from "components/Input";
-import { useRef,useEffect } from "react";
+import { useRef,useEffect, useState } from "react";
 import { extractWords, test,tron} from "util/helpers";
 import {covertAddressToLatLng} from "util/geocoder"
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
@@ -35,15 +35,24 @@ function Form() {
     // Here, you have the function from the child.
     callback();
   };
+  const [zoomState, setZoomState] = useState();
   const [coords, setCoords] = useGlobalValue();
   const latInputElm = useRef(null);
   const lngInputElm = useRef(null);
   const updateGeoData = useStore((state) => state.setGeoData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
+  const resetZoom = useStore((state) => state.resetMapZoom);
+    const increasePopulation = useStore((state) => state.increasePopulation);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
-
+function handleZoomReset(e){
+  e.preventDefault()
+resetZoom(1);
+setTimeout(() => {
+  resetZoom(0)
+}, 2000);
+}
   function handleSelect(e) {
     setBlurred(false);
     setSelected(true);
@@ -113,6 +122,11 @@ let lng = mapBoxData.features[0].geometry.coordinates[0]
               Submit
             </Button>
           </Grid>
+          <Grid item xs={12} pr={1} mb={2}>
+            <Button type="button" variant="outlined" color="info" onClick={handleZoomReset}>
+              Reset Zoom
+            </Button>
+          </Grid>
 
           {/* ============ LatInput ============ */}
           <Grid item xs={12} pr={1} mb={2}>
@@ -145,13 +159,10 @@ let lng = mapBoxData.features[0].geometry.coordinates[0]
             />
           </Grid>
           <Grid item xs={12} pr={1} mb={2}>
-            <Box>
-            </Box>
-          
+            <Box></Box>
           </Grid>
         </Grid>
       </Box>
-
     </Box>
   );
 }

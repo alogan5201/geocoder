@@ -10,18 +10,9 @@ const mapBoxapi = create({
 
 export const lowercaseFirst = (str) => `${str.charAt(0).toLowerCase()}${str.slice(1)}`;
 
-
-
 export const tron = {
-  log: function (...args) {
-    console.log(...args);
-  }
+  log: function (...args) {},
 };
-
-
-
-
-
 
 export function extractWords(str) {
   //Split string into array of words
@@ -89,7 +80,6 @@ export function convertLatLngToDMS(lat, lng) {
 }
 // This function takes in a string argument in the format of 'degrees minutes seconds' (e.g. '41 19 47') and parses it into its respective degree, minute, and second components for conversion to latitude and longitude.
 
-
 export function isNumber(e) {
   return !isNaN(parseFloat(e)) && isFinite(e);
 }
@@ -116,22 +106,20 @@ export function convertDMStoLatLng(dms) {
   return [lat, lng];
 }
 
-export function convertLatLngToAddress(){
+export function convertLatLngToAddress() {
   // "https://api.mapbox.com/geocoding/v5/mapbox.places/-73.989,40.733.json?access_token=pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Yao_mmdgrgjPA"
 }
-export function covertAddressToLatLng(address){
+export function covertAddressToLatLng(address) {
   let location = encodeURIComponent(address);
-  
+
   // "https://api.mapbox.com/geocoding/v5/mapbox.places/Lagrange,GA.json?limit=2&access_token=pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Yao_mmdgrgjPA"
   // start making calls
   mapBoxapi.get(`${location}.json?limit=2&access_token=${VITE_ACCESS_TOKEN}`).then((response) => {
     return response.json();
   });
 }
-export const shallowCopy = obj => Object.assign({}, obj);
-export function test(){
-
-}
+export const shallowCopy = (obj) => Object.assign({}, obj);
+export function test() {}
 
 /* export default {
   extractWords,
