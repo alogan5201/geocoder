@@ -46,13 +46,20 @@ const MyMarkers = () => {
 
 const PointMarker = ({ center, content, openPopup }) => {
     const [position, setPosition] = useState(null);
+    const [popupOpened, setPopupOpened] = useState(false);
     const map = useMapEvents({
       popupopen(e) {
-       // setPosition(e.target._popup._latlng);
+        // setPosition(e.target._popup._latlng);
+        setTimeout(() => {
+          
           var px = map.project(e.target._popup._latlng);
+       
           // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
           px.y -= e.target._popup._container.clientHeight / 2;
-          map.panTo(map.unproject(px), { animate: true });
+          
+          console.log("POPUP OPEN!",px)
+            map.panTo(map.unproject(px), { animate: true});
+        }, 500);
         },
     });
   const markerRef = useRef(null);
@@ -63,19 +70,25 @@ const PointMarker = ({ center, content, openPopup }) => {
 
       if (open) {
         markerRef.current.closePopup();
+        console.log("popupOpen");
       }
       // {"lat": 33.748992, "lng": -84.390264}
       //  map.fitBounds([[lat, lon]], { padding: [50, 50], maxZoom: 13 });
       //  map.fitBounds([[center.lat, center.lng]], { padding: [50, 50], maxZoom: 13 });
-      console.log(center);
+      // {autoPan: true, keepInView: true}
       map.fitBounds([[center.lat, center.lng]], { padding: [50, 50], maxZoom: 13 });
       markerRef.current.openPopup();
+      setTimeout(() => {
+        var px = map.project(markerRef.current._popup._latlng);
+        console.log("firstRender",px)
+      }, 500);
+     
     }
   }, [map, center, openPopup]);
 
   return (
     <Marker ref={markerRef} position={center}>
-      <Popup className={styles.newPopup} minWidth={300} position={position}>
+      <Popup className={styles.newPopup} minWidth={300} position={position} autoPan={true} keepInView={true}>
         <PopupMarker content={content} />
       </Popup>
     </Marker>
