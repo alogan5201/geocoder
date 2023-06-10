@@ -58,11 +58,11 @@ const PointMarker = ({ center, content, openPopup }) => {
   const map = useMapEvents({
     popupopen(e) {
       // setPosition(e.target._popup._latlng);
-      var px = map.project(e.target._popup._latlng);
+  /*     var px = map.project(e.target._popup._latlng);
       // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
       px.y -= e.target._popup._container.clientHeight / 2;
       console.log("POPUP OPEN!", px);
-      map.panTo(map.unproject(px), { animate: true });
+      map.panTo(map.unproject(px), { animate: true }); */
     },
     popupclose(e){
       console.log("POPUP CLOSE!")
@@ -73,27 +73,30 @@ const PointMarker = ({ center, content, openPopup }) => {
   useEffect(() => {
     if (openPopup) {
       let open = markerRef.current.isPopupOpen();
-      if (open) {
-        markerRef.current.closePopup();
-        console.log("popupOpen");
-      }
+    markerRef.current.closePopup();
       // {"lat": 33.748992, "lng": -84.390264}
       //  map.fitBounds([[lat, lon]], { padding: [50, 50], maxZoom: 13 });
       //  map.fitBounds([[center.lat, center.lng]], { padding: [50, 50], maxZoom: 13 });
       // {autoPan: true, keepInView: true}
-      markerRef.current.openPopup();
+      map.setView([center.lat, center.lng], 13, {
+        animate: false,
+      });
       setTimeout(() => {
-         map.setView([center.lat, center.lng], 13, {
-           animate: false,
-         });
+      
+           markerRef.current.openPopup();
+     
        // map.zoomIn(13, { animate: true });
         //map.fitBounds([[center.lat, center.lng]], { padding: [50, 50], maxZoom: 13 });
+   
+      setTimeout(() => {
         var px = map.project(markerRef.current._popup._latlng);
         // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
         px.y -= markerRef.current._popup._container.clientHeight / 2;
         console.log("POPUP OPEN!", px);
         map.panTo(map.unproject(px), { animate: true, easeLinearity: 1.5 });
-      }, 100);
+      }, 300);
+      }, 400);
+      console.log("panTo")
       setTimeout(() => {
         //map-popup-show map-popup-hide
       setPopupVisible("visible");
@@ -105,10 +108,9 @@ const PointMarker = ({ center, content, openPopup }) => {
   return (
     <Marker ref={markerRef} position={center}>
       <Popup
-        className={popupStyles}
         minWidth={300}
         position={position}
-        autoPan={true}
+       
         keepInView={true}
       >
         <PopupMarker content={content} />
