@@ -75,3 +75,7 @@ projection='globe'
 
 git config --global user.email "drewthomaslogan5201@gmail.com"
 git config --global user.name "alogan5201"
+
+
+# POPUP FIX
+Just make the popup so big that the map has to pan?

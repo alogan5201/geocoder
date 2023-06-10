@@ -98,7 +98,7 @@ import Tables from "layouts/sections/elements/tables";
 import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
 import AddressToLatLngPage from "pages/GeoTools/AddressToLatLngPage"
-
+import TestPage from "pages/Test"
 const routes = [
   {
     name: "tools",
@@ -109,6 +109,12 @@ const routes = [
         description: "Convert an address to Latitude and Longitude",
         route: "/address-to-lat-lng",
         component: <AddressToLatLngPage />,
+      },
+      {
+        name: "Test Page",
+        description: "",
+        route: "/test",
+        component: <TestPage />,
       },
     ],
   },
