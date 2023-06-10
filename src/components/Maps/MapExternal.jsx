@@ -5,7 +5,8 @@ import "react-tabs/style/react-tabs.css";
 import useStore from "store/mapStore";
 import LocationButton from "./LocationButton";
 import styles from "./custom-marker-and-popup.module.css";
-import { useMeasure } from "react-use";
+import { useMeasure, useCss } from "react-use";
+
 
 const center = [37.09024, -95.712891];
 const points = [
@@ -37,9 +38,23 @@ const MyMarkers = () => {
       ))
     : null;
 };
+
 const PointMarker = ({ center, content, openPopup }) => {
   const [position, setPosition] = useState(null);
   const [popupOpened, setPopupOpened] = useState(false);
+  const [popupVisible, setPopupVisible] = useState("hidden");
+      const popupStyles = useCss({
+        visibility: popupVisible,
+        display: "none",
+        "-webkit-backface-visibility": popupVisible,
+        "-moz-backface-visibility": popupVisible,
+        "backface-visibility": popupVisible,
+        "-webkit-transform": "translateX(-50%) translateY(-50%)",
+        "-moz-transform": "translateX(-50%) translateY(-50%)",
+        "-ms-transform": "translateX(-50%) translateY(-50%)",
+        transform: "translateX(-50%) translateY(-50%)",
+        transitionDuration: "0.4s",
+      });
   const map = useMapEvents({
     popupopen(e) {
       // setPosition(e.target._popup._latlng);
@@ -48,8 +63,11 @@ const PointMarker = ({ center, content, openPopup }) => {
       px.y -= e.target._popup._container.clientHeight / 2;
       console.log("POPUP OPEN!", px);
       map.panTo(map.unproject(px), { animate: true });
-     
     },
+    popupclose(e){
+      console.log("POPUP CLOSE!")
+      setPopupVisible("hidden");
+    }
   });
   const markerRef = useRef(null);
   useEffect(() => {
@@ -65,21 +83,29 @@ const PointMarker = ({ center, content, openPopup }) => {
       // {autoPan: true, keepInView: true}
       markerRef.current.openPopup();
       setTimeout(() => {
-         map.setView([center.lat, center.lng], 13, { animate: true, noMoveStart: true });
+         map.setView([center.lat, center.lng], 13, {
+           animate: false,
+         });
        // map.zoomIn(13, { animate: true });
         //map.fitBounds([[center.lat, center.lng]], { padding: [50, 50], maxZoom: 13 });
         var px = map.project(markerRef.current._popup._latlng);
         // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
         px.y -= markerRef.current._popup._container.clientHeight / 2;
         console.log("POPUP OPEN!", px);
-        map.panTo(map.unproject(px), { animate: true, easeLinearity: 0.5 });
+        map.panTo(map.unproject(px), { animate: true, easeLinearity: 1.5 });
       }, 100);
+      setTimeout(() => {
+        //map-popup-show map-popup-hide
+      setPopupVisible("visible");
+      }, 1000);
     }
   }, [map, center, openPopup]);
+
+
   return (
     <Marker ref={markerRef} position={center}>
       <Popup
-        className={styles.newPopup}
+        className={popupStyles}
         minWidth={300}
         position={position}
         autoPan={true}
