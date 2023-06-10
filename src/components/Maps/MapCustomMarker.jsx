@@ -1,7 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import newMarker from "assets/images/pin.png";
-// import newMarker from "assets/images/pin.png";
 import styles from "./custom-marker-and-popup.module.css";
 import PopupMarker from "pages/Test/PopupMarker";
 const center = [52.22977, 21.01178];
