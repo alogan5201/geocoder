@@ -90,7 +90,7 @@ const PointMarker = ({ center, content, openPopup }) => {
    
       setTimeout(() => {
         var px = map.project(markerRef.current._popup._latlng);
-        // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+        // find the height of the popup container, divide by 2, subtract from the Y axis of marker locations
         px.y -= markerRef.current._popup._container.clientHeight / 2;
         console.log("POPUP OPEN!", px);
         map.panTo(map.unproject(px), { animate: true, easeLinearity: 1.5 });
