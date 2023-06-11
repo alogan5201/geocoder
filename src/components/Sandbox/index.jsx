@@ -6,27 +6,18 @@ import useStore from "store/mapStore";
 import BasicList from "./BasicList";
 import PassingFunction from "./PassingFunction";
 import ConditionalCss from "./ConditionalCss";
-function BearCounter() {
-  const bears = useStore((state) => state.bears);
+import LocalStorage from "./LocalStorage";
+import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 
-  return <h1>{bears} bears around here...</h1>;
-}
-
-function Controls() {
-  const increasePopulation = useStore((state) => state.increasePopulation);
-  return <button onClick={increasePopulation}>one up</button>;
-}
 function Sandbox() {
   const allObjects = useStore((state) => state);
   const testData = useStore((state) => state.testData);
   useEffect(() => {}, [allObjects]);
   return (
     <div>
-      <Wrapper
-        children={<ConditionalCss />}
-        name="Conditional Css"
-      />
-      <Wrapper
+      <GpsFixedIcon/>
+
+ {/*      <Wrapper
         children={<WhatChanged data={testData ? testData : null} />}
         name="What Changed"
       />
@@ -34,7 +25,7 @@ function Sandbox() {
         children={<BasicList data={allObjects ? allObjects : null} />}
         name="Zustand State"
       />
-      <Controls />
+      <Controls /> */}
     </div>
   );
 }

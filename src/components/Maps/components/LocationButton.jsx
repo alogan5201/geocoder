@@ -1,5 +1,4 @@
 
-import L from "leaflet";
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 import styles from "./location-button.module.css";
@@ -8,7 +7,7 @@ function PopupTest() {
     <div>test123 you are here</div>
   )
 }
-const LocationButton = () => {
+const LocationButton = ({L}) => {
   const map = useMap();
 
   useEffect(() => {
@@ -74,6 +73,7 @@ const LocationButton = () => {
         this._map.locate({ setView: true, enableHighAccuracy: true });
       },
       onLocationFound: function (e) {
+        console.log(e)
         // add circle
         this.addCircle(e).addTo(this.featureGroup()).addTo(map);
 

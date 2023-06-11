@@ -312,3 +312,6 @@
 .map-popup-inactive {
   visibility: hidden;
 }
+.leaflet-control {
+      color: rgb(51, 51, 51) !important;
+}

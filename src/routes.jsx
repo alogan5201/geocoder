@@ -99,6 +99,8 @@ import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
 import AddressToLatLngPage from "pages/GeoTools/AddressToLatLngPage"
 import TestPage from "pages/Test"
+import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
+import Bookmarks from "pages/Bookmarks"
 const routes = [
   {
     name: "tools",
@@ -117,6 +119,13 @@ const routes = [
         component: <TestPage />,
       },
     ],
+  },
+  {
+    name: "bookmarks",
+    icon: <CollectionsBookmarkIcon />,
+    route: "/bookmarks",
+    component: <Bookmarks />,
+    key: "bookmarks"
   },
   {
     name: "pages",
