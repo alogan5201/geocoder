@@ -6,7 +6,7 @@ import { useCss } from "react-use";
 import useStore from "store/mapStore";
 import LocationButton from "./LocationButton";
 import styles from "./custom-marker-and-popup.module.css";
-
+import L from "leaflet";
 const center = [37.09024, -95.712891];
 
 const MyMarkers = () => {
@@ -44,10 +44,16 @@ useEffect(() => {
 }, [popupIsActive]);
 
     const map = useMap();
+    const markerRef = useRef(null);
+    let open = markerRef && markerRef.current ? markerRef.current.isPopupOpen() : null;
 
 const togglePopup = (open,markerRef) => {
 if(open){
   markerRef.current.closePopup()
+     let panes = map.getPanes();
+     let popupPane = panes["popupPane"].children[0];
+ 
+     L.DomUtil.addClass(popupPane, "map-popup-inactive");
 markerRef.current.openPopup()
 }
 else {
@@ -55,28 +61,38 @@ else {
 
 }
 }
-  const markerRef = useRef(null);
+
   useEffect(() => {
     if (openPopup) {
-      let open = markerRef.current.isPopupOpen();
         setPopupIsActive(false)
         map.flyTo(center, 13, {
           animate: true,
           duration: 0.8,
           easeLinearity: 0.5
         });
-        togglePopup(open,markerRef)
+        togglePopup(open, markerRef);
+        setPopupIsActive(true);
+
         setTimeout(() => {
         
-
-              const popupHeight = markerRef.current._popup._container.clientHeight;
-              console.log(popupHeight / 2)
-      var px = map.project(markerRef.current._popup._latlng); // find the pixel location on the map where the popup anchor is
-      px.y -= markerRef.current._popup._container.clientHeight / 2; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
-      map.panTo(map.unproject(px), { animate: true });
+if(open){
+            const popupHeight = markerRef.current._popup._container.clientHeight;
+            console.log(popupHeight / 2);
+            var px = map.project(markerRef.current._popup._latlng); // find the pixel location on the map where the popup anchor is
+            px.y -= markerRef.current._popup._container.clientHeight / 2; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+            map.panTo(map.unproject(px), { animate: true, duration: 0.2, easeLinearity: 0.5 });
+        
+}
+  
    
   
           }, 1000); 
+          setTimeout(() => {
+                let panes = map.getPanes();
+                let popupPane = panes["popupPane"].children[0];
+                console.log(popupPane);
+                L.DomUtil.removeClass(popupPane, "map-popup-inactive");
+          }, 1300);
     }
   }, [map, center, openPopup,rendered]);
 
@@ -88,6 +104,7 @@ else {
         position={position}
         keepInView={true}
         autoPan={true}
+        className="map-popup-inactive"
       >
         <PopupMarker content={content} />
       </Popup>
