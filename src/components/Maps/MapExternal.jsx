@@ -76,24 +76,48 @@ else {
         setTimeout(() => {
         
 if(open){
-            const popupHeight = markerRef.current._popup._container.clientHeight;
-            console.log(popupHeight / 2);
-            var px = map.project(markerRef.current._popup._latlng); // find the pixel location on the map where the popup anchor is
-            px.y -= markerRef.current._popup._container.clientHeight / 2; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
-            map.panTo(map.unproject(px), { animate: true, duration: 0.2, easeLinearity: 0.5 });
+  if(rendered){
+    const popupHeight = markerRef.current._popup._container.clientHeight;
+    console.log(popupHeight / 2);
+    var px = map.project(markerRef.current._popup._latlng); // find the pixel location on the map where the popup anchor is
+    console.log(px.y);
+    px.y -= markerRef.current._popup._container.clientHeight / 3; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+
+    map.panTo(map.unproject(px), { animate: true, duration: 0.2, easeLinearity: 0.5 });
+  }
         
 }
   
    
   
-          }, 1000); 
+          }, rendered ? 1000 : 0); 
           setTimeout(() => {
-                let panes = map.getPanes();
-                let popupPane = panes["popupPane"].children[0];
-                console.log(popupPane);
-                L.DomUtil.removeClass(popupPane, "map-popup-inactive");
-          }, 1300);
+            if(!rendered){
+                
+                          const popupHeight = markerRef.current._popup._container.clientHeight;
+                          console.log(popupHeight / 2);
+                          var px = map.project(markerRef.current._popup._latlng); // find the pixel location on the map where the popup anchor is
+                          console.log(px.y);
+                          px.y -= markerRef.current._popup._container.clientHeight / 3; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+
+                          map.panTo(map.unproject(px), {
+                            animate: true,
+                            duration: 0.2,
+                            easeLinearity: 0.5,
+                          });
+                             let panes = map.getPanes();
+                             let popupPane = panes["popupPane"].children[0];
+                             console.log(popupPane);
+                             L.DomUtil.removeClass(popupPane, "map-popup-inactive");
+            }
+               let panes = map.getPanes();
+               let popupPane = panes["popupPane"].children[0];
+               console.log(popupPane);
+               L.DomUtil.removeClass(popupPane, "map-popup-inactive");
+             
+          }, rendered ? 1300 : 1000);
     }
+  setRendered(true);
   }, [map, center, openPopup,rendered]);
 
 
