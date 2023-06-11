@@ -336,3 +336,11 @@
     opacity: 1;
   }
 }
+
+.activePopup {
+  visibility: visible;
+  
+}
+.inactivePopup {
+  visibility: hidden;
+}

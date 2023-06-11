@@ -79,3 +79,5 @@ git config --global user.name "alogan5201"
 
 # POPUP FIX
 Just make the popup so big that the map has to pan?
+
+Currently I am debugging an issue with my React application. In relation to the map I would like the popup to always be centered when it is open. The issue is that when adjusting the zoom or moving the map around, entering the same location will cause the popup to not be centered anymore when its open. Specifically I'm trying to figure out why  var px = map.project(markerRef.current._popup._latlng); sometimes returns different x and y values. Can you please explain why this code isn't working? 

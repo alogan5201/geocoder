@@ -5,6 +5,7 @@ import WhatChanged from "./WhatChanged";
 import useStore from "store/mapStore";
 import BasicList from "./BasicList";
 import PassingFunction from "./PassingFunction";
+import ConditionalCss from "./ConditionalCss";
 function BearCounter() {
   const bears = useStore((state) => state.bears);
 
@@ -17,9 +18,18 @@ function Controls() {
 }
 function Sandbox() {
   const allObjects = useStore((state) => state);
+  const testData = useStore((state) => state.testData);
   useEffect(() => {}, [allObjects]);
   return (
     <div>
+      <Wrapper
+        children={<ConditionalCss />}
+        name="Conditional Css"
+      />
+      <Wrapper
+        children={<WhatChanged data={testData ? testData : null} />}
+        name="What Changed"
+      />
       <Wrapper
         children={<BasicList data={allObjects ? allObjects : null} />}
         name="Zustand State"

@@ -1,21 +1,14 @@
 import PopupMarker from "components/PopupMarker";
 import { useEffect, useRef, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer,useMap, useMapEvents } from "react-leaflet";
 import "react-tabs/style/react-tabs.css";
+import { useCss } from "react-use";
 import useStore from "store/mapStore";
 import LocationButton from "./LocationButton";
 import styles from "./custom-marker-and-popup.module.css";
-import { useMeasure, useCss, useEffectOnce, usePrevious } from "react-use";
 
 const center = [37.09024, -95.712891];
-const points = [
-  {
-    id: "1",
-    lat: 0,
-    lng: 0,
-    title: "Marker 1",
-  },
-];
+
 const MyMarkers = () => {
   const markerData = useStore((state) => state.markerData);
   const [markerPoints, setMarkerPoints] = useState(null);
@@ -44,18 +37,13 @@ const PointMarker = ({ center, content, openPopup }) => {
   const [popupOpened, setPopupOpened] = useState(false);
   const [popupVisible, setPopupVisible] = useState("hidden");
   const [rendered,setRendered] = useState(false)
-  const popupStyles = useCss({
-    visibility: popupVisible,
-    animation: "fadeIn ease 1s",
-    WebkitAnimation: "fadeIn ease 1s",
-    MozAnimation: "fadeIn ease 1s",
-    OAnimation: "fadeIn ease 1s",
-    msAnimation: "fadeIn ease 1s",
-  });
-    const map = useMapEvents({
-      popupopen(e) {},
-      popupclose(e) {},
-    });
+  const [containerHeight,setContainerHeight] = useState(null)
+    const [popupIsActive, setPopupIsActive] = useState(false);
+useEffect(() => {
+  console.log(popupIsActive)
+}, [popupIsActive]);
+
+    const map = useMap();
 
 const togglePopup = (open,markerRef) => {
 if(open){
@@ -71,58 +59,42 @@ else {
   useEffect(() => {
     if (openPopup) {
       let open = markerRef.current.isPopupOpen();
-
-      //  map.fitBounds([[center.lat, center.lng]], {padding: [50, 50], maxZoom: 13})
-
-    map.fitBounds([[center.lat, center.lng]], {animate:true, padding: [50, 50], maxZoom: 13 });
-      map.getCenter();
+        setPopupIsActive(false)
+        map.flyTo(center, 13, {
+          animate: true,
+          duration: 0.8,
+          easeLinearity: 0.5
+        });
         togglePopup(open,markerRef)
-      
-           
-           if(rendered){
-                 var px = map.project(markerRef.current._popup._latlng);
-                 // find the height of the popup container, divide by 2, subtract from the Y axis of marker locations
-                 px.y -= markerRef.current._popup._container.clientHeight / 2;
-                 console.log("rendered", px.y, px);
-                 
-                   map.panTo(map.unproject(px), {
-                     animate: true,
-                     duration: 0.8,
-                     easeLinearity: 0.5,
-                   });
-            }
-            else {
-              setTimeout(() => {
-                setRendered(true)
-                     var px = map.project(markerRef.current._popup._latlng);
-                     // find the height of the popup container, divide by 2, subtract from the Y axis of marker locations
-                     px.y -= markerRef.current._popup._container.clientHeight / 2;
-                       console.log("first render", px.y);
-                map.getCenter();
-                map.panTo(map.unproject(px), { animate: true, duration: 0.8, easeLinearity: 0.5 });
+        setTimeout(() => {
+        
 
-            }, 10);
-           }
+              const popupHeight = markerRef.current._popup._container.clientHeight;
+              console.log(popupHeight / 2)
+      var px = map.project(markerRef.current._popup._latlng); // find the pixel location on the map where the popup anchor is
+      px.y -= markerRef.current._popup._container.clientHeight / 2; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+      map.panTo(map.unproject(px), { animate: true });
+   
+  
+          }, 1000); 
     }
   }, [map, center, openPopup,rendered]);
 
-  function onPopupOpen() {
-    
-    setPopupOpened(true);
-  }
 
   return (
     <Marker ref={markerRef} position={center}>
-      <Popup minWidth={300} position={position} className={styles.newPopup} keepInView={true} autoPan={true}>
+      <Popup
+        minWidth={300}
+        position={position}
+        keepInView={true}
+        autoPan={true}
+      >
         <PopupMarker content={content} />
       </Popup>
     </Marker>
   );
 };
 
-const PlaceHolder = () => {
-  return <div style={{ minWidth: "500px", backgroundColor: "red", minHeight: "500px" }}>test</div>;
-};
 const MapExternal = () => {
   const [selected, setSelected] = useState();
   const [map, setMap] = useState(null);
@@ -141,7 +113,7 @@ const MapExternal = () => {
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
         <MyMarkers />
-        <LocationButton map={map} />
+        {/* <LocationButton map={map} /> */}
       </MapContainer>
     </>
   );

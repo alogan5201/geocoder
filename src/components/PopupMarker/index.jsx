@@ -31,6 +31,7 @@ export default function PopupMarker({ content}) {
 
   return popupContent ? (
     <Box sx={{ width: "100%", maxWidth: 300, bgcolor: "transparent" }} py={1} px={1}>
+   
       <List>
         <ListItem disablePadding>
           <span style={{ fontSize: "16px" }}>{popupContent.title}</span>

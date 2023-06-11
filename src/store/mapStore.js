@@ -7,6 +7,7 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    geoData: null,
    markerData: null,
    zoom: 0,
+   testData: null,
    increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
    resetMapZoom: (data) => {
  set({ zoom: data });
@@ -14,6 +15,9 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    removeAllBears: () => set({ bears: 0 }),
    setGeoData: (data) => {
      set({ geoData: data });
+   },
+   setTestData: (data) => {
+     set({ testData: data });
    },
    setMarkerData: (data) => {
      const markerData = [];
