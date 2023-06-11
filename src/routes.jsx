@@ -97,7 +97,7 @@ import SocialButtons from "layouts/sections/elements/social-buttons";
 import Tables from "layouts/sections/elements/tables";
 import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
-import AddressToLatLngPage from "pages/GeoTools/AddressToLatLngPage"
+import AddressToLatLng from "pages/AddressToLatLng"
 import TestPage from "pages/Test"
 import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
 import Bookmarks from "pages/Bookmarks"
@@ -110,7 +110,7 @@ const routes = [
         name: "Address to Latitude & Longitude",
         description: "Convert an address to Latitude and Longitude",
         route: "/address-to-lat-lng",
-        component: <AddressToLatLngPage />,
+        component: <AddressToLatLng />,
       },
       {
         name: "Test Page",

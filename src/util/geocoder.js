@@ -24,12 +24,28 @@ else {
     { method: "GET" }
   );
 
-  // "https://api.mapbox.com/geocoding/v5/mapbox.places/Lagrange,GA.json?limit=2&access_token=pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Yao_mmdgrgjPA"
-  // start making calls
-/*   mapBoxapi.get(`${location}.json?limit=2&access_token=${VITE_ACCESS_TOKEN}`).then((response) => {
 
+  if (response.status !== 200) {
+    return;
+  }
+  const data = await response.json();
+  return data;
+}
+
+};
+export const convertLatLngToAddress = async (lat,lng) => {
+
+  if(VITE_NODE_ENV === 'development'){
+    const response = await getFakeData(`addresses/atlanta`)
     return response
-  }); */
+  } 
+else {
+  const response = await fetch(
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${VITE_ACCESS_TOKEN}`,
+    { method: "GET" }
+  );
+
+
   if (response.status !== 200) {
     return;
   }
@@ -161,3 +177,14 @@ let t = {
   lngMinutes: 59,
   lngSeconds: 39,
 }
+
+  export const toggleLocation = (markerData,L) => {
+     const locationControl = L.control;
+
+     for (let index = 0; index < markerData.length; index++) {
+      const element = markerData[index];
+      if(element.userLocation === false){
+        locationControl.stop()
+      }
+     }
+  };

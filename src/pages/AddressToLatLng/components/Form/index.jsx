@@ -9,18 +9,16 @@ import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import useStore from "store/mapStore";
 import { covertAddressToLatLng } from "util/geocoder";
-import { extractWords, test, handleMapInputState } from "util/helpers";
+import { extractWords, test } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
+import { v4 as uuidv4 } from "uuid";
 
 function Form() {
   useEffect(() => {
     test();
   }, []);
-  const handleChild = (callback) => {
-    // Here, you have the function from the child.
-    callback();
-  };
+
   const [zoomState, setZoomState] = useState();
   const [coords, setCoords] = useGlobalValue();
   const latInputElm = useRef(null);
@@ -30,6 +28,7 @@ function Form() {
   const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
+  const setMapInputState = useStore((state) => state.setMapInputState);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -40,6 +39,7 @@ function Form() {
       resetZoom(0);
     }, 2000);
   }
+
   async function handleSubmit(e) {
     e.preventDefault();
     const inputOne = e.target[0].value;
@@ -52,18 +52,18 @@ function Form() {
         let lng = mapBoxData.features[0].geometry.coordinates[0];
         setCoords([coords]);
         const address = mapBoxData.features[0].place_name;
+         const uid = uuidv4();
         const markerData = [
           {
-            id: "1",
+            id: uid,
             lat: lat,
             lng: lng,
             title: address,
             userLocation: false,
           },
         ];
-        handleMapInputState("AddressToLatLng")
         setUserLocationActive(false);
-        console.log(userLocationActive);
+        setMapInputState(false);
         updateMarkerData(markerData);
         updateGeoData(mapBoxData.features[0]);
       }
@@ -104,7 +104,7 @@ function Form() {
       <Box pt={0.5} pb={3} px={3}>
         <Grid container>
           {/* ============ AddressInput ============ */}
-          <AddressInput handleChild={handleChild} />
+          <AddressInput readOnly={false}/>
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">
@@ -112,7 +112,7 @@ function Form() {
             </Button>
           </Grid>
           {/* ============ LatLngInputs ============ */}
-          <LatLngInputs />
+          <LatLngInputs readOnly={true}/>
           <Grid item xs={12} pr={1} mb={2}>
             <Box></Box>
           </Grid>

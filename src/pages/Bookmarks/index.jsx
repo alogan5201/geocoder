@@ -21,26 +21,18 @@ import team4 from "assets/images/team-4.jpg";
 import BaseLayout from "layouts/sections/components/BaseLayout";
 import Sandbox from "components/Sandbox";
 // Components
-function Author({ image, name, email }) {
+function Address({ image, name, email }) {
   return (
     <Box display="flex" alignItems="center" px={1} py={0.5}>
       <Box mr={2}>
-        <Avatar src={image} alt={name} size="sm" variant="rounded" />
-      </Box>
-      <Box display="flex" flexDirection="column">
-        <Typography variant="button" fontWeight="medium">
-          {name}
-        </Typography>
-        <Typography variant="caption" color="secondary">
-          {email}
-        </Typography>
+    {name}
       </Box>
     </Box>
   );
 }
 
-// Typechecking props for the Author
-Author.propTypes = {
+// Typechecking props for the Address
+Address.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
@@ -68,7 +60,7 @@ Role.propTypes = {
 function Bookmarks() {
   const { columns, rows } = {
     columns: [
-      { name: "author", align: "left" },
+      { name: "address", align: "left" },
       { name: "function", align: "left" },
       { name: "status", align: "center" },
       { name: "employed", align: "center" },
@@ -77,7 +69,7 @@ function Bookmarks() {
 
     rows: [
       {
-        author: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
+        address: <Address image={team2} name="John Michael" email="john@creative-tim.com" />,
         function: <Role job="Manager" org="Organization" />,
         status: (
           <Badge variant="contained" badgeContent="online" color="success" size="xs" container />
@@ -100,7 +92,7 @@ function Bookmarks() {
         ),
       },
       {
-        author: <Author image={team3} name="Alexa Liras" email="alexa@creative-tim.com" />,
+        address: <Address image={team3} name="Alexa Liras" email="alexa@creative-tim.com" />,
         function: <Role job="Programator" org="Developer" />,
         status: (
           <Badge variant="contained" badgeContent="offline" color="secondary" size="xs" container />
@@ -123,7 +115,7 @@ function Bookmarks() {
         ),
       },
       {
-        author: <Author image={team4} name="Laurent Perrier" email="laurent@creative-tim.com" />,
+        address: <Address image={team4} name="Laurent Perrier" email="laurent@creative-tim.com" />,
         function: <Role job="Executive" org="Projects" />,
         status: (
           <Badge variant="contained" badgeContent="online" color="success" size="xs" container />
@@ -146,7 +138,7 @@ function Bookmarks() {
         ),
       },
       {
-        author: <Author image={team3} name="Michael Levi" email="michael@creative-tim.com" />,
+        address: <Address image={team3} name="Michael Levi" email="michael@creative-tim.com" />,
         function: <Role job="Programator" org="Developer" />,
         status: (
           <Badge variant="contained" badgeContent="online" color="success" size="xs" container />
@@ -169,7 +161,7 @@ function Bookmarks() {
         ),
       },
       {
-        author: <Author image={team2} name="Richard Gran" email="richard@creative-tim.com" />,
+        address: <Address image={team2} name="Richard Gran" email="richard@creative-tim.com" />,
         function: <Role job="Manager" org="Executive" />,
         status: (
           <Badge variant="contained" badgeContent="offline" color="secondary" size="xs" container />
@@ -192,7 +184,7 @@ function Bookmarks() {
         ),
       },
       {
-        author: <Author image={team4} name="Miriam Eric" email="miriam@creative-tim.com" />,
+        address: <Address image={team4} name="Miriam Eric" email="miriam@creative-tim.com" />,
         function: <Role job="Programtor" org="Developer" />,
         status: (
           <Badge variant="contained" badgeContent="offline" color="secondary" size="xs" container />
@@ -219,7 +211,6 @@ function Bookmarks() {
 
   return (
       <BaseLayout>
-      <Sandbox />
     <Box component="section" py={12}>
       <Container>
         <Grid container item xs={12} lg={10} mx="auto">

@@ -1,14 +1,18 @@
-
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
+import useStore from "store/mapStore";
+import { convertLatLngToAddress } from "util/geocoder";
 import styles from "./location-button.module.css";
+
 function PopupTest() {
-  return (
-    <div>test123 you are here</div>
-  )
+  return <div>test123 you are here</div>;
 }
-const LocationButton = ({L}) => {
+const LocationButton = ({ L }) => {
   const map = useMap();
+  const updateGeoData = useStore((state) => state.setGeoData);
+  const updateMarkerData = useStore((state) => state.setMarkerData);
+  const setUserLocationActive = useStore((state) => state.setUserLocationActive);
+  const userLocationActive = useStore((state) => state.userLocationActive);
 
   useEffect(() => {
     // create custom button
@@ -53,8 +57,11 @@ const LocationButton = ({L}) => {
       _locateMap: function () {
         const locateActive = document.querySelector(`.${styles.locateButton}`);
         const locate = locateActive.classList.contains(styles.locateActive);
+     
         // add/remove class from locate button
-        locateActive.classList[locate ? "remove" : "add"](styles.locateActive);
+        locateActive.classList[locate  ? "remove" : "add"](
+          styles.locateActive
+        );
 
         // remove class from button
         // and stop watching location
@@ -70,15 +77,34 @@ const LocationButton = ({L}) => {
         this._map.on("locationerror", this.onLocationError, this);
 
         // start locate
-        this._map.locate({ setView: true, enableHighAccuracy: true });
+        this._map.locate({ setView: false, enableHighAccuracy: true });
       },
-      onLocationFound: function (e) {
-        console.log(e)
+      onLocationFound: async function (e) {
+        let lat = e.latitude;
+        let lng = e.longitude;
+
+        const mapBoxData = await convertLatLngToAddress(lat, lng);
+        if (mapBoxData && mapBoxData.features.length > 0) {
+          const address = mapBoxData.features[0].place_name;
+
+          const markerData = [
+            {
+              id: "1",
+              lat: lat,
+              lng: lng,
+              title: address,
+              userLocation: true,
+            },
+          ];
+          updateMarkerData(markerData);
+          setUserLocationActive(true);
+          updateGeoData(mapBoxData.features[0]);
+        }
         // add circle
-        this.addCircle(e).addTo(this.featureGroup()).addTo(map);
+        // this.addCircle(e).addTo(this.featureGroup()).addTo(map);
 
         // add marker
-        this.addMarker(e).addTo(this.featureGroup()).addTo(map);
+        // this.addMarker(e).addTo(this.featureGroup()).addTo(map);
 
         // add legend
       },
@@ -126,7 +152,7 @@ const LocationButton = ({L}) => {
             iconSize: L.point(17, 17),
             popupAnchor: [0, -15],
           }),
-        }).bindPopup(<PopupTest/>);
+        }).bindPopup(<PopupTest />);
       },
       removeLocate: function () {
         this._map.eachLayer(function (layer) {
@@ -151,4 +177,4 @@ const LocationButton = ({L}) => {
   return null;
 };
 
-export default LocationButton
+export default LocationButton;

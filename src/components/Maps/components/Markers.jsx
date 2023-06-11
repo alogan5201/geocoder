@@ -1,12 +1,13 @@
 import PopupMarker from "components/PopupMarker";
+import { marker } from "leaflet";
 import { useEffect, useRef, useState } from "react";
 import { Marker, Popup, useMap } from "react-leaflet";
 import "react-tabs/style/react-tabs.css";
 import useStore from "store/mapStore";
-
+import { toggleLocation } from "util/geocoder";
 const center = [37.09024, -95.712891];
 
-const Markers = ({L}) => {
+const Markers = ({ L }) => {
   const markerData = useStore((state) => state.markerData);
   const [markerPoints, setMarkerPoints] = useState(null);
   const [popupOpen, setPopupOpen] = useState(false);
@@ -37,9 +38,9 @@ const PointMarker = ({ center, content, openPopup, L }) => {
   const [rendered, setRendered] = useState(false);
   const [containerHeight, setContainerHeight] = useState(null);
   const [popupIsActive, setPopupIsActive] = useState(false);
-  useEffect(() => {
-    console.log(popupIsActive);
-  }, [popupIsActive]);
+  const userLocationActive = useStore((state) => state.userLocationActive);
+
+  useEffect(() => {}, [popupIsActive]);
 
   const map = useMap();
   const markerRef = useRef(null);
@@ -57,10 +58,15 @@ const PointMarker = ({ center, content, openPopup, L }) => {
       markerRef.current.openPopup();
     }
   };
-
+  const stopLocation = () => {
+    if (userLocationActive) return;
+    map.stopLocate();
+  };
   useEffect(() => {
     if (openPopup) {
+      stopLocation();
       setPopupIsActive(false);
+
       map.flyTo(center, 13, {
         animate: true,
         duration: 0.8,
@@ -74,9 +80,9 @@ const PointMarker = ({ center, content, openPopup, L }) => {
           if (open) {
             if (rendered) {
               const popupHeight = markerRef.current._popup._container.clientHeight;
-              console.log(popupHeight / 2);
+
               var px = map.project(markerRef.current._popup._latlng); // find the pixel location on the map where the popup anchor is
-              console.log(px.y);
+
               px.y -= markerRef.current._popup._container.clientHeight / 3; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
 
               map.panTo(map.unproject(px), { animate: true, duration: 0.2, easeLinearity: 0.5 });
@@ -89,9 +95,9 @@ const PointMarker = ({ center, content, openPopup, L }) => {
         () => {
           if (!rendered) {
             const popupHeight = markerRef.current._popup._container.clientHeight;
-            console.log(popupHeight / 2);
+
             var px = map.project(markerRef.current._popup._latlng); // find the pixel location on the map where the popup anchor is
-            console.log(px.y);
+
             px.y -= markerRef.current._popup._container.clientHeight / 3; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
 
             map.panTo(map.unproject(px), {
@@ -101,12 +107,12 @@ const PointMarker = ({ center, content, openPopup, L }) => {
             });
             let panes = map.getPanes();
             let popupPane = panes["popupPane"].children[0];
-            console.log(popupPane);
+
             L.DomUtil.removeClass(popupPane, "map-popup-inactive");
           }
           let panes = map.getPanes();
           let popupPane = panes["popupPane"].children[0];
-          console.log(popupPane);
+
           L.DomUtil.removeClass(popupPane, "map-popup-inactive");
         },
         rendered ? 1300 : 1000
@@ -130,4 +136,4 @@ const PointMarker = ({ center, content, openPopup, L }) => {
   );
 };
 
-export default Markers
+export default Markers;

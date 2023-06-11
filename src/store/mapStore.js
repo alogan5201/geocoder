@@ -8,6 +8,8 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    markerData: null,
    zoom: 0,
    testData: null,
+   userLocationActive: false,
+   clearMapInputs: false,
    increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
    resetMapZoom: (data) => {
  set({ zoom: data });
@@ -15,6 +17,12 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    removeAllBears: () => set({ bears: 0 }),
    setGeoData: (data) => {
      set({ geoData: data });
+   },
+   setMapInputState: (data) => {
+     set({ clearMapInputs: data });
+   },
+   setUserLocationActive: (data) => {
+     set({ userLocationActive: data });
    },
    setTestData: (data) => {
      set({ testData: data });
@@ -29,6 +37,7 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
        let lng = obj["lng"];
        let dms = convertLatLngToDMS(lat, lng);
        obj["dms"] = dms;
+       obj["userLocation"] = obj["userLocation"];
        markerData.push(obj);
      }
 
