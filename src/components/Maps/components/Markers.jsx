@@ -13,36 +13,37 @@ const Markers = ({ L }) => {
   const [markerPoints, setMarkerPoints] = useState(null);
   const [popupOpen, setPopupOpen] = useState(false);
   const [currentCoords, setCurrentCoords] = useState(null);
+  
   useEffect(() => {
     if (markerData) {
       setMarkerPoints(markerData);
       setPopupOpen(true);
     }
+    
   }, [markerData]);
   return markerPoints && markerPoints.length > 0
-    ? markerPoints.map((item, index) => (
-        <PointMarker
-          key={index}
-          content={index}
-          center={{ lat: item.lat, lng: item.lng }}
-          openPopup={popupOpen}
-          L={L}
-        />
-      ))
+  ? markerPoints.map((item, index) => (
+    <PointMarker
+    key={index}
+    content={index}
+    center={{ lat: item.lat, lng: item.lng }}
+    openPopup={popupOpen}
+    L={L}
+    />
+    ))
     : null;
-};
+  };
+  
+  const PointMarker = ({ center, content, openPopup, L }) => {
+    const [position, setPosition] = useState(null);
+    const [popupOpened, setPopupOpened] = useState(false);
+    const [popupVisible, setPopupVisible] = useState("hidden");
+    const [rendered, setRendered] = useState(false);
+    const [containerHeight, setContainerHeight] = useState(null);
+    const userLocationActive = useStore((state) => state.userLocationActive);
+    const resetMarkerData = useStore((state) => state.resetMarkerData);
 
-const PointMarker = ({ center, content, openPopup, L }) => {
-  const [position, setPosition] = useState(null);
-  const [popupOpened, setPopupOpened] = useState(false);
-  const [popupVisible, setPopupVisible] = useState("hidden");
-  const [rendered, setRendered] = useState(false);
-  const [containerHeight, setContainerHeight] = useState(null);
-  const [popupIsActive, setPopupIsActive] = useState(false);
-  const [initialRender, setInitialRender] = useState(false)
-  const userLocationActive = useStore((state) => state.userLocationActive);
-
-  useEffect(() => {}, [popupIsActive]);
+ 
 
   const map = useMap();
   const markerRef = useRef(null);
@@ -64,17 +65,10 @@ const PointMarker = ({ center, content, openPopup, L }) => {
     if (userLocationActive) return;
     map.stopLocate();
   };
-    useEffectOnce(() => {
-      console.log("Running effect once on mount");
 
-      return () => {
-        console.log("Running clean-up of effect on unmount");
-      };
-    });
   useEffect(() => {
-    if (openPopup && !initialRender) {
+    if (openPopup) {
       stopLocation();
-      setPopupIsActive(false);
 
       map.flyTo(center, 13, {
         animate: true,
@@ -82,9 +76,8 @@ const PointMarker = ({ center, content, openPopup, L }) => {
         easeLinearity: 0.5,
       });
 
-     setInitialRender(true)
+    
       togglePopup(open, markerRef);
-      setPopupIsActive(true);
 
       setTimeout(
         () => {
@@ -130,9 +123,11 @@ const PointMarker = ({ center, content, openPopup, L }) => {
       );
     }
     setRendered(true);
-      return () => {
-        setInitialRender(false)
-      };
+    return () => {
+      // Reset the state here
+
+      resetMarkerData();
+    };
   }, [map, center, openPopup, rendered]);
 
   return (
