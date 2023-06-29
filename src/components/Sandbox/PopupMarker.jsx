@@ -10,47 +10,66 @@ import useStore from "store/mapStore";
 import { extractWords, test, tron } from "util/helpers";
 import { handleBookmarkChange, alreadyBookmarked } from "util/bookmarks";
 import { v4 as uuidv4 } from "uuid";
+import Switch from "@mui/material/Switch";
+import Paper from "@mui/material/Paper";
+import Fade from "@mui/material/Fade";
+import FormControlLabel from "@mui/material/FormControlLabel";
+const icon = (
+  <Paper elevation={4}>
+    <List>
+      <ListItem disablePadding>
+        <span style={{ fontSize: "16px" }}> Atlanta, GA</span>
+      </ListItem>
+    </List>
+    <Divider />
 
+    <List>
+      <ListItem disablePadding>
+        <span style={{ fontSize: "16px" }}>Latitude: 33</span>
+      </ListItem>
+      <ListItem disablePadding>
+        <span style={{ fontSize: "16px" }}>Longitude: 89</span>
+      </ListItem>
+
+      <ListItem disablePadding style={{ fontSize: "16px" }}>
+        33 89 22
+        {/*    <span style={{ fontSize: "16px" }}>{popupContent.dms.lat.display} {popupContent.dms.lng.display}</span> */}
+      </ListItem>
+    </List>
+    <Divider />
+  </Paper>
+);
 export default function PopupMarker() {
+      const [checked, setChecked] = useState(false);
   const markerData = useStore((state) => state.markerData);
   const [popupContent, setPopupcontent] = useState(null);
   const [dmsDisplay, setDisplayDMS] = useState(null);
   const [bookmarked, setBookmarked] = useState(false);
   const [bookMarkId, setBookMarkId] = useState();
 
+  const handleChange = () => {
+    setChecked((prev) => !prev);
+  };
 
   function handleBookMarkClick(e) {
     e.preventDefault();
-    console.log(content);
 
     //handleBookmarkChange(!bookmarked, "bookmarks", bookmarkData);
+     setChecked((prev) => !prev);
     setBookmarked(!bookmarked);
   }
 
   return (
-    <Box sx={{ width: "100%", maxWidth: 300, bgcolor: "transparent", border: '1px dashed grey' }} py={1} px={1}>
-      <List>
-        <ListItem disablePadding>
-          <span style={{ fontSize: "16px" }}> Atlanta, GA</span>
-        </ListItem>
-      </List>
-      <Divider />
+    <Box
+      sx={{ width: "100%", maxWidth: 300, bgcolor: "transparent", border: "1px dashed grey" }}
+      py={1}
+      px={1}
+    >
+  
+      <Box sx={{ display: "flex" }}>
+        <Fade in={checked}>{icon}</Fade>
+      </Box>
 
-      <List>
-        <ListItem disablePadding>
-          <span style={{ fontSize: "16px" }}>Latitude: 33</span>
-        </ListItem>
-        <ListItem disablePadding>
-          <span style={{ fontSize: "16px" }}>Longitude: 89</span>
-        </ListItem>
-
-        <ListItem disablePadding style={{ fontSize: "16px" }}>
-      33 89 22
-
-          {/*    <span style={{ fontSize: "16px" }}>{popupContent.dms.lat.display} {popupContent.dms.lng.display}</span> */}
-        </ListItem>
-      </List>
-      <Divider />
       {/* ================= BOOKMARK ================= */}
       <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
         {bookmarked ? (

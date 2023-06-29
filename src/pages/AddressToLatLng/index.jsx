@@ -12,7 +12,7 @@ import footerRoutes from "footer.routes";
 import { formStyles } from "src/styles";
 import Form from "./components/Form";
 
-function HomePage() {
+function AddressToLatLngPage() {
 const formWrapperStyles = formStyles.mapForm.formWrapper
 const formWrapperProps = {
   styles: formWrapperStyles,
@@ -45,4 +45,4 @@ const formWrapperProps = {
     </>
   );
 }
-export default HomePage;
+export default AddressToLatLngPage;

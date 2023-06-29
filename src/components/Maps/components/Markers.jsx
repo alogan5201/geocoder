@@ -6,6 +6,7 @@ import "react-tabs/style/react-tabs.css";
 import useStore from "store/mapStore";
 import { toggleLocation } from "util/geocoder";
 const center = [37.09024, -95.712891];
+import { useEffectOnce } from "react-use";
 
 const Markers = ({ L }) => {
   const markerData = useStore((state) => state.markerData);
@@ -38,6 +39,7 @@ const PointMarker = ({ center, content, openPopup, L }) => {
   const [rendered, setRendered] = useState(false);
   const [containerHeight, setContainerHeight] = useState(null);
   const [popupIsActive, setPopupIsActive] = useState(false);
+  const [initialRender, setInitialRender] = useState(false)
   const userLocationActive = useStore((state) => state.userLocationActive);
 
   useEffect(() => {}, [popupIsActive]);
@@ -62,8 +64,15 @@ const PointMarker = ({ center, content, openPopup, L }) => {
     if (userLocationActive) return;
     map.stopLocate();
   };
+    useEffectOnce(() => {
+      console.log("Running effect once on mount");
+
+      return () => {
+        console.log("Running clean-up of effect on unmount");
+      };
+    });
   useEffect(() => {
-    if (openPopup) {
+    if (openPopup && !initialRender) {
       stopLocation();
       setPopupIsActive(false);
 
@@ -72,6 +81,8 @@ const PointMarker = ({ center, content, openPopup, L }) => {
         duration: 0.8,
         easeLinearity: 0.5,
       });
+
+     setInitialRender(true)
       togglePopup(open, markerRef);
       setPopupIsActive(true);
 
@@ -119,6 +130,9 @@ const PointMarker = ({ center, content, openPopup, L }) => {
       );
     }
     setRendered(true);
+      return () => {
+        setInitialRender(false)
+      };
   }, [map, center, openPopup, rendered]);
 
   return (
