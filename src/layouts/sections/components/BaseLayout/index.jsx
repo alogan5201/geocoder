@@ -47,10 +47,8 @@ function BaseLayout({  children }) {
           relative
         />
       </Box>
-      <Container sx={{ mt: 0 }}>
+      <Container maxWidth="sm" px={{ xs: 0, sm: 4 }}>
         <Grid container item xs={12} flexDirection="column" justifyContent="center" mx="auto">
-         
-        
           {children}
         </Grid>
       </Container>

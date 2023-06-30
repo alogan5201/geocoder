@@ -32,6 +32,7 @@ function HomePage() {
   return (
     <>
       <BaseLayout>
+      
         <FormWrapper  form={<Form addressToLatLng={true} />} />
 
         <Box pt={6} px={1} mt={6}>

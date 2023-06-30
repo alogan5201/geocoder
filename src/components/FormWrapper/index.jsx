@@ -43,33 +43,31 @@ if(val.length === 0){
   return (
     <>
       <Box component="section" py={{ xs: 2, sm: 6 }}>
-        <Container>
-          <Grid container item px={0}>
-            <Box
-              width="100%"
-              bgColor="white"
-              borderRadius="xl"
-              shadow="xl"
-              mb={6}
-              sx={{ overflow: "hidden" }}
-            >
-              <Grid container spacing={1}>
-                {/*================= LEFT COLUMN - FormWrapper / FormChildren =================*/}
-                <Grid item xs={12} lg={5}>
-                  {form}
-                  {/* {children} */}
-                </Grid>
-                {/*================= RIGHT COLUMN - MAP ================= */}
-                <Grid item xs={12} lg={7} position="relative" px={0}>
-                  <Box px={3} py={{ xs: 0, sm: 6 }} sx={{ height: 600 }}>
-                    <MapExternal />
-                  </Box>
-                </Grid>
+        <Grid container item px={0}>
+          <Box
+            width="100%"
+            bgColor="white"
+            borderRadius="xl"
+            shadow="xl"
+            mb={6}
+            sx={{ overflow: "hidden" }}
+          >
+            <Grid container spacing={0}>
+              {/*================= LEFT COLUMN - FormWrapper / FormChildren =================*/}
+              <Grid item xs={12} lg={5}>
+                {form}
+                {/* {children} */}
               </Grid>
-            </Box>
-          </Grid>
-          <Sandbox />
-        </Container>
+              {/*================= RIGHT COLUMN - MAP ================= */}
+              <Grid item xs={12} lg={7} position="relative" px={0}>
+                <Box px={{ xs: 1, sm: 3 }} py={{ xs: 0, sm: 6 }} sx={{ height: 600 }}>
+                  <MapExternal />
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
+        </Grid>
+        <Sandbox />
       </Box>
     </>
   );

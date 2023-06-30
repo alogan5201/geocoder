@@ -92,16 +92,16 @@ function Form() {
   }, [userLocationActive]);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
-      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 6 }}>
+      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
           Home Page
         </Typography>
-        <Typography variant="body2" color="text" mb={2}>
+        <Typography variant="body2" color="text" mb={1}>
           To pinpoint a location, you can type in the name of a place, city, state, or address, or
           click the location on the map to get the coordinates.
         </Typography>
       </Box>
-      <Box pt={0.5} pb={3} px={3}>
+      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 6 }}>
         <Grid container>
           {/* ============ AddressInput ============ */}
           <AddressInput readOnly={false} />
@@ -113,9 +113,7 @@ function Form() {
           </Grid>
           {/* ============ LatLngInputs ============ */}
           <LatLngInputs readOnly={true} />
-          <Grid item xs={12} pr={1} mb={2}>
-            <Box></Box>
-          </Grid>
+       
         </Grid>
       </Box>
     </Box>
