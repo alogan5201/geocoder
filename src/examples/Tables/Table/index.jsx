@@ -123,7 +123,7 @@ function Table({ columns, rows }) {
       return template;
     });
 
-    return <TableRow key={rowKey}>{tableRow}</TableRow>;
+    return <TableRow hover key={rowKey}>{tableRow}</TableRow>;
   });
 
   return useMemo(

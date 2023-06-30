@@ -11,7 +11,6 @@ import FormWrapper from "components/FormWrapper";
 import footerRoutes from "footer.routes";
 import { formStyles } from "src/styles";
 import Form from "./components/Form";
-
 function BookmarksPage() {
   const formWrapperStyles = formStyles.mapForm.formWrapper;
 

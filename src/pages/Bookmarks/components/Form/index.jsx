@@ -13,7 +13,8 @@ import { extractWords, test } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
-
+import BookmarkTable from "../BookmarkTable";
+import Table from "../Table"
 function Form() {
   useEffect(() => {
     test();
@@ -97,19 +98,8 @@ function Form() {
           Bookmarks
         </Typography>
       </Box>
-      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 6 }}>
-        <Grid container>
-          {/* ============ AddressInput ============ */}
-          <AddressInput readOnly={false} />
-          {/* ============ Submit ============ */}
-          <Grid item xs={12} pr={1} mb={2}>
-            <Button type="submit" variant="gradient" color="info">
-              Submit
-            </Button>
-          </Grid>
-          {/* ============ LatLngInputs ============ */}
-          <LatLngInputs readOnly={true} />
-        </Grid>
+      <Box px={{ xs: 0, sm: 1 }} py={{ xs: 2, sm: 1 }}>
+ <BookmarkTable />
       </Box>
     </Box>
   );

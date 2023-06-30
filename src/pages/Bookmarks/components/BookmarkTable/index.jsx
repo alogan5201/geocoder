@@ -135,10 +135,9 @@ function BookmarkTable() {
 
   return (
     <Grid container item xs={12} lg={12} mx="auto">
-         <TableContainer sx={{ maxHeight: 440 }}>
-      <Table columns={columns} rows={rows} />
-
-         </TableContainer>
+      <TableContainer sx={{ maxHeight: 440 }}>
+        <Table columns={columns} rows={rows} stickyHeader aria-label="sticky table" />
+      </TableContainer>
     </Grid>
   );
 }
