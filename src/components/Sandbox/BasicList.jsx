@@ -11,7 +11,7 @@ import ReactJson from "react-json-view";
 export default function BasicList({data}) {
 useEffect(() => {
   if(data){
-    console.log(data)
+  
   }
 }, [data]);
   return data ? (

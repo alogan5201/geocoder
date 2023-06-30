@@ -38,12 +38,16 @@ export default function LatLngInputs(readonly){
           let lng = markerData[0].lng;
        latInputElm.current.value = lat;
        lngInputElm.current.value = lng;
-if(clearMapInputs){
-  latInputElm.current.value = "";
-  lngInputElm.current.value = "";
-}
+
           }
-        }, [markerData,clearMapInputs]);
+       
+        }, [markerData]);
+        useEffect(() => {
+            if (clearMapInputs){
+            latInputElm.current.value = "";
+            lngInputElm.current.value = "";
+          }
+        }, [clearMapInputs]);
     return (
       <>
         {/* ============ LatInput ============ */}
