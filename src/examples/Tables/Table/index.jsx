@@ -66,14 +66,16 @@ function Table({ columns, rows }) {
           borderBottom: `${borderWidth[1]} solid ${borderColor}`,
         })}
       >
+        <Typography variant="body2">
         {name.toUpperCase()}
+        </Typography>
       </Box>
     );
   });
 
   const renderRows = rows.map((row, key) => {
     const rowKey = `row-${key}`;
-
+    console.log(row)
     const tableRow = columns.map(({ name, align }) => {
       let template;
 
@@ -91,7 +93,7 @@ function Table({ columns, rows }) {
               <Box mr={2}>
                 <Avatar src={row[name][0]} name={row[name][1]} variant="rounded" size="sm" />
               </Box>
-              <Typography variant="button" fontWeight="medium" sx={{ width: "max-content" }}>
+              <Typography variant="body1" fontWeight="medium" sx={{ width: "max-content" }}>
                 {row[name][1]}
               </Typography>
             </Box>
@@ -109,7 +111,7 @@ function Table({ columns, rows }) {
             })}
           >
             <Typography
-              variant="button"
+              variant="body2"
               fontWeight="regular"
               color="secondary"
               sx={{ display: "inline-block", width: "max-content" }}

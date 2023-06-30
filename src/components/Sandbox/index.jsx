@@ -17,11 +17,8 @@ function Sandbox() {
   useEffect(() => {}, [allObjects]);
   return (
     <div>
-  <TestBookmarkTable/>
-      <Wrapper
-        children={<BasicList data={allObjects ? allObjects : null} />}
-        name="Zustand State"
-      />
+
+
 
       {/*      <Wrapper
         children={<WhatChanged data={testData ? testData : null} />}
