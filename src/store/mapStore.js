@@ -7,13 +7,14 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    geoData: null,
    markerData: null,
    cachedMarkerData: null,
-   resetMarkerData: () => {
-    set({ markerData: null })
-   },
    zoom: 0,
    testData: null,
    userLocationActive: false,
    clearMapInputs: false,
+   resetMarkerData: () => {
+
+    set({ markerData: null,clearMapInputs: true });
+   },
    increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
    resetMapZoom: (data) => {
      set({ zoom: data });
