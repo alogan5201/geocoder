@@ -10,13 +10,14 @@ import LocalStorage from "./LocalStorage";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import BasicTransition from "./BasicTransition";
 import PopupMarker from './PopupMarker'
+import TestBookmarkTable from "./TestBookmarkTable";
 function Sandbox() {
   const allObjects = useStore((state) => state);
   const testData = useStore((state) => state.testData);
   useEffect(() => {}, [allObjects]);
   return (
     <div>
-  
+  <TestBookmarkTable/>
       <Wrapper
         children={<BasicList data={allObjects ? allObjects : null} />}
         name="Zustand State"

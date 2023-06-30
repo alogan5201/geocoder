@@ -32,7 +32,7 @@ function HomePage() {
   return (
     <>
       <BaseLayout>
-        <FormWrapper props={formWrapperProps} form={<Form addressToLatLng={true} />} />
+        <FormWrapper  form={<Form addressToLatLng={true} />} />
 
         <Box pt={6} px={1} mt={6}>
           <DefaultFooter content={footerRoutes} />

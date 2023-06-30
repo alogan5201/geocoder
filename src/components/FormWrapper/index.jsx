@@ -10,7 +10,7 @@ import MapExternal from "components/Maps/MapExternal";
 import Sandbox from "components/Sandbox";
 
 function FormWrapper({props, form, map}) {
-  const sectionStyles = props.styles.section.py
+ 
 
   /* -------------------------------------------------------------------------- */
   /*                                    HOOKS                                   */
@@ -42,9 +42,8 @@ if(val.length === 0){
   /* -------------------------------------------------------------------------- */
   return (
     <>
-      <Box component="section" py={sectionStyles}>
+      <Box component="section" py={{ xs: 2, sm: 6 }}>
         <Container>
-     
           <Grid container item px={0}>
             <Box
               width="100%"
@@ -54,8 +53,7 @@ if(val.length === 0){
               mb={6}
               sx={{ overflow: "hidden" }}
             >
-           
-              <Grid container spacing={3}>
+              <Grid container spacing={1}>
                 {/*================= LEFT COLUMN - FormWrapper / FormChildren =================*/}
                 <Grid item xs={12} lg={5}>
                   {form}
@@ -63,18 +61,9 @@ if(val.length === 0){
                 </Grid>
                 {/*================= RIGHT COLUMN - MAP ================= */}
                 <Grid item xs={12} lg={7} position="relative" px={0}>
-                  <div
-                    style={{
-                      position: "relative",
-                      paddingBottom: "26.25%",
-                      paddingTop: "30px",
-                      height: "500px",
-                    }}
-                  >
-
-                  <MapExternal />
-
-                  </div>
+                  <Box px={3} py={{ xs: 0, sm: 6 }} sx={{ height: 600 }}>
+                    <MapExternal />
+                  </Box>
                 </Grid>
               </Grid>
             </Box>

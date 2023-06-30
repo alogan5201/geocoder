@@ -128,14 +128,14 @@ function Table({ columns, rows }) {
 
   return useMemo(
     () => (
-      <TableContainer>
+  
         <MuiTable>
           <Box component="thead">
             <TableRow>{renderColumns}</TableRow>
           </Box>
           <TableBody>{renderRows}</TableBody>
         </MuiTable>
-      </TableContainer>
+ 
     ),
     [columns, rows]
   );
