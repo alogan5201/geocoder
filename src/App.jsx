@@ -27,6 +27,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "assets/theme";
 
 import HomePage from "pages/HomePage";
+import Loading from "components/Loading";
 import "src/App.css";
 // Material Kit 2 PRO React routes
 import routes from "routes";
@@ -57,7 +58,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading/>}>
         <Routes>
           {getRoutes(routes)}
           <Route path="/" element={<HomePage />} />

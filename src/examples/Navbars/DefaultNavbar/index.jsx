@@ -495,8 +495,8 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           <Box
             color="inherit"
             display={{ xs: "none", lg: "flex" }}
-            ml="auto"
-            mr={center ? "auto" : 0}
+            mr="auto"
+            ml={center ? "auto" : 0}
           >
             {renderNavbarItems}
           </Box>

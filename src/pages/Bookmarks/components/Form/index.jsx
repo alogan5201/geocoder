@@ -94,11 +94,7 @@ function Form() {
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
-          Address to Latitude & Longitude
-        </Typography>
-        <Typography variant="body2" color="text" mb={1}>
-          To pinpoint a location, you can type in the name of a place, city, state, or address, or
-          click the location on the map to get the coordinates.
+          Bookmarks
         </Typography>
       </Box>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 6 }}>

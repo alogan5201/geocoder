@@ -14,13 +14,7 @@ import Form from "./components/Form";
 
 function BookmarksPage() {
   const formWrapperStyles = formStyles.mapForm.formWrapper;
-  const formWrapperProps = {
-    styles: formWrapperStyles,
-    name: "Address to Latitude & Longitude",
-    description:
-      "To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates.",
-    map: true,
-  };
+
 
   // formStyles.formWrapper
   const actionProps = {
@@ -32,7 +26,7 @@ function BookmarksPage() {
   return (
     <>
       <BaseLayout>
-        <FormWrapper form={<Form addressToLatLng={true} />} />
+        <FormWrapper form={<Form />} />
 
         <Box pt={6} px={1} mt={6}>
           <DefaultFooter content={footerRoutes} />
