@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import PropTypes from "prop-types";
 
 import { v4 as uuidv4 } from "uuid";
+import useStore from "store/mapStore";
 
 import MuiTable from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -14,7 +15,22 @@ import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
 function Table({ columns, rows }) {
-  
+    const updateMarkerData = useStore((state) => state.setMarkerData);
+
+  const handleRowClick = (address, latitude, longitude,dms, id) => {
+    
+    console.log(`Latitude: ${latitude}, Longitude: ${longitude} DMS: ${dms}, ID: ${id}`);
+          const markerData = [
+            {
+              id: id,
+              lat: latitude,
+              lng: longitude,
+              title: address,
+              userLocation: false,
+            },
+          ];
+           updateMarkerData(markerData);
+  };
   const renderColumns = columns.map(({ name, align, width }, key) => {
     let pl;
     let pr;
@@ -55,13 +71,14 @@ function Table({ columns, rows }) {
 
   const renderRows = rows.map((row, key) => (
     <TableRow
+      onClick={() => handleRowClick(row.address,row.latitude, row.longitude, row.dms,row.id)}
       hover
       key={`row-${key}`}
       sx={{
         "&:nth-of-type(odd)": {
           backgroundColor: "rgba(0, 0, 0, 0.04)", // Use any grey color you like here
         },
-        cursor:"pointer"
+        cursor: "pointer",
       }}
     >
       {columns.map(({ name, align }) => (

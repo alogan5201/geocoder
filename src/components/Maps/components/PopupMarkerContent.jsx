@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 
 function PopupMarkerContent({ content }) {
   const markerData = useStore((state) => state.markerData);
+  const setBookmarks = useStore((state) => state.setBookmarks);
   const [popupContent, setPopupcontent] = useState(null);
   const [dmsDisplay, setDisplayDMS] = useState(null);
   const [bookmarked, setBookmarked] = useState(false);
@@ -25,6 +26,7 @@ function PopupMarkerContent({ content }) {
         markerData[content].lng
       );
       setBookmarked(shouldBookmark);
+    
       // popupContent.dms.lat.display
       let dmsDisplay = `${markerData[content].dms.lat.display} ${markerData[content].dms.lng.display}`;
       setDisplayDMS(dmsDisplay);
@@ -36,7 +38,7 @@ function PopupMarkerContent({ content }) {
     e.preventDefault();
 
     let bookmarkData = markerData[content];
-
+  setBookmarks();
     handleBookmarkChange(!bookmarked, "bookmarks", bookmarkData);
     setBookmarked(!bookmarked);
   }
