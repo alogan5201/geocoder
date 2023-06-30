@@ -7,11 +7,11 @@ import Stack from "@mui/material/Stack";
 import Box from "components/Box";
 import Button from "components/Button";
 import useStore from "store/mapStore";
-import { extractWords, test,tron} from "util/helpers";
-import {handleBookmarkChange,alreadyBookmarked} from "util/bookmarks";
+import { extractWords, test, tron } from "util/helpers";
+import { handleBookmarkChange, alreadyBookmarked } from "util/bookmarks";
 import { v4 as uuidv4 } from "uuid";
 
-export default function PopupMarker({ content}) {
+function PopupMarkerContent({ content }) {
   const markerData = useStore((state) => state.markerData);
   const [popupContent, setPopupcontent] = useState(null);
   const [dmsDisplay, setDisplayDMS] = useState(null);
@@ -19,33 +19,30 @@ export default function PopupMarker({ content}) {
   const [bookMarkId, setBookMarkId] = useState();
   useEffect(() => {
     if (markerData) {
-     const shouldBookmark = alreadyBookmarked(
-       "bookmarks",
-       markerData[content].lat,
-       markerData[content].lng
-     );
+      const shouldBookmark = alreadyBookmarked(
+        "bookmarks",
+        markerData[content].lat,
+        markerData[content].lng
+      );
       setBookmarked(shouldBookmark);
       // popupContent.dms.lat.display
       let dmsDisplay = `${markerData[content].dms.lat.display} ${markerData[content].dms.lng.display}`;
       setDisplayDMS(dmsDisplay);
       setPopupcontent(markerData[content]);
-      
     }
   }, [markerData, content]);
 
   function handleBookMarkClick(e) {
     e.preventDefault();
-  
-     let bookmarkData = markerData[content];
-  
-  handleBookmarkChange(!bookmarked,"bookmarks",bookmarkData);
-    setBookmarked(!bookmarked);
 
+    let bookmarkData = markerData[content];
+
+    handleBookmarkChange(!bookmarked, "bookmarks", bookmarkData);
+    setBookmarked(!bookmarked);
   }
 
   return popupContent ? (
     <Box sx={{ width: "100%", maxWidth: 300, bgcolor: "transparent" }} py={1} px={1}>
-   
       <List>
         <ListItem disablePadding>
           <span style={{ fontSize: "16px" }}>{popupContent.title}</span>
@@ -85,3 +82,5 @@ export default function PopupMarker({ content}) {
     </Box>
   ) : null;
 }
+
+export default PopupMarkerContent;

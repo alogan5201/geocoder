@@ -6,7 +6,10 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    bears: 0,
    geoData: null,
    markerData: null,
-   resetMarkerData: () => set({ markerData: null }),
+   cachedMarkerData: null,
+   resetMarkerData: () => {
+    set({ markerData: null })
+   },
    zoom: 0,
    testData: null,
    userLocationActive: false,

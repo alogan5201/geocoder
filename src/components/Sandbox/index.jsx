@@ -17,17 +17,16 @@ function Sandbox() {
   return (
     <div>
   
-      <PopupMarker/>
-  
- 
-      {/*      <Wrapper
-        children={<WhatChanged data={testData ? testData : null} />}
-        name="What Changed"
-      />
       <Wrapper
         children={<BasicList data={allObjects ? allObjects : null} />}
         name="Zustand State"
       />
+
+      {/*      <Wrapper
+        children={<WhatChanged data={testData ? testData : null} />}
+        name="What Changed"
+      />
+   
       <Controls /> */}
     </div>
   );

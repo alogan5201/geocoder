@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
 import Divider from '@mui/material/Divider';
-import Icon from "@mui/material/Icon";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Stack from "@mui/material/Stack";
 import Box from 'components/Box';
-import Button from "components/Button";
+import { useEffect } from "react";
 
 export default function BasicList({data}) {
 useEffect(() => {

@@ -14,6 +14,7 @@ Coded by www.creative-tim.com
 */
 
 import { useEffect } from "react";
+import useStore from "store/mapStore";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
@@ -32,11 +33,12 @@ import routes from "routes";
 
 export default function App() {
   const { pathname } = useLocation();
-
+  const resetMarkerData = useStore((state) => state.resetMarkerData);
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
+   resetMarkerData()
   }, [pathname]);
 
   const getRoutes = (allRoutes) =>
