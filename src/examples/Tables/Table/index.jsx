@@ -1,38 +1,20 @@
-/*
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useMemo } from "react";
 
-// prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
 
-// uuid is a library for generating unique id
 import { v4 as uuidv4 } from "uuid";
 
-// @mui material components
 import MuiTable from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 
-// Material Kit 2 PRO React components
 import Box from "components/Box";
 import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
 function Table({ columns, rows }) {
+  
   const renderColumns = columns.map(({ name, align, width }, key) => {
     let pl;
     let pr;
@@ -55,8 +37,8 @@ function Table({ columns, rows }) {
         width={width || "auto"}
         pt={1.5}
         pb={1.25}
-        pl={align === "left" ? pl : 3}
-        pr={align === "right" ? pr : 3}
+        pl={2.5}
+        pr={3}
         textAlign={align}
         color="secondary"
         opacity={0.7}
@@ -66,67 +48,46 @@ function Table({ columns, rows }) {
           borderBottom: `${borderWidth[1]} solid ${borderColor}`,
         })}
       >
-        <Typography variant="body2">
-        {name.toUpperCase()}
-        </Typography>
+        <Typography variant="body2">{name.toUpperCase()}</Typography>
       </Box>
     );
   });
 
-  const renderRows = rows.map((row, key) => {
-    const rowKey = `row-${key}`;
-    console.log(row)
-    const tableRow = columns.map(({ name, align }) => {
-      let template;
-
-      if (Array.isArray(row[name])) {
-        template = (
-          <Box
-            key={uuidv4()}
-            component="td"
-            p={1}
-            sx={({ borders: { borderWidth, borderColor } }) => ({
-              borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
-            })}
+  const renderRows = rows.map((row, key) => (
+    <TableRow
+      hover
+      key={`row-${key}`}
+      sx={{
+        "&:nth-of-type(odd)": {
+          backgroundColor: "rgba(0, 0, 0, 0.04)", // Use any grey color you like here
+        },
+        cursor:"pointer"
+      }}
+    >
+      {columns.map(({ name, align }) => (
+        <Box
+          key={uuidv4()}
+          component="td"
+          pl={2.5}
+          pr={3}
+          textAlign={align}
+          sx={({ borders: { borderWidth, borderColor } }) => ({
+            borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
+          })}
+        >
+          <Typography
+            variant="body2"
+            fontWeight="regular"
+            color="secondary"
+            sx={{ display: "inline-block", width: "max-content" }}
           >
-            <Box display="flex" alignItems="center" py={0.5} px={1}>
-              <Box mr={2}>
-                <Avatar src={row[name][0]} name={row[name][1]} variant="rounded" size="sm" />
-              </Box>
-              <Typography variant="body1" fontWeight="medium" sx={{ width: "max-content" }}>
-                {row[name][1]}
-              </Typography>
-            </Box>
-          </Box>
-        );
-      } else {
-        template = (
-          <Box
-            key={uuidv4()}
-            component="td"
-            p={1}
-            textAlign={align}
-            sx={({ borders: { borderWidth, borderColor } }) => ({
-              borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
-            })}
-          >
-            <Typography
-              variant="body2"
-              fontWeight="regular"
-              color="secondary"
-              sx={{ display: "inline-block", width: "max-content" }}
-            >
-              {row[name]}
-            </Typography>
-          </Box>
-        );
-      }
+            {row[name]}
+          </Typography>
+        </Box>
+      ))}
+    </TableRow>
+  ));
 
-      return template;
-    });
-
-    return <TableRow hover key={rowKey}>{tableRow}</TableRow>;
-  });
 
   return useMemo(
     () => (

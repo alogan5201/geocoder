@@ -30,6 +30,31 @@ function BookmarkTable() {
         latitude: "33.748992",
         longitude: " -84.390264",
       },
+      {
+        address: "Atlanta, GA",
+        latitude: "33.748992",
+        longitude: " -84.390264",
+      },
+      {
+        address: "Atlanta, GA",
+        latitude: "33.748992",
+        longitude: " -84.390264",
+      },
+      {
+        address: "Atlanta, GA",
+        latitude: "33.748992",
+        longitude: " -84.390264",
+      },
+      {
+        address: "Atlanta, GA",
+        latitude: "33.748992",
+        longitude: " -84.390264",
+      },
+      {
+        address: "Atlanta, GA",
+        latitude: "33.748992",
+        longitude: " -84.390264",
+      },
 
     ],
   };
