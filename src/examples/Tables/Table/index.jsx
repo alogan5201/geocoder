@@ -19,7 +19,6 @@ function Table({ columns, rows }) {
 
   const handleRowClick = (address, latitude, longitude,dms, id) => {
     
-    console.log(`Latitude: ${latitude}, Longitude: ${longitude} DMS: ${dms}, ID: ${id}`);
           const markerData = [
             {
               id: id,

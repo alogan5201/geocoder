@@ -11,14 +11,18 @@ import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import BasicTransition from "./BasicTransition";
 import PopupMarker from './PopupMarker'
 import TestBookmarkTable from "./TestBookmarkTable";
+import ReactJson from "react-json-view";
+
 function Sandbox() {
   const allObjects = useStore((state) => state);
   const testData = useStore((state) => state.testData);
   useEffect(() => {}, [allObjects]);
   return (
     <div>
+      <div style={{fontSize:"14px"}}>
+      <ReactJson src={allObjects} />
 
-
+      </div>
 
       {/*      <Wrapper
         children={<WhatChanged data={testData ? testData : null} />}

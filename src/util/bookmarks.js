@@ -5,7 +5,7 @@ function addObjectToLocalstorageList(key, obj) {
 
   // Add the new object to the list
   currentList.push(obj);
-
+console.log("addedbookmark",key)
   // Store the new list of objects
   localStorage.setItem(key, JSON.stringify(currentList));
 }
@@ -15,7 +15,6 @@ function removeObjectFromLocalStorageList(key, lat,lng) {
 
   // Filter out the object with the specified id
   const newList = currentList.filter((item) => item.lat !== lat && item.lng !== lng);
-console.log(newList)
   // Store the new list of objects
   localStorage.setItem(key, JSON.stringify(newList));
 }
@@ -32,11 +31,9 @@ export function alreadyBookmarked(key, lat,lng) {
 
   export function handleBookmarkChange(addBookmark,key,obj){
     if(addBookmark){
-      console.log("add", key,obj);
       addObjectToLocalstorageList(key,obj)
     }
     else {
-      console.log("remove", key,obj);
       removeObjectFromLocalStorageList(key,obj.lat,obj.lng)
     }
   }

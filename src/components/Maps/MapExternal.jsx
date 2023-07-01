@@ -33,4 +33,5 @@ const MapExternal = () => {
     </>
   );
 };
+
 export default MapExternal;
