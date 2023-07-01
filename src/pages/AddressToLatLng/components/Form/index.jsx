@@ -50,8 +50,10 @@ function Form() {
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];
         let lng = mapBoxData.features[0].geometry.coordinates[0];
+        console.log(mapBoxData)
         setCoords([coords]);
         const address = mapBoxData.features[0].place_name;
+        const wikiData = mapBoxData.features[0].properties.wikidata;
         const uid = uuidv4();
         const markerData = [
           {
@@ -60,6 +62,7 @@ function Form() {
             lng: lng,
             title: address,
             userLocation: false,
+            wikiData: wikiData,
           },
         ];
         setUserLocationActive(false);

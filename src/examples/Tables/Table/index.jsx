@@ -111,9 +111,13 @@ function Table({ columns, rows, hideColumns, hideColumnRow }) {
 
   return useMemo(
     () => (
-      <MuiTable stickyHeader aria-label="sticky table">
+      <MuiTable stickyHeader aria-label="sticky table" >
         <Box component="thead">
-          {hideColumnRow && hideColumnRow === true ? "" : <TableRow>{renderColumns}</TableRow>}
+          {hideColumnRow && hideColumnRow === true ? (
+            <TableRow sx={{display:"none"}}>{renderColumns}</TableRow>
+          ) : (
+            <TableRow>{renderColumns}</TableRow>
+          )}
         </Box>
         <TableBody>{renderRows}</TableBody>
       </MuiTable>

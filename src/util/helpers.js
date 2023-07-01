@@ -174,3 +174,30 @@ function addressToLatLngInputState(markerData) {
   }
 }
 
+export async function getWikidataImage(wikidataId) {
+  try {
+    // Step 1: Fetch image filename from Wikidata entity
+    const claimsUrl = `https://www.wikidata.org/w/api.php?action=wbgetclaims&property=P18&entity=${wikidataId}&format=json`;
+    const claimsResponse = await fetch(claimsUrl);
+    const claimsData = await claimsResponse.json();
+
+    const imageName = claimsData.claims.P18[0].mainsnak.datavalue.value;
+
+    // Step 2: Fetch the actual image URL from Wikimedia Commons
+    const imageUrl = `https://commons.wikimedia.org/w/api.php?action=query&titles=File:${encodeURIComponent(
+      imageName
+    )}&prop=imageinfo&iiprop=url&format=json&origin=*`;
+    const imageResponse = await fetch(imageUrl);
+    const imageData = await imageResponse.json();
+
+    // Extract image URL from the nested object
+    const pages = imageData.query.pages;
+    const firstPage = Object.keys(pages)[0];
+    const imageUrlFinal = pages[firstPage].imageinfo[0].url;
+
+    return imageUrlFinal;
+  } catch (error) {
+    console.error("Error fetching image: ", error);
+    return null;
+  }
+}

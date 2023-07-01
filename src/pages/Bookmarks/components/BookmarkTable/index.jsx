@@ -39,42 +39,7 @@ function BasicCard() {
   );
 }
 
-function MediaControlCard() {
-  const theme = useTheme();
 
-  return (
-    <Card sx={{ display: "flex" }}>
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <CardContent sx={{ flex: "1 0 auto" }}>
-          <Typography component="div" variant="h5">
-            Live From Space
-          </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
-            Mac Miller
-          </Typography>
-        </CardContent>
-        <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}></Box>
-      </Box>
-      <CardMedia
-        component="img"
-        sx={{ width: 151 }}
-        image="https://upload.wikimedia.org/wikipedia/commons/5/5f/Atlanta_Montage_2.jpg"
-        alt="Live from space album cover"
-      />
-    </Card>
-  );
-}
-
-function DirectionStack() {
-  return (
-    <div>
-      <Stack direction="row" spacing={2}>
-       <Typography variant="body2" color="text"> Atlanta </Typography>
-
-      </Stack>
-    </div>
-  )
-}
 
 function BookmarkTable() {
   const [rowData,setRowData] = useState([])
@@ -102,6 +67,7 @@ useEffect(() => {
             const longitude = bookmarks[i].lng;
             const dms = bookmarks[i].dms;
             const id = bookmarks[i].id;
+            console.log(bookmarks[i])
             obj.address = address;
             obj.latitude = latitude;
             obj.longitude = longitude;
@@ -139,7 +105,7 @@ useEffect(() => {
     <Grid container item xs={12} lg={12} mx="auto">
       
 
-      <TableContainer sx={{ maxHeight: 440, overflowX: "hidden" }}>
+      <TableContainer sx={{ maxHeight: 440, overflowX: "hidden",border: "none", boxShadow: "none", borderRadius: "0"}}>
         <Table columns={columns} rows={rowData} aria-label="sticky table" hideColumns={[0,1]} hideColumnRow={true} />
       </TableContainer>
       <div style={{ fontSize: "14px", marginTop: "4em" }}>
