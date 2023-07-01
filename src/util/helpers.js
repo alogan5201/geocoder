@@ -28,12 +28,13 @@ function getUriSlug() {
 export function handleMapInputState(markerData) {
   let slug = getUriSlug();
   const handleState =
-    slug === "address-to-lat-lng" ? addressToLatLngInputState(markerData) : latLngToAddressInputState(markerData);
+    slug === "address-to-lat-lng"
+      ? addressToLatLngInputState(markerData)
+      : latLngToAddressInputState(markerData);
   return handleState;
 }
 
 function latLngToAddressInputState(markerData) {
- 
   const setMapInputState = useStore((state) => state.setMapInputState);
   const inputState = {
     addressInput: { readOnly: false, value: "Atlanta,GA", active: true },
@@ -92,12 +93,11 @@ function latLngToAddressInputState(markerData) {
       obj["dmsLngSeconds"] = element.dms.lng.seconds;
       output.push(obj);
     }
-    console.log(output);
+
     setMapInputState(output);
   }
 }
 function addressToLatLngInputState(markerData) {
-
   const inputState = {
     addressInput: { readOnly: false, value: "Atlanta,GA", active: true },
     latLngInputs: { active: true, readOnly: true, values: { lat: null, lng: null } },
@@ -144,7 +144,7 @@ function addressToLatLngInputState(markerData) {
     for (let index = 0; index < markerData.length; index++) {
       const element = markerData[index];
       obj[element.id] = element.id;
-      obj["address"] = { active: true, readOnly: false, value: element.title }
+      obj["address"] = { active: true, readOnly: false, value: element.title };
       obj["latLng"] = {
         active: true,
         readOnly: true,
@@ -168,25 +168,28 @@ function addressToLatLngInputState(markerData) {
       };
       output.push(obj);
     }
-    console.log(output);
-   return output
-   
+
+    return output;
   }
 }
 
-export async function getWikidataImage(wikidataId) {
+ async function getWikidataImage(wikidataId) {
   try {
     // Step 1: Fetch image filename from Wikidata entity
-    const claimsUrl = `https://www.wikidata.org/w/api.php?action=wbgetclaims&property=P18&entity=${wikidataId}&format=json`;
+    const claimsUrl = `/wikidata-api?action=wbgetclaims&property=P18&entity=${wikidataId}&format=json`;
     const claimsResponse = await fetch(claimsUrl);
-    const claimsData = await claimsResponse.json();
+
+    const claimsText = await claimsResponse.text();
+    //console.log("Claims Response Text:", claimsText); // Log the raw response text
+
+    const claimsData = JSON.parse(claimsText); // Parse the text as JSON
 
     const imageName = claimsData.claims.P18[0].mainsnak.datavalue.value;
 
     // Step 2: Fetch the actual image URL from Wikimedia Commons
-    const imageUrl = `https://commons.wikimedia.org/w/api.php?action=query&titles=File:${encodeURIComponent(
+    const imageUrl = `/commons-api?action=query&titles=File:${encodeURIComponent(
       imageName
-    )}&prop=imageinfo&iiprop=url&format=json&origin=*`;
+    )}&prop=imageinfo&iiprop=url&format=json`;
     const imageResponse = await fetch(imageUrl);
     const imageData = await imageResponse.json();
 
@@ -201,3 +204,4 @@ export async function getWikidataImage(wikidataId) {
     return null;
   }
 }
+

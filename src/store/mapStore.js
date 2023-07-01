@@ -41,6 +41,7 @@ const bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
      const markerData = [];
 
      for (let index = 0; index < data.length; index++) {
+    
        const element = data[index];
        let obj = data[index];
        let lat = obj["lat"];

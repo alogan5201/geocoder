@@ -50,7 +50,7 @@ function Form() {
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];
         let lng = mapBoxData.features[0].geometry.coordinates[0];
-        console.log(mapBoxData)
+
         setCoords([coords]);
         const address = mapBoxData.features[0].place_name;
         const wikiData = mapBoxData.features[0].properties.wikidata;
@@ -75,7 +75,7 @@ function Form() {
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector(".leaflet-bar");
-      console.log("location not active");
+
       if (leafletBarElement) {
         let classes = leafletBarElement.classList;
         // Create an array to store the classes that need to be removed
@@ -97,7 +97,7 @@ function Form() {
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
-         Address to Latitude & Longitude
+          Address to Latitude & Longitude
         </Typography>
         <Typography variant="body2" color="text" mb={1}>
           To pinpoint a location, you can type in the name of a place, city, state, or address, or

@@ -8,26 +8,24 @@ import useStore from "store/mapStore";
 import SearchIcon from "@mui/icons-material/Search";
 
 // Material Kit 2 PRO React components
-function AddressInput(props){
+function AddressInput(props) {
   const clearMapInputs = useStore((state) => state.clearMapInputs);
   const setMapInputState = useStore((state) => state.setMapInputState);
-      function handleChange(e) {
-        let val = e.target.value;
-   
-        if (val.length === 0 && props.readOnly === false) {
-          console.log("clearing map inputs")
-          setMapInputState(true);
-        }
-      }
+  function handleChange(e) {
+    let val = e.target.value;
+
+    if (val.length === 0 && props.readOnly === false) {
+      setMapInputState(true);
+    }
+  }
   return (
     <Grid item xs={12} pr={1} mb={3}>
       <Input
-      onChange={handleChange}
+        onChange={handleChange}
         fullWidth
-     type="text"
+        type="text"
         label="Search"
         defaultValue="Atlanta, GA"
-      
         InputProps={{
           endAdornment: (
             <InputAdornment position="start">
@@ -37,7 +35,7 @@ function AddressInput(props){
         }}
       />
     </Grid>
-  );  
+  );
 }
 
-export default AddressInput
+export default AddressInput;

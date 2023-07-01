@@ -1,7 +1,7 @@
 // ! Remove For production
 
 import { create } from "apisauce";
-const { VITE_USERNAME, VITE_STYLE_ID, VITE_ACCESS_TOKEN,VITE_NODE_ENV } = import.meta.env;
+const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN,VITE_NODE_ENV } = import.meta.env;
 import { tron,lowercaseFirst } from "./helpers";
 // define the api
 const mapBoxapi = create({
@@ -188,3 +188,27 @@ let t = {
       }
      }
   };
+
+  export async function getCityPhoto(cityName) {
+    const apiKey = VITE_FIREBASE_API_KEY;
+    try {
+      // Step 1: Search for the city and retrieve a photo_reference
+      const placeSearchUrl = `/google-api/place/findplacefromtext/json?input=${encodeURIComponent(
+        cityName
+      )}&inputtype=textquery&fields=photos&key=${apiKey}`;
+      const placeSearchResponse = await fetch(placeSearchUrl);
+      const placeSearchData = await placeSearchResponse.json();
+
+      const photoReference = placeSearchData.candidates[0].photos[0].photo_reference;
+
+      // Step 2: Use the photo_reference to retrieve the image URL
+      const maxwidth = 400; // You can set this to the desired image width
+      const placePhotoUrl = `/google-api/place/photo?maxwidth=${maxwidth}&photoreference=${photoReference}&key=${apiKey}`;
+
+      // placePhotoUrl is the URL of the image. You can use it directly in an <img> element.
+      return placePhotoUrl;
+    } catch (error) {
+      console.error("Error fetching city photo: ", error);
+      return null;
+    }
+  }

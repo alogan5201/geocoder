@@ -18,7 +18,6 @@ function Table({ columns, rows, hideColumns, hideColumnRow }) {
   const updateMarkerData = useStore((state) => state.setMarkerData);
   useEffect(() => {
     if (hideColumns) {
-      console.log(hideColumns);
     }
   }, [hideColumns]);
   const handleRowClick = (address, latitude, longitude, dms, id) => {
@@ -111,10 +110,10 @@ function Table({ columns, rows, hideColumns, hideColumnRow }) {
 
   return useMemo(
     () => (
-      <MuiTable stickyHeader aria-label="sticky table" >
+      <MuiTable stickyHeader aria-label="sticky table">
         <Box component="thead">
           {hideColumnRow && hideColumnRow === true ? (
-            <TableRow sx={{display:"none"}}>{renderColumns}</TableRow>
+            <TableRow sx={{ display: "none" }}>{renderColumns}</TableRow>
           ) : (
             <TableRow>{renderColumns}</TableRow>
           )}

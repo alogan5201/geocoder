@@ -14,7 +14,7 @@ import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
 import BookmarkTable from "../BookmarkTable";
-import Table from "../Table"
+import Table from "../Table";
 function Form() {
   useEffect(() => {
     test();
@@ -73,7 +73,7 @@ function Form() {
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector(".leaflet-bar");
-      console.log("location not active");
+
       if (leafletBarElement) {
         let classes = leafletBarElement.classList;
         // Create an array to store the classes that need to be removed
@@ -99,7 +99,7 @@ function Form() {
         </Typography>
       </Box>
       <Box px={{ xs: 0, sm: 1 }} py={{ xs: 2, sm: 1 }}>
- <BookmarkTable />
+        <BookmarkTable />
       </Box>
     </Box>
   );

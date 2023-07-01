@@ -3,6 +3,27 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      "/google-api": {
+        target: "https://maps.googleapis.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/google-api/, "/maps/api"),
+      },
+      // Proxy API requests to Wikidata
+      "/wikidata-api": {
+        target: "https://www.wikidata.org",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/wikidata-api/, "/w/api.php"),
+      },
+      // Proxy API requests to Wikimedia Commons
+      "/commons-api": {
+        target: "https://commons.wikimedia.org",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/commons-api/, "/w/api.php"),
+      },
+    },
+  },
   plugins: [react()],
   resolve: {
     alias: {
@@ -16,7 +37,7 @@ export default defineConfig({
       util: path.resolve("src/util"),
       hooks: path.resolve("src/hooks"),
       "footer.routes": path.resolve("src/footer.routes.jsx"),
-      "routes": path.resolve("src/routes.jsx"),
+      routes: path.resolve("src/routes.jsx"),
     },
   },
 });
