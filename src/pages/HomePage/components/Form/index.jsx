@@ -60,13 +60,14 @@ function Form() {
           const markerDataOriginFormatted = generateMarkerDataOrigin(mapBoxDataOrigin);
           const markerDataDestinationFormatted = generateMarkerDataDestination(mapBoxDataDestination);
           const markerData = [
-          markerDataOriginFormatted,
-          markerDataDestinationFormatted
+          markerDataOriginFormatted[0],
+          markerDataDestinationFormatted[0]
           ];
           setUserLocationActive(false);
           setMapInputState(false);
-          updateMarkerData(markerData);
-          updateGeoData(mapBoxData.features[0]);
+       console.log(markerData)
+         updateMarkerData(markerData);
+       //   updateGeoData(mapBoxData.features[0]);
         }
       }
     }
