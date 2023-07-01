@@ -52,6 +52,7 @@ function Form() {
 const [bookmarkState, setBookmarkState] = useState(
   JSON.parse(localStorage.getItem("bookmarks")) || []
 );
+const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation)
 
     useEffect(() => {
       if(bookmarkState) {
@@ -111,6 +112,7 @@ const [bookmarkState, setBookmarkState] = useState(
         setMapInputState(false);
         updateMarkerData(markerData);
         updateGeoData(mapBoxData.features[0]);
+        setBookmarkForLocation(true)
       }
     }
   }
@@ -134,6 +136,9 @@ const [bookmarkState, setBookmarkState] = useState(
         }
       }
     }
+    return () => { 
+        setBookmarkForLocation(false);
+    }
   }, [userLocationActive]);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
@@ -146,11 +151,13 @@ const [bookmarkState, setBookmarkState] = useState(
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Grid container>
           {bookmarkState && bookmarkState.length > 0 ? (
-            <BookmarkTable bookmarkState={bookmarkState} />
+            <>
+              <AddNewBookmark />
+              <BookmarkTable bookmarkState={bookmarkState} />
+            </>
           ) : (
             <>
               <AddNewBookmark />
-
             </>
           )}
         </Grid>

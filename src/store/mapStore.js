@@ -12,22 +12,25 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    userLocationActive: false,
    clearMapInputs: false,
    bookmarks: [],
-   bookmarked:false,
+   bookmarked: false,
+   bookmarkLocation: false,
+   setBookmarkForLocation: (data) => {
+       set(() => ({ bookmarkLocation: data }));
+   },
    resetMarkerData: () => {
-
-    set({ markerData: null,clearMapInputs: true });
+     set({ markerData: null, clearMapInputs: true });
    },
    setBookmarks: () => {
-const bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
-    set({ bookmarks: bookmarks  });
+     const bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+     set({ bookmarks: bookmarks });
    },
    increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
    resetMapZoom: (data) => {
      set({ zoom: data });
-    },
-    setBookmarked: (data) => {
-    set((state) => ({ bookmarked: data}))
-    },
+   },
+   setBookmarked: (data) => {
+     set((state) => ({ bookmarked: data }));
+   },
    removeAllBears: () => set({ bears: 0 }),
    setGeoData: (data) => {
      set({ geoData: data });
@@ -45,7 +48,6 @@ const bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
      const markerData = [];
 
      for (let index = 0; index < data.length; index++) {
-    
        const element = data[index];
        let obj = data[index];
        let lat = obj["lat"];
