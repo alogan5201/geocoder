@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 
 import PropTypes from "prop-types";
 
@@ -14,26 +14,29 @@ import Box from "components/Box";
 import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
-function Table({ columns, rows }) {
-    const updateMarkerData = useStore((state) => state.setMarkerData);
-
-  const handleRowClick = (address, latitude, longitude,dms, id) => {
-    
-          const markerData = [
-            {
-              id: id,
-              lat: latitude,
-              lng: longitude,
-              title: address,
-              userLocation: false,
-            },
-          ];
-           updateMarkerData(markerData);
+function Table({ columns, rows, hideColumns, hideColumnRow }) {
+  const updateMarkerData = useStore((state) => state.setMarkerData);
+  useEffect(() => {
+    if (hideColumns) {
+      console.log(hideColumns);
+    }
+  }, [hideColumns]);
+  const handleRowClick = (address, latitude, longitude, dms, id) => {
+    const markerData = [
+      {
+        id: id,
+        lat: latitude,
+        lng: longitude,
+        title: address,
+        userLocation: false,
+      },
+    ];
+    updateMarkerData(markerData);
   };
   const renderColumns = columns.map(({ name, align, width }, key) => {
     let pl;
     let pr;
-
+    let visibility = hideColumns && hideColumns.includes(key) ? "hidden" : "visible";
     if (key === 0) {
       pl = 3;
       pr = 3;
@@ -63,19 +66,21 @@ function Table({ columns, rows }) {
           borderBottom: `${borderWidth[1]} solid ${borderColor}`,
         })}
       >
-        <Typography variant="body2">{name.toUpperCase()}</Typography>
+        <Typography variant="body2" sx={{ visibility: visibility }}>
+          {name.toUpperCase()}
+        </Typography>
       </Box>
     );
   });
 
   const renderRows = rows.map((row, key) => (
     <TableRow
-      onClick={() => handleRowClick(row.address,row.latitude, row.longitude, row.dms,row.id)}
+      onClick={() => handleRowClick(row.address, row.latitude, row.longitude, row.dms, row.id)}
       hover
       key={`row-${key}`}
       sx={{
         "&:nth-of-type(odd)": {
-          backgroundColor: "rgba(0, 0, 0, 0.04)", // Use any grey color you like here
+          backgroundColor: "rgba(0, 0, 0, 0)", // Use any grey color you like here
         },
         cursor: "pointer",
       }}
@@ -104,17 +109,14 @@ function Table({ columns, rows }) {
     </TableRow>
   ));
 
-
   return useMemo(
     () => (
-  
-        <MuiTable>
-          <Box component="thead">
-            <TableRow>{renderColumns}</TableRow>
-          </Box>
-          <TableBody>{renderRows}</TableBody>
-        </MuiTable>
- 
+      <MuiTable stickyHeader aria-label="sticky table">
+        <Box component="thead">
+          {hideColumnRow && hideColumnRow === true ? "" : <TableRow>{renderColumns}</TableRow>}
+        </Box>
+        <TableBody>{renderRows}</TableBody>
+      </MuiTable>
     ),
     [columns, rows]
   );
