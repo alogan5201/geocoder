@@ -31,6 +31,22 @@ export function alreadyBookmarked(key, lat,lng) {
    }
 }
 
+export function addKeyValueToObjectInLocalStorageList(storageKey, objectId, newKey, newValue) {
+  // Get the current list of objects
+  const currentList = JSON.parse(localStorage.getItem(storageKey)) || [];
+
+  // Find the object in the array that you want to update
+  const objectToUpdate = currentList.find((obj) => obj.id === objectId);
+
+  // If the object is found, add the new key-value pair to it
+  if (objectToUpdate) {
+    objectToUpdate[newKey] = newValue;
+  }
+
+  // Store the updated list of objects back into localStorage
+  localStorage.setItem(storageKey, JSON.stringify(currentList));
+  window.dispatchEvent(new Event("storage"));
+}
   export function handleBookmarkChange(addBookmark,key,obj){
     if(addBookmark){
       addObjectToLocalstorageList(key,obj)

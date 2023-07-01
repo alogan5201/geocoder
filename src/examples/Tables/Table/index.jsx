@@ -14,7 +14,7 @@ import Box from "components/Box";
 import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
-function Table({ columns, rows, hideColumns, hideColumnRow }) {
+function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
   const updateMarkerData = useStore((state) => state.setMarkerData);
   useEffect(() => {
     if (hideColumns) {
@@ -107,22 +107,27 @@ function Table({ columns, rows, hideColumns, hideColumnRow }) {
       ))}
     </TableRow>
   ));
+if(bookmarkState && bookmarkState.length > 0){
+    return useMemo(
+      () => (
+        <MuiTable stickyHeader aria-label="sticky table">
+          <Box component="thead">
+            {hideColumnRow && hideColumnRow === true ? (
+              <TableRow sx={{ display: "none" }}>{renderColumns}</TableRow>
+            ) : (
+              <TableRow>{renderColumns}</TableRow>
+            )}
+          </Box>
+          <TableBody>{renderRows}</TableBody>
+        </MuiTable>
+      ),
+      [columns, rows]
+    );
+}
+else {
+  null
+}
 
-  return useMemo(
-    () => (
-      <MuiTable stickyHeader aria-label="sticky table">
-        <Box component="thead">
-          {hideColumnRow && hideColumnRow === true ? (
-            <TableRow sx={{ display: "none" }}>{renderColumns}</TableRow>
-          ) : (
-            <TableRow>{renderColumns}</TableRow>
-          )}
-        </Box>
-        <TableBody>{renderRows}</TableBody>
-      </MuiTable>
-    ),
-    [columns, rows]
-  );
 }
 
 // Setting default values for the props of Table

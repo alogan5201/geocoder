@@ -1,23 +1,28 @@
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 // Material Kit 2 PRO React components
-import Grid from "@mui/material/Grid";
-import AddressInput from "components/AddressInput";
-import Button from "components/Button";
-import Input from "components/Input";
 import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import useStore from "store/mapStore";
 import { covertAddressToLatLng } from "util/geocoder";
 import { extractWords, test } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
-import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
 import BookmarkTable from "../BookmarkTable";
-import Table from "../Table";
 function Form() {
+const [bookmarkState, setBookmarkState] = useState(
+  JSON.parse(localStorage.getItem("bookmarks")) || []
+);
+
+    useEffect(() => {
+      if(bookmarkState) {
+        console.log(bookmarkState)
+      }
+    }, [bookmarkState]);
   useEffect(() => {
-    test();
+    window.addEventListener("storage", () => {
+      setBookmarkState(JSON.parse(localStorage.getItem("bookmarks")) || []);
+    });
   }, []);
 
   const [zoomState, setZoomState] = useState();
@@ -99,7 +104,7 @@ function Form() {
         </Typography>
       </Box>
       <Box px={{ xs: 0, sm: 1 }} py={{ xs: 2, sm: 1 }}>
-        <BookmarkTable />
+        {bookmarkState && bookmarkState.length > 0 ? <BookmarkTable bookmarkState={bookmarkState} /> : ""}
       </Box>
     </Box>
   );
