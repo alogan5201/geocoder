@@ -43,7 +43,7 @@ function AddressInput(props) {
         InputProps={{
           endAdornment: (
             <InputAdornment position="start">
-              <IconButton>
+              <IconButton type="submit">
                 <SearchIcon fontSize="medium" color="info" />
               </IconButton>
             </InputAdornment>

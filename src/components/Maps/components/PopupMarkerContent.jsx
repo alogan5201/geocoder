@@ -14,9 +14,12 @@ import { v4 as uuidv4 } from "uuid";
 function PopupMarkerContent({ content }) {
   const markerData = useStore((state) => state.markerData);
   const setBookmarks = useStore((state) => state.setBookmarks);
+  const setBookmarked = useStore((state) => state.setBookmarked);
+  const bookmarked = useStore((state) => state.bookmarked);
   const [popupContent, setPopupcontent] = useState(null);
   const [dmsDisplay, setDisplayDMS] = useState(null);
-  const [bookmarked, setBookmarked] = useState(false);
+ 
+
   const [bookMarkId, setBookMarkId] = useState();
   useEffect(() => {
     if (markerData) {
@@ -38,7 +41,7 @@ function PopupMarkerContent({ content }) {
     e.preventDefault();
 
     let bookmarkData = markerData[content];
-  setBookmarks();
+//  setBookmarks();
     handleBookmarkChange(!bookmarked, "bookmarks", bookmarkData);
     setBookmarked(!bookmarked);
   }
