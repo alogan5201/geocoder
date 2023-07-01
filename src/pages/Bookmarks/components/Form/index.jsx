@@ -1,14 +1,53 @@
-// Material Kit 2 PRO React components
+
+import Grid from "@mui/material/Grid";
 import Box from "components/Box";
-// Material Kit 2 PRO React components
+import AddIcon from "@mui/icons-material/Add";
+import TextField from "@mui/material/TextField";
 import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import useStore from "store/mapStore";
 import { covertAddressToLatLng } from "util/geocoder";
-import { extractWords, test } from "util/helpers";
+import { extractWords } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
 import BookmarkTable from "../BookmarkTable";
+import Button from "components/Button";
+import InputAdornment from "@mui/material/InputAdornment";
+import Input from "components/Input";
+import Divider from "@mui/material/Divider";
+import AddressInput from "../AddressInput";
+
+function InputWithIcon() {
+  return (
+    <Grid item xs={12} pr={1} mb={3}>
+      <AddIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+      <TextField fullWidth id="input-with-sx" label="With sx" variant="standard" />
+    </Grid>
+  );
+}
+function AddNewBookmark() {
+  const [newLocation, setNewLocation] = useState("");
+  const [toggleInput, setInputToggle] = useState(false);
+  const handleNewBookmark = (e) =>{
+    e.preventDefault();
+    setInputToggle(true)
+  }
+  if(toggleInput) {
+    return <AddressInput readOnly={false} />;
+  } 
+  else {
+    return (
+      <Grid item xs={12} pr={1} mb={3}>
+        <Button color="white" size="large" sx={{ pl: 0 }} onClick={handleNewBookmark}>
+          {" "}
+          <AddIcon color="info" sx={{ mr: 1, my: 0.5 }} />{" "}
+          <Typography variant="body2"> Search for a location to add</Typography>{" "}
+        </Button>
+      </Grid>
+    );
+
+  }
+}
 function Form() {
 const [bookmarkState, setBookmarkState] = useState(
   JSON.parse(localStorage.getItem("bookmarks")) || []
@@ -103,8 +142,18 @@ const [bookmarkState, setBookmarkState] = useState(
           Bookmarks
         </Typography>
       </Box>
-      <Box px={{ xs: 0, sm: 1 }} py={{ xs: 2, sm: 1 }}>
-        {bookmarkState && bookmarkState.length > 0 ? <BookmarkTable bookmarkState={bookmarkState} /> : ""}
+      <Divider />
+      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
+        <Grid container>
+          {bookmarkState && bookmarkState.length > 0 ? (
+            <BookmarkTable bookmarkState={bookmarkState} />
+          ) : (
+            <>
+              <AddNewBookmark />
+
+            </>
+          )}
+        </Grid>
       </Box>
     </Box>
   );
