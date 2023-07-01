@@ -82,6 +82,8 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
           backgroundColor: "rgba(0, 0, 0, 0)", // Use any grey color you like here
         },
         cursor: "pointer",
+        minHeight: "50px", // Set minimum height
+        maxHeight: "50px", // Set maximum height
       }}
     >
       {columns.map(({ name, align }) => (

@@ -154,12 +154,13 @@ const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation)
           Bookmarks
         </Typography>
       </Box>
-      <Divider />
+      <Divider sx={{m:0}}/>
       <Box pl={{ xs: 0, sm: 3 }} pr={{ xs: 0, sm: 0 }} py={{ xs: 0, sm: 1 }}>
         <Grid container>
           {bookmarkState && bookmarkState.length > 0 ? (
             <>
               <AddNewBookmark />
+              
               <BookmarkTable bookmarkState={bookmarkState} />
             </>
           ) : (

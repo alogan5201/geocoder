@@ -12,6 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 function AddressInput(props) {
   const clearMapInputs = useStore((state) => state.clearMapInputs);
   const setMapInputState = useStore((state) => state.setMapInputState);
+  
   function handleChange(e) {
     let val = e.target.value;
 
@@ -26,7 +27,7 @@ function AddressInput(props) {
         fullWidth
         type="text"
         label="Search"
-        defaultValue="Atlanta, GA"
+        defaultValue={props.defaultValue ? props.defaultValue : "Atlanta, GA"}
         InputProps={{
           endAdornment: (
             <InputAdornment position="start">

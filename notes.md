@@ -81,3 +81,39 @@ git config --global user.name "alogan5201"
 Just make the popup so big that the map has to pan?
 
 Currently I am debugging an issue with my React application. In relation to the map I would like the popup to always be centered when it is open. The issue is that when adjusting the zoom or moving the map around, entering the same location will cause the popup to not be centered anymore when its open. Specifically I'm trying to figure out why  var px = map.project(markerRef.current._popup._latlng); sometimes returns different x and y values. Can you please explain why this code isn't working? 
+
+# Possible alternative names to Travel page
+
+1. **Route Planner** - Indicates that users can plan routes between two points.
+   
+2. **Journey Calculator** - Reflects that the page helps calculate various aspects of a journey.
+   
+3. **Distance and Time Estimator** - Very descriptive; directly tells users that they can estimate travel distance and time.
+   
+4. **Trip Analyzer** - Suggests that users can analyze different aspects of a trip.
+   
+5. **Location Connector** - Indicates that users can connect two locations and get information about the connection.
+   
+6. **Map Your Route** - Friendly and informal; invites users to map out a route.
+   
+7. **Travel Metrics** - Indicates that users can get travel-related data/metrics.
+   
+8. **Itinerary Planner** - Suggests a tool for planning travel itineraries.
+   
+9. **Geo-Navigator** - A bit more technical; reflects the geolocation aspect.
+   
+10. **Path Finder** - Reflects that users can find paths between two points.
+   
+11. **Travel Insight** - Indicates that users can gain insights on their travel.
+   
+12. **Drive & Fly Calculator** - If your app supports different travel modes like driving and flying.
+   
+13. **Go Between** - A play on words; the term "go-between" means a mediator, but here it could mean going between two places.
+   
+14. **Waypoint Planner** - For users to plan their waypoints.
+
+15. **Travel Companion** - Reflects that the page can assist travelers in planning their trips.
+
+16. **Route Explorer** - Indicates that users can explore routes between locations.
+
+Choose a name that you feel best matches the tone and functionality of your application. It's also worth considering your target audience and how they might interpret the name.
