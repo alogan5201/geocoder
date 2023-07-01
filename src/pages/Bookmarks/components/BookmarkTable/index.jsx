@@ -31,12 +31,12 @@ function BookmarkTable({ bookmarkState }) {
 
           if (bookmarks[i].cityPhoto) {
             const cityPhoto = bookmarks[i].cityPhoto;
+                const photoUrl = cityPhoto
+                  ? cityPhoto.replace("/google-api/", "https://maps.googleapis.com/maps/api/")
+                  : "";
             const photo = cityPhoto ? (
               <IconButton aria-label="delete">
-                <img
-                  className="bookmark-image"
-                  src={cityPhoto.replace("/google-api/", "https://maps.googleapis.com/maps/api/")}
-                ></img>
+                <img className="bookmark-image" src={photoUrl}></img>
               </IconButton>
             ) : (
               ""
@@ -50,12 +50,15 @@ function BookmarkTable({ bookmarkState }) {
             bookmarkData.push(obj);
           } else {
             const cityPhoto = await getCityPhoto(address);
-            addKeyValueToObjectInLocalStorageList("bookmarks", id, "cityPhoto", cityPhoto);
+            const photoUrl = cityPhoto
+              ? cityPhoto.replace("/google-api/", "https://maps.googleapis.com/maps/api/")
+              : "";
+            addKeyValueToObjectInLocalStorageList("bookmarks", id, "cityPhoto", photoUrl);
             const photo = cityPhoto ? (
               <IconButton aria-label="delete">
                 <img
                   className="bookmark-image"
-                  src={cityPhoto.replace("/google-api/", "https://maps.googleapis.com/maps/api/")}
+                  src={photoUrl}
                 ></img>
               </IconButton>
             ) : (

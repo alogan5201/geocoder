@@ -23,23 +23,23 @@ function PopupMarkerContent({ content }) {
 
   const [bookMarkId, setBookMarkId] = useState();
   useEffect(() => {
+    
+    if (bookmarkLocation) {
+      let bookmarkData = markerData[content];
+      handleBookmarkChange(bookmarkLocation, "bookmarks", bookmarkData);
+
+      setBookmarked(bookmarkLocation);
+    }
+  }, [bookmarkLocation]);
+  useEffect(() => {
     if (markerData || bookmarkLocation) {
       const shouldBookmark = alreadyBookmarked(
         "bookmarks",
         markerData[content].lat,
         markerData[content].lng
       );
-    if (shouldBookmark) {
       setBookmarked(shouldBookmark);
 
-    }
-    else if (bookmarkLocation) {
-       let bookmarkData = markerData[content];
-         handleBookmarkChange(true, "bookmarks", bookmarkData);
-      
-      setBookmarked(bookmarkLocation);
-
-    }
       // popupContent.dms.lat.display
       let dmsDisplay = `${markerData[content].dms.lat.display} ${markerData[content].dms.lng.display}`;
       setDisplayDMS(dmsDisplay);

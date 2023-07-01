@@ -37,7 +37,7 @@ function AddNewBookmark() {
   } 
   else {
     return (
-      <Grid item xs={12} pr={1} mb={3}>
+      <Grid item xs={12} pr={1} mb={0}>
         <Button color="white" size="large" sx={{ pl: 0 }} onClick={handleNewBookmark}>
           {" "}
           <AddIcon color="info" sx={{ mr: 1, my: 0.5 }} />{" "}
@@ -141,14 +141,21 @@ const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation)
     }
   }, [userLocationActive]);
   return (
-    <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
+    <Box
+      component="form"
+      pl={{ xs: 0, sm: 2 }}
+      pr={{ xs: 0, sm: 0 }}
+      py={{ xs: 0, sm: 2 }}
+      method="post"
+      onSubmit={handleSubmit}
+    >
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
           Bookmarks
         </Typography>
       </Box>
       <Divider />
-      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
+      <Box pl={{ xs: 0, sm: 3 }} pr={{ xs: 0, sm: 0 }} py={{ xs: 0, sm: 1 }}>
         <Grid container>
           {bookmarkState && bookmarkState.length > 0 ? (
             <>

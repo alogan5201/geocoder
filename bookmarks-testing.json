@@ -1,0 +1,176 @@
+[
+  {
+    "id": "e89efc28-2de5-49e2-ab79-667cbb1128ee",
+    "lat": 33.748992,
+    "lng": -84.390264,
+    "title": "Atlanta, Georgia, United States",
+    "userLocation": false,
+    "wikiData": "Q23556",
+    "dms": {
+      "lat": {
+        "degrees": 33,
+        "minutes": 44,
+        "seconds": 56.3712,
+        "lat": 33.748992,
+        "display": "33° 44' 56.37''"
+      },
+      "lng": {
+        "degrees": 84,
+        "minutes": 23,
+        "seconds": 24.9504,
+        "lng": 84.390264,
+        "display": "84° 23' 24.95''"
+      }
+    },
+    "cityPhoto": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=Aaw_FcJnMGF8obXzkG8dNoIekCSFMQgAX9FOzYzfckicG9_juwH69oe11__t4_MgjlMUAK9S1iD8Oa5yxs9Otx1h7rYqtmfjWqJoETQ3m8eCBioPZR_xspznDjDiHJ8mRHXhKntyAaB3yDUqHhL5a1FczhO5-ykCfGCMS5iZQYKtacm2Hvm5&key=AIzaSyBCU8RRxV3qaSyxOgc4ObSWmUhlfnJsYTo"
+  },
+  {
+    "id": "a4bc3862-d7f4-4308-8d39-d6f442265522",
+    "lat": 30.271129,
+    "lng": -97.7437,
+    "title": "Austin, Texas, United States",
+    "userLocation": false,
+    "wikiData": "Q16559",
+    "dms": {
+      "lat": {
+        "degrees": 30,
+        "minutes": 16,
+        "seconds": 16.0644,
+        "lat": 30.271129,
+        "display": "30° 16' 16.06''"
+      },
+      "lng": {
+        "degrees": 97,
+        "minutes": 44,
+        "seconds": 37.32,
+        "lng": 97.7437,
+        "display": "97° 44' 37.32''"
+      }
+    },
+    "cityPhoto": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=Aaw_FcKA0lKaUSVoQ1rUCNUeDwy6sQxEwuTBQqJJMNbY1Y2ZhM2QWahEpeD5jIR0m4kYNKY7CEeyxjAwhPLi3V09rwb2XwJ7qoezR1ZgPvmHo6vs1J583a1aFyYmliTkoiW3-7p65NowLLhualjp9AhYwHqU1UpHgwR59wvwsfXchLS5Hwe0&key=AIzaSyBCU8RRxV3qaSyxOgc4ObSWmUhlfnJsYTo"
+  },
+  {
+    "id": "eec23b97-0d23-4394-a37c-f1251b99ffb3",
+    "lat": 32.776272,
+    "lng": -96.796856,
+    "title": "Dallas, Texas, United States",
+    "userLocation": false,
+    "wikiData": "Q16557",
+    "dms": {
+      "lat": {
+        "degrees": 32,
+        "minutes": 46,
+        "seconds": 34.5792,
+        "lat": 32.776272,
+        "display": "32° 46' 34.58''"
+      },
+      "lng": {
+        "degrees": 96,
+        "minutes": 47,
+        "seconds": 48.6816,
+        "lng": 96.796856,
+        "display": "96° 47' 48.68''"
+      }
+    },
+    "cityPhoto": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=Aaw_FcL-U4DuayVDSh1LcgVV9xPF7Aa2WPbSif-Yl9wHZVLyZRglIGsxkozfbTN1CVipQNT--s1VOn8xfcX8xQ77Kz9taGIgjKBw2v84Emf8yfmHv-2Z2srVMjDE_2yYHy-uVBz-ln3yyQRxz1T5e55ymkHKG0o_BjB6JWB49ZyJ7BJopl3Z&key=AIzaSyBCU8RRxV3qaSyxOgc4ObSWmUhlfnJsYTo"
+  },
+  {
+    "id": "1f90be13-250c-4754-adc1-bcdc8c15aca4",
+    "lat": 29.758938,
+    "lng": -95.367697,
+    "title": "Houston, Texas, United States",
+    "userLocation": false,
+    "wikiData": "Q16555",
+    "dms": {
+      "lat": {
+        "degrees": 29,
+        "minutes": 45,
+        "seconds": 32.1768,
+        "lat": 29.758938,
+        "display": "29° 45' 32.18''"
+      },
+      "lng": {
+        "degrees": 95,
+        "minutes": 22,
+        "seconds": 3.7092,
+        "lng": 95.367697,
+        "display": "95° 22' 3.71''"
+      }
+    },
+    "cityPhoto": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=Aaw_FcKo9pJgb-LJkUQiIM6_nyjXJXFqstZpd0AyT3IGmCsxd3IeWU18hLhXAeky4ZqfTAuMwFDOmGzOE1nJgmmidrGG__1asKTxk4AewB4Nt35W-EJvp1RK4oWZ3mYktg-Z6nNc6woEbjbQCN-p8-VQI_CWMjRIJaBSup4XwMMv0zUU4i8y&key=AIzaSyBCU8RRxV3qaSyxOgc4ObSWmUhlfnJsYTo"
+  },
+  {
+    "id": "b033d547-f30a-441f-9afb-541dbbaa306b",
+    "lat": 41.875562,
+    "lng": -87.624421,
+    "title": "Chicago, Illinois, United States",
+    "userLocation": false,
+    "wikiData": "Q1297",
+    "dms": {
+      "lat": {
+        "degrees": 41,
+        "minutes": 52,
+        "seconds": 32.0232,
+        "lat": 41.875562,
+        "display": "41° 52' 32.02''"
+      },
+      "lng": {
+        "degrees": 87,
+        "minutes": 37,
+        "seconds": 27.9156,
+        "lng": 87.624421,
+        "display": "87° 37' 27.92''"
+      }
+    },
+    "cityPhoto": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=Aaw_FcIwQzewfVgFy81oGbT7LiZb9VRnYzM3kiRshooMpkz4HkuhoIKB-XohDU57JZgquBUGsI8QlAGTYRFZkRATTd39HR_jb2kezVng5hktMbUP4v1GFfCLTONFfta-4zeiMilik_Igfjr13QC2pfLHLUBIO8mvL52f5SHqh6Gs7Ifyjz6s&key=AIzaSyBCU8RRxV3qaSyxOgc4ObSWmUhlfnJsYTo"
+  },
+  {
+    "id": "00ad37cd-0f3d-44e3-8010-7e3a594bbcb5",
+    "lat": 40.75962,
+    "lng": -111.886798,
+    "title": "Salt Lake City, Utah, United States",
+    "userLocation": false,
+    "dms": {
+      "lat": {
+        "degrees": 40,
+        "minutes": 45,
+        "seconds": 34.632,
+        "lat": 40.75962,
+        "display": "40° 45' 34.63''"
+      },
+      "lng": {
+        "degrees": 111,
+        "minutes": 53,
+        "seconds": 12.4728,
+        "lng": 111.886798,
+        "display": "111° 53' 12.47''"
+      }
+    },
+    "cityPhoto": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=Aaw_FcJ0HFf6ue8K7caI2egjl4-h6lfsviOlg98OIwNxRPyg5cNtFmiinTAbaHiAhpgNsLRFArssRjbfuH74Ah4MkK2PpeMmAHJGzmGpW2IC4ZgxPy8wufQ6eNJ7z9HnV9Gl_oaH35HRkqvC1E0oM1QRGoEdRoMNs3mOoebhogxhmDdzkzy6&key=AIzaSyBCU8RRxV3qaSyxOgc4ObSWmUhlfnJsYTo"
+  },
+  {
+    "id": "a2533f32-fc36-4f42-9173-8151370f0d8e",
+    "lat": 29.4246,
+    "lng": -98.495141,
+    "title": "San Antonio, Texas, United States",
+    "userLocation": false,
+    "wikiData": "Q975",
+    "dms": {
+      "lat": {
+        "degrees": 29,
+        "minutes": 25,
+        "seconds": 28.56,
+        "lat": 29.4246,
+        "display": "29° 25' 28.56''"
+      },
+      "lng": {
+        "degrees": 98,
+        "minutes": 29,
+        "seconds": 42.5076,
+        "lng": 98.495141,
+        "display": "98° 29' 42.51''"
+      }
+    },
+    "cityPhoto": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=Aaw_FcJm2y9FpIXwkWx2JizwOa7w23mLkIGn85OQojFa6D65mhGwSSb9TE72v3mOERRUY1IjCWvlQYjuZBl-pLf3acPrYHV0-3zaHkpLUYnmOPw8Ry9YvAxcRkEBSag_S2bwiapmX4WI6Bh47NLAmY_xZSvSeTKCMNS0vw1iGgrdsEhG47qE&key=AIzaSyBCU8RRxV3qaSyxOgc4ObSWmUhlfnJsYTo"
+  }
+]
