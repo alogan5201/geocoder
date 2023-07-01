@@ -18,7 +18,7 @@ function PopupMarkerContent({ content }) {
   const bookmarked = useStore((state) => state.bookmarked);
   const [popupContent, setPopupcontent] = useState(null);
   const [dmsDisplay, setDisplayDMS] = useState(null);
- 
+
 
   const [bookMarkId, setBookMarkId] = useState();
   useEffect(() => {
@@ -28,6 +28,7 @@ function PopupMarkerContent({ content }) {
         markerData[content].lat,
         markerData[content].lng
       );
+      console.log(shouldBookmark)
       setBookmarked(shouldBookmark);
     
       // popupContent.dms.lat.display
@@ -35,7 +36,7 @@ function PopupMarkerContent({ content }) {
       setDisplayDMS(dmsDisplay);
       setPopupcontent(markerData[content]);
     }
-  }, [markerData, content]);
+  }, [markerData]);
 
   function handleBookMarkClick(e) {
     e.preventDefault();

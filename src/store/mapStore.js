@@ -25,8 +25,8 @@ const bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
    resetMapZoom: (data) => {
      set({ zoom: data });
     },
-    setBookmarked: () => {
-    set((state) => ({ bookmarked: !state.bookmarked}))
+    setBookmarked: (data) => {
+    set((state) => ({ bookmarked: data}))
     },
    removeAllBears: () => set({ bears: 0 }),
    setGeoData: (data) => {
