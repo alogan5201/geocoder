@@ -72,9 +72,9 @@ const MapWithRoute = () => {
         {route && (
           <Polyline
             positions={route.map((coord) => [coord[1], coord[0]])}
-            color={"red"}
+            color={"#44afff"}
             opacity={0.7}
-            weight={7}
+            weight={5}
           />
         )}
         <Markers L={L} />

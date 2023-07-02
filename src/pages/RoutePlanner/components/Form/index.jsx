@@ -151,8 +151,7 @@ console.log(e)
               Submit
             </Button>
           </Grid>
-          {/* ============ LatLngInputs ============ */}
-          <LatLngInputs readOnly={true} />
+   
         </Grid>
       </Box>
     </Box>
