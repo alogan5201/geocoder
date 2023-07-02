@@ -14,7 +14,7 @@ export const covertAddressToLatLng = async (address) => {
 
   if(VITE_NODE_ENV === 'development'){
     let addr = lowercaseFirst(address)
-    let loc = addr.includes('atlanta') ? 'atlanta' : addr.includes('atl') ? 'atlanta' : 'austin'
+    let loc = addr.includes('atlanta') ? 'atlanta' : addr.includes('atl') ? 'atlanta' : addr.includes("la") ? 'la' : 'austin'
     const response = await getFakeData(`addresses/${loc}`)
     return response
   } 
@@ -29,6 +29,38 @@ else {
     return;
   }
   const data = await response.json();
+
+  return data;
+}
+
+};
+export const getDirections = async (from, to) => {
+
+  if(VITE_NODE_ENV === 'development'){
+    let addr = lowercaseFirst(address)
+    let loc = addr.includes("atlanta")
+      ? "atlanta"
+      : addr.includes("atl")
+      ? "atlanta"
+      : addr.includes("la")
+      ? "la"
+      : "austin";
+    const response = await getFakeData(`addresses/${loc}`)
+    return response
+  } 
+else {
+ 
+  const response = await fetch(
+    `https://api.mapbox.com/directions/v5/mapbox/driving/${from.lng},${from.lat};${to.lng},${to.lat}?geometries=geojson&access_token=${VITE_ACCESS_TOKEN}`,
+    { method: "GET" }
+  );
+
+
+  if (response.status !== 200) {
+    return;
+  }
+  const data = await response.json();
+
   return data;
 }
 

@@ -39,7 +39,8 @@ export default function App() {
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-   resetMarkerData()
+
+    resetMarkerData();
   }, [pathname]);
 
   const getRoutes = (allRoutes) =>
@@ -58,7 +59,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Suspense fallback={<Loading/>}>
+      <Suspense fallback={<Loading />}>
         <Routes>
           {getRoutes(routes)}
           <Route path="/" element={<HomePage />} />

@@ -2,11 +2,11 @@
 import Icon from "@mui/material/Icon";
 import React from "react";
 import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
-
+import DirectionsIcon from "@mui/icons-material/Directions";
 const AddressToLatLng = React.lazy(() => import("pages/AddressToLatLng"));
 const Bookmarks = React.lazy(() => import("pages/Bookmarks"));
 const TestPage = React.lazy(() => import("pages/Test"));
-
+const RoutePlanner = React.lazy(() => import("pages/RoutePlanner"));
 const routes = [
   {
     name: "tools",
@@ -27,11 +27,18 @@ const routes = [
     ],
   },
   {
+    name: "routePlanner",
+    icon: <DirectionsIcon />,
+    route: "/route-planner",
+    component: <RoutePlanner />,
+    key: "routePlanner",
+  },
+  {
     name: "bookmarks",
     icon: <CollectionsBookmarkIcon />,
     route: "/bookmarks",
     component: <Bookmarks />,
-    key: "bookmarks"
+    key: "bookmarks",
   },
   {
     name: "docs",

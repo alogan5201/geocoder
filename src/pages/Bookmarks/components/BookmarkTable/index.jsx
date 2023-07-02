@@ -9,7 +9,6 @@ import { getCityPhoto } from "util/geocoder";
 function BookmarkTable({ bookmarkState }) {
   const [rowData, setRowData] = useState([]);
 
-
   useEffect(() => {
     const setBookmarkData = async () => {
       if (bookmarkState && bookmarkState.length > 0) {
@@ -27,13 +26,11 @@ function BookmarkTable({ bookmarkState }) {
           const dms = bookmarks[i].dms;
           const id = bookmarks[i].id;
 
-          console.log(bookmarks[i].wikiData);
-
           if (bookmarks[i].cityPhoto) {
             const cityPhoto = bookmarks[i].cityPhoto;
-                const photoUrl = cityPhoto
-                  ? cityPhoto.replace("/google-api/", "https://maps.googleapis.com/maps/api/")
-                  : "";
+            const photoUrl = cityPhoto
+              ? cityPhoto.replace("/google-api/", "https://maps.googleapis.com/maps/api/")
+              : "";
             const photo = cityPhoto ? (
               <IconButton aria-label="delete">
                 <img className="bookmark-image" src={photoUrl}></img>
@@ -56,10 +53,7 @@ function BookmarkTable({ bookmarkState }) {
             addKeyValueToObjectInLocalStorageList("bookmarks", id, "cityPhoto", photoUrl);
             const photo = cityPhoto ? (
               <IconButton aria-label="delete">
-                <img
-                  className="bookmark-image"
-                  src={photoUrl}
-                ></img>
+                <img className="bookmark-image" src={photoUrl}></img>
               </IconButton>
             ) : (
               ""
@@ -88,7 +82,6 @@ function BookmarkTable({ bookmarkState }) {
   };
   return (
     <Grid container item xs={12} lg={12} mx="auto">
-   
       <TableContainer
         sx={{
           maxHeight: 440,

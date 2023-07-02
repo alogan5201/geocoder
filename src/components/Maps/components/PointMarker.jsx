@@ -16,7 +16,13 @@ const PointMarker = ({ center, content, openPopup, L }) => {
   const map = useMap();
   const markerRef = useRef(null);
   let open = markerRef && markerRef.current ? markerRef.current.isPopupOpen() : null;
+    const mapZoom = useStore((state) => state.mapZoom);
 
+    useEffect(() => {
+      if (mapZoom) {
+        map.setZoom(mapZoom);
+      }
+    }, [mapZoom]);
   const togglePopup = (open, markerRef) => {
     if (open) {
       markerRef.current.closePopup();
@@ -94,7 +100,7 @@ const PointMarker = ({ center, content, openPopup, L }) => {
   }, [map, center, openPopup, rendered]);
 
   return (
-    <Marker ref={markerRef} position={center}>
+    <Marker ref={markerRef} position={center} >
       <Popup
         minWidth={300}
         position={position}
@@ -106,6 +112,7 @@ const PointMarker = ({ center, content, openPopup, L }) => {
       </Popup>
     </Marker>
   );
+
 };
 
 export default PointMarker;

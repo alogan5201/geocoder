@@ -14,6 +14,8 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    bookmarks: [],
    bookmarked: false,
    bookmarkLocation: false,
+   mapZoom: null,
+   mapStopped: false,
    setBookmarkForLocation: (data) => {
        set(() => ({ bookmarkLocation: data }));
    },
@@ -30,6 +32,12 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    },
    setBookmarked: (data) => {
      set((state) => ({ bookmarked: data }));
+   },
+   setMapZoom: (data) => {
+     set(() => ({ mapZoom: data }));
+   },
+   setMapStopped: (data) => {
+     set(() => ({ mapStopped: data }));
    },
    removeAllBears: () => set({ bears: 0 }),
    setGeoData: (data) => {

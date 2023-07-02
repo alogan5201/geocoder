@@ -117,3 +117,21 @@ Currently I am debugging an issue with my React application. In relation to the 
 16. **Route Explorer** - Indicates that users can explore routes between locations.
 
 Choose a name that you feel best matches the tone and functionality of your application. It's also worth considering your target audience and how they might interpret the name.
+
+# Polyline prop options
+export interface PathOptions extends InteractiveLayerOptions {
+    stroke?: boolean | undefined;
+    color?: string | undefined;
+    weight?: number | undefined;
+    opacity?: number | undefined;
+    lineCap?: LineCapShape | undefined;
+    lineJoin?: LineJoinShape | undefined;
+    dashArray?: string | number[] | undefined;
+    dashOffset?: string | undefined;
+    fill?: boolean | undefined;
+    fillColor?: string | undefined;
+    fillOpacity?: number | undefined;
+    fillRule?: FillRule | undefined;
+    renderer?: Renderer | undefined;
+    className?: string | undefined;
+}

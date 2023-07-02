@@ -173,14 +173,14 @@ function addressToLatLngInputState(markerData) {
   }
 }
 
- async function getWikidataImage(wikidataId) {
+async function getWikidataImage(wikidataId) {
   try {
     // Step 1: Fetch image filename from Wikidata entity
     const claimsUrl = `/wikidata-api?action=wbgetclaims&property=P18&entity=${wikidataId}&format=json`;
     const claimsResponse = await fetch(claimsUrl);
 
     const claimsText = await claimsResponse.text();
-    //console.log("Claims Response Text:", claimsText); // Log the raw response text
+    //
 
     const claimsData = JSON.parse(claimsText); // Parse the text as JSON
 
@@ -204,4 +204,3 @@ function addressToLatLngInputState(markerData) {
     return null;
   }
 }
-

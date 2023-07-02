@@ -1,4 +1,3 @@
-
 import Grid from "@mui/material/Grid";
 import Box from "components/Box";
 import AddIcon from "@mui/icons-material/Add";
@@ -28,14 +27,13 @@ function InputWithIcon() {
 function AddNewBookmark() {
   const [newLocation, setNewLocation] = useState("");
   const [toggleInput, setInputToggle] = useState(false);
-  const handleNewBookmark = (e) =>{
+  const handleNewBookmark = (e) => {
     e.preventDefault();
-    setInputToggle(true)
-  }
-  if(toggleInput) {
+    setInputToggle(true);
+  };
+  if (toggleInput) {
     return <AddressInput readOnly={false} />;
-  } 
-  else {
+  } else {
     return (
       <Grid item xs={12} pr={1} mb={0}>
         <Button color="white" size="large" sx={{ pl: 0 }} onClick={handleNewBookmark}>
@@ -45,20 +43,18 @@ function AddNewBookmark() {
         </Button>
       </Grid>
     );
-
   }
 }
 function Form() {
-const [bookmarkState, setBookmarkState] = useState(
-  JSON.parse(localStorage.getItem("bookmarks")) || []
-);
-const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation)
+  const [bookmarkState, setBookmarkState] = useState(
+    JSON.parse(localStorage.getItem("bookmarks")) || []
+  );
+  const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation);
 
-    useEffect(() => {
-      if(bookmarkState) {
-        console.log(bookmarkState)
-      }
-    }, [bookmarkState]);
+  useEffect(() => {
+    if (bookmarkState) {
+    }
+  }, [bookmarkState]);
   useEffect(() => {
     window.addEventListener("storage", () => {
       setBookmarkState(JSON.parse(localStorage.getItem("bookmarks")) || []);
@@ -112,7 +108,7 @@ const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation)
         setMapInputState(false);
         updateMarkerData(markerData);
         updateGeoData(mapBoxData.features[0]);
-        setBookmarkForLocation(true)
+        setBookmarkForLocation(true);
       }
     }
   }
@@ -136,9 +132,9 @@ const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation)
         }
       }
     }
-    return () => { 
-        setBookmarkForLocation(false);
-    }
+    return () => {
+      setBookmarkForLocation(false);
+    };
   }, [userLocationActive]);
   return (
     <Box
@@ -154,13 +150,13 @@ const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation)
           Bookmarks
         </Typography>
       </Box>
-      <Divider sx={{m:0}}/>
+      <Divider sx={{ m: 0 }} />
       <Box pl={{ xs: 0, sm: 3 }} pr={{ xs: 0, sm: 0 }} py={{ xs: 0, sm: 1 }}>
         <Grid container>
           {bookmarkState && bookmarkState.length > 0 ? (
             <>
               <AddNewBookmark />
-              
+
               <BookmarkTable bookmarkState={bookmarkState} />
             </>
           ) : (
