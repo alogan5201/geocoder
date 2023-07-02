@@ -25,13 +25,14 @@ const MapWithRoute = () => {
   const [map, setMap] = useState(null);
   const markerData = useStore((state) => state.markerData);
   const setMapStopped = useStore((state) => state.setMapStopped);
+  const mapStopped = useStore((state) => state.mapStopped);
 
     const handleMoveEnd = () => {
-      console.log("Map has stopped moving");
+     
      setMapStopped(true);
     };
   useEffect(() => {
-    if (markerData && markerData.length > 1) {
+    if (markerData && markerData.length > 1 && mapStopped === false) {
       console.log(markerData[0].lat, markerData[0].lng);
       console.log(markerData[1].lat, markerData[1].lng);
       const fetchRoute = async () => {
@@ -53,7 +54,7 @@ const MapWithRoute = () => {
       setRoute(null);
       console.log("setRoute", route);
     };
-  }, [markerData]);
+  }, [markerData, mapStopped]);
   return (
     <>
       <MapContainer
