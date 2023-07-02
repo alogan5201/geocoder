@@ -12,7 +12,6 @@ function MapEventsComponent({ onMoveEnd }) {
   useMapEvents({
     moveend: () => {
       onMoveEnd();
-  
     },
   });
 
@@ -27,21 +26,17 @@ const MapWithRoute = () => {
   const setMapStopped = useStore((state) => state.setMapStopped);
   const mapStopped = useStore((state) => state.mapStopped);
 
-    const handleMoveEnd = () => {
-     
-     setMapStopped(true);
-    };
+  const handleMoveEnd = () => {
+    setMapStopped(true);
+  };
   useEffect(() => {
     if (markerData && markerData.length > 1 && mapStopped === false) {
-      console.log(markerData[0].lat, markerData[0].lng);
-      console.log(markerData[1].lat, markerData[1].lng);
       const fetchRoute = async () => {
         try {
           const data = await getDirections(markerData[0], markerData[1]);
-          console.log(data);
+
           setRoute(data.routes[0].geometry.coordinates);
-          setTimeout(() => {
-          }, 500);
+          setTimeout(() => {}, 500);
 
           //setRoute(data.routes[0].geometry.coordinates);
         } catch (err) {
@@ -52,7 +47,6 @@ const MapWithRoute = () => {
     }
     return () => {
       setRoute(null);
-      console.log("setRoute", route);
     };
   }, [markerData, mapStopped]);
   return (

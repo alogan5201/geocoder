@@ -204,3 +204,18 @@ async function getWikidataImage(wikidataId) {
     return null;
   }
 }
+
+export function secondsToHoursMinutes(seconds) {
+  let totalMinutes = Math.floor(seconds / 60);
+  let hours = Math.floor(totalMinutes / 60);
+  let minutes = totalMinutes % 60;
+
+  if (hours > 0) {
+    let obj = { hours: hours, minutes: minutes };
+
+    return obj;
+  } else {
+    let obj = { hours: null, minutes: minutes };
+    return obj;
+  }
+}

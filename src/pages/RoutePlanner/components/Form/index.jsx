@@ -13,20 +13,20 @@ import { extractWords, test } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
-const OriginInputIcon = ()=> {
+const OriginInputIcon = () => {
   return (
-    <Typography variant="h5" color="info" >
-     A
+    <Typography variant="h5" color="info">
+      A
     </Typography>
   );
-}
-const DestinationInputIcon = ()=> {
+};
+const DestinationInputIcon = () => {
   return (
-    <Typography variant="h5" color="error" >
-     B
+    <Typography variant="h5" color="error">
+      B
     </Typography>
   );
-}
+};
 function Form() {
   const [coords, setCoords] = useGlobalValue();
   const updateMarkerData = useStore((state) => state.setMarkerData);
@@ -42,7 +42,7 @@ function Form() {
     e.preventDefault();
     const inputOne = e.target[0].value;
     const inputTwo = e.target[2].value;
-console.log(e)
+
     if (inputOne && inputTwo) {
       let extracted = extractWords(inputOne);
       let withPlus = extracted.join("+");
@@ -60,7 +60,7 @@ console.log(e)
           const markerData = [markerDataOriginFormatted[0], markerDataDestinationFormatted[0]];
           setUserLocationActive(false);
           setMapInputState(false);
-          
+
           updateMarkerData(markerData);
           setMapZoom(5);
           //   updateGeoData(mapBoxData.features[0]);
@@ -142,16 +142,19 @@ console.log(e)
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 6 }}>
         <Grid container>
           {/* ============ ORGIN-AddressInput ============ */}
-          <AddressInput readOnly={false} defaultValue="Atlanta, GA" icon={<OriginInputIcon/>} />
+          <AddressInput readOnly={false} defaultValue="Atlanta, GA" icon={<OriginInputIcon />} />
           {/* ============ DESTINATION-AddressInput ============ */}
-          <AddressInput readOnly={false} defaultValue="Austin, TX" icon={<DestinationInputIcon/>}/>
+          <AddressInput
+            readOnly={false}
+            defaultValue="Austin, TX"
+            icon={<DestinationInputIcon />}
+          />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">
               Submit
             </Button>
           </Grid>
-   
         </Grid>
       </Box>
     </Box>

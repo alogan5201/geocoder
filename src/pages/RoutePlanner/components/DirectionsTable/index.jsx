@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { addKeyValueToObjectInLocalStorageList } from "util/bookmarks";
 import { getCityPhoto } from "util/geocoder";
 
-function BookmarkTable({ bookmarkState }) {
+function DirectionsTable({ bookmarkState }) {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ function BookmarkTable({ bookmarkState }) {
             bookmarkData.push(obj);
           }
         }
-        console.log(bookmarkData)
+
         setRowData(bookmarkData);
       }
     };
@@ -101,10 +101,10 @@ function BookmarkTable({ bookmarkState }) {
         />
       </TableContainer>
       <div style={{ fontSize: "14px", marginTop: "4em" }}>
-      
+        {/* <ReactJson src={bookmarkState || {id: 'foo'}} /> */}
       </div>
     </Grid>
   );
 }
 
-export default BookmarkTable;
+export default DirectionsTable;

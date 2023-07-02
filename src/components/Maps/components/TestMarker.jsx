@@ -13,7 +13,7 @@ const TestMarker = ({ center, content, openPopup, L }) => {
   const [rendered, setRendered] = useState(false);
   const [containerHeight, setContainerHeight] = useState(null);
   const userLocationActive = useStore((state) => state.userLocationActive);
-console.log("center", [center.lat, center.lng]);
+
   const map = useMap();
   const markerRef = useRef(null);
   let open = markerRef && markerRef.current ? markerRef.current.isPopupOpen() : null;
