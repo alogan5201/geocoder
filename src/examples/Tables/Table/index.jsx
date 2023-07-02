@@ -1,20 +1,38 @@
-import { useMemo, useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 import PropTypes from "prop-types";
 
-import { v4 as uuidv4 } from "uuid";
 import useStore from "store/mapStore";
+import { v4 as uuidv4 } from "uuid";
 
 import MuiTable from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 
 import Box from "components/Box";
-import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
+// Table is a React functional component used for rendering a table.
+//
+// Props:
+// - columns: an array of column definitions where each column is an object with properties like name, align, width.
+// - rows: an array of row data where each row is an object with key-value pairs corresponding to column names and cell data.
+// - hideColumns: an array of indexes indicating which columns to hide.
+// - hideColumnRow: a boolean indicating whether to hide the column header row.
+// - bookmarkState: an array of bookmarks to check if there's data to display.
+//
+// Example:
+// <Table
+//   columns={[{ name: 'Name', align: 'left' }, { name: 'Age', align: 'right' }]}
+//   rows={[{ Name: 'Alice', Age: 30 }, { Name: 'Bob', Age: 25 }]}
+//   hideColumns={[1]}
+//   hideColumnRow={false}
+//   bookmarkState={bookmarks}
+// />
+//
+
 function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
+  // This hook provides access to the setMarkerData action from the mapStore.
   const updateMarkerData = useStore((state) => state.setMarkerData);
   useEffect(() => {
     if (hideColumns) {
@@ -32,6 +50,7 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
     ];
     updateMarkerData(markerData);
   };
+  // renderColumns maps through the columns and returns table header (th) elements.
   const renderColumns = columns.map(({ name, align, width }, key) => {
     let pl;
     let pr;
@@ -71,7 +90,7 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
       </Box>
     );
   });
-
+  // renderRows maps through the rows and returns table row (tr) elements.
   const renderRows = rows.map((row, key) => (
     <TableRow
       onClick={() => handleRowClick(row.address, row.latitude, row.longitude, row.dms, row.id)}
@@ -109,7 +128,9 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
       ))}
     </TableRow>
   ));
-if(bookmarkState && bookmarkState.length > 0){
+  // Only render the table if there is bookmark data, else render nothing.
+
+  if (bookmarkState && bookmarkState.length > 0) {
     return useMemo(
       () => (
         <MuiTable stickyHeader aria-label="sticky table">
@@ -125,11 +146,9 @@ if(bookmarkState && bookmarkState.length > 0){
       ),
       [columns, rows]
     );
-}
-else {
-  null
-}
-
+  } else {
+    null;
+  }
 }
 
 // Setting default values for the props of Table
