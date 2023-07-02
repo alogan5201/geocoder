@@ -46,12 +46,15 @@ const PointMarker = ({ center, content, openPopup, L, icon }) => {
   useEffect(() => {
     if (openPopup) {
       stopLocation();
+const zoom = mapZoom ? mapZoom : 13;
+if(!mapZoom){
 
-      map.flyTo(center, 13, {
-        animate: true,
-        duration: 0.8,
-        easeLinearity: 0.5,
-      });
+  map.flyTo(center, 13, {
+    animate: true,
+    duration: 0.8,
+    easeLinearity: 0.5,
+  });
+}
 
       togglePopup(open, markerRef);
 

@@ -16,6 +16,10 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    bookmarkLocation: false,
    mapZoom: null,
    mapStopped: false,
+   routeData: null,
+   setRouteData: (data) => {
+       set(() => ({ routeData: data }));
+   },
    setBookmarkForLocation: (data) => {
        set(() => ({ bookmarkLocation: data }));
    },

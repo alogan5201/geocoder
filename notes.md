@@ -135,3 +135,67 @@ export interface PathOptions extends InteractiveLayerOptions {
     renderer?: Renderer | undefined;
     className?: string | undefined;
 }
+
+# Store 
+  const [coords, setCoords] = useGlobalValue();
+  const updateMarkerData = useStore((state) => state.setMarkerData);
+  const setMapZoom = useStore((state) => state.setMapZoom);
+  const setUserLocationActive = useStore((state) => state.setUserLocationActive);
+  const userLocationActive = useStore((state) => state.userLocationActive);
+  const setMapInputState = useStore((state) => state.setMapInputState);
+  const setRouteData = useStore((state) => state.setRouteData);
+  const routeData = useStore((state) => state.routeData);
+
+* setRouteData
+  * *routeData*
+
+* setBookmarkForLocation
+  * *bookmarkLocation*
+* resetMarkerData
+  * *clearMapInputs*
+
+* setBookmarks
+  * *bookmarks*
+
+* increasePopulation
+
+* resetMapZoom
+  * *zoom*
+
+* setBookmarked
+  * *bookmarked*
+
+* setMapZoom
+  * *mapZoom*
+
+* setMapStopped
+  * *mapStopped*
+
+* setGeoData
+  * *geoData*
+
+* setMapInputState
+  * *clearMapInputs*
+
+* setUserLocationActive
+  * *userLocationActive*
+
+* setTestData
+  * *testData*
+
+* setMarkerData
+  * *markerData*
+
+
+
+
+
+
+
+
+
+
+
+
+
+

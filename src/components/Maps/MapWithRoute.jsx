@@ -1,13 +1,14 @@
 import L from "leaflet";
 import { useEffect, useState } from "react";
-import { MapContainer, Polyline, TileLayer, useMapEvents } from "react-leaflet";
+import { MapContainer, Polyline, TileLayer, useMapEvents, LayersControl } from "react-leaflet";
 import "react-tabs/style/react-tabs.css";
 import useStore from "store/mapStore";
 import { getDirections } from "util/geocoder";
 import LocationButton from "./components/LocationButton";
 import Markers from "./components/Markers";
-
 const center = [37.09024, -95.712891];
+
+
 function MapEventsComponent({ onMoveEnd }) {
   useMapEvents({
     moveend: () => {
@@ -25,6 +26,7 @@ const MapWithRoute = () => {
   const markerData = useStore((state) => state.markerData);
   const setMapStopped = useStore((state) => state.setMapStopped);
   const mapStopped = useStore((state) => state.mapStopped);
+  const setRouteData = useStore((state) => state.setRouteData);
 
   const handleMoveEnd = () => {
     setMapStopped(true);
@@ -34,7 +36,7 @@ const MapWithRoute = () => {
       const fetchRoute = async () => {
         try {
           const data = await getDirections(markerData[0], markerData[1]);
-
+          setRouteData(data);
           setRoute(data.routes[0].geometry.coordinates);
           setTimeout(() => {}, 500);
 
@@ -49,6 +51,7 @@ const MapWithRoute = () => {
       setRoute(null);
     };
   }, [markerData, mapStopped]);
+  
   return (
     <>
       <MapContainer
@@ -63,6 +66,7 @@ const MapWithRoute = () => {
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
         <MapEventsComponent onMoveEnd={handleMoveEnd} />
+   
         {route && (
           <Polyline
             positions={route.map((coord) => [coord[1], coord[0]])}

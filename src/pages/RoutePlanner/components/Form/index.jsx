@@ -13,6 +13,11 @@ import { extractWords, test } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
+import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
+import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
+import DirectionsIcon from "@mui/icons-material/Directions";
+import { metersToMiles } from "util/geocoder";
+import { secondsToHoursMinutes } from "util/helpers";
 const OriginInputIcon = () => {
   return (
     <Typography variant="h5" color="info">
@@ -27,17 +32,23 @@ const DestinationInputIcon = () => {
     </Typography>
   );
 };
+  /* -------------------------------------------------------------------------- */
+  /*                                  ROUTE DATA                                */
+  /* -------------------------------------------------------------------------- */
 function Form() {
   const [coords, setCoords] = useGlobalValue();
+ const [routeInfo, setRouteInfo] = useState(null)
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const setMapZoom = useStore((state) => state.setMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
+  const setRouteData = useStore((state) => state.setRouteData);
+  const routeData = useStore((state) => state.routeData);
+  
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
-
   async function handleSubmit(e) {
     e.preventDefault();
     const inputOne = e.target[0].value;
@@ -109,7 +120,7 @@ function Form() {
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector(".leaflet-bar");
-
+      
       if (leafletBarElement) {
         let classes = leafletBarElement.classList;
         // Create an array to store the classes that need to be removed
@@ -127,7 +138,26 @@ function Form() {
       }
     }
   }, [userLocationActive]);
-
+  
+useEffect(() => {
+  if(routeData){
+    //The distance between each pair of coordinates, in meters.
+    const distance = routeData.routes[0].distance
+      ? Math.round(metersToMiles(routeData.routes[0].distance))
+      : null;
+    // The duration between each pair of coordinates, in seconds.
+    const duration = routeData.routes[0].duration ? secondsToHoursMinutes(routeData.routes[0].duration) : null;
+if(distance && duration){
+let data = {
+  ...duration,
+  distance: distance
+}
+setRouteInfo(data)
+console.log(data)
+}
+ 
+  }
+}, [routeData]);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
@@ -154,6 +184,40 @@ function Form() {
             <Button type="submit" variant="gradient" color="info">
               Submit
             </Button>
+          </Grid>
+          {/* ============ Directions Card ============ */}
+          {/*
+          
+           {
+            "hours": 14, (hours could be null)
+            "minutes": 36, 
+            "distance": 925
+            } 
+            */}
+          <Grid item xs={12} pr={1} mb={2}>
+            {routeInfo && (
+              <FilledInfoCard
+                color="dark"
+                variant="contained"
+                icon="directions_car"
+                title={
+                  routeInfo.hours && routeInfo.minutes
+                    ? `${routeInfo.hours} hours ${routeInfo.minutes} minutes`
+                    : routeInfo.hours 
+                    ? `${routeInfo.hours} hours`
+                    : `${routeInfo.minutes} minutes`
+                }
+                description={routeInfo.distance ? `${routeInfo.distance} miles` : ""}
+                action={{
+                  type: "external",
+                  route: "https://www.google.com/maps/dir/Atlanta,+Georgia/Austin,+Texas/",
+                  label: "Directions",
+                  iconComponent: (
+                    <DirectionsIcon color="info" fontSize="medium" sx={{ ml: "5px" }} />
+                  ),
+                }}
+              />
+            )}
           </Grid>
         </Grid>
       </Box>

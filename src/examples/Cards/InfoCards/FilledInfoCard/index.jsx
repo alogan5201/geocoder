@@ -14,6 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
+import MuiLink from "@mui/material/Link";
 import PropTypes from "prop-types";
 
 // react-router-dom components
@@ -21,7 +22,6 @@ import { Link } from "react-router-dom";
 
 // @mui material components
 import Icon from "@mui/material/Icon";
-import MuiLink from "@mui/material/Link";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
@@ -50,13 +50,16 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
     iconColor = "white";
   } else if (variant === "gradient" && color === "light") {
     iconColor = "dark";
+  } else if (variant === "white" && color=== "dark"){
+    iconColor = "dark"
   }
+
 
   return (
     <Box
       display={{ xs: "block", md: "flex" }}
       variant={variant}
-      bgColor={variant === "contained" ? "grey-100" : color}
+      bgColor={variant === "contained" ? "white" : color}
       borderRadius="xl"
       pt={3.5}
       pb={3}
@@ -75,7 +78,7 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
         <Typography
           display="block"
           variant="5"
-          color={variant === "contained" || color === "light" ? "dark" : "white"}
+          color={variant === "contained" || color === "light" ? "success" : "white"}
           fontWeight="bold"
           mb={1}
         >
@@ -100,7 +103,12 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
             color={variant === "contained" ? color : "white"}
             sx={buttonStyles}
           >
-            {action.label} <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
+            {action.label}
+            {action.iconComponent ? (
+              action.iconComponent
+            ) : (
+              <Icon sx={{ fontWeight: "bold" }}>{action.icon}</Icon>
+            )}
           </Typography>
         ) : null}
         {action && action.type === "internal" ? (
@@ -112,7 +120,12 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
             color={variant === "contained" ? color : "white"}
             sx={buttonStyles}
           >
-            {action.label} <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
+            {action.label}
+            {action.iconComponent ? (
+              action.iconComponent
+            ) : (
+              <Icon sx={{ fontWeight: "bold" }}>{action.icon}</Icon>
+            )}
           </Typography>
         ) : null}
       </Box>
@@ -123,7 +136,7 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
 // Setting default props for the FilledInfoCard
 FilledInfoCard.defaultProps = {
   variant: "contained",
-  color: "info",
+  color: "dark",
   action: false,
 };
 

@@ -1,5 +1,3 @@
-// ! Remove For production
-
 import { create } from "apisauce";
 const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.env;
 import { tron, lowercaseFirst } from "./helpers";
@@ -8,10 +6,7 @@ const mapBoxapi = create({
   baseURL: "https://api.mapbox.com/geocoding/v5/mapbox.places",
   headers: { Accept: "application/vnd.github.v3+json" },
 });
-export function metersToMiles(meters) {
-  const milesPerMeter = 0.000621371;
-  return meters * milesPerMeter;
-}
+
 export const covertAddressToLatLng = async (address) => {
   let location = encodeURIComponent(address);
 
@@ -238,4 +233,9 @@ export async function getCityPhoto(cityName) {
     console.error("Error fetching city photo: ", error);
     return null;
   }
+}
+
+export function metersToMiles(meters) {
+  const milesPerMeter = 0.000621371;
+  return meters * milesPerMeter;
 }
