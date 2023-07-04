@@ -1,51 +1,82 @@
-import React, { useEffect, useState } from "react";
-import { Polyline, useMapEvent } from "react-leaflet";
+import { useState } from "react";
+import {
+    FeatureGroup,
+    LayersControl,
+    useMapEvent,
+    Polyline
+} from "react-leaflet";
 import useStore from "store/mapStore";
 
+   function convertToBoundingBox(points) {
+     if (!points || points.length === 0) {
+       return null;
+     }
+
+     let minLat = points[0][1];
+     let maxLat = points[0][1];
+     let minLng = points[0][0];
+     let maxLng = points[0][0];
+
+     for (let i = 1; i < points.length; i++) {
+       const [lng, lat] = points[i];
+       minLat = Math.min(minLat, lat);
+       maxLat = Math.max(maxLat, lat);
+       minLng = Math.min(minLng, lng);
+       maxLng = Math.max(maxLng, lng);
+     }
+
+     return {
+       _southWest: {
+         lat: minLat,
+         lng: minLng,
+       },
+       _northEast: {
+         lat: maxLat,
+         lng: maxLng,
+       },
+     };
+   }
 const CustomControl = ({ L }) => {
-  const [polylineCoordinates, setPolylineCoordinates] = useState([]);
-    const routeData = useStore((state) => state.routeData);
-useEffect(() => {
-    if(routeData){
-        const newPolyCoords = routeData.routes[0].geometry.coordinates;
-        setPolylineCoordinates(newPolyCoords);
+    const [polyLine, setPolyline] = useState(null);
+      const routeData = useStore((state) => state.routeData);
+const map = useMapEvent({
+  layeradd() {
+    let bounds = new L.LatLngBounds();
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.FeatureGroup) {
+        bounds.extend(layer.getBounds());
+      }
+    });
+
+    if (bounds.isValid()) {
+      map.flyToBounds([bounds]);
     }
-}, [routeData]);
-  /* 
-    {route && (
+  },
+});
+
+if(routeData){
+    <LayersControl position="topright" collapsed={false}>
+      <LayersControl.Overlay name="River">
+        <FeatureGroup>
           <Polyline
-            positions={route.map((coord) => [coord[1], coord[0]])}
+            positions={routeData.routes[0].geometry.coordinates.map((coord) => [
+              coord[1],
+              coord[0],
+            ])}
             color={"#44afff"}
             opacity={0.7}
             weight={5}
           />
-        )}
-*/
-  const map = useMapEvent({
-    moveend() {
-      let bounds = new L.LatLngBounds();
-      let newCoordinates = []; // Dummy new coordinates, replace with real values
+        </FeatureGroup>
+      </LayersControl.Overlay>
 
-      map.eachLayer(function (layer) {
-        console.log(layer);
-        // You can add conditions here to update newCoordinates based on the layer or other logic
-      });
-
-      setPolylineCoordinates(newCoordinates); // Update the state with new coordinates
-
-      if (bounds.isValid()) {
-        map.flyToBounds([bounds]);
-      }
-    },
-  });
-
-  useEffect(() => {
-    if (polylineCoordinates.length > 0) {
-      console.log("Polyline component has been rendered with new coordinates");
+   
+    </LayersControl>
+}
+    else {
+        return null
     }
-  }, [polylineCoordinates]);
 
-  return <Polyline positions={polylineCoordinates} />;
 };
 
 export default CustomControl;

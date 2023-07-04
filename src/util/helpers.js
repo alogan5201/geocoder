@@ -219,3 +219,7 @@ export function secondsToHoursMinutes(seconds) {
     return obj;
   }
 }
+
+
+    export const areObjectsEqual = (...objects) =>
+       objects.every((obj) => JSON.stringify(obj) === JSON.stringify(objects[0]));

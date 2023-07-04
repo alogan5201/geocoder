@@ -187,6 +187,12 @@ export interface PathOptions extends InteractiveLayerOptions {
   * *markerData*
 
 
+   <Polyline
+            positions={route.map((coord) => [coord[1], coord[0]])}
+            color={"#44afff"}
+            opacity={0.7}
+            weight={5}
+          />
 
 
 
@@ -197,5 +203,18 @@ export interface PathOptions extends InteractiveLayerOptions {
 
 
 
+
+
+
+{
+    "_southWest": {
+        "lat": 30.267744,
+        "lng": -97.743783
+    },
+    "_northEast": {
+        "lat": 33.749296,
+        "lng": -84.389338
+    }
+}
 
 

@@ -1,14 +1,54 @@
 import L from "leaflet";
 import { useEffect, useState } from "react";
-import { MapContainer, Polyline, TileLayer, useMapEvents, LayersControl } from "react-leaflet";
+import {
+  MapContainer,
+  Polyline,
+  TileLayer,
+  useMapEvents,
+  LayersControl,
+  FeatureGroup,
+  useMap
+} from "react-leaflet";
 import "react-tabs/style/react-tabs.css";
 import useStore from "store/mapStore";
 import { getDirections } from "util/geocoder";
 import LocationButton from "./components/LocationButton";
 import Markers from "./components/Markers";
+import CustomControl from "./components/CustomControl";
+import { areObjectsEqual } from "util/helpers";
+import { EditControl } from "react-leaflet-draw";
+
 const center = [37.09024, -95.712891];
 
+function convertToBoundingBox(points) {
+  if (!points || points.length === 0) {
+    return null;
+  }
 
+  let minLat = points[0][1];
+  let maxLat = points[0][1];
+  let minLng = points[0][0];
+  let maxLng = points[0][0];
+
+  for (let i = 1; i < points.length; i++) {
+    const [lng, lat] = points[i];
+    minLat = Math.min(minLat, lat);
+    maxLat = Math.max(maxLat, lat);
+    minLng = Math.min(minLng, lng);
+    maxLng = Math.max(maxLng, lng);
+  }
+
+  return {
+    _southWest: {
+      lat: minLat,
+      lng: minLng,
+    },
+    _northEast: {
+      lat: maxLat,
+      lng: maxLng,
+    },
+  };
+}
 function MapEventsComponent({ onMoveEnd }) {
   useMapEvents({
     moveend: () => {
@@ -20,16 +60,22 @@ function MapEventsComponent({ onMoveEnd }) {
 }
 const MapWithRoute = () => {
   const [route, setRoute] = useState(null);
-
+  const [editableFG, setEditableFG] = useState(null);
   const [selected, setSelected] = useState();
   const [map, setMap] = useState(null);
   const markerData = useStore((state) => state.markerData);
   const setMapStopped = useStore((state) => state.setMapStopped);
   const mapStopped = useStore((state) => state.mapStopped);
   const setRouteData = useStore((state) => state.setRouteData);
+  const routeData = useStore((state) => state.routeData);
 
   const handleMoveEnd = () => {
     setMapStopped(true);
+  };
+  
+  const onFeatureGroupReady = (reactFGref) => {
+    // store the ref for future access to content
+    setEditableFG(reactFGref);
   };
   useEffect(() => {
     if (markerData && markerData.length > 1 && mapStopped === false) {
@@ -51,7 +97,7 @@ const MapWithRoute = () => {
       setRoute(null);
     };
   }, [markerData, mapStopped]);
-  
+
   return (
     <>
       <MapContainer
@@ -66,14 +112,23 @@ const MapWithRoute = () => {
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
         <MapEventsComponent onMoveEnd={handleMoveEnd} />
-   
+
+      
+
         {route && (
-          <Polyline
-            positions={route.map((coord) => [coord[1], coord[0]])}
-            color={"#44afff"}
-            opacity={0.7}
-            weight={5}
-          />
+          <FeatureGroup
+            ref={(featureGroupRef) => {
+              onFeatureGroupReady(featureGroupRef);
+            }}
+          >
+            
+            <Polyline
+              positions={route.map((coord) => [coord[1], coord[0]])}
+              color={"#44afff"}
+              opacity={0.7}
+              weight={5}
+            />
+          </FeatureGroup>
         )}
         <Markers L={L} />
         <LocationButton L={L} />

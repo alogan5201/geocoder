@@ -330,3 +330,7 @@
     box-shadow: 0rem 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0rem 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06);
 
 }
+
+  .sr-only {
+    display: none;
+  }
