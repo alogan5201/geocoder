@@ -334,3 +334,8 @@
   .sr-only {
     display: none;
   }
+
+  .hidden-marker{
+    opacity: 0;
+    visibility: hidden;
+  }

@@ -55,12 +55,15 @@ const Markers = ({ L }) => {
   return markerPoints && markerPoints.length > 1
     ? markerPoints.map((item, index) => (
         <PointMarker
+          opacity={0}
           key={index}
           content={index}
           center={{ lat: item.lat, lng: item.lng }}
           openPopup={popupOpen}
           L={L}
-          icon={index === 0 ? originnMarker : destinationMarker}
+          origin= {index === 0 ? true : false}
+          destination = {index === 1 ? true : false}
+        
         />
       ))
     : markerPoints && markerPoints.length > 0

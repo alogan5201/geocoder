@@ -1,15 +1,12 @@
 import L from "leaflet";
 import { useEffect, useState } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  useMapEvents
-} from "react-leaflet";
+import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 import "react-tabs/style/react-tabs.css";
 import useStore from "store/mapStore";
 import LocationButton from "./components/LocationButton";
 import Markers from "./components/Markers";
 import PolyLineRoute from "./components/PolyLineRoute";
+import MapEventsController from "./components/MapEventsController";
 const center = [37.09024, -95.712891];
 
 function convertToBoundingBox(points) {
@@ -41,18 +38,7 @@ function convertToBoundingBox(points) {
     },
   };
 }
-function MapEventsComponent({ onMoveEnd, onMoveStart }) {
-  useMapEvents({
-    moveend: () => {
-      onMoveEnd();
-    },
-    movestart: () => {
-      onMoveStart();
-    }
-  });
 
-  return null;
-}
 const MapWithRoute = () => {
   const [route, setRoute] = useState(null);
   const [editableFG, setEditableFG] = useState(null);
@@ -60,23 +46,22 @@ const MapWithRoute = () => {
   const [map, setMap] = useState(null);
   const markerData = useStore((state) => state.markerData);
   const setMapStopped = useStore((state) => state.setMapStopped);
-  const mapStopped = useStore((state) => state.mapStopped);
+  const mapStopped = useState(false);
   const setRouteData = useStore((state) => state.setRouteData);
   const routeData = useStore((state) => state.routeData);
 
   const handleMoveEnd = () => {
     setMapStopped(true);
   };
-  
+
   const handleMoveStart = () => {
     setMapStopped(false);
   };
-  
+
   const onFeatureGroupReady = (reactFGref) => {
     // store the ref for future access to content
     setEditableFG(reactFGref);
   };
-
 
   return (
     <>
@@ -91,9 +76,9 @@ const MapWithRoute = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
-        <MapEventsComponent onMoveEnd={handleMoveEnd} onMoveStart={handleMoveStart} />
-        <PolyLineRoute L={L} />
-        <Markers L={L} />
+        <MapEventsController onMoveEnd={handleMoveEnd} onMoveStart={handleMoveStart} />
+        {mapStopped && <PolyLineRoute L={L} />}
+        {mapStopped && <Markers L={L} />}
         <LocationButton L={L} />
         {/* <LocationButton L={L} /> */}
       </MapContainer>
