@@ -5,7 +5,8 @@ import Table from "examples/Tables/Table";
 import { useEffect, useState } from "react";
 import { addKeyValueToObjectInLocalStorageList } from "util/bookmarks";
 import { getCityPhoto } from "util/geocoder";
-
+import Spinner from "components/Spinner";
+import Box from "components/Box";
 // BookmarkTable is a React functional component that displays a list of bookmarks
 // in a table format. The bookmarks are fetched from a given state and includes
 // various details like address, latitude, longitude, and an associated image.
@@ -19,7 +20,7 @@ import { getCityPhoto } from "util/geocoder";
 function BookmarkTable({ bookmarkState }) {
   // rowData holds the processed data for the bookmarks to be displayed in the table.
   const [rowData, setRowData] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   // useEffect hook to perform side-effects. In this case, it processes
   // the bookmarks data once the bookmarkState is updated.
   useEffect(() => {
@@ -105,10 +106,12 @@ function BookmarkTable({ bookmarkState }) {
             // Pushing obj to bookmarkData array.
             bookmarkData.push(obj);
           }
+
         }
 
         // Setting rowData state with the processed bookmark data.
         setRowData(bookmarkData);
+        setLoading(false)
       }
     };
 
@@ -129,24 +132,31 @@ function BookmarkTable({ bookmarkState }) {
   // Render the component.
   return (
     <Grid container item xs={12} lg={12} mx="auto">
-      <TableContainer
-        sx={{
-          maxHeight: 440,
-          overflowX: "hidden",
-          border: "none",
-          boxShadow: "none",
-          borderRadius: "0",
-        }}
-      >
-        <Table
-          columns={columns}
-          rows={rowData}
-          aria-label="sticky table"
-          hideColumns={[0, 1]}
-          hideColumnRow={true}
-          bookmarkState={bookmarkState}
-        />
-      </TableContainer>
+      {loading ? (
+        <Box mt={10} width="100%">
+          <Spinner />
+        </Box>
+      ) : (
+        <TableContainer
+          sx={{
+            maxHeight: 440,
+            overflowX: "hidden",
+            border: "none",
+            boxShadow: "none",
+            borderRadius: "0",
+          }}
+        >
+          <Table
+            columns={columns}
+            rows={rowData}
+            aria-label="sticky table"
+            hideColumns={[0, 1]}
+            hideColumnRow={true}
+            bookmarkState={bookmarkState}
+          />
+        </TableContainer>
+      )}
+
       <div style={{ fontSize: "14px", marginTop: "4em" }}></div>
     </Grid>
   );

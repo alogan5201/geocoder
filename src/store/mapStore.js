@@ -28,9 +28,6 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    setBookmarkForLocation: (data) => {
        set(() => ({ bookmarkLocation: data }));
    },
-   resetMarkerData: () => {
-     set({ markerData: null, clearMapInputs: true });
-   },
    resetMapData: () => {
     // Used on page change to reset state
      set({ markerData: null, clearMapInputs: true, mapZoom: null });

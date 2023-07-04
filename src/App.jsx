@@ -34,7 +34,6 @@ import routes from "routes";
 
 export default function App() {
   const { pathname } = useLocation();
-  const resetMarkerData = useStore((state) => state.resetMarkerData);
   const resetMapData = useStore((state) => state.resetMapData);
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
