@@ -37,6 +37,7 @@ const PointMarker = ({ center, content, openPopup, L,origin,destination }) => {
       map.setZoom(mapZoom);
     }
   }, [mapZoom]);
+  
   const togglePopup = (open, markerRef) => {
     if (open) {
       markerRef.current.closePopup();
