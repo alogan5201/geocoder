@@ -7,7 +7,6 @@ import {
 } from "react-leaflet";
 import "react-tabs/style/react-tabs.css";
 import useStore from "store/mapStore";
-import { getDirections } from "util/geocoder";
 import LocationButton from "./components/LocationButton";
 import Markers from "./components/Markers";
 import PolyLineRoute from "./components/PolyLineRoute";
@@ -70,29 +69,7 @@ const MapWithRoute = () => {
     // store the ref for future access to content
     setEditableFG(reactFGref);
   };
-  useEffect(() => {
-    const updateRoute = async () => {
-      if (markerData && markerData.length > 1 && mapStopped === false) {
-        const fetchRoute = async () => {
-          try {
-            const data = await getDirections(markerData[0], markerData[1]);
-            setRouteData(data);
-            setRoute(data.routes[0].geometry.coordinates);
-           
-  
-            //setRoute(data.routes[0].geometry.coordinates);
-          } catch (err) {
-            console.error("Error fetching route:", err);
-          }
-        };
-        fetchRoute();
-      }
-    }
-    updateRoute();
-    return () => {
-      setRoute(null);
-    };
-  }, [markerData, mapStopped]);
+
 
   return (
     <>

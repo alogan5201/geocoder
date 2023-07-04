@@ -16,8 +16,9 @@ import { v4 as uuidv4 } from "uuid";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 import DirectionsIcon from "@mui/icons-material/Directions";
-import { metersToMiles } from "util/geocoder";
+import { metersToMiles, getDirections } from "util/geocoder";
 import { secondsToHoursMinutes } from "util/helpers";
+
 const OriginInputIcon = () => {
   return (
     <Typography variant="h5" color="info">
@@ -73,16 +74,27 @@ function Form() {
           setMapInputState(false);
 
           updateMarkerData(markerData);
-          
+          await updateRoute(markerData);
           setMapZoom(5);
+
           //   updateGeoData(mapBoxData.features[0]);
         }
       }
     }
   }
-  const updateRoutes = async ()=> {
-    
-  }
+    const updateRoute = async (markerData) => {
+      if (markerData && markerData.length > 1) {
+        const fetchRoute = async () => {
+          try {
+            const data = await getDirections(markerData[0], markerData[1]);
+            setRouteData(data);
+          } catch (err) {
+            console.error("Error fetching route:", err);
+          }
+        };
+        fetchRoute();
+      }
+    };
   const generateMarkerDataOrigin = (mapBoxData) => {
     let lat = mapBoxData.features[0].geometry.coordinates[1];
     let lng = mapBoxData.features[0].geometry.coordinates[0];
