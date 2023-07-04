@@ -29,7 +29,10 @@ const PolyLineRoute = ({ L }) => {
         }
       );
       setCurrentPolyline(polyline);
-      polyline.addTo(map);
+      setTimeout(() => {
+        
+        polyline.addTo(map);
+      }, 700);
     }
   }, [routeData, map]);
 };

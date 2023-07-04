@@ -77,8 +77,9 @@ const MapWithRoute = () => {
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
         <MapEventsController onMoveEnd={handleMoveEnd} onMoveStart={handleMoveStart} />
-        {mapStopped && <PolyLineRoute L={L} />}
-        {mapStopped && <Markers L={L} />}
+
+        <PolyLineRoute L={L} />
+        <Markers L={L} />
         <LocationButton L={L} />
         {/* <LocationButton L={L} /> */}
       </MapContainer>

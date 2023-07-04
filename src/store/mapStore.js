@@ -17,6 +17,10 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    mapZoom: null,
    mapStopped: false,
    routeData: null,
+   errorMessage: false,
+   setErrorMessage: (data) => {
+       set(() => ({ errorMessage: data }));
+   },
    setRouteData: (data) => {
        set(() => ({ routeData: data }));
    },

@@ -1,24 +1,19 @@
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 // Material Kit 2 PRO React components
+import DirectionsIcon from "@mui/icons-material/Directions";
 import Grid from "@mui/material/Grid";
 import AddressInput from "components/AddressInput";
 import Button from "components/Button";
-import Input from "components/Input";
-import Typography from "components/Typography";
-import { useEffect, useRef, useState } from "react";
-import useStore from "store/mapStore";
-import { covertAddressToLatLng } from "util/geocoder";
-import { extractWords, test } from "util/helpers";
-import { useGlobalValue } from "util/mapState";
-import LatLngInputs from "components/LatLngInputs";
-import { v4 as uuidv4 } from "uuid";
-import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
-import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
-import DirectionsIcon from "@mui/icons-material/Directions";
-import { metersToMiles, getDirections } from "util/geocoder";
-import { secondsToHoursMinutes } from "util/helpers";
 import NoLocationFound from "components/Maps/components/NoLocationFound";
+import Typography from "components/Typography";
+import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
+import { useEffect, useState } from "react";
+import useStore from "store/mapStore";
+import { covertAddressToLatLng, getDirections, metersToMiles } from "util/geocoder";
+import { extractWords, secondsToHoursMinutes } from "util/helpers";
+import { useGlobalValue } from "util/mapState";
+import { v4 as uuidv4 } from "uuid";
 const OriginInputIcon = () => {
   return (
     <Typography variant="h5" color="info">
@@ -49,6 +44,11 @@ function Form() {
   const routeData = useStore((state) => state.routeData);
 const [directionsUrl, setDirectionsUrl] = useState(null)
 const [noLocation, setNoLocation]= useState(false)
+const { setErrorMessage, errorMessage } = useStore((state) => ({
+  setErrorMessage: state.setErrorMessage,
+  errorMessage: state.errorMessage,
+}));
+
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -75,7 +75,7 @@ const [noLocation, setNoLocation]= useState(false)
           
           const updateRouteData = await updateRoute(markerData);
           if(updateRouteData){
-            
+            console.log(updateRouteData)
             setUserLocationActive(false);
             setMapInputState(false);
             updateMarkerData(markerData);
@@ -84,9 +84,10 @@ const [noLocation, setNoLocation]= useState(false)
             setDirectionsUrl(googleMapsDirectionUrl)
           }
           else {
-            setNoLocation(true)
+            console.log("else",updateRouteData)
+            setErrorMessage(true)
             setTimeout(() => {
-              setNoLocation(false)
+              setErrorMessage(false)
             }, 500);
           }
         }
@@ -95,20 +96,18 @@ const [noLocation, setNoLocation]= useState(false)
   }
     const updateRoute = async (markerData) => {
       if (markerData && markerData.length > 1) {
-        const fetchRoute = async () => {
-          try {
-            const data = await getDirections(markerData[0], markerData[1]);
-            if(data){
-              console.log(data)
-              setRouteData(data);
-
-            }
-            else {return}
-          } catch (err) {
-            console.error("Error fetching route:", err);
-          }
-        };
-        fetchRoute();
+     try {
+       const data = await getDirections(markerData[0], markerData[1]);
+       if (data) {
+     
+         setRouteData(data);
+         return data;
+       } else {
+         return;
+       }
+     } catch (err) {
+       console.error("Error fetching route:", err);
+     }
       }
     };
   const generateMarkerDataOrigin = (mapBoxData) => {
@@ -205,7 +204,7 @@ const generateGoogleMapsUrl = (markerData) => {
 
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
-      <NoLocationFound toggle={noLocation} />
+   
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
           Route Planner

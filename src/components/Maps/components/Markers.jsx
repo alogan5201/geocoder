@@ -45,7 +45,7 @@ const Markers = ({ L }) => {
         let lngOrigin = markerData[0].lng;
         let latDestination = markerData[1].lat;
         let lngDestination = markerData[1].lng;
-        removePolyLines();
+      //removePolyLines();
         map.fitBounds(
           [
             [latOrigin, lngOrigin],
