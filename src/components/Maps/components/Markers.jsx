@@ -29,13 +29,7 @@ const Markers = ({ L }) => {
       iconSize: [30, 30],
       popupAnchor: [0, -10],
     });
-    const removePolyLines = () => {
-            map.eachLayer((layer) => {
-              if (layer instanceof L.Polyline) {
-                map.removeLayer(layer);
-              }
-            });
-    }
+
   useEffect(() => {
     if (markerData) {
       localStorage.setItem("markerData", JSON.stringify(markerData));
@@ -45,7 +39,6 @@ const Markers = ({ L }) => {
         let lngOrigin = markerData[0].lng;
         let latDestination = markerData[1].lat;
         let lngDestination = markerData[1].lng;
-      //removePolyLines();
         map.fitBounds(
           [
             [latOrigin, lngOrigin],

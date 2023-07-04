@@ -18,6 +18,7 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    mapStopped: false,
    routeData: null,
    errorMessage: false,
+
    setErrorMessage: (data) => {
        set(() => ({ errorMessage: data }));
    },
@@ -29,6 +30,10 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    },
    resetMarkerData: () => {
      set({ markerData: null, clearMapInputs: true });
+   },
+   resetMapData: () => {
+    // Used on page change to reset state
+     set({ markerData: null, clearMapInputs: true, mapZoom: null });
    },
    setBookmarks: () => {
      const bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
