@@ -51,13 +51,12 @@ export const getDirections = async (from, to) => {
     const response = await fetch(
       `https://api.mapbox.com/directions/v5/mapbox/driving/${from.lng},${from.lat};${to.lng},${to.lat}?geometries=geojson&access_token=${VITE_ACCESS_TOKEN}`,
       { method: "GET" }
-      );
-      
-      if (response.status !== 200) {
-        return;
-      }
-      const data = await response.json();
-      console.log(data)
+    );
+
+    if (response.status !== 200) {
+      return;
+    }
+    const data = await response.json();
 
     return data;
   }

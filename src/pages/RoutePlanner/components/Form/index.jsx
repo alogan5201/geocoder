@@ -32,12 +32,12 @@ const DestinationInputIcon = () => {
     </Typography>
   );
 };
-  /* -------------------------------------------------------------------------- */
-  /*                                  ROUTE DATA                                */
-  /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                  ROUTE DATA                                */
+/* -------------------------------------------------------------------------- */
 function Form() {
   const [coords, setCoords] = useGlobalValue();
- const [routeInfo, setRouteInfo] = useState(null)
+  const [routeInfo, setRouteInfo] = useState(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const setMapZoom = useStore((state) => state.setMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -45,7 +45,7 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setRouteData = useStore((state) => state.setRouteData);
   const routeData = useStore((state) => state.routeData);
-  
+
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -120,7 +120,7 @@ function Form() {
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector(".leaflet-bar");
-      
+
       if (leafletBarElement) {
         let classes = leafletBarElement.classList;
         // Create an array to store the classes that need to be removed
@@ -138,26 +138,26 @@ function Form() {
       }
     }
   }, [userLocationActive]);
-  
-useEffect(() => {
-  if(routeData){
-    //The distance between each pair of coordinates, in meters.
-    const distance = routeData.routes[0].distance
-      ? Math.round(metersToMiles(routeData.routes[0].distance))
-      : null;
-    // The duration between each pair of coordinates, in seconds.
-    const duration = routeData.routes[0].duration ? secondsToHoursMinutes(routeData.routes[0].duration) : null;
-if(distance && duration){
-let data = {
-  ...duration,
-  distance: distance
-}
-setRouteInfo(data)
-console.log(data)
-}
- 
-  }
-}, [routeData]);
+
+  useEffect(() => {
+    if (routeData) {
+      //The distance between each pair of coordinates, in meters.
+      const distance = routeData.routes[0].distance
+        ? Math.round(metersToMiles(routeData.routes[0].distance))
+        : null;
+      // The duration between each pair of coordinates, in seconds.
+      const duration = routeData.routes[0].duration
+        ? secondsToHoursMinutes(routeData.routes[0].duration)
+        : null;
+      if (distance && duration) {
+        let data = {
+          ...duration,
+          distance: distance,
+        };
+        setRouteInfo(data);
+      }
+    }
+  }, [routeData]);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
@@ -203,7 +203,7 @@ console.log(data)
                 title={
                   routeInfo.hours && routeInfo.minutes
                     ? `${routeInfo.hours} hours ${routeInfo.minutes} minutes`
-                    : routeInfo.hours 
+                    : routeInfo.hours
                     ? `${routeInfo.hours} hours`
                     : `${routeInfo.minutes} minutes`
                 }
