@@ -57,8 +57,11 @@ export const getDirections = async (from, to) => {
       return;
     }
     const data = await response.json();
+    if(data.code === "NoRoute"){
+      return
+    }
 
-    return data;
+    return data
   }
 };
 export const convertLatLngToAddress = async (lat, lng) => {

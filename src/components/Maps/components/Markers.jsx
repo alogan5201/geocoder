@@ -16,7 +16,7 @@ const Markers = ({ L }) => {
   const [currentCoords, setCurrentCoords] = useState(null);
   const { pathname } = useLocation();
   const [customMarker, setCustomMarker] = useState(null);
-
+  const mapZoom = useStore((state) => state.mapZoom);
     const originnMarker = L.divIcon({
       html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="marker"><path fill-opacity="0.25" d="M16 32s1.427-9.585 3.761-12.025c4.595-4.805 8.685-.99 8.685-.99s4.044 3.964-.526 8.743C25.514 30.245 16 32 16 32z"/><path stroke="#fff" fill="#1A73E8" d="M15.938 32S6 17.938 6 11.938C6 .125 15.938 0 15.938 0S26 .125 26 11.875C26 18.062 15.938 32 15.938 32zM16 6a4 4 0 100 8 4 4 0 000-8z"/></svg>`,
       className: "custom-icon",
@@ -29,6 +29,13 @@ const Markers = ({ L }) => {
       iconSize: [30, 30],
       popupAnchor: [0, -10],
     });
+    const removePolyLines = () => {
+            map.eachLayer((layer) => {
+              if (layer instanceof L.Polyline) {
+                map.removeLayer(layer);
+              }
+            });
+    }
   useEffect(() => {
     if (markerData) {
       localStorage.setItem("markerData", JSON.stringify(markerData));
@@ -38,6 +45,7 @@ const Markers = ({ L }) => {
         let lngOrigin = markerData[0].lng;
         let latDestination = markerData[1].lat;
         let lngDestination = markerData[1].lng;
+        removePolyLines();
         map.fitBounds(
           [
             [latOrigin, lngOrigin],

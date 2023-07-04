@@ -32,11 +32,11 @@ const PointMarker = ({ center, content, openPopup, L,origin,destination }) => {
         popupAnchor: [0, -10],
       });
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (mapZoom) {
       map.setZoom(mapZoom);
     }
-  }, [mapZoom]);
+  }, [mapZoom]); */
   
   const togglePopup = (open, markerRef) => {
     if (open) {

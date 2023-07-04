@@ -18,7 +18,7 @@ import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 import DirectionsIcon from "@mui/icons-material/Directions";
 import { metersToMiles, getDirections } from "util/geocoder";
 import { secondsToHoursMinutes } from "util/helpers";
-
+import NoLocationFound from "components/Maps/components/NoLocationFound";
 const OriginInputIcon = () => {
   return (
     <Typography variant="h5" color="info">
@@ -48,6 +48,7 @@ function Form() {
   const setRouteData = useStore((state) => state.setRouteData);
   const routeData = useStore((state) => state.routeData);
 const [directionsUrl, setDirectionsUrl] = useState(null)
+const [noLocation, setNoLocation]= useState(false)
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -71,14 +72,23 @@ const [directionsUrl, setDirectionsUrl] = useState(null)
           const markerDataDestinationFormatted =
             generateMarkerDataDestination(mapBoxDataDestination);
           const markerData = [markerDataOriginFormatted[0], markerDataDestinationFormatted[0]];
-          setUserLocationActive(false);
-          setMapInputState(false);
           
-          updateMarkerData(markerData);
-          await updateRoute(markerData);
-          setMapZoom(5);
-          const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
-          setDirectionsUrl(googleMapsDirectionUrl)
+          const updateRouteData = await updateRoute(markerData);
+          if(updateRouteData){
+            
+            setUserLocationActive(false);
+            setMapInputState(false);
+            updateMarkerData(markerData);
+            setMapZoom(5);
+            const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
+            setDirectionsUrl(googleMapsDirectionUrl)
+          }
+          else {
+            setNoLocation(true)
+            setTimeout(() => {
+              setNoLocation(false)
+            }, 500);
+          }
         }
       }
     }
@@ -88,7 +98,12 @@ const [directionsUrl, setDirectionsUrl] = useState(null)
         const fetchRoute = async () => {
           try {
             const data = await getDirections(markerData[0], markerData[1]);
-            setRouteData(data);
+            if(data){
+              console.log(data)
+              setRouteData(data);
+
+            }
+            else {return}
           } catch (err) {
             console.error("Error fetching route:", err);
           }
@@ -168,7 +183,7 @@ const generateGoogleMapsUrl = (markerData) => {
   }, [userLocationActive]);
 
   useEffect(() => {
-    if (routeData) {
+    if (routeData ) {
       //The distance between each pair of coordinates, in meters.
       const distance = routeData.routes[0].distance
         ? Math.round(metersToMiles(routeData.routes[0].distance))
@@ -178,7 +193,6 @@ const generateGoogleMapsUrl = (markerData) => {
         ? secondsToHoursMinutes(routeData.routes[0].duration)
         : null;
       if (distance && duration) {
-
         let data = {
           ...duration,
           distance: distance,
@@ -191,6 +205,7 @@ const generateGoogleMapsUrl = (markerData) => {
 
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
+      <NoLocationFound toggle={noLocation} />
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
           Route Planner
