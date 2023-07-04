@@ -57,7 +57,7 @@ function Form() {
     if (inputOne && inputTwo) {
       let extracted = extractWords(inputOne);
       let withPlus = extracted.join("+");
-      const mapBoxData = await covertAddressToLatLng(inputOne);
+ 
       const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
       const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
 
@@ -73,11 +73,15 @@ function Form() {
           setMapInputState(false);
 
           updateMarkerData(markerData);
+          
           setMapZoom(5);
           //   updateGeoData(mapBoxData.features[0]);
         }
       }
     }
+  }
+  const updateRoutes = async ()=> {
+    
   }
   const generateMarkerDataOrigin = (mapBoxData) => {
     let lat = mapBoxData.features[0].geometry.coordinates[1];

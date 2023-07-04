@@ -2,22 +2,15 @@ import L from "leaflet";
 import { useEffect, useState } from "react";
 import {
   MapContainer,
-  Polyline,
   TileLayer,
-  useMapEvents,
-  LayersControl,
-  FeatureGroup,
-  useMap
+  useMapEvents
 } from "react-leaflet";
 import "react-tabs/style/react-tabs.css";
 import useStore from "store/mapStore";
 import { getDirections } from "util/geocoder";
 import LocationButton from "./components/LocationButton";
 import Markers from "./components/Markers";
-import CustomControl from "./components/CustomControl";
-import { areObjectsEqual } from "util/helpers";
-import { EditControl } from "react-leaflet-draw";
-
+import PolyLineRoute from "./components/PolyLineRoute";
 const center = [37.09024, -95.712891];
 
 function convertToBoundingBox(points) {
@@ -78,21 +71,24 @@ const MapWithRoute = () => {
     setEditableFG(reactFGref);
   };
   useEffect(() => {
-    if (markerData && markerData.length > 1 && mapStopped === false) {
-      const fetchRoute = async () => {
-        try {
-          const data = await getDirections(markerData[0], markerData[1]);
-          setRouteData(data);
-          setRoute(data.routes[0].geometry.coordinates);
-          setTimeout(() => {}, 500);
-
-          //setRoute(data.routes[0].geometry.coordinates);
-        } catch (err) {
-          console.error("Error fetching route:", err);
-        }
-      };
-      fetchRoute();
+    const updateRoute = async () => {
+      if (markerData && markerData.length > 1 && mapStopped === false) {
+        const fetchRoute = async () => {
+          try {
+            const data = await getDirections(markerData[0], markerData[1]);
+            setRouteData(data);
+            setRoute(data.routes[0].geometry.coordinates);
+           
+  
+            //setRoute(data.routes[0].geometry.coordinates);
+          } catch (err) {
+            console.error("Error fetching route:", err);
+          }
+        };
+        fetchRoute();
+      }
     }
+    updateRoute();
     return () => {
       setRoute(null);
     };
@@ -112,24 +108,7 @@ const MapWithRoute = () => {
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
         <MapEventsComponent onMoveEnd={handleMoveEnd} />
-
-      
-
-        {route && (
-          <FeatureGroup
-            ref={(featureGroupRef) => {
-              onFeatureGroupReady(featureGroupRef);
-            }}
-          >
-            
-            <Polyline
-              positions={route.map((coord) => [coord[1], coord[0]])}
-              color={"#44afff"}
-              opacity={0.7}
-              weight={5}
-            />
-          </FeatureGroup>
-        )}
+        <PolyLineRoute L={L} />
         <Markers L={L} />
         <LocationButton L={L} />
         {/* <LocationButton L={L} /> */}
