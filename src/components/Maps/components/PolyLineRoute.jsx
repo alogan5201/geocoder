@@ -6,11 +6,13 @@ const PolyLineRoute = ({ L }) => {
   const [currentPolyline, setCurrentPolyline] = useState(null)
   const routeData = useStore((state) => state.routeData);
   const map = useMap();
+  const mapStopped = useStore((state) => state.mapStopped);
+
   useEffect(() => {
     if (routeData) {
       const route = routeData.routes[0].geometry.coordinates;
       map.eachLayer((layer) => {
-        
+
         if (layer instanceof L.Polyline) {
           console.log("layer!", layer)
           map.removeLayer(layer);
@@ -28,10 +30,12 @@ const PolyLineRoute = ({ L }) => {
         }
       );
       setCurrentPolyline(polyline)
-      polyline.addTo(map);
+      if(mapStopped){
+        polyline.addTo(map);
+      }
     
     }
-  }, [routeData, map]);
+  }, [routeData, map,mapStopped]);
 };
 
 export default PolyLineRoute;

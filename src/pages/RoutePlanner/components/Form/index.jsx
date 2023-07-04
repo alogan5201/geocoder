@@ -40,13 +40,14 @@ function Form() {
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
+  const markerDataState = useStore((state) => state.markerData);
   const setMapZoom = useStore((state) => state.setMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setRouteData = useStore((state) => state.setRouteData);
   const routeData = useStore((state) => state.routeData);
-
+const [directionsUrl, setDirectionsUrl] = useState(null)
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -72,12 +73,12 @@ function Form() {
           const markerData = [markerDataOriginFormatted[0], markerDataDestinationFormatted[0]];
           setUserLocationActive(false);
           setMapInputState(false);
-
+          
           updateMarkerData(markerData);
           await updateRoute(markerData);
           setMapZoom(5);
-
-          //   updateGeoData(mapBoxData.features[0]);
+          const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
+          setDirectionsUrl(googleMapsDirectionUrl)
         }
       }
     }
@@ -133,6 +134,17 @@ function Form() {
     ];
     return markerData;
   };
+const generateGoogleMapsUrl = (markerData) => {
+    if (markerData.length !== 2) {
+      return 
+    }
+
+    const baseUrl = "https://www.google.com/maps/dir/";
+    const location1 = markerData[0].title.replace(", United States", "");
+    const location2 = markerData[1].title.replace(", United States", "");
+
+    return `${baseUrl}${encodeURIComponent(location1)}/${encodeURIComponent(location2)}/`;
+  }
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector(".leaflet-bar");
@@ -166,6 +178,7 @@ function Form() {
         ? secondsToHoursMinutes(routeData.routes[0].duration)
         : null;
       if (distance && duration) {
+
         let data = {
           ...duration,
           distance: distance,
@@ -174,6 +187,8 @@ function Form() {
       }
     }
   }, [routeData]);
+
+
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
@@ -224,14 +239,14 @@ function Form() {
                     : `${routeInfo.minutes} minutes`
                 }
                 description={routeInfo.distance ? `${routeInfo.distance} miles` : ""}
-                action={{
+                action={directionsUrl ? {
                   type: "external",
-                  route: "https://www.google.com/maps/dir/Atlanta,+Georgia/Austin,+Texas/",
+                  route: directionsUrl,
                   label: "Directions",
                   iconComponent: (
                     <DirectionsIcon color="info" fontSize="medium" sx={{ ml: "5px" }} />
                   ),
-                }}
+                } : null}
               />
             )}
           </Grid>

@@ -41,11 +41,14 @@ function convertToBoundingBox(points) {
     },
   };
 }
-function MapEventsComponent({ onMoveEnd }) {
+function MapEventsComponent({ onMoveEnd, onMoveStart }) {
   useMapEvents({
     moveend: () => {
       onMoveEnd();
     },
+    movestart: () => {
+      onMoveStart();
+    }
   });
 
   return null;
@@ -63,6 +66,10 @@ const MapWithRoute = () => {
 
   const handleMoveEnd = () => {
     setMapStopped(true);
+  };
+  
+  const handleMoveStart = () => {
+    setMapStopped(false);
   };
   
   const onFeatureGroupReady = (reactFGref) => {
@@ -84,7 +91,7 @@ const MapWithRoute = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
-        <MapEventsComponent onMoveEnd={handleMoveEnd} />
+        <MapEventsComponent onMoveEnd={handleMoveEnd} onMoveStart={handleMoveStart} />
         <PolyLineRoute L={L} />
         <Markers L={L} />
         <LocationButton L={L} />
