@@ -7,7 +7,7 @@ import LocationButton from "./components/LocationButton";
 import Markers from "./components/Markers";
 import PolyLineRoute from "./components/PolyLineRoute";
 import MapEventsController from "./components/MapEventsController";
-import Legend from "./components/Legend";
+import WeatherLegend from "./components/WeatherLegend";
 const center = [37.09024, -95.712891];
 
 function convertToBoundingBox(points) {
@@ -78,7 +78,7 @@ const MapWithRoute = () => {
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
         <MapEventsController onMoveEnd={handleMoveEnd} onMoveStart={handleMoveStart} />
-        <Legend L={L}/>
+        <WeatherLegend L={L}/>
         <PolyLineRoute L={L} />
         <Markers L={L} />
         <LocationButton L={L} />

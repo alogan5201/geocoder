@@ -45,7 +45,10 @@ function Form() {
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
-  const setWeather = useStore((state) => state.setWeather);
+    const { setWeather, weather } = useStore((state) => ({
+      setWeather: state.setWeather,
+      weather: state.weather,
+    }));
   const markerDataState = useStore((state) => state.markerData);
   const setMapZoom = useStore((state) => state.setMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -103,34 +106,24 @@ function Form() {
                   const iconDestinationPath = `assets/images/weather/${iconDestination}.png`;
                     const currentWeatherOrigin = weatherOrigin.main.temp;
                     const currentWeatherDestination = weatherDestination.main.temp;
-                  const addressOrigin =
-                    mapBoxDataOrigin.features[0].place_name &&
-                    mapBoxDataOrigin.features[0].place_name.includes(", United States")
-                      ? mapBoxDataOrigin.features[0].place_name.replace(", United States","")
-                      : mapBoxDataOrigin.features[0].place_name
-                      ? mapBoxDataOrigin.features[0].place_name
-                      : null;
-                  const addressDestination =
-                    mapBoxDataDestination.features[0].place_name &&
-                    mapBoxDataDestination.features[0].place_name.includes(", United States")
-                      ? mapBoxDataDestination.features[0].place_name.replace(", United States","")
-                      : mapBoxDataDestination.features[0].place_name
-                      ? mapBoxDataDestination.features[0].place_name
-                      : null;
-
+                  const addressOrigin = extractCityAndState(mapBoxDataOrigin)
+                  const addressDestination = extractCityAndState(mapBoxDataDestination)
+                  const test = extractCityAndState(mapBoxDataDestination)
+                  console.log("test", test)
                  const weatherData = {
                    origin: {
-                     address: addressOrigin,
+                     address: addressOrigin.city,
                      icon: iconOriginPath,
                      temp: currentWeatherOrigin,
                    },
                    destination: {
-                     address: addressDestination,
+                     address: addressDestination.city,
                      icon: iconDestinationPath,
                      temp: currentWeatherDestination,
                    },
                  };
-                 console.log("weatherData", weatherData);
+                 setWeather(weatherData);
+               
 
                  }
           } else {
@@ -178,6 +171,8 @@ function Form() {
         title: address,
         userLocation: false,
         wikiData: wikiData,
+        city: city,
+        state: state,
       },
     ];
     return markerData;
