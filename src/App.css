@@ -339,3 +339,15 @@
     opacity: 0;
     visibility: hidden;
   }
+
+  /* This will apply to all number inputs */
+input[type="number"] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

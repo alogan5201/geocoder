@@ -12,9 +12,11 @@ import { useGlobalValue } from "util/mapState";
 import { clear } from "localforage";
 
 
-export default function LatLngInputs(readonly){
+export default function LatLngInputs(props){
    const markerData = useStore((state) => state.markerData);
    const clearMapInputs = useStore((state) => state.clearMapInputs);
+     const setMapInputState = useStore((state) => state.setMapInputState);
+
       const latInputElm = useRef(null);
       const lngInputElm = useRef(null);
         function handleSelect(e) {
@@ -25,27 +27,30 @@ export default function LatLngInputs(readonly){
           setSelected(false);
           setBlurred(true);
         }
-        function handleChange(e) {
-          let val = e.target.value;
-          if (val.length === 0) {
-            latInputElm.current.value = "";
-            lngInputElm.current.value = "";
-          }
-        }
-        useEffect(() => {
-          if(markerData){
-          let lat = markerData[0].lat;
-          let lng = markerData[0].lng;
-       latInputElm.current.value = lat;
-       lngInputElm.current.value = lng;
+  function handleChange(e) {
+    let val = e.target.value;
 
+    if (val.length === 0 && props.readOnly === false) {
+      setMapInputState(true);
+    }
+    else {
+      //setMapInputState(false);
+    }
+  }
+        useEffect(() => {
+          if (markerData && props && props.readOnly === true) {
+            let lat = markerData[0].lat;
+            let lng = markerData[0].lng;
+            latInputElm.current.value = lat;
+            lngInputElm.current.value = lng;
           }
        
         }, [markerData]);
         useEffect(() => {
             if (clearMapInputs){
-            latInputElm.current.value = "";
-            lngInputElm.current.value = "";
+              // ! UNCOMMENT FOR PRODUCTION
+           // latInputElm.current.value = "";
+            //lngInputElm.current.value = "";
           }
         }, [clearMapInputs]);
     return (
@@ -59,10 +64,13 @@ export default function LatLngInputs(readonly){
           </Box>
           <Box>
             <Input
-              label={latInputElm ? "" : "Longitude"}
-              type="text"
+              defaultValue={props.defaultValue ? props.defaultValue[0] : ""}
+              onChange={handleChange}
+              label={latInputElm ? "" : "Latitude"}
+              type="number"
               fullWidth
               inputRef={latInputElm}
+              InputProps={{ readOnly: props.readOnly }}
             />
           </Box>
         </Grid>
@@ -74,13 +82,14 @@ export default function LatLngInputs(readonly){
             </Typography>
           </Box>
           <Input
+            defaultValue={props.defaultValue ? props.defaultValue[1] : ""}
             label={lngInputElm ? "" : "Longitude"}
-            type="text"
+            type="number"
             fullWidth
             inputRef={lngInputElm}
+            InputProps={{ readOnly: props.readOnly }}
           />
         </Grid>
-        
       </>
     );
 } 

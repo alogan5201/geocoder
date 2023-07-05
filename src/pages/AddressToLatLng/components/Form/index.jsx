@@ -104,10 +104,10 @@ function Form() {
           click the location on the map to get the coordinates.
         </Typography>
       </Box>
-      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 6 }}>
+      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 4 }}>
         <Grid container>
           {/* ============ AddressInput ============ */}
-          <AddressInput readOnly={false} />
+          <AddressInput readOnly={false} defaultValue="Atlanta, GA" />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">

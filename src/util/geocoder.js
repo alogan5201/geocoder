@@ -78,6 +78,7 @@ export const convertLatLngToAddress = async (lat, lng) => {
       return;
     }
     const data = await response.json();
+    console.log(data)
     return data;
   }
 };
@@ -241,3 +242,32 @@ export function metersToMiles(meters) {
   const milesPerMeter = 0.000621371;
   return meters * milesPerMeter;
 }
+
+export function extractCityAndState(jsonObject) {
+  let cityName = null;
+  let stateName = null;
+
+  // Iterate through the features array
+  for (const feature of jsonObject.features) {
+    // Check if the feature is a city
+    if (feature.place_type.includes("place")) {
+      cityName = feature.text;
+    }
+
+    // Check if the feature is a state
+    if (feature.place_type.includes("region")) {
+      stateName = feature.text;
+    }
+
+    // Break the loop if both city and state are found
+    if (cityName && stateName) {
+      break;
+    }
+  }
+
+  return {
+    city: cityName,
+    state: stateName,
+  };
+}
+

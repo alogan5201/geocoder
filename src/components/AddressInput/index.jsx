@@ -4,44 +4,73 @@ import Input from "components/Input";
 import InputAdornment from "@mui/material/InputAdornment";
 import useStore from "store/mapStore";
 import IconButton from "@mui/material/IconButton";
+import { useEffect, useRef, useState } from "react";
 
 // @mui icons
 import SearchIcon from "@mui/icons-material/Search";
+import { a } from "@react-spring/web";
 
 // Material Kit 2 PRO React components
 function AddressInput(props) {
+     const markerData = useStore((state) => state.markerData);
+
   const clearMapInputs = useStore((state) => state.clearMapInputs);
   const setMapInputState = useStore((state) => state.setMapInputState);
-  
+  const addressInputElm = useRef(null);
   function handleChange(e) {
     let val = e.target.value;
 
     if (val.length === 0 && props.readOnly === false) {
       setMapInputState(true);
     }
+    else {
+   setMapInputState(false);
+    }
   }
+        useEffect(() => {
+          if (clearMapInputs) {
+            console.log(clearMapInputs)
+         addressInputElm.current.value = "";
+          }
+        }, [clearMapInputs]);
+
+                useEffect(() => {
+                  if (markerData && props && props.readOnly === true) {
+                    // [0].title
+                    const address = markerData[0].title.includes(", United States")? markerData[0].title.replace(", United States", "") : markerData[0].title
+                    console.log(address)
+
+                     addressInputElm.current.value = address
+                  }
+                }, [markerData]);
   return (
     <Grid item xs={12} pr={1} mb={3}>
-      <Input
-        onChange={handleChange}
-        fullWidth
-        type="text"
-        label="Search"
-        defaultValue={props.defaultValue ? props.defaultValue : "Atlanta, GA"}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="start">
-              {props.icon ? (
-                props.icon
-              ) : (
-                <IconButton type="submit">
-                  <SearchIcon fontSize="medium" color="info" />
-                </IconButton>
-              )}
-            </InputAdornment>
-          ),
-        }}
-      />
+      {props.readOnly === false ? (
+        <Input
+          inputRef={addressInputElm}
+          onChange={handleChange}
+          fullWidth
+          type="text"
+          label="Search"
+          defaultValue={props.defaultValue ? props.defaultValue : "Atlanta, GA"}
+          InputProps={{
+            readOnly: props.readOnly,
+            endAdornment: (
+              <InputAdornment position="start">
+                {props.icon ? (
+                  props.icon
+                ) : (
+                  <IconButton type="submit">
+                    <SearchIcon fontSize="medium" color="info" />
+                  </IconButton>
+                )}
+              </InputAdornment>
+            ),
+          }}
+        />
+      ) : (
+        <Input inputRef={addressInputElm} label={addressInputElm ? "" : "Address"} type="text" fullWidth   InputProps={{readOnly: props.readOnly}} />
+      )}
     </Grid>
   );
 }
