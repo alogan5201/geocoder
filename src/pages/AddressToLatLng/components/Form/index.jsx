@@ -8,7 +8,7 @@ import Input from "components/Input";
 import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import useStore from "store/mapStore";
-import { covertAddressToLatLng } from "util/geocoder";
+import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
 import { extractWords, test } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
@@ -55,6 +55,11 @@ function Form() {
         const address = mapBoxData.features[0].place_name;
         const wikiData = mapBoxData.features[0].properties.wikidata;
         const uid = uuidv4();
+        const cityAndState = extractCityAndState(mapBoxData);
+
+        const city = cityAndState.city ? cityAndState.city : null;
+        const state = cityAndState.state ? cityAndState.state : null;
+
         const markerData = [
           {
             id: uid,
@@ -63,6 +68,8 @@ function Form() {
             title: address,
             userLocation: false,
             wikiData: wikiData,
+            city: city,
+            state: state,
           },
         ];
         setUserLocationActive(false);

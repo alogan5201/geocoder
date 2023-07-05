@@ -64,7 +64,7 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    },
    setMarkerData: (data) => {
      const markerData = [];
-
+    
      for (let index = 0; index < data.length; index++) {
        const element = data[index];
        let obj = data[index];

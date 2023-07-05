@@ -1,12 +1,11 @@
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import TableContainer from "@mui/material/TableContainer";
+import Box from "components/Box";
+import Spinner from "components/Spinner";
 import Table from "examples/Tables/Table";
 import { useEffect, useState } from "react";
-import { addKeyValueToObjectInLocalStorageList } from "util/bookmarks";
-import { getCityPhoto } from "util/geocoder";
-import Spinner from "components/Spinner";
-import Box from "components/Box";
+import { getPhotoByCoordinates } from "util/geocoder";
 // BookmarkTable is a React functional component that displays a list of bookmarks
 // in a table format. The bookmarks are fetched from a given state and includes
 // various details like address, latitude, longitude, and an associated image.
@@ -73,21 +72,20 @@ function BookmarkTable({ bookmarkState }) {
             obj.dms = dms;
             obj.id = id;
             obj.action = photo;
-
+            const city = bookmarks[i].city;
+            const state = bookmarks[i].state;
             // Pushing obj to bookmarkData array.
             bookmarkData.push(obj);
           } else {
             // Fetch the city photo if not available in the bookmark.
-            const cityPhoto = await getCityPhoto(address);
-            const photoUrl = cityPhoto
-              ? cityPhoto.replace("/google-api/", "https://maps.googleapis.com/maps/api/")
+            const city = bookmarks[i].city;
+            const state = bookmarks[i].state;
+            const locationPhoto = await getPhotoByCoordinates(latitude, longitude, city, state);
+
+            const photoUrl = locationPhoto
+              ? locationPhoto.replace("/google-api/", "https://maps.googleapis.com/maps/api/")
               : "";
-
-            // Saving the city photo URL to localStorage.
-            addKeyValueToObjectInLocalStorageList("bookmarks", id, "cityPhoto", photoUrl);
-
-            // Adding the city photo to the object using an IconButton.
-            const photo = cityPhoto ? (
+            const photo = locationPhoto ? (
               <IconButton aria-label="delete">
                 <img className="bookmark-image" src={photoUrl}></img>
               </IconButton>
@@ -106,12 +104,11 @@ function BookmarkTable({ bookmarkState }) {
             // Pushing obj to bookmarkData array.
             bookmarkData.push(obj);
           }
-
         }
 
         // Setting rowData state with the processed bookmark data.
         setRowData(bookmarkData);
-        setLoading(false)
+        setLoading(false);
       }
     };
 

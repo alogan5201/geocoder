@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import useStore from "store/mapStore";
-import { covertAddressToLatLng } from "util/geocoder";
+import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
 import { extractWords } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
@@ -95,15 +95,22 @@ function Form() {
         setCoords([coords]);
         const address = mapBoxData.features[0].place_name;
         const uid = uuidv4();
-        const markerData = [
-          {
-            id: uid,
-            lat: lat,
-            lng: lng,
-            title: address,
-            userLocation: false,
-          },
-        ];
+        
+        const cityAndState = extractCityAndState(mapBoxData);
+        const city = cityAndState.city ? cityAndState.city : null;
+        const state = cityAndState.state ? cityAndState.state : null;
+            const markerData = [
+              {
+                id: uid,
+                lat: lat,
+                lng: lng,
+                title: address,
+                userLocation: false,
+                wikiData: wikiData,
+                city: city,
+                state: state,
+              },
+            ];
         setUserLocationActive(false);
         setMapInputState(false);
         updateMarkerData(markerData);

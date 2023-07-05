@@ -39,7 +39,8 @@ export default function App() {
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-    resetMapData()
+   // ! Ucomment for production
+ //   resetMapData()
   }, [pathname]);
 
   const getRoutes = (allRoutes) =>

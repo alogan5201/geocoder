@@ -4,7 +4,6 @@ import TableContainer from "@mui/material/TableContainer";
 import Table from "./Table";
 import { useEffect, useState } from "react";
 import { addKeyValueToObjectInLocalStorageList } from "util/bookmarks";
-import { getCityPhoto } from "util/geocoder";
 
 function DirectionsTable() {
   const [rowData, setRowData] = useState([]);

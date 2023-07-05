@@ -122,7 +122,30 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
             color="secondary"
             sx={{ display: "inline-block", width: "max-content" }}
           >
-            {row[name]}
+            {row[name].length > 43
+              ? (() => {
+                  // Find the position of the last comma within the range 28 to 37
+                  let breakPos = -1;
+                  for (let i = 28; i <= 37; i++) {
+                    if (row[name][i] === ",") {
+                      breakPos = i + 1; // Break after the comma
+                    }
+                  }
+
+                  // Return the modified text
+                  if (breakPos !== -1) {
+                    return (
+                      <>
+                        {row[name].slice(0, breakPos)}
+                        <br />
+                        {row[name].slice(breakPos)}
+                      </>
+                    );
+                  } else {
+                    return row[name];
+                  }
+                })()
+              : row[name]}
           </Typography>
         </Box>
       ))}
@@ -131,6 +154,7 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
   // Only render the table if there is bookmark data, else render nothing.
 
   if (bookmarkState && bookmarkState.length > 0) {
+
     return useMemo(
       () => (
         <MuiTable stickyHeader aria-label="sticky table">

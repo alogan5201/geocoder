@@ -57,11 +57,11 @@ export const getDirections = async (from, to) => {
       return;
     }
     const data = await response.json();
-    if(data.code === "NoRoute"){
-      return
+    if (data.code === "NoRoute") {
+      return;
     }
 
-    return data
+    return data;
   }
 };
 export const convertLatLngToAddress = async (lat, lng) => {
@@ -78,7 +78,7 @@ export const convertLatLngToAddress = async (lat, lng) => {
       return;
     }
     const data = await response.json();
-    console.log(data)
+
     return data;
   }
 };
@@ -238,6 +238,49 @@ export async function getCityPhoto(cityName) {
   }
 }
 
+export async function getPhotoByCoordinates(latitude, longitude, city, state) {
+  const apiKey = VITE_FIREBASE_API_KEY;
+  try {
+    // Step 1: Search for the places near the given coordinates and retrieve a photo_reference
+    const placeSearchUrl = `/google-api/place/nearbysearch/json?location=${latitude},${longitude}&radius=500&key=${apiKey}`;
+    const placeSearchResponse = await fetch(placeSearchUrl);
+    const placeSearchData = await placeSearchResponse.json();
+
+    // Check if there are photos available
+    if (!placeSearchData || !placeSearchData.results[0] || !placeSearchData.results[0].photos) {
+      const addressQuery =
+        city && state
+          ? `${city}, ${state}`
+          : city && !state
+          ? `${city}`
+          : state && !city
+          ? `${state}`
+          : null;
+      if (addressQuery) {
+        const addressPhoto = await getCityPhoto(addressQuery);
+
+        return addressPhoto;
+      }
+      //const addressPhoto = await getCityPhoto(extractCityAndState(address));
+      //
+      console.error("No photos found for this location");
+      return null;
+    }
+
+    const photoReference = placeSearchData.results[0].photos[0].photo_reference;
+
+    // Step 2: Use the photo_reference to retrieve the image URL
+    const maxwidth = 400; // You can set this to the desired image width
+    const placePhotoUrl = `/google-api/place/photo?maxwidth=${maxwidth}&photoreference=${photoReference}&key=${apiKey}`;
+
+    // placePhotoUrl is the URL of the image. You can use it directly in an <img> element.
+    return placePhotoUrl;
+  } catch (error) {
+    console.error("Error fetching photo by coordinates: ", error);
+    return null;
+  }
+}
+
 export function metersToMiles(meters) {
   const milesPerMeter = 0.000621371;
   return meters * milesPerMeter;
@@ -270,4 +313,3 @@ export function extractCityAndState(jsonObject) {
     state: stateName,
   };
 }
-

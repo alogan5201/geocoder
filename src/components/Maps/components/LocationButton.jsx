@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 import useStore from "store/mapStore";
-import { convertLatLngToAddress } from "util/geocoder";
+import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
 import styles from "./location-button.module.css";
 
 function PopupTest() {
@@ -86,16 +86,22 @@ const LocationButton = ({ L }) => {
         const mapBoxData = await convertLatLngToAddress(lat, lng);
         if (mapBoxData && mapBoxData.features.length > 0) {
           const address = mapBoxData.features[0].place_name;
-
-          const markerData = [
-            {
-              id: "1",
-              lat: lat,
-              lng: lng,
-              title: address,
-              userLocation: true,
-            },
-          ];
+    const cityAndState = extractCityAndState(mapBoxData);
+    const city = cityAndState.city ? cityAndState.city : null;
+    const state = cityAndState.state ? cityAndState.state : null;
+            const markerData = [
+              {
+                id: uid,
+                lat: lat,
+                lng: lng,
+                title: address,
+                userLocation: false,
+                wikiData: wikiData,
+                city: city,
+                state: state,
+              },
+            ];
+          
           updateMarkerData(markerData);
           setUserLocationActive(true);
           updateGeoData(mapBoxData.features[0]);

@@ -10,7 +10,12 @@ import Typography from "components/Typography";
 import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 import { useEffect, useState } from "react";
 import useStore from "store/mapStore";
-import { covertAddressToLatLng, getDirections, metersToMiles } from "util/geocoder";
+import {
+  covertAddressToLatLng,
+  getDirections,
+  metersToMiles,
+  extractCityAndState,
+} from "util/geocoder";
 import { extractWords, secondsToHoursMinutes } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
@@ -42,12 +47,12 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setRouteData = useStore((state) => state.setRouteData);
   const routeData = useStore((state) => state.routeData);
-const [directionsUrl, setDirectionsUrl] = useState(null)
-const [noLocation, setNoLocation]= useState(false)
-const { setErrorMessage, errorMessage } = useStore((state) => ({
-  setErrorMessage: state.setErrorMessage,
-  errorMessage: state.errorMessage,
-}));
+  const [directionsUrl, setDirectionsUrl] = useState(null);
+  const [noLocation, setNoLocation] = useState(false);
+  const { setErrorMessage, errorMessage } = useStore((state) => ({
+    setErrorMessage: state.setErrorMessage,
+    errorMessage: state.errorMessage,
+  }));
 
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
@@ -60,7 +65,7 @@ const { setErrorMessage, errorMessage } = useStore((state) => ({
     if (inputOne && inputTwo) {
       let extracted = extractWords(inputOne);
       let withPlus = extracted.join("+");
- 
+
       const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
       const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
 
@@ -72,44 +77,40 @@ const { setErrorMessage, errorMessage } = useStore((state) => ({
           const markerDataDestinationFormatted =
             generateMarkerDataDestination(mapBoxDataDestination);
           const markerData = [markerDataOriginFormatted[0], markerDataDestinationFormatted[0]];
-          
+
           const updateRouteData = await updateRoute(markerData);
-          if(updateRouteData){
-            console.log(updateRouteData)
+          if (updateRouteData) {
             setUserLocationActive(false);
             setMapInputState(false);
             updateMarkerData(markerData);
             setMapZoom(5);
             const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
-            setDirectionsUrl(googleMapsDirectionUrl)
-          }
-          else {
-            console.log("else",updateRouteData)
-            setErrorMessage(true)
+            setDirectionsUrl(googleMapsDirectionUrl);
+          } else {
+            setErrorMessage(true);
             setTimeout(() => {
-              setErrorMessage(false)
+              setErrorMessage(false);
             }, 500);
           }
         }
       }
     }
   }
-    const updateRoute = async (markerData) => {
-      if (markerData && markerData.length > 1) {
-     try {
-       const data = await getDirections(markerData[0], markerData[1]);
-       if (data) {
-     
-         setRouteData(data);
-         return data;
-       } else {
-         return;
-       }
-     } catch (err) {
-       console.error("Error fetching route:", err);
-     }
+  const updateRoute = async (markerData) => {
+    if (markerData && markerData.length > 1) {
+      try {
+        const data = await getDirections(markerData[0], markerData[1]);
+        if (data) {
+          setRouteData(data);
+          return data;
+        } else {
+          return;
+        }
+      } catch (err) {
+        console.error("Error fetching route:", err);
       }
-    };
+    }
+  };
   const generateMarkerDataOrigin = (mapBoxData) => {
     let lat = mapBoxData.features[0].geometry.coordinates[1];
     let lng = mapBoxData.features[0].geometry.coordinates[0];
@@ -117,6 +118,10 @@ const { setErrorMessage, errorMessage } = useStore((state) => ({
     const address = mapBoxData.features[0].place_name;
     const wikiData = mapBoxData.features[0].properties.wikidata;
     const uid = uuidv4();
+            const cityAndState = extractCityAndState(mapBoxData);
+            const city = cityAndState.city ? cityAndState.city : null;
+            const state = cityAndState.state ? cityAndState.state : null;
+
     const markerData = [
       {
         id: uid,
@@ -136,21 +141,27 @@ const { setErrorMessage, errorMessage } = useStore((state) => ({
     const address = mapBoxData.features[0].place_name;
     const wikiData = mapBoxData.features[0].properties.wikidata;
     const uid = uuidv4();
-    const markerData = [
-      {
-        id: uid,
-        lat: lat,
-        lng: lng,
-        title: address,
-        userLocation: false,
-        wikiData: wikiData,
-      },
-    ];
+            const cityAndState = extractCityAndState(mapBoxData);
+            const city = cityAndState.city ? cityAndState.city : null;
+            const state = cityAndState.state ? cityAndState.state : null;
+
+        const markerData = [
+          {
+            id: uid,
+            lat: lat,
+            lng: lng,
+            title: address,
+            userLocation: false,
+            wikiData: wikiData,
+            city: city,
+            state: state,
+          },
+        ];
     return markerData;
   };
-const generateGoogleMapsUrl = (markerData) => {
+  const generateGoogleMapsUrl = (markerData) => {
     if (markerData.length !== 2) {
-      return 
+      return;
     }
 
     const baseUrl = "https://www.google.com/maps/dir/";
@@ -158,7 +169,7 @@ const generateGoogleMapsUrl = (markerData) => {
     const location2 = markerData[1].title.replace(", United States", "");
 
     return `${baseUrl}${encodeURIComponent(location1)}/${encodeURIComponent(location2)}/`;
-  }
+  };
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector(".leaflet-bar");
@@ -182,7 +193,7 @@ const generateGoogleMapsUrl = (markerData) => {
   }, [userLocationActive]);
 
   useEffect(() => {
-    if (routeData ) {
+    if (routeData) {
       //The distance between each pair of coordinates, in meters.
       const distance = routeData.routes[0].distance
         ? Math.round(metersToMiles(routeData.routes[0].distance))
@@ -201,10 +212,8 @@ const generateGoogleMapsUrl = (markerData) => {
     }
   }, [routeData]);
 
-
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
-   
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
           Route Planner
@@ -253,14 +262,18 @@ const generateGoogleMapsUrl = (markerData) => {
                     : `${routeInfo.minutes} minutes`
                 }
                 description={routeInfo.distance ? `${routeInfo.distance} miles` : ""}
-                action={directionsUrl ? {
-                  type: "external",
-                  route: directionsUrl,
-                  label: "Directions",
-                  iconComponent: (
-                    <DirectionsIcon color="info" fontSize="medium" sx={{ ml: "5px" }} />
-                  ),
-                } : null}
+                action={
+                  directionsUrl
+                    ? {
+                        type: "external",
+                        route: directionsUrl,
+                        label: "Directions",
+                        iconComponent: (
+                          <DirectionsIcon color="info" fontSize="medium" sx={{ ml: "5px" }} />
+                        ),
+                      }
+                    : null
+                }
               />
             )}
           </Grid>

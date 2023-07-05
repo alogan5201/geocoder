@@ -12,7 +12,7 @@ import { a } from "@react-spring/web";
 
 // Material Kit 2 PRO React components
 function AddressInput(props) {
-     const markerData = useStore((state) => state.markerData);
+  const markerData = useStore((state) => state.markerData);
 
   const clearMapInputs = useStore((state) => state.clearMapInputs);
   const setMapInputState = useStore((state) => state.setMapInputState);
@@ -22,27 +22,26 @@ function AddressInput(props) {
 
     if (val.length === 0 && props.readOnly === false) {
       setMapInputState(true);
-    }
-    else {
-   setMapInputState(false);
+    } else {
+      setMapInputState(false);
     }
   }
-        useEffect(() => {
-          if (clearMapInputs) {
-            console.log(clearMapInputs)
-         addressInputElm.current.value = "";
-          }
-        }, [clearMapInputs]);
+  useEffect(() => {
+    if (clearMapInputs) {
+      addressInputElm.current.value = "";
+    }
+  }, [clearMapInputs]);
 
-                useEffect(() => {
-                  if (markerData && props && props.readOnly === true) {
-                    // [0].title
-                    const address = markerData[0].title.includes(", United States")? markerData[0].title.replace(", United States", "") : markerData[0].title
-                    console.log(address)
+  useEffect(() => {
+    if (markerData && props && props.readOnly === true) {
+      // [0].title
+      const address = markerData[0].title.includes(", United States")
+        ? markerData[0].title.replace(", United States", "")
+        : markerData[0].title;
 
-                     addressInputElm.current.value = address
-                  }
-                }, [markerData]);
+      addressInputElm.current.value = address;
+    }
+  }, [markerData]);
   return (
     <Grid item xs={12} pr={1} mb={3}>
       {props.readOnly === false ? (
@@ -69,7 +68,13 @@ function AddressInput(props) {
           }}
         />
       ) : (
-        <Input inputRef={addressInputElm} label={addressInputElm ? "" : "Address"} type="text" fullWidth   InputProps={{readOnly: props.readOnly}} />
+        <Input
+          inputRef={addressInputElm}
+          label={addressInputElm ? "" : "Address"}
+          type="text"
+          fullWidth
+          InputProps={{ readOnly: props.readOnly }}
+        />
       )}
     </Grid>
   );
