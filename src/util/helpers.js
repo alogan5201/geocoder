@@ -223,3 +223,21 @@ export function secondsToHoursMinutes(seconds) {
 
     export const areObjectsEqual = (...objects) =>
        objects.every((obj) => JSON.stringify(obj) === JSON.stringify(objects[0]));
+
+export const fetchWeather = async (lat,lng) => {
+     const response = await fetch(
+       `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=imperial&appid&appid=6185638fa6045f2f694129e53175d997`,
+       { method: "GET" }
+     );
+     if (response.status !== 200) {
+       return;
+     }
+    const data = await response.json();
+     const output = data && data.weather ? data.weather[0].icon : null; 
+     if(output){
+
+       return data;
+     }
+
+};       
+

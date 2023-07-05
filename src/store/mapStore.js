@@ -18,12 +18,15 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    mapStopped: false,
    routeData: null,
    errorMessage: false,
-
+  weather: null,
    setErrorMessage: (data) => {
        set(() => ({ errorMessage: data }));
    },
    setRouteData: (data) => {
        set(() => ({ routeData: data }));
+   },
+   setWeather: (data) => {
+       set(() => ({ weather: data }));
    },
    setBookmarkForLocation: (data) => {
        set(() => ({ bookmarkLocation: data }));

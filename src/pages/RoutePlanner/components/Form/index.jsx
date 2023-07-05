@@ -8,8 +8,10 @@ import Button from "components/Button";
 import NoLocationFound from "components/Maps/components/NoLocationFound";
 import Typography from "components/Typography";
 import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense, lazy } from "react";
 import useStore from "store/mapStore";
+import { fetchWeather } from "util/helpers";
+import WeatherImage from "components/WeatherImage";
 import {
   covertAddressToLatLng,
   getDirections,
@@ -19,6 +21,8 @@ import {
 import { extractWords, secondsToHoursMinutes } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
+
+
 const OriginInputIcon = () => {
   return (
     <Typography variant="h5" color="info">
@@ -37,9 +41,11 @@ const DestinationInputIcon = () => {
 /*                                  ROUTE DATA                                */
 /* -------------------------------------------------------------------------- */
 function Form() {
+
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
+  const setWeather = useStore((state) => state.setWeather);
   const markerDataState = useStore((state) => state.markerData);
   const setMapZoom = useStore((state) => state.setMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -80,12 +86,53 @@ function Form() {
 
           const updateRouteData = await updateRoute(markerData);
           if (updateRouteData) {
+       
+       
             setUserLocationActive(false);
             setMapInputState(false);
             updateMarkerData(markerData);
             setMapZoom(5);
             const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
             setDirectionsUrl(googleMapsDirectionUrl);
+                 const weatherOrigin = await fetchWeather(markerData[0].lat, markerData[0].lng);
+                 const weatherDestination = await fetchWeather(markerData[1].lat, markerData[1].lng);
+                 if (weatherOrigin && weatherDestination) {
+                  const iconOrigin = weatherOrigin.weather[0].icon.slice(0, -1);
+                  const iconDestination = weatherDestination.weather[0].icon.slice(0, -1);
+                  const iconOriginPath = `assets/images/weather/${iconOrigin}.png`;
+                  const iconDestinationPath = `assets/images/weather/${iconDestination}.png`;
+                    const currentWeatherOrigin = weatherOrigin.main.temp;
+                    const currentWeatherDestination = weatherDestination.main.temp;
+                  const addressOrigin =
+                    mapBoxDataOrigin.features[0].place_name &&
+                    mapBoxDataOrigin.features[0].place_name.includes(", United States")
+                      ? mapBoxDataOrigin.features[0].place_name.replace(", United States","")
+                      : mapBoxDataOrigin.features[0].place_name
+                      ? mapBoxDataOrigin.features[0].place_name
+                      : null;
+                  const addressDestination =
+                    mapBoxDataDestination.features[0].place_name &&
+                    mapBoxDataDestination.features[0].place_name.includes(", United States")
+                      ? mapBoxDataDestination.features[0].place_name.replace(", United States","")
+                      : mapBoxDataDestination.features[0].place_name
+                      ? mapBoxDataDestination.features[0].place_name
+                      : null;
+
+                 const weatherData = {
+                   origin: {
+                     address: addressOrigin,
+                     icon: iconOriginPath,
+                     temp: currentWeatherOrigin,
+                   },
+                   destination: {
+                     address: addressDestination,
+                     icon: iconDestinationPath,
+                     temp: currentWeatherDestination,
+                   },
+                 };
+                 console.log("weatherData", weatherData);
+
+                 }
           } else {
             setErrorMessage(true);
             setTimeout(() => {
@@ -96,6 +143,7 @@ function Form() {
       }
     }
   }
+
   const updateRoute = async (markerData) => {
     if (markerData && markerData.length > 1) {
       try {

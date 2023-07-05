@@ -351,3 +351,11 @@ input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.legend .leaflet-control{
+  background-color: white;
+}
+
+.legend-row {
+  background-color: white;
+}

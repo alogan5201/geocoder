@@ -52,7 +52,7 @@ function NoLocationFound({ toggle }) {
   );
 
   return (
-    <Box component="section" py={6}>
+    <Box component="section" >
       <Container>
         <Snackbar
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
