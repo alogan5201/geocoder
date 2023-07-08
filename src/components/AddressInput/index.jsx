@@ -22,7 +22,7 @@ function AddressInput(props) {
 
     if (val.length === 0 && props.readOnly === false) {
       setMapInputState(true);
-    } else {
+    } else if(val.length === 1 && props.readOnly === false) {
       setMapInputState(false);
     }
   }
@@ -47,7 +47,7 @@ function AddressInput(props) {
       {props.readOnly === false ? (
         <Input
           inputRef={addressInputElm}
-          onChange={handleChange}
+          onChange={props.disableChangeEventListener ? null : handleChange}
           fullWidth
           type="text"
           label="Search"

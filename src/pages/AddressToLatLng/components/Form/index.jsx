@@ -29,6 +29,9 @@ function Form() {
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
+    const setErrorMessage = useStore((state) => state.setErrorMessage);
+  const resetMapData = useStore((state) => state.resetMapData);
+
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -76,6 +79,12 @@ function Form() {
         setMapInputState(false);
         updateMarkerData(markerData);
         updateGeoData(mapBoxData.features[0]);
+      } else {
+        setErrorMessage(true);
+  
+        setTimeout(() => {
+          setErrorMessage(false);
+        }, 500);
       }
     }
   }

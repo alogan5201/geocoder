@@ -5,7 +5,7 @@ import "react-tabs/style/react-tabs.css";
 import useStore from "store/mapStore";
 import PointMarker from "./PointMarker";
 import { useLocation } from "react-router-dom";
-import { marker } from "leaflet";
+import { marker, popup } from "leaflet";
 
 const center = [37.09024, -95.712891];
 const Markers = ({ L }) => {
@@ -51,6 +51,9 @@ const Markers = ({ L }) => {
       } else {
         setPopupOpen(true);
       }
+    }
+    else if (popupOpen) {
+      setPopupOpen(false)
     }
   }, [markerData, pathname]);
   return markerPoints && markerPoints.length > 1

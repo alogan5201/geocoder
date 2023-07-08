@@ -77,7 +77,7 @@ const MapWithRoute = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
-        <MapEventsController onMoveEnd={handleMoveEnd} onMoveStart={handleMoveStart} />
+   
         <WeatherLegend L={L}/>
         <PolyLineRoute L={L} />
         <Markers L={L} />

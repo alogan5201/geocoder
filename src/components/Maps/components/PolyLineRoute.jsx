@@ -6,7 +6,6 @@ const PolyLineRoute = ({ L }) => {
   const [currentPolyline, setCurrentPolyline] = useState(null);
   const routeData = useStore((state) => state.routeData);
   const map = useMap();
-  const mapStopped = useStore((state) => state.mapStopped);
 
   useEffect(() => {
     if (routeData) {

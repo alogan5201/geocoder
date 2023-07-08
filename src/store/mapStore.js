@@ -19,6 +19,10 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    routeData: null,
    errorMessage: false,
   weather: null,
+  loading: false,
+   setLoading: (data) => {
+       set(() => ({ loading: data }));
+   },
    setErrorMessage: (data) => {
        set(() => ({ errorMessage: data }));
    },

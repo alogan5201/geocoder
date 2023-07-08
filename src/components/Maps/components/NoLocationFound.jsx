@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
+import useStore from "store/mapStore";
 
 // @mui icons
 import CloseIcon from "@mui/icons-material/Close";
@@ -15,6 +16,7 @@ import Button from "components/Button";
 function NoLocationFound({ toggle }) {
   const [show, setShow] = useState(false);
   const toggleSnackbar = () => setShow(!show);
+  const setLoading = useStore((state) => state.setLoading);
 
   const toastStyles = ({
     palette: { error },
@@ -36,6 +38,7 @@ function NoLocationFound({ toggle }) {
   useEffect(() => {
     if (toggle) {
       toggleSnackbar();
+      setLoading(false)
     }
   }, [toggle]);
 

@@ -33,8 +33,8 @@ export default function LatLngInputs(props){
     if (val.length === 0 && props.readOnly === false) {
       setMapInputState(true);
     }
-    else {
-      //setMapInputState(false);
+    else if(val.length === 1) {
+      setMapInputState(false);
     }
   }
         useEffect(() => {
@@ -67,7 +67,7 @@ export default function LatLngInputs(props){
               defaultValue={props.defaultValue ? props.defaultValue[0] : ""}
               onChange={handleChange}
               label={latInputElm ? "" : "Latitude"}
-              type="number"
+              type="text"
               fullWidth
               inputRef={latInputElm}
               InputProps={{ readOnly: props.readOnly }}
@@ -84,7 +84,7 @@ export default function LatLngInputs(props){
           <Input
             defaultValue={props.defaultValue ? props.defaultValue[1] : ""}
             label={lngInputElm ? "" : "Longitude"}
-            type="number"
+            type="text"
             fullWidth
             inputRef={lngInputElm}
             InputProps={{ readOnly: props.readOnly }}

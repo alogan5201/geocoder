@@ -40,7 +40,7 @@ export default function App() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
    // ! Ucomment for production
- //   resetMapData()
+   resetMapData()
   }, [pathname]);
 
   const getRoutes = (allRoutes) =>

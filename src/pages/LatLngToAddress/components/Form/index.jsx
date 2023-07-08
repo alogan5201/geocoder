@@ -29,6 +29,9 @@ function Form() {
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
+  const setErrorMessage = useStore((state) => state.setErrorMessage);
+  const resetMapData = useStore((state) => state.resetMapData);
+
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -47,6 +50,7 @@ function Form() {
 
     if (inputOne && inputTwo) {
       const mapBoxData = await convertLatLngToAddress(inputOne, inputTwo);
+
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];
         let lng = mapBoxData.features[0].geometry.coordinates[0];
@@ -74,6 +78,13 @@ function Form() {
         setUserLocationActive(false);
         setMapInputState(false);
         updateMarkerData(markerData);
+      } else {
+        setErrorMessage(true);
+   
+          
+        setTimeout(() => {
+          setErrorMessage(false);
+        }, 500);
       }
     }
 

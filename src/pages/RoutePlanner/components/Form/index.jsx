@@ -5,23 +5,22 @@ import DirectionsIcon from "@mui/icons-material/Directions";
 import Grid from "@mui/material/Grid";
 import AddressInput from "components/AddressInput";
 import Button from "components/Button";
-import NoLocationFound from "components/Maps/components/NoLocationFound";
 import Typography from "components/Typography";
 import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
-import { useEffect, useState, Suspense, lazy } from "react";
+import { useEffect, useState } from "react";
 import useStore from "store/mapStore";
-import { fetchWeather } from "util/helpers";
-import WeatherImage from "components/WeatherImage";
 import {
   covertAddressToLatLng,
+  extractCityAndState,
   getDirections,
   metersToMiles,
-  extractCityAndState,
 } from "util/geocoder";
-import { extractWords, secondsToHoursMinutes } from "util/helpers";
+import { extractWords, fetchWeather, secondsToHoursMinutes } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
-
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from "@mui/icons-material/Save";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const OriginInputIcon = () => {
   return (
@@ -41,15 +40,13 @@ const DestinationInputIcon = () => {
 /*                                  ROUTE DATA                                */
 /* -------------------------------------------------------------------------- */
 function Form() {
-
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
-    const { setWeather, weather } = useStore((state) => ({
-      setWeather: state.setWeather,
-      weather: state.weather,
-    }));
-  const markerDataState = useStore((state) => state.markerData);
+  const { setWeather, weather } = useStore((state) => ({
+    setWeather: state.setWeather,
+    weather: state.weather,
+  }));
   const setMapZoom = useStore((state) => state.setMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
@@ -57,12 +54,15 @@ function Form() {
   const setRouteData = useStore((state) => state.setRouteData);
   const routeData = useStore((state) => state.routeData);
   const [directionsUrl, setDirectionsUrl] = useState(null);
-  const [noLocation, setNoLocation] = useState(false);
   const { setErrorMessage, errorMessage } = useStore((state) => ({
     setErrorMessage: state.setErrorMessage,
     errorMessage: state.errorMessage,
   }));
 
+  const { setLoading, loading } = useStore((state) => ({
+    setLoading: state.setLoading,
+    loading: state.loading,
+  }));
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -74,7 +74,7 @@ function Form() {
     if (inputOne && inputTwo) {
       let extracted = extractWords(inputOne);
       let withPlus = extracted.join("+");
-
+      setLoading(true)
       const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
       const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
 
@@ -89,43 +89,39 @@ function Form() {
 
           const updateRouteData = await updateRoute(markerData);
           if (updateRouteData) {
-       
-       
             setUserLocationActive(false);
             setMapInputState(false);
             updateMarkerData(markerData);
             setMapZoom(5);
             const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
             setDirectionsUrl(googleMapsDirectionUrl);
-                 const weatherOrigin = await fetchWeather(markerData[0].lat, markerData[0].lng);
-                 const weatherDestination = await fetchWeather(markerData[1].lat, markerData[1].lng);
-                 if (weatherOrigin && weatherDestination) {
-                  const iconOrigin = weatherOrigin.weather[0].icon.slice(0, -1);
-                  const iconDestination = weatherDestination.weather[0].icon.slice(0, -1);
-                  const iconOriginPath = `assets/images/weather/${iconOrigin}.png`;
-                  const iconDestinationPath = `assets/images/weather/${iconDestination}.png`;
-                    const currentWeatherOrigin = weatherOrigin.main.temp;
-                    const currentWeatherDestination = weatherDestination.main.temp;
-                  const addressOrigin = extractCityAndState(mapBoxDataOrigin)
-                  const addressDestination = extractCityAndState(mapBoxDataDestination)
-                  const test = extractCityAndState(mapBoxDataDestination)
-                  console.log("test", test)
-                 const weatherData = {
-                   origin: {
-                     address: addressOrigin.city,
-                     icon: iconOriginPath,
-                     temp: currentWeatherOrigin,
-                   },
-                   destination: {
-                     address: addressDestination.city,
-                     icon: iconDestinationPath,
-                     temp: currentWeatherDestination,
-                   },
-                 };
-                 setWeather(weatherData);
-               
-
-                 }
+            const weatherOrigin = await fetchWeather(markerData[0].lat, markerData[0].lng);
+            const weatherDestination = await fetchWeather(markerData[1].lat, markerData[1].lng);
+            if (weatherOrigin && weatherDestination) {
+              const iconOrigin = weatherOrigin.weather[0].icon.slice(0, -1);
+              const iconDestination = weatherDestination.weather[0].icon.slice(0, -1);
+              const iconOriginPath = `assets/images/weather/${iconOrigin}.png`;
+              const iconDestinationPath = `assets/images/weather/${iconDestination}.png`;
+              const currentWeatherOrigin = weatherOrigin.main.temp;
+              const currentWeatherDestination = weatherDestination.main.temp;
+              const addressOrigin = extractCityAndState(mapBoxDataOrigin);
+              const addressDestination = extractCityAndState(mapBoxDataDestination);
+              const test = extractCityAndState(mapBoxDataDestination);
+              console.log("test", test);
+              const weatherData = {
+                origin: {
+                  address: addressOrigin.city,
+                  icon: iconOriginPath,
+                  temp: currentWeatherOrigin,
+                },
+                destination: {
+                  address: addressDestination.city,
+                  icon: iconDestinationPath,
+                  temp: currentWeatherDestination,
+                },
+              };
+              setWeather(weatherData);
+            }
           } else {
             setErrorMessage(true);
             setTimeout(() => {
@@ -159,9 +155,9 @@ function Form() {
     const address = mapBoxData.features[0].place_name;
     const wikiData = mapBoxData.features[0].properties.wikidata;
     const uid = uuidv4();
-            const cityAndState = extractCityAndState(mapBoxData);
-            const city = cityAndState.city ? cityAndState.city : null;
-            const state = cityAndState.state ? cityAndState.state : null;
+    const cityAndState = extractCityAndState(mapBoxData);
+    const city = cityAndState.city ? cityAndState.city : null;
+    const state = cityAndState.state ? cityAndState.state : null;
 
     const markerData = [
       {
@@ -184,22 +180,22 @@ function Form() {
     const address = mapBoxData.features[0].place_name;
     const wikiData = mapBoxData.features[0].properties.wikidata;
     const uid = uuidv4();
-            const cityAndState = extractCityAndState(mapBoxData);
-            const city = cityAndState.city ? cityAndState.city : null;
-            const state = cityAndState.state ? cityAndState.state : null;
+    const cityAndState = extractCityAndState(mapBoxData);
+    const city = cityAndState.city ? cityAndState.city : null;
+    const state = cityAndState.state ? cityAndState.state : null;
 
-        const markerData = [
-          {
-            id: uid,
-            lat: lat,
-            lng: lng,
-            title: address,
-            userLocation: false,
-            wikiData: wikiData,
-            city: city,
-            state: state,
-          },
-        ];
+    const markerData = [
+      {
+        id: uid,
+        lat: lat,
+        lng: lng,
+        title: address,
+        userLocation: false,
+        wikiData: wikiData,
+        city: city,
+        state: state,
+      },
+    ];
     return markerData;
   };
   const generateGoogleMapsUrl = (markerData) => {
@@ -269,18 +265,31 @@ function Form() {
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 6 }}>
         <Grid container>
           {/* ============ ORGIN-AddressInput ============ */}
-          <AddressInput readOnly={false} defaultValue="Atlanta, GA" icon={<OriginInputIcon />} />
+          <AddressInput
+            readOnly={false}
+            defaultValue="Atlanta, GA"
+            icon={<OriginInputIcon />}
+            disableChangeEventListener={true}
+          />
           {/* ============ DESTINATION-AddressInput ============ */}
           <AddressInput
             readOnly={false}
+            disableChangeEventListener={true}
             defaultValue="Austin, TX"
             icon={<DestinationInputIcon />}
           />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
-            <Button type="submit" variant="gradient" color="info">
-              Submit
-            </Button>
+            {loading ? (
+              <Button type="button" variant="gradient" color="info">
+                <CircularProgress color="light" size={14} />
+                &nbsp; Submit
+              </Button>
+            ) : (
+              <Button type="submit" variant="gradient" color="info">
+                Submit
+              </Button>
+            )}
           </Grid>
           {/* ============ Directions Card ============ */}
           {/*

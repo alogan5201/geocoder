@@ -8,13 +8,11 @@ import { tron } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
 import MapExternal from "components/Maps/MapExternal";
 import Sandbox from "components/Sandbox";
+import NoLocationFound from "components/Maps/components/NoLocationFound";
+import useStore from "store/mapStore";
 
-function FormWrapper({props, form, map}) {
- 
-
-  /* -------------------------------------------------------------------------- */
-  /*                                    HOOKS                                   */
-  /* -------------------------------------------------------------------------- */
+function FormWrapper({ props, form, map }) {
+  const errorMessage = useStore((state) => state.errorMessage);
   const [coords, setCoords] = useGlobalValue();
   const [geoData, setGeoData] = useGlobalGeoData();
    const latInputElm = useRef(null);
@@ -43,6 +41,8 @@ if(val.length === 0){
   return (
     <>
       <Box component="section" py={{ xs: 2, sm: 6 }}>
+        <NoLocationFound toggle={errorMessage} />
+
         <Grid container item px={0}>
           <Box
             width="100%"
