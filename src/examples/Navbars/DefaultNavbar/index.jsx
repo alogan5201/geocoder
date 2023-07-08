@@ -506,7 +506,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             lineHeight={0}
             py={1.5}
             pl={1.5}
-            color={transparent ? "white" : "inherit"}
+            color={transparent ? "dark" : "inherit"}
             sx={{ cursor: "pointer" }}
             onClick={openMobileNavbar}
           >
@@ -519,7 +519,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           borderRadius="xl"
           px={transparent ? 2 : 0}
         >
-          {mobileView && <DefaultNavbarMobile routes={routes} open={mobileNavbar} />}
+          {mobileView && <DefaultNavbarMobile routes={routes} open={mobileNavbar}  />}
         </Box>
       </Box>
       {dropdownMenu}

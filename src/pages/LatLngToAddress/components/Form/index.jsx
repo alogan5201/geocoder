@@ -80,7 +80,7 @@ function Form() {
         updateMarkerData(markerData);
       } else {
         setErrorMessage(true);
-   
+          resetMapData();
           
         setTimeout(() => {
           setErrorMessage(false);
