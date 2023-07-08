@@ -28,6 +28,7 @@ import theme from "assets/theme";
 
 import HomePage from "pages/HomePage";
 import Loading from "components/Loading";
+import MovieDetailPage from "pages/MovieDetails";
 import "src/App.css";
 // Material Kit 2 PRO React routes
 import routes from "routes";
@@ -64,6 +65,7 @@ export default function App() {
           {getRoutes(routes)}
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/location/:slug" element={<MovieDetailPage />} />
         </Routes>
       </Suspense>
     </ThemeProvider>

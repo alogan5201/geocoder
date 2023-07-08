@@ -28,20 +28,24 @@ import Box from "components/Box";
 import Typography from "components/Typography";
 import Avatar from "components/Avatar";
 
-function DefaultBlogCard({ image, category, title, description, author, raised, action }) {
+function DefaultBlogCard({ image, category, title, description, author, raised, action, maxWidth, maxHeight}) {
   const imageTemplate = (
     <>
       <Box
+      
         component="img"
         src={image}
         alt={title}
         borderRadius="lg"
         shadow={raised ? "md" : "none"}
         width="100%"
+         height={maxHeight}
         position="relative"
         zIndex={1}
+    
       />
       <Box
+      
         borderRadius="lg"
         shadow={raised ? "md" : "none"}
         width="100%"
@@ -56,6 +60,7 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
                 transform: "scale(0.94)",
                 filter: "blur(12px)",
                 backgroundSize: "cover",
+             
               }
             : {}
         }
@@ -64,7 +69,7 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
   );
 
   return (
-    <Card>
+    <Card sx={{ maxWidth: maxWidth }} p={0}>
       <Box position="relative" borderRadius="lg" mx={2} mt={raised ? -3 : 2}>
         {action.type === "internal" ? (
           <Link to={action.route}>{imageTemplate}</Link>
@@ -74,7 +79,7 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
           </MuiLink>
         )}
       </Box>
-      <Box p={3}>
+      <Box p={2} align="center">
         {category && (
           <Typography
             variant="caption"
@@ -82,7 +87,7 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
             textTransform="uppercase"
             fontWeight="medium"
             textGradient
-            sx={{ display: "block" }}
+            sx={{ display: "block", fontWeight: 500 }}
           >
             {category.label}
           </Typography>
@@ -90,10 +95,11 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
         {action.type === "internal" ? (
           <Link to={action.route}>
             <Typography
-              variant="h5"
+              align="center"
+              variant="caption"
               textTransform="capitalize"
               my={1}
-              sx={{ display: "inline-block" }}
+              sx={{ display: "inline-block", fontWeight: 500 }}
             >
               {title}
             </Typography>
@@ -101,7 +107,8 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
         ) : (
           <MuiLink href={action.route} target="_blank" rel="noreferrer">
             <Typography
-              variant="h5"
+              align="center"
+              variant="caption"
               textTransform="capitalize"
               mt={2}
               mb={1}
@@ -111,9 +118,11 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
             </Typography>
           </MuiLink>
         )}
-        <Typography variant="body2" component="p" color="text">
-          {description}
-        </Typography>
+        {description && (
+          <Typography variant="body2" component="p" color="text">
+            {description}
+          </Typography>
+        )}
         {author && (
           <Box display="flex" alignItems="center" mt={3}>
             <Avatar
@@ -123,7 +132,7 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
               variant={raised ? "circular" : "rounded"}
             />
             <Box pl={2} lineHeight={0}>
-              <Typography component="h6" variant="button" fontWeight="medium" gutterBottom>
+              <Typography component="caption" variant="button" fontWeight="medium" gutterBottom>
                 {author.name}
               </Typography>
               <Typography variant="caption" color="text">
@@ -142,6 +151,8 @@ DefaultBlogCard.defaultProps = {
   category: false,
   author: false,
   raised: true,
+  maxWidth: "100%",
+  maxHeight:300
 };
 
 // Typechecking props for the DefaultBlogCard
@@ -163,7 +174,6 @@ DefaultBlogCard.propTypes = {
     PropTypes.bool,
   ]),
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   author: PropTypes.oneOfType([
     PropTypes.shape({
       image: PropTypes.string.isRequired,
