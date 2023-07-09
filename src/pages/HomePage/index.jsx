@@ -7,6 +7,7 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 // Coworking page sections
 import BaseLayout from "layouts/sections/components/BaseLayout";
 // Routes
+
 import FormWrapper from "components/FormWrapper";
 import footerRoutes from "footer.routes";
 import { formStyles } from "src/styles";

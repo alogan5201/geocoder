@@ -14,7 +14,9 @@ Coded by www.creative-tim.com
 */
 
 // react-router components
+import {useState} from "react";
 import { Link } from "react-router-dom";
+import Skeleton from "@mui/material/Skeleton";
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
@@ -29,23 +31,25 @@ import Typography from "components/Typography";
 import Avatar from "components/Avatar";
 
 function DefaultBlogCard({ image, category, title, description, author, raised, action, maxWidth, maxHeight}) {
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
+
   const imageTemplate = (
     <>
+
       <Box
-      
         component="img"
         src={image}
         alt={title}
         borderRadius="lg"
         shadow={raised ? "md" : "none"}
         width="100%"
-         height={maxHeight}
+        height={maxHeight}
         position="relative"
         zIndex={1}
-    
+        onLoad={() => setIsImageLoaded(true)}
+        style={{ display: isImageLoaded ? "block" : "none" }}
       />
       <Box
-      
         borderRadius="lg"
         shadow={raised ? "md" : "none"}
         width="100%"
@@ -60,7 +64,6 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
                 transform: "scale(0.94)",
                 filter: "blur(12px)",
                 backgroundSize: "cover",
-             
               }
             : {}
         }

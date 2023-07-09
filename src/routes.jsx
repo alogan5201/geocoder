@@ -11,6 +11,7 @@ const TestPage = React.lazy(() => import("pages/Test"));
 const RoutePlanner = React.lazy(() => import("pages/RoutePlanner"));
 const Movies = React.lazy(() => import("pages/Movies"));
 
+
 const routes = [
   {
     name: "tools",

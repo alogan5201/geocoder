@@ -1,4 +1,7 @@
 import useStore from "store/mapStore";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "util/firebase";
+
 const { VITE_USERNAME, VITE_STYLE_ID, VITE_ACCESS_TOKEN } = import.meta.env;
 
 export const lowercaseFirst = (str) => `${str.charAt(0).toLowerCase()}${str.slice(1)}`;
@@ -240,4 +243,42 @@ export const fetchWeather = async (lat,lng) => {
      }
 
 };       
+export function getRangeForNumber(n, num) {
+  const ranges = generateRanges(n);
+  return ranges.find((range) => num >= range[0] && num <= range[1]);
+}
+export function generateRanges(n) {
+  const ranges = [];
+  for (let i = 1; i <= n; i += 15) {
+    ranges.push([i, i + 14]);
+  }
+  return ranges;
+}
+export function isInPaginationPosition(total, number) {
 
+  const subsets = generateRanges(total);
+  return subsets.length < number ? false : true;
+}
+
+export async function getMovieListLength(){
+const localMovieLength = localStorage.getItem("movie-list-length");
+if(localMovieLength){
+  return Number(localMovieLength);
+}
+else {
+     const moviesCollection = collection(db, "films");
+     const q = query(
+       moviesCollection
+     );
+    const querySnapshot = await getDocs(q);
+localStorage.setItem("movie-list-length", querySnapshot.size);
+return querySnapshot.size;
+}
+}
+export function isFirstItemOf15Subset(total, number) {
+  // calculate the subset start for the given number
+  const subsetStart = Math.floor((number - 1) / 15) * 15 + 1;
+
+  // if the subset start is equal to the number, then the number is the first item in its subset
+  return subsetStart === number;
+}
