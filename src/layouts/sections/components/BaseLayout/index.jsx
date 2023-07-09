@@ -52,7 +52,7 @@ function BaseLayout({  children }) {
           {children}
         </Grid>
       </Container>
-      <Box mt="auto">
+      <Box mt="20px">
         <CenteredFooter />
       </Box>
     </Box>
