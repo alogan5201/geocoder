@@ -53,7 +53,7 @@ function MovieDetailPage() {
   return (
     // Render movie details
     <BaseLayout>
-      <Box component="section" py={{ xs: 2, sm: 6, maxHeight:"550px" }}>
+      <Box component="section" py={{ xs: 2, sm: 6, height:"550px" }}>
         <Grid container item px={0} lg={10} justifyContent="center" mx={"auto"}>
           <Box
             width="100%"
@@ -98,7 +98,7 @@ function MovieDetailPage() {
                 xs={12}
                 md={6}
                 lg={4}
-                sx={{ border: "none", boxShadow: "none", maxHeight: "550px" }}
+                sx={{ border: "none", boxShadow: "none", height: "550px" }}
               >
                 <Card
                   sx={{
