@@ -5,6 +5,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import useStore from "store/mapStore";
 import IconButton from "@mui/material/IconButton";
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 // @mui icons
 import SearchIcon from "@mui/icons-material/Search";
@@ -13,6 +14,7 @@ import { a } from "@react-spring/web";
 // Material Kit 2 PRO React components
 function AddressInput(props) {
   const markerData = useStore((state) => state.markerData);
+  const { pathname } = useLocation();
 
   const clearMapInputs = useStore((state) => state.clearMapInputs);
   const setMapInputState = useStore((state) => state.setMapInputState);
@@ -33,14 +35,17 @@ function AddressInput(props) {
   }, [clearMapInputs]);
 
   useEffect(() => {
-    if (markerData) {
-      // [0].title
-      const address = markerData[0].title.includes(", United States")
-        ? markerData[0].title.replace(", United States", "")
-        : markerData[0].title;
-
-      addressInputElm.current.value = address;
+    if (pathname.includes("route-planner")){
+      return
     }
+      else if (markerData) {
+        // [0].title
+        const address = markerData[0].title.includes(", United States")
+          ? markerData[0].title.replace(", United States", "")
+          : markerData[0].title;
+
+        addressInputElm.current.value = address;
+      }
   }, [markerData]);
   return (
     <Grid item xs={12} pr={1} mb={3}>
