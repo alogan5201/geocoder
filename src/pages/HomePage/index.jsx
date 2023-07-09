@@ -8,10 +8,10 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 import BaseLayout from "layouts/sections/components/BaseLayout";
 // Routes
 
+import Form from "./components/Form";
 import FormWrapper from "components/FormWrapper";
 import footerRoutes from "footer.routes";
 import { formStyles } from "src/styles";
-import Form from "./components/Form";
 
 function HomePage() {
   const formWrapperStyles = formStyles.mapForm.formWrapper;

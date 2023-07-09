@@ -1,64 +1,22 @@
-import Grid from "@mui/material/Grid";
+// Material Kit 2 PRO React components
 import Box from "components/Box";
-import AddIcon from "@mui/icons-material/Add";
-import TextField from "@mui/material/TextField";
+// Material Kit 2 PRO React components
+import Grid from "@mui/material/Grid";
+import AddressInput from "components/AddressInput";
+import Button from "components/Button";
+import Input from "components/Input";
 import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import useStore from "store/mapStore";
 import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
-import { extractWords } from "util/helpers";
+import { extractWords, test } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
+import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
-import BookmarkTable from "../BookmarkTable";
-import Button from "components/Button";
-import InputAdornment from "@mui/material/InputAdornment";
-import Input from "components/Input";
-import Divider from "@mui/material/Divider";
-import AddressInput from "../AddressInput";
-
-function InputWithIcon() {
-  return (
-    <Grid item xs={12} pr={1} mb={3}>
-      <AddIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-      <TextField fullWidth id="input-with-sx" label="With sx" variant="standard" />
-    </Grid>
-  );
-}
-function AddNewBookmark() {
-  const [newLocation, setNewLocation] = useState("");
-  const [toggleInput, setInputToggle] = useState(false);
-  const handleNewBookmark = (e) => {
-    e.preventDefault();
-    setInputToggle(true);
-  };
-  if (toggleInput) {
-    return <AddressInput readOnly={false} />;
-  } else {
-    return (
-      <Grid item xs={12} pr={1} mb={0}>
-        <Button color="white" size="large" sx={{ pl: 0 }} onClick={handleNewBookmark}>
-          {" "}
-          <AddIcon color="info" sx={{ mr: 1, my: 0.5 }} />{" "}
-          <Typography variant="body2"> Search for a location to add</Typography>{" "}
-        </Button>
-      </Grid>
-    );
-  }
-}
+import LocationsTable from "../LocationsTable";
 function Form() {
-  const [bookmarkState, setBookmarkState] = useState(
-    JSON.parse(localStorage.getItem("bookmarks")) || []
-  );
-  const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation);
-
   useEffect(() => {
-    if (bookmarkState) {
-    }
-  }, [bookmarkState]);
-  useEffect(() => {
-    window.addEventListener("storage", () => {
-      setBookmarkState(JSON.parse(localStorage.getItem("bookmarks")) || []);
-    });
+    test();
   }, []);
 
   const [zoomState, setZoomState] = useState();
@@ -71,6 +29,9 @@ function Form() {
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
+    const setErrorMessage = useStore((state) => state.setErrorMessage);
+  const resetMapData = useStore((state) => state.resetMapData);
+
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -92,29 +53,38 @@ function Form() {
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];
         let lng = mapBoxData.features[0].geometry.coordinates[0];
+
         setCoords([coords]);
         const address = mapBoxData.features[0].place_name;
+        const wikiData = mapBoxData.features[0].properties.wikidata;
         const uid = uuidv4();
-        
         const cityAndState = extractCityAndState(mapBoxData);
+
         const city = cityAndState.city ? cityAndState.city : null;
         const state = cityAndState.state ? cityAndState.state : null;
-            const markerData = [
-              {
-                id: uid,
-                lat: lat,
-                lng: lng,
-                title: address,
-                userLocation: false,
-                city: city,
-                state: state,
-              },
-            ];
+
+        const markerData = [
+          {
+            id: uid,
+            lat: lat,
+            lng: lng,
+            title: address,
+            userLocation: false,
+            wikiData: wikiData,
+            city: city,
+            state: state,
+          },
+        ];
         setUserLocationActive(false);
         setMapInputState(false);
         updateMarkerData(markerData);
         updateGeoData(mapBoxData.features[0]);
-        setBookmarkForLocation(true);
+      } else {
+        setErrorMessage(true);
+  
+        setTimeout(() => {
+          setErrorMessage(false);
+        }, 500);
       }
     }
   }
@@ -138,38 +108,18 @@ function Form() {
         }
       }
     }
-    return () => {
-      setBookmarkForLocation(false);
-    };
   }, [userLocationActive]);
   return (
-    <Box
-      component="form"
-      pl={{ xs: 0, sm: 2 }}
-      pr={{ xs: 0, sm: 0 }}
-      py={{ xs: 0, sm: 2 }}
-      method="post"
-      onSubmit={handleSubmit}
-    >
+    <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
-          Bookmarks
+       Locations
         </Typography>
+    
       </Box>
-      <Divider sx={{ m: 0 }} />
-      <Box pl={{ xs: 0, sm: 3 }} pr={{ xs: 0, sm: 0 }} py={{ xs: 0, sm: 1 }}>
+      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 4 }}>
         <Grid container>
-          {bookmarkState && bookmarkState.length > 0 ? (
-            <>
-              <AddNewBookmark />
-
-              <BookmarkTable bookmarkState={bookmarkState} />
-            </>
-          ) : (
-            <>
-              <AddNewBookmark />
-            </>
-          )}
+    <LocationsTable />
         </Grid>
       </Box>
     </Box>

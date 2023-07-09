@@ -16,10 +16,16 @@ import ColoredBackgroundCard from "examples/Cards/BackgroundCards/ColoredBackgro
 import InfoBackgroundCard from "examples/Cards/BackgroundCards/InfoBackgroundCard";
 import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
+import DefaultFooter from "examples/Footers/DefaultFooter";
+import footerRoutes from "footer.routes";
+import MapExternal from "components/Maps/MapExternal";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 import Typography from "components/Typography";
+import Form from "./components/Form";
+import FormWrapper from "components/FormWrapper";
+import LocationsTable from "./components/LocationsTable";
 function MovieDetailPage() {
   const [showMore, setShowMore] = useState(false);
   const { slug } = useParams();
@@ -37,6 +43,7 @@ function MovieDetailPage() {
         if(!doc.exists()) {
           navigate("/404");
         }
+        console.log(doc.data().locations);
         setMovie(doc.data());
       });
     };
@@ -53,8 +60,8 @@ function MovieDetailPage() {
   return (
     // Render movie details
     <BaseLayout>
-      <Box component="section" py={{ xs: 2, sm: 6, height:"550px" }}>
-        <Grid container item px={0} lg={10} justifyContent="center" mx={"auto"}>
+      <Box component="section" py={{ xs: 2, sm: 6, height: "550px" }}>
+        <Grid container item px={0} justifyContent="center" mx={"auto"}>
           <Box
             width="100%"
             bgColor="white"
@@ -118,6 +125,23 @@ function MovieDetailPage() {
             </Grid>
           </Box>
         </Grid>
+      </Box>
+      <Grid container spacing={0}>
+        <Grid item xs={12} lg={12} position="relative" px={0}>
+          <Box px={{ xs: 1, sm: 3 }} py={{ xs: 0, sm: 6 }} sx={{ height: 600 }}>
+            <MapExternal />
+          </Box>
+        </Grid>
+        <Grid item xs={12} lg={12} position="relative" px={0}>
+          <Box px={{ xs: 1, sm: 3 }} py={{ xs: 0, sm: 6 }}>
+            {/* <LocationsTable data={movie.locations} /> */}
+            <LocationsTable locations={movie.locations} />
+          </Box>
+        </Grid>
+      </Grid>
+
+      <Box pt={6} px={1} mt={6}>
+        <DefaultFooter content={footerRoutes} />
       </Box>
     </BaseLayout>
   );

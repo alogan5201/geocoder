@@ -282,3 +282,7 @@ export function isFirstItemOf15Subset(total, number) {
   // if the subset start is equal to the number, then the number is the first item in its subset
   return subsetStart === number;
 }
+
+export function truncateToSixDecimals(num) {
+  return Math.trunc(num * 1000000) / 1000000;
+}
