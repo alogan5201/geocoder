@@ -220,3 +220,7 @@ export interface PathOptions extends InteractiveLayerOptions {
 
 import useStore from "store/mapStore";
   const setLoading = useStore((state) => state.setLoading);
+
+
+  TODO: 
+  Fix the geolocation part

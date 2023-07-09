@@ -3,6 +3,7 @@ import { useMap } from "react-leaflet";
 import useStore from "store/mapStore";
 import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
 import styles from "./location-button.module.css";
+import { v4 as uuidv4 } from "uuid";
 
 function PopupTest() {
   return <div>test123 you are here</div>;
@@ -89,6 +90,8 @@ const LocationButton = ({ L }) => {
     const cityAndState = extractCityAndState(mapBoxData);
     const city = cityAndState.city ? cityAndState.city : null;
     const state = cityAndState.state ? cityAndState.state : null;
+            const uid = uuidv4();
+
             const markerData = [
               {
                 id: uid,
@@ -96,7 +99,6 @@ const LocationButton = ({ L }) => {
                 lng: lng,
                 title: address,
                 userLocation: false,
-                wikiData: wikiData,
                 city: city,
                 state: state,
               },

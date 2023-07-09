@@ -33,7 +33,7 @@ function AddressInput(props) {
   }, [clearMapInputs]);
 
   useEffect(() => {
-    if (markerData && props && props.readOnly === true) {
+    if (markerData) {
       // [0].title
       const address = markerData[0].title.includes(", United States")
         ? markerData[0].title.replace(", United States", "")
@@ -50,8 +50,7 @@ function AddressInput(props) {
           onChange={props.disableChangeEventListener ? null : handleChange}
           fullWidth
           type="text"
-          label="Search"
-          defaultValue={props.defaultValue ? props.defaultValue : "Atlanta, GA"}
+          label={addressInputElm ? "" : "Address"}
           InputProps={{
             readOnly: props.readOnly,
             endAdornment: (
