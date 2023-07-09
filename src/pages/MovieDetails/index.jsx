@@ -9,7 +9,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 import Button from "components/Button";
-
+import AddIcon from "@mui/icons-material/Add";
 // import Stack from "@mui/material/Stack";
 // Material Kit 2 PRO React components
 import ColoredBackgroundCard from "examples/Cards/BackgroundCards/ColoredBackgroundCard";
@@ -21,6 +21,7 @@ import Stack from "@mui/material/Stack";
 import Box from "components/Box";
 import Typography from "components/Typography";
 function MovieDetailPage() {
+  const [showMore, setShowMore] = useState(false);
   const { slug } = useParams();
   const [movie, setMovie] = useState(null);
   const navigate = useNavigate();
@@ -42,62 +43,81 @@ function MovieDetailPage() {
 
     fetchMovie();
   }, [slug]);
-
+  const handleShowMore = (e) => {
+    e.preventDefault();
+    setShowMore(!showMore);
+  };
   if (!movie) return <Loading/>;
+
 
   return (
     // Render movie details
     <BaseLayout>
-      <Box component="section" py={{ xs: 2, sm: 6 }}>
-        <Container>
-          <Grid container item xs={12} lg={6} flexDirection="column" justifyContent="start" mb={2}>
-            <Box sx={{ px: { xs: 0, md: 0 }, py: { xs: 2, md: 5 } }} textAlign="left">
-              <Typography
-                variant="h4"
-                mb={3}
-                sx={({ breakpoints, typography: { size } }) => ({
-                  [breakpoints.down("md")]: {
-                    fontSize: size["3xl"],
-                  },
-                })}
+      <Box component="section" py={{ xs: 2, sm: 6, maxHeight:"550px" }}>
+        <Grid container item px={0} lg={10} justifyContent="center" mx={"auto"}>
+          <Box
+            width="100%"
+            bgColor="white"
+            borderRadius="xl"
+            shadow="xl"
+            mb={6}
+            sx={{ overflow: "hidden" }}
+          >
+            <Grid container spacing={3} mb={6}>
+              {/*================= LEFT COLUMN  =================*/}
+              <Grid item xs={12} lg={7}>
+                <Box p={2}>
+                  <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
+                    <Typography variant="h4" mb={1}>
+                      {movie.title}
+                    </Typography>
+                  </Box>
+                  <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 1 }}>
+                    <Grid container>
+                      {/* ============ Content ============ */}
+                      <Typography variant="body2" color="dark" fontWeight="light" mb={2}>
+                        {movie.plot.length > 751 && !showMore
+                          ? movie.plot.substring(0, 750) + "..."
+                          : movie.plot}
+                      </Typography>
+                      {/* ============ Submit ============ */}
+                      <Grid item xs={12} pr={1} mb={2}>
+                        <Button type="button" variant="text" color="info" onClick={handleShowMore}>
+                          <AddIcon />
+                          &nbsp; Show More
+                        </Button>
+                      </Grid>
+                      {/* ============ AddressInput ============ */}
+                    </Grid>
+                  </Box>
+                </Box>
+              </Grid>
+              {/*================= RIGHT COLUMN - MAP ================= */}
+              <Grid
+                item
+                xs={12}
+                md={6}
+                lg={4}
+                sx={{ border: "none", boxShadow: "none", maxHeight: "550px" }}
               >
-                {movie.title}
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid container spacing={3} mb={6}>
-            <Grid container spacing={3} item xs={12} md={6} lg={8}>
-              <Grid item xs={12} md={12}>
-                <Typography
-                  variant="body2"
-                  color="dark"
-                  fontWeight="light"
-                  mb={2}
-           
-                >
-                  {movie.plot}
-                </Typography>
+                <Card
+                  sx={{
+                    backgroundImage: `url(${movie.image})`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    border: "none",
+                    boxShadow: "none",
+                    borderRadius: "none",
+                    height: "100%",
+                    display: "grid",
+                    placeItems: "center",
+                  }}
+                ></Card>
               </Grid>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <Card
-                sx={({
-                  palette: { gradients },
-                  functions: { rgba, linearGradient },
-                  borders: { borderRadius },
-                }) => ({
-                  backgroundImage: `url(${movie.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  borderRadius: borderRadius.xl,
-                  height: "100%",
-                  display: "grid",
-                  placeItems: "center",
-                })}
-              ></Card>
-            </Grid>
-          </Grid>
-        </Container>
+          </Box>
+        </Grid>
       </Box>
     </BaseLayout>
   );
