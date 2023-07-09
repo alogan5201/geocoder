@@ -46,8 +46,14 @@ export default function LocationsTable({ locations }) {
             },
           ];
        
-      
+        const mapElement = document.getElementById("map-external");
+
           updateMarkerData(markerData);
+            if (mapElement) {
+              const offset = 650; // change this to the offset that suits your needs
+
+    window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+            }
         } 
       }
     }

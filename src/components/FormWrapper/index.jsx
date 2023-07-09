@@ -67,7 +67,7 @@ if(val.length === 0){
             </Grid>
           </Box>
         </Grid>
-        <Sandbox />
+    
       </Box>
     </>
   );

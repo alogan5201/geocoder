@@ -7,17 +7,16 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 // Coworking page sections
 import BaseLayout from "layouts/sections/components/BaseLayout";
 // Routes
-
-import Form from "./components/Form";
 import FormWrapper from "components/FormWrapper";
 import footerRoutes from "footer.routes";
 import { formStyles } from "src/styles";
+import Form from "./components/Form";
 
 function HomePage() {
   const formWrapperStyles = formStyles.mapForm.formWrapper;
   const formWrapperProps = {
     styles: formWrapperStyles,
-    name: "Address to Latitude & Longitude",
+    name: "Geo Tools",
     description:
       "To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates.",
     map: true,
@@ -33,8 +32,7 @@ function HomePage() {
   return (
     <>
       <BaseLayout>
-      
-        <FormWrapper  form={<Form addressToLatLng={true} />} />
+        <FormWrapper form={<Form addressToLatLng={true} />} />
 
         <Box pt={6} px={1} mt={6}>
           <DefaultFooter content={footerRoutes} />

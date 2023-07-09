@@ -8,91 +8,86 @@ import Input from "components/Input";
 import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import useStore from "store/mapStore";
-import { covertAddressToLatLng } from "util/geocoder";
+import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
 import { extractWords, test } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
 
 function Form() {
+  useEffect(() => {
+    test();
+  }, []);
+
+  const [zoomState, setZoomState] = useState();
   const [coords, setCoords] = useGlobalValue();
+  const latInputElm = useRef(null);
+  const lngInputElm = useRef(null);
+  const updateGeoData = useStore((state) => state.setGeoData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
-  const setMapZoom = useStore((state) => state.setMapZoom);
+  const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
+    const setErrorMessage = useStore((state) => state.setErrorMessage);
+  const resetMapData = useStore((state) => state.resetMapData);
+
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
+  function handleZoomReset(e) {
+    e.preventDefault();
+    resetZoom(1);
+    setTimeout(() => {
+      resetZoom(0);
+    }, 2000);
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     const inputOne = e.target[0].value;
-    const inputTwo = e.target[3].value;
-
-    if (inputOne && inputTwo) {
+    if (inputOne) {
       let extracted = extractWords(inputOne);
       let withPlus = extracted.join("+");
       const mapBoxData = await covertAddressToLatLng(inputOne);
-      const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
-      const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
+      if (mapBoxData && mapBoxData.features.length > 0) {
+        let lat = mapBoxData.features[0].geometry.coordinates[1];
+        let lng = mapBoxData.features[0].geometry.coordinates[0];
 
-      if (mapBoxDataOrigin && mapBoxDataDestination) {
-        if (mapBoxDataOrigin.features.length > 0 && mapBoxDataDestination.features.length > 0) {
-          setCoords([coords]);
+        setCoords([coords]);
+        const address = mapBoxData.features[0].place_name;
+        const wikiData = mapBoxData.features[0].properties.wikidata;
+        const uid = uuidv4();
+        const cityAndState = extractCityAndState(mapBoxData);
 
-          const markerDataOriginFormatted = generateMarkerDataOrigin(mapBoxDataOrigin);
-          const markerDataDestinationFormatted =
-            generateMarkerDataDestination(mapBoxDataDestination);
-          const markerData = [markerDataOriginFormatted[0], markerDataDestinationFormatted[0]];
-          setUserLocationActive(false);
-          setMapInputState(false);
+        const city = cityAndState.city ? cityAndState.city : null;
+        const state = cityAndState.state ? cityAndState.state : null;
 
-          updateMarkerData(markerData);
-          setMapZoom(11);
-          //   updateGeoData(mapBoxData.features[0]);
-        }
+        const markerData = [
+          {
+            id: uid,
+            lat: lat,
+            lng: lng,
+            title: address,
+            userLocation: false,
+            wikiData: wikiData,
+            city: city,
+            state: state,
+          },
+        ];
+        setUserLocationActive(false);
+        setMapInputState(false);
+        updateMarkerData(markerData);
+        updateGeoData(mapBoxData.features[0]);
+      } else {
+        setErrorMessage(true);
+  
+        setTimeout(() => {
+          setErrorMessage(false);
+        }, 500);
       }
     }
   }
-  const generateMarkerDataOrigin = (mapBoxData) => {
-    let lat = mapBoxData.features[0].geometry.coordinates[1];
-    let lng = mapBoxData.features[0].geometry.coordinates[0];
-
-    const address = mapBoxData.features[0].place_name;
-    const wikiData = mapBoxData.features[0].properties.wikidata;
-    const uid = uuidv4();
-    const markerData = [
-      {
-        id: uid,
-        lat: lat,
-        lng: lng,
-        title: address,
-        userLocation: false,
-        wikiData: wikiData,
-      },
-    ];
-    return markerData;
-  };
-  const generateMarkerDataDestination = (mapBoxData) => {
-    let lat = mapBoxData.features[0].geometry.coordinates[1];
-    let lng = mapBoxData.features[0].geometry.coordinates[0];
-
-    const address = mapBoxData.features[0].place_name;
-    const wikiData = mapBoxData.features[0].properties.wikidata;
-    const uid = uuidv4();
-    const markerData = [
-      {
-        id: uid,
-        lat: lat,
-        lng: lng,
-        title: address,
-        userLocation: false,
-        wikiData: wikiData,
-      },
-    ];
-    return markerData;
-  };
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector(".leaflet-bar");
@@ -118,19 +113,17 @@ function Form() {
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
-          Home Page
+          Address to Latitude & Longitude
         </Typography>
         <Typography variant="body2" color="text" mb={1}>
           To pinpoint a location, you can type in the name of a place, city, state, or address, or
           click the location on the map to get the coordinates.
         </Typography>
       </Box>
-      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 6 }}>
+      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 4 }}>
         <Grid container>
-          {/* ============ ORGIN-AddressInput ============ */}
+          {/* ============ AddressInput ============ */}
           <AddressInput readOnly={false} defaultValue="Atlanta, GA" />
-          {/* ============ DESTINATION-AddressInput ============ */}
-          <AddressInput readOnly={false} defaultValue="Austin, TX" />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">

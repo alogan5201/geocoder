@@ -5,26 +5,19 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "util/firebase";
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Icon from "@mui/material/Icon";
-import Button from "components/Button";
 import AddIcon from "@mui/icons-material/Add";
+import Grid from "@mui/material/Grid";
+import Button from "components/Button";
 // import Stack from "@mui/material/Stack";
 // Material Kit 2 PRO React components
-import ColoredBackgroundCard from "examples/Cards/BackgroundCards/ColoredBackgroundCard";
-import InfoBackgroundCard from "examples/Cards/BackgroundCards/InfoBackgroundCard";
 import Card from "@mui/material/Card";
-import Stack from "@mui/material/Stack";
+import MapExternal from "components/Maps/MapExternal";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
-import MapExternal from "components/Maps/MapExternal";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 import Typography from "components/Typography";
-import Form from "./components/Form";
-import FormWrapper from "components/FormWrapper";
 import LocationsTable from "./components/LocationsTable";
 function MovieDetailPage() {
   const [showMore, setShowMore] = useState(false);
@@ -128,7 +121,7 @@ function MovieDetailPage() {
       </Box>
       <Grid container spacing={0}>
         <Grid item xs={12} lg={12} position="relative" px={0}>
-          <Box px={{ xs: 1, sm: 3 }} py={{ xs: 0, sm: 6 }} sx={{ height: 600 }}>
+          <Box px={{ xs: 1, sm: 3 }} py={{ xs: 0, sm: 6 }} sx={{ height: 600 }} id="map-external">
             <MapExternal />
           </Box>
         </Grid>

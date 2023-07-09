@@ -72,7 +72,6 @@ function FormWrapper({ props, form, map }) {
             </Grid>
           </Box>
         </Grid>
-        <Sandbox />
       </Box>
     </>
   );

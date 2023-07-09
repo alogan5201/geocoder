@@ -36,6 +36,13 @@ function MoviesPage() {
   const [movies, setMovies] = useState([]);
   const [lastDoc, setLastDoc] = useState(null);
 const [loading, setLoading] = useState(true)
+const [pagIndex, setPagIndex] = useState(null)
+const [paginationLength, setPaginationLength] = useState(null)
+  const handlePagination = (e, page) => {
+ 
+    navigate(`/movies/${page}`);
+    setLoading(true)
+  }
   async function fetchMoviesInRange(start, end) {
     // Define the range of indexes
 
@@ -77,15 +84,16 @@ const [loading, setLoading] = useState(true)
            const inRange = isInPaginationPosition(movieLength, Number(slug));
           
            if(inRange){
+
             const rangeForNum = getRangeForPage(Number(movieLength), Number(slug));
            // console.log(getRangeForNumber(250,16))
          
           console.log(rangeForNum)
               const moviesInRange = await fetchMoviesInRange(rangeForNum[0],rangeForNum[1]);
               if(moviesInRange){
-                console.log(moviesInRange)
+                  setPagIndex(Number(slug))
+                  setPaginationLength(generateRanges(movieLength).length)
                 setMovies(moviesInRange);
-                console.log(moviesInRange)
                setLoading(false)
               }
               else {
@@ -152,55 +160,28 @@ const [loading, setLoading] = useState(true)
             </Box>
           </Box>
           <Grid container justifyContent="center" spacing={6}>
-            
             {movies.map((data) => (
               <Grid key={data.id} item sx={{ px: { xs: 0, md: 7 } }}>
-           
-                  <DefaultBlogCard
-                    maxWidth={500}
-                    maxHeight={400}
-                    image={data.image}
-                    title={data.title}
-                    action={{ type: "internal", route: `/location/${data.slug}` }}
-                  />
-            
+                <DefaultBlogCard
+                  maxWidth={500}
+                  maxHeight={400}
+                  image={data.image}
+                  title={data.title}
+                  action={{ type: "internal", route: `/location/${data.slug}` }}
+                />
               </Grid>
             ))}
-            {/*          {movies.map(({ id, data }) => (
-              <Grid key={id} item sx={{ px: { xs: 0, md: 7 } }}>
-                <Link to={`/movies/${data.slug}`}>
-                  <DefaultBlogCard
-                    maxWidth={500}
-                    maxHeight={400}
-                    image={data.image}
-                    title={data.title}
-                    action={{ type: "internal", route: `/movies/${data.slug}` }}
-                  />
-                </Link>
-              </Grid>
-            ))} */}
-            {/*           {movies.map((item, index) => {
-              const key = Object.keys(item)[0];
-              const { title, image } = item[key];
-              return (
-                <Grid key={key} item sx={{ px: { xs: 0, md: 7 } }}>
-                  <DefaultBlogCard
-                    maxWidth={500}
-                    maxHeight={400}
-                    image={image}
-                    title={title}
-                    action={{
-                      type: "internal",
-                      route: "/pages/blogs/single-article",
-                    }}
-                  />
-                </Grid>
-              );
-            })} */}
           </Grid>
           <Box pt={6} px={1} mt={6}>
             <Grid container justifyContent="center">
-              <Pagination count={10} shape="rounded" />
+              {paginationLength && pagIndex && (
+                <Pagination
+                  page={pagIndex}
+                  count={paginationLength}
+                  shape="rounded"
+                  onChange={handlePagination}
+                />
+              )}
             </Grid>
           </Box>
           <Box pt={6} px={1} mt={6}>
