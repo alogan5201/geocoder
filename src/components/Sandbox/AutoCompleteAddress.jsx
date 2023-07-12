@@ -62,14 +62,14 @@ const [open, setOpen] = React.useState(false);
     <Autocomplete
       open={open}
       id="mapbox-autocomplete-demo"
-      sx={{ padding:0 }}
       getOptionLabel={(option) => option.name}
       filterOptions={(x) => x}
       options={options}
       autoComplete
-
+      sx={{
+        "& .MuiInputBase-root": { padding: 0.6 },
+      }}
       fullWidth
-
       filterSelectedOptions
       value={value}
       noOptionsText=""
