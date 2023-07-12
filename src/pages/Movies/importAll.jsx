@@ -21,16 +21,15 @@ import { moviesAndImages, allFilmData } from "./movies-and-images";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 function MoviesPage() {
-
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const [movies, setMovies] = useState(moviesAndImages.slice(0, 15));
-    const post1 =
-      "https://images.unsplash.com/photo-1592489637182-8c172d6d7826?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2300&q=80";
-    const post2 =
-      "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2300&q=80";
-    const post3 =
-      "https://images.unsplash.com/photo-1444877466744-dc2f2af2b931?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2300&q=80";
+  const post1 =
+    "https://images.unsplash.com/photo-1592489637182-8c172d6d7826?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2300&q=80";
+  const post2 =
+    "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2300&q=80";
+  const post3 =
+    "https://images.unsplash.com/photo-1444877466744-dc2f2af2b931?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2300&q=80";
   const formWrapperStyles = formStyles.mapForm.formWrapper;
   const formWrapperProps = {
     styles: formWrapperStyles,
@@ -52,37 +51,41 @@ function MoviesPage() {
       const film = films[key];
       try {
         const docRef = await addDoc(collection(db, "films"), film);
-//        console.log("Document written with ID: ", docRef.id);
+        //
       } catch (e) {
         console.error("Error adding document: ", e);
       }
-    
     }
-      console.log("done")
   };
-const handleImportClick = async(e) => {
-  e.preventDefault()
-  if(allFilmData && allFilmData.films){
-    // Get the first 2 films using Object.entries and slicing the first 2 entries
-    const lessMovies = Object.entries(allFilmData.films).slice(0, 2).reduce((obj, [key, val]) => {
-      obj[key] = val;
-      return obj;
-    }, {});
-    const allMovies = Object.entries(allFilmData.films).reduce((obj, [key, val]) => {
-      obj[key] = val;
-      return obj;
-    }, {});
+  const handleImportClick = async (e) => {
+    e.preventDefault();
+    if (allFilmData && allFilmData.films) {
+      // Get the first 2 films using Object.entries and slicing the first 2 entries
+      const lessMovies = Object.entries(allFilmData.films)
+        .slice(0, 2)
+        .reduce((obj, [key, val]) => {
+          obj[key] = val;
+          return obj;
+        }, {});
+      const allMovies = Object.entries(allFilmData.films).reduce((obj, [key, val]) => {
+        obj[key] = val;
+        return obj;
+      }, {});
 
-  await addFilmsToFirestore(allMovies);
-  }
-}
+      await addFilmsToFirestore(allMovies);
+    }
+  };
   return (
     <>
       <BaseLayout>
-        <Box component="section" py={{ xs: 2, sm: 6 }} position="relative" >
-          <Box display="flex" alignItems="center"  sx={{ px: { xs: 0, md: 3}, py:{xs:2, md:5}}}>
+        <Box component="section" py={{ xs: 2, sm: 6 }} position="relative">
+          <Box
+            display="flex"
+            alignItems="center"
+            sx={{ px: { xs: 0, md: 3 }, py: { xs: 2, md: 5 } }}
+          >
             <Container>
-              <Grid 
+              <Grid
                 container
                 item
                 xs={12}
@@ -107,8 +110,8 @@ const handleImportClick = async(e) => {
                 </Typography>
                 <Stack direction="row" spacing={1} mt={3}>
                   <Button type="button" variant="gradient" color="info" onClick={handleImportClick}>
-             Import JSON
-            </Button>
+                    Import JSON
+                  </Button>
                   <Button>Get Started</Button>
                   <Button variant="text">Read more</Button>
                 </Stack>
@@ -116,29 +119,26 @@ const handleImportClick = async(e) => {
             </Container>
           </Box>
         </Box>
-        
+
         <Grid container justifyContent="center" spacing={6}>
-       
-            {movies.map((item, index) => {
-              const key = Object.keys(item)[0];
-              const { title, image } = item[key];
-              return (
-                <Grid key={key} item  sx={{ px: { xs: 0, md: 7}}}>
-                  <DefaultBlogCard
-                    maxWidth={500}
-                    maxHeight={400}
-                    image={image}
-                   
-                    title={title}
-                    action={{
-                      type: "internal",
-                      route: "/pages/blogs/single-article",
-                    }}
-                  />
-                </Grid>
-              );
-            })}
-     
+          {movies.map((item, index) => {
+            const key = Object.keys(item)[0];
+            const { title, image } = item[key];
+            return (
+              <Grid key={key} item sx={{ px: { xs: 0, md: 7 } }}>
+                <DefaultBlogCard
+                  maxWidth={500}
+                  maxHeight={400}
+                  image={image}
+                  title={title}
+                  action={{
+                    type: "internal",
+                    route: "/pages/blogs/single-article",
+                  }}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
         <Box pt={6} px={1} mt={6}>
           <DefaultFooter content={footerRoutes} />

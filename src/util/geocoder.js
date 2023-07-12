@@ -37,49 +37,87 @@ export const covertAddressToLatLng = async (address) => {
     return data;
   }
 };
- export const fetchAutocomplete = async (address) => {
-   const localStorageData = JSON.parse(localStorage.getItem("uidData") || "{}");
-   let uid = localStorageData.uid || "";
-   let lastUsedTime = localStorageData.lastUsedTime || 0;
-   let callCount = localStorageData.callCount || 0;
-   const currentTimestamp = Date.now();
+export const fetchAutocomplete = async (address) => {
+  const localStorageData = JSON.parse(localStorage.getItem("uidData") || "{}");
+  let uid = localStorageData.uid || "";
+  let lastUsedTime = localStorageData.lastUsedTime || 0;
+  let callCount = localStorageData.callCount || 0;
+  const currentTimestamp = Date.now();
 
-   // Check if uid can be reused
-   const canReuseUid =
-     (callCount < 50 && uid) || // Less than 50 successive calls without /retrieve
-     currentTimestamp - lastUsedTime < 60 * 60 * 1000; // Less than 60 minutes since last call without /retrieve
+  // Check if uid can be reused
+  const canReuseUid =
+    (callCount < 50 && uid) || // Less than 50 successive calls without /retrieve
+    currentTimestamp - lastUsedTime < 60 * 60 * 1000; // Less than 60 minutes since last call without /retrieve
 
-   if (!canReuseUid) {
-     uid = uuidv4();
-     callCount = 0;
-   }
+  if (!canReuseUid) {
+    uid = uuidv4();
+    callCount = 0;
+  }
 
-   const myQuery = `https://api.mapbox.com/search/searchbox/v1/suggest?q=${encodeURIComponent(
-     address
-   )}&language=en&limit=3&session_token=${uid}&access_token=${VITE_ACCESS_TOKEN}`;
-  
+  const myQuery = `https://api.mapbox.com/search/searchbox/v1/suggest?q=${encodeURIComponent(
+    address
+  )}&language=en&limit=3&session_token=${uid}&access_token=${VITE_ACCESS_TOKEN}`;
 
-   const response = await fetch(myQuery, { method: "GET" });
+  const response = await fetch(myQuery, { method: "GET" });
 
-   if (response.status !== 200) {
-     console.log(response.status);
-     return;
-   }
+  if (response.status !== 200) {
+    return;
+  }
 
-   // Save uid data to localStorage
-   localStorage.setItem(
-     "uidData",
-     JSON.stringify({
-       uid: uid,
-       lastUsedTime: currentTimestamp,
-       callCount: callCount + 1,
-     })
-   );
+  // Save uid data to localStorage
+  localStorage.setItem(
+    "uidData",
+    JSON.stringify({
+      uid: uid,
+      lastUsedTime: currentTimestamp,
+      callCount: callCount + 1,
+    })
+  );
 
-   const data = await response.json();
+  const data = await response.json();
 
-   return data;
- };
+  return data;
+};
+
+export const retrieveAutocomplete = async (id) => {
+    const localStorageData = JSON.parse(localStorage.getItem("uidData") || "{}");
+    let uid = localStorageData.uid || "";
+    let lastUsedTime = localStorageData.lastUsedTime || 0;
+    let callCount = localStorageData.callCount || 0;
+    const currentTimestamp = Date.now();
+
+    // Check if uid can be reused
+    const canReuseUid =
+      (callCount < 50 && uid) || // Less than 50 successive calls without /retrieve
+      currentTimestamp - lastUsedTime < 60 * 60 * 1000; // Less than 60 minutes since last call without /retrieve
+
+    if (!canReuseUid) {
+      uid = uuidv4();
+      callCount = 0;
+    }
+
+    const myQuery = `https://api.mapbox.com/search/searchbox/v1/retrieve/${id}?session_token=${uid}&access_token=${VITE_ACCESS_TOKEN}`;
+
+    const response = await fetch(myQuery, { method: "GET" });
+
+    if (response.status !== 200) {
+      return;
+    }
+
+    // Save uid data to localStorage
+    localStorage.setItem(
+      "uidData",
+      JSON.stringify({
+        uid: uid,
+        lastUsedTime: currentTimestamp,
+        callCount: callCount + 1,
+      })
+    );
+
+    const data = await response.json();
+
+    return data;
+ }
 export const getDirections = async (from, to) => {
   if (VITE_NODE_ENV === "development") {
     let addr = lowercaseFirst(address);
@@ -127,7 +165,6 @@ export const convertLatLngToAddress = async (lat, lng) => {
     return data;
   }
 };
-
 
 async function getFakeData(input) {
   const response = await fetch(`http://localhost:3000/${input}`, { method: "GET" });

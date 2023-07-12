@@ -49,8 +49,8 @@ export default function LatLngInputs(props){
         useEffect(() => {
             if (clearMapInputs){
               // ! UNCOMMENT FOR PRODUCTION
-           // latInputElm.current.value = "";
-            //lngInputElm.current.value = "";
+         latInputElm.current.value = "";
+         lngInputElm.current.value = "";
           }
         }, [clearMapInputs]);
     return (

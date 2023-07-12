@@ -106,7 +106,7 @@ function WeatherLegend({ L }) {
 
         // Use createRoot API for rendering
         const root = ReactDOM.createRoot(div);
-        console.log(weather);
+
         root.render(
           <div>
             <LegendContent content={weather} />

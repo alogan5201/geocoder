@@ -15,9 +15,7 @@ import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
 
 function Form() {
-  useEffect(() => {
-    test();
-  }, []);
+  const formRef = useRef();
 
   const [zoomState, setZoomState] = useState();
   const [coords, setCoords] = useGlobalValue();
@@ -29,22 +27,16 @@ function Form() {
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
-    const setErrorMessage = useStore((state) => state.setErrorMessage);
+  const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
 
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
-  function handleZoomReset(e) {
-    e.preventDefault();
-    resetZoom(1);
-    setTimeout(() => {
-      resetZoom(0);
-    }, 2000);
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     const inputOne = e.target[0].value;
     if (inputOne) {
       let extracted = extractWords(inputOne);
@@ -81,13 +73,22 @@ function Form() {
         updateGeoData(mapBoxData.features[0]);
       } else {
         setErrorMessage(true);
-  
+
         setTimeout(() => {
           setErrorMessage(false);
         }, 500);
       }
     }
   }
+  const handleChildSubmit = () => {
+    const e = {
+      target: formRef.current,
+      preventDefault: () => {},
+    };
+    handleSubmit(e);
+    //handleSubmit({ preventDefault: () => {} });
+  };
+
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector(".leaflet-bar");
@@ -110,7 +111,7 @@ function Form() {
     }
   }, [userLocationActive]);
   return (
-    <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
+    <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
           Address to Latitude & Longitude
@@ -123,7 +124,13 @@ function Form() {
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 4 }}>
         <Grid container>
           {/* ============ AddressInput ============ */}
-          <AddressInput readOnly={false} defaultValue="Atlanta, GA" />
+          <AddressInput
+            label="Address"
+            readOnly={false}
+            defaultValue="Atlanta, GA"
+            submitOnSelect={true}
+            onSubmit={handleChildSubmit}
+          />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">

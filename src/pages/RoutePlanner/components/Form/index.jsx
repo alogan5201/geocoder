@@ -7,7 +7,7 @@ import AddressInput from "components/AddressInput";
 import Button from "components/Button";
 import Typography from "components/Typography";
 import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import useStore from "store/mapStore";
 import {
   covertAddressToLatLng,
@@ -40,6 +40,8 @@ const DestinationInputIcon = () => {
 /*                                  ROUTE DATA                                */
 /* -------------------------------------------------------------------------- */
 function Form() {
+    const formRef = useRef();
+
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
@@ -68,13 +70,14 @@ function Form() {
   /* -------------------------------------------------------------------------- */
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log(e)
     const inputOne = e.target[0].value;
-    const inputTwo = e.target[2].value;
+    const inputTwo = e.target[3].value;
 
     if (inputOne && inputTwo) {
       let extracted = extractWords(inputOne);
       let withPlus = extracted.join("+");
-      setLoading(true)
+      setLoading(true);
       const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
       const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
 
@@ -107,7 +110,7 @@ function Form() {
               const addressOrigin = extractCityAndState(mapBoxDataOrigin);
               const addressDestination = extractCityAndState(mapBoxDataDestination);
               const test = extractCityAndState(mapBoxDataDestination);
-              console.log("test", test);
+
               const weatherData = {
                 origin: {
                   address: addressOrigin.city,
@@ -132,7 +135,14 @@ function Form() {
       }
     }
   }
-
+  const handleChildSubmit = () => {
+    const e = {
+      target: formRef.current,
+      preventDefault: () => {},
+    };
+    handleSubmit(e);
+    //handleSubmit({ preventDefault: () => {} });
+  };
   const updateRoute = async (markerData) => {
     if (markerData && markerData.length > 1) {
       try {
@@ -252,7 +262,7 @@ function Form() {
   }, [routeData]);
 
   return (
-    <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
+    <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
           Route Planner
@@ -266,6 +276,7 @@ function Form() {
         <Grid container>
           {/* ============ ORGIN-AddressInput ============ */}
           <AddressInput
+            label="Origin"
             readOnly={false}
             defaultValue="Atlanta, GA"
             icon={<OriginInputIcon />}
@@ -273,10 +284,13 @@ function Form() {
           />
           {/* ============ DESTINATION-AddressInput ============ */}
           <AddressInput
+            label="Destination"
             readOnly={false}
             disableChangeEventListener={true}
             defaultValue="Austin, TX"
             icon={<DestinationInputIcon />}
+            submitOnSelect={true}
+            onSubmit={handleChildSubmit}
           />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>

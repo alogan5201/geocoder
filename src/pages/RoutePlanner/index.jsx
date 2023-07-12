@@ -16,7 +16,6 @@ function RoutePlannerPage() {
     <>
       <BaseLayout>
         <FormWrapper form={<Form addressToLatLng={true} />} />
-
         <Box pt={6} px={1} mt={6}>
           <DefaultFooter content={footerRoutes} />
         </Box>

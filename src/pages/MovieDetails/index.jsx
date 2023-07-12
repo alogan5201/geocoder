@@ -24,19 +24,19 @@ function MovieDetailPage() {
   const { slug } = useParams();
   const [movie, setMovie] = useState(null);
   const navigate = useNavigate();
-  const color = "light"
+  const color = "light";
   useEffect(() => {
     const fetchMovie = async () => {
       const moviesCollection = collection(db, "films");
       const q = query(moviesCollection, where("slug", "==", slug));
       const querySnapshot = await getDocs(q);
-      
+
       // As 'slug' is unique, there should be at most one match
       querySnapshot.forEach((doc) => {
-        if(!doc.exists()) {
+        if (!doc.exists()) {
           navigate("/404");
         }
-        console.log(doc.data().locations);
+
         setMovie(doc.data());
       });
     };
@@ -47,8 +47,7 @@ function MovieDetailPage() {
     e.preventDefault();
     setShowMore(!showMore);
   };
-  if (!movie) return <Loading/>;
-
+  if (!movie) return <Loading />;
 
   return (
     // Render movie details

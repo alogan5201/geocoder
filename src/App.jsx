@@ -44,21 +44,17 @@ export default function App() {
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-   // ! Ucomment for production
-   resetMapData()
+    // ! Ucomment for production
+    resetMapData();
   }, [pathname]);
   useEffectOnce(() => {
     const setMovieList = async () => {
-      console.log("Running effect once on mount");
-     const moviesCollection = collection(db, "films");
-     const q = query(
-       moviesCollection
-     );
-    const querySnapshot = await getDocs(q);
-localStorage.setItem("movie-list-length", querySnapshot.size);
-
-    }
-    setMovieList()
+      const moviesCollection = collection(db, "films");
+      const q = query(moviesCollection);
+      const querySnapshot = await getDocs(q);
+      localStorage.setItem("movie-list-length", querySnapshot.size);
+    };
+    setMovieList();
   });
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {

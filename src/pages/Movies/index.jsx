@@ -17,8 +17,7 @@ import {
   isFirstItemOf15Subset,
   getMovieListLength,
   isInPaginationPosition,
-  generateRanges
-  
+  generateRanges,
 } from "util/helpers";
 import Loading from "components/Loading";
 const ITEMS_PER_PAGE = 15;
@@ -31,30 +30,23 @@ function getRangeForPage(n, pageIndex) {
   return ranges[pageIndex - 1];
 }
 function MoviesPage() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { slug } = useParams();
   const [movies, setMovies] = useState([]);
   const [lastDoc, setLastDoc] = useState(null);
-const [loading, setLoading] = useState(true)
-const [pagIndex, setPagIndex] = useState(null)
-const [paginationLength, setPaginationLength] = useState(null)
+  const [loading, setLoading] = useState(true);
+  const [pagIndex, setPagIndex] = useState(null);
+  const [paginationLength, setPaginationLength] = useState(null);
   const handlePagination = (e, page) => {
- 
     navigate(`/movies/${page}`);
-    setLoading(true)
-  }
+    setLoading(true);
+  };
   async function fetchMoviesInRange(start, end) {
     // Define the range of indexes
 
- 
-
     // Create a query against the collection
     const moviesCollection = collection(db, "films");
-    const q = query(
-      moviesCollection,
-      where("index", ">=", start),
-      where("index", "<=", end)
-    );
+    const q = query(moviesCollection, where("index", ">=", start), where("index", "<=", end));
 
     const querySnapshot = await getDocs(q);
     const movies = querySnapshot.docs.map((doc) => doc.data());
@@ -73,47 +65,38 @@ const [paginationLength, setPaginationLength] = useState(null)
       });
     };
     const fetchMovies = async () => {
-          if (!slug) {
-            navigate("/movies/1");
+      if (!slug) {
+        navigate("/movies/1");
+      } else if (isNaN(Number(slug))) {
+        navigate("/404");
+      } else {
+        const movieLength = await getMovieListLength();
+        // const movies = await fetchMoviesInRange(Number(slug));
+        const inRange = isInPaginationPosition(movieLength, Number(slug));
+
+        if (inRange) {
+          const rangeForNum = getRangeForPage(Number(movieLength), Number(slug));
+          //
+
+          const moviesInRange = await fetchMoviesInRange(rangeForNum[0], rangeForNum[1]);
+          if (moviesInRange) {
+            setPagIndex(Number(slug));
+            setPaginationLength(generateRanges(movieLength).length);
+            setMovies(moviesInRange);
+            setLoading(false);
+          } else {
+            navigate("/404");
           }
-         else if (isNaN(Number(slug))) {
-           navigate("/404");
-         } else {
-          const movieLength = await getMovieListLength()
-           // const movies = await fetchMoviesInRange(Number(slug));
-           const inRange = isInPaginationPosition(movieLength, Number(slug));
-          
-           if(inRange){
-
-            const rangeForNum = getRangeForPage(Number(movieLength), Number(slug));
-           // console.log(getRangeForNumber(250,16))
-         
-          console.log(rangeForNum)
-              const moviesInRange = await fetchMoviesInRange(rangeForNum[0],rangeForNum[1]);
-              if(moviesInRange){
-                  setPagIndex(Number(slug))
-                  setPaginationLength(generateRanges(movieLength).length)
-                setMovies(moviesInRange);
-               setLoading(false)
-              }
-              else {
-                navigate("/404");
-              }
-           } else {
-              navigate("/404");
-           }
-         }
-     
-
+        } else {
+          navigate("/404");
+        }
+      }
     };
     fetchMovies();
   }, [navigate, slug]);
-  if(loading){
-    return (
-      <Loading/>
-    )
-  }
-  else {
+  if (loading) {
+    return <Loading />;
+  } else {
     return (
       <>
         <BaseLayout>
@@ -190,7 +173,6 @@ const [paginationLength, setPaginationLength] = useState(null)
         </BaseLayout>
       </>
     );
-
   }
 }
 export default MoviesPage;
