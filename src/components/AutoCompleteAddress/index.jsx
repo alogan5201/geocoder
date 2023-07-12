@@ -10,7 +10,8 @@ import { debounce } from "@mui/material/utils";
 import { fetchAutocomplete } from "util/geocoder";
 import { v4 as uuidv4 } from "uuid";
 import SearchIcon from "@mui/icons-material/Search";
-
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 export default function AutoCompleteAddress() {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
@@ -60,6 +61,7 @@ export default function AutoCompleteAddress() {
 
   return (
     <Autocomplete
+      freeSolo
       open={open}
       id="mapbox-autocomplete-demo"
       getOptionLabel={(option) => option.name}
@@ -80,7 +82,7 @@ export default function AutoCompleteAddress() {
           fontSize="medium"
           color="info"
           sx={{
-           mr:2.5
+            mr: 2.5,
           }}
         />
       }
@@ -102,8 +104,25 @@ export default function AutoCompleteAddress() {
       renderInput={(params) => (
         <TextField
           {...params}
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <>
+                <InputAdornment position="end">
+                  <IconButton type="submit" sx={{mr:2}}>
+                    <SearchIcon fontSize="medium" color="info" />
+                  </IconButton>
+                </InputAdornment>
+                {params.InputProps.endAdornment}
+              </>
+            ),
+          }}
           fullWidth
-          onBlur={() => setOpen(false)} // close dropdown when input loses focus
+          onBlur={() => {
+            const savedInputValue = inputValue;
+            console.log("set open false");
+            setOpen(false);
+          }}
         />
       )}
       renderOption={(props, option) => {
