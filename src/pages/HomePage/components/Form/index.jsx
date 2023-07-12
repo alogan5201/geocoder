@@ -13,7 +13,7 @@ import { extractWords, test } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
-
+import AutoCompleteAddress from "components/AutoCompleteAddress";
 function Form() {
   useEffect(() => {
     test();
@@ -122,6 +122,9 @@ function Form() {
       </Box>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 4 }}>
         <Grid container>
+            <Grid item xs={12} pr={1} mb={3}>
+              <AutoCompleteAddress />
+            </Grid>
           {/* ============ AddressInput ============ */}
           <AddressInput readOnly={false} defaultValue="Atlanta, GA" />
           {/* ============ Submit ============ */}

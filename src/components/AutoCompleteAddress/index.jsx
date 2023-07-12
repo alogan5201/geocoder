@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState, useMemo, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -12,11 +12,11 @@ import { v4 as uuidv4 } from "uuid";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default function AutoCompleteAddress() {
-  const [value, setValue] = React.useState(null);
-  const [inputValue, setInputValue] = React.useState("");
-  const [options, setOptions] = React.useState([]);
-const [open, setOpen] = React.useState(false);
-  const fetch = React.useMemo(
+  const [value, setValue] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+  const [options, setOptions] = useState([]);
+const [open, setOpen] = useState(false);
+  const fetch = useMemo(
     () =>
       debounce(async (request, callback) => {
         const data = await fetchAutocomplete(request.input);
@@ -25,7 +25,7 @@ const [open, setOpen] = React.useState(false);
     []
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     let active = true;
 
     if (inputValue === "") {
@@ -62,14 +62,14 @@ const [open, setOpen] = React.useState(false);
     <Autocomplete
       open={open}
       id="mapbox-autocomplete-demo"
-      sx={{ padding:0 }}
+      sx={{
+        "& .MuiInputBase-root": { padding: 0.5 },
+      }}
       getOptionLabel={(option) => option.name}
       filterOptions={(x) => x}
       options={options}
       autoComplete
-
       fullWidth
-
       filterSelectedOptions
       value={value}
       noOptionsText=""
