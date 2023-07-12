@@ -20,6 +20,10 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    errorMessage: false,
   weather: null,
   loading: false,
+  autocompleteData: null,
+   setAutocompleteData: (data) => {
+       set(() => ({ autocompleteData: data }));
+   },
    setLoading: (data) => {
        set(() => ({ loading: data }));
    },

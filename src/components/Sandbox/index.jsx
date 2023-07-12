@@ -15,6 +15,7 @@ import ReactJson from "react-json-view";
 import WeatherCard from "./WeatherCard";
 import Stack from "@mui/material/Stack";
 import { motion } from "framer-motion";
+import AutoCompleteAddress from "./AutoCompleteAddress";
 
 function Sandbox() {
   const allObjects = useStore((state) => state);
@@ -34,7 +35,7 @@ function Sandbox() {
   useEffect(() => {}, [allObjects]);
   return (
     <div>
-{/*       <Stack direction="row" spacing={15}>
+      {/*       <Stack direction="row" spacing={15}>
         <div style={{ maxWidth: 120 }}>
           <motion.div
             initial={{ scale: 0 }}
@@ -52,11 +53,13 @@ function Sandbox() {
         <div style={{ maxWidth: 120 }}>
           <WeatherCard loading={true} />
         </div>
-      </Stack> */}
-      <div style={{ fontSize: "14px" }}>
+      </Stack>
+         <div style={{ fontSize: "14px" }}>
         <ReactJson src={allObjects} />
       </div>
-
+      <AutoCompleteAddress />
+       */}
+   <AutoCompleteAddress />
       {/*      <Wrapper
         children={<WhatChanged data={testData ? testData : null} />}
         name="What Changed"
