@@ -16,7 +16,8 @@ import WeatherCard from "./WeatherCard";
 import Stack from "@mui/material/Stack";
 import { motion } from "framer-motion";
 import AutoCompleteAddress from "./AutoCompleteAddress";
-
+import Controls from "./Controls";
+import Count from "./Count";
 function Sandbox() {
   const allObjects = useStore((state) => state);
   const testData = useStore((state) => state.testData);
@@ -59,7 +60,11 @@ function Sandbox() {
       </div>
       <AutoCompleteAddress />
        */}
-      <ReactJson src={allObjects} />
+      <Count />
+      <Controls />
+      <div style={{ fontSize: "14px" }}>
+        <ReactJson src={allObjects} />
+      </div>
       {/*      <Wrapper
         children={<WhatChanged data={testData ? testData : null} />}
         name="What Changed"

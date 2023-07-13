@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { useEffect, Suspense } from "react";
 import useStore from "store/mapStore";
 import { collection, query, where, getDocs } from "firebase/firestore";
-
+import { shallow } from 'zustand/shallow'
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffectOnce } from "react-use";
@@ -25,6 +25,7 @@ import { useEffectOnce } from "react-use";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { db } from "util/firebase";
+import { useTestStore } from "store/testStore";
 
 // Material Kit 2 PRO React themes
 import theme from "assets/theme";
@@ -39,6 +40,10 @@ import "src/App.css";
 import routes from "routes";
 
 export default function App() {
+    const [increase, decrease, reset] = useTestStore(
+      (state) => [state.increase, state.decrease, state.reset],
+      shallow
+    );
   const { pathname } = useLocation();
     const markerData = useStore((state) => state.markerData);
 
@@ -47,8 +52,9 @@ export default function App() {
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-   
+   console.log(pathname)
     localStorage.setItem("markerData", "[]");
+    reset()
     resetMapData();
 
 

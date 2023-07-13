@@ -21,19 +21,20 @@ const routes = [
         name: "Address to Latitude & Longitude",
         description: "Convert an address to Latitude and Longitude",
         route: "/address-to-lat-lng",
-        component: <AddressToLatLng />,
+        component: <AddressToLatLng key={"addressToLatLng"} />,
       },
       {
         name: "Latitude & Longitude to Address",
         description: "Convert Latitude and Longitude to an address",
         route: "/lat-lng-to-address",
-        component: <LatLngToAddress />,
+        component: <LatLngToAddress key={"latLngToAddress"} />,
+ 
       },
       {
         name: "Test Page",
         description: "",
         route: "/test",
-        component: <TestPage />,
+        component: <TestPage key={"test"} />,
       },
     ],
   },

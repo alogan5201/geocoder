@@ -11,8 +11,11 @@ import FormWrapper from "components/FormWrapper";
 import footerRoutes from "footer.routes";
 import { formStyles } from "src/styles";
 import Form from "./components/Form";
+import { useLocation } from "react-router-dom";
 
 function AddressToLatLngPage() {
+    const { pathname } = useLocation();
+
   const formWrapperStyles = formStyles.mapForm.formWrapper;
   const formWrapperProps = {
     styles: formWrapperStyles,
@@ -32,7 +35,7 @@ function AddressToLatLngPage() {
   return (
     <>
       <BaseLayout>
-        <FormWrapper key="AddressToLatLng" form={<Form addressToLatLng={true} />} />
+        <FormWrapper key={pathname} form={<Form addressToLatLng={true} />} />
 
         <Box pt={6} px={1} mt={6}>
           <DefaultFooter content={footerRoutes} />

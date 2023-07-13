@@ -20,6 +20,7 @@ import PropTypes from "prop-types";
 
 // Custom styles for Input
 import MKInputRoot from "components/Input/MKInputRoot";
+import { useLocation } from "react-router-dom";
 
 const Input = forwardRef(({ error, success, disabled, ...rest }, ref) => (
   <MKInputRoot {...rest} ref={ref} ownerState={{ error, success, disabled }} />
