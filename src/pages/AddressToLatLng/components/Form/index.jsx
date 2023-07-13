@@ -13,6 +13,7 @@ import { extractWords, test } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
+import { useEffectOnce } from "react-use";
 
 function Form() {
   const formRef = useRef();
@@ -29,6 +30,7 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
+    const markerDataState = useStore((state) => state.markerData);
 
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
@@ -102,7 +104,9 @@ function Form() {
     //    handleSubmit(e);
     //handleSubmit({ preventDefault: () => {} });
   };
-
+  useEffectOnce(() => { 
+    resetMapData();
+  })
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector(".leaflet-bar");
@@ -124,6 +128,13 @@ function Form() {
       }
     }
   }, [userLocationActive]);
+
+  useEffect(() => {
+    return (() => {
+        localStorage.setItem("markerData", "[]");
+        resetMapData();
+    })
+  }, []);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>

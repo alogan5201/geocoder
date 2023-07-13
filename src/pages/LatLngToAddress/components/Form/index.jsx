@@ -15,9 +15,7 @@ import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
 
 function Form() {
-  useEffect(() => {
-    test();
-  }, []);
+ 
 
   const [zoomState, setZoomState] = useState();
   const [coords, setCoords] = useGlobalValue();
@@ -31,7 +29,9 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
-
+ useEffect(() => {
+  resetMapData()
+ }, []);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */

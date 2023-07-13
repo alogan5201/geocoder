@@ -18,6 +18,7 @@ function AddressInput({ onSubmit, ...props }) {
   const addressInputElm = useRef(null);
   const { pathname } = useLocation();
   const [address, setAddress] = useState(null);
+  const userLocationActive = useStore((state) => state.userLocationActive);
 
   function handleChange(e) {
     let val = e.target.value;
@@ -29,32 +30,27 @@ function AddressInput({ onSubmit, ...props }) {
     }
   }
   useEffect(() => {
-    console.log(clearMapInputs)
     if (clearMapInputs && props.readOnly) {
       addressInputElm.current.value = "";
-      setAddress(null)
+      setAddress(null);
     }
   }, [clearMapInputs]);
 
   useEffect(() => {
-    setTimeout(() => {
-    if (markerData) {
-      // [0].title
-      console.log(markerData);
-      const addr = markerData[0].title.includes(", United States")
-        ? markerData[0].title.replace(", United States", "")
-        : markerData[0].title;
-
-      setAddress(addr);
-      if (props.readOnly) {
-        addressInputElm.current.value = addr;
-      }
-    }  
-    }, 500);
-    
-          return () => {
-            setAddress(null);
-          };
+     if (markerData) {
+       const addr = markerData[0].title.includes(", United States")
+         ? markerData[0].title.replace(", United States", "")
+         : markerData[0].title;
+       console.log(markerData);
+       setAddress(addr);
+       if (props.readOnly) {
+         addressInputElm.current.value = addr;
+       }
+     }
+    return () => {
+      
+      setAddress(null);
+    };
   }, [markerData]);
   return (
     <Grid item xs={12} pr={1} mb={3}>

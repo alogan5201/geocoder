@@ -34,24 +34,31 @@ import Loading from "components/Loading";
 import MovieDetailPage from "pages/MovieDetails";
 import Movies from "pages/Movies";
 import "src/App.css";
+
 // Material Kit 2 PRO React routes
 import routes from "routes";
 
 export default function App() {
   const { pathname } = useLocation();
+    const markerData = useStore((state) => state.markerData);
+
   const resetMapData = useStore((state) => state.resetMapData);
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-console.log('reseting map data')
+   
+    localStorage.setItem("markerData", "[]");
     resetMapData();
+
+
   }, [pathname]);
   useEffectOnce(() => {
     const setMovieList = async () => {
       const moviesCollection = collection(db, "films");
       const q = query(moviesCollection);
       const querySnapshot = await getDocs(q);
+
       localStorage.setItem("movie-list-length", querySnapshot.size);
     };
     setMovieList();

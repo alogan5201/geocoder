@@ -59,7 +59,7 @@ function Sandbox() {
       </div>
       <AutoCompleteAddress />
        */}
-   <AutoCompleteAddress />
+      <ReactJson src={allObjects} />
       {/*      <Wrapper
         children={<WhatChanged data={testData ? testData : null} />}
         name="What Changed"
