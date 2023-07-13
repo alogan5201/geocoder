@@ -131,13 +131,7 @@ function MoviesPage() {
                     Movie locations with a map, and a list of their latitude and logitude
                     coordinates
                   </Typography>
-                  <Stack direction="row" spacing={1} mt={3}>
-                    <Button type="button" variant="gradient" color="info">
-                      Import JSON
-                    </Button>
-                    <Button>Get Started</Button>
-                    <Button variant="text">Read more</Button>
-                  </Stack>
+            
                 </Grid>
               </Container>
             </Box>
