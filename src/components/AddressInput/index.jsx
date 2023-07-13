@@ -2,12 +2,13 @@ import Grid from "@mui/material/Grid";
 import Input from "components/Input";
 // @mui material components
 import AutoCompleteAddress from "components/AutoCompleteAddress";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import useStore from "store/mapStore";
 // @mui icons
 import Box from "components/Box";
 import Typography from "components/Typography";
+import { marker } from "leaflet";
 
 // Material Kit 2 PRO React components
 function AddressInput({ onSubmit, ...props }) {
@@ -16,6 +17,8 @@ function AddressInput({ onSubmit, ...props }) {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const addressInputElm = useRef(null);
   const { pathname } = useLocation();
+  const [address, setAddress] = useState(null);
+
   function handleChange(e) {
     let val = e.target.value;
 
@@ -26,27 +29,38 @@ function AddressInput({ onSubmit, ...props }) {
     }
   }
   useEffect(() => {
+    console.log(clearMapInputs)
     if (clearMapInputs && props.readOnly) {
       addressInputElm.current.value = "";
+      setAddress(null)
     }
   }, [clearMapInputs]);
 
   useEffect(() => {
-    if (pathname.includes("route-planner")) {
-      return;
-    } else if (markerData && props.readOnly) {
+    setTimeout(() => {
+    if (markerData) {
       // [0].title
-      const address = markerData[0].title.includes(", United States")
+      console.log(markerData);
+      const addr = markerData[0].title.includes(", United States")
         ? markerData[0].title.replace(", United States", "")
         : markerData[0].title;
-      addressInputElm.current.value = address;
-    }
+
+      setAddress(addr);
+      if (props.readOnly) {
+        addressInputElm.current.value = addr;
+      }
+    }  
+    }, 500);
+    
+          return () => {
+            setAddress(null);
+          };
   }, [markerData]);
   return (
     <Grid item xs={12} pr={1} mb={3}>
       <Box>
         <Typography display="inline" variant="h6" fontWeight="regular" color="secondary">
-      {props.label ? props.label : "Address"}
+          {props.label ? props.label : "Address"}
         </Typography>
       </Box>
       {props.readOnly ? (
@@ -58,7 +72,13 @@ function AddressInput({ onSubmit, ...props }) {
           InputProps={{ readOnly: props.readOnly }}
         />
       ) : (
-          <AutoCompleteAddress label={props.label} submitOnSelect={props.submitOnSelect} onSubmit={onSubmit} icon={props.icon ? props.icon : null } />
+        <AutoCompleteAddress
+          address={address}
+          label={props.label}
+          submitOnSelect={props.submitOnSelect}
+          onSubmit={onSubmit}
+          icon={props.icon ? props.icon : null}
+        />
       )}
     </Grid>
   );

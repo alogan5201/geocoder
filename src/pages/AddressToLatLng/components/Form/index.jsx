@@ -80,12 +80,26 @@ function Form() {
       }
     }
   }
-  const handleChildSubmit = () => {
-    const e = {
-      target: formRef.current,
-      preventDefault: () => {},
-    };
-    handleSubmit(e);
+  const handleChildSubmit = (data, label) => {
+    if (data) {
+      if (!label) {
+        const target = [{ value: data.name }];
+        const e = {
+          target: target,
+          preventDefault: () => {},
+        };
+        handleSubmit(e);
+      } else {
+        const target = [formRef.current[0], 1, { value: data.name }];
+        const e = {
+          target: target,
+          preventDefault: () => {},
+        };
+        handleSubmit(e);
+      }
+    }
+
+    //    handleSubmit(e);
     //handleSubmit({ preventDefault: () => {} });
   };
 

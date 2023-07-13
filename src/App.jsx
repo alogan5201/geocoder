@@ -44,7 +44,7 @@ export default function App() {
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-    // ! Ucomment for production
+console.log('reseting map data')
     resetMapData();
   }, [pathname]);
   useEffectOnce(() => {

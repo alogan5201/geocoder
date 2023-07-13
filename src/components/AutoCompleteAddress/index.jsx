@@ -15,7 +15,14 @@ import IconButton from "@mui/material/IconButton";
 import useStore from "store/mapStore";
 import Popper from "@mui/material/Popper";
 
-export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit, icon, label }) {
+export default function AutoCompleteAddress({
+  address,
+  clear,
+  submitOnSelect,
+  onSubmit,
+  icon,
+  label,
+}) {
   const autocompleteRef = useRef(null);
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
@@ -65,12 +72,11 @@ export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit, i
     setValue(formattedValue);
     setOverrideInput(true);
     setOpen(false);
-   handleSubmit(formattedValue);
+    handleSubmit(formattedValue);
   };
-  const handleSubmit = (formattedValue) => {
+  const handleSubmit = (formattedValue, label) => {
     if (submitOnSelect) {
-  
-      onSubmit(formattedValue);
+      onSubmit(formattedValue, label);
     } else {
       return;
     }
@@ -110,7 +116,22 @@ export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit, i
     };
   }, [value, inputValue, fetch]);
 
-  useEffect(() => {}, [open]);
+  useEffect(() => {
+    if (address) {
+      const uid = uuidv4();
+      const newInputValue = { name: address, id: uid };
+
+      if (label && label === "Destination") {
+        return;
+      } else {
+        setOverrideInput(true);
+        setValue(newInputValue);
+      }
+    }
+    return (() => {
+      setValue(null);
+    })
+  }, [address]);
   useEffect(() => {
     if (clear) {
       setInputValue("");
@@ -188,7 +209,7 @@ export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit, i
         />
       )}
       renderOption={(props, option) => {
-        const id = option.mapbox_id
+        const id = option.mapbox_id;
         const parts = parse(option, []);
 
         // [0].text.mapbox_id

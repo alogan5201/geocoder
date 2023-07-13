@@ -83,31 +83,30 @@ const LocationButton = ({ L }) => {
       onLocationFound: async function (e) {
         let lat = e.latitude;
         let lng = e.longitude;
+            const mapBoxData = await convertLatLngToAddress(lat, lng);
+            if (mapBoxData && mapBoxData.features.length > 0) {
+              const address = mapBoxData.features[0].place_name;
+              const cityAndState = extractCityAndState(mapBoxData);
+              const city = cityAndState.city ? cityAndState.city : null;
+              const state = cityAndState.state ? cityAndState.state : null;
+              const uid = uuidv4();
 
-        const mapBoxData = await convertLatLngToAddress(lat, lng);
-        if (mapBoxData && mapBoxData.features.length > 0) {
-          const address = mapBoxData.features[0].place_name;
-    const cityAndState = extractCityAndState(mapBoxData);
-    const city = cityAndState.city ? cityAndState.city : null;
-    const state = cityAndState.state ? cityAndState.state : null;
-            const uid = uuidv4();
+              const markerData = [
+                {
+                  id: uid,
+                  lat: lat,
+                  lng: lng,
+                  title: address,
+                  userLocation: false,
+                  city: city,
+                  state: state,
+                },
+              ];
 
-            const markerData = [
-              {
-                id: uid,
-                lat: lat,
-                lng: lng,
-                title: address,
-                userLocation: false,
-                city: city,
-                state: state,
-              },
-            ];
-          
-          updateMarkerData(markerData);
-          setUserLocationActive(true);
-          updateGeoData(mapBoxData.features[0]);
-        }
+              updateMarkerData(markerData);
+              setUserLocationActive(true);
+              updateGeoData(mapBoxData.features[0]);
+            }
         // add circle
         // this.addCircle(e).addTo(this.featureGroup()).addTo(map);
 

@@ -224,3 +224,9 @@ import useStore from "store/mapStore";
 
   TODO: 
   Fix the geolocation part
+
+
+  TODO: I need to fix an issue with /home/a/react-leaflet-apps/my-vite-react-app/src/components/Maps/components/LocationButton.jsx
+
+  When the location is active it is setting address fields when switching to other pages
+I probably just need to add some kind of method to App.jsx that will prevent onLocatioNFound to be called when calling resetMapData
