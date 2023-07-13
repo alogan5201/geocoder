@@ -15,7 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import useStore from "store/mapStore";
 import Popper from "@mui/material/Popper";
 
-export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit,icon, label }) {
+export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit, icon, label }) {
   const autocompleteRef = useRef(null);
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
@@ -23,8 +23,8 @@ export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit,ic
   const [open, setOpen] = useState(false);
   const setMapInputState = useStore((state) => state.setMapInputState);
   const [overrideInput, setOverrideInput] = useState(false);
-    const markerData = useStore((state) => state.markerData);
-
+  const setFlyToMarker = useStore((state) => state.setFlyToMarker);
+  const [origin, setOrigin] = useState(null);
   const modifiers = [
     {
       name: "flip",
@@ -36,11 +36,8 @@ export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit,ic
   const fetch = useMemo(
     () =>
       debounce(async (request, callback) => {
-    
-    const data = await fetchAutocomplete(request.input);
-    callback(data.suggestions);
-        
-        
+        const data = await fetchAutocomplete(request.input);
+        callback(data.suggestions);
       }, 400),
     []
   );
@@ -52,30 +49,33 @@ export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit,ic
   };
 
   const handleChange = async (event, newValue) => {
-  
-        const id = newValue.mapbox_id;
+    const id = newValue.mapbox_id;
 
-        const retrieveSuggestion = await retrieveAutocomplete(id);
-    const placeFormatted =
-      retrieveSuggestion ? retrieveSuggestion.features[0].properties.full_address : null
+    const retrieveSuggestion = await retrieveAutocomplete(id);
+    const placeFormatted = retrieveSuggestion
+      ? retrieveSuggestion.features[0].properties.full_address
+      : null;
     const newInputValue = !placeFormatted
       ? newValue.name
-      : placeFormatted.includes(", United States of America") ? placeFormatted.replace(", United States of America", "") : placeFormatted;
-   const formattedValue = {name: newInputValue, mapbox_id: newValue.mapbox_id}
+      : placeFormatted.includes(", United States of America")
+      ? placeFormatted.replace(", United States of America", "")
+      : placeFormatted;
+    const formattedValue = { name: newInputValue, mapbox_id: newValue.mapbox_id };
     setOptions(formattedValue ? [formattedValue, ...options] : options);
     setValue(formattedValue);
     setOverrideInput(true);
     setOpen(false);
+   handleSubmit(formattedValue);
   };
-  const handleSubmit = () => {
-       if (submitOnSelect) {
-         onSubmit();
-       }
-       else {
-         return
-    }
-  }
+  const handleSubmit = (formattedValue) => {
+    if (submitOnSelect) {
   
+      onSubmit(formattedValue);
+    } else {
+      return;
+    }
+  };
+
   useEffect(() => {
     let active = true;
 
@@ -87,7 +87,6 @@ export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit,ic
     }
 
     fetch({ input: inputValue }, (results) => {
-    
       if (active) {
         let newOptions = [];
 
@@ -98,7 +97,7 @@ export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit,ic
         if (results) {
           const uid = uuidv4();
           let resultsWithId = results.map(({ name, mapbox_id }) => ({ name, mapbox_id }));
-          
+
           newOptions = [...newOptions, ...resultsWithId];
         }
 
@@ -118,18 +117,10 @@ export default function AutoCompleteAddress({ clear, submitOnSelect, onSubmit,ic
     }
   }, [clear]);
 
-  const handleIconClick = (e) => { 
-    e.preventDefault()
-setOverrideInput(true)
-    if (label && markerData) {
-      console.log(label,markerData)
-    }
-  }
   return (
     <Autocomplete
       disablePortal={true}
       freeSolo
-      open={true}
       id="mapbox-autocomplete-demo"
       getOptionLabel={(option) => option.name}
       filterOptions={(x) => x}
@@ -177,9 +168,7 @@ setOverrideInput(true)
               <>
                 <InputAdornment position="end">
                   {icon ? (
-                    <IconButton type="button" onClick={handleIconClick} sx={{ mr: 1 }}>
-                      {icon}
-                    </IconButton>
+                    <Box sx={{ mr: 2 }}>{icon}</Box>
                   ) : (
                     <IconButton type="button" sx={{ mr: 2 }}>
                       <SearchIcon fontSize="medium" color="info" />
@@ -199,11 +188,12 @@ setOverrideInput(true)
         />
       )}
       renderOption={(props, option) => {
+        const id = option.mapbox_id
         const parts = parse(option, []);
 
         // [0].text.mapbox_id
         return (
-          <li {...props}>
+          <li {...props} key={id}>
             <Grid container alignItems="center">
               <Grid item sx={{ display: "flex", width: 44 }}>
                 <LocationOnIcon sx={{ color: "text.secondary" }} />
@@ -211,7 +201,7 @@ setOverrideInput(true)
               <Grid item sx={{ width: "calc(100% - 44px)", wordWrap: "break-word" }}>
                 {parts.map((part, index) => (
                   <Box
-                    key={part.text.mapbox_id}
+                    key={index}
                     component="span"
                     sx={{ fontWeight: part.highlight ? "bold" : "regular" }}
                   >

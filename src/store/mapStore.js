@@ -20,7 +20,12 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    errorMessage: false,
   weather: null,
   loading: false,
-  autocompleteData: null,
+   autocompleteData: null,
+   flyToMarker: null,
+
+   setFlyToMarker: (data) => {
+       set(() => ({ flyToMarker: data }));
+   },
    setAutocompleteData: (data) => {
        set(() => ({ autocompleteData: data }));
    },

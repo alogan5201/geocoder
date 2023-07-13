@@ -17,11 +17,11 @@ const LegendContent = ({ content }) => {
   return (
     <Card sx={cardStyles}>
       <CardContent>
-        <Stack direction="column" spacing={0} alignItems="center">
+        <Stack direction="column" spacing={0} alignItems="center" >
           <Stack
             direction="row"
-            spacing={5}
-            sx={{ flexGrow: 1, width: "100%" }}
+            spacing={0}
+            sx={{  width: "100%" }}
             justifyContent="space-between"
             alignItems="center"
           >

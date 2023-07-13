@@ -8,6 +8,7 @@ import Markers from "./components/Markers";
 import PolyLineRoute from "./components/PolyLineRoute";
 import MapEventsController from "./components/MapEventsController";
 import WeatherLegend from "./components/WeatherLegend";
+import ExternalState from "./components/ExternalState";
 const center = [37.09024, -95.712891];
 
 function convertToBoundingBox(points) {
@@ -77,7 +78,7 @@ const MapWithRoute = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
-   
+   <ExternalState/>
         <WeatherLegend L={L}/>
         <PolyLineRoute L={L} />
         <Markers L={L} />

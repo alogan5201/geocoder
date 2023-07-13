@@ -40,7 +40,7 @@ const DestinationInputIcon = () => {
 /*                                  ROUTE DATA                                */
 /* -------------------------------------------------------------------------- */
 function Form() {
-    const formRef = useRef();
+  const formRef = useRef();
 
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
@@ -70,9 +70,9 @@ function Form() {
   /* -------------------------------------------------------------------------- */
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(e)
+
     const inputOne = e.target[0].value;
-    const inputTwo = e.target[3].value;
+    const inputTwo = e.target[2].value;
 
     if (inputOne && inputTwo) {
       let extracted = extractWords(inputOne);
@@ -135,13 +135,16 @@ function Form() {
       }
     }
   }
-  const handleChildSubmit = () => {
-    const e = {
-      target: formRef.current,
-      preventDefault: () => {},
-    };
-    handleSubmit(e);
-    //handleSubmit({ preventDefault: () => {} });
+  const handleChildSubmit = (data) => {
+    if (data) {
+      const target = [formRef.current[0], 1, { value: data.name }];
+      const e = {
+        target: target,
+        preventDefault: () => {},
+      };
+
+      handleSubmit(e);
+    }
   };
   const updateRoute = async (markerData) => {
     if (markerData && markerData.length > 1) {
