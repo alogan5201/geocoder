@@ -75,9 +75,7 @@ export default function App() {
 
       return null;
     });
-useEffect(() => {
-  console.log("markerData from App.jsx", markerData, getCurrentTime());
-}, [markerData]);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

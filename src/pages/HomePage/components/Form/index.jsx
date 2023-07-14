@@ -4,33 +4,28 @@ import Box from "components/Box";
 import Grid from "@mui/material/Grid";
 import AddressInput from "components/AddressInput";
 import Button from "components/Button";
-import Input from "components/Input";
-import Typography from "components/Typography";
-import { useEffect, useRef, useState } from "react";
-import useStore from "store/mapStore";
-import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
-import { extractWords, test, formatMarkerData } from "util/helpers";
-import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
+import Typography from "components/Typography";
+import { useEffect } from "react";
+import useStore from "store/mapStore";
+import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
 import { v4 as uuidv4 } from "uuid";
-import AutoCompleteAddress from "components/AutoCompleteAddress";
-function Form() {
-  useEffect(() => {
-    test();
-  }, []);
+import { getCurrentTime, formatMarkerData } from "util/helpers";
 
-  const [zoomState, setZoomState] = useState();
-  const [coords, setCoords] = useGlobalValue();
-  const latInputElm = useRef(null);
-  const lngInputElm = useRef(null);
+
+function Form() {
+    const markerData = useStore((state) => state.markerData);
+
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
-    const setErrorMessage = useStore((state) => state.setErrorMessage);
+  const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
-
+ useEffect(() => {
+  resetMapData()
+ }, []);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -45,22 +40,22 @@ function Form() {
   async function handleSubmit(e) {
     e.preventDefault();
     const inputOne = e.target[0].value;
-    if (inputOne) {
-      let extracted = extractWords(inputOne);
-      let withPlus = extracted.join("+");
-      const mapBoxData = await covertAddressToLatLng(inputOne);
+    const inputTwo = e.target[2].value;
+
+    if (inputOne && inputTwo) {
+      const mapBoxData = await convertLatLngToAddress(inputOne, inputTwo);
+
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];
         let lng = mapBoxData.features[0].geometry.coordinates[0];
 
-        setCoords([coords]);
+        const cityAndState = extractCityAndState(mapBoxData);
+        const city = cityAndState.city ? cityAndState.city : null;
+        const state = cityAndState.state ? cityAndState.state : null;
+
         const address = mapBoxData.features[0].place_name;
         const wikiData = mapBoxData.features[0].properties.wikidata;
         const uid = uuidv4();
-        const cityAndState = extractCityAndState(mapBoxData);
-
-        const city = cityAndState.city ? cityAndState.city : null;
-        const state = cityAndState.state ? cityAndState.state : null;
 
         const markerData = [
           {
@@ -76,16 +71,18 @@ function Form() {
         ];
         setUserLocationActive(false);
         setMapInputState(false);
-           const formattedMarkerData = formatMarkerData(markerData);
-           updateMarkerData(formattedMarkerData);
+       const formattedMarkerData = formatMarkerData(markerData);
+       updateMarkerData(formattedMarkerData);
       } else {
         setErrorMessage(true);
-  
+          resetMapData();
+          
         setTimeout(() => {
           setErrorMessage(false);
         }, 500);
       }
     }
+
   }
   useEffect(() => {
     if (userLocationActive === false) {
@@ -108,32 +105,30 @@ function Form() {
       }
     }
   }, [userLocationActive]);
+
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
-          Address to Latitude & Longitude
+          Latitude & Longitude to Address
         </Typography>
         <Typography variant="body2" color="text" mb={1}>
-          To pinpoint a location, you can type in the name of a place, city, state, or address, or
+          To pinpoint a location, you can type in the latitude and longitude, or
           click the location on the map to get the coordinates.
         </Typography>
       </Box>
-      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 4 }}>
+      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 1 }}>
         <Grid container>
-            <Grid item xs={12} pr={1} mb={3}>
-              <AutoCompleteAddress />
-            </Grid>
-          {/* ============ AddressInput ============ */}
-          <AddressInput readOnly={false} defaultValue="Atlanta, GA" />
+          {/* ============ LatLngInputs ============ */}
+          <LatLngInputs readOnly={false} defaultValue={["33.748992", "-84.390264"]} />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">
               Submit
             </Button>
           </Grid>
-          {/* ============ LatLngInputs ============ */}
-          <LatLngInputs readOnly={true} />
+          {/* ============ AddressInput ============ */}
+          <AddressInput readOnly={true} defaultValue="Atlanta, GA" key="1" />
         </Grid>
       </Box>
     </Box>

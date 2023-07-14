@@ -372,3 +372,8 @@ input:-webkit-autofill:active  {
 }
 
 
+
+.leaflet-container .leaflet-tile {
+  border: none !important;
+  /* remove border */
+}

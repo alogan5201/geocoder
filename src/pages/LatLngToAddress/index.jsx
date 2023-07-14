@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 // Material Kit 2 PRO React components
@@ -12,10 +13,11 @@ import footerRoutes from "footer.routes";
 import { formStyles } from "src/styles";
 import Form from "./components/Form";
 import { useLocation } from "react-router-dom";
-import { getCurrentTime } from "util/helpers";
+import { getCurrentTime, formatMarkerData } from "util/helpers";
 
 function LatLngToAddressPage() {
       const { pathname } = useLocation();
+
   return (
     <>
       <BaseLayout>

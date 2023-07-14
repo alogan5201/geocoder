@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 // Material Kit 2 PRO React components
 import Box from "components/Box";
 // Material Kit 2 PRO React components
@@ -11,28 +12,18 @@ import FormWrapper from "components/FormWrapper";
 import footerRoutes from "footer.routes";
 import { formStyles } from "src/styles";
 import Form from "./components/Form";
+import { useLocation } from "react-router-dom";
+import { getCurrentTime, formatMarkerData } from "util/helpers";
+import useStore from "store/mapStore";
 
 function HomePage() {
-  const formWrapperStyles = formStyles.mapForm.formWrapper;
-  const formWrapperProps = {
-    styles: formWrapperStyles,
-    name: "Geo Tools",
-    description:
-      "To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates.",
-    map: true,
-  };
+  const { pathname } = useLocation();
+  const markerData = useStore((state) => state.markerData);
 
-  // formStyles.formWrapper
-  const actionProps = {
-    type: "internal",
-    route: "/pages/landing-pages/coworking",
-    color: "dark",
-    label: "find more",
-  };
   return (
     <>
       <BaseLayout>
-        <FormWrapper form={<Form addressToLatLng={true} />} />
+        <FormWrapper key={pathname} form={<Form addressToLatLng={true} />} />
 
         <Box pt={6} px={1} mt={6}>
           <DefaultFooter content={footerRoutes} />

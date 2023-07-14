@@ -4,7 +4,7 @@ import Box from "components/Box";
 import Button from "components/Button";
 import Typography from "components/Typography";
 import { useEffect, useRef } from "react";
-import { tron } from "util/helpers";
+import { getCurrentTime } from "util/helpers";
 import { useGlobalGeoData, useGlobalValue } from "util/mapState";
 import MapExternal from "components/Maps/MapExternal";
 import Sandbox from "components/Sandbox";
@@ -13,7 +13,12 @@ import useStore from "store/mapStore";
 
 function FormWrapper({ props, form, map }) {
   const errorMessage = useStore((state) => state.errorMessage);
+          const markerData = useStore((state) => state.markerData);
+          const locationMarkerData = useStore((state) => state.locationMarkerData);
 
+  useEffect(() => {
+   // console.log(`locationMarkerData =  ${locationMarkerData}`, getCurrentTime());
+  }, [markerData,locationMarkerData]);
 
    const latInputElm = useRef(null);
    const lngInputElm = useRef(null);

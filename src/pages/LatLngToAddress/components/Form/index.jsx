@@ -15,7 +15,7 @@ import { getCurrentTime, formatMarkerData } from "util/helpers";
 
 function Form() {
     const markerData = useStore((state) => state.markerData);
-
+ const locationMarkerData = useStore((state) => state.locationMarkerData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -23,9 +23,10 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
- useEffect(() => {
-  resetMapData()
- }, []);
+  
+  useEffect(() => {
+    console.log(`FORM_LatLng---locationMarkerData =  ${locationMarkerData}`, getCurrentTime());
+  }, [markerData, locationMarkerData]);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -105,10 +106,7 @@ function Form() {
       }
     }
   }, [userLocationActive]);
-  useEffect(() => {
-       console.log("FORM LatLngtoAddress", markerData, getCurrentTime());
 
-  }, [markerData]);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>

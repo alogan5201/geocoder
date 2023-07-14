@@ -6,12 +6,12 @@ import useStore from "store/mapStore";
 import PointMarker from "./PointMarker";
 import { useLocation } from "react-router-dom";
 import { marker, popup } from "leaflet";
-import { shallow } from "zustand/shallow";
 
 const center = [37.09024, -95.712891];
 const Markers = ({ L }) => {
   const map = useMap();
-  const markerData = useStore((state) => state.markerData,shallow);
+  const markerData = useStore((state) => state.markerData);
+  const locationMarkerData = useStore((state) => state.locationMarkerData);
   const [markerPoints, setMarkerPoints] = useState(null);
   const [popupOpen, setPopupOpen] = useState(false);
   const [currentCoords, setCurrentCoords] = useState(null);
@@ -33,14 +33,16 @@ const Markers = ({ L }) => {
     });
 
   useEffect(() => {
-    if (markerData) {
-      localStorage.setItem("markerData", JSON.stringify(markerData));
-      setMarkerPoints(markerData);
-      if (pathname.includes("route-planner") && markerData.length > 1) {
-        let latOrigin = markerData[0].lat;
-        let lngOrigin = markerData[0].lng;
-        let latDestination = markerData[1].lat;
-        let lngDestination = markerData[1].lng;
+    const markerPointData = markerData ? markerData : locationMarkerData ? locationMarkerData : null;
+    if (markerPointData) {
+      
+      localStorage.setItem("markerData", JSON.stringify(markerPointData));
+      setMarkerPoints(markerPointData);
+      if (pathname.includes("route-planner") && markerPointData.length > 1) {
+        let latOrigin = markerPointData[0].lat;
+        let lngOrigin = markerPointData[0].lng;
+        let latDestination = markerPointData[1].lat;
+        let lngDestination = markerPointData[1].lng;
         map.fitBounds(
           [
             [latOrigin, lngOrigin],
@@ -57,7 +59,7 @@ const Markers = ({ L }) => {
     else if (popupOpen) {
       setPopupOpen(false)
     }
-  }, [markerData, pathname]);
+  }, [markerData, pathname,locationMarkerData]);
 
   
 

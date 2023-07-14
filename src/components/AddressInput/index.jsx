@@ -21,6 +21,7 @@ function AddressInput({ onSubmit, ...props }) {
   const { pathname } = useLocation();
   const [address, setAddress] = useState(null);
   const userLocationActive = useStore((state) => state.userLocationActive);
+  const locationMarkerData = useStore((state) => state.locationMarkerData);
 
   function handleChange(e) {
     let val = e.target.value;
@@ -40,14 +41,17 @@ function AddressInput({ onSubmit, ...props }) {
 
   
   useEffect(() => {
-  if(markerData && props.readOnly) {
-        const address = markerData[0].title.includes(", United States")
-          ? markerData[0].title.replace(", United States", "")
-          : markerData[0].title;
-        addressInputElm.current.value = address;
-  }   
-
-  }, [markerData]);
+    const markerDataPoints = markerData ? markerData : locationMarkerData ? locationMarkerData : null;
+    if (markerDataPoints) {
+      const addressData = markerDataPoints[0].title.includes(", United States")
+        ? markerDataPoints[0].title.replace(", United States", "")
+        : markerDataPoints[0].title;
+        setAddress(addressData);
+        if(props.readOnly){
+          addressInputElm.current.value = addressData;
+        }
+    }
+  }, [markerData, locationMarkerData]);
   return (
     <Grid item xs={12} pr={1} mb={3}>
       <Box>
@@ -65,7 +69,6 @@ function AddressInput({ onSubmit, ...props }) {
         />
       ) : (
         <AutoCompleteAddress
-
           address={address}
           label={props.label}
           submitOnSelect={props.submitOnSelect}

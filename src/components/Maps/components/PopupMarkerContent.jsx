@@ -14,6 +14,8 @@ import { shallow } from "zustand/shallow";
 
 function PopupMarkerContent({ content }) {
   const markerData = useStore((state) => state.markerData);
+    const locationMarkerData = useStore((state) => state.locationMarkerData);
+
   const setBookmarks = useStore((state) => state.setBookmarks);
   const setBookmarked = useStore((state) => state.setBookmarked);
   const bookmarked = useStore((state) => state.bookmarked);
@@ -33,20 +35,25 @@ function PopupMarkerContent({ content }) {
     }
   }, [bookmarkLocation]);
   useEffect(() => {
-    if (markerData || bookmarkLocation) {
+        const markerPointData = markerData
+          ? markerData
+          : locationMarkerData
+          ? locationMarkerData
+          : null;
+
+    if (markerPointData || bookmarkLocation) {
       const shouldBookmark = alreadyBookmarked(
         "bookmarks",
-        markerData[content].lat,
-        markerData[content].lng
+        markerPointData[content].lat,
+        markerPointData[content].lng
       );
       setBookmarked(shouldBookmark);
-console.log(markerData)
       // popupContent.dms.lat.display
-      let dmsDisplay = `${markerData[content].dms.lat.display} ${markerData[content].dms.lng.display}`;
+      let dmsDisplay = `${markerPointData[content].dms.lat.display} ${markerPointData[content].dms.lng.display}`;
       setDisplayDMS(dmsDisplay);
-      setPopupcontent(markerData[content]);
+      setPopupcontent(markerPointData[content]);
     }
-  }, [markerData,bookmarkLocation]);
+  }, [markerData,bookmarkLocation,locationMarkerData]);
 
   function handleBookMarkClick(e) {
     e.preventDefault();

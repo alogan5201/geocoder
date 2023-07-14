@@ -22,7 +22,7 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
   loading: false,
    autocompleteData: null,
    flyToMarker: null,
-
+  locationMarkerData:null,
    setFlyToMarker: (data) => {
        set(() => ({ flyToMarker: data }));
    },
@@ -46,7 +46,7 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    },
    resetMapData: () => {
     // Used on page change to reset state
-     set({ markerData: null, clearMapInputs: true, mapZoom: null, userLocationActive:false });
+     set({ markerData: null, clearMapInputs: true, mapZoom: null, userLocationActive:false ,locationMarkerData:null});
    },
    setBookmarks: () => {
      const bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
@@ -80,6 +80,9 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    },
    setMarkerData: (data) => {
    set({ markerData: data });  
+   },
+   setLocationMarkerData: (data) => {
+   set({ locationMarkerData: data });  
    },
  }));
 

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMap } from "react-leaflet";
 import useStore from "store/mapStore";
 import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
@@ -11,10 +11,10 @@ function PopupTest() {
 }
 const LocationButton = ({ L }) => {
   const map = useMap();
-  const updateMarkerData = useStore((state) => state.setMarkerData);
+  const updateLocationMarkerData = useStore((state) => state.setLocationMarkerData);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
-
+const [location, setLocation] = useState(null);
   useEffect(() => {
     // create custom button
     const customControl = L.Control.extend({
@@ -78,14 +78,16 @@ const LocationButton = ({ L }) => {
         this._map.on("locationerror", this.onLocationError, this);
 
         // start locate
-        this._map.locate({ setView: false, enableHighAccuracy: true });
+        this._map.locate({ setView: false, enableHighAccuracy: false });
       },
       onLocationFound: async function (e) {
         let lat = e.latitude;
         let lng = e.longitude;
             const mapBoxData = await convertLatLngToAddress(lat, lng);
             if (mapBoxData && mapBoxData.features.length > 0) {
+            
               const address = mapBoxData.features[0].place_name;
+              
               const cityAndState = extractCityAndState(mapBoxData);
               const city = cityAndState.city ? cityAndState.city : null;
               const state = cityAndState.state ? cityAndState.state : null;
@@ -102,8 +104,8 @@ const LocationButton = ({ L }) => {
                   state: state,
                 },
               ];
-  const formattedMarkerData = formatMarkerData(markerData);
-  updateMarkerData(formattedMarkerData);
+              const formattedMarkerData = formatMarkerData(markerData);
+             setLocation(formattedMarkerData);
               setUserLocationActive(true);
             }
         // add circle
@@ -179,6 +181,16 @@ const LocationButton = ({ L }) => {
 
     map.addControl(new customControl());
   }, [map]);
+  useEffect(() => {
+    if(location){
+       updateLocationMarkerData(location);
+      setTimeout(() => {
+           updateLocationMarkerData(null);
+      }, 500);
+       
+    }
+
+  }, [location]);
 
   return null;
 };

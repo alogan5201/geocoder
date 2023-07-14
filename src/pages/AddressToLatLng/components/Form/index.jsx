@@ -137,10 +137,7 @@ function Form() {
     })
   }, []);
 
-  useEffect(() => {
-      console.log("FORM AddressToLatLng", markerData, getCurrentTime());
 
-  }, [markerData]);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>

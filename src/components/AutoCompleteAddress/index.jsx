@@ -117,21 +117,19 @@ export default function AutoCompleteAddress({
   }, [value, inputValue, fetch]);
 
   useEffect(() => {
+      if (label === "Destination") {
+        return;
+      }
     if (address) {
       const uid = uuidv4();
       const newInputValue = { name: address, id: uid };
 
-      if (label && label === "Destination") {
-        return;
-      } else {
-        setOverrideInput(true);
-        setValue(newInputValue);
-      }
+       setOverrideInput(true);
+       setValue(newInputValue);
+   
     }
-    return (() => {
-      setValue(null);
-    })
-  }, [address]);
+ 
+  }, [address,label]);
   useEffect(() => {
     if (clear) {
       setInputValue("");
