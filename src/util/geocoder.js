@@ -1,41 +1,22 @@
-import { create } from "apisauce";
 import { v4 as uuidv4 } from "uuid";
-import { lowercaseFirst } from "./helpers";
+import { isNumber } from "./helpers";
 const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.env;
 
-// define the api
-const mapBoxapi = create({
-  baseURL: "https://api.mapbox.com/geocoding/v5/mapbox.places",
-  headers: { Accept: "application/vnd.github.v3+json" },
-});
+
 
 export const covertAddressToLatLng = async (address) => {
   let location = encodeURIComponent(address);
+  const response = await fetch(
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?access_token=${VITE_ACCESS_TOKEN}`,
+    { method: "GET" }
+  );
 
-  if (VITE_NODE_ENV === "development") {
-    let addr = lowercaseFirst(address);
-    let loc = addr.includes("atlanta")
-      ? "atlanta"
-      : addr.includes("atl")
-      ? "atlanta"
-      : addr.includes("la")
-      ? "la"
-      : "austin";
-    const response = await getFakeData(`addresses/${loc}`);
-    return response;
-  } else {
-    const response = await fetch(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?access_token=${VITE_ACCESS_TOKEN}`,
-      { method: "GET" }
-    );
-
-    if (response.status !== 200) {
-      return;
-    }
-    const data = await response.json();
-
-    return data;
+  if (response.status !== 200) {
+    return;
   }
+  const data = await response.json();
+
+  return data;
 };
 export const fetchAutocomplete = async (address) => {
   const localStorageData = JSON.parse(localStorage.getItem("uidData") || "{}");
@@ -119,62 +100,36 @@ export const retrieveAutocomplete = async (id) => {
   return data;
 };
 export const getDirections = async (from, to) => {
-  if (VITE_NODE_ENV === "development") {
-    let addr = lowercaseFirst(address);
-    let loc = addr.includes("atlanta")
-      ? "atlanta"
-      : addr.includes("atl")
-      ? "atlanta"
-      : addr.includes("la")
-      ? "la"
-      : "austin";
-    const response = await getFakeData(`addresses/${loc}`);
-    return response;
-  } else {
-    const response = await fetch(
-      `https://api.mapbox.com/directions/v5/mapbox/driving/${from.lng},${from.lat};${to.lng},${to.lat}?geometries=geojson&access_token=${VITE_ACCESS_TOKEN}`,
-      { method: "GET" }
-    );
+  const response = await fetch(
+    `https://api.mapbox.com/directions/v5/mapbox/driving/${from.lng},${from.lat};${to.lng},${to.lat}?geometries=geojson&access_token=${VITE_ACCESS_TOKEN}`,
+    { method: "GET" }
+  );
 
-    if (response.status !== 200) {
-      return;
-    }
-    const data = await response.json();
-    if (data.code === "NoRoute") {
-      return;
-    }
-
-    return data;
-  }
-};
-export const convertLatLngToAddress = async (lat, lng) => {
-  if (VITE_NODE_ENV === "development") {
-    const response = await getFakeData(`addresses/atlanta`);
-    return response;
-  } else {
-    const response = await fetch(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${VITE_ACCESS_TOKEN}`,
-      { method: "GET" }
-    );
-
-    if (response.status !== 200) {
-      return;
-    }
-    const data = await response.json();
-
-    return data;
-  }
-};
-
-async function getFakeData(input) {
-  const response = await fetch(`http://localhost:3000/${input}`, { method: "GET" });
   if (response.status !== 200) {
     return;
   }
   const data = await response.json();
-  const output = data["data"];
-  return output;
-}
+  if (data.code === "NoRoute") {
+    return;
+  }
+
+  return data;
+};
+export const convertLatLngToAddress = async (lat, lng) => {
+  const response = await fetch(
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${VITE_ACCESS_TOKEN}`,
+    { method: "GET" }
+  );
+
+  if (response.status !== 200) {
+    return;
+  }
+  const data = await response.json();
+
+  return data;
+};
+
+
 
 export function convertLatLngToDMS(lat, lng) {
   let a = 0,
@@ -201,7 +156,7 @@ export function convertLatLngToDMS(lat, lng) {
     let displayC = Number.isInteger(c) ? c : c.toFixed(2);
     let display = displayA + "° " + displayB + "' " + displayC + "''";
 
-    let text = a.toFixed(2);
+  
 
     let latOutput = {
       degrees: a,
@@ -255,36 +210,11 @@ export function convertDMStoLatLng(dms) {
     t && ((m = -1 * m), (r = -1 * r));
   var d = i + m / 60 + r / 3600;
   let lng = parseFloat(d).toFixed(8);
-  var s = "(" + lat + " , " + lng + ")";
+
   return [lat, lng];
 }
 // [ "33° 44' 56.3712'' 33.748992", "84° 23' 24.9504'' 84.390264" ]
-// dms.latM
-let newData = {
-  lat: {
-    degrees: 33,
-    minutes: 44,
-    seconds: 56.3712,
-    lat: 33.748992,
-    display: "33° 44' 56.3712''",
-  },
-  lng: {
-    degrees: 84,
-    minutes: 23,
-    seconds: 24.9504,
-    lng: 84.390264,
-    display: "84° 23' 24.9504'' 84.390264",
-  },
-};
 
-let t = {
-  latDegrees: 41,
-  latMinutes: 19,
-  latSeconds: 47,
-  lngDegrees: -73,
-  lngMinutes: 59,
-  lngSeconds: 39,
-};
 
 export const toggleLocation = (markerData, L) => {
   const locationControl = L.control;
@@ -301,7 +231,9 @@ export async function getCityPhoto(cityName) {
   const apiKey = VITE_FIREBASE_API_KEY;
   try {
     // Step 1: Search for the city and retrieve a photo_reference
-    const placeSearchUrl = `/google-api/place/findplacefromtext/json?input=${encodeURIComponent(
+       const urlStartPoint =
+         VITE_NODE_ENV === "development" ? "/google-api" : "https://maps.googleapis.com/maps/api";
+    const placeSearchUrl = `${urlStartPoint}/place/findplacefromtext/json?input=${encodeURIComponent(
       cityName
     )}&inputtype=textquery&fields=photos&key=${apiKey}`;
     const placeSearchResponse = await fetch(placeSearchUrl);
@@ -311,12 +243,11 @@ export async function getCityPhoto(cityName) {
 
     // Step 2: Use the photo_reference to retrieve the image URL
     const maxwidth = 400; // You can set this to the desired image width
-    const placePhotoUrl = `/google-api/place/photo?maxwidth=${maxwidth}&photoreference=${photoReference}&key=${apiKey}`;
+    const placePhotoUrl = `${urlStartPoint}/place/photo?maxwidth=${maxwidth}&photoreference=${photoReference}&key=${apiKey}`;
 
     // placePhotoUrl is the URL of the image. You can use it directly in an <img> element.
     return placePhotoUrl;
   } catch (error) {
-    console.error("Error fetching city photo: ", error);
     return null;
   }
 }
@@ -325,7 +256,10 @@ export async function getPhotoByCoordinates(latitude, longitude, city, state) {
   const apiKey = VITE_FIREBASE_API_KEY;
   try {
     // Step 1: Search for the places near the given coordinates and retrieve a photo_reference
-    const placeSearchUrl = `/google-api/place/nearbysearch/json?location=${latitude},${longitude}&radius=500&key=${apiKey}`;
+    // https://maps.googleapis.com/maps/api/place/photo?parameters
+    const urlStartPoint =
+      VITE_NODE_ENV === "development" ? "/google-api" : "https://maps.googleapis.com/maps/api";
+    const placeSearchUrl = `${urlStartPoint}/place/nearbysearch/json?location=${latitude},${longitude}&radius=500&key=${apiKey}`;
     const placeSearchResponse = await fetch(placeSearchUrl);
     const placeSearchData = await placeSearchResponse.json();
 
@@ -346,7 +280,6 @@ export async function getPhotoByCoordinates(latitude, longitude, city, state) {
       }
       //const addressPhoto = await getCityPhoto(extractCityAndState(address));
       //
-      console.error("No photos found for this location");
       return null;
     }
 
@@ -354,12 +287,11 @@ export async function getPhotoByCoordinates(latitude, longitude, city, state) {
 
     // Step 2: Use the photo_reference to retrieve the image URL
     const maxwidth = 400; // You can set this to the desired image width
-    const placePhotoUrl = `/google-api/place/photo?maxwidth=${maxwidth}&photoreference=${photoReference}&key=${apiKey}`;
+    const placePhotoUrl = `${urlStartPoint}/place/photo?maxwidth=${maxwidth}&photoreference=${photoReference}&key=${apiKey}`;
 
     // placePhotoUrl is the URL of the image. You can use it directly in an <img> element.
     return placePhotoUrl;
   } catch (error) {
-    console.error("Error fetching photo by coordinates: ", error);
     return null;
   }
 }

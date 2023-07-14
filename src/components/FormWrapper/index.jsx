@@ -13,32 +13,32 @@ import useStore from "store/mapStore";
 
 function FormWrapper({ props, form, map }) {
   const errorMessage = useStore((state) => state.errorMessage);
-          const markerData = useStore((state) => state.markerData);
-          const locationMarkerData = useStore((state) => state.locationMarkerData);
+  const markerData = useStore((state) => state.markerData);
+  const locationMarkerData = useStore((state) => state.locationMarkerData);
 
   useEffect(() => {
-   // console.log(`locationMarkerData =  ${locationMarkerData}`, getCurrentTime());
-  }, [markerData,locationMarkerData]);
+    //
+  }, [markerData, locationMarkerData]);
 
-   const latInputElm = useRef(null);
-   const lngInputElm = useRef(null);
-   /* -------------------------------------------------------------------------- */
-   /*                                  FUNCTIONS                                 */
-   /* -------------------------------------------------------------------------- */
-  function handleSelect(e){
-    setBlurred(false)
-   setSelected(true)
+  const latInputElm = useRef(null);
+  const lngInputElm = useRef(null);
+  /* -------------------------------------------------------------------------- */
+  /*                                  FUNCTIONS                                 */
+  /* -------------------------------------------------------------------------- */
+  function handleSelect(e) {
+    setBlurred(false);
+    setSelected(true);
   }
-  function handleBlur(e){
-    setSelected(false)
-   setBlurred(true)
+  function handleBlur(e) {
+    setSelected(false);
+    setBlurred(true);
   }
-  function handleChange (e){
-    let val = e.target.value
-if(val.length === 0){
- latInputElm.current.value = "";
- lngInputElm.current.value = "";
-}
+  function handleChange(e) {
+    let val = e.target.value;
+    if (val.length === 0) {
+      latInputElm.current.value = "";
+      lngInputElm.current.value = "";
+    }
   }
   /* -------------------------------------------------------------------------- */
   /*                                   RETURN                                   */
@@ -72,7 +72,7 @@ if(val.length === 0){
             </Grid>
           </Box>
         </Grid>
-
+        <Sandbox />
       </Box>
     </>
   );

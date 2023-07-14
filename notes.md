@@ -248,4 +248,8 @@ App.jsx
 - Fix issue with image urls not loading properly
 - Fix footer so movies page pagination buttons are clickable.
 
+yarn add --dev @babel/core @babel/eslint-parser eslint-plugin-react
 
+
+
+yarn add --dev eslint eslint-plugin-react prettier eslint-config-prettier eslint-plugin-prettier babel-eslint

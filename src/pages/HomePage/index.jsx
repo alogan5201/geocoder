@@ -17,8 +17,6 @@ function HomePage() {
     <>
       <BaseLayout>
         <FormWrapper key={pathname} form={<Form addressToLatLng={true} />} />
-
-  
       </BaseLayout>
     </>
   );

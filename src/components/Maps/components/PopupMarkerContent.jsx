@@ -14,7 +14,7 @@ import { shallow } from "zustand/shallow";
 
 function PopupMarkerContent({ content }) {
   const markerData = useStore((state) => state.markerData);
-    const locationMarkerData = useStore((state) => state.locationMarkerData);
+  const locationMarkerData = useStore((state) => state.locationMarkerData);
 
   const setBookmarks = useStore((state) => state.setBookmarks);
   const setBookmarked = useStore((state) => state.setBookmarked);
@@ -22,12 +22,18 @@ function PopupMarkerContent({ content }) {
   const bookmarkLocation = useStore((state) => state.bookmarkLocation);
   const [popupContent, setPopupcontent] = useState(null);
   const [dmsDisplay, setDisplayDMS] = useState(null);
-
+  const markerPointData = markerData
+    ? markerData
+    : locationMarkerData
+    ? locationMarkerData
+    : localStorage.getItem("markerData")
+    ? JSON.parse(localStorage.getItem("markerData"))
+    : null;
 
   const [bookMarkId, setBookMarkId] = useState();
   useEffect(() => {
-    
     if (bookmarkLocation) {
+      // const markerDataPoint
       let bookmarkData = markerData[content];
       handleBookmarkChange(bookmarkLocation, "bookmarks", bookmarkData);
 
@@ -35,12 +41,6 @@ function PopupMarkerContent({ content }) {
     }
   }, [bookmarkLocation]);
   useEffect(() => {
-        const markerPointData = markerData
-          ? markerData
-          : locationMarkerData
-          ? locationMarkerData
-          : null;
-
     if (markerPointData || bookmarkLocation) {
       const shouldBookmark = alreadyBookmarked(
         "bookmarks",
@@ -53,15 +53,16 @@ function PopupMarkerContent({ content }) {
       setDisplayDMS(dmsDisplay);
       setPopupcontent(markerPointData[content]);
     }
-  }, [markerData,bookmarkLocation,locationMarkerData]);
+  }, [markerData, bookmarkLocation, locationMarkerData]);
 
   function handleBookMarkClick(e) {
     e.preventDefault();
-
-    let bookmarkData = markerData[content];
-//  setBookmarks();
-    handleBookmarkChange(!bookmarked, "bookmarks", bookmarkData);
-    setBookmarked(!bookmarked);
+    if (markerPointData) {
+      let bookmarkData = markerPointData[content];
+      //  setBookmarks();
+      handleBookmarkChange(!bookmarked, "bookmarks", bookmarkData);
+      setBookmarked(!bookmarked);
+    }
   }
 
   return popupContent ? (

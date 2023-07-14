@@ -75,7 +75,7 @@ if(!mapZoom){
           if (open) {
             if (rendered) {
               const popupHeight = markerRef.current._popup._container.clientHeight;
-
+                console.log(popupHeight)
               var px = map.project(markerRef.current._popup._latlng); // find the pixel location on the map where the popup anchor is
 
               px.y -= markerRef.current._popup._container.clientHeight / 3; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location

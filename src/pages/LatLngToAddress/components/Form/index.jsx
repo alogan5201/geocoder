@@ -12,10 +12,9 @@ import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
 import { formatMarkerData, getCurrentTime } from "util/helpers";
 import { v4 as uuidv4 } from "uuid";
 
-
 function Form() {
-    const markerData = useStore((state) => state.markerData);
- const locationMarkerData = useStore((state) => state.locationMarkerData);
+  const markerData = useStore((state) => state.markerData);
+  const locationMarkerData = useStore((state) => state.locationMarkerData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -23,10 +22,8 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
-  
-  useEffect(() => {
-    console.log(`FORM_LatLng---locationMarkerData =  ${locationMarkerData}`, getCurrentTime());
-  }, [markerData, locationMarkerData]);
+
+  useEffect(() => {}, [markerData, locationMarkerData]);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -73,18 +70,17 @@ function Form() {
         ];
         setUserLocationActive(false);
         setMapInputState(false);
-       const formattedMarkerData = formatMarkerData(markerData);
-       updateMarkerData(formattedMarkerData);
+        const formattedMarkerData = formatMarkerData(markerData);
+        updateMarkerData(formattedMarkerData);
       } else {
         setErrorMessage(true);
-          resetMapData();
-          
+        resetMapData();
+
         setTimeout(() => {
           setErrorMessage(false);
         }, 500);
       }
     }
-
   }
   useEffect(() => {
     if (userLocationActive === false) {
@@ -115,8 +111,8 @@ function Form() {
           Latitude & Longitude to Address
         </Typography>
         <Typography variant="body2" color="text" mb={1}>
-          To pinpoint a location, you can type in the latitude and longitude, or
-          click the location on the map to get the coordinates.
+          To pinpoint a location, you can type in the latitude and longitude, or click the location
+          on the map to get the coordinates.
         </Typography>
       </Box>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 1 }}>

@@ -1,26 +1,8 @@
 {
     "presets": [
-      "env"
+      "@babel/preset-env",
+      "@babel/preset-react"
     ],
     "plugins": [
-      [
-        "@simbathesailor/babel-plugin-use-what-changed",
-        {
-          "active": true
-        }
-      ],
-      "transform-runtime",
-      [
-        "transform-react-jsx",
-        {
-          "pragma": "React.createElement"
-        }
-      ],
-      "proposal-optional-chaining"
-    ],
-    "parserOpts": {
-      "plugins": [
-        "dynamicImport"
-      ]
-    }
+   "transform-import-meta"]
   }
