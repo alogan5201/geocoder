@@ -1,7 +1,9 @@
-import Grid from "@mui/material/Grid";
-import Box from "components/Box";
 import AddIcon from "@mui/icons-material/Add";
+import Divider from "@mui/material/Divider";
+import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
+import Box from "components/Box";
+import Button from "components/Button";
 import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import useStore from "store/mapStore";
@@ -9,12 +11,8 @@ import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
 import { extractWords, formatMarkerData } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
-import BookmarkTable from "../BookmarkTable";
-import Button from "components/Button";
-import InputAdornment from "@mui/material/InputAdornment";
-import Input from "components/Input";
-import Divider from "@mui/material/Divider";
 import AddressInput from "../AddressInput";
+import BookmarkTable from "../BookmarkTable";
 
 function InputWithIcon() {
   return (

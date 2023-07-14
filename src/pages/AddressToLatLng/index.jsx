@@ -1,13 +1,7 @@
-import { useEffect } from "react";
-import Box from "components/Box";
-import DefaultFooter from "examples/Footers/DefaultFooter";
-import BaseLayout from "layouts/sections/components/BaseLayout";
 import FormWrapper from "components/FormWrapper";
-import footerRoutes from "footer.routes";
-import { formStyles } from "src/styles";
-import Form from "./components/Form";
+import BaseLayout from "layouts/sections/components/BaseLayout";
 import { useLocation } from "react-router-dom";
-import useStore from "store/mapStore";
+import Form from "./components/Form";
 
 function AddressToLatLngPage() {
     const { pathname } = useLocation();

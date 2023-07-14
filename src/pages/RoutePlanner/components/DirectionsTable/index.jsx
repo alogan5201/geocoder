@@ -1,9 +1,7 @@
 import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton";
 import TableContainer from "@mui/material/TableContainer";
+import { useState } from "react";
 import Table from "./Table";
-import { useEffect, useState } from "react";
-import { addKeyValueToObjectInLocalStorageList } from "util/bookmarks";
 
 function DirectionsTable() {
   const [rowData, setRowData] = useState([]);

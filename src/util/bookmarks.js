@@ -1,4 +1,3 @@
-import { useLocalStorage } from 'react-use';
 function addObjectToLocalstorageList(key, obj) {
   // Get the current list of objects
   const currentList = JSON.parse(localStorage.getItem(key)) || [];

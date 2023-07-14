@@ -9,8 +9,8 @@ import Typography from "components/Typography";
 import { useEffect } from "react";
 import useStore from "store/mapStore";
 import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
+import { formatMarkerData, getCurrentTime } from "util/helpers";
 import { v4 as uuidv4 } from "uuid";
-import { getCurrentTime, formatMarkerData } from "util/helpers";
 
 
 function Form() {

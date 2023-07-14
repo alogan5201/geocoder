@@ -1,25 +1,20 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import Box from "components/Box";
-import DefaultFooter from "examples/Footers/DefaultFooter";
-import BaseLayout from "layouts/sections/components/BaseLayout";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import DefaultBlogCard from "examples/Cards/BlogCards/DefaultBlogCard";
-import footerRoutes from "footer.routes";
-import Stack from "@mui/material/Stack";
-import Button from "components/Button";
 import Pagination from "@mui/material/Pagination";
+import Box from "components/Box";
+import Loading from "components/Loading";
 import Typography from "components/Typography";
+import DefaultBlogCard from "examples/Cards/BlogCards/DefaultBlogCard";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import BaseLayout from "layouts/sections/components/BaseLayout";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { db } from "util/firebase";
 import {
-  isFirstItemOf15Subset,
-  getMovieListLength,
-  isInPaginationPosition,
   generateRanges,
+  getMovieListLength,
+  isInPaginationPosition
 } from "util/helpers";
-import Loading from "components/Loading";
 const ITEMS_PER_PAGE = 15;
 function getRangeForNumber(n, num) {
   const ranges = generateRanges(n);

@@ -12,29 +12,27 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-import { shallow } from "zustand/shallow";
 
-import { useEffect, Suspense } from "react";
+import { collection, getDocs, query } from "firebase/firestore";
+import { Suspense, useEffect } from "react";
 import useStore from "store/mapStore";
-import { collection, query, where, getDocs } from "firebase/firestore";
 // react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffectOnce } from "react-use";
 
 // @mui material components
-import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
 import { db } from "util/firebase";
 
 // Material Kit 2 PRO React themes
 import theme from "assets/theme";
+import Loading from "components/Loading";
 import NotFoundPage from "pages/404";
 import HomePage from "pages/HomePage";
-import Loading from "components/Loading";
 import MovieDetailPage from "pages/MovieDetails";
 import Movies from "pages/Movies";
 import "src/App.css";
-import {getCurrentTime} from "util/helpers";
 // Material Kit 2 PRO React routes
 import routes from "routes";
 

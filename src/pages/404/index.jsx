@@ -11,7 +11,6 @@ import Grid from "@mui/material/Grid";
 import { Box, Typography } from "@mui/material";
 import notFoundImage from "assets/images/404.png";
 import Button from "components/Button";
-import footerRoutes from "footer.routes";
 function NotFoundPage() {
 
   return (
@@ -40,9 +39,7 @@ function NotFoundPage() {
           </Grid>
          
         </Box>
-        <Box pt={6} px={1} mt={6}>
-          <DefaultFooter content={footerRoutes} />
-        </Box>
+      
       </BaseLayout>
     </>
   );

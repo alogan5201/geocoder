@@ -4,14 +4,13 @@ import Box from "components/Box";
 import Grid from "@mui/material/Grid";
 import AddressInput from "components/AddressInput";
 import Button from "components/Button";
-import Input from "components/Input";
+import LatLngInputs from "components/LatLngInputs";
 import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import useStore from "store/mapStore";
 import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
-import { extractWords, test, formatMarkerData } from "util/helpers";
+import { extractWords, formatMarkerData, test } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
-import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
 
 function Form() {

@@ -6,16 +6,21 @@ import AddressInput from "components/AddressInput";
 import Button from "components/Button";
 import LatLngInputs from "components/LatLngInputs";
 import Typography from "components/Typography";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useEffectOnce } from "react-use";
 import useStore from "store/mapStore";
-import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
+import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
+import { extractWords, formatMarkerData } from "util/helpers";
+import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
-import { getCurrentTime, formatMarkerData } from "util/helpers";
-
 
 function Form() {
-    const markerData = useStore((state) => state.markerData);
-
+  const formRef = useRef();
+  const markerData = useStore((state) => state.markerData);
+  const [zoomState, setZoomState] = useState();
+  const [coords, setCoords] = useGlobalValue();
+  const latInputElm = useRef(null);
+  const lngInputElm = useRef(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -23,39 +28,31 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
- useEffect(() => {
-  resetMapData()
- }, []);
+
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
-  function handleZoomReset(e) {
-    e.preventDefault();
-    resetZoom(1);
-    setTimeout(() => {
-      resetZoom(0);
-    }, 2000);
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     const inputOne = e.target[0].value;
-    const inputTwo = e.target[2].value;
-
-    if (inputOne && inputTwo) {
-      const mapBoxData = await convertLatLngToAddress(inputOne, inputTwo);
-
+    if (inputOne) {
+      let extracted = extractWords(inputOne);
+      let withPlus = extracted.join("+");
+      const mapBoxData = await covertAddressToLatLng(inputOne);
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];
         let lng = mapBoxData.features[0].geometry.coordinates[0];
 
-        const cityAndState = extractCityAndState(mapBoxData);
-        const city = cityAndState.city ? cityAndState.city : null;
-        const state = cityAndState.state ? cityAndState.state : null;
-
+        setCoords([coords]);
         const address = mapBoxData.features[0].place_name;
         const wikiData = mapBoxData.features[0].properties.wikidata;
         const uid = uuidv4();
+        const cityAndState = extractCityAndState(mapBoxData);
+
+        const city = cityAndState.city ? cityAndState.city : null;
+        const state = cityAndState.state ? cityAndState.state : null;
 
         const markerData = [
           {
@@ -72,19 +69,42 @@ function Form() {
         ];
         setUserLocationActive(false);
         setMapInputState(false);
-       const formattedMarkerData = formatMarkerData(markerData);
-       updateMarkerData(formattedMarkerData);
+        const formattedMarkerData = formatMarkerData(markerData)
+        updateMarkerData(formattedMarkerData);
       } else {
         setErrorMessage(true);
-          resetMapData();
-          
+
         setTimeout(() => {
           setErrorMessage(false);
         }, 500);
       }
     }
-
   }
+  const handleChildSubmit = (data, label) => {
+    if (data) {
+      if (!label) {
+        const target = [{ value: data.name }];
+        const e = {
+          target: target,
+          preventDefault: () => {},
+        };
+        handleSubmit(e);
+      } else {
+        const target = [formRef.current[0], 1, { value: data.name }];
+        const e = {
+          target: target,
+          preventDefault: () => {},
+        };
+        handleSubmit(e);
+      }
+    }
+
+    //    handleSubmit(e);
+    //handleSubmit({ preventDefault: () => {} });
+  };
+  useEffectOnce(() => { 
+    resetMapData();
+  })
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector(".leaflet-bar");
@@ -107,29 +127,44 @@ function Form() {
     }
   }, [userLocationActive]);
 
+  useEffect(() => {
+    return (() => {
+        localStorage.setItem("markerData", "[]");
+        resetMapData();
+    })
+  }, []);
+
+
   return (
-    <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
+    <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
-          Latitude & Longitude to Address
+          Address to Latitude & Longitude
         </Typography>
         <Typography variant="body2" color="text" mb={1}>
-          To pinpoint a location, you can type in the latitude and longitude, or
+          To pinpoint a location, you can type in the name of a place, city, state, or address, or
           click the location on the map to get the coordinates.
         </Typography>
       </Box>
-      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 1 }}>
+      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 4 }}>
         <Grid container>
-          {/* ============ LatLngInputs ============ */}
-          <LatLngInputs readOnly={false} defaultValue={["33.748992", "-84.390264"]} />
+          {/* ============ AddressInput ============ */}
+          <AddressInput
+            key="2"
+            label="Address"
+            readOnly={false}
+            defaultValue="Atlanta, GA"
+            submitOnSelect={true}
+            onSubmit={handleChildSubmit}
+          />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">
               Submit
             </Button>
           </Grid>
-          {/* ============ AddressInput ============ */}
-          <AddressInput readOnly={true} defaultValue="Atlanta, GA" key="1" />
+          {/* ============ LatLngInputs ============ */}
+          <LatLngInputs readOnly={true} />
         </Grid>
       </Box>
     </Box>

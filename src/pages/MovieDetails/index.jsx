@@ -13,7 +13,6 @@ import Button from "components/Button";
 import Card from "@mui/material/Card";
 import MapExternal from "components/Maps/MapExternal";
 import DefaultFooter from "examples/Footers/DefaultFooter";
-import footerRoutes from "footer.routes";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
@@ -132,9 +131,7 @@ function MovieDetailPage() {
         </Grid>
       </Grid>
 
-      <Box pt={6} px={1} mt={6}>
-        <DefaultFooter content={footerRoutes} />
-      </Box>
+
     </BaseLayout>
   );
 }

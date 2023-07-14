@@ -1,7 +1,7 @@
 import { create } from "apisauce";
-const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.env;
-import { tron, lowercaseFirst } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
+import { lowercaseFirst } from "./helpers";
+const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.env;
 
 // define the api
 const mapBoxapi = create({
