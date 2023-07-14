@@ -241,3 +241,11 @@ I probably just need to add some kind of method to App.jsx that will prevent onL
 /components/Maps/MapWithRoute.jsx
 /components/PopupMarker/index.jsx
 App.jsx
+
+
+# Production Build
+## TODO
+- Fix issue with image urls not loading properly
+- Fix footer so movies page pagination buttons are clickable.
+
+
