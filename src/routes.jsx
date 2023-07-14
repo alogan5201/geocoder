@@ -4,6 +4,7 @@ import React from "react";
 import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
 import DirectionsIcon from "@mui/icons-material/Directions";
 import VideocamIcon from "@mui/icons-material/Videocam";
+import AddressToLatLngPage from "pages/AddressToLatLng";
 const AddressToLatLng = React.lazy(() => import("pages/AddressToLatLng"));
 const LatLngToAddress = React.lazy(() => import("pages/LatLngToAddress"));
 const Bookmarks = React.lazy(() => import("pages/Bookmarks"));
@@ -28,14 +29,14 @@ const routes = [
         name: "Latitude & Longitude to Address",
         description: "Convert Latitude and Longitude to an address",
         route: "/lat-lng-to-address",
-        component: <LatLngToAddress key={"latLngToAddress"} />,
+        component: <LatLngToAddress  />,
         key: "latLngToAddress",
       },
       {
         name: "Test Page",
         description: "",
         route: "/test",
-        component: <TestPage key={"test"} />,
+        component: <TestPage  />,
         key: "test",
       },
     ],

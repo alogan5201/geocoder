@@ -15,7 +15,7 @@ import {
   getDirections,
   metersToMiles,
 } from "util/geocoder";
-import { extractWords, fetchWeather, secondsToHoursMinutes } from "util/helpers";
+import { extractWords, fetchWeather, secondsToHoursMinutes,formatMarkerData } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -94,7 +94,8 @@ function Form() {
           if (updateRouteData) {
             setUserLocationActive(false);
             setMapInputState(false);
-            updateMarkerData(markerData);
+                 const formattedMarkerData = formatMarkerData(markerData)
+        updateMarkerData(formattedMarkerData);
             setMapZoom(5);
             const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
             setDirectionsUrl(googleMapsDirectionUrl);

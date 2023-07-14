@@ -4,6 +4,7 @@ import useStore from "store/mapStore";
 import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
 import styles from "./location-button.module.css";
 import { v4 as uuidv4 } from "uuid";
+import { formatMarkerData } from "util/helpers";
 
 function PopupTest() {
   return <div>test123 you are here</div>;
@@ -101,8 +102,8 @@ const LocationButton = ({ L }) => {
                   state: state,
                 },
               ];
-
-              updateMarkerData(markerData);
+  const formattedMarkerData = formatMarkerData(markerData);
+  updateMarkerData(formattedMarkerData);
               setUserLocationActive(true);
             }
         // add circle

@@ -11,6 +11,7 @@ import TableRow from "@mui/material/TableRow";
 
 import Box from "components/Box";
 import Typography from "components/Typography";
+import { formatMarkerData } from "util/helpers";
 
 // Table is a React functional component used for rendering a table.
 //
@@ -48,7 +49,8 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
         userLocation: false,
       },
     ];
-    updateMarkerData(markerData);
+     const formattedMarkerData = formatMarkerData(markerData)
+        updateMarkerData(formattedMarkerData);
   };
   // renderColumns maps through the columns and returns table header (th) elements.
   const renderColumns = columns.map(({ name, align, width }, key) => {

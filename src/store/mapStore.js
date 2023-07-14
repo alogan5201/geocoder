@@ -79,20 +79,7 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
      set({ testData: data });
    },
    setMarkerData: (data) => {
-     const markerData = [];
-    
-     for (let index = 0; index < data.length; index++) {
-       const element = data[index];
-       let obj = data[index];
-       let lat = obj["lat"];
-       let lng = obj["lng"];
-       let dms = convertLatLngToDMS(lat, lng);
-       obj["dms"] = dms;
-       obj["userLocation"] = obj["userLocation"];
-       markerData.push(obj);
-     }
-
-     set({ markerData: markerData });
+   set({ markerData: data });  
    },
  }));
 

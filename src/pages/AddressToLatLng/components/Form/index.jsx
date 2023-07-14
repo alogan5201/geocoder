@@ -9,7 +9,7 @@ import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import useStore from "store/mapStore";
 import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
-import { extractWords, test } from "util/helpers";
+import { extractWords, test, formatMarkerData } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
@@ -72,7 +72,8 @@ function Form() {
         ];
         setUserLocationActive(false);
         setMapInputState(false);
-        updateMarkerData(markerData);
+        const formattedMarkerData = formatMarkerData(markerData)
+        updateMarkerData(formattedMarkerData);
       } else {
         setErrorMessage(true);
 

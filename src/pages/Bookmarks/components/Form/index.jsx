@@ -6,7 +6,7 @@ import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import useStore from "store/mapStore";
 import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
-import { extractWords } from "util/helpers";
+import { extractWords, formatMarkerData } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
 import BookmarkTable from "../BookmarkTable";
@@ -111,7 +111,8 @@ function Form() {
             ];
         setUserLocationActive(false);
         setMapInputState(false);
-        updateMarkerData(markerData);
+            const formattedMarkerData = formatMarkerData(markerData);
+            updateMarkerData(formattedMarkerData);
         setBookmarkForLocation(true);
       }
     }

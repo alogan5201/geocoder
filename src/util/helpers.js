@@ -302,7 +302,65 @@ export function getCurrentTime() {
   var strTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
   return strTime;
 }
+ function convertLatLngToDMS(lat, lng) {
+   let a = 0,
+     b = 0,
+     c = 0,
+     d = "X";
+   let latDms = getLat(lat, a, b, c, d);
+   let lngDms = getLng(lng, a, b, c, d);
+   let output = {
+     lat: latDms,
+     lng: lngDms,
+   };
+   return output;
+   function getLat(lat, a, b, c, d) {
+     let e = !0;
+     d = e && 0 > lat ? "S" : !e && 0 > lat ? "W" : e ? "a" : "E";
+     d = Math.abs(lat);
+     a = Math.floor(d);
+     c = 3600 * (d - a);
+     b = Math.floor(c / 60);
+     c = Math.round(1e4 * (c - 60 * b)) / 1e4;
+     let displayA = Number.isInteger(a) ? a : a.toFixed(2);
+     let displayB = Number.isInteger(b) ? b : b.toFixed(2);
+     let displayC = Number.isInteger(c) ? c : c.toFixed(2);
+     let display = displayA + "° " + displayB + "' " + displayC + "''";
 
+     let text = a.toFixed(2);
+
+     let latOutput = {
+       degrees: a,
+       minutes: b,
+       seconds: c,
+       lat: d,
+       display: display,
+     };
+
+     return latOutput;
+   }
+   function getLng(lng, a, b, c, d) {
+     let e = !1;
+     d = e && 0 > lng ? "S" : !e && 0 > lng ? "W" : e ? "a" : "E";
+     d = Math.abs(lng);
+     a = Math.floor(d);
+     c = 3600 * (d - a);
+     b = Math.floor(c / 60);
+     c = Math.round(1e4 * (c - 60 * b)) / 1e4;
+     let displayA = Number.isInteger(a) ? a : a.toFixed(2);
+     let displayB = Number.isInteger(b) ? b : b.toFixed(2);
+     let displayC = Number.isInteger(c) ? c : c.toFixed(2);
+     let display = displayA + "° " + displayB + "' " + displayC + "''";
+     let lngOutput = {
+       degrees: a,
+       minutes: b,
+       seconds: c,
+       lng: d,
+       display: display,
+     };
+     return lngOutput;
+   }
+ }
 export function formatMarkerData(data){
        const markerData = [];
 
@@ -312,6 +370,7 @@ export function formatMarkerData(data){
          let lat = obj["lat"];
          let lng = obj["lng"];
          let dms = convertLatLngToDMS(lat, lng);
+
          obj["dms"] = dms;
          obj["userLocation"] = obj["userLocation"];
          markerData.push(obj);

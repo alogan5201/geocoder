@@ -43,7 +43,6 @@ const icon = (
 );
 export default function PopupMarker() {
       const [checked, setChecked] = useState(false);
-  const markerData = useStore((state) => state.markerDat, shallow);
   const [popupContent, setPopupcontent] = useState(null);
   const [dmsDisplay, setDisplayDMS] = useState(null);
   const [bookmarked, setBookmarked] = useState(false);

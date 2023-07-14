@@ -40,7 +40,7 @@ function PopupMarkerContent({ content }) {
         markerData[content].lng
       );
       setBookmarked(shouldBookmark);
-
+console.log(markerData)
       // popupContent.dms.lat.display
       let dmsDisplay = `${markerData[content].dms.lat.display} ${markerData[content].dms.lng.display}`;
       setDisplayDMS(dmsDisplay);

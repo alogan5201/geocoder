@@ -1,17 +1,16 @@
-import { useMemo, useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 import PropTypes from "prop-types";
 
-import { v4 as uuidv4 } from "uuid";
 import useStore from "store/mapStore";
+import { v4 as uuidv4 } from "uuid";
 
 import MuiTable from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
+import { formatMarkerData } from "util/helpers";
 
 import Box from "components/Box";
-import Avatar from "components/Avatar";
 import Typography from "components/Typography";
 
 function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
@@ -30,7 +29,8 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
         userLocation: false,
       },
     ];
-    updateMarkerData(markerData);
+    const formattedMarkerData = formatMarkerData(markerData);
+    updateMarkerData(formattedMarkerData);
   };
   const renderColumns = columns.map(({ name, align, width }, key) => {
     let pl;

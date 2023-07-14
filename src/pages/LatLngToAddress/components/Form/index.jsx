@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import useStore from "store/mapStore";
 import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
 import { v4 as uuidv4 } from "uuid";
-import { getCurrentTime } from "util/helpers";
+import { getCurrentTime, formatMarkerData } from "util/helpers";
 
 
 function Form() {
@@ -71,7 +71,8 @@ function Form() {
         ];
         setUserLocationActive(false);
         setMapInputState(false);
-        updateMarkerData(markerData);
+       const formattedMarkerData = formatMarkerData(markerData);
+       updateMarkerData(formattedMarkerData);
       } else {
         setErrorMessage(true);
           resetMapData();

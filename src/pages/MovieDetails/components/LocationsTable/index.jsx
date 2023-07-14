@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import {truncateToSixDecimals} from "util/helpers";
+import {truncateToSixDecimals,formatMarkerData} from "util/helpers";
 import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
 import useStore from "store/mapStore";
 import { v4 as uuidv4 } from "uuid";
@@ -48,7 +48,8 @@ export default function LocationsTable({ locations }) {
        
         const mapElement = document.getElementById("map-external");
 
-          updateMarkerData(markerData);
+             const formattedMarkerData = formatMarkerData(markerData)
+        updateMarkerData(formattedMarkerData);
             if (mapElement) {
               const offset = 650; // change this to the offset that suits your needs
 
