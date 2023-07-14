@@ -50,21 +50,11 @@ function CenteredFooter({ company, links, socials, light }) {
     </Typography>
   ));
 
-  const renderSocials = socials.map((social) => (
-    <Typography
-      key={social.link}
-      component={Link}
-      href={social.link}
-      variant="body2"
-      color={light ? "white" : "secondary"}
-      fontWeight="regular"
-    >
-      {social.icon}
-    </Typography>
-  ));
 
   return (
-    <Box component="footer" py={6}>
+    <Box component="footer" py={6} sx={{  position: "absolute",
+ bottom: 0,
+ width: "100%" }}>
       <Grid container justifyContent="center">
         <Grid item xs={10} lg={8}>
           <Stack
@@ -77,25 +67,10 @@ function CenteredFooter({ company, links, socials, light }) {
             {renderLinks}
           </Stack>
         </Grid>
-        <Grid item xs={12} lg={8}>
-          <Stack display="flex" direction="row" justifyContent="center" spacing={3} mt={1} mb={3}>
-            {renderSocials}
-          </Stack>
-        </Grid>
+
         <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
           <Typography variant="body2" color={light ? "white" : "secondary"}>
-            Copyright &copy; {year} Material by{" "}
-            <Typography
-              component={Link}
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              variant="body2"
-              color={light ? "white" : "secondary"}
-            >
-              {name}
-            </Typography>
-            .
+            Copyright &copy; {year} Geotools
           </Typography>
         </Grid>
       </Grid>
@@ -107,28 +82,12 @@ function CenteredFooter({ company, links, socials, light }) {
 CenteredFooter.defaultProps = {
   company: { href: "https://www.creative-tim.com/", name: "Creative Tim" },
   links: [
-    { href: "https://www.creative-tim.com/", name: "Company" },
-    { href: "https://www.creative-tim.com/presentation", name: "About Us" },
-    { href: "https://www.creative-tim.com/presentation", name: "Team" },
-    { href: "https://www.creative-tim.com/templates/react", name: "Products" },
-    { href: "https://www.creative-tim.com/blog", name: "Blog" },
-    { href: "https://www.creative-tim.com/license", name: "License" },
-  ],
-  socials: [
-    { icon: <FacebookIcon fontSize="small" />, link: "https://www.facebook.com/CreativeTim/" },
-    {
-      icon: <TwitterIcon fontSize="small" />,
-      link: "https://twitter.com/creativetim",
-    },
-    {
-      icon: <InstagramIcon fontSize="small" />,
-      link: "https://www.instagram.com/creativetimofficial/",
-    },
-    {
-      icon: <PinterestIcon fontSize="small" />,
-      link: "https://ro.pinterest.com/thecreativetim/",
-    },
-    { icon: <GitHubIcon fontSize="small" />, link: "https://github.com/creativetimofficial" },
+    { href: "/", name: "Geotools" },
+    { href: "/address-to-lat-lng", name: "Address to Latitude & Longitude" },
+    { href: "/lat-lng-to-address", name: "Latitude & Longtidue to Address" },
+    { href: "/route-planner", name: "Route Planner" },
+    { href: "/bookmarks", name: "Bookmarks" },
+    { href: "/movies/1", name: "Movies" },
   ],
   light: false,
 };

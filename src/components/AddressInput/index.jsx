@@ -58,11 +58,14 @@ function AddressInput({ onSubmit, ...props }) {
   }, [markerData, locationMarkerData]);
   return (
     <Grid item xs={12} pr={1} mb={3}>
-      <Box>
-        <Typography display="inline" variant="h6" fontWeight="regular" color="secondary">
-          {props.label ? props.label : "Address"}
-        </Typography>
-      </Box>
+      {props.label && (
+        <Box>
+          <Typography display="inline" variant="h6" fontWeight="regular" color="secondary">
+            {props.label}
+          </Typography>
+        </Box>
+      )}
+
       {props.readOnly ? (
         <Input
           inputRef={addressInputElm}

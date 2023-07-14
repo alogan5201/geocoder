@@ -36,28 +36,10 @@ function DefaultFooter({ content }) {
         <Grid container spacing={3}>
           <Grid item xs={12} md={3} sx={{ ml: "auto", mb: 3 }}>
             <Box>
-              <Link to={brand.route}>
-                <Box component="img" src={brand.image} alt={brand.name} maxWidth="2rem" mb={2} />
-              </Link>
+          
               <Typography variant="h6">{brand.name}</Typography>
             </Box>
-            <Box display="flex" alignItems="center" mt={3}>
-              {socials.map(({ icon, link }, key) => (
-                <Typography
-                  key={link}
-                  component="a"
-                  href={link}
-                  target="_blank"
-                  rel="noreferrer"
-                  variant="h5"
-                  color="dark"
-                  opacity={0.8}
-                  mr={key === socials.length - 1 ? 0 : 2.5}
-                >
-                  {icon}
-                </Typography>
-              ))}
-            </Box>
+ 
           </Grid>
           {menus.map(({ name: title, items }) => (
             <Grid key={title} item xs={6} md={2} sx={{ mb: 3 }}>

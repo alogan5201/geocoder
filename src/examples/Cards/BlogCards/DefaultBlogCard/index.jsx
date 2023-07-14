@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // react-router components
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "@mui/material/Skeleton";
 
@@ -31,54 +31,43 @@ import Typography from "components/Typography";
 import Avatar from "components/Avatar";
 
 function DefaultBlogCard({ image, category, title, description, author, raised, action, maxWidth, maxHeight}) {
-    const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [imageSrc, setImageSrc] = useState(null);
 
-  const imageTemplate = (
-    <>
+  useEffect(() => {
+    const img = new Image();
+    img.src = image;
+    img.onload = () => {
+      setIsImageLoaded(true);
+      setImageSrc(image);
+    };
+  }, [image]);
 
-      <Box
-        component="img"
-        src={image}
-        alt={title}
-        borderRadius="lg"
-        shadow={raised ? "md" : "none"}
-        width="100%"
-        height={maxHeight}
-        position="relative"
-        zIndex={1}
-        onLoad={() => setIsImageLoaded(true)}
-        style={{ display: isImageLoaded ? "block" : "none" }}
-      />
-      <Box
-        borderRadius="lg"
-        shadow={raised ? "md" : "none"}
-        width="100%"
-        height="100%"
-        position="absolute"
-        left={0}
-        top={0}
-        sx={
-          raised
-            ? {
-                backgroundImage: `url(${image})`,
-                transform: "scale(0.94)",
-                filter: "blur(12px)",
-                backgroundSize: "cover",
-              }
-            : {}
-        }
-      />
-    </>
+  const renderImage = () => (
+    <Box
+      component="img"
+      src={imageSrc}
+      alt={title}
+      borderRadius="lg"
+      shadow={raised ? "md" : "none"}
+      width="100%"
+      height={maxHeight}
+      position="relative"
+      zIndex={1}
+      style={{ display: isImageLoaded ? "block" : "none" }}
+    />
   );
+
+  const renderSkeleton = () => <Skeleton variant="rectangular" width={267} height={400} />;
 
   return (
     <Card sx={{ maxWidth: maxWidth }} p={0}>
       <Box position="relative" borderRadius="lg" mx={2} mt={raised ? -3 : 2}>
         {action.type === "internal" ? (
-          <Link to={action.route}>{imageTemplate}</Link>
+          <Link to={action.route}>{isImageLoaded ? renderImage() : renderSkeleton()}</Link>
         ) : (
           <MuiLink href={action.route} target="_blank" rel="noreferrer">
-            {imageTemplate}
+            {isImageLoaded ? renderImage() : renderSkeleton()}
           </MuiLink>
         )}
       </Box>

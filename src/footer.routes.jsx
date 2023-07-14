@@ -14,7 +14,7 @@ const date = new Date().getFullYear();
 
 export default {
   brand: {
-    name: "Material Kit 2 PRO",
+    name: "geotools",
     image: logoCT,
     route: "/",
   },

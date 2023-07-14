@@ -13,6 +13,7 @@ export default function LatLngInputs({ defaultValue, readOnly }) {
   const markerData = useStore((state) => state.markerData,shallow);
   const clearMapInputs = useStore((state) => state.clearMapInputs);
   const setMapInputState = useStore((state) => state.setMapInputState);
+  const locationMarkerData = useStore((state) => state.locationMarkerData);
 
   // Define refs for latitude and longitude inputs
   const latInputElm = useRef(null);
@@ -33,12 +34,18 @@ export default function LatLngInputs({ defaultValue, readOnly }) {
 
   // useEffect hook to update input values based on marker data and read-only state
   useEffect(() => {
-    if (markerData ) {
-      const { lat, lng } = markerData[0];
+        const markerDataPoints = markerData
+          ? markerData
+          : locationMarkerData
+          ? locationMarkerData
+          : null;
+
+    if (markerDataPoints) {
+      const { lat, lng } = markerDataPoints[0];
       latInputElm.current.value = lat;
       lngInputElm.current.value = lng;
     }
-  }, [markerData]);
+  }, [markerData, locationMarkerData]);
 
   // useEffect hook to clear input values based on clearMapInputs state
   useEffect(() => {

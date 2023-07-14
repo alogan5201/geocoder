@@ -27,9 +27,7 @@ function BookmarksPage() {
       <BaseLayout>
         <FormWrapper form={<Form />} />
 
-        <Box pt={6} px={1} mt={6}>
-          <DefaultFooter content={footerRoutes} />
-        </Box>
+
       </BaseLayout>
     </>
   );
