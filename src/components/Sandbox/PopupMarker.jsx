@@ -14,6 +14,8 @@ import Switch from "@mui/material/Switch";
 import Paper from "@mui/material/Paper";
 import Fade from "@mui/material/Fade";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import { shallow } from "zustand/shallow";
+
 const icon = (
   <Paper elevation={4}>
     <List>
@@ -41,7 +43,7 @@ const icon = (
 );
 export default function PopupMarker() {
       const [checked, setChecked] = useState(false);
-  const markerData = useStore((state) => state.markerData);
+  const markerData = useStore((state) => state.markerDat, shallow);
   const [popupContent, setPopupcontent] = useState(null);
   const [dmsDisplay, setDisplayDMS] = useState(null);
   const [bookmarked, setBookmarked] = useState(false);

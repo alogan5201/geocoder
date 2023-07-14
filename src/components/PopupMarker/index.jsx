@@ -10,6 +10,7 @@ import useStore from "store/mapStore";
 import { extractWords, test,tron} from "util/helpers";
 import {handleBookmarkChange,alreadyBookmarked} from "util/bookmarks";
 import { v4 as uuidv4 } from "uuid";
+import { shallow } from "zustand/shallow";
 
 export default function PopupMarker({ content}) {
   const markerData = useStore((state) => state.markerData);

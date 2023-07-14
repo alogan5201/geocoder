@@ -12,11 +12,11 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+import { shallow } from "zustand/shallow";
 
 import { useEffect, Suspense } from "react";
 import useStore from "store/mapStore";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { shallow } from 'zustand/shallow'
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffectOnce } from "react-use";
@@ -25,7 +25,6 @@ import { useEffectOnce } from "react-use";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { db } from "util/firebase";
-import { useTestStore } from "store/testStore";
 
 // Material Kit 2 PRO React themes
 import theme from "assets/theme";
@@ -35,29 +34,24 @@ import Loading from "components/Loading";
 import MovieDetailPage from "pages/MovieDetails";
 import Movies from "pages/Movies";
 import "src/App.css";
-
+import {getCurrentTime} from "util/helpers";
 // Material Kit 2 PRO React routes
 import routes from "routes";
 
 export default function App() {
-    const [increase, decrease, reset] = useTestStore(
-      (state) => [state.increase, state.decrease, state.reset],
-      shallow
-    );
   const { pathname } = useLocation();
-    const markerData = useStore((state) => state.markerData);
+
+  const markerData = useStore((state) => state.markerData);
 
   const resetMapData = useStore((state) => state.resetMapData);
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-   console.log(pathname)
+    
     localStorage.setItem("markerData", "[]");
-    reset()
+
     resetMapData();
-
-
   }, [pathname]);
   useEffectOnce(() => {
     const setMovieList = async () => {
@@ -81,7 +75,9 @@ export default function App() {
 
       return null;
     });
-
+useEffect(() => {
+  console.log("markerData from App.jsx", markerData, getCurrentTime());
+}, [markerData]);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

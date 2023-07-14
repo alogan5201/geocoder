@@ -9,12 +9,12 @@ import useStore from "store/mapStore";
 import Box from "components/Box";
 import Typography from "components/Typography";
 import { marker } from "leaflet";
+import { shallow } from "zustand/shallow";
 
 // Material Kit 2 PRO React components
 function AddressInput({ onSubmit, ...props }) {
   const markerData = useStore((state) => state.markerData);
     const resetMapData = useStore((state) => state.resetMapData);
-const markerState = useState(markerData)
   const clearMapInputs = useStore((state) => state.clearMapInputs);
   const setMapInputState = useStore((state) => state.setMapInputState);
   const addressInputElm = useRef(null);
@@ -38,18 +38,14 @@ const markerState = useState(markerData)
     }
   }, [clearMapInputs]);
 
+  
   useEffect(() => {
-    if (markerData) {
-       console.log(`markerData: ${JSON.stringify(markerData)}`)
-       const addr = markerData[0].title.includes(", United States")
-         ? markerData[0].title.replace(", United States", "")
-         : markerData[0].title;
-       console.log(markerData);
-       setAddress(addr);
-       if (props.readOnly) {
-       addressInputElm.current.value = addr;
-       }
-     }
+  if(markerData && props.readOnly) {
+        const address = markerData[0].title.includes(", United States")
+          ? markerData[0].title.replace(", United States", "")
+          : markerData[0].title;
+        addressInputElm.current.value = address;
+  }   
 
   }, [markerData]);
   return (

@@ -38,7 +38,6 @@ function Form() {
   const [coords, setCoords] = useGlobalValue();
   const latInputElm = useRef(null);
   const lngInputElm = useRef(null);
-  const updateGeoData = useStore((state) => state.setGeoData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
@@ -82,7 +81,6 @@ let lng = mapBoxData.features[0].geometry.coordinates[0]
              }
       ]
       updateMarkerData(markerData)
-        updateGeoData(mapBoxData.features[0]);
 
       }
      

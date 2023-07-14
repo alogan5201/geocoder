@@ -6,11 +6,12 @@ import useStore from "store/mapStore";
 import PointMarker from "./PointMarker";
 import { useLocation } from "react-router-dom";
 import { marker, popup } from "leaflet";
+import { shallow } from "zustand/shallow";
 
 const center = [37.09024, -95.712891];
 const Markers = ({ L }) => {
   const map = useMap();
-  const markerData = useStore((state) => state.markerData);
+  const markerData = useStore((state) => state.markerData,shallow);
   const [markerPoints, setMarkerPoints] = useState(null);
   const [popupOpen, setPopupOpen] = useState(false);
   const [currentCoords, setCurrentCoords] = useState(null);

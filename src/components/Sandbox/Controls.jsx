@@ -3,7 +3,7 @@ import { shallow } from "zustand/shallow";
 import { useTestStore } from "store/testStore";
 
  const Controls = () => {
-  console.log("Controls render");
+  
   // 只会渲染一次，因为 increase 和 decrease 不会改变
   const [increase, decrease, reset] = useTestStore(
     (state) => [state.increase, state.decrease, state.reset],

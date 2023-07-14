@@ -230,3 +230,14 @@ import useStore from "store/mapStore";
 
   When the location is active it is setting address fields when switching to other pages
 I probably just need to add some kind of method to App.jsx that will prevent onLocatioNFound to be called when calling resetMapData
+
+
+# files where state.markerData is set 
+/components/AddressInput/index.jsx
+/components/LatLngInputs/index.jsx
+/components/Maps/components/ExternalState.jsx
+/components/Maps/components/Markers.jsx
+/components/Maps/components/PopupMarkerContent.jsx
+/components/Maps/MapWithRoute.jsx
+/components/PopupMarker/index.jsx
+App.jsx

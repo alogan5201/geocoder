@@ -14,15 +14,17 @@ import { useGlobalValue } from "util/mapState";
 import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
 import { useEffectOnce } from "react-use";
+import { shallow } from "zustand/shallow";
+import { marker } from "leaflet";
+import { getCurrentTime } from "util/helpers";
 
 function Form() {
   const formRef = useRef();
-
+  const markerData = useStore((state) => state.markerData);
   const [zoomState, setZoomState] = useState();
   const [coords, setCoords] = useGlobalValue();
   const latInputElm = useRef(null);
   const lngInputElm = useRef(null);
-  const updateGeoData = useStore((state) => state.setGeoData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -30,7 +32,6 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
-    const markerDataState = useStore((state) => state.markerData);
 
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
@@ -72,7 +73,6 @@ function Form() {
         setUserLocationActive(false);
         setMapInputState(false);
         updateMarkerData(markerData);
-        updateGeoData(mapBoxData.features[0]);
       } else {
         setErrorMessage(true);
 
@@ -135,6 +135,11 @@ function Form() {
         resetMapData();
     })
   }, []);
+
+  useEffect(() => {
+      console.log("FORM AddressToLatLng", markerData, getCurrentTime());
+
+  }, [markerData]);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
@@ -150,6 +155,7 @@ function Form() {
         <Grid container>
           {/* ============ AddressInput ============ */}
           <AddressInput
+            key="2"
             label="Address"
             readOnly={false}
             defaultValue="Atlanta, GA"

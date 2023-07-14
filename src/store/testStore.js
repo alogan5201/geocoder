@@ -19,7 +19,7 @@ const hashStorage = {
   },
 };
 
-export const useTestStore = create()(
+ const useTestStore = create()(
   persist(
     (set) => ({
       count: 0,

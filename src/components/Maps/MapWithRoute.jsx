@@ -9,6 +9,8 @@ import PolyLineRoute from "./components/PolyLineRoute";
 import MapEventsController from "./components/MapEventsController";
 import WeatherLegend from "./components/WeatherLegend";
 import ExternalState from "./components/ExternalState";
+import { shallow } from "zustand/shallow";
+
 const center = [37.09024, -95.712891];
 
 function convertToBoundingBox(points) {

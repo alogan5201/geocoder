@@ -4,24 +4,18 @@ import Box from "components/Box";
 import Grid from "@mui/material/Grid";
 import AddressInput from "components/AddressInput";
 import Button from "components/Button";
-import Input from "components/Input";
+import LatLngInputs from "components/LatLngInputs";
 import Typography from "components/Typography";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import useStore from "store/mapStore";
 import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
-import { extractWords, test } from "util/helpers";
-import { useGlobalValue } from "util/mapState";
-import LatLngInputs from "components/LatLngInputs";
 import { v4 as uuidv4 } from "uuid";
+import { getCurrentTime } from "util/helpers";
+
 
 function Form() {
- 
+    const markerData = useStore((state) => state.markerData);
 
-  const [zoomState, setZoomState] = useState();
-  const [coords, setCoords] = useGlobalValue();
-  const latInputElm = useRef(null);
-  const lngInputElm = useRef(null);
-  const updateGeoData = useStore((state) => state.setGeoData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -110,7 +104,10 @@ function Form() {
       }
     }
   }, [userLocationActive]);
+  useEffect(() => {
+       console.log("FORM LatLngtoAddress", markerData, getCurrentTime());
 
+  }, [markerData]);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
@@ -133,7 +130,7 @@ function Form() {
             </Button>
           </Grid>
           {/* ============ AddressInput ============ */}
-          <AddressInput readOnly={true} defaultValue="Atlanta, GA" />
+          <AddressInput readOnly={true} defaultValue="Atlanta, GA" key="1" />
         </Grid>
       </Box>
     </Box>

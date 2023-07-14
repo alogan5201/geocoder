@@ -13,8 +13,8 @@ import useStore from "store/mapStore";
 
 function FormWrapper({ props, form, map }) {
   const errorMessage = useStore((state) => state.errorMessage);
-  const [coords, setCoords] = useGlobalValue();
-  const [geoData, setGeoData] = useGlobalGeoData();
+
+
    const latInputElm = useRef(null);
    const lngInputElm = useRef(null);
    /* -------------------------------------------------------------------------- */

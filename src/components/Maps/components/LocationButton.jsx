@@ -10,7 +10,6 @@ function PopupTest() {
 }
 const LocationButton = ({ L }) => {
   const map = useMap();
-  const updateGeoData = useStore((state) => state.setGeoData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
@@ -105,7 +104,6 @@ const LocationButton = ({ L }) => {
 
               updateMarkerData(markerData);
               setUserLocationActive(true);
-              updateGeoData(mapBoxData.features[0]);
             }
         // add circle
         // this.addCircle(e).addTo(this.featureGroup()).addTo(map);

@@ -286,3 +286,35 @@ export function isFirstItemOf15Subset(total, number) {
 export function truncateToSixDecimals(num) {
   return Math.trunc(num * 1000000) / 1000000;
 }
+
+export function getCurrentTime() {
+  var date = new Date();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+  var ampm = hours >= 12 ? "PM" : "AM";
+
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  var strTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
+  return strTime;
+}
+
+export function formatMarkerData(data){
+       const markerData = [];
+
+       for (let index = 0; index < data.length; index++) {
+         const element = data[index];
+         let obj = data[index];
+         let lat = obj["lat"];
+         let lng = obj["lng"];
+         let dms = convertLatLngToDMS(lat, lng);
+         obj["dms"] = dms;
+         obj["userLocation"] = obj["userLocation"];
+         markerData.push(obj);
+       }
+       return markerData
+}

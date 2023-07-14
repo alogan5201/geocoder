@@ -65,7 +65,6 @@ function Form() {
   const [coords, setCoords] = useGlobalValue();
   const latInputElm = useRef(null);
   const lngInputElm = useRef(null);
-  const updateGeoData = useStore((state) => state.setGeoData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -113,7 +112,6 @@ function Form() {
         setUserLocationActive(false);
         setMapInputState(false);
         updateMarkerData(markerData);
-        updateGeoData(mapBoxData.features[0]);
         setBookmarkForLocation(true);
       }
     }

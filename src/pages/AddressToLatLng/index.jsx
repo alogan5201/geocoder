@@ -16,22 +16,6 @@ import { useLocation } from "react-router-dom";
 function AddressToLatLngPage() {
     const { pathname } = useLocation();
 
-  const formWrapperStyles = formStyles.mapForm.formWrapper;
-  const formWrapperProps = {
-    styles: formWrapperStyles,
-    name: "Address to Latitude & Longitude",
-    description:
-      "To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates.",
-    map: true,
-  };
-
-  // formStyles.formWrapper
-  const actionProps = {
-    type: "internal",
-    route: "/pages/landing-pages/coworking",
-    color: "dark",
-    label: "find more",
-  };
   return (
     <>
       <BaseLayout>
