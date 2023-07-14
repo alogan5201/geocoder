@@ -46,7 +46,7 @@ import {convertLatLngToDMS,convertDMStoLatLng} from 'util/geocoder'
    },
    resetMapData: () => {
     // Used on page change to reset state
-     set({ markerData: null, clearMapInputs: true, mapZoom: null, userLocationActive:false ,locationMarkerData:null});
+     set({ markerData: null, clearMapInputs: true, mapZoom: null, userLocationActive:false ,locationMarkerData:null, routeData: null});
    },
    setBookmarks: () => {
      const bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];

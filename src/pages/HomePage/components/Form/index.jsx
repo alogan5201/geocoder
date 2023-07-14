@@ -67,6 +67,7 @@ function Form() {
             wikiData: wikiData,
             city: city,
             state: state,
+            popupOpen: false,
           },
         ];
         setUserLocationActive(false);

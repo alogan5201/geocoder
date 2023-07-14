@@ -43,6 +43,7 @@ export default function LocationsTable({ locations }) {
               wikiData: wikiData,
               city: city,
               state: state,
+                popupOpen: false,
             },
           ];
        

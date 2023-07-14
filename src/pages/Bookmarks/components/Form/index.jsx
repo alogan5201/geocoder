@@ -107,6 +107,7 @@ function Form() {
                 userLocation: false,
                 city: city,
                 state: state,
+                popupOpen: false,
               },
             ];
         setUserLocationActive(false);

@@ -47,6 +47,7 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
         lng: longitude,
         title: address,
         userLocation: false,
+        popupOpen: false,
       },
     ];
      const formattedMarkerData = formatMarkerData(markerData)

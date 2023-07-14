@@ -12,20 +12,21 @@ import { motion } from "framer-motion";
 const LegendContent = ({ content }) => {
   const cardStyles = {
     minWidth: 180,
+   backgroundColor: "rgba(255,255,255,0.8)",
     // transform: "rotate(180deg)",
   };
   return (
     <Card sx={cardStyles}>
       <CardContent>
-        <Stack direction="column" spacing={0} alignItems="center" >
+        <Stack direction="column" spacing={0} alignItems="center">
           <Stack
             direction="row"
             spacing={0}
-            sx={{  width: "100%" }}
+            sx={{ width: "100%" }}
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography sx={{ fontSize: 14 }} variant="body2" gutterBottom>
+            <Typography sx={{ fontSize: 14, fontWeight: "500" }} variant="body2" gutterBottom>
               {content.origin.address} <br />
               {Math.round(content.origin.temp)}°F
             </Typography>
@@ -47,11 +48,11 @@ const LegendContent = ({ content }) => {
               <img
                 src={`/src/${content.origin.icon}`}
                 loading="lazy"
-                style={{ maxWidth: "50px" }}
+                style={{ maxWidth: "40px" }}
               />
             </motion.div>
           </Stack>
-          <Divider sx={{ my: 2 }} />
+          <Divider sx={{ my: 0.5, width: "100%", color: "red", opacity: 0.8 }} />
           <Stack
             direction="row"
             spacing={5}
@@ -59,7 +60,7 @@ const LegendContent = ({ content }) => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography sx={{ fontSize: 14 }} variant="body2" gutterBottom>
+            <Typography sx={{ fontSize: 14, fontWeight: "500" }} variant="body2" gutterBottom>
               {content.destination.address} <br />
               {Math.round(content.destination.temp)}°F
             </Typography>
@@ -81,7 +82,7 @@ const LegendContent = ({ content }) => {
               <img
                 src={`/src/${content.destination.icon}`}
                 loading="lazy"
-                style={{ maxWidth: "50px" }}
+                style={{ maxWidth: "40px" }}
               />
             </motion.div>
           </Stack>

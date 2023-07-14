@@ -59,6 +59,7 @@ export default function AutoCompleteAddress({
     const id = newValue.mapbox_id;
 
     const retrieveSuggestion = await retrieveAutocomplete(id);
+    console.log(retrieveSuggestion);
     const placeFormatted = retrieveSuggestion
       ? retrieveSuggestion.features[0].properties.full_address
       : null;
@@ -117,9 +118,6 @@ export default function AutoCompleteAddress({
   }, [value, inputValue, fetch]);
 
   useEffect(() => {
-      if (label === "Destination") {
-        return;
-      }
     if (address) {
       const uid = uuidv4();
       const newInputValue = { name: address, id: uid };

@@ -42,10 +42,14 @@ function AddressInput({ onSubmit, ...props }) {
   
   useEffect(() => {
     const markerDataPoints = markerData ? markerData : locationMarkerData ? locationMarkerData : null;
-    if (markerDataPoints) {
+    if (locationMarkerData && props.label === "Destination") {
+      return;
+    }
+    else if (markerDataPoints) {
       const addressData = markerDataPoints[0].title.includes(", United States")
         ? markerDataPoints[0].title.replace(", United States", "")
         : markerDataPoints[0].title;
+    
         setAddress(addressData);
         if(props.readOnly){
           addressInputElm.current.value = addressData;
