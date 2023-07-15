@@ -259,3 +259,8 @@ yarn add --dev eslint eslint-plugin-react prettier eslint-config-prettier eslint
  
 
  firebase deploy --only functions
+
+
+# TODO: 
+Theres a bug in route planner
+If you click the button twice quickly the input value from the first input gets set to the second input

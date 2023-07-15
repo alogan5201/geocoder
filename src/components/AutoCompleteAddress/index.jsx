@@ -59,10 +59,11 @@ export default function AutoCompleteAddress({
     const id = newValue.mapbox_id;
 
     const retrieveSuggestion = await retrieveAutocomplete(id);
-
+      
     const placeFormatted = retrieveSuggestion
       ? retrieveSuggestion.features[0].properties.full_address
       : null;
+
     const newInputValue = !placeFormatted
       ? newValue.name
       : placeFormatted.includes(", United States of America")

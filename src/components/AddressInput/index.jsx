@@ -45,10 +45,14 @@ function AddressInput({ onSubmit, ...props }) {
     if (locationMarkerData && props.label === "Destination") {
       return;
     }
+
     else if (markerDataPoints) {
-      const addressData = markerDataPoints[0].title.includes(", United States")
-        ? markerDataPoints[0].title.replace(", United States", "")
-        : markerDataPoints[0].title;
+    
+      const index = props.key ? props.key : 0;
+      
+      const addressData = markerDataPoints[index].title.includes(", United States")
+        ? markerDataPoints[index].title.replace(", United States", "")
+        : markerDataPoints[index].title;
     
         setAddress(addressData);
         if(props.readOnly){

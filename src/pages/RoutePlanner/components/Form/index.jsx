@@ -43,6 +43,7 @@ function Form() {
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
+  const markerDataState = useStore((state) => state.markerData);
   const { setWeather, weather } = useStore((state) => ({
     setWeather: state.setWeather,
     weather: state.weather,
@@ -73,8 +74,6 @@ function Form() {
     const inputTwo = e.target[2].value;
 
     if (inputOne && inputTwo) {
-      let extracted = extractWords(inputOne);
-      let withPlus = extracted.join("+");
       setLoading(true);
       const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
       const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
@@ -87,12 +86,15 @@ function Form() {
           const markerDataDestinationFormatted =
             generateMarkerDataDestination(mapBoxDataDestination);
           const markerData = [markerDataOriginFormatted[0], markerDataDestinationFormatted[0]];
-
+// ! BUG IS OCCURING SOMEWHERE HERE
+if(markerDataOriginFormatted[0].id === markerDataDestinationFormatted[0].id){
+  return
+}
           const updateRouteData = await updateRoute(markerData);
           if (updateRouteData) {
             setUserLocationActive(false);
             setMapInputState(false);
-                 const formattedMarkerData = formatMarkerData(markerData)
+          const formattedMarkerData = formatMarkerData(markerData)
         updateMarkerData(formattedMarkerData);
             setMapZoom(5);
             const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
@@ -133,6 +135,7 @@ function Form() {
         }
       }
     }
+    setLoading(false);
   }
   const handleChildSubmit = (data) => {
     if (data) {
@@ -262,7 +265,15 @@ function Form() {
       }
     }
   }, [routeData]);
-
+useEffect(() => {
+  if(markerDataState){
+    const cityOrigin = markerDataState[0].city;
+    const cityDestination = markerDataState[1].city;
+   if(cityOrigin == cityDestination){
+    console.log("they are the same", cityOrigin,cityD)
+   }
+  }
+}, [markerDataState]);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
@@ -283,6 +294,7 @@ function Form() {
             defaultValue="Atlanta, GA"
             icon={<OriginInputIcon />}
             disableChangeEventListener={true}
+            key={0}
           />
           {/* ============ DESTINATION-AddressInput ============ */}
           <AddressInput
@@ -293,6 +305,7 @@ function Form() {
             icon={<DestinationInputIcon />}
             submitOnSelect={true}
             onSubmit={handleChildSubmit}
+            key={1}
           />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>

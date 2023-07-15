@@ -25,7 +25,7 @@ export const fetchAutocomplete = async (address) => {
   let lastUsedTime = localStorageData.lastUsedTime || 0;
   let callCount = localStorageData.callCount || 0;
   const currentTimestamp = Date.now();
-
+  //https://api.mapbox.com/search/searchbox/v1/suggest?q=birmingham&access_token=pk.eyJ1Ijoic2VhcmNoLW1hY2hpbmUtdXNlci0xIiwiYSI6ImNrNnJ6bDdzdzA5cnAza3F4aTVwcWxqdWEifQ.RFF7CVFKrUsZVrJsFzhRvQ&session_token=0cb40a88-53ec-4605-896c-74c360a87a15&language=en&country=US&limit=3&types=country%2Cregion%2Cdistrict%2Caddress%2Cstreet%2Cpostcode%2Clocality%2Cplace%2Cneighborhood%2Cpoi%2Ccategory&proximity=-98%2C%2040
   // Check if uid can be reused
   const canReuseUid =
     (callCount < 50 && uid) || // Less than 50 successive calls without /retrieve
@@ -38,9 +38,9 @@ export const fetchAutocomplete = async (address) => {
 
   const myQuery = `https://api.mapbox.com/search/searchbox/v1/suggest?q=${encodeURIComponent(
     address
-  )}&language=en&limit=3&session_token=${uid}&access_token=${VITE_ACCESS_TOKEN}`;
+  )}&access_token=${VITE_ACCESS_TOKEN}&session_token=${uid}&language=en&country=US&limit=3&types=country%2Cregion%2Cdistrict%2Caddress%2Cstreet%2Cpostcode%2Clocality%2Cplace%2Cneighborhood%2Cpoi%2Ccategory&proximity=-98%2C%2040`;
 
-  const response = await fetch(myQuery, { method: "GET" });
+  const response = await fetch(myQuery);
 
   if (response.status !== 200) {
     return;
@@ -77,9 +77,9 @@ export const retrieveAutocomplete = async (id) => {
     uid = uuidv4();
     callCount = 0;
   }
-
+  // "https://api.mapbox.com/search/searchbox/v1/retrieve/${id}?session_token=${uid}&access_token=${VITE_ACCESS_TOKEN}"
   const myQuery = `https://api.mapbox.com/search/searchbox/v1/retrieve/${id}?session_token=${uid}&access_token=${VITE_ACCESS_TOKEN}`;
-
+  
   const response = await fetch(myQuery, { method: "GET" });
 
   if (response.status !== 200) {

@@ -67,6 +67,7 @@ function FormWrapper({ props, form, map }) {
               </Grid>
             </Grid>
           </Box>
+          <Sandbox />
         </Grid>
       </Box>
     </>

@@ -146,7 +146,7 @@ const testFunc = async (e) => {
 
 const res = await getPlacePhoto(b.data);
 
-console.log(res)
+
 }
 
   return (
