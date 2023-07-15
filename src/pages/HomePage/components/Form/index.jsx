@@ -143,39 +143,7 @@ const testFunc = async (e) => {
       state: "Utah",
     },
   };
-  const bookmark = {
-    id: "3815f407-237e-4130-a484-68ff141f6983",
-    lat: 40.75962,
-    lng: -111.886798,
-    title: "Salt Lake City, Utah, United States",
-    userLocation: false,
-    wikiData: "Q23337",
-    city: "Salt Lake City",
-    state: "Utah",
-    dms: {
-      lat: {
-        degrees: 40,
-        minutes: 45,
-        seconds: 34.632,
-        lat: 40.75962,
-        display: "40° 45' 34.63''",
-      },
-      lng: {
-        degrees: 111,
-        minutes: 53,
-        seconds: 12.4728,
-        lng: 111.886798,
-        display: "111° 53' 12.47''",
-      },
-    },
-  };
 
-  const data = {
-    latitude: bookmark.lat.toString(),
-    longitude: bookmark.lng.toString(),
-    city: bookmark.city,
-    state: bookmark.state,
-  };
 const res = await getPlacePhoto(b.data);
 
 console.log(res)

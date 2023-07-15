@@ -5,7 +5,7 @@ import Box from "components/Box";
 import Spinner from "components/Spinner";
 import Table from "examples/Tables/Table";
 import { useEffect, useState } from "react";
-import { getPhotoByCoordinates } from "util/geocoder";
+import { getPhotoByCoordinates, getPlacePhoto } from "util/geocoder";
 // BookmarkTable is a React functional component that displays a list of bookmarks
 // in a table format. The bookmarks are fetched from a given state and includes
 // various details like address, latitude, longitude, and an associated image.
@@ -80,14 +80,18 @@ function BookmarkTable({ bookmarkState }) {
             // Fetch the city photo if not available in the bookmark.
             const city = bookmarks[i].city;
             const state = bookmarks[i].state;
-            const locationPhoto = await getPhotoByCoordinates(latitude, longitude, city, state);
+            const photoLocationQuery = {
+              latitude: latitude,
+              longitude: longitude,
+              city: city,
+              state: state,
+            };
+            const locationPhoto = await getPlacePhoto(photoLocationQuery);
 
-            const photoUrl = locationPhoto
-              ? locationPhoto.replace("/google-api/", "https://maps.googleapis.com/maps/api/")
-              : "";
+       
             const photo = locationPhoto ? (
               <IconButton aria-label="delete">
-                <img className="bookmark-image" src={photoUrl}></img>
+                <img className="bookmark-image" src={locationPhoto.data}></img>
               </IconButton>
             ) : (
               ""
