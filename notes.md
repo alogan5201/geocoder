@@ -253,3 +253,9 @@ yarn add --dev @babel/core @babel/eslint-parser eslint-plugin-react
 
 
 yarn add --dev eslint eslint-plugin-react prettier eslint-config-prettier eslint-plugin-prettier babel-eslint
+
+
+ firebase deploy --only functions
+ 
+
+ firebase deploy --only functions

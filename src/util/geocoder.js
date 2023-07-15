@@ -1,8 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
 import { isNumber } from "./helpers";
+import { httpsCallable, getFunctions } from "firebase/functions";
+
 const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.env;
-
-
+export const functions = getFunctions();
 
 export const covertAddressToLatLng = async (address) => {
   let location = encodeURIComponent(address);
@@ -129,8 +130,6 @@ export const convertLatLngToAddress = async (lat, lng) => {
   return data;
 };
 
-
-
 export function convertLatLngToDMS(lat, lng) {
   let a = 0,
     b = 0,
@@ -155,8 +154,6 @@ export function convertLatLngToDMS(lat, lng) {
     let displayB = Number.isInteger(b) ? b : b.toFixed(2);
     let displayC = Number.isInteger(c) ? c : c.toFixed(2);
     let display = displayA + "° " + displayB + "' " + displayC + "''";
-
-  
 
     let latOutput = {
       degrees: a,
@@ -215,7 +212,6 @@ export function convertDMStoLatLng(dms) {
 }
 // [ "33° 44' 56.3712'' 33.748992", "84° 23' 24.9504'' 84.390264" ]
 
-
 export const toggleLocation = (markerData, L) => {
   const locationControl = L.control;
 
@@ -231,8 +227,8 @@ export async function getCityPhoto(cityName) {
   const apiKey = VITE_FIREBASE_API_KEY;
   try {
     // Step 1: Search for the city and retrieve a photo_reference
-       const urlStartPoint =
-         VITE_NODE_ENV === "development" ? "/google-api" : "https://maps.googleapis.com/maps/api";
+    const urlStartPoint =
+      VITE_NODE_ENV === "development" ? "/google-api" : "https://maps.googleapis.com/maps/api";
     const placeSearchUrl = `${urlStartPoint}/place/findplacefromtext/json?input=${encodeURIComponent(
       cityName
     )}&inputtype=textquery&fields=photos&key=${apiKey}`;
@@ -327,4 +323,52 @@ export function extractCityAndState(jsonObject) {
     city: cityName,
     state: stateName,
   };
+}
+
+export async function getAddress(lat, lon) {
+  const getLatLonData = httpsCallable(functions, "getAddress");
+  return getLatLonData({
+    lat: lat,
+    lon: lon,
+  })
+    .then(function (result) {
+      return result;
+    })
+    .catch(function (error) {
+      // Getting the Error details.
+      let code = error.code;
+      let message = error.message;
+      let details = error.details;
+      console.error("There was an error when calling the Cloud Function", error);
+      window.alert(
+        "There was an error when calling the Cloud Function:\n\nError Code: " +
+          code +
+          "\nError Message:" +
+          message +
+          "\nError Details:" +
+          details
+      );
+    });
+}
+export async function getPlacePhoto(data) {
+  const getPlacePhotoData = httpsCallable(functions, "getPlacePhotoData");
+  return getPlacePhotoData(data)
+    .then(function (result) {
+      return result;
+    })
+    .catch(function (error) {
+      // Getting the Error details.
+      let code = error.code;
+      let message = error.message;
+      let details = error.details;
+      console.error("There was an error when calling the Cloud Function", error);
+      window.alert(
+        "There was an error when calling the Cloud Function:\n\nError Code: " +
+          code +
+          "\nError Message:" +
+          message +
+          "\nError Details:" +
+          details
+      );
+    });
 }

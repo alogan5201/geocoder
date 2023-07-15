@@ -9,7 +9,7 @@ import Typography from "components/Typography";
 import { useEffect, useRef, useState } from "react";
 import { useEffectOnce } from "react-use";
 import useStore from "store/mapStore";
-import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
+import { covertAddressToLatLng, extractCityAndState, getPlacePhoto } from "util/geocoder";
 import { extractWords, formatMarkerData } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
@@ -133,7 +133,53 @@ function Form() {
         resetMapData();
     })
   }, []);
+const testFunc = async (e) => {
+  e.preventDefault();
+  const b = {
+    data: {
+      latitude: 40.75962,
+      longitude: -111.886798,
+      city: "Salt Lake City",
+      state: "Utah",
+    },
+  };
+  const bookmark = {
+    id: "3815f407-237e-4130-a484-68ff141f6983",
+    lat: 40.75962,
+    lng: -111.886798,
+    title: "Salt Lake City, Utah, United States",
+    userLocation: false,
+    wikiData: "Q23337",
+    city: "Salt Lake City",
+    state: "Utah",
+    dms: {
+      lat: {
+        degrees: 40,
+        minutes: 45,
+        seconds: 34.632,
+        lat: 40.75962,
+        display: "40° 45' 34.63''",
+      },
+      lng: {
+        degrees: 111,
+        minutes: 53,
+        seconds: 12.4728,
+        lng: 111.886798,
+        display: "111° 53' 12.47''",
+      },
+    },
+  };
 
+  const data = {
+    latitude: bookmark.lat.toString(),
+    longitude: bookmark.lng.toString(),
+    city: bookmark.city,
+    state: bookmark.state,
+  };
+const res = await getPlacePhoto(b.data);
+
+console.log(res)
+}
 
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
@@ -165,6 +211,11 @@ function Form() {
           </Grid>
           {/* ============ LatLngInputs ============ */}
           <LatLngInputs readOnly={true} />
+          <Grid item xs={12} pr={1} mb={2}>
+            <Button type="submit" variant="gradient" color="primary" onClick={testFunc}>
+              Test
+            </Button>
+          </Grid>
         </Grid>
       </Box>
     </Box>
