@@ -1,9 +1,9 @@
-import Grid from "@mui/material/Grid";
-import Box from "components/Box";
-import MapExternal from "components/Maps/MapExternal";
-import NoLocationFound from "components/Maps/components/NoLocationFound";
-import { useEffect, useState } from "react";
-import useStore from "store/mapStore";
+import Grid from '@mui/material/Grid';
+import Box from 'components/Box';
+import MapExternal from 'components/Maps/MapExternal';
+import NoLocationFound from 'components/Maps/components/NoLocationFound';
+import { useEffect, useState } from 'react';
+import useStore from 'store/mapStore';
 
 function FormWrapper({ form }) {
   const errorMessage = useStore((state) => state.errorMessage);
@@ -15,11 +15,9 @@ function FormWrapper({ form }) {
     //
   }, [markerData, locationMarkerData]);
 
-
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
-
 
   /* -------------------------------------------------------------------------- */
   /*                                   RETURN                                   */
@@ -43,7 +41,7 @@ function FormWrapper({ form }) {
                   {!isMapLoaded && (
                     // Your placeholder image here. Make sure it's styled to fill the space.
                     <img
-                      src="/src/assets/images/map_placeholder.png"
+                      src="assets/images/map_placeholder.png"
                       alt="Map placeholder"
                       style={{ width: '100%', height: '100%' }}
                     />
@@ -67,9 +65,9 @@ FormWrapper.defaultProps = {
       },
     },
   },
-  name: "Address to Latitude & Longitude",
+  name: 'Address to Latitude & Longitude',
   description:
-    "To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates.",
+    'To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates.',
   map: false,
 };
 export default FormWrapper;
