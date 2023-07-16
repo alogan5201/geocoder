@@ -1,9 +1,9 @@
 
-import Icon from "@mui/material/Icon";
-import React from "react";
+import BuildIcon from '@mui/icons-material/Build';
 import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
 import DirectionsIcon from "@mui/icons-material/Directions";
 import VideocamIcon from "@mui/icons-material/Videocam";
+import React from "react";
 
 const AddressToLatLng = React.lazy(() => import("pages/AddressToLatLng"));
 const LatLngToAddress = React.lazy(() => import("pages/LatLngToAddress"));
@@ -11,11 +11,10 @@ const Bookmarks = React.lazy(() => import("pages/Bookmarks"));
 const RoutePlanner = React.lazy(() => import("pages/RoutePlanner"));
 const Movies = React.lazy(() => import("pages/Movies"));
 
-
 const routes = [
   {
     name: "tools",
-    icon: <Icon>article</Icon>,
+    icon: <BuildIcon />,
     collapse: [
       {
         name: "Address to Latitude & Longitude",

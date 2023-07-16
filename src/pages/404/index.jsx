@@ -2,7 +2,6 @@
 // Material Kit 2 PRO React components
 // Material Kit 2 PRO React components
 // Material Kit 2 PRO React examples
-import DefaultFooter from "examples/Footers/DefaultFooter";
 // Coworking page sections
 import BaseLayout from "layouts/sections/components/BaseLayout";
 // Routes

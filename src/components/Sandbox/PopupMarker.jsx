@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Divider from "@mui/material/Divider";
-import Icon from "@mui/material/Icon";
-import List from "@mui/material/List";
+import BookmarkIcon from '@mui/icons-material/Bookmark';import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Stack from "@mui/material/Stack";
 import Box from "components/Box";
@@ -61,13 +60,8 @@ export default function PopupMarker() {
   }
 
   return (
-    <Box
-      sx={{ width: "100%", maxWidth: 300, bgcolor: "transparent", border: "1px dashed grey" }}
-      py={1}
-      px={1}
-    >
-  
-      <Box sx={{ display: "flex" }}>
+    <Box sx={{ width: '100%', maxWidth: 300, bgcolor: 'transparent', border: '1px dashed grey' }} py={1} px={1}>
+      <Box sx={{ display: 'flex' }}>
         <Fade in={checked}>{icon}</Fade>
       </Box>
 
@@ -76,12 +70,12 @@ export default function PopupMarker() {
         {bookmarked ? (
           <Button color="info" size="small" onClick={handleBookMarkClick}>
             Bookmark
-            <Icon sx={{ ml: 1 }}>bookmark</Icon>
+            <BookmarkIcon sx={{ ml: 1 }}></BookmarkIcon>{' '}
           </Button>
         ) : (
           <Button color="info" size="small" variant="outlined" onClick={handleBookMarkClick}>
             Bookmark
-            <Icon sx={{ ml: 1 }}>bookmark</Icon>
+            <BookmarkIcon sx={{ ml: 1 }}></BookmarkIcon>{' '}
           </Button>
         )}
       </Stack>

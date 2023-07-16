@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Divider from "@mui/material/Divider";
-import Icon from "@mui/material/Icon";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Stack from "@mui/material/Stack";
@@ -11,7 +10,7 @@ import { extractWords, test,tron} from "util/helpers";
 import {handleBookmarkChange,alreadyBookmarked} from "util/bookmarks";
 import { v4 as uuidv4 } from "uuid";
 import { shallow } from "zustand/shallow";
-
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 export default function PopupMarker({ content}) {
   const markerData = useStore((state) => state.markerData);
   const [popupContent, setPopupcontent] = useState(null);
@@ -74,12 +73,12 @@ export default function PopupMarker({ content}) {
         {bookmarked ? (
           <Button color="info" size="small" onClick={handleBookMarkClick}>
             Bookmark
-            <Icon sx={{ ml: 1 }}>bookmark</Icon>
+            <BookmarkIcon sx={{ ml: 1 }}></BookmarkIcon>
           </Button>
         ) : (
           <Button color="info" size="small" variant="outlined" onClick={handleBookMarkClick}>
             Bookmark
-            <Icon sx={{ ml: 1 }}>bookmark</Icon>
+            <BookmarkIcon sx={{ ml: 1 }}></BookmarkIcon>
           </Button>
         )}
       </Stack>

@@ -21,6 +21,7 @@ import Movies from "pages/Movies";
 import "src/App.css";
 // Material Kit 2 PRO React routes
 import routes from "routes";
+import WebFont from 'webfontloader';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -34,7 +35,11 @@ export default function App() {
     document.scrollingElement.scrollTop = 0;
     
     localStorage.setItem("markerData", "[]");
-
+ WebFont.load({
+   google: {
+     families: ['Roboto:300,400,500,700', 'Material+Icons'],
+   },
+ });
     resetMapData();
   }, [pathname]);
   useEffectOnce(() => {

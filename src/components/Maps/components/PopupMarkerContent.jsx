@@ -1,17 +1,14 @@
-import { useState, useEffect } from "react";
 import Divider from "@mui/material/Divider";
-import Icon from "@mui/material/Icon";
+import { useEffect, useState } from "react";
+
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Stack from "@mui/material/Stack";
 import Box from "components/Box";
 import Button from "components/Button";
 import useStore from "store/mapStore";
-import { extractWords, test, tron } from "util/helpers";
-import { handleBookmarkChange, alreadyBookmarked } from "util/bookmarks";
-import { v4 as uuidv4 } from "uuid";
-import { shallow } from "zustand/shallow";
-
+import { alreadyBookmarked, handleBookmarkChange } from "util/bookmarks";
 function PopupMarkerContent({ content }) {
   const markerData = useStore((state) => state.markerData);
   const locationMarkerData = useStore((state) => state.locationMarkerData);
@@ -94,12 +91,12 @@ function PopupMarkerContent({ content }) {
         {bookmarked ? (
           <Button color="info" size="small" onClick={handleBookMarkClick}>
             Bookmark
-            <Icon sx={{ ml: 1 }}>bookmark</Icon>
+            <BookmarkIcon sx={{ ml: 1 }}></BookmarkIcon>
           </Button>
         ) : (
           <Button color="info" size="small" variant="outlined" onClick={handleBookMarkClick}>
             Bookmark
-            <Icon sx={{ ml: 1 }}>bookmark</Icon>
+            <BookmarkIcon sx={{ ml: 1 }}></BookmarkIcon>
           </Button>
         )}
       </Stack>

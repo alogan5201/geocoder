@@ -53,7 +53,11 @@ const MapWithRoute = () => {
   const mapStopped = useState(false);
   const setRouteData = useStore((state) => state.setRouteData);
   const routeData = useStore((state) => state.routeData);
+useEffect(() => {
+  import('leaflet/dist/leaflet.css');
+import('leaflet-draw/dist/leaflet.draw.css');
 
+}, []);
   const handleMoveEnd = () => {
     setMapStopped(true);
   };

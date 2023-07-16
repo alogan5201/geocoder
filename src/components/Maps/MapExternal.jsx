@@ -11,7 +11,10 @@ const center = [37.09024, -95.712891];
 const MapExternal = () => {
   const [selected, setSelected] = useState();
   const [map, setMap] = useState(null);
+useEffect(() => {
+  import('leaflet/dist/leaflet.css');
 
+}, []);
   return (
     <>
       <MapContainer

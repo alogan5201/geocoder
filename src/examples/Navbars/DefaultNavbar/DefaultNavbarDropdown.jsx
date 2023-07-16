@@ -15,13 +15,11 @@ Coded by www.creative-tim.com
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
-
 // react-router-dom components
 import { Link } from "react-router-dom";
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // @mui material components
 import Collapse from "@mui/material/Collapse";
-import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
 import Box from "components/Box";
@@ -53,14 +51,15 @@ function DefaultNavbarDropdown({
   return (
     <>
       <Box
+      className="DefaultNavbarDropdown"
         {...rest}
         mx={1}
         p={1}
         display="flex"
         alignItems="baseline"
-        color={light ? "white" : "dark"}
+        color={light ? 'white' : 'dark'}
         opacity={light ? 1 : 0.6}
-        sx={{ cursor: "pointer", userSelect: "none" }}
+        sx={{ cursor: 'pointer', userSelect: 'none' }}
         {...(route && routeComponent)}
         {...(href && linkComponent)}
       >
@@ -68,7 +67,7 @@ function DefaultNavbarDropdown({
           variant="body2"
           lineHeight={1}
           color="inherit"
-          sx={{ alignSelf: "center", "& *": { verticalAlign: "middle" } }}
+          sx={{ alignSelf: 'center', '& *': { verticalAlign: 'middle' } }}
         >
           {icon}
         </Typography>
@@ -76,15 +75,13 @@ function DefaultNavbarDropdown({
           variant="button"
           fontWeight="regular"
           textTransform="capitalize"
-          color={light ? "white" : "dark"}
-          sx={{ fontWeight: "100%", ml: 1, mr: 0.25 }}
+          color={light ? 'white' : 'dark'}
+          sx={{ fontWeight: '100%', ml: 1, mr: 0.25 }}
         >
           {name}
         </Typography>
-        <Typography variant="body2" color={light ? "white" : "dark"} ml="auto">
-          <Icon sx={{ fontWeight: "normal", verticalAlign: "middle" }}>
-            {collapse && "keyboard_arrow_down"}
-          </Icon>
+        <Typography variant="body2" color={light ? 'white' : 'dark'} ml="auto">
+          {collapse && <ExpandMoreIcon sx={{ fontWeight: 'normal', verticalAlign: 'middle' }} />}
         </Typography>
       </Box>
       {children && (
