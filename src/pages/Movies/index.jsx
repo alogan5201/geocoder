@@ -45,8 +45,11 @@ function MoviesPage() {
     setLoading(true);
   };
 useEffect(() => {
-  if (imagesLoaded === 9) {
+  if (imagesLoaded === 15) {
     setAllImagesLoaded(true);
+  }
+  return () => { 
+    setAllImagesLoaded(false);
   }
 }, [imagesLoaded]);
 

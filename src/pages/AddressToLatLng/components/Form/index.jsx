@@ -53,7 +53,7 @@ function Form() {
 
         const city = cityAndState && cityAndState.city ? cityAndState.city : null;
         const state = cityAndState && cityAndState.state ? cityAndState.state : null;
-
+          
         const markerData = [
           {
             id: uid,
