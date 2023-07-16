@@ -43,7 +43,7 @@ function Loading() {
                     justifyContent: "center",
                     alignItems: "center",
                     width: "100%",
-                    minHeight: 1200,
+                    minHeight: "80vh",
                   }}
                 >
                   <CircularProgress color="secondary" />

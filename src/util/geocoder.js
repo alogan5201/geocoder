@@ -25,7 +25,6 @@ export const fetchAutocomplete = async (address) => {
   let lastUsedTime = localStorageData.lastUsedTime || 0;
   let callCount = localStorageData.callCount || 0;
   const currentTimestamp = Date.now();
-  //https://api.mapbox.com/search/searchbox/v1/suggest?q=birmingham&access_token=pk.eyJ1Ijoic2VhcmNoLW1hY2hpbmUtdXNlci0xIiwiYSI6ImNrNnJ6bDdzdzA5cnAza3F4aTVwcWxqdWEifQ.RFF7CVFKrUsZVrJsFzhRvQ&session_token=0cb40a88-53ec-4605-896c-74c360a87a15&language=en&country=US&limit=3&types=country%2Cregion%2Cdistrict%2Caddress%2Cstreet%2Cpostcode%2Clocality%2Cplace%2Cneighborhood%2Cpoi%2Ccategory&proximity=-98%2C%2040
   // Check if uid can be reused
   const canReuseUid =
     (callCount < 50 && uid) || // Less than 50 successive calls without /retrieve

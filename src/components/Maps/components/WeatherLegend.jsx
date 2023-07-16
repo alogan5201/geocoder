@@ -26,7 +26,7 @@ const LegendContent = ({ content }) => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography sx={{ fontSize: 14, fontWeight: "500" }} variant="body2" gutterBottom>
+            <Typography sx={{ fontSize: 14,  }} variant="body2" gutterBottom>
               {content.origin.address} <br />
               {Math.round(content.origin.temp)}°F
             </Typography>
@@ -60,7 +60,7 @@ const LegendContent = ({ content }) => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography sx={{ fontSize: 14, fontWeight: "500" }} variant="body2" gutterBottom>
+            <Typography sx={{ fontSize: 14,  }} variant="body2" gutterBottom>
               {content.destination.address} <br />
               {Math.round(content.destination.temp)}°F
             </Typography>

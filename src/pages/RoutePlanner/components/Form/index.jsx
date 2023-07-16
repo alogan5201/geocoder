@@ -76,11 +76,7 @@ function Form() {
  
 await handleFormInputs(inputOne,inputTwo)
     setLoading(false);
-    if(count == 1){
-      setCount(2)
-      await handleFormInputs(inputOne,inputTwo)
-      setLoading(false)
-    }
+
   }
 
   const handleFormInputs = async (inputOne, inputTwo) => {
@@ -88,7 +84,7 @@ await handleFormInputs(inputOne,inputTwo)
       setLoading(true);
       const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
       const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
-        console.log(mapBoxDataOrigin)
+        
       if (mapBoxDataOrigin && mapBoxDataDestination) {
         if (mapBoxDataOrigin.features.length > 0 && mapBoxDataDestination.features.length > 0) {
           setCoords([coords]);
@@ -122,7 +118,7 @@ await handleFormInputs(inputOne,inputTwo)
               const addressOrigin = extractCityAndState(mapBoxDataOrigin);
               const addressDestination = extractCityAndState(mapBoxDataDestination);
               const test = extractCityAndState(mapBoxDataDestination);
-
+              
               const weatherData = {
                 origin: {
                   address: addressOrigin.city,
@@ -280,7 +276,7 @@ useEffect(() => {
     const cityOrigin = markerDataState[0].city;
     const cityDestination = markerDataState[1].city;
    if(cityOrigin == cityDestination){
-    console.log("they are the same", cityOrigin,cityD)
+    
    }
   }
 }, [markerDataState]);
