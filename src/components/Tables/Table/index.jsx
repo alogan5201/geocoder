@@ -1,4 +1,4 @@
-import { useEffect, useMemo, Fragment } from "react";
+import { useEffect, useMemo } from "react";
 
 import PropTypes from "prop-types";
 
@@ -108,9 +108,9 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
         maxHeight: '50px', // Set maximum height
       }}
     >
-      {columns.map(({ name, align }, index) => (
+      {columns.map(({ name, align }) => (
         <Box
-          key={index}
+          key={uuidv4()}
           component="td"
           pl={2.5}
           pr={3}
@@ -135,10 +135,10 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
                   for (let i = 1; i < parts.length; i++) {
                     if (i === 1 || (parts.length > 3 && i % 2 === 0)) {
                       parts[i] = (
-                        <Fragment key={i}>
+                        <>
                           <br />
                           {parts[i]}
-                        </Fragment>
+                        </>
                       );
                     } else {
                       parts[i] = `,${parts[i]}`;

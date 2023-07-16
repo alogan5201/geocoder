@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import AddressInput from 'components/AddressInput';
 import Button from 'components/Button';
 import Typography from 'components/Typography';
-import FilledInfoCard from 'examples/Cards/InfoCards/FilledInfoCard';
+import FilledInfoCard from 'components/Cards/InfoCards/FilledInfoCard';
 import { useEffect, useRef, useState } from 'react';
 import useStore from 'store/mapStore';
 import { covertAddressToLatLng, extractCityAndState, getDirections, metersToMiles } from 'util/geocoder';
