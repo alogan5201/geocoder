@@ -133,21 +133,7 @@ function Form() {
         resetMapData();
     })
   }, []);
-const testFunc = async (e) => {
-  e.preventDefault();
-  const b = {
-    data: {
-      latitude: 40.75962,
-      longitude: -111.886798,
-      city: "Salt Lake City",
-      state: "Utah",
-    },
-  };
 
-const res = await getPlacePhoto(b.data);
-
-
-}
 
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
@@ -179,11 +165,7 @@ const res = await getPlacePhoto(b.data);
           </Grid>
           {/* ============ LatLngInputs ============ */}
           <LatLngInputs readOnly={true} />
-          <Grid item xs={12} pr={1} mb={2}>
-            <Button type="submit" variant="gradient" color="primary" onClick={testFunc}>
-              Test
-            </Button>
-          </Grid>
+      
         </Grid>
       </Box>
     </Box>

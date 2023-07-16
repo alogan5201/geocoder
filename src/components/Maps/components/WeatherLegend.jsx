@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 const LegendContent = ({ content }) => {
   const cardStyles = {
     minWidth: 180,
-   backgroundColor: "rgba(255,255,255,0.8)",
+   backgroundColor: "rgba(255,255,255,0.9)",
     // transform: "rotate(180deg)",
   };
   return (
@@ -52,7 +52,7 @@ const LegendContent = ({ content }) => {
               />
             </motion.div>
           </Stack>
-          <Divider sx={{ my: 0.5, width: "100%", color: "red", opacity: 0.8 }} />
+          <Divider sx={{ my: 0.5, width: "100%", color: "red", opacity: 0.9 }} />
           <Stack
             direction="row"
             spacing={5}

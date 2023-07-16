@@ -68,6 +68,8 @@ import { create } from 'zustand';
      set({ geoData: data });
    },
    setMapInputState: (data) => {
+     console.log("🚀 ~ useStore ~ data:", data)
+     
      set({ clearMapInputs: data });
    },
    setUserLocationActive: (data) => {
