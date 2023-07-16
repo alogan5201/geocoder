@@ -46,6 +46,7 @@ const LegendContent = ({ content }) => {
               }}
             >
               <img
+                alt="origin-weather=icon"
                 src={`/src/${content.origin.icon}`}
                 loading="lazy"
                 style={{ maxWidth: "40px" }}
@@ -80,6 +81,7 @@ const LegendContent = ({ content }) => {
               }}
             >
               <img
+                alt="destination-weather-icon"
                 src={`/src/${content.destination.icon}`}
                 loading="lazy"
                 style={{ maxWidth: "40px" }}
