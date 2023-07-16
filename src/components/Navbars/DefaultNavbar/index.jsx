@@ -21,7 +21,8 @@ import { Link } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
-
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 // @mui material components
 import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
@@ -509,7 +510,8 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
             sx={{ cursor: "pointer" }}
             onClick={openMobileNavbar}
           >
-            <Icon fontSize="default">{mobileNavbar ? "close" : "menu"}</Icon>
+            {mobileNavbar ? <CloseIcon /> : <MenuIcon />}
+      
           </Box>
         </Box>
         <Box

@@ -4,7 +4,7 @@ import MapExternal from 'components/Maps/MapExternal';
 import NoLocationFound from 'components/Maps/components/NoLocationFound';
 import { useEffect, useState } from 'react';
 import useStore from 'store/mapStore';
-
+import mapPlaceHolderImg from 'assets/images/map_placeholder.png';
 function FormWrapper({ form }) {
   const errorMessage = useStore((state) => state.errorMessage);
   const markerData = useStore((state) => state.markerData);
@@ -40,11 +40,7 @@ function FormWrapper({ form }) {
                 <Box px={{ xs: 1, sm: 3 }} py={{ xs: 0, sm: 6 }} sx={{ height: 600 }}>
                   {!isMapLoaded && (
                     // Your placeholder image here. Make sure it's styled to fill the space.
-                    <img
-                      src="assets/images/map_placeholder.png"
-                      alt="Map placeholder"
-                      style={{ width: '100%', height: '100%' }}
-                    />
+                    <img src={mapPlaceHolderImg} alt="Map placeholder" style={{ width: '100%', height: '100%' }} />
                   )}
                   <MapExternal setMapLoaded={setMapLoaded} />
                 </Box>
