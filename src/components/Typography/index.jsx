@@ -43,6 +43,7 @@ const Typography = forwardRef(
   )
 );
 
+Typography.displayName = "Typography";
 // Setting default values for the props of Typography
 Typography.defaultProps = {
   color: "dark",

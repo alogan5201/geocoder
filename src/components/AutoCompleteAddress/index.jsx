@@ -10,20 +10,16 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { debounce } from '@mui/material/utils';
 import parse from 'autosuggest-highlight/parse';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo,  useState } from 'react';
 import useStore from 'store/mapStore';
 import { fetchAutocomplete, retrieveAutocomplete } from 'util/geocoder';
-import { v4 as uuidv4 } from 'uuid';
 export default function AutoCompleteAddress({ address, clear, submitOnSelect, onSubmit, icon, label }) {
-  const autocompleteRef = useRef(null);
-  const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState([]);
   const [open, setOpen] = useState(false);
   const setMapInputState = useStore((state) => state.setMapInputState);
   const [overrideInput, setOverrideInput] = useState(false);
-  const setFlyToMarker = useStore((state) => state.setFlyToMarker);
-  const [origin, setOrigin] = useState(null);
+
   const modifiers = [
     {
       name: 'flip',
@@ -80,17 +76,15 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     let active = true;
     if (inputValue === '') {
       setMapInputState(true);
-      setOptions(value ? [value] : []);
+      //setOptions(value ? [value] : []);
       return undefined;
     }
     fetch({ input: inputValue }, (results) => {
       if (active) {
         let newOptions = [];
-        if (value) {
-          newOptions = [value];
-        }
+     
         if (results) {
-          const uid = uuidv4();
+        //  const uid = uuidv4();
           let resultsWithId = results.map(({ name, mapbox_id }) => ({
             name,
             mapbox_id,
@@ -103,11 +97,9 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     return () => {
       active = false;
     };
-  }, [value, inputValue, fetch]);
+  }, [ inputValue, fetch]);
   useEffect(() => {
     if (address) {
-      const uid = uuidv4();
-      const newInputValue = { name: address, id: uid };
       setOverrideInput(true);
 
       // setValue(newInputValue);
@@ -145,7 +137,6 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       }}
       fullWidth
       filterSelectedOptions
-      value={value}
       noOptionsText=""
       onChange={handleChange}
  
@@ -184,7 +175,6 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
           }}
           fullWidth
           onBlur={() => {
-            const savedInputValue = inputValue;
             setOpen(false);
           }}
           onFocus={handleInputFocus}

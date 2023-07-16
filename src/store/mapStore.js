@@ -22,6 +22,11 @@ import { create } from 'zustand';
    flyToMarker: null,
    locationMarkerData: null,
    imagesLoaded: 0,
+   mapReady: false,
+
+   setMapReady: (data) => {
+     set(() => ({ mapReady: data }));
+   },
    setImagesLoaded: () => set((state) => ({ imagesLoaded: state.imagesLoaded + 1 })),
 
    setFlyToMarker: (data) => {
@@ -66,7 +71,7 @@ import { create } from 'zustand';
      set({ zoom: data });
    },
    setBookmarked: (data) => {
-     set((state) => ({ bookmarked: data }));
+  set({ bookmarked: data });
    },
    setMapZoom: (data) => {
      set(() => ({ mapZoom: data }));
@@ -79,7 +84,6 @@ import { create } from 'zustand';
      set({ geoData: data });
    },
    setMapInputState: (data) => {
-     console.log('🚀 ~ useStore ~ data:', data);
 
      set({ clearMapInputs: data });
    },

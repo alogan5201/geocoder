@@ -6,23 +6,19 @@ import AddressInput from "components/AddressInput";
 import Button from "components/Button";
 import LatLngInputs from "components/LatLngInputs";
 import Typography from "components/Typography";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useEffectOnce } from "react-use";
 import useStore from "store/mapStore";
-import { covertAddressToLatLng, extractCityAndState, getPlacePhoto } from "util/geocoder";
-import { extractWords, formatMarkerData } from "util/helpers";
+import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
+import { formatMarkerData } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
 
 function Form() {
   const formRef = useRef();
-  const markerData = useStore((state) => state.markerData);
-  const [zoomState, setZoomState] = useState();
+
   const [coords, setCoords] = useGlobalValue();
-  const latInputElm = useRef(null);
-  const lngInputElm = useRef(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
-  const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
@@ -38,8 +34,6 @@ function Form() {
 
     const inputOne = e.target[0].value;
     if (inputOne) {
-      let extracted = extractWords(inputOne);
-      let withPlus = extracted.join("+");
       const mapBoxData = await covertAddressToLatLng(inputOne);
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];

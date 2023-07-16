@@ -2,38 +2,25 @@ import Grid from "@mui/material/Grid";
 import Box from "components/Box";
 import MapExternal from "components/Maps/MapExternal";
 import NoLocationFound from "components/Maps/components/NoLocationFound";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import useStore from "store/mapStore";
 
-function FormWrapper({ props, form, map }) {
+function FormWrapper({ form }) {
   const errorMessage = useStore((state) => state.errorMessage);
   const markerData = useStore((state) => state.markerData);
   const locationMarkerData = useStore((state) => state.locationMarkerData);
+  const [isMapLoaded, setMapLoaded] = useState(false);
 
   useEffect(() => {
     //
   }, [markerData, locationMarkerData]);
 
-  const latInputElm = useRef(null);
-  const lngInputElm = useRef(null);
+
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
-  function handleSelect(e) {
-    setBlurred(false);
-    setSelected(true);
-  }
-  function handleBlur(e) {
-    setSelected(false);
-    setBlurred(true);
-  }
-  function handleChange(e) {
-    let val = e.target.value;
-    if (val.length === 0) {
-      latInputElm.current.value = "";
-      lngInputElm.current.value = "";
-    }
-  }
+
+
   /* -------------------------------------------------------------------------- */
   /*                                   RETURN                                   */
   /* -------------------------------------------------------------------------- */
@@ -43,14 +30,7 @@ function FormWrapper({ props, form, map }) {
         <NoLocationFound toggle={errorMessage} />
 
         <Grid container item px={0}>
-          <Box
-            width="100%"
-            bgColor="white"
-            borderRadius="xl"
-            shadow="xl"
-            mb={6}
-            sx={{ overflow: "hidden" }}
-          >
+          <Box width="100%" bgColor="white" borderRadius="xl" shadow="xl" mb={6} sx={{ overflow: 'hidden' }}>
             <Grid container spacing={0}>
               {/*================= LEFT COLUMN - FormWrapper / FormChildren =================*/}
               <Grid item xs={12} lg={5}>
@@ -60,7 +40,15 @@ function FormWrapper({ props, form, map }) {
               {/*================= RIGHT COLUMN - MAP ================= */}
               <Grid item xs={12} lg={7} position="relative" px={0}>
                 <Box px={{ xs: 1, sm: 3 }} py={{ xs: 0, sm: 6 }} sx={{ height: 600 }}>
-                  <MapExternal />
+                  {!isMapLoaded && (
+                    // Your placeholder image here. Make sure it's styled to fill the space.
+                    <img
+                      src="/src/assets/images/map_placeholder.png"
+                      alt="Map placeholder"
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  )}
+                  <MapExternal setMapLoaded={setMapLoaded} />
                 </Box>
               </Grid>
             </Grid>

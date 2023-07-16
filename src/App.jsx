@@ -26,7 +26,6 @@ import WebFont from 'webfontloader';
 export default function App() {
   const { pathname } = useLocation();
 
-  const markerData = useStore((state) => state.markerData);
 
   const resetMapData = useStore((state) => state.resetMapData);
   // Setting page scroll to 0 when changing the route
