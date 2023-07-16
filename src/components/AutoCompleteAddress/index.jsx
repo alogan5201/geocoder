@@ -64,7 +64,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     };
     setOptions(formattedValue ? [formattedValue, ...options] : options);
 
-    //setValue(formattedValue);
+
     setOverrideInput(true);
     setOpen(false);
     handleSubmit(formattedValue);
@@ -120,7 +120,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   }, [clear]);
   return (
     <Autocomplete
-      disablePortal={true}
+   
       freeSolo
       id="mapbox-autocomplete-demo"
       getOptionLabel={(option) => option && option.name ? option.name : inputValue}
@@ -136,6 +136,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
           popperOptions={{
             placement: 'bottom',
           }}
+              sx={{marginTop: 10}}
         />
       )}
       sx={{
@@ -157,6 +158,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
             setOpen(!open);
           }
           setInputValue(value);
+       
         }
         setOverrideInput(false);
       }}
