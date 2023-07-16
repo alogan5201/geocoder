@@ -10,29 +10,17 @@ import useStore from "store/mapStore";
 import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
 import { formatMarkerData, truncateToSixDecimals } from "util/helpers";
 import { v4 as uuidv4 } from "uuid";
-
 export default function LocationsTable({ locations }) {
     const updateMarkerData = useStore((state) => state.setMarkerData);
-
     async function handleRowClick(latitude,longitude) {
-
-    
-
       if (latitude && longitude) {
         const mapBoxData = await convertLatLngToAddress(latitude, longitude);
-
         if (mapBoxData && mapBoxData.features.length > 0) {
           let lat = mapBoxData.features[0].geometry.coordinates[1];
           let lng = mapBoxData.features[0].geometry.coordinates[0];
-
-          const cityAndState = extractCityAndState(mapBoxData);
-         const city = cityAndState && cityAndState.city ? cityAndState.city : null;
-        const state = cityAndState && cityAndState.state ? cityAndState.state : null;
-
           const address = mapBoxData.features[0].place_name;
           const wikiData = mapBoxData.features[0].properties.wikidata;
           const uid = uuidv4();
-
           const markerData = [
             {
               id: uid,
@@ -41,19 +29,14 @@ export default function LocationsTable({ locations }) {
               title: address,
               userLocation: false,
               wikiData: wikiData,
-              city: city,
-              state: state,
                 popupOpen: false,
             },
           ];
-       
         const mapElement = document.getElementById("map-external");
-
              const formattedMarkerData = formatMarkerData(markerData)
         updateMarkerData(formattedMarkerData);
             if (mapElement) {
               const offset = 650; // change this to the offset that suits your needs
-
     window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
             }
         } 

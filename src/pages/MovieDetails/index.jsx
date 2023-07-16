@@ -1,20 +1,15 @@
+import AddIcon from "@mui/icons-material/Add";
+import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
+import Button from "components/Button";
 import Loading from "components/Loading";
+import MapExternal from "components/Maps/MapExternal";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import BaseLayout from "layouts/sections/components/BaseLayout";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "util/firebase";
-// @mui material components
-import AddIcon from "@mui/icons-material/Add";
-import Grid from "@mui/material/Grid";
-import Button from "components/Button";
-// import Stack from "@mui/material/Stack";
-// Material Kit 2 PRO React components
-import Card from "@mui/material/Card";
-import MapExternal from "components/Maps/MapExternal";
-import DefaultFooter from "examples/Footers/DefaultFooter";
 
-// Material Kit 2 PRO React components
 import Box from "components/Box";
 import Typography from "components/Typography";
 import LocationsTable from "./components/LocationsTable";

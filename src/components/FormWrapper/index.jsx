@@ -1,14 +1,8 @@
-import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "components/Box";
-import Button from "components/Button";
-import Typography from "components/Typography";
-import { useEffect, useRef } from "react";
-import { getCurrentTime } from "util/helpers";
-import { useGlobalGeoData, useGlobalValue } from "util/mapState";
 import MapExternal from "components/Maps/MapExternal";
-import Sandbox from "components/Sandbox";
 import NoLocationFound from "components/Maps/components/NoLocationFound";
+import { useEffect, useRef } from "react";
 import useStore from "store/mapStore";
 
 function FormWrapper({ props, form, map }) {
@@ -72,7 +66,6 @@ function FormWrapper({ props, form, map }) {
             </Grid>
           </Box>
         </Grid>
-        <Sandbox />
       </Box>
     </>
   );

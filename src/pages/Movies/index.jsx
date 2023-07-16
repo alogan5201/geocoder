@@ -3,20 +3,19 @@ import Grid from "@mui/material/Grid";
 import Pagination from "@mui/material/Pagination";
 import Box from "components/Box";
 import Loading from "components/Loading";
+import MovieCard from "components/MovieCard";
 import Typography from "components/Typography";
-import DefaultBlogCard from "examples/Cards/BlogCards/DefaultBlogCard";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import BaseLayout from "layouts/sections/components/BaseLayout";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import useStore from 'store/mapStore';
 import { db } from "util/firebase";
 import {
   generateRanges,
   getMovieListLength,
   isInPaginationPosition
 } from "util/helpers";
-import MovieCard from "components/MovieCard";
-import useStore from 'store/mapStore';
 
 const ITEMS_PER_PAGE = 15;
 function getRangeForNumber(n, num) {

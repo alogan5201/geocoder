@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import {  useMap,  } from "react-leaflet";
+import { useMap, } from "react-leaflet";
 
+import { useLocation } from "react-router-dom";
 import "react-tabs/style/react-tabs.css";
 import useStore from "store/mapStore";
 import PointMarker from "./PointMarker";
-import { useLocation } from "react-router-dom";
-import { marker, popup } from "leaflet";
 
 const center = [37.09024, -95.712891];
 const Markers = ({ L }) => {

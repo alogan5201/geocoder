@@ -59,7 +59,6 @@ function Form() {
     setLoading: state.setLoading,
     loading: state.loading,
   }));
-  const [count, setCount] = useState(1);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */

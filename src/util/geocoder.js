@@ -287,7 +287,7 @@ export function metersToMiles(meters) {
 
 export function extractCityAndState(data) {
     let results = [];
-
+console.log(data)
     for (let feature of data.features) {
         let cityStateObj = {};
 

@@ -8,8 +8,6 @@ import useStore from 'store/mapStore';
 // @mui icons
 import Box from 'components/Box';
 import Typography from 'components/Typography';
-import { marker } from 'leaflet';
-import { shallow } from 'zustand/shallow';
 
 // Material Kit 2 PRO React components
 function AddressInput({ onSubmit, ...props }) {

@@ -100,12 +100,12 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
       hover
       key={`row-${key}`}
       sx={{
-        "&:nth-of-type(odd)": {
-          backgroundColor: "rgba(0, 0, 0, 0)", // Use any grey color you like here
+        '&:nth-of-type(odd)': {
+          backgroundColor: 'rgba(0, 0, 0, 0)', // Use any grey color you like here
         },
-        cursor: "pointer",
-        minHeight: "50px", // Set minimum height
-        maxHeight: "50px", // Set maximum height
+        cursor: 'pointer',
+        minHeight: '50px', // Set minimum height
+        maxHeight: '50px', // Set maximum height
       }}
     >
       {columns.map(({ name, align }) => (
@@ -123,30 +123,30 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
             variant="body2"
             fontWeight="regular"
             color="secondary"
-            sx={{ display: "inline-block", width: "max-content" }}
+            sx={{ display: 'inline-block', width: 'max-content' }}
           >
             {row[name].length > 43
               ? (() => {
-                  // Find the position of the last comma within the range 28 to 37
-                  let breakPos = -1;
-                  for (let i = 28; i <= 37; i++) {
-                    if (row[name][i] === ",") {
-                      breakPos = i + 1; // Break after the comma
+                  // Split the string into parts by comma
+                  let parts = row[name].split(',');
+
+                  // Iterate over the parts and insert <br /> after the first comma
+                  // and after every second comma thereafter
+                  for (let i = 1; i < parts.length; i++) {
+                    if (i === 1 || (parts.length > 3 && i % 2 === 0)) {
+                      parts[i] = (
+                        <>
+                          <br />
+                          {parts[i]}
+                        </>
+                      );
+                    } else {
+                      parts[i] = `,${parts[i]}`;
                     }
                   }
 
                   // Return the modified text
-                  if (breakPos !== -1) {
-                    return (
-                      <>
-                        {row[name].slice(0, breakPos)}
-                        <br />
-                        {row[name].slice(breakPos)}
-                      </>
-                    );
-                  } else {
-                    return row[name];
-                  }
+                  return parts;
                 })()
               : row[name]}
           </Typography>
