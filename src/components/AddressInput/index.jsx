@@ -41,14 +41,14 @@ function AddressInput({ onSubmit, ...props }) {
 
   
   useEffect(() => {
-    const markerDataPoints = markerData ? markerData : locationMarkerData ? locationMarkerData : null;
     if (locationMarkerData && props.label === "Destination") {
       return;
     }
 
-    else if (markerDataPoints) {
-    
-      const index = props.key ? props.key : 0;
+    else if (markerData || locationMarkerData) {
+      const markerDataPoints = markerData ? markerData : locationMarkerData ? locationMarkerData : null;
+
+      const index = props.index ? props.index : 0;
       
       const addressData = markerDataPoints[index].title.includes(", United States")
         ? markerDataPoints[index].title.replace(", United States", "")

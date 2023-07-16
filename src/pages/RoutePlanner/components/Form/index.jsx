@@ -64,6 +64,7 @@ function Form() {
     setLoading: state.setLoading,
     loading: state.loading,
   }));
+  const [count,setCount]= useState(1)
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -72,12 +73,22 @@ function Form() {
 
     const inputOne = e.target[0].value;
     const inputTwo = e.target[2].value;
+ 
+await handleFormInputs(inputOne,inputTwo)
+    setLoading(false);
+    if(count == 1){
+      setCount(2)
+      await handleFormInputs(inputOne,inputTwo)
+      setLoading(false)
+    }
+  }
 
+  const handleFormInputs = async (inputOne, inputTwo) => {
     if (inputOne && inputTwo) {
       setLoading(true);
       const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
       const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
-
+        console.log(mapBoxDataOrigin)
       if (mapBoxDataOrigin && mapBoxDataDestination) {
         if (mapBoxDataOrigin.features.length > 0 && mapBoxDataDestination.features.length > 0) {
           setCoords([coords]);
@@ -87,15 +98,15 @@ function Form() {
             generateMarkerDataDestination(mapBoxDataDestination);
           const markerData = [markerDataOriginFormatted[0], markerDataDestinationFormatted[0]];
 // ! BUG IS OCCURING SOMEWHERE HERE
-if(markerDataOriginFormatted[0].id === markerDataDestinationFormatted[0].id){
+/* if(markerDataOriginFormatted[0].id === markerDataDestinationFormatted[0].id){
   return
-}
+} */
           const updateRouteData = await updateRoute(markerData);
           if (updateRouteData) {
             setUserLocationActive(false);
             setMapInputState(false);
           const formattedMarkerData = formatMarkerData(markerData)
-        updateMarkerData(formattedMarkerData);
+          updateMarkerData(formattedMarkerData);
             setMapZoom(5);
             const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
             setDirectionsUrl(googleMapsDirectionUrl);
@@ -135,7 +146,6 @@ if(markerDataOriginFormatted[0].id === markerDataDestinationFormatted[0].id){
         }
       }
     }
-    setLoading(false);
   }
   const handleChildSubmit = (data) => {
     if (data) {
@@ -166,7 +176,7 @@ if(markerDataOriginFormatted[0].id === markerDataDestinationFormatted[0].id){
   const generateMarkerDataOrigin = (mapBoxData) => {
     let lat = mapBoxData.features[0].geometry.coordinates[1];
     let lng = mapBoxData.features[0].geometry.coordinates[0];
-
+    
     const address = mapBoxData.features[0].place_name;
     const wikiData = mapBoxData.features[0].properties.wikidata;
     const uid = uuidv4();
@@ -294,7 +304,7 @@ useEffect(() => {
             defaultValue="Atlanta, GA"
             icon={<OriginInputIcon />}
             disableChangeEventListener={true}
-            key={0}
+            index={0}
           />
           {/* ============ DESTINATION-AddressInput ============ */}
           <AddressInput
@@ -305,7 +315,7 @@ useEffect(() => {
             icon={<DestinationInputIcon />}
             submitOnSelect={true}
             onSubmit={handleChildSubmit}
-            key={1}
+            index={1}
           />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
