@@ -89,8 +89,8 @@ const [location, setLocation] = useState(null);
               const address = mapBoxData.features[0].place_name;
               
               const cityAndState = extractCityAndState(mapBoxData);
-              const city = cityAndState.city ? cityAndState.city : null;
-              const state = cityAndState.state ? cityAndState.state : null;
+              const city = cityAndState && cityAndState.city ? cityAndState.city : null;
+              const state = cityAndState && cityAndState.state ? cityAndState.state : null;
               const uid = uuidv4();
 
               const markerData = [

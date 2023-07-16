@@ -54,7 +54,9 @@ function AddressInput({ onSubmit, ...props }) {
         ? markerDataPoints[index].title.replace(", United States", "")
         : markerDataPoints[index].title;
     
-        setAddress(addressData);
+      setAddress(addressData);
+      console.log("🚀 ~ useEffect ~ addressData:", addressData)
+      
         if(props.readOnly){
           addressInputElm.current.value = addressData;
         }

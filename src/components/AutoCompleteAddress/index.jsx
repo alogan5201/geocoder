@@ -14,14 +14,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import useStore from 'store/mapStore';
 import Popper from '@mui/material/Popper';
-export default function AutoCompleteAddress({
-    address,
-    clear,
-    submitOnSelect,
-    onSubmit,
-    icon,
-    label,
-}) {
+export default function AutoCompleteAddress({ address, clear, submitOnSelect, onSubmit, icon, label }) {
     const autocompleteRef = useRef(null);
     const [value, setValue] = useState(null);
     const [inputValue, setInputValue] = useState('');
@@ -55,9 +48,7 @@ export default function AutoCompleteAddress({
     const handleChange = async (event, newValue) => {
         const id = newValue.mapbox_id;
         const retrieveSuggestion = await retrieveAutocomplete(id);
-        const placeFormatted = retrieveSuggestion
-            ? retrieveSuggestion.features[0].properties.full_address
-            : null;
+        const placeFormatted = retrieveSuggestion ? retrieveSuggestion.features[0].properties.full_address : null;
         const newInputValue = !placeFormatted
             ? newValue.name
             : placeFormatted.includes(', United States of America')
@@ -68,8 +59,8 @@ export default function AutoCompleteAddress({
             mapbox_id: newValue.mapbox_id,
         };
         setOptions(formattedValue ? [formattedValue, ...options] : options);
-        console.log("🚀 ~ handleChange ~ formattedValue:", formattedValue)
-       //setValue(formattedValue);
+
+        //setValue(formattedValue);
         setOverrideInput(true);
         setOpen(false);
         handleSubmit(formattedValue);
@@ -114,8 +105,8 @@ export default function AutoCompleteAddress({
             const uid = uuidv4();
             const newInputValue = { name: address, id: uid };
             setOverrideInput(true);
-            console.log("🚀 ~ useEffect ~ newInputValue:", newInputValue)
-           // setValue(newInputValue);
+
+            // setValue(newInputValue);
         }
     }, [address, label]);
     useEffect(() => {
@@ -155,17 +146,15 @@ export default function AutoCompleteAddress({
             onInputChange={(_, value) => {
                 if (!overrideInput) {
                     const isLengthLessThanThree = value.length < 3;
-                    const isOpenAndLengthLessThanThree =
-                        open && isLengthLessThanThree;
-                    const isNotOpenAndLengthGreaterThanThree =
-                        !open && !isLengthLessThanThree;
-                    if (
-                        isOpenAndLengthLessThanThree ||
-                        isNotOpenAndLengthGreaterThanThree
-                    ) {
+                    const isOpenAndLengthLessThanThree = open && isLengthLessThanThree;
+                    const isNotOpenAndLengthGreaterThanThree = !open && !isLengthLessThanThree;
+                    if (isOpenAndLengthLessThanThree || isNotOpenAndLengthGreaterThanThree) {
                         setOpen(!open);
                     }
                     setInputValue(value);
+                    if (value == 'undefined') {
+                        console.log(value, "undefined input")
+                    } 
                 }
                 setOverrideInput(false);
             }}
@@ -180,14 +169,8 @@ export default function AutoCompleteAddress({
                                     {icon ? (
                                         <Box sx={{ mr: 2 }}>{icon}</Box>
                                     ) : (
-                                        <IconButton
-                                            type="button"
-                                            sx={{ mr: 2 }}
-                                        >
-                                            <SearchIcon
-                                                fontSize="medium"
-                                                color="info"
-                                            />
+                                        <IconButton type="button" sx={{ mr: 2 }}>
+                                            <SearchIcon fontSize="medium" color="info" />
                                         </IconButton>
                                     )}
                                 </InputAdornment>
@@ -211,9 +194,7 @@ export default function AutoCompleteAddress({
                     <li {...props} key={id}>
                         <Grid container alignItems="center">
                             <Grid item sx={{ display: 'flex', width: 44 }}>
-                                <LocationOnIcon
-                                    sx={{ color: 'text.secondary' }}
-                                />
+                                <LocationOnIcon sx={{ color: 'text.secondary' }} />
                             </Grid>
                             <Grid
                                 item
@@ -227,18 +208,13 @@ export default function AutoCompleteAddress({
                                         key={index}
                                         component="span"
                                         sx={{
-                                            fontWeight: part.highlight
-                                                ? 'bold'
-                                                : 'regular',
+                                            fontWeight: part.highlight ? 'bold' : 'regular',
                                         }}
                                     >
                                         {part.text.name}
                                     </Box>
                                 ))}
-                                <Typography
-                                    variant="body2"
-                                    color="text.secondary"
-                                >
+                                <Typography variant="body2" color="text.secondary">
                                     {option.formatted_address}
                                 </Typography>
                             </Grid>
