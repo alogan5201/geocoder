@@ -31,6 +31,7 @@ const Box = forwardRef(
     />
   )
 );
+Box.displayName = 'Box';
 
 // Setting default values for the props of Box
 Box.defaultProps = {

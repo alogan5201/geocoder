@@ -3,7 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import TableContainer from "@mui/material/TableContainer";
 import Box from "components/Box";
 import Spinner from "components/Spinner";
-import Table from "examples/Tables/Table";
+import Table from "components/Tables/Table";
 import { useEffect, useState } from "react";
 import { getPhotoByCoordinates, getPlacePhoto } from "util/geocoder";
 // BookmarkTable is a React functional component that displays a list of bookmarks

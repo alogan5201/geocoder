@@ -1,9 +1,8 @@
-import { useEffect, useMemo } from "react";
+import { Fragment,useMemo } from "react";
 
 import PropTypes from "prop-types";
 
 import useStore from "store/mapStore";
-import { v4 as uuidv4 } from "uuid";
 
 import MuiTable from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -35,10 +34,7 @@ import { formatMarkerData } from "util/helpers";
 function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
   // This hook provides access to the setMarkerData action from the mapStore.
   const updateMarkerData = useStore((state) => state.setMarkerData);
-  useEffect(() => {
-    if (hideColumns) {
-    }
-  }, [hideColumns]);
+
   const handleRowClick = (address, latitude, longitude, dms, id) => {
     const markerData = [
       {
@@ -55,19 +51,9 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
   };
   // renderColumns maps through the columns and returns table header (th) elements.
   const renderColumns = columns.map(({ name, align, width }, key) => {
-    let pl;
-    let pr;
+  
     let visibility = hideColumns && hideColumns.includes(key) ? "hidden" : "visible";
-    if (key === 0) {
-      pl = 3;
-      pr = 3;
-    } else if (key === columns.length - 1) {
-      pl = 3;
-      pr = 3;
-    } else {
-      pl = 1;
-      pr = 1;
-    }
+    
 
     return (
       <Box
@@ -108,9 +94,9 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
         maxHeight: '50px', // Set maximum height
       }}
     >
-      {columns.map(({ name, align }) => (
+      {columns.map(({ name, align }, index) => (
         <Box
-          key={uuidv4()}
+          key={index}
           component="td"
           pl={2.5}
           pr={3}
@@ -135,10 +121,10 @@ function Table({ columns, rows, hideColumns, hideColumnRow, bookmarkState }) {
                   for (let i = 1; i < parts.length; i++) {
                     if (i === 1 || (parts.length > 3 && i % 2 === 0)) {
                       parts[i] = (
-                        <>
+                        <Fragment key={i}>
                           <br />
                           {parts[i]}
-                        </>
+                        </Fragment>
                       );
                     } else {
                       parts[i] = `,${parts[i]}`;
