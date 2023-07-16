@@ -15,6 +15,9 @@ import {
   getMovieListLength,
   isInPaginationPosition
 } from "util/helpers";
+import MovieCard from "components/MovieCard";
+import useStore from 'store/mapStore';
+
 const ITEMS_PER_PAGE = 15;
 function getRangeForNumber(n, num) {
   const ranges = generateRanges(n);
@@ -32,10 +35,21 @@ function MoviesPage() {
   const [loading, setLoading] = useState(true);
   const [pagIndex, setPagIndex] = useState(null);
   const [paginationLength, setPaginationLength] = useState(null);
+  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
+    const { imagesLoaded, setImagesLoaded } = useStore((state) => ({
+      imagesLoaded: state.imagesLoaded,
+      setImagesLoaded: state.setImagesLoaded,
+    }));
   const handlePagination = (e, page) => {
     navigate(`/movies/${page}`);
     setLoading(true);
   };
+useEffect(() => {
+  if (imagesLoaded === 9) {
+    setAllImagesLoaded(true);
+  }
+}, [imagesLoaded]);
+
   async function fetchMoviesInRange(start, end) {
     // Define the range of indexes
 
@@ -134,12 +148,13 @@ function MoviesPage() {
           <Grid container justifyContent="center" spacing={6}>
             {movies.map((data) => (
               <Grid key={data.id} item sx={{ px: { xs: 0, md: 7 } }}>
-                <DefaultBlogCard
+                <MovieCard
                   maxWidth={500}
                   maxHeight={400}
                   image={data.image}
                   title={data.title}
                   action={{ type: "internal", route: `/location/${data.slug}` }}
+                  allImagesLoaded={allImagesLoaded}
                 />
               </Grid>
             ))}

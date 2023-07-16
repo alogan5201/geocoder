@@ -16,38 +16,48 @@ import { create } from 'zustand';
    mapStopped: false,
    routeData: null,
    errorMessage: false,
-  weather: null,
-  loading: false,
+   weather: null,
+   loading: false,
    autocompleteData: null,
    flyToMarker: null,
-  locationMarkerData:null,
+   locationMarkerData: null,
+   imagesLoaded: 0,
+   setImagesLoaded: () => set((state) => ({ imagesLoaded: state.imagesLoaded + 1 })),
+
    setFlyToMarker: (data) => {
-       set(() => ({ flyToMarker: data }));
+     set(() => ({ flyToMarker: data }));
    },
    setAutocompleteData: (data) => {
-       set(() => ({ autocompleteData: data }));
+     set(() => ({ autocompleteData: data }));
    },
    setLoading: (data) => {
-       set(() => ({ loading: data }));
+     set(() => ({ loading: data }));
    },
    setErrorMessage: (data) => {
-       set(() => ({ errorMessage: data }));
+     set(() => ({ errorMessage: data }));
    },
    setRouteData: (data) => {
-       set(() => ({ routeData: data }));
+     set(() => ({ routeData: data }));
    },
    setWeather: (data) => {
-       set(() => ({ weather: data }));
+     set(() => ({ weather: data }));
    },
    setBookmarkForLocation: (data) => {
-       set(() => ({ bookmarkLocation: data }));
+     set(() => ({ bookmarkLocation: data }));
    },
    resetMapData: () => {
-    // Used on page change to reset state
-     set({ markerData: null, clearMapInputs: true, mapZoom: null, userLocationActive:false ,locationMarkerData:null, routeData: null});
+     // Used on page change to reset state
+     set({
+       markerData: null,
+       clearMapInputs: true,
+       mapZoom: null,
+       userLocationActive: false,
+       locationMarkerData: null,
+       routeData: null,
+     });
    },
    setBookmarks: () => {
-     const bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+     const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
      set({ bookmarks: bookmarks });
    },
    increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
@@ -68,8 +78,8 @@ import { create } from 'zustand';
      set({ geoData: data });
    },
    setMapInputState: (data) => {
-     console.log("🚀 ~ useStore ~ data:", data)
-     
+     console.log('🚀 ~ useStore ~ data:', data);
+
      set({ clearMapInputs: data });
    },
    setUserLocationActive: (data) => {
@@ -79,10 +89,10 @@ import { create } from 'zustand';
      set({ testData: data });
    },
    setMarkerData: (data) => {
-   set({ markerData: data });  
+     set({ markerData: data });
    },
    setLocationMarkerData: (data) => {
-   set({ locationMarkerData: data });  
+     set({ locationMarkerData: data });
    },
  }));
 

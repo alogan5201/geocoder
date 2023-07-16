@@ -9,7 +9,6 @@ import FormWrapper from "components/FormWrapper";
 import { useLocation } from "react-router-dom";
 import useStore from "store/mapStore";
 import Form from "./components/Form";
-
 function HomePage() {
   const { pathname } = useLocation();
 
