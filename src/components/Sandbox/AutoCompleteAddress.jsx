@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState, useEffect, useMemo} from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -10,13 +10,16 @@ import { debounce } from '@mui/material/utils';
 import { fetchAutocomplete } from 'util/geocoder';
 import { v4 as uuidv4 } from "uuid";
 import SearchIcon from "@mui/icons-material/Search";
+import useStore from 'store/mapStore';
 
 export default function AutoCompleteAddress() {
-  const [value, setValue] = React.useState(null);
-  const [inputValue, setInputValue] = React.useState("");
-  const [options, setOptions] = React.useState([]);
-const [open, setOpen] = React.useState(false);
-  const fetch = React.useMemo(
+  const [value, setValue] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+  const [options, setOptions] = useState([]);
+    const locationMarkerData = useStore((state) => state.locationMarkerData);
+    const markerData = useStore((state) => state.markerData);
+const [open, setOpen] = useState(false);
+  const fetch = useMemo(
     () =>
       debounce(async (request, callback) => {
         const data = await fetchAutocomplete(request.input);
@@ -24,8 +27,14 @@ const [open, setOpen] = React.useState(false);
       }, 400),
     []
   );
+  useEffect(() => {
+    const markerDataPoints = markerData ? markerData : locationMarkerData ? locationMarkerData : null;
 
-  React.useEffect(() => {
+    if (markerDataPoints) {
+    console.log(markerDataPoints)
+    }
+  }, [markerData, locationMarkerData]);
+  useEffect(() => {
     let active = true;
 
     if (inputValue === "") {

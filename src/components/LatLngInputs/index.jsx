@@ -5,15 +5,14 @@ import Input from "components/Input";
 import Typography from "components/Typography";
 import { useEffect, useRef } from "react";
 import useStore from "store/mapStore";
-import { shallow } from "zustand/shallow";
 
 // LatLngInputs functional component
 export default function LatLngInputs({ defaultValue, readOnly }) {
   // Utilize the state from the map store
-  const markerData = useStore((state) => state.markerData,shallow);
   const clearMapInputs = useStore((state) => state.clearMapInputs);
   const setMapInputState = useStore((state) => state.setMapInputState);
   const locationMarkerData = useStore((state) => state.locationMarkerData);
+  const markerData = useStore((state) => state.markerData);
 
   // Define refs for latitude and longitude inputs
   const latInputElm = useRef(null);

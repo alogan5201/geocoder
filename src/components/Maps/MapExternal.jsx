@@ -12,7 +12,10 @@ const MapExternal = ({ setMapLoaded }) => {
   const setMapReady = useStore((state) => state.setMapReady);
   const setMap = () => {
     setMapReady(true);
-   setMapLoaded(true); // pass the state up to the parent
+    if (setMapLoaded) {
+    setMapLoaded(true);  
+    }
+  //setMapLoaded(true); // pass the state up to the parent
   };
   useEffect(() => {
     import('leaflet/dist/leaflet.css');
