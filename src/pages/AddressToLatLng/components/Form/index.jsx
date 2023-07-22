@@ -6,8 +6,8 @@ import AddressInput from "components/AddressInput";
 import Button from "components/Button";
 import LatLngInputs from "components/LatLngInputs";
 import Typography from "components/Typography";
-import { useEffect, useRef, useState } from "react";
-import { useEffectOnce } from "react-use";
+import { useEffect, useRef } from "react";
+import { useEffectOnce, useWindowSize } from "react-use";
 import useStore from "store/mapStore";
 import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
 import { extractWords, formatMarkerData } from "util/helpers";
@@ -15,14 +15,10 @@ import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
 
 function Form() {
+    const { width, height } = useWindowSize();
   const formRef = useRef();
-  const markerData = useStore((state) => state.markerData);
-  const [zoomState, setZoomState] = useState();
   const [coords, setCoords] = useGlobalValue();
-  const latInputElm = useRef(null);
-  const lngInputElm = useRef(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
-  const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
@@ -71,6 +67,14 @@ function Form() {
         setMapInputState(false);
         const formattedMarkerData = formatMarkerData(markerData)
         updateMarkerData(formattedMarkerData);
+        if (width < 992) {
+          const mapContainerElm = document.getElementById('map-container');
+          if (mapContainerElm) {
+            const offset = 650; 
+            window.scrollTo({ top: mapContainerElm.offsetTop + offset, behavior: 'smooth' });
+          }
+          
+        }
       } else {
         setErrorMessage(true);
 
@@ -133,7 +137,12 @@ function Form() {
         resetMapData();
     })
   }, []);
-
+useEffect(() => {
+  if (width) {
+    console.log(width)
+    // if (width < 992) scroll to map on submit
+  }
+}, [width]);
 
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>

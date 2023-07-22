@@ -43,11 +43,8 @@ export default function App() {
   }, [pathname]);
   useEffectOnce(() => {
     const setMovieList = async () => {
-      const moviesCollection = collection(db, "films");
-      const q = query(moviesCollection);
-      const querySnapshot = await getDocs(q);
-
-      localStorage.setItem("movie-list-length", querySnapshot.size);
+      // * As more movies are added to the database, this number should be updated
+      localStorage.setItem('movie-list-length', 250);
     };
     setMovieList();
   });

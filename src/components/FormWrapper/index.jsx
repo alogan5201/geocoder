@@ -5,6 +5,7 @@ import NoLocationFound from 'components/Maps/components/NoLocationFound';
 import { useEffect, useState } from 'react';
 import useStore from 'store/mapStore';
 import mapPlaceHolderImg from 'assets/images/map_placeholder.png';
+import Sandbox from 'components/Sandbox';
 function FormWrapper({ form }) {
   const errorMessage = useStore((state) => state.errorMessage);
   const markerData = useStore((state) => state.markerData);
@@ -47,6 +48,7 @@ function FormWrapper({ form }) {
               </Grid>
             </Grid>
           </Box>
+          <Sandbox />
         </Grid>
       </Box>
     </>

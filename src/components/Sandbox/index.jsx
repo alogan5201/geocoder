@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import ReactJson from "react-json-view";
 import useStore from "store/mapStore";
-
+import CitiesFirebase from "./CitiesFirebase";
 function Sandbox() {
   const allObjects = useStore((state) => state);
   const testData = useStore((state) => state.testData);
@@ -47,7 +47,7 @@ function Sandbox() {
 
 
        */}
-  
+    <CitiesFirebase />
       <div style={{ fontSize: "14px" }}>
         <ReactJson src={allObjects} />
       </div>

@@ -18,7 +18,6 @@ function MovieDetailPage() {
   const { slug } = useParams();
   const [movie, setMovie] = useState(null);
   const navigate = useNavigate();
-  const color = "light";
   useEffect(() => {
     const fetchMovie = async () => {
       const moviesCollection = collection(db, "films");

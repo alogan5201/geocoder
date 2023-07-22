@@ -266,13 +266,10 @@ if(localMovieLength){
   return Number(localMovieLength);
 }
 else {
-     const moviesCollection = collection(db, "films");
-     const q = query(
-       moviesCollection
-     );
-    const querySnapshot = await getDocs(q);
-localStorage.setItem("movie-list-length", querySnapshot.size);
-return querySnapshot.size;
+
+  // * As more movies are added to the database, this number should be updated
+localStorage.setItem("movie-list-length", 250);
+return 250
 }
 }
 export function isFirstItemOf15Subset(total, number) {
