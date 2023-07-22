@@ -1,9 +1,10 @@
+import { endAt, get, limitToFirst, orderByKey, query, ref, startAt } from 'firebase/database';
+import { httpsCallable } from 'firebase/functions';
 import { v4 as uuidv4 } from 'uuid';
+import { database, functions } from './firebase';
 import { isNumber } from './helpers';
-import { httpsCallable, getFunctions } from 'firebase/functions';
-
 const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.env;
-export const functions = getFunctions();
+
 
 export const covertAddressToLatLng = async (address) => {
     let location = encodeURIComponent(address);
@@ -19,7 +20,8 @@ export const covertAddressToLatLng = async (address) => {
 
     return data;
 };
-export const fetchAutocomplete = async (address) => {
+
+/* export const fetchAutocomplete = async (address) => {
     const localStorageData = JSON.parse(localStorage.getItem('uidData') || '{}');
     let uid = localStorageData.uid || '';
     let lastUsedTime = localStorageData.lastUsedTime || 0;
@@ -58,7 +60,7 @@ export const fetchAutocomplete = async (address) => {
     const data = await response.json();
 
     return data;
-};
+}; */
 
 export const retrieveAutocomplete = async (id) => {
     const localStorageData = JSON.parse(localStorage.getItem('uidData') || '{}');
@@ -355,4 +357,72 @@ export async function getPlacePhoto(data) {
                     details
             );
         });
+}
+
+export const fetchAutocomplete = async (address) => {
+  const localStorageData = JSON.parse(localStorage.getItem('uidData') || '{}');
+  let uid = localStorageData.uid || '';
+  let lastUsedTime = localStorageData.lastUsedTime || 0;
+  let callCount = localStorageData.callCount || 0;
+  const currentTimestamp = Date.now();
+  // Check if uid can be reused
+  const canReuseUid =
+    (callCount < 50 && uid) || // Less than 50 successive calls without /retrieve
+    currentTimestamp - lastUsedTime < 60 * 60 * 1000; // Less than 60 minutes since last call without /retrieve
+
+  if (!canReuseUid) {
+    uid = uuidv4();
+    callCount = 0;
+  }
+
+  const myQuery = `https://api.mapbox.com/search/searchbox/v1/suggest?q=${encodeURIComponent(
+    address
+  )}&access_token=${VITE_ACCESS_TOKEN}&session_token=${uid}&language=en&country=US&limit=3&types=country%2Cregion%2Cdistrict%2Caddress%2Cstreet%2Cpostcode%2Clocality%2Cplace%2Cneighborhood%2Cpoi%2Ccategory&proximity=-98%2C%2040`;
+
+  const response = await fetch(myQuery);
+
+  if (response.status !== 200) {
+    return;
+  }
+
+  // Save uid data to localStorage
+  localStorage.setItem(
+    'uidData',
+    JSON.stringify({
+      uid: uid,
+      lastUsedTime: currentTimestamp,
+      callCount: callCount + 1,
+    })
+  );
+
+  const data = await response.json();
+console.log(data)
+    return data;
+    
+};
+export async function getCitiesStartWith(letter) {
+  // Ensure first character is uppercase
+  const capitalizedLetter = letter.charAt(0).toUpperCase() + letter.slice(1);
+
+  const citiesRef = ref(database, 'cities');
+  // Add limitToFirst() to limit results to the first 3
+  const citiesQuery = query(
+    citiesRef,
+    orderByKey(),
+    startAt(capitalizedLetter),
+    endAt(capitalizedLetter + '\uf8ff'),
+    limitToFirst(3)
+  );
+
+  try {
+    const snapshot = await get(citiesQuery);
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      console.log(`No data available for cities starting with ${capitalizedLetter}`);
+      return null;
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }

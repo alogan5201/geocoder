@@ -10,9 +10,10 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { debounce } from '@mui/material/utils';
 import parse from 'autosuggest-highlight/parse';
-import { useEffect, useMemo,  useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useStore from 'store/mapStore';
-import { fetchAutocomplete, retrieveAutocomplete } from 'util/geocoder';
+import { fetchAutocomplete } from 'util/geocoder';
+
 export default function AutoCompleteAddress({ address, clear, submitOnSelect, onSubmit, icon, label }) {
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState([]);
@@ -41,29 +42,17 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       setOpen(true);
     }
   };
-    const handleChange = async (event, newValue) => {
-         if (typeof newValue === 'string') {
-         return
-         }
-      
-    const id = newValue.mapbox_id;
-    const retrieveSuggestion = await retrieveAutocomplete(id);
-    const placeFormatted = retrieveSuggestion ? retrieveSuggestion.features[0].properties.full_address : null;
-    const newInputValue = !placeFormatted
-      ? newValue.name
-      : placeFormatted.includes(', United States of America')
-      ? placeFormatted.replace(', United States of America', '')
-      : placeFormatted;
-    const formattedValue = {
-      name: newInputValue,
-      mapbox_id: newValue.mapbox_id,
-    };
-    setOptions(formattedValue ? [formattedValue, ...options] : options);
-
+  const handleChange = async (event, newValue) => {
+    if (typeof newValue === 'string') {
+      return;
+    }
+    console.log(`newValue = ${JSON.stringify(newValue)}`)
+    
+    setOptions(newValue ? [newValue, ...options] : options);
 
     setOverrideInput(true);
     setOpen(false);
-    handleSubmit(formattedValue);
+// * handleSubmit(formattedValue);
   };
   const handleSubmit = (formattedValue, label) => {
     if (submitOnSelect) {
@@ -82,9 +71,9 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     fetch({ input: inputValue }, (results) => {
       if (active) {
         let newOptions = [];
-     
+
         if (results) {
-        //  const uid = uuidv4();
+          //  const uid = uuidv4();
           let resultsWithId = results.map(({ name, mapbox_id }) => ({
             name,
             mapbox_id,
@@ -97,7 +86,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     return () => {
       active = false;
     };
-  }, [ inputValue, fetch]);
+  }, [inputValue, fetch]);
   useEffect(() => {
     if (address) {
       setOverrideInput(true);
@@ -112,10 +101,9 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   }, [clear]);
   return (
     <Autocomplete
-   
       freeSolo
       id="mapbox-autocomplete-demo"
-      getOptionLabel={(option) => option && option.name ? option.name : inputValue}
+      getOptionLabel={(option) => (option && option.name ? option.name : inputValue)}
       filterOptions={(x) => x}
       options={options}
       autoComplete
@@ -128,7 +116,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
           popperOptions={{
             placement: 'bottom',
           }}
-              sx={{marginTop: 10}}
+          sx={{ marginTop: 10 }}
         />
       )}
       sx={{
@@ -139,7 +127,6 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       filterSelectedOptions
       noOptionsText=""
       onChange={handleChange}
- 
       onInputChange={(_, value) => {
         if (!overrideInput) {
           const isLengthLessThanThree = value.length < 3;
@@ -149,7 +136,6 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
             setOpen(!open);
           }
           setInputValue(value);
-       
         }
         setOverrideInput(false);
       }}

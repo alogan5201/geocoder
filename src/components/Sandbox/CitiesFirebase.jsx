@@ -5,7 +5,7 @@ import {
   Fragment
 } from "react";
 import Button from "components/Button"
-import { getCitiesStartWith } from "util/firebase";
+import { getCitiesStartWith } from "util/geocoder";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';

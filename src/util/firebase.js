@@ -1,7 +1,8 @@
 
 import { initializeApp } from "firebase/app";
+import { getDatabase } from 'firebase/database';
 import { getFirestore } from "firebase/firestore";
-import { getDatabase, ref, get, query, orderByKey, startAt, endAt, limitToFirst } from 'firebase/database';
+import { getFunctions } from 'firebase/functions';
 
 const { VITE_FIREBASE_API_KEY } = import.meta.env;
 
@@ -18,32 +19,7 @@ const firebaseConfig = {
 // https://geotools-bc75a-f6011.firebaseio.com/
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+export const functions = getFunctions();
 
 export const database = getDatabase(app)
 
-export async function getCitiesStartWith(letter) {
-  // Ensure first character is uppercase
-  const capitalizedLetter = letter.charAt(0).toUpperCase() + letter.slice(1);
-
-  const citiesRef = ref(database, 'cities');
-  // Add limitToFirst() to limit results to the first 3
-  const citiesQuery = query(
-    citiesRef,
-    orderByKey(),
-    startAt(capitalizedLetter),
-    endAt(capitalizedLetter + '\uf8ff'),
-    limitToFirst(3)
-  );
-
-  try {
-    const snapshot = await get(citiesQuery);
-    if (snapshot.exists()) {
-      return snapshot.val();
-    } else {
-      console.log(`No data available for cities starting with ${capitalizedLetter}`);
-      return null;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
