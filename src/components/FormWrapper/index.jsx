@@ -12,9 +12,6 @@ function FormWrapper({ form }) {
   const locationMarkerData = useStore((state) => state.locationMarkerData);
   const [isMapLoaded, setMapLoaded] = useState(false);
 
-  useEffect(() => {
-    //
-  }, [markerData, locationMarkerData]);
 
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */

@@ -279,7 +279,8 @@ function Form() {
           the map to get the coordinates.
         </Typography>
       </Box>
-      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 6 }}>
+      <Box px={{ xs: 0, sm: 3 }} py={{
+        xs: 2, sm: 1.6}}>
         <Grid container>
           {/* ============ ORGIN-AddressInput ============ */}
           <AddressInput

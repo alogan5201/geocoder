@@ -13,31 +13,26 @@ const center = [37.09024, -95.712891];
 
 
 
-const MapWithRoute = () => {
-const setMapReady = useStore(state => state.setMapReady);
-useEffect(() => {
-  import('leaflet/dist/leaflet.css');
-
-}, []);
+const MapWithRoute = ({ setMapLoaded }) => {
+  const setMapReady = useStore((state) => state.setMapReady);
   const setMap = () => {
     setMapReady(true);
-}
+    if (setMapLoaded) {
+      setMapLoaded(true);
+    }
+    //setMapLoaded(true); // pass the state up to the parent
+  };
+
 
   return (
     <>
-      <MapContainer
-        whenCreated={setMap}
-        center={center}
-        zoom={3}
-        scrollWheelZoom={true}
-        zoomControl={false}
-      >
+      <MapContainer whenReady={setMap} center={center} zoom={3} scrollWheelZoom={true} zoomControl={false} id="map">
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
         />
-   <ExternalState/>
-        <WeatherLegend L={L}/>
+        <ExternalState />
+        <WeatherLegend L={L} />
         <PolyLineRoute L={L} />
         <Markers L={L} />
         <LocationButton L={L} />

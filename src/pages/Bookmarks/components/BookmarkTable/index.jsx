@@ -164,10 +164,7 @@ const hideColumnRow = true
           key={name}
           component="th"
           width={width || 'auto'}
-          pt={1.5}
-          pb={1.25}
-          pl={2.5}
-          pr={3}
+       
           textAlign={align}
           color="secondary"
           opacity={0.7}
