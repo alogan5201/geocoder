@@ -32,7 +32,7 @@ export default function LocationsTable({ locations }) {
                 popupOpen: false,
             },
           ];
-        const mapElement = document.getElementById("map-external");
+        const mapElement = document.getElementById("map");
              const formattedMarkerData = formatMarkerData(markerData)
         updateMarkerData(formattedMarkerData);
             if (mapElement) {

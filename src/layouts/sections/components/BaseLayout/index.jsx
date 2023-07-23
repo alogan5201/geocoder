@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from 'components/Box';
 import DefaultNavbar from 'components/Navbars/DefaultNavbar';
 import CenteredFooter from 'components/Footers/CenteredFooter';
-
+import GuestFooter from 'components/Footers/CenteredFooter/GuestFooter';
 import routes from 'routes';
 
 function BaseLayout({ children }) {
@@ -14,7 +14,7 @@ function BaseLayout({ children }) {
       <Box bgColor="white" shadow="sm" py={0.25}>
         <DefaultNavbar routes={routes} transparent relative />
       </Box>
-      <main >
+      <main style={{marginBottom:"5em"}}>
 
 
       <Container maxWidth={false} px={2}>
@@ -23,9 +23,7 @@ function BaseLayout({ children }) {
         </Grid>
       </Container>
       </main>
-      <Box mt={30}>
-        <CenteredFooter />
-      </Box>
+     <GuestFooter/>
     </Box>
   );
 }

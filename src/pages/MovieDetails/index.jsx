@@ -12,6 +12,7 @@ import { db } from "util/firebase";
 import Box from "components/Box";
 import Typography from "components/Typography";
 import LocationsTable from "./components/LocationsTable";
+import Input from 'components/Input';
 function MovieDetailPage() {
   const [showMore, setShowMore] = useState(false);
   const { slug } = useParams();
@@ -44,87 +45,68 @@ function MovieDetailPage() {
   return (
     // Render movie details
     <BaseLayout>
-      <Box component="section" py={{ xs: 2, sm: 6, height: "550px" }}>
-        <Grid container item px={0} justifyContent="center" mx={"auto"}>
-          <Box
-            width="100%"
-            bgColor="white"
-            borderRadius="xl"
-            shadow="xl"
-            mb={6}
-            sx={{ overflow: "hidden" }}
-          >
-            <Grid container spacing={3} mb={6}>
-              {/*================= LEFT COLUMN  =================*/}
-              <Grid item xs={12} lg={7}>
-                <Box p={2}>
-                  <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
-                    <Typography variant="h4" mb={1}>
-                      {movie.title}
-                    </Typography>
-                  </Box>
-                  <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 1 }}>
-                    <Grid container>
-                      {/* ============ Content ============ */}
-                      <Typography variant="body2" color="dark" fontWeight="light" mb={2}>
-                        {movie.plot.length > 751 && !showMore
-                          ? movie.plot.substring(0, 750) + "..."
-                          : movie.plot}
-                      </Typography>
-                      {/* ============ Submit ============ */}
-                      <Grid item xs={12} pr={1} mb={2}>
-                        <Button type="button" variant="text" color="info" onClick={handleShowMore}>
-                          <AddIcon />
-                          &nbsp; Show More
-                        </Button>
-                      </Grid>
-                      {/* ============ AddressInput ============ */}
-                    </Grid>
-                  </Box>
+      <Box component="section" py={{ xs: 2, sm: 6 }} sx={{ maxWidth: '100%' }}>
+        <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
+          <Grid container spacing={2} px={{ xs: 0, sm: 5 }}>
+            <Grid item xs={12} xl={7} ml="auto">
+              <Box px={{ xs: 0, sm: 5 }}>
+                <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
+                  <Typography variant="h4" mb={1}>
+                    {movie.title}
+                  </Typography>
                 </Box>
-              </Grid>
-              {/*================= RIGHT COLUMN - MAP ================= */}
-              <Grid
-                item
-                xs={12}
-                md={6}
-                lg={4}
-                sx={{ border: "none", boxShadow: "none", height: "550px" }}
-              >
-                <Card
-                  sx={{
-                    backgroundImage: `url(${movie.image})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    border: "none",
-                    boxShadow: "none",
-                    borderRadius: "none",
-                    height: "100%",
-                    display: "grid",
-                    placeItems: "center",
-                  }}
-                ></Card>
-              </Grid>
+                <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 1 }}>
+                  {/* ============ Content ============ */}
+                  <Typography variant="body2" color="dark" fontWeight="light" mb={2}>
+                    {movie.plot.length > 751 && !showMore ? movie.plot.substring(0, 750) + '...' : movie.plot}
+                  </Typography>
+                  {/* ============ Submit ============ */}
+                  <Grid item xs={12} pr={1} mb={2}>
+                    <Button type="button" variant="text" color="info" onClick={handleShowMore}>
+                      <AddIcon />
+                      &nbsp; Show More
+                    </Button>
+                  </Grid>
+                  {/* ============ AddressInput ============ */}
+                </Box>
+              </Box>
             </Grid>
-          </Box>
-        </Grid>
+            <Grid item xs={12} xl={5} position="relative">
+              <Box
+                component="img"
+                src={movie.image}
+                alt="image"
+                maxWidth="18.75rem"
+                width="100%"
+                borderRadius="lg"
+                shadow="xl"
+                display={{ xs: 'none', lg: 'block' }}
+              />
+            </Grid>
+          </Grid>
+        </Box>
       </Box>
+
       <Grid container spacing={0}>
-        <Grid item xs={12} lg={12} position="relative" px={0}>
-          <Box px={{ xs: 1, sm: 3 }} py={{ xs: 0, sm: 6 }} sx={{ height: 600 }} id="map-external">
-            <MapExternal />
+        <Grid item xs={12} lg={12}>
+          <Box px={{ xs: 0, sm: 5 }}>
+            <Box px={{ xs: 0, sm: 5 }} py={{ xs: 2, sm: 3 }}>
+              <div className="map-container">
+                <MapExternal />
+              </div>
+            </Box>
           </Box>
         </Grid>
-        <Grid item xs={12} lg={12} position="relative" px={0}>
-          <Box px={{ xs: 1, sm: 3 }} py={{ xs: 0, sm: 6 }}>
-            {/* <LocationsTable data={movie.locations} /> */}
+        <Grid item xs={12} lg={12}>
+          <Box px={{ xs: 0, sm: 5 }}>
+            <Box px={{ xs: 0, sm: 5 }} py={{ xs: 2, sm: 3 }}>
             <LocationsTable locations={movie.locations} />
+              
+             </Box>
+            {/* <LocationsTable data={movie.locations} /> */}
           </Box>
         </Grid>
       </Grid>
-
-
     </BaseLayout>
   );
 }
