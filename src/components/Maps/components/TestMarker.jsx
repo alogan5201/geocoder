@@ -1,4 +1,3 @@
-import PopupMarker from "components/PopupMarker";
 import { useEffect, useRef, useState } from "react";
 import { Marker, Popup, useMap } from "react-leaflet";
 import useStore from "store/mapStore";

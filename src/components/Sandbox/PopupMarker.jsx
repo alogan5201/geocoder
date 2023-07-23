@@ -1,19 +1,13 @@
-import { useState, useEffect } from "react";
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import Divider from "@mui/material/Divider";
-import BookmarkIcon from '@mui/icons-material/Bookmark';import List from "@mui/material/List";
+import Fade from "@mui/material/Fade";
+import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Box from "components/Box";
 import Button from "components/Button";
-import useStore from "store/mapStore";
-import { extractWords, test, tron } from "util/helpers";
-import { handleBookmarkChange, alreadyBookmarked } from "util/bookmarks";
-import { v4 as uuidv4 } from "uuid";
-import Switch from "@mui/material/Switch";
-import Paper from "@mui/material/Paper";
-import Fade from "@mui/material/Fade";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import { shallow } from "zustand/shallow";
+import { useState } from "react";
 
 const icon = (
   <Paper elevation={4}>
@@ -54,7 +48,6 @@ export default function PopupMarker() {
   function handleBookMarkClick(e) {
     e.preventDefault();
 
-    //handleBookmarkChange(!bookmarked, "bookmarks", bookmarkData);
      setChecked((prev) => !prev);
     setBookmarked(!bookmarked);
   }

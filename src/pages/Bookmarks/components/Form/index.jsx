@@ -1,27 +1,19 @@
-import AddIcon from "@mui/icons-material/Add";
-import Divider from "@mui/material/Divider";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import Box from "components/Box";
-import Button from "components/Button";
-import Typography from "components/Typography";
-import { useEffect, useRef, useState } from "react";
-import useStore from "store/mapStore";
-import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
-import { extractWords, formatMarkerData } from "util/helpers";
-import { useGlobalValue } from "util/mapState";
-import { v4 as uuidv4 } from "uuid";
-import BookmarkTable from "../BookmarkTable";
+import AddIcon from '@mui/icons-material/Add';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Box from 'components/Box';
+import Button from 'components/Button';
+import Typography from 'components/Typography';
+import { useEffect, useRef, useState } from 'react';
+import useStore from 'store/mapStore';
+import { covertAddressToLatLng, extractCityAndState } from 'util/geocoder';
+import { extractWords, formatMarkerData } from 'util/helpers';
+import { useGlobalValue } from 'util/mapState';
+import { v4 as uuidv4 } from 'uuid';
+import BookmarkTable from '../BookmarkTable';
 import AddressInput from 'components/AddressInput';
 
-function InputWithIcon() {
-  return (
-    <Grid item xs={12} pr={1} mb={3}>
-      <AddIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-      <TextField fullWidth id="input-with-sx" label="With sx" variant="standard" />
-    </Grid>
-  );
-}
 function AddNewBookmark({ onSubmit }) {
   const [newLocation, setNewLocation] = useState('');
   const [toggleInput, setInputToggle] = useState(false);
@@ -30,7 +22,16 @@ function AddNewBookmark({ onSubmit }) {
     setInputToggle(true);
   };
   if (toggleInput) {
-    return <AddressInput label="" readOnly={false} submitOnSelect={true} variant="standard" onSubmit={onSubmit} />;
+    return (
+      <AddressInput
+        label=""
+        readOnly={false}
+        submitOnSelect={true}
+        variant="standard"
+        onSubmit={onSubmit}
+        autoFocus={true}
+      />
+    );
   } else {
     return (
       <Grid item xs={12} pr={1} mb={0}>
@@ -44,9 +45,7 @@ function AddNewBookmark({ onSubmit }) {
   }
 }
 function Form() {
-  const [bookmarkState, setBookmarkState] = useState(
-    JSON.parse(localStorage.getItem("bookmarks")) || []
-  );
+  const [bookmarkState, setBookmarkState] = useState(JSON.parse(localStorage.getItem('bookmarks')) || []);
   const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation);
 
   useEffect(() => {
@@ -54,8 +53,8 @@ function Form() {
     }
   }, [bookmarkState]);
   useEffect(() => {
-    window.addEventListener("storage", () => {
-      setBookmarkState(JSON.parse(localStorage.getItem("bookmarks")) || []);
+    window.addEventListener('storage', () => {
+      setBookmarkState(JSON.parse(localStorage.getItem('bookmarks')) || []);
     });
   }, []);
 
@@ -84,7 +83,7 @@ function Form() {
     const inputOne = e.target[0].value;
     if (inputOne) {
       let extracted = extractWords(inputOne);
-      let withPlus = extracted.join("+");
+      let withPlus = extracted.join('+');
       const mapBoxData = await covertAddressToLatLng(inputOne);
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];
@@ -92,58 +91,76 @@ function Form() {
         setCoords([coords]);
         const address = mapBoxData.features[0].place_name;
         const uid = uuidv4();
-        
+
         const cityAndState = extractCityAndState(mapBoxData);
         const city = cityAndState && cityAndState.city ? cityAndState.city : null;
         const state = cityAndState && cityAndState.state ? cityAndState.state : null;
-            const markerData = [
-              {
-                id: uid,
-                lat: lat,
-                lng: lng,
-                title: address,
-                userLocation: false,
-                city: city,
-                state: state,
-                popupOpen: false,
-              },
-            ];
+        const markerData = [
+          {
+            id: uid,
+            lat: lat,
+            lng: lng,
+            title: address,
+            userLocation: false,
+            city: city,
+            state: state,
+            popupOpen: false,
+          },
+        ];
         setUserLocationActive(false);
         setMapInputState(false);
-            const formattedMarkerData = formatMarkerData(markerData);
-            updateMarkerData(formattedMarkerData);
-        setBookmarkForLocation(true);
+        const formattedMarkerData = formatMarkerData(markerData);
+        updateMarkerData(formattedMarkerData);
+        if (bookmarkState.length > 0) {
+          const bookmarkExists = alreadyBookmarked(bookmarkState, markerData[0]);
+          if (bookmarkExists) {
+            console.log("🚀 ~ handleSubmit ~ bookmarkExists:", bookmarkExists)
+            return;
+          } else {
+            setBookmarkForLocation(true);
+          }
+        }
+        // setBookmarkForLocation(true);
       }
     }
   }
-
-    const handleChildSubmit = (data, label) => {
-      if (data) {
-        if (!label) {
-          const target = [{ value: data.name }];
-          const e = {
-            target: target,
-            preventDefault: () => {},
-          };
-          handleSubmit(e);
-        } else {
-          console.log(data, label);
-          const target = [formRef.current[0], 1, { value: data.name }];
-          console.log(target);
-          const e = {
-            target: target,
-            preventDefault: () => {},
-          };
-          handleSubmit(e);
-        }
+  const alreadyBookmarked = (currentBookmarks, markerData) => {
+    for (let index = 0; index < currentBookmarks.length; index++) {
+      const element = currentBookmarks[index];
+      if (element.lat === markerData.lat && element.lng === markerData.lng) {
+        return true;
+      } else if (element.city === markerData.city && element.state === markerData.state) {
+        return true;
       }
+    }
+    return false;
+  };
+  const handleChildSubmit = (data, label) => {
+    if (data) {
+      if (!label) {
+        const target = [{ value: data.name }];
+        const e = {
+          target: target,
+          preventDefault: () => {},
+        };
+        handleSubmit(e);
+      } else {
+        const target = [formRef.current[0], 1, { value: data.name }];
 
-      //    handleSubmit(e);
-      //handleSubmit({ preventDefault: () => {} });
-    };
+        const e = {
+          target: target,
+          preventDefault: () => {},
+        };
+        handleSubmit(e);
+      }
+    }
+
+    //    handleSubmit(e);
+    //handleSubmit({ preventDefault: () => {} });
+  };
   useEffect(() => {
     if (userLocationActive === false) {
-      let leafletBarElement = document.querySelector(".leaflet-bar");
+      let leafletBarElement = document.querySelector('.leaflet-bar');
 
       if (leafletBarElement) {
         let classes = leafletBarElement.classList;
@@ -151,7 +168,7 @@ function Form() {
         let classesToRemove = [];
         // Loop through each class and if it contains 'locateActive', add it to classesToRemove
         for (let i = 0; i < classes.length; i++) {
-          if (classes[i].includes("locateActive")) {
+          if (classes[i].includes('locateActive')) {
             classesToRemove.push(classes[i]);
           }
         }

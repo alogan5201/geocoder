@@ -1,14 +1,14 @@
-import Divider from "@mui/material/Divider";
-import { useEffect, useState } from "react";
+import Divider from '@mui/material/Divider';
+import { useEffect, useState } from 'react';
 
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Stack from "@mui/material/Stack";
-import Box from "components/Box";
-import Button from "components/Button";
-import useStore from "store/mapStore";
-import { alreadyBookmarked, handleBookmarkChange } from "util/bookmarks";
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Stack from '@mui/material/Stack';
+import Box from 'components/Box';
+import Button from 'components/Button';
+import useStore from 'store/mapStore';
+import { alreadyBookmarked, handleBookmarkChange } from 'util/bookmarks';
 function PopupMarkerContent({ content }) {
   const markerData = useStore((state) => state.markerData);
   const locationMarkerData = useStore((state) => state.locationMarkerData);
@@ -23,8 +23,8 @@ function PopupMarkerContent({ content }) {
     ? markerData
     : locationMarkerData
     ? locationMarkerData
-    : localStorage.getItem("markerData")
-    ? JSON.parse(localStorage.getItem("markerData"))
+    : localStorage.getItem('markerData')
+    ? JSON.parse(localStorage.getItem('markerData'))
     : null;
 
   const [bookMarkId, setBookMarkId] = useState();
@@ -32,18 +32,15 @@ function PopupMarkerContent({ content }) {
     if (bookmarkLocation) {
       // const markerDataPoint
       let bookmarkData = markerData[content];
-      handleBookmarkChange(bookmarkLocation, "bookmarks", bookmarkData);
+      handleBookmarkChange(bookmarkLocation, 'bookmarks', bookmarkData);
 
       setBookmarked(bookmarkLocation);
     }
   }, [bookmarkLocation]);
   useEffect(() => {
     if (markerPointData || bookmarkLocation) {
-      const shouldBookmark = alreadyBookmarked(
-        "bookmarks",
-        markerPointData[content].lat,
-        markerPointData[content].lng
-      );
+      const shouldBookmark = alreadyBookmarked('bookmarks', markerPointData[content].lat, markerPointData[content].lng);
+
       setBookmarked(shouldBookmark);
       // popupContent.dms.lat.display
       let dmsDisplay = `${markerPointData[content].dms.lat.display} ${markerPointData[content].dms.lng.display}`;
@@ -57,29 +54,29 @@ function PopupMarkerContent({ content }) {
     if (markerPointData) {
       let bookmarkData = markerPointData[content];
       //  setBookmarks();
-      handleBookmarkChange(!bookmarked, "bookmarks", bookmarkData);
+      handleBookmarkChange(!bookmarked, 'bookmarks', bookmarkData);
       setBookmarked(!bookmarked);
     }
   }
 
   return popupContent ? (
-    <Box sx={{ width: "100%", maxWidth: 300, bgcolor: "transparent" }} py={1} px={1}>
+    <Box sx={{ width: '100%', maxWidth: 300, bgcolor: 'transparent' }} py={1} px={1}>
       <List>
         <ListItem disablePadding>
-          <span style={{ fontSize: "16px" }}>{popupContent.title}</span>
+          <span style={{ fontSize: '16px' }}>{popupContent.title}</span>
         </ListItem>
       </List>
       <Divider />
 
       <List>
         <ListItem disablePadding>
-          <span style={{ fontSize: "16px" }}>Latitude: {popupContent.lat}</span>
+          <span style={{ fontSize: '16px' }}>Latitude: {popupContent.lat}</span>
         </ListItem>
         <ListItem disablePadding>
-          <span style={{ fontSize: "16px" }}>Longitude: {popupContent.lng}</span>
+          <span style={{ fontSize: '16px' }}>Longitude: {popupContent.lng}</span>
         </ListItem>
 
-        <ListItem disablePadding style={{ fontSize: "16px" }}>
+        <ListItem disablePadding style={{ fontSize: '16px' }}>
           {`${popupContent.dms.lat.display} ${popupContent.dms.lng.display}`}
 
           {/*    <span style={{ fontSize: "16px" }}>{popupContent.dms.lat.display} {popupContent.dms.lng.display}</span> */}

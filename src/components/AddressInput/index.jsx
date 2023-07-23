@@ -63,7 +63,7 @@ function AddressInput({ onSubmit, ...props }) {
         />
       ) : (
           <AutoCompleteAddress
-            
+            autoFocus={props.autoFocus}
           address={address}
           label={props.label}
           submitOnSelect={props.submitOnSelect}

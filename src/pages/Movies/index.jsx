@@ -18,10 +18,7 @@ import {
 } from "util/helpers";
 
 const ITEMS_PER_PAGE = 15;
-function getRangeForNumber(n, num) {
-  const ranges = generateRanges(n);
-  return ranges.find((range) => num >= range[0] && num <= range[1]);
-}
+
 function getRangeForPage(n, pageIndex) {
   const ranges = generateRanges(n);
   return ranges[pageIndex - 1];

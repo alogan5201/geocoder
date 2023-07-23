@@ -1,16 +1,13 @@
-import { useState, useEffect } from "react";
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Stack from "@mui/material/Stack";
 import Box from "components/Box";
 import Button from "components/Button";
+import { useEffect, useState } from "react";
 import useStore from "store/mapStore";
-import { extractWords, test,tron} from "util/helpers";
-import {handleBookmarkChange,alreadyBookmarked} from "util/bookmarks";
-import { v4 as uuidv4 } from "uuid";
-import { shallow } from "zustand/shallow";
-import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { alreadyBookmarked, handleBookmarkChange } from "util/bookmarks";
 export default function PopupMarker({ content}) {
   const markerData = useStore((state) => state.markerData);
   const [popupContent, setPopupcontent] = useState(null);

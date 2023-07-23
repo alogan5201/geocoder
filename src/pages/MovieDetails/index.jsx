@@ -9,7 +9,6 @@ import BaseLayout from "layouts/sections/components/BaseLayout";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "util/firebase";
-
 import Box from "components/Box";
 import Typography from "components/Typography";
 import LocationsTable from "./components/LocationsTable";

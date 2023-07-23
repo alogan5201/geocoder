@@ -266,3 +266,5 @@ Theres a bug in route planner
 If you click the button twice quickly the input value from the first input gets set to the second input
 
   git config --global user.email "drewthomaslogan5201@gmail.com" && git config --global user.name "alogan5201"
+
+  - You can probably delete src/components/PopupMarker
