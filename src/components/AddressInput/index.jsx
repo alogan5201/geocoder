@@ -62,20 +62,15 @@ function AddressInput({ onSubmit, ...props }) {
           InputProps={{ readOnly: props.readOnly }}
         />
       ) : (
-        <AutoCompleteAddress
+          <AutoCompleteAddress
+            
           address={address}
           label={props.label}
           submitOnSelect={props.submitOnSelect}
           onSubmit={onSubmit}
           icon={props.icon ? props.icon : null}
         />
-        /*    <AutoCompleteAddress
-          address={address}
-          label={props.label}
-          submitOnSelect={props.submitOnSelect}
-          onSubmit={onSubmit}
-          icon={props.icon ? props.icon : null}
-        /> */
+
       )}
     </Grid>
   );

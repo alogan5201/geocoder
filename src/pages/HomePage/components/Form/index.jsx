@@ -149,7 +149,6 @@ function Form() {
             key="2"
             label="Address"
             readOnly={false}
-            defaultValue="Atlanta, GA"
             submitOnSelect={true}
             onSubmit={handleChildSubmit}
           />

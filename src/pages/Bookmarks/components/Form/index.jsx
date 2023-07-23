@@ -11,8 +11,8 @@ import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
 import { extractWords, formatMarkerData } from "util/helpers";
 import { useGlobalValue } from "util/mapState";
 import { v4 as uuidv4 } from "uuid";
-import AddressInput from "../AddressInput";
 import BookmarkTable from "../BookmarkTable";
+import AddressInput from 'components/AddressInput';
 
 function InputWithIcon() {
   return (
@@ -22,22 +22,22 @@ function InputWithIcon() {
     </Grid>
   );
 }
-function AddNewBookmark() {
-  const [newLocation, setNewLocation] = useState("");
+function AddNewBookmark({ onSubmit }) {
+  const [newLocation, setNewLocation] = useState('');
   const [toggleInput, setInputToggle] = useState(false);
   const handleNewBookmark = (e) => {
     e.preventDefault();
     setInputToggle(true);
   };
   if (toggleInput) {
-    return <AddressInput readOnly={false} />;
+    return <AddressInput label="" readOnly={false} submitOnSelect={true} variant="standard" onSubmit={onSubmit} />;
   } else {
     return (
       <Grid item xs={12} pr={1} mb={0}>
         <Button color="white" size="large" sx={{ pl: 0 }} onClick={handleNewBookmark}>
-          {" "}
-          <AddIcon color="info" sx={{ mr: 1, my: 0.5 }} />{" "}
-          <Typography variant="body2"> Search for a location to add</Typography>{" "}
+          {' '}
+          <AddIcon color="info" sx={{ mr: 1, my: 0.5 }} />{' '}
+          <Typography variant="body2"> Search for a location to add</Typography>{' '}
         </Button>
       </Grid>
     );
@@ -116,6 +116,31 @@ function Form() {
       }
     }
   }
+
+    const handleChildSubmit = (data, label) => {
+      if (data) {
+        if (!label) {
+          const target = [{ value: data.name }];
+          const e = {
+            target: target,
+            preventDefault: () => {},
+          };
+          handleSubmit(e);
+        } else {
+          console.log(data, label);
+          const target = [formRef.current[0], 1, { value: data.name }];
+          console.log(target);
+          const e = {
+            target: target,
+            preventDefault: () => {},
+          };
+          handleSubmit(e);
+        }
+      }
+
+      //    handleSubmit(e);
+      //handleSubmit({ preventDefault: () => {} });
+    };
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector(".leaflet-bar");
@@ -159,13 +184,13 @@ function Form() {
         <Grid container>
           {bookmarkState && bookmarkState.length > 0 ? (
             <>
-              <AddNewBookmark />
+              <AddNewBookmark onSubmit={handleChildSubmit} />
 
               <BookmarkTable bookmarkState={bookmarkState} />
             </>
           ) : (
             <>
-              <AddNewBookmark />
+              <AddNewBookmark onSubmit={handleChildSubmit} />
             </>
           )}
         </Grid>

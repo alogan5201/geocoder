@@ -190,6 +190,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       }}
       renderInput={(params) => (
         <TextField
+          size="small"
           {...params}
           InputProps={{
             ...params.InputProps,
