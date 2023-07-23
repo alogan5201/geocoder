@@ -14,7 +14,6 @@ import { covertAddressToLatLng, extractCityAndState, getDirections, metersToMile
 import { extractWords, fetchWeather, formatMarkerData, secondsToHoursMinutes } from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
-
 const OriginInputIcon = () => {
   return (
     <Typography variant="h5" color="info">
@@ -329,7 +328,6 @@ function Form() {
               <FilledInfoCard
                 color="dark"
                 variant="contained"
-                icon="directions_car"
                 title={
                   routeInfo.hours && routeInfo.minutes
                     ? `${routeInfo.hours} hours ${routeInfo.minutes} minutes`
@@ -344,7 +342,7 @@ function Form() {
                         type: 'external',
                         route: directionsUrl,
                         label: 'Directions',
-                        iconComponent: <DirectionsIcon color="info" fontSize="medium" sx={{ ml: '5px' }} />,
+                        iconComponent: <DirectionsIcon color="info" fontSize="large" sx={{ ml: '5px' }} />,
                       }
                     : null
                 }

@@ -32,13 +32,14 @@ export default function App() {
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-    
-    localStorage.setItem("markerData", "[]");
- WebFont.load({
-   google: {
-     families: ['Roboto:300,400,500,700', 'Material+Icons'],
-   },
- });
+
+    localStorage.setItem('markerData', '[]');
+    // Roboto, Helvetica, Arial, sans-serif
+    WebFont.load({
+      google: {
+        families: ['Roboto:300,400,500,700', 'Material+Icons', 'Lumanosimo:400'],
+      },
+    });
     resetMapData();
   }, [pathname]);
   useEffectOnce(() => {

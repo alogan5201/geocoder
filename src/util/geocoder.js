@@ -20,86 +20,7 @@ export const covertAddressToLatLng = async (address) => {
   return data;
 };
 
-/* export const fetchAutocomplete = async (address) => {
-    const localStorageData = JSON.parse(localStorage.getItem('uidData') || '{}');
-    let uid = localStorageData.uid || '';
-    let lastUsedTime = localStorageData.lastUsedTime || 0;
-    let callCount = localStorageData.callCount || 0;
-    const currentTimestamp = Date.now();
-    // Check if uid can be reused
-    const canReuseUid =
-        (callCount < 50 && uid) || // Less than 50 successive calls without /retrieve
-        currentTimestamp - lastUsedTime < 60 * 60 * 1000; // Less than 60 minutes since last call without /retrieve
 
-    if (!canReuseUid) {
-        uid = uuidv4();
-        callCount = 0;
-    }
-
-    const myQuery = `https://api.mapbox.com/search/searchbox/v1/suggest?q=${encodeURIComponent(
-        address
-    )}&access_token=${VITE_ACCESS_TOKEN}&session_token=${uid}&language=en&country=US&limit=3&types=country%2Cregion%2Cdistrict%2Caddress%2Cstreet%2Cpostcode%2Clocality%2Cplace%2Cneighborhood%2Cpoi%2Ccategory&proximity=-98%2C%2040`;
-
-    const response = await fetch(myQuery);
-
-    if (response.status !== 200) {
-        return;
-    }
-
-    // Save uid data to localStorage
-    localStorage.setItem(
-        'uidData',
-        JSON.stringify({
-            uid: uid,
-            lastUsedTime: currentTimestamp,
-            callCount: callCount + 1,
-        })
-    );
-
-    const data = await response.json();
-
-    return data;
-}; */
-
-export const retrieveAutocomplete = async (id) => {
-  const localStorageData = JSON.parse(localStorage.getItem('uidData') || '{}');
-  let uid = localStorageData.uid || '';
-  let lastUsedTime = localStorageData.lastUsedTime || 0;
-  let callCount = localStorageData.callCount || 0;
-  const currentTimestamp = Date.now();
-
-  // Check if uid can be reused
-  const canReuseUid =
-    (callCount < 50 && uid) || // Less than 50 successive calls without /retrieve
-    currentTimestamp - lastUsedTime < 60 * 60 * 1000; // Less than 60 minutes since last call without /retrieve
-
-  if (!canReuseUid) {
-    uid = uuidv4();
-    callCount = 0;
-  }
-  // "https://api.mapbox.com/search/searchbox/v1/retrieve/${id}?session_token=${uid}&access_token=${VITE_ACCESS_TOKEN}"
-  const myQuery = `https://api.mapbox.com/search/searchbox/v1/retrieve/${id}?session_token=${uid}&access_token=${VITE_ACCESS_TOKEN}`;
-
-  const response = await fetch(myQuery, { method: 'GET' });
-
-  if (response.status !== 200) {
-    return;
-  }
-
-  // Save uid data to localStorage
-  localStorage.setItem(
-    'uidData',
-    JSON.stringify({
-      uid: uid,
-      lastUsedTime: currentTimestamp,
-      callCount: callCount + 1,
-    })
-  );
-
-  const data = await response.json();
-
-  return data;
-};
 export const getDirections = async (from, to) => {
   const response = await fetch(
     `https://api.mapbox.com/directions/v5/mapbox/driving/${from.lng},${from.lat};${to.lng},${to.lat}?geometries=geojson&access_token=${VITE_ACCESS_TOKEN}`,
@@ -358,46 +279,6 @@ export async function getPlacePhoto(data) {
     });
 }
 
-export const fetchAutocomplete = async (address) => {
-  const localStorageData = JSON.parse(localStorage.getItem('uidData') || '{}');
-  let uid = localStorageData.uid || '';
-  let lastUsedTime = localStorageData.lastUsedTime || 0;
-  let callCount = localStorageData.callCount || 0;
-  const currentTimestamp = Date.now();
-  // Check if uid can be reused
-  const canReuseUid =
-    (callCount < 50 && uid) || // Less than 50 successive calls without /retrieve
-    currentTimestamp - lastUsedTime < 60 * 60 * 1000; // Less than 60 minutes since last call without /retrieve
-
-  if (!canReuseUid) {
-    uid = uuidv4();
-    callCount = 0;
-  }
-
-  const myQuery = `https://api.mapbox.com/search/searchbox/v1/suggest?q=${encodeURIComponent(
-    address
-  )}&access_token=${VITE_ACCESS_TOKEN}&session_token=${uid}&language=en&country=US&limit=3&types=country%2Cregion%2Cdistrict%2Caddress%2Cstreet%2Cpostcode%2Clocality%2Cplace%2Cneighborhood%2Cpoi%2Ccategory&proximity=-98%2C%2040`;
-
-  const response = await fetch(myQuery);
-
-  if (response.status !== 200) {
-    return;
-  }
-
-  // Save uid data to localStorage
-  localStorage.setItem(
-    'uidData',
-    JSON.stringify({
-      uid: uid,
-      lastUsedTime: currentTimestamp,
-      callCount: callCount + 1,
-    })
-  );
-
-  const data = await response.json();
-
-  return data;
-};
 
 export async function getCitiesStartWith(letter) {
   // Ensure first character is uppercase

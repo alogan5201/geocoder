@@ -57,28 +57,19 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
 
   return (
     <Box
-      display={{ xs: "block", md: "flex" }}
+      display={{ xs: 'block', md: 'flex' }}
       variant={variant}
-      bgColor={variant === "contained" ? "white" : color}
+      bgColor={variant === 'contained' ? 'white' : color}
       borderRadius="xl"
       pt={3.5}
       pb={3}
       px={3}
     >
-      <Typography
-        display="block"
-        variant="h3"
-        color={iconColor}
-        textGradient={variant === "contained"}
-        mt={-0.625}
-      >
-        {typeof icon === "string" ? <Icon>{icon}</Icon> : icon}
-      </Typography>
       <Box pt={{ xs: 3, md: 0 }} pl={{ xs: 0, md: 2 }} lineHeight={1}>
         <Typography
           display="block"
           variant="5"
-          color={variant === "contained" || color === "light" ? "success" : "white"}
+          color={variant === 'contained' || color === 'light' ? 'success' : 'white'}
           fontWeight="bold"
           mb={1}
         >
@@ -87,45 +78,37 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
         <Typography
           display="block"
           variant="body2"
-          color={variant === "contained" || color === "light" ? "text" : "white"}
+          color={variant === 'contained' || color === 'light' ? 'text' : 'white'}
           mb={2}
         >
           {description}
         </Typography>
-        {action && action.type === "external" ? (
+        {action && action.type === 'external' ? (
           <Typography
             component={MuiLink}
             href={action.route}
             target="_blank"
             rel="noreferrer"
-            variant="body2"
-            fontWeight="regular"
-            color={variant === "contained" ? color : "white"}
+            display="block"
+            variant="body1"
+            color={variant === 'contained' || color === 'light' ? 'text' : 'white'}
             sx={buttonStyles}
           >
             {action.label}
-            {action.iconComponent ? (
-              action.iconComponent
-            ) : (
-              <Icon sx={{ fontWeight: "bold" }}>{action.icon}</Icon>
-            )}
+            {action.iconComponent && action.iconComponent}
           </Typography>
         ) : null}
-        {action && action.type === "internal" ? (
+        {action && action.type === 'internal' ? (
           <Typography
             component={Link}
             to={action.route}
-            variant="body2"
-            fontWeight="regular"
-            color={variant === "contained" ? color : "white"}
+            display="block"
+            variant="body1"
+            color={variant === 'contained' || color === 'light' ? 'text' : 'white'}
             sx={buttonStyles}
           >
             {action.label}
-            {action.iconComponent ? (
-              action.iconComponent
-            ) : (
-              <Icon sx={{ fontWeight: "bold" }}>{action.icon}</Icon>
-            )}
+            {action.iconComponent && action.iconComponent}
           </Typography>
         ) : null}
       </Box>
@@ -153,7 +136,7 @@ FilledInfoCard.propTypes = {
     "light",
     "dark",
   ]),
-  icon: PropTypes.node.isRequired,
+
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   action: PropTypes.oneOfType([

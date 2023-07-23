@@ -12,12 +12,7 @@ import { debounce } from '@mui/material/utils';
 import parse from 'autosuggest-highlight/parse';
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import useStore from 'store/mapStore';
-import {
-  fetchAutocomplete,
-  getCitiesStartWith,
-  isCityCapital,
-  reorderOrReplaceCityCapitalObjects,
-} from 'util/geocoder';
+import { getCitiesStartWith, isCityCapital, reorderOrReplaceCityCapitalObjects } from 'util/geocoder';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function AutoCompleteAddress({ address, clear, submitOnSelect, onSubmit, icon, label }) {
@@ -61,11 +56,12 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     const newQueryLengths = [1, 3, 6, 9, displayName.length];
     //setQueryLengths(newQueryLengths);
     setInputValue(displayName);
-   // setOptions(newValue ? [newValue, ...options] : options);
-
+    // setOptions(newValue ? [newValue, ...options] : options);
+    const newValueData = { ...newValue, name: displayName };
+  
     setOverrideInput(true);
     setOpen(false);
-    // * handleSubmit(formattedValue);
+    handleSubmit(newValueData,label);
   };
   const handleSubmit = (formattedValue, label) => {
     if (submitOnSelect) {
@@ -96,8 +92,9 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
           if (results) {
             const capitalCity = isCityCapital(inputValue, capitalCities);
             if (capitalCity) {
+              console.log("🚀 ~ capitalCity:", capitalCity)
               const uid = uuidv4();
-              const newOption = { ...capitalCity, id: uid };
+              const newOption = { ...capitalCity, id: uid, name: `${capitalCity.city}, ${capitalCity.state}`};
               const reorderedCities = reorderOrReplaceCityCapitalObjects(results, newOption);
 
               const arrayCities = Object.values(reorderedCities);
@@ -148,9 +145,8 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   useEffect(() => {
     const opts = JSON.stringify(options, null, 2);
     if (open) {
-      console.log(options);
-}
-  }, [count, options,open]);
+    }
+  }, [count, options, open]);
   return (
     <Autocomplete
       freeSolo

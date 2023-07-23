@@ -84,7 +84,9 @@ function Form() {
         };
         handleSubmit(e);
       } else {
+        console.log(data,label)
         const target = [formRef.current[0], 1, { value: data.name }];
+        console.log(target)
         const e = {
           target: target,
           preventDefault: () => {},
