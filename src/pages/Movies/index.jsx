@@ -1,21 +1,17 @@
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Pagination from "@mui/material/Pagination";
-import Box from "components/Box";
-import Loading from "components/Loading";
-import MovieCard from "components/MovieCard";
-import Typography from "components/Typography";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import BaseLayout from "layouts/sections/components/BaseLayout";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Pagination from '@mui/material/Pagination';
+import Box from 'components/Box';
+import Loading from 'components/Loading';
+import MovieCard from 'components/MovieCard';
+import Typography from 'components/Typography';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import BaseLayout from 'layouts/sections/components/BaseLayout';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import useStore from 'store/mapStore';
-import { db } from "util/firebase";
-import {
-  generateRanges,
-  getMovieListLength,
-  isInPaginationPosition
-} from "util/helpers";
+import { db } from 'util/firebase';
+import { generateRanges, getMovieListLength, isInPaginationPosition } from 'util/helpers';
 
 const ITEMS_PER_PAGE = 15;
 
@@ -32,29 +28,28 @@ function MoviesPage() {
   const [pagIndex, setPagIndex] = useState(null);
   const [paginationLength, setPaginationLength] = useState(null);
   const [allImagesLoaded, setAllImagesLoaded] = useState(false);
-    const { imagesLoaded, setImagesLoaded } = useStore((state) => ({
-      imagesLoaded: state.imagesLoaded,
-      setImagesLoaded: state.setImagesLoaded,
-    }));
+  const { imagesLoaded, setImagesLoaded } = useStore((state) => ({
+    imagesLoaded: state.imagesLoaded,
+    setImagesLoaded: state.setImagesLoaded,
+  }));
   const handlePagination = (e, page) => {
     navigate(`/movies/${page}`);
     setLoading(true);
   };
-useEffect(() => {
-  if (imagesLoaded === 15) {
-    setAllImagesLoaded(true);
-  }
-  return () => { 
-    setAllImagesLoaded(false);
-  }
-}, [imagesLoaded]);
+  useEffect(() => {
+    if (imagesLoaded > movies.length - 2) {
+      setAllImagesLoaded(true);
+    } else {
+      setAllImagesLoaded(false);
+    }
+  }, [imagesLoaded, movies]);
 
   async function fetchMoviesInRange(start, end) {
     // Define the range of indexes
 
     // Create a query against the collection
-    const moviesCollection = collection(db, "films");
-    const q = query(moviesCollection, where("index", ">=", start), where("index", "<=", end));
+    const moviesCollection = collection(db, 'films');
+    const q = query(moviesCollection, where('index', '>=', start), where('index', '<=', end));
 
     const querySnapshot = await getDocs(q);
     const movies = querySnapshot.docs.map((doc) => doc.data());
@@ -63,8 +58,8 @@ useEffect(() => {
   }
   useEffect(() => {
     const fetchMovie = async () => {
-      const moviesCollection = collection(db, "films");
-      const q = query(moviesCollection, where("slug", "==", slug));
+      const moviesCollection = collection(db, 'films');
+      const q = query(moviesCollection, where('slug', '==', slug));
       const querySnapshot = await getDocs(q);
 
       // As 'slug' is unique, there should be at most one match
@@ -74,9 +69,9 @@ useEffect(() => {
     };
     const fetchMovies = async () => {
       if (!slug) {
-        navigate("/movies/1");
+        navigate('/movies/1');
       } else if (isNaN(Number(slug))) {
-        navigate("/404");
+        navigate('/404');
       } else {
         const movieLength = await getMovieListLength();
         // const movies = await fetchMoviesInRange(Number(slug));
@@ -93,10 +88,10 @@ useEffect(() => {
             setMovies(moviesInRange);
             setLoading(false);
           } else {
-            navigate("/404");
+            navigate('/404');
           }
         } else {
-          navigate("/404");
+          navigate('/404');
         }
       }
     };
@@ -109,37 +104,23 @@ useEffect(() => {
       <>
         <BaseLayout>
           <Box component="section" py={{ xs: 2, sm: 6 }} position="relative">
-            <Box
-              display="flex"
-              alignItems="center"
-              sx={{ px: { xs: 0, md: 3 }, py: { xs: 2, md: 5 } }}
-            >
+            <Box display="flex" alignItems="center" sx={{ px: { xs: 0, md: 3 }, py: { xs: 2, md: 5 } }}>
               <Container>
-                <Grid
-                  container
-                  item
-                  xs={12}
-                  md={7}
-                  lg={6}
-                  flexDirection="column"
-                  justifyContent="center"
-                >
+                <Grid container item xs={12} md={7} lg={6} flexDirection="column" justifyContent="center">
                   <Typography
                     variant="h4"
                     mb={3}
                     sx={({ breakpoints, typography: { size } }) => ({
-                      [breakpoints.down("md")]: {
-                        fontSize: size["3xl"],
+                      [breakpoints.down('md')]: {
+                        fontSize: size['3xl'],
                       },
                     })}
                   >
                     Movies Locations
                   </Typography>
                   <Typography variant="body2" opacity={0.8} pr={6} mr={6}>
-                    Movie locations with a map, and a list of their latitude and logitude
-                    coordinates
+                    Movie locations with a map, and a list of their latitude and logitude coordinates
                   </Typography>
-            
                 </Grid>
               </Container>
             </Box>
@@ -152,7 +133,7 @@ useEffect(() => {
                   maxHeight={400}
                   image={data.image}
                   title={data.title}
-                  action={{ type: "internal", route: `/location/${data.slug}` }}
+                  action={{ type: 'internal', route: `/location/${data.slug}` }}
                   allImagesLoaded={allImagesLoaded}
                 />
               </Grid>
@@ -161,16 +142,10 @@ useEffect(() => {
           <Box pt={6} px={1} mt={6}>
             <Grid container justifyContent="center">
               {paginationLength && pagIndex && (
-                <Pagination
-                  page={pagIndex}
-                  count={paginationLength}
-                  shape="rounded"
-                  onChange={handlePagination}
-                />
+                <Pagination page={pagIndex} count={paginationLength} shape="rounded" onChange={handlePagination} />
               )}
             </Grid>
           </Box>
-  
         </BaseLayout>
       </>
     );

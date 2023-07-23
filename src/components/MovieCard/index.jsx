@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // react-router components
-import { useState, useEffect } from 'react';
+import { useState, useEffect,lazy } from 'react';
 import { Link } from 'react-router-dom';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -30,6 +30,7 @@ import Box from 'components/Box';
 import Typography from 'components/Typography';
 import Avatar from 'components/Avatar';
 import useStore from 'store/mapStore';
+const { VITE_THE_MOVIE_DB_API_KEY } = import.meta.env;
 
 function MovieCard({ image, category, title, description, author, raised, action, maxWidth, maxHeight, allImagesLoaded }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -38,7 +39,24 @@ function MovieCard({ image, category, title, description, author, raised, action
     imagesLoaded: state.imagesLoaded,
     setImagesLoaded: state.setImagesLoaded,
   }));
-  
+  const fetchMovieImage = async (movie) => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=${VITE_THE_MOVIE_DB_API_KEY}&query=${movie}`,
+      {
+        method: 'GET',
+      }
+    );
+
+    if (response.status !== 200) {
+      return;
+    }
+    const data = await response.json();
+    if (data && data.results && data.results.length > 0) {
+      const movie = data.results[0];
+      const image = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+      return image;
+    }
+  };
   useEffect(() => {
     const img = new Image();
     img.src = image;
@@ -48,6 +66,16 @@ function MovieCard({ image, category, title, description, author, raised, action
       setImageSrc(image);
       
     };
+    img.onerror = async () => {
+   
+      const altImage = await fetchMovieImage(title);
+      if (altImage) {
+           setIsImageLoaded(true);
+           setImagesLoaded();
+        setImageSrc(altImage)
+        
+      }
+      };
   }, [image]);
 
   const renderImage = () => (

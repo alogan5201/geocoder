@@ -114,7 +114,6 @@ function Form() {
         if (bookmarkState.length > 0) {
           const bookmarkExists = alreadyBookmarked(bookmarkState, markerData[0]);
           if (bookmarkExists) {
-            console.log("🚀 ~ handleSubmit ~ bookmarkExists:", bookmarkExists)
             return;
           } else {
             setBookmarkForLocation(true);
