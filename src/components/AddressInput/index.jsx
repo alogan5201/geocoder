@@ -38,9 +38,11 @@ function AddressInput({ onSubmit, ...props }) {
 
       setAddress(addressData);
 
-      if (props.readOnly) {
-        addressInputElm.current.value = addressData;
-      }
+    
+    }
+    return () => { 
+      setAddress(null);
+ 
     }
   }, [markerData, locationMarkerData]);
   return (

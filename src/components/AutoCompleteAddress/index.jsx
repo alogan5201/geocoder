@@ -19,6 +19,8 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState([]);
   const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+
   const setMapInputState = useStore((state) => state.setMapInputState);
   const [overrideInput, setOverrideInput] = useState(false);
   const [count, setCount] = useState(0);
@@ -120,7 +122,11 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   }, [inputValue]);
   useEffect(() => {
     if (address) {
-      setOverrideInput(true);
+       const uid = uuidv4();
+       const newInputValue = { name: address, id: uid };
+       setOverrideInput(true);
+
+       setValue(newInputValue);
 
       // setValue(newInputValue);
     }
@@ -173,6 +179,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       }}
       fullWidth
       filterSelectedOptions
+      value={value}
       noOptionsText=""
       onChange={handleChange}
       onInputChange={(_, value) => {
