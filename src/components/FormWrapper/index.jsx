@@ -25,7 +25,7 @@ function FormWrapper({ form }) {
   /* -------------------------------------------------------------------------- */
   return (
     <>
-      <Box component="section" py={{ xs: 2, sm: 6 }}>
+      <Box component="section" py={{ xs: 2, sm: 6 }} sx={{ maxWidth: '100%' }}>
         <NoLocationFound toggle={errorMessage} />
 
         <Grid container item px={0}>
@@ -37,13 +37,19 @@ function FormWrapper({ form }) {
                 {/* {children} */}
               </Grid>
               {/*================= RIGHT COLUMN - MAP ================= */}
-              <Grid item xs={12} lg={7} position="relative" px={0}>
-                <Box px={{ xs: 1, sm: 3 }} py={{ xs: 0, sm: 6 }} sx={{ height: 600 }}>
-                  {!isMapLoaded && (
-                    // Your placeholder image here. Make sure it's styled to fill the space.
-                    <img src={mapPlaceHolderImg} alt="Map placeholder" style={{ width: '100%', height: '100%' }} />
-                  )}
-                  <MapExternal setMapLoaded={setMapLoaded} />
+              <Grid item xs={12} lg={7}>
+                <Box p={2}>
+                  <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
+                  <div className="map-container">
+                    {!isMapLoaded && (
+                      // Your placeholder image here. Make sure it's styled to fill the space.
+                      <img src={mapPlaceHolderImg} alt="Map placeholder" style={{ width: '600px', height: '400px' }} />
+                    )}
+
+                    <MapExternal setMapLoaded={setMapLoaded} />
+                  </div>
+                    
+                     </Box>
                 </Box>
               </Grid>
             </Grid>

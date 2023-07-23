@@ -27,33 +27,46 @@ function AddressInput({ onSubmit, ...props }) {
   useEffect(() => {
     if (locationMarkerData && props.label === 'Destination') {
       return;
-    } else if (markerData || locationMarkerData) {
-      const markerDataPoints = markerData ? markerData : locationMarkerData ? locationMarkerData : null;
+    } else if ( locationMarkerData) {
 
       const index = props.index ? props.index : 0;
 
-      const addressData = markerDataPoints[index].title.includes(', United States')
-        ? markerDataPoints[index].title.replace(', United States', '')
-        : markerDataPoints[index].title;
+      const addressData = locationMarkerData[index].title.includes(', United States')
+        ? locationMarkerData[index].title.replace(', United States', '')
+        : locationMarkerData[index].title;
 
       setAddress(addressData);
 
     
+    }
+    else if (markerData && !locationMarkerData) {
+            const index = props.index ? props.index : 0;
+
+            const addressData = markerData[index].title.includes(', United States')
+              ? markerData[index].title.replace(', United States', '')
+              : markerData[index].title;
+
+            setAddress(addressData);
     }
     return () => { 
       setAddress(null);
  
     }
   }, [markerData, locationMarkerData]);
+  useEffect(() => {
+    if (address) {
+      if (props.readOnly) {
+        addressInputElm.current.value = address;
+      }
+    }
+  }, [address]);
   return (
-    <Grid item xs={12} pr={1} mb={3}>
-      {props.label && (
-        <Box>
-          <Typography display="inline" variant="h6" fontWeight="regular" color="secondary">
-            {props.label}
-          </Typography>
-        </Box>
-      )}
+    <Grid item xs={12} pr={1} mb={2}>
+      <Box>
+        <Typography display="inline" variant="h6" fontWeight="regular" color="secondary">
+          Address
+        </Typography>
+      </Box>
 
       {props.readOnly ? (
         <Input
@@ -64,15 +77,14 @@ function AddressInput({ onSubmit, ...props }) {
           InputProps={{ readOnly: props.readOnly }}
         />
       ) : (
-          <AutoCompleteAddress
-            autoFocus={props.autoFocus}
+        <AutoCompleteAddress
+          autoFocus={props.autoFocus}
           address={address}
           label={props.label}
           submitOnSelect={props.submitOnSelect}
           onSubmit={onSubmit}
           icon={props.icon ? props.icon : null}
         />
-
       )}
     </Grid>
   );

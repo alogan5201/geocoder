@@ -39,8 +39,13 @@ export default function LatLngInputs({ defaultValue, readOnly }) {
           ? locationMarkerData
           : null;
 
-    if (markerDataPoints) {
-      const { lat, lng } = markerDataPoints[0];
+    if (locationMarkerData) {
+      const { lat, lng } = locationMarkerData[0];
+      latInputElm.current.value = lat;
+      lngInputElm.current.value = lng;
+    }
+  else if (markerData && !locationMarkerData) {
+      const { lat, lng } = markerData[0];
       latInputElm.current.value = lat;
       lngInputElm.current.value = lng;
     }

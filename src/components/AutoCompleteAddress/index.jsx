@@ -19,7 +19,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState([]);
   const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(null);
+  const [value, setValue] = useState(null);
 
   const setMapInputState = useStore((state) => state.setMapInputState);
   const [overrideInput, setOverrideInput] = useState(false);
@@ -90,17 +90,22 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
         (async function () {
           let newOptions = [];
           const results = await getCitiesStartWith(inputValue);
-          setCount(count + 1);
+
           if (results) {
             const capitalCity = isCityCapital(inputValue, capitalCities);
             if (capitalCity) {
               const uid = uuidv4();
+              const displayName = `${capitalCity.city}, ${capitalCity.state}`;
+
               const newOption = { ...capitalCity, id: uid, name: `${capitalCity.city}, ${capitalCity.state}` };
               const reorderedCities = reorderOrReplaceCityCapitalObjects(results, newOption);
 
               const arrayCities = Object.values(reorderedCities);
               newOptions = [...newOptions, ...arrayCities];
               setOptions(newOptions);
+
+              //setValue(displayName)
+              setInputValue(displayName);
             }
 
             //  const uid = uuidv4();
@@ -121,13 +126,16 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     };
   }, [inputValue]);
   useEffect(() => {
-    if (address) {
-       const uid = uuidv4();
-       const newInputValue = { name: address, id: uid };
-       setOverrideInput(true);
-
-       setValue(newInputValue);
-
+    if (address && label !== 'Destination') {
+      const uid = uuidv4();
+      const newInputValue = { name: address, id: uid };
+      if (options.length > 0) {
+        setOptions([newInputValue, ...options]);
+      }
+      setOverrideInput(true);
+      setValue(newInputValue);
+      //setOptions(newInputValue)
+      //setInputValue(address)
       // setValue(newInputValue);
     }
   }, [address, label]);

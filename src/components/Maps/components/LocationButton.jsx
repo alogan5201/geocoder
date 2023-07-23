@@ -185,7 +185,7 @@ const [location, setLocation] = useState(null);
     if(location){
        updateLocationMarkerData(location);
       setTimeout(() => {
-           updateLocationMarkerData(null);
+          // updateLocationMarkerData(null);
       },400);
        
     }

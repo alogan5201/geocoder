@@ -7,8 +7,13 @@ const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.
 
 export const covertAddressToLatLng = async (address) => {
   let location = encodeURIComponent(address);
+
+  // https://api.mapbox.com/geocoding/v5/mapbox.places/austin%20texas.json?proximity=ip&access_token=pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Yao_mmdgrgjPA
+  // * https://api.mapbox.com/geocoding/v5/mapbox.places/aus.json?proximity=ip&access_token=pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Yao_mmdgrgjPA
+  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?proximity=ip&access_token=${VITE_ACCESS_TOKEN}`;
+
   const response = await fetch(
-    `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?access_token=${VITE_ACCESS_TOKEN}`,
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?proximity=ip&access_token=${VITE_ACCESS_TOKEN}`,
     { method: 'GET' }
   );
 
@@ -19,7 +24,6 @@ export const covertAddressToLatLng = async (address) => {
 
   return data;
 };
-
 
 export const getDirections = async (from, to) => {
   const response = await fetch(
@@ -207,28 +211,32 @@ export function metersToMiles(meters) {
   return meters * milesPerMeter;
 }
 
-export function extractCityAndState(data) {
-  let results = [];
+export function extractCityAndState(jsonObject) {
+  let cityName = null;
+  let stateName = null;
 
-  for (let feature of data.features) {
-    let cityStateObj = {};
+  // Iterate through the features array
+  for (const feature of jsonObject.features) {
+    // Check if the feature is a city
+    if (feature.place_type.includes('place')) {
+      cityName = feature.text;
+    }
 
-    for (let context of feature.context) {
-      if (context.short_code && context.short_code.includes('US-')) {
-        cityStateObj['state'] = context.text;
-      } else if (context.id.includes('place.')) {
-        cityStateObj['city'] = context.text;
-      }
+    // Check if the feature is a state
+    if (feature.place_type.includes('region')) {
+      stateName = feature.text;
+    }
 
-      // If both city and state are found, break the loop
-      if (cityStateObj.city && cityStateObj.state) {
-        results.push(cityStateObj);
-        return results[0];
-      }
+    // Break the loop if both city and state are found
+    if (cityName && stateName) {
+      break;
     }
   }
 
-  return results[0];
+  return {
+    city: cityName,
+    state: stateName,
+  };
 }
 
 export async function getAddress(lat, lon) {
@@ -278,7 +286,6 @@ export async function getPlacePhoto(data) {
       );
     });
 }
-
 
 export async function getCitiesStartWith(letter) {
   // Ensure first character is uppercase

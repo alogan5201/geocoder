@@ -17,12 +17,10 @@ const MapExternal = ({ setMapLoaded }) => {
     }
   //setMapLoaded(true); // pass the state up to the parent
   };
-  useEffect(() => {
-    import('leaflet/dist/leaflet.css');
-  }, []);
+
   return (
     <>
-      <MapContainer whenReady={setMap} center={center} zoom={3} scrollWheelZoom={true} zoomControl={false} id="map-container">
+      <MapContainer whenReady={setMap} center={center} zoom={3} scrollWheelZoom={false} zoomControl={false} id="map">
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}

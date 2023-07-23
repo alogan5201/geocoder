@@ -268,3 +268,6 @@ If you click the button twice quickly the input value from the first input gets 
   git config --global user.email "drewthomaslogan5201@gmail.com" && git config --global user.name "alogan5201"
 
   - You can probably delete src/components/PopupMarker
+
+  - weird git changes from improving data validation
+    - 1b29c95: improving data validation

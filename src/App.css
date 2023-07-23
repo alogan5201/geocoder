@@ -1,10 +1,4 @@
-.leaflet-container {
-  margin: 30px auto;
-  height: 500px;
-  z-index: 0;
-  border: 2px solid #333;
-  overflow: hidden;
-}
+
 
 .pin {
   width: 20px;
@@ -369,8 +363,22 @@ input:-webkit-autofill:active {
   border: none !important;
   /* remove border */
 }
-body,
-html {
-  width: 100vw;
-  overflow-x: hidden;
+html, body {margin: 0; padding: 0; overflow-x:hidden}
+
+#map {
+      position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+height: 100%
+}
+
+.map-container {
+    position: relative;
+    padding-bottom: 26.25%;
+    padding-top: 30px;
+    height: 500px;
+      width: 100%;
+        max-height: 500px;
 }

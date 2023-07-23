@@ -22,7 +22,7 @@ import "src/App.css";
 // Material Kit 2 PRO React routes
 import routes from "routes";
 import WebFont from 'webfontloader';
-
+import 'leaflet/dist/leaflet.css';
 export default function App() {
   const { pathname } = useLocation();
 

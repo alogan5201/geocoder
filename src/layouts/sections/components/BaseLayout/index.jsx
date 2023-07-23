@@ -10,15 +10,19 @@ import routes from 'routes';
 
 function BaseLayout({ children }) {
   return (
-    <Box display="flex" flexDirection="column" bgColor="white" minHeight="100vh">
+    <Box display="block" bgColor="white">
       <Box bgColor="white" shadow="sm" py={0.25}>
         <DefaultNavbar routes={routes} transparent relative />
       </Box>
-      <Container maxWidth="sm" px={{ xs: 0, sm: 4 }}>
+      <main >
+
+
+      <Container maxWidth={false} px={2}>
         <Grid container item xs={12} flexDirection="column" justifyContent="center" mx="auto">
           {children}
         </Grid>
       </Container>
+      </main>
       <Box mt={30}>
         <CenteredFooter />
       </Box>

@@ -115,7 +115,7 @@ function Form() {
           on the map to get the coordinates.
         </Typography>
       </Box>
-      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 1 }}>
+      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3.7 }}>
         <Grid container>
           {/* ============ LatLngInputs ============ */}
           <LatLngInputs readOnly={false} defaultValue={["33.748992", "-84.390264"]} />
