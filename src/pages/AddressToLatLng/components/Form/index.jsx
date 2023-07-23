@@ -7,16 +7,16 @@ import Button from 'components/Button';
 import LatLngInputs from 'components/LatLngInputs';
 import Typography from 'components/Typography';
 import { useEffect, useRef } from 'react';
-import { useEffectOnce, useWindowSize } from 'react-use';
+import { useEffectOnce } from 'react-use';
 import useStore from 'store/mapStore';
 import { covertAddressToLatLng, extractCityAndState } from 'util/geocoder';
-import { extractWords, formatMarkerData } from 'util/helpers';
+import { formatMarkerData } from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
 
 function Form() {
-  const { width, height } = useWindowSize();
   const formRef = useRef();
+
   const [coords, setCoords] = useGlobalValue();
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -34,8 +34,6 @@ function Form() {
 
     const inputOne = e.target[0].value;
     if (inputOne) {
-      let extracted = extractWords(inputOne);
-      let withPlus = extracted.join('+');
       const mapBoxData = await covertAddressToLatLng(inputOne);
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];
@@ -67,13 +65,6 @@ function Form() {
         setMapInputState(false);
         const formattedMarkerData = formatMarkerData(markerData);
         updateMarkerData(formattedMarkerData);
-        if (width < 992) {
-          const mapContainerElm = document.getElementById('map-container');
-          if (mapContainerElm) {
-            const offset = 650;
-            window.scrollTo({ top: mapContainerElm.offsetTop + offset, behavior: 'smooth' });
-          }
-        }
       } else {
         setErrorMessage(true);
 
@@ -91,13 +82,19 @@ function Form() {
           target: target,
           preventDefault: () => {},
         };
+        const inputOne = e.target[0].value;
+        console.log('🚀 ~ handleChildSubmit ~ e:', e, inputOne);
+
         handleSubmit(e);
       } else {
-        const target = [formRef.current[0], 1, { value: data.name }];
+        const target = [{ value: data.name }];
+
         const e = {
           target: target,
           preventDefault: () => {},
         };
+        const inputOne = e.target[0].value;
+        console.log('🚀 ~ handleChildSubmit ~ e:', e, inputOne);
         handleSubmit(e);
       }
     }
@@ -136,11 +133,6 @@ function Form() {
       resetMapData();
     };
   }, []);
-  useEffect(() => {
-    if (width) {
-      // if (width < 992) scroll to map on submit
-    }
-  }, [width]);
 
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
@@ -153,17 +145,10 @@ function Form() {
           the map to get the coordinates.
         </Typography>
       </Box>
-      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 4 }}>
+      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 1 }}>
         <Grid container>
           {/* ============ AddressInput ============ */}
-          <AddressInput
-            key="2"
-            label="Address"
-            readOnly={false}
-            defaultValue="Atlanta, GA"
-            submitOnSelect={true}
-            onSubmit={handleChildSubmit}
-          />
+          <AddressInput key="2" label="Address" readOnly={false} submitOnSelect={true} onSubmit={handleChildSubmit} />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">

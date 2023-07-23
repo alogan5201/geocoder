@@ -33,15 +33,37 @@ const Markers = ({ L }) => {
 
   useEffect(() => {
     const markerPointData = markerData ? markerData : locationMarkerData ? locationMarkerData : null;
-    if (markerPointData) {
+    if (locationMarkerData) {
       
-      localStorage.setItem("markerData", JSON.stringify(markerPointData));
-      setMarkerPoints(markerPointData);
-      if (pathname.includes("route-planner") && markerPointData.length > 1) {
-        let latOrigin = markerPointData[0].lat;
-        let lngOrigin = markerPointData[0].lng;
-        let latDestination = markerPointData[1].lat;
-        let lngDestination = markerPointData[1].lng;
+      localStorage.setItem("markerData", JSON.stringify(locationMarkerData));
+      setMarkerPoints(locationMarkerData);
+      if (pathname.includes("route-planner") && locationMarkerData.length > 1) {
+        let latOrigin = locationMarkerData[0].lat;
+        let lngOrigin = locationMarkerData[0].lng;
+        let latDestination = locationMarkerData[1].lat;
+        let lngDestination = locationMarkerData[1].lng;
+        map.fitBounds(
+          [
+            [latOrigin, lngOrigin],
+            [latDestination, lngDestination],
+          ],
+          { padding: [50, 50], maxZoom: 13 }
+        );
+        setCustomMarker(true)
+        setPopupOpen(false);
+      } else {
+        setPopupOpen(true);
+      }
+    }
+   else if (markerData) {
+      
+      localStorage.setItem("markerData", JSON.stringify(markerData));
+      setMarkerPoints(markerData);
+      if (pathname.includes("route-planner") && markerData.length > 1) {
+        let latOrigin = markerData[0].lat;
+        let lngOrigin = markerData[0].lng;
+        let latDestination = markerData[1].lat;
+        let lngDestination = markerData[1].lng;
         map.fitBounds(
           [
             [latOrigin, lngOrigin],

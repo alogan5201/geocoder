@@ -62,11 +62,13 @@ function AddressInput({ onSubmit, ...props }) {
   }, [address]);
   return (
     <Grid item xs={12} pr={1} mb={2}>
-      <Box>
-        <Typography display="inline" variant="h6" fontWeight="regular" color="secondary">
-          Address
-        </Typography>
-      </Box>
+      {props.label && (
+        <Box>
+          <Typography display="inline" variant="h6" fontWeight="regular" color="secondary">
+            {props.label}
+          </Typography>
+        </Box>
+      )}
 
       {props.readOnly ? (
         <Input

@@ -12,7 +12,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useStore from 'store/mapStore';
 import { db } from 'util/firebase';
 import { generateRanges, getMovieListLength, isInPaginationPosition } from 'util/helpers';
-
+import BlogCard from 'components/BlogCard';
+import LazyImage from './LazyImage';
 const ITEMS_PER_PAGE = 15;
 
 function getRangeForPage(n, pageIndex) {
@@ -86,6 +87,7 @@ function MoviesPage() {
             setPagIndex(Number(slug));
             setPaginationLength(generateRanges(movieLength).length);
             setMovies(moviesInRange);
+            console.log(moviesInRange[0])
             setLoading(false);
           } else {
             navigate('/404');
@@ -125,16 +127,16 @@ function MoviesPage() {
               </Container>
             </Box>
           </Box>
-          <Grid container justifyContent="center" spacing={6}>
+          <Grid container justifyContent="center" spacing={5}>
             {movies.map((data) => (
-              <Grid key={data.id} item sx={{ px: { xs: 0, md: 7 } }}>
-                <MovieCard
-                  maxWidth={500}
-                  maxHeight={400}
-                  image={data.image}
+              <Grid key={data.id} container item spacing={3} sx={{ maxWidth: 400, py: { xs: 2, md: 5 },px: { xs: 2, md: 5 } }}>
+                <LazyImage
+                  src={data.image}
+                  alt={`${data.title} movie poster`}
                   title={data.title}
-                  action={{ type: 'internal', route: `/location/${data.slug}` }}
-                  allImagesLoaded={allImagesLoaded}
+                  route={`/location/${data.slug}`}
+                  maxWidth={400}
+                  maxHeight={400}
                 />
               </Grid>
             ))}

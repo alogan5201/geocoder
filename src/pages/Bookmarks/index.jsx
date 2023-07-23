@@ -23,8 +23,6 @@ function BookmarksPage() {
     <>
       <BaseLayout>
         <FormWrapper form={<Form />} />
-
-
       </BaseLayout>
     </>
   );

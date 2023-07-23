@@ -94,6 +94,7 @@ import { create } from 'zustand';
      set({ testData: data });
    },
    setMarkerData: (data) => {
+     set({ locationMarkerData: null });
      set({ markerData: data });
    },
    setLocationMarkerData: (data) => {

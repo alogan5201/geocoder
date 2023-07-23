@@ -187,12 +187,11 @@ const hideColumnRow = true
     const renderRows = rowData.map((row, key) => (
       <TableRow
         onClick={() => handleRowClick(row.address, row.latitude, row.longitude, row.dms, row.id)}
-        hover
+       
         key={`row-${key}`}
         sx={{
-          '&:nth-of-type(odd)': {
-            backgroundColor: 'rgba(0, 0, 0, 0)', // Use any grey color you like here
-          },
+          '&:nth-of-type(odd)': { backgroundColor: '#f8f8f8' },
+          '&:hover': { backgroundColor: '#eeeeee' },
           cursor: 'pointer',
           minHeight: '50px', // Set minimum height
           maxHeight: '50px', // Set maximum height

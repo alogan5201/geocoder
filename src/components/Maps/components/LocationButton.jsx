@@ -11,7 +11,7 @@ function PopupTest() {
 }
 const LocationButton = ({ L }) => {
   const map = useMap();
-  const updateLocationMarkerData = useStore((state) => state.setLocationMarkerData);
+  const setLocationMarkerData = useStore((state) => state.setLocationMarkerData);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
 const [location, setLocation] = useState(null);
@@ -183,10 +183,11 @@ const [location, setLocation] = useState(null);
   }, [map]);
   useEffect(() => {
     if(location){
-       updateLocationMarkerData(location);
+       setLocationMarkerData(location);
       setTimeout(() => {
-          // updateLocationMarkerData(null);
-      },400);
+        map.stopLocate();
+        //setLocationMarkerData(null);
+      },500);
        
     }
 

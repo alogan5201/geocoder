@@ -24,7 +24,6 @@ function AddNewBookmark({ onSubmit }) {
   if (toggleInput) {
     return (
       <AddressInput
-        label=""
         readOnly={false}
         submitOnSelect={true}
         variant="standard"

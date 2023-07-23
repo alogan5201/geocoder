@@ -5,7 +5,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Stack from '@mui/material/Stack';
-import Box from 'components/Box';
+import Box from 'components/Box'
 import Button from 'components/Button';
 import useStore from 'store/mapStore';
 import { alreadyBookmarked, handleBookmarkChange } from 'util/bookmarks';
@@ -38,24 +38,40 @@ function PopupMarkerContent({ content }) {
     }
   }, [bookmarkLocation]);
   useEffect(() => {
-    if (markerPointData || bookmarkLocation) {
-      const shouldBookmark = alreadyBookmarked('bookmarks', markerPointData[content].lat, markerPointData[content].lng);
+    if (locationMarkerData ) {
+      const shouldBookmark = alreadyBookmarked('bookmarks', locationMarkerData[content].lat, locationMarkerData[content].lng);
+      console.log("🚀 ~ useEffect ~ shouldBookmark:", shouldBookmark)
+      
+      setBookmarked(shouldBookmark);
+      // popupContent.dms.lat.display
+      let dmsDisplay = `${locationMarkerData[content].dms.lat.display} ${locationMarkerData[content].dms.lng.display}`;
+      setDisplayDMS(dmsDisplay);
+      setPopupcontent(locationMarkerData[content]);
+    }
+    else if (markerData ) {
+      const shouldBookmark = alreadyBookmarked('bookmarks', markerData[content].lat, markerData[content].lng);
 
       setBookmarked(shouldBookmark);
       // popupContent.dms.lat.display
-      let dmsDisplay = `${markerPointData[content].dms.lat.display} ${markerPointData[content].dms.lng.display}`;
+      let dmsDisplay = `${markerData[content].dms.lat.display} ${markerData[content].dms.lng.display}`;
       setDisplayDMS(dmsDisplay);
-      setPopupcontent(markerPointData[content]);
+      setPopupcontent(markerData[content]);
     }
+  
   }, [markerData, bookmarkLocation, locationMarkerData]);
 
   function handleBookMarkClick(e) {
     e.preventDefault();
-    if (markerPointData) {
-      let bookmarkData = markerPointData[content];
+    if (locationMarkerData) {
+      let bookmarkData = locationMarkerData[content];
       //  setBookmarks();
       handleBookmarkChange(!bookmarked, 'bookmarks', bookmarkData);
       setBookmarked(!bookmarked);
+    } else if (markerData) {
+         let bookmarkData = markerData[content];
+         //  setBookmarks();
+         handleBookmarkChange(!bookmarked, 'bookmarks', bookmarkData);
+         setBookmarked(!bookmarked);
     }
   }
 
