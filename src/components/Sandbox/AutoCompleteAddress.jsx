@@ -1,4 +1,4 @@
-import {useState, useEffect, useMemo} from 'react'
+import { useState, useEffect, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -8,17 +8,17 @@ import Typography from '@mui/material/Typography';
 import parse from 'autosuggest-highlight/parse';
 import { debounce } from '@mui/material/utils';
 import { fetchAutocomplete } from 'util/geocoder';
-import { v4 as uuidv4 } from "uuid";
-import SearchIcon from "@mui/icons-material/Search";
+import { v4 as uuidv4 } from 'uuid';
+import SearchIcon from '@mui/icons-material/Search';
 import useStore from 'store/mapStore';
 
 export default function AutoCompleteAddress() {
   const [value, setValue] = useState(null);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState([]);
-    const locationMarkerData = useStore((state) => state.locationMarkerData);
-    const markerData = useStore((state) => state.markerData);
-const [open, setOpen] = useState(false);
+  const locationMarkerData = useStore((state) => state.locationMarkerData);
+  const markerData = useStore((state) => state.markerData);
+  const [open, setOpen] = useState(false);
   const fetch = useMemo(
     () =>
       debounce(async (request, callback) => {
@@ -31,13 +31,12 @@ const [open, setOpen] = useState(false);
     const markerDataPoints = markerData ? markerData : locationMarkerData ? locationMarkerData : null;
 
     if (markerDataPoints) {
-    console.log(markerDataPoints)
     }
   }, [markerData, locationMarkerData]);
   useEffect(() => {
     let active = true;
 
-    if (inputValue === "") {
+    if (inputValue === '') {
       setOptions(value ? [value] : []);
       return undefined;
     }
@@ -51,10 +50,9 @@ const [open, setOpen] = useState(false);
         }
 
         if (results) {
-         
           const uid = uuidv4();
-          let resultsWithId = results.map(({name,mapbox_id}) => ({name,mapbox_id}));
-         
+          let resultsWithId = results.map(({ name, mapbox_id }) => ({ name, mapbox_id }));
+
           newOptions = [...newOptions, ...resultsWithId];
         }
 
@@ -76,7 +74,7 @@ const [open, setOpen] = useState(false);
       options={options}
       autoComplete
       sx={{
-        "& .MuiInputBase-root": { padding: 0.6 },
+        '& .MuiInputBase-root': { padding: 0.6 },
       }}
       fullWidth
       filterSelectedOptions
@@ -105,15 +103,15 @@ const [open, setOpen] = useState(false);
         return (
           <li {...props}>
             <Grid container alignItems="center">
-              <Grid item sx={{ display: "flex", width: 44 }}>
-                <LocationOnIcon sx={{ color: "text.secondary" }} />
+              <Grid item sx={{ display: 'flex', width: 44 }}>
+                <LocationOnIcon sx={{ color: 'text.secondary' }} />
               </Grid>
-              <Grid item sx={{ width: "calc(100% - 44px)", wordWrap: "break-word" }}>
+              <Grid item sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
                 {parts.map((part, index) => (
                   <Box
                     key={part.text.mapbox_id}
                     component="span"
-                    sx={{ fontWeight: part.highlight ? "bold" : "regular" }}
+                    sx={{ fontWeight: part.highlight ? 'bold' : 'regular' }}
                   >
                     {part.text.name}
                   </Box>
@@ -129,4 +127,3 @@ const [open, setOpen] = useState(false);
     />
   );
 }
-

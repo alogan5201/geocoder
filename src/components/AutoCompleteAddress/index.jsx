@@ -10,9 +10,15 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { debounce } from '@mui/material/utils';
 import parse from 'autosuggest-highlight/parse';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import useStore from 'store/mapStore';
-import { fetchAutocomplete } from 'util/geocoder';
+import {
+  fetchAutocomplete,
+  getCitiesStartWith,
+  isCityCapital,
+  reorderOrReplaceCityCapitalObjects,
+} from 'util/geocoder';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function AutoCompleteAddress({ address, clear, submitOnSelect, onSubmit, icon, label }) {
   const [inputValue, setInputValue] = useState('');
@@ -20,6 +26,10 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   const [open, setOpen] = useState(false);
   const setMapInputState = useStore((state) => state.setMapInputState);
   const [overrideInput, setOverrideInput] = useState(false);
+  const [count, setCount] = useState(0);
+  //const queryLengths = [1, 3, 6, 9];
+  const [queryLengths, setQueryLengths] = useState([1, 3, 6, 9]);
+  const [capitalCities, setCapitalCities] = useState([]);
 
   const modifiers = [
     {
@@ -29,11 +39,12 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       },
     },
   ];
-  const fetch = useMemo(
+  const fetch = useCallback(
     () =>
       debounce(async (request, callback) => {
-        const data = await fetchAutocomplete(request.input);
-        callback(data.suggestions);
+        const data = await getCitiesStartWith(request.input);
+
+        callback(data);
       }, 400),
     []
   );
@@ -46,13 +57,15 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     if (typeof newValue === 'string') {
       return;
     }
-    console.log(`newValue = ${JSON.stringify(newValue)}`)
-    
-    setOptions(newValue ? [newValue, ...options] : options);
+    const displayName = `${newValue.city}, ${newValue.state}`;
+    const newQueryLengths = [1, 3, 6, 9, displayName.length];
+    //setQueryLengths(newQueryLengths);
+    setInputValue(displayName);
+   // setOptions(newValue ? [newValue, ...options] : options);
 
     setOverrideInput(true);
     setOpen(false);
-// * handleSubmit(formattedValue);
+    // * handleSubmit(formattedValue);
   };
   const handleSubmit = (formattedValue, label) => {
     if (submitOnSelect) {
@@ -61,32 +74,54 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       return;
     }
   };
+
+  const fetchCityData = async () => {
+    const data = await getCitiesStartWith(request.input);
+  };
   useEffect(() => {
-    let active = true;
+    let active;
     if (inputValue === '') {
       setMapInputState(true);
       //setOptions(value ? [value] : []);
       return undefined;
     }
-    fetch({ input: inputValue }, (results) => {
-      if (active) {
-        let newOptions = [];
+    if (inputValue.length > 2 && queryLengths.includes(inputValue.length)) {
+      active = true;
 
-        if (results) {
-          //  const uid = uuidv4();
-          let resultsWithId = results.map(({ name, mapbox_id }) => ({
-            name,
-            mapbox_id,
-          }));
-          newOptions = [...newOptions, ...resultsWithId];
-        }
-        setOptions(newOptions);
+      if (active) {
+        (async function () {
+          let newOptions = [];
+          const results = await getCitiesStartWith(inputValue);
+          setCount(count + 1);
+          if (results) {
+            const capitalCity = isCityCapital(inputValue, capitalCities);
+            if (capitalCity) {
+              const uid = uuidv4();
+              const newOption = { ...capitalCity, id: uid };
+              const reorderedCities = reorderOrReplaceCityCapitalObjects(results, newOption);
+
+              const arrayCities = Object.values(reorderedCities);
+              newOptions = [...newOptions, ...arrayCities];
+              setOptions(newOptions);
+            }
+
+            //  const uid = uuidv4();
+            /* let resultsWithId = results.map(({ city, id }) => ({
+                name,
+                mapbox_id,
+              }));
+  
+              newOptions = [...newOptions, ...resultsWithId];
+             */
+            //setOptions(newOptions);
+          }
+        })();
       }
-    });
+    }
     return () => {
       active = false;
     };
-  }, [inputValue, fetch]);
+  }, [inputValue]);
   useEffect(() => {
     if (address) {
       setOverrideInput(true);
@@ -99,9 +134,27 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       setInputValue('');
     }
   }, [clear]);
+
+  useEffect(() => {
+    const loadCapitalCities = async () => {
+      // This will only be downloaded when this code runs
+      const arrayModule = await import('./capitalCities.js');
+      setCapitalCities(arrayModule.default);
+    };
+
+    loadCapitalCities();
+  }, []);
+
+  useEffect(() => {
+    const opts = JSON.stringify(options, null, 2);
+    if (open) {
+      console.log(options);
+}
+  }, [count, options,open]);
   return (
     <Autocomplete
       freeSolo
+      blurOnSelect
       id="mapbox-autocomplete-demo"
       getOptionLabel={(option) => (option && option.name ? option.name : inputValue)}
       filterOptions={(x) => x}
@@ -167,7 +220,8 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
         />
       )}
       renderOption={(props, option) => {
-        const id = option.mapbox_id;
+        const id = option.id;
+
         const parts = parse(option, []);
         // [0].text.mapbox_id
         return (
@@ -183,19 +237,9 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
                   wordWrap: 'break-word',
                 }}
               >
-                {parts.map((part, index) => (
-                  <Box
-                    key={index}
-                    component="span"
-                    sx={{
-                      fontWeight: part.highlight ? 'bold' : 'regular',
-                    }}
-                  >
-                    {part.text.name}
-                  </Box>
-                ))}
                 <Typography variant="body2" color="text.secondary">
-                  {option.formatted_address}
+                  {option.city}, {option.state}
+                  {/* {option.formatted_address} */}
                 </Typography>
               </Grid>
             </Grid>
