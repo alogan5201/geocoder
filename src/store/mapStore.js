@@ -59,7 +59,8 @@ import { create } from 'zustand';
        userLocationActive: false,
        locationMarkerData: null,
        routeData: null,
-       imagesLoaded: 0
+       imagesLoaded: 0,
+       weather: null
      });
    },
    setBookmarks: () => {
