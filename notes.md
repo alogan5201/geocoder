@@ -275,7 +275,7 @@ If you click the button twice quickly the input value from the first input gets 
 
 
 - [✅] Autocomplete not working; probably just need to add the .env variables to netlify
-- [ ] Route planner submit button stuck on loading
+- [✅] Route planner submit button stuck on loading
 - [ ] Movie posters not centered on mobile
 - [ ] Movie details— markers not showing up
 - [ ] Bookmarks page — adding a bookmark on mobile not work when submitting normally without autocomplete

@@ -134,7 +134,7 @@ function MoviesPage() {
                 container
                 item
                 spacing={3}
-                sx={{ maxWidth: 400, py: { xs: 2, md: 5 }, px: { xs: 2, md: 5 } }}
+                sx={{ maxWidth: 400, py: { xs: 0, md: 5 }, px: { xs: 0, md: 5 } }}
               >
                 <LazyImage
                   src={data.image}

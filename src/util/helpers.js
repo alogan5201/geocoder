@@ -249,7 +249,7 @@ export function secondsToHoursMinutes(seconds) {
 
 export const fetchWeather = async (lat,lng) => {
      const response = await fetch(
-       `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=imperial&appid&appid=6185638fa6045f2f694129e53175d997`,
+       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=imperial&appid&appid=6185638fa6045f2f694129e53175d997`,
        { method: "GET" }
      );
      if (response.status !== 200) {
