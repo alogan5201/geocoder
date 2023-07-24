@@ -51,9 +51,12 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     }
   };
   const handleChange = async (event, newValue) => {
+    
+    
     if (typeof newValue === 'string') {
       return;
     }
+
     const displayName = `${newValue.city}, ${newValue.state}`;
     const newQueryLengths = [1, 3, 6, 9, displayName.length];
     //setQueryLengths(newQueryLengths);
@@ -85,12 +88,14 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     }
     if (inputValue.length > 2 && queryLengths.includes(inputValue.length)) {
       active = true;
-
+      
+      console.log("🚀 ~ useEffect ~ inputValue:", inputValue)
       if (active) {
         (async function () {
           let newOptions = [];
           const results = await getCitiesStartWith(inputValue);
-
+              console.log("🚀 ~ results:", results)
+              
           if (results) {
             const capitalCity = isCityCapital(inputValue, capitalCities);
             if (capitalCity) {
@@ -191,6 +196,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       noOptionsText=""
       onChange={handleChange}
       onInputChange={(_, value) => {
+        
         if (!overrideInput) {
           const isLengthLessThanThree = value.length < 3;
           const isOpenAndLengthLessThanThree = open && isLengthLessThanThree;

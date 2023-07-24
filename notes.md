@@ -271,3 +271,12 @@ If you click the button twice quickly the input value from the first input gets 
 
   - weird git changes from improving data validation
     - 1b29c95: improving data validation
+
+
+
+- [ ] Autocomplete not working; probably just need to add the .env variables to netlify
+- [ ] Route planner submit button stuck on loading
+- [ ] Movie posters not centered on mobile
+- [ ] Movie details— markers not showing up
+- [ ] Bookmarks page — adding a bookmark on mobile not work when submitting normally without autocomplete
+- [ ] All pages where theres a loading spinner for submit button — I need to call a return cleanup function on useEffect to make sure those get turned off
