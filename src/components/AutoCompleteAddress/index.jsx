@@ -216,7 +216,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
                   {icon ? (
                     <Box sx={{ pr: 2 }}>{icon}</Box>
                   ) : (
-                    <IconButton type="button" sx={{ pr: 2 }}>
+                    <IconButton type="submit" sx={{ pr: 2 }}>
                       <SearchIcon fontSize="medium" color="info" />
                     </IconButton>
                   )}
