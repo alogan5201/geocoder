@@ -32,9 +32,9 @@ export default function LocationsTable({ locations }) {
                 popupOpen: false,
             },
           ];
-        const mapElement = document.getElementById("map");
-             const formattedMarkerData = formatMarkerData(markerData)
-        updateMarkerData(formattedMarkerData);
+          const formattedMarkerData = formatMarkerData(markerData)
+          updateMarkerData(formattedMarkerData);
+          const mapElement = document.getElementById("map");
             if (mapElement) {
               const offset = 650; // change this to the offset that suits your needs
     window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });

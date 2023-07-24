@@ -9,6 +9,7 @@ import Box from 'components/Box';
 import Button from 'components/Button';
 import useStore from 'store/mapStore';
 import { alreadyBookmarked, handleBookmarkChange } from 'util/bookmarks';
+
 function PopupMarkerContent({ content }) {
   const markerData = useStore((state) => state.markerData);
   const locationMarkerData = useStore((state) => state.locationMarkerData);

@@ -316,3 +316,22 @@ git config --global user.email "drewthomaslogan5201@gmail.com" && git config --g
               )}
             </Grid>
           </Box> */}
+
+
+
+import {useWindowSize} from 'react-use';
+
+  const mapElement = document.getElementById("map");
+            if (mapElement) {
+              const offset = 650; // change this to the offset that suits your needs
+    window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+            }
+
+
+              if (width < 992) {
+          const mapElement = document.getElementById('map');
+          if (mapElement) {
+            const offset = 0; // change this to the offset that suits your needs
+            window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+          }
+      }

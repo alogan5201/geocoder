@@ -11,9 +11,12 @@ import useStore from "store/mapStore";
 import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
 import { formatMarkerData, getCurrentTime } from "util/helpers";
 import { v4 as uuidv4 } from "uuid";
+import { useWindowSize } from 'react-use';
 
 function Form() {
   const markerData = useStore((state) => state.markerData);
+    const { width, height } = useWindowSize();
+
   const locationMarkerData = useStore((state) => state.locationMarkerData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const resetZoom = useStore((state) => state.resetMapZoom);
@@ -72,6 +75,16 @@ function Form() {
         setMapInputState(false);
         const formattedMarkerData = formatMarkerData(markerData);
         updateMarkerData(formattedMarkerData);
+             if (width < 992) {
+               console.log('🚀 ~ handleSubmit ~ width:', width);
+
+               const mapElement = document.getElementById('map');
+               if (mapElement) {
+                 console.log('🚀 ~ handleSubmit ~ mapElement:', mapElement);
+                 const offset = 650; // change this to the offset that suits your needs
+                 window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+               }
+             }
       } else {
         setErrorMessage(true);
         resetMapData();
