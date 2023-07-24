@@ -11,7 +11,13 @@ import FilledInfoCard from 'components/Cards/InfoCards/FilledInfoCard';
 import { useEffect, useRef, useState } from 'react';
 import useStore from 'store/mapStore';
 import { covertAddressToLatLng, extractCityAndState, getDirections, metersToMiles } from 'util/geocoder';
-import { extractWords, fetchWeather, formatMarkerData, secondsToHoursMinutes } from 'util/helpers';
+import {
+  extractWords,
+  fetchWeather,
+  formatMarkerData,
+  secondsToHoursMinutes,
+  retrieveWeatherIconUrl,
+} from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
 const OriginInputIcon = () => {
@@ -103,8 +109,12 @@ function Form() {
             if (weatherOrigin && weatherDestination) {
               const iconOrigin = weatherOrigin.weather[0].icon.slice(0, -1);
               const iconDestination = weatherDestination.weather[0].icon.slice(0, -1);
-              const iconOriginPath = `assets/images/weather/${iconOrigin}.png`;
-              const iconDestinationPath = `assets/images/weather/${iconDestination}.png`;
+              const iconOriginUrl = retrieveWeatherIconUrl(iconOrigin);
+              const iconDestinationUrl = retrieveWeatherIconUrl(iconDestination);
+              console.log("🚀 ~ handleFormInputs ~ iconDestinationUrl:", iconDestinationUrl)
+              
+              const iconOriginPath = iconOriginUrl;
+              const iconDestinationPath = iconDestinationUrl;
               const currentWeatherOrigin = weatherOrigin.main.temp;
               const currentWeatherDestination = weatherDestination.main.temp;
 

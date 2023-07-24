@@ -15,18 +15,15 @@ const LegendContent = ({ content }) => {
    backgroundColor: "rgba(255,255,255,0.9)",
     // transform: "rotate(180deg)",
   };
+useEffect(() => {
+  console.log(content)
+}, [content]);
   return (
     <Card sx={cardStyles}>
       <CardContent>
         <Stack direction="column" spacing={0} alignItems="center">
-          <Stack
-            direction="row"
-            spacing={0}
-            sx={{ width: "100%" }}
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Typography sx={{ fontSize: 14,  }} variant="body2" gutterBottom>
+          <Stack direction="row" spacing={0} sx={{ width: '100%' }} justifyContent="space-between" alignItems="center">
+            <Typography sx={{ fontSize: 14 }} variant="body2" gutterBottom>
               {content.origin.address} <br />
               {Math.round(content.origin.temp)}°F
             </Typography>
@@ -38,30 +35,25 @@ const LegendContent = ({ content }) => {
                 duration: 0.3,
                 ease: [0, 0.71, 0.2, 1.01],
                 scale: {
-                  type: "spring",
+                  type: 'spring',
                   damping: 15,
                   stiffness: 100,
                   restDelta: 0.001,
                 },
               }}
             >
-              <img
-                alt="origin-weather=icon"
-                src={`/src/${content.origin.icon}`}
-                loading="lazy"
-                style={{ maxWidth: "40px" }}
-              />
+              <img alt="origin-weather-icon" src={content.origin.icon} loading="lazy" style={{ maxWidth: '40px' }} />
             </motion.div>
           </Stack>
-          <Divider sx={{ my: 0.5, width: "100%", color: "red", opacity: 0.9 }} />
+          <Divider sx={{ my: 0.5, width: '100%', color: 'red', opacity: 0.9 }} />
           <Stack
             direction="row"
             spacing={5}
-            sx={{ flexGrow: 1, width: "100%" }}
+            sx={{ flexGrow: 1, width: '100%' }}
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography sx={{ fontSize: 14,  }} variant="body2" gutterBottom>
+            <Typography sx={{ fontSize: 14 }} variant="body2" gutterBottom>
               {content.destination.address} <br />
               {Math.round(content.destination.temp)}°F
             </Typography>
@@ -73,7 +65,7 @@ const LegendContent = ({ content }) => {
                 duration: 0.3,
                 ease: [0, 0.71, 0.2, 1.01],
                 scale: {
-                  type: "spring",
+                  type: 'spring',
                   damping: 15,
                   stiffness: 100,
                   restDelta: 0.001,
@@ -82,9 +74,9 @@ const LegendContent = ({ content }) => {
             >
               <img
                 alt="destination-weather-icon"
-                src={`/src/${content.destination.icon}`}
+                src={content.destination.icon}
                 loading="lazy"
-                style={{ maxWidth: "40px" }}
+                style={{ maxWidth: '40px' }}
               />
             </motion.div>
           </Stack>

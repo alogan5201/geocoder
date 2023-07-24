@@ -396,3 +396,25 @@ export function formatMarkerData(data){
 }
 
 
+
+export function retrieveWeatherIconUrl(icon) {
+  const urls = [
+    'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fweather-images%2F01.png?alt=media&token=b621ee02-29a6-4716-82ba-46bddf68a70e',
+    'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fweather-images%2F02.png?alt=media&token=f744c882-3087-46f1-b63e-5273897eec54',
+    'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fweather-images%2F03.png?alt=media&token=7245fc45-57c6-442b-832d-a9857d9863c9',
+    'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fweather-images%2F04.png?alt=media&token=c9d8a6a7-688f-4dd4-a313-49ca42234d0d',
+    'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fweather-images%2F09.png?alt=media&token=2b9a129f-7d66-495c-b4af-dc2ad568a6a6',
+    'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fweather-images%2F10.png?alt=media&token=9421c1a8-0af0-44da-9f4d-af82a14783bd',
+    'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fweather-images%2F11.png?alt=media&token=32b39710-3337-484f-9530-ee601429abf5',
+    'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fweather-images%2F13.png?alt=media&token=17e3cf97-7be0-4a52-934b-97c09741d971',
+    'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fweather-images%2F50.png?alt=media&token=c0b5963f-5a47-43fe-af51-8125cd7f1307',
+  ];
+  let iconImage = `${icon}.png`
+ for (let index = 0; index < urls.length; index++) {
+   const element = urls[index];
+   if(element.includes(iconImage)){
+     return element
+   }
+  
+ }
+}
