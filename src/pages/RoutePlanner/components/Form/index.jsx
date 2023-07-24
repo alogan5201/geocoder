@@ -74,8 +74,12 @@ function Form() {
   const handleFormInputs = async (inputOne, inputTwo) => {
     if (inputOne && inputTwo) {
       setLoading(true);
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000);
       const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
       const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
+   
 
       if (mapBoxDataOrigin && mapBoxDataDestination) {
         if (mapBoxDataOrigin.features.length > 0 && mapBoxDataDestination.features.length > 0) {
@@ -134,6 +138,7 @@ function Form() {
         }
       }
     }
+   setLoading(false);
   };
   const handleChildSubmit = (data) => {
     if (data) {

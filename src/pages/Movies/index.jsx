@@ -87,7 +87,7 @@ function MoviesPage() {
             setPagIndex(Number(slug));
             setPaginationLength(generateRanges(movieLength).length);
             setMovies(moviesInRange);
-            console.log(moviesInRange[0])
+
             setLoading(false);
           } else {
             navigate('/404');
@@ -129,7 +129,13 @@ function MoviesPage() {
           </Box>
           <Grid container justifyContent="center" spacing={5}>
             {movies.map((data) => (
-              <Grid key={data.id} container item spacing={3} sx={{ maxWidth: 400, py: { xs: 2, md: 5 },px: { xs: 2, md: 5 } }}>
+              <Grid
+                key={data.id}
+                container
+                item
+                spacing={3}
+                sx={{ maxWidth: 400, py: { xs: 2, md: 5 }, px: { xs: 2, md: 5 } }}
+              >
                 <LazyImage
                   src={data.image}
                   alt={`${data.title} movie poster`}

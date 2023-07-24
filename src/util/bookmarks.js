@@ -3,7 +3,7 @@ function addObjectToLocalstorageList(key, obj) {
   const currentList = JSON.parse(localStorage.getItem(key)) || [];
 
   // Check if the list already includes an object with matching lat and lng properties
-  const exists = currentList.some((item) => item.lat === obj.lat && item.lng === obj.lng || item.title === obj.title);
+  const exists = currentList.some((item) => (item.lat === obj.lat && item.lng === obj.lng) || item.title === obj.title);
 
   // If no match is found, add the new object to the list
   if (!exists) {
@@ -23,9 +23,9 @@ function removeObjectFromLocalStorageList(key, obj) {
   const newList = currentList
     .filter((item) => item.title !== obj.title)
     .filter((item) => item.lat !== obj.lat && item.lng !== obj.lng);
-  console.log("🚀 ~ removeObjectFromLocalStorageList ~ newList:", newList)
+
   // Store the new list of objects
-  
+
   localStorage.setItem(key, JSON.stringify(newList));
   window.dispatchEvent(new Event('storage'));
 }

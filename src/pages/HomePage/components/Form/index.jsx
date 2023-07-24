@@ -82,9 +82,8 @@ function Form() {
           target: target,
           preventDefault: () => {},
         };
-          const inputOne = e.target[0].value;
-        console.log("🚀 ~ handleChildSubmit ~ e:", e,inputOne)
-        
+        const inputOne = e.target[0].value;
+
         handleSubmit(e);
       } else {
         const target = [{ value: data.name }];
@@ -94,7 +93,7 @@ function Form() {
           preventDefault: () => {},
         };
         const inputOne = e.target[0].value;
-        console.log("🚀 ~ handleChildSubmit ~ e:", e,inputOne)
+
         handleSubmit(e);
       }
     }
@@ -137,7 +136,7 @@ function Form() {
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
-      <Typography variant="h4" mb={1}>
+        <Typography variant="h4" mb={1}>
           Address to Latitude & Longitude
         </Typography>
         <Typography variant="body2" color="text" mb={1}>

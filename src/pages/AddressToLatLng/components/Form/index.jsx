@@ -83,7 +83,6 @@ function Form() {
           preventDefault: () => {},
         };
         const inputOne = e.target[0].value;
-        console.log('🚀 ~ handleChildSubmit ~ e:', e, inputOne);
 
         handleSubmit(e);
       } else {
@@ -94,7 +93,7 @@ function Form() {
           preventDefault: () => {},
         };
         const inputOne = e.target[0].value;
-        console.log('🚀 ~ handleChildSubmit ~ e:', e, inputOne);
+
         handleSubmit(e);
       }
     }
