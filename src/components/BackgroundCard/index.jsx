@@ -44,12 +44,7 @@ function BackgroundCard({ image, title, description }) {
       })}
     >
       <Box pt={32} pb={3} px={3}>
-        <Typography variant="h4" color="white" mb={1}>
-          {title}
-        </Typography>
-        <Typography variant="body2" color="white" mb={2}>
-          {description}
-        </Typography>
+      
       </Box>
     </Card>
   );
