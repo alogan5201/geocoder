@@ -127,6 +127,13 @@ function MoviesPage() {
                   </Grid>
                 ))}
               </Grid>
+              <Box pt={6} px={1} mt={6}>
+                <Grid container justifyContent="center">
+                  {paginationLength && pagIndex && (
+                    <Pagination page={pagIndex} count={paginationLength} shape="rounded" onChange={handlePagination} />
+                  )}
+                </Grid>
+              </Box>
             </Container>
           </Box>
         </BaseLayout>

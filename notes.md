@@ -327,11 +327,4 @@ import {useWindowSize} from 'react-use';
     window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
             }
 
-
-              if (width < 992) {
-          const mapElement = document.getElementById('map');
-          if (mapElement) {
-            const offset = 0; // change this to the offset that suits your needs
-            window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
-          }
-      }
+            
