@@ -5,7 +5,9 @@ import "react-tabs/style/react-tabs.css";
 import useStore from 'store/mapStore';
 import LocationButton from "./components/LocationButton";
 import Markers from "./components/Markers";
-
+import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
+import iconUrl from 'leaflet/dist/images/marker-icon.png';
+import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 const center = [37.09024, -95.712891];
 
 const MapExternal = ({ setMapLoaded }) => {
@@ -22,10 +24,11 @@ const MapExternal = ({ setMapLoaded }) => {
   // it's an issue that only applies to the react-leaftelet library
   delete L.Icon.Default.prototype._getIconUrl;
 
+
   L.Icon.Default.mergeOptions({
-    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png').default,
-    iconUrl: require('leaflet/dist/images/marker-icon.png').default,
-    shadowUrl: require('leaflet/dist/images/marker-shadow.png').default,
+    iconRetinaUrl,
+    iconUrl,
+    shadowUrl,
   });
   return (
     <>
