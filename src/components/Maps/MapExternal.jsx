@@ -9,6 +9,7 @@ import Markers from "./components/Markers";
 const center = [37.09024, -95.712891];
 
 const MapExternal = ({ setMapLoaded }) => {
+
   const setMapReady = useStore((state) => state.setMapReady);
   const setMap = () => {
     setMapReady(true);
@@ -17,7 +18,15 @@ const MapExternal = ({ setMapLoaded }) => {
     }
   //setMapLoaded(true); // pass the state up to the parent
   };
+  // This is a fix that is needed for the marker to load properly in production
+  // it's an issue that only applies to the react-leaftelet library
+  delete L.Icon.Default.prototype._getIconUrl;
 
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png').default,
+    iconUrl: require('leaflet/dist/images/marker-icon.png').default,
+    shadowUrl: require('leaflet/dist/images/marker-shadow.png').default,
+  });
   return (
     <>
       <MapContainer whenReady={setMap} center={center} zoom={3} scrollWheelZoom={false} zoomControl={false} id="map">

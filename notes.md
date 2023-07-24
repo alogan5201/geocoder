@@ -279,7 +279,7 @@ If you click the button twice quickly the input value from the first input gets 
 - [✅] Movie posters not centered on mobile
 - [ ] Movie details— markers not showing up
 - [ ] Bookmarks page — adding a bookmark on mobile not work when submitting normally without autocomplete
-- [ ] All pages where theres a loading spinner for submit button — I need to call a return cleanup function on useEffect to make sure those get turned off
+- [✅] All pages where theres a loading spinner for submit button — I need to call a return cleanup function on useEffect to make sure those get turned off
 
 
           {/*         <Box component="section" py={{ xs: 2, sm: 6 }} position="relative">
