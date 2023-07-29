@@ -16,6 +16,7 @@ import BlogCard from 'components/BlogCard';
 import LazyImage from './LazyImage';
 import BlogPostFour from './BlogPostFour';
 import { Link } from 'react-router-dom';
+import Skeleton from '@mui/material/Skeleton';
 
 const ITEMS_PER_PAGE = 15;
 
@@ -27,6 +28,7 @@ function MoviesPage() {
   const navigate = useNavigate();
   const { slug } = useParams();
   const [movies, setMovies] = useState([]);
+  
   const [lastDoc, setLastDoc] = useState(null);
   const [loading, setLoading] = useState(true);
   const [pagIndex, setPagIndex] = useState(null);
@@ -61,6 +63,7 @@ function MoviesPage() {
     return movies;
   }
   useEffect(() => {
+
     const fetchMovie = async () => {
       const moviesCollection = collection(db, 'films');
       const q = query(moviesCollection, where('slug', '==', slug));
@@ -91,7 +94,9 @@ function MoviesPage() {
             setPaginationLength(generateRanges(movieLength).length);
             setMovies(moviesInRange);
 
-            setLoading(false);
+             setTimeout(() => {
+               setLoading(false);
+             }, 500);
           } else {
             navigate('/404');
           }
@@ -102,9 +107,15 @@ function MoviesPage() {
     };
     fetchMovies();
   }, [navigate, slug]);
-  if (loading) {
-    return <Loading />;
-  } else {
+
+  useEffect(() => {
+    if (loading) {
+    setTimeout(() => {
+      setLoading(false)
+    }, 1500);
+    }
+  }, [loading]);
+
     return (
       <>
         <BaseLayout>
@@ -118,7 +129,22 @@ function MoviesPage() {
                   Discover where you're favorite flicks were filmed and bookmark them for your next trip!
                 </Typography>
               </Grid>
-              <Grid container spacing={5} mt={3}>
+              {loading && (
+                <Grid container spacing={5} mt={3}>
+                  {Array.from({ length: 15 }).map((_, index) => (
+                    <Grid key={index} item xs={12} lg={4}>
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={274}
+                        height={417}
+                        sx={{ borderRadius: '8px' }}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              )}
+              <Grid container spacing={5} mt={3} sx={loading ? { visibility: 'hidden' } : { visibility: 'visible' }}>
                 {movies.map((data) => (
                   <Grid key={data.id} item xs={12} lg={4}>
                     <Link to={`/location/${data.slug}`}>
@@ -139,6 +165,6 @@ function MoviesPage() {
         </BaseLayout>
       </>
     );
-  }
+  
 }
 export default MoviesPage;

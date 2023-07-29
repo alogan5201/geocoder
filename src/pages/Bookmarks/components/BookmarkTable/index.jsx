@@ -1,9 +1,8 @@
 import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import TableContainer from '@mui/material/TableContainer';
-import Box from 'components/Box';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
+import TableContainer from '@mui/material/TableContainer';
+import Box from 'components/Box';
 
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import useStore from 'store/mapStore';
@@ -99,7 +98,7 @@ function BookmarkTable({ bookmarkState }) {
         setRowData(bookmarkData);
         setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 500);
       }
     };
 
@@ -108,7 +107,13 @@ function BookmarkTable({ bookmarkState }) {
 
     // Dependency array for useEffect, re-run when bookmarkState changes.
   }, [bookmarkState]);
-
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500);
+    }
+  }, [loading]);
   // Column definitions for the Table.
   const { columns, rows } = {
     columns: [
