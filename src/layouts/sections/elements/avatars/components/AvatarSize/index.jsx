@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 
 import Box from 'components/Box';
-import Avatar from 'components/Avatar';
 
 // Images
 

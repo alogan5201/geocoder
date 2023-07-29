@@ -1,17 +1,3 @@
-/*
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 // @mui material components
 import Container from '@mui/material/Container';
@@ -23,7 +9,6 @@ import Button from 'components/Button';
 import Typography from 'components/Typography';
 
 // Images
-import bgImage from 'assets/images/examples/blog2.jpg';
 
 function ContactUsTwo() {
   return (
@@ -89,11 +74,7 @@ function ContactUsTwo() {
                 position="relative"
                 px={0}
                 sx={{
-                  backgroundImage: ({ palette: { gradients }, functions: { rgba, linearGradient } }) =>
-                    `${linearGradient(
-                      rgba(gradients.info.main, 0.8),
-                      rgba(gradients.info.state, 0.8)
-                    )}, url(${bgImage})`,
+               
                   backgroundSize: 'cover',
                 }}
               >
