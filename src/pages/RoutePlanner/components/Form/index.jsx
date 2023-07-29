@@ -11,6 +11,8 @@ import FilledInfoCard from 'components/Cards/InfoCards/FilledInfoCard';
 import { useEffect, useRef, useState } from 'react';
 import useStore from 'store/mapStore';
 import { covertAddressToLatLng, extractCityAndState, getDirections, metersToMiles } from 'util/geocoder';
+import { useWindowSize } from 'react-use';
+
 import {
   extractWords,
   fetchWeather,
@@ -39,6 +41,7 @@ const DestinationInputIcon = () => {
 /* -------------------------------------------------------------------------- */
 function Form() {
   const formRef = useRef();
+  const { width, height } = useWindowSize();
 
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
@@ -136,6 +139,13 @@ function Form() {
               };
 
               setWeather(weatherData);
+                   if (width < 992) {
+                     const mapElement = document.getElementById('map');
+                     if (mapElement) {
+                       const offset = 750; // change this to the offset that suits your needs
+                       window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+                     }
+                   }
             }
           } else {
             setErrorMessage(true);
