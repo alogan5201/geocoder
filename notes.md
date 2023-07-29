@@ -2,7 +2,7 @@
 
 https://geotools-bc75a.firebaseapp.com/
 
-console.log.\*$
+console.log.*$
 
 # Component Tree Hierarchy from Hope Page
 

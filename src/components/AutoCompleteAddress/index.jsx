@@ -136,8 +136,6 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   }, [address, label]);
   useEffect(() => {
     if (clear && clearMapInputs) {
-      console.log('🚀 ~ useEffect ~ clear:', clear);
-
       setOverrideInput(true);
       setValue('');
       setInputValue(''); // Clear input value here

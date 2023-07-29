@@ -15,14 +15,17 @@ import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
 import BookmarkTable from '../BookmarkTable';
 import { alreadyBookmarked, handleBookmarkChange } from 'util/bookmarks';
-function AddNewBookmark({ onSubmit }) {
+
+function AddNewBookmark({ onSubmit, loaded }) {
   const [toggleInput, setInputToggle] = useState(false);
   const handleNewBookmark = (e) => {
     e.preventDefault();
+
     setInputToggle(true);
+ 
   };
-  useEffect(() => {}, [toggleInput]);
-  if (toggleInput) {
+ 
+  if (toggleInput && !loaded ) {
     return (
       <AddressInput
         readOnly={false}
@@ -46,6 +49,7 @@ function AddNewBookmark({ onSubmit }) {
   }
 }
 function Form() {
+  const [addressLoaded, setAddressLoaded] = useState(false);
   const [bookmarkState, setBookmarkState] = useState(JSON.parse(localStorage.getItem('bookmarks')) || []);
   const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation);
 
@@ -54,6 +58,13 @@ function Form() {
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
+    const [toggleInput, setInputToggle] = useState(false);
+  const handleNewBookmark = (e) => {
+    e.preventDefault();
+    setAddressLoaded(false)
+    setInputToggle(true);
+ 
+  };
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -74,8 +85,11 @@ function Form() {
     e.preventDefault();
     const inputOne = e.target[0].value;
     if (inputOne) {
+    
       const mapBoxData = await covertAddressToLatLng(inputOne);
       if (mapBoxData && mapBoxData.features.length > 0) {
+        setAddressLoaded(false);
+         setAddressLoaded(false);
         let lat = mapBoxData.features[0].geometry.coordinates[1];
         let lng = mapBoxData.features[0].geometry.coordinates[0];
         setCoords([coords]);
@@ -98,13 +112,17 @@ function Form() {
           },
         ];
         setUserLocationActive(false);
-        setMapInputState(false);
+        
         const formattedMarkerData = formatMarkerData(markerData);
         updateMarkerData(formattedMarkerData);
         handleBookmarkChange(true, 'bookmarks', markerData[0]);
-        // setBookmarkForLocation(true);
+        setMapInputState(false);
+        setAddressLoaded(true); 
       }
     }
+  }
+  const handleToggleLoaded = () => {
+    setAddressLoaded(!addressLoaded);
   }
   const alreadyBookmarked = (currentBookmarks, markerData) => {
     for (let index = 0; index < currentBookmarks.length; index++) {
@@ -154,6 +172,8 @@ function Form() {
       setBookmarkForLocation(false);
     };
   }, [userLocationActive]);
+
+
   return (
     <Box
       component="form"
@@ -174,13 +194,48 @@ function Form() {
             <Divider sx={{ m: 0 }} />
             {bookmarkState && bookmarkState.length > 0 ? (
               <>
-                <AddNewBookmark onSubmit={handleChildSubmit} />
+                {toggleInput && !addressLoaded ? (
+                  <AddressInput
+                    readOnly={false}
+                    submitOnSelect={true}
+                    variant="standard"
+                    onSubmit={handleChildSubmit}
+                    autoFocus={true}
+                    clear={true}
+                  />
+                ) : (
+                  <Grid item xs={12} pr={1} mb={0} pl={2}>
+                    <Button color="white" size="large" sx={{ pl: 0 }} onClick={handleNewBookmark}>
+                      {' '}
+                      <AddIcon color="info" sx={{ mr: 1, my: 0.5 }} />{' '}
+                      <Typography variant="body2"> Search for a location to add</Typography>{' '}
+                    </Button>
+                  </Grid>
+                )}
 
+                {/* <AddNewBookmark onSubmit={handleChildSubmit} loaded={addressLoaded} toggleLoaded={handleToggleLoaded} /> */}
                 <BookmarkTable bookmarkState={bookmarkState} />
               </>
             ) : (
               <>
-                <AddNewBookmark onSubmit={handleChildSubmit} />
+                {toggleInput && !addressLoaded ? (
+                  <AddressInput
+                    readOnly={false}
+                    submitOnSelect={true}
+                    variant="standard"
+                    onSubmit={handleChildSubmit}
+                    autoFocus={true}
+                    clear={true}
+                  />
+                ) : (
+                  <Grid item xs={12} pr={1} mb={0} pl={2}>
+                    <Button color="white" size="large" sx={{ pl: 0 }} onClick={handleNewBookmark}>
+                      {' '}
+                      <AddIcon color="info" sx={{ mr: 1, my: 0.5 }} />{' '}
+                      <Typography variant="body2"> Search for a location to add</Typography>{' '}
+                    </Button>
+                  </Grid>
+                )}
               </>
             )}
           </Grid>

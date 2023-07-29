@@ -1,11 +1,11 @@
-import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton";
-import TableContainer from "@mui/material/TableContainer";
-import Box from "components/Box";
-import Spinner from "components/Spinner";
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import TableContainer from '@mui/material/TableContainer';
+import Box from 'components/Box';
+import Spinner from 'components/Spinner';
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import useStore from 'store/mapStore';
-import { getPlacePhoto } from "util/geocoder";
+import { getPlacePhoto } from 'util/geocoder';
 
 import MuiTable from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -30,8 +30,8 @@ function BookmarkTable({ bookmarkState }) {
   const [loading, setLoading] = useState(true);
   // This hook provides access to the setMarkerData action from the mapStore.
   const updateMarkerData = useStore((state) => state.setMarkerData);
-const hideColumns = [0, 1];
-const hideColumnRow = true
+  const hideColumns = [0, 1];
+  const hideColumnRow = true;
   // useEffect hook to perform side-effects. In this case, it processes
   // the bookmarks data once the bookmarkState is updated.
   useEffect(() => {
@@ -70,7 +70,7 @@ const hideColumnRow = true
             state: state,
           };
           const locationPhoto = await getPlacePhoto(photoLocationQuery);
-          console.log('🚀 ~ setBookmarkData ~ locationPhoto:', locationPhoto);
+
           const imgSrc =
             locationPhoto && locationPhoto.data
               ? locationPhoto.data
@@ -97,7 +97,6 @@ const hideColumnRow = true
         setRowData(bookmarkData);
         setLoading(false);
       }
-      
     };
 
     // Call setBookmarkData function.
@@ -114,105 +113,103 @@ const hideColumnRow = true
     ],
   };
 
-    const handleRowClick = (address, latitude, longitude, dms, id) => {
-      const markerData = [
-        {
-          id: id,
-          lat: latitude,
-          lng: longitude,
-          title: address,
-          userLocation: false,
-          popupOpen: false,
-        },
-      ];
-      const formattedMarkerData = formatMarkerData(markerData);
-      updateMarkerData(formattedMarkerData);
-    };
-    // renderColumns maps through the columns and returns table header (th) elements.
-    const renderColumns = columns.map(({ name, align, width }, key) => {
-      let visibility = hideColumns && hideColumns.includes(key) ? 'hidden' : 'visible';
+  const handleRowClick = (address, latitude, longitude, dms, id) => {
+    const markerData = [
+      {
+        id: id,
+        lat: latitude,
+        lng: longitude,
+        title: address,
+        userLocation: false,
+        popupOpen: false,
+      },
+    ];
+    const formattedMarkerData = formatMarkerData(markerData);
+    updateMarkerData(formattedMarkerData);
+  };
+  // renderColumns maps through the columns and returns table header (th) elements.
+  const renderColumns = columns.map(({ name, align, width }, key) => {
+    let visibility = hideColumns && hideColumns.includes(key) ? 'hidden' : 'visible';
 
-      return (
+    return (
+      <Box
+        key={name}
+        component="th"
+        width={width || 'auto'}
+        textAlign={align}
+        color="secondary"
+        opacity={0.7}
+        sx={({ typography: { size, fontWeightBold }, borders: { borderWidth, borderColor } }) => ({
+          fontSize: size.xxs,
+          fontWeight: fontWeightBold,
+          borderBottom: `${borderWidth[1]} solid ${borderColor}`,
+        })}
+      >
+        <Typography variant="body2" sx={{ visibility: visibility }}>
+          {name.toUpperCase()}
+        </Typography>
+      </Box>
+    );
+  });
+  // renderRows maps through the rows and returns table row (tr) elements.
+  const renderRows = rowData.map((row, key) => (
+    <TableRow
+      onClick={() => handleRowClick(row.address, row.latitude, row.longitude, row.dms, row.id)}
+      key={`row-${key}`}
+      sx={{
+        '&:nth-of-type(odd)': { backgroundColor: '#f8f8f8' },
+        '&:hover': { backgroundColor: '#eeeeee' },
+        cursor: 'pointer',
+        minHeight: '50px', // Set minimum height
+        maxHeight: '50px', // Set maximum height
+      }}
+    >
+      {columns.map(({ name, align }, index) => (
         <Box
-          key={name}
-          component="th"
-          width={width || 'auto'}
-       
+          key={index}
+          component="td"
+          pl={2.5}
+          pr={3}
           textAlign={align}
-          color="secondary"
-          opacity={0.7}
-          sx={({ typography: { size, fontWeightBold }, borders: { borderWidth, borderColor } }) => ({
-            fontSize: size.xxs,
-            fontWeight: fontWeightBold,
-            borderBottom: `${borderWidth[1]} solid ${borderColor}`,
+          sx={({ borders: { borderWidth, borderColor } }) => ({
+            borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
           })}
         >
-          <Typography variant="body2" sx={{ visibility: visibility }}>
-            {name.toUpperCase()}
+          <Typography
+            variant="body2"
+            fontWeight="regular"
+            color="secondary"
+            sx={{ display: 'inline-block', width: 'max-content' }}
+          >
+            {row[name].length > 43
+              ? (() => {
+                  // Split the string into parts by comma
+                  let parts = row[name].split(',');
+
+                  // Iterate over the parts and insert <br /> after the first comma
+                  // and after every second comma thereafter
+                  for (let i = 1; i < parts.length; i++) {
+                    if (i === 1 || (parts.length > 3 && i % 2 === 0)) {
+                      parts[i] = (
+                        <Fragment key={i}>
+                          <br />
+                          {parts[i]}
+                        </Fragment>
+                      );
+                    } else {
+                      parts[i] = `,${parts[i]}`;
+                    }
+                  }
+
+                  // Return the modified text
+                  return parts;
+                })()
+              : row[name]}
           </Typography>
         </Box>
-      );
-    });
-    // renderRows maps through the rows and returns table row (tr) elements.
-    const renderRows = rowData.map((row, key) => (
-      <TableRow
-        onClick={() => handleRowClick(row.address, row.latitude, row.longitude, row.dms, row.id)}
-       
-        key={`row-${key}`}
-        sx={{
-          '&:nth-of-type(odd)': { backgroundColor: '#f8f8f8' },
-          '&:hover': { backgroundColor: '#eeeeee' },
-          cursor: 'pointer',
-          minHeight: '50px', // Set minimum height
-          maxHeight: '50px', // Set maximum height
-        }}
-      >
-        {columns.map(({ name, align }, index) => (
-          <Box
-            key={index}
-            component="td"
-            pl={2.5}
-            pr={3}
-            textAlign={align}
-            sx={({ borders: { borderWidth, borderColor } }) => ({
-              borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
-            })}
-          >
-            <Typography
-              variant="body2"
-              fontWeight="regular"
-              color="secondary"
-              sx={{ display: 'inline-block', width: 'max-content' }}
-            >
-              {row[name].length > 43
-                ? (() => {
-                    // Split the string into parts by comma
-                    let parts = row[name].split(',');
-
-                    // Iterate over the parts and insert <br /> after the first comma
-                    // and after every second comma thereafter
-                    for (let i = 1; i < parts.length; i++) {
-                      if (i === 1 || (parts.length > 3 && i % 2 === 0)) {
-                        parts[i] = (
-                          <Fragment key={i}>
-                            <br />
-                            {parts[i]}
-                          </Fragment>
-                        );
-                      } else {
-                        parts[i] = `,${parts[i]}`;
-                      }
-                    }
-
-                    // Return the modified text
-                    return parts;
-                  })()
-                : row[name]}
-            </Typography>
-          </Box>
-        ))}
-      </TableRow>
-    ));
+      ))}
+    </TableRow>
+  ));
   if (bookmarkState && bookmarkState.length > 0) {
     return useMemo(
       () => (
@@ -252,7 +249,6 @@ const hideColumnRow = true
   } else {
     null;
   }
-
 }
 
 // Export the BookmarkTable component.
