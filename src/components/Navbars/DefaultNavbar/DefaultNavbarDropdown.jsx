@@ -51,7 +51,7 @@ function DefaultNavbarDropdown({
   return (
     <>
       <Box
-      className="DefaultNavbarDropdown"
+        className="DefaultNavbarDropdown"
         {...rest}
         mx={1}
         p={1}
@@ -80,11 +80,14 @@ function DefaultNavbarDropdown({
         >
           {name}
         </Typography>
-        <Typography variant="body2" color={light ? 'white' : 'dark'} ml="auto">
-          {collapse && <ExpandMoreIcon sx={{ fontWeight: 'normal', verticalAlign: 'middle' }} />}
-        </Typography>
+        {collapse && (
+          <Typography variant="body2" color={light ? 'white' : 'dark'} ml="auto">
+            <ExpandMoreIcon sx={{ fontWeight: 'normal', verticalAlign: 'middle' }} />
+          </Typography>
+        )}
+      
       </Box>
-      {children && (
+      {children && collapse && (
         <Collapse in={Boolean(collapseStatus)} timeout={400} unmountOnExit>
           {children}
         </Collapse>
