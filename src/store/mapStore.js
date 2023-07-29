@@ -11,7 +11,7 @@ import { create } from 'zustand';
    clearMapInputs: false,
    bookmarks: [],
    bookmarked: false,
-   bookmarkLocation: false,
+   bookmarkLocation: null,
    mapZoom: null,
    mapStopped: false,
    routeData: null,
@@ -62,6 +62,7 @@ import { create } from 'zustand';
        imagesLoaded: 0,
        weather: null
      });
+     
    },
    setBookmarks: () => {
      const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];

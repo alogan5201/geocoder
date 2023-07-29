@@ -60,71 +60,44 @@ const hideColumnRow = true
           const dms = bookmarks[i].dms;
           const id = bookmarks[i].id;
 
-          // Check if the bookmark has a city photo.
-          if (bookmarks[i].cityPhoto) {
-            // Processing the URL for the city photo.
-            const cityPhoto = bookmarks[i].cityPhoto;
-            const photoUrl = cityPhoto
-              ? cityPhoto.replace('/google-api/', 'https://maps.googleapis.com/maps/api/')
-              : '';
+          // Fetch the city photo if not available in the bookmark.
+          const city = bookmarks[i].city;
+          const state = bookmarks[i].state;
+          const photoLocationQuery = {
+            latitude: latitude,
+            longitude: longitude,
+            city: city,
+            state: state,
+          };
+          const locationPhoto = await getPlacePhoto(photoLocationQuery);
+          console.log('🚀 ~ setBookmarkData ~ locationPhoto:', locationPhoto);
+          const imgSrc =
+            locationPhoto && locationPhoto.data
+              ? locationPhoto.data
+              : 'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fplaceholder-images%2Fcity-locations%2Fconcept-of-travel-and-adventure-traveller-lifesty-2022-07-12-15-38-22-utc.jpg?alt=media&token=14c18b2f-45a2-440b-af78-d9e7297be52d';
+          const photo = (
+            <IconButton aria-label="delete">
+              <img className="bookmark-image" src={imgSrc} alt="location-city"></img>
+            </IconButton>
+          );
 
-            // Adding the city photo to the object using an IconButton.
-            const photo = cityPhoto ? (
-              <IconButton aria-label="delete">
-                <img className="bookmark-image" src={photoUrl}></img>
-              </IconButton>
-            ) : (
-              ''
-            );
+          // Adding the processed data to obj.
+          obj.address = address;
+          obj.latitude = latitude;
+          obj.longitude = longitude;
+          obj.dms = dms;
+          obj.id = id;
+          obj.action = photo;
 
-            // Adding the processed data to obj.
-            obj.address = address;
-            obj.latitude = latitude;
-            obj.longitude = longitude;
-            obj.dms = dms;
-            obj.id = id;
-            obj.action = photo;
-            const city = bookmarks[i].city;
-            const state = bookmarks[i].state;
-            // Pushing obj to bookmarkData array.
-            bookmarkData.push(obj);
-          } else {
-            // Fetch the city photo if not available in the bookmark.
-            const city = bookmarks[i].city;
-            const state = bookmarks[i].state;
-            const photoLocationQuery = {
-              latitude: latitude,
-              longitude: longitude,
-              city: city,
-              state: state,
-            };
-            const locationPhoto = await getPlacePhoto(photoLocationQuery);
-
-            const photo = locationPhoto ? (
-              <IconButton aria-label="delete">
-                <img className="bookmark-image" src={locationPhoto.data}></img>
-              </IconButton>
-            ) : (
-              ''
-            );
-
-            // Adding the processed data to obj.
-            obj.address = address;
-            obj.latitude = latitude;
-            obj.longitude = longitude;
-            obj.dms = dms;
-            obj.id = id;
-            obj.action = photo;
-
-            // Pushing obj to bookmarkData array.
-            bookmarkData.push(obj);
-          }
+          // Pushing obj to bookmarkData array.
+          bookmarkData.push(obj);
         }
 
         // Setting rowData state with the processed bookmark data.
         setRowData(bookmarkData);
         setLoading(false);
       }
+      
     };
 
     // Call setBookmarkData function.

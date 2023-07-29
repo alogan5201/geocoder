@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SearchIcon from '@mui/icons-material/Search';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -8,24 +9,23 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Popper from '@mui/material/Popper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { debounce } from '@mui/material/utils';
-import parse from 'autosuggest-highlight/parse';
-import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import useStore from 'store/mapStore';
 import { getCitiesStartWith, isCityCapital, reorderOrReplaceCityCapitalObjects } from 'util/geocoder';
 import { v4 as uuidv4 } from 'uuid';
+import { useLocation } from 'react-router-dom';
 
 export default function AutoCompleteAddress({ address, clear, submitOnSelect, onSubmit, icon, label, autoFocus }) {
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState([]);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
+  const clearMapInputs = useStore((state) => state.clearMapInputs);
 
   const setMapInputState = useStore((state) => state.setMapInputState);
   const [overrideInput, setOverrideInput] = useState(false);
-  const [count, setCount] = useState(0);
   //const queryLengths = [1, 3, 6, 9];
-  const [queryLengths, setQueryLengths] = useState([1, 3, 6, 9]);
+  const [queryLengths] = useState([1, 3, 6]);
   const [capitalCities, setCapitalCities] = useState([]);
 
   const modifiers = [
@@ -36,15 +36,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       },
     },
   ];
-  const fetch = useCallback(
-    () =>
-      debounce(async (request, callback) => {
-        const data = await getCitiesStartWith(request.input);
 
-        callback(data);
-      }, 400),
-    []
-  );
   const handleInputFocus = () => {
     if (inputValue.length > 2 && !overrideInput) {
       setOpen(true);
@@ -56,7 +48,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     }
 
     const displayName = `${newValue.city}, ${newValue.state}`;
-    const newQueryLengths = [1, 3, 6, 9, displayName.length];
+    //  const newQueryLengths = [1, 3, 6, 9, displayName.length];
     //setQueryLengths(newQueryLengths);
     setInputValue(displayName);
     // setOptions(newValue ? [newValue, ...options] : options);
@@ -74,9 +66,6 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     }
   };
 
-  const fetchCityData = async () => {
-    const data = await getCitiesStartWith(request.input);
-  };
   useEffect(() => {
     let active;
     if (inputValue === '') {
@@ -103,10 +92,15 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
 
               const arrayCities = Object.values(reorderedCities);
               newOptions = [...newOptions, ...arrayCities];
+
               setOptions(newOptions);
 
               //setValue(displayName)
               setInputValue(displayName);
+            } else {
+              const arrayCities = Object.values(results);
+              newOptions = [...newOptions, ...arrayCities];
+              setOptions(newOptions);
             }
 
             //  const uid = uuidv4();
@@ -141,10 +135,14 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     }
   }, [address, label]);
   useEffect(() => {
-    if (clear) {
-      setInputValue('');
+    if (clear && clearMapInputs) {
+      console.log('🚀 ~ useEffect ~ clear:', clear);
+
+      setOverrideInput(true);
+      setValue('');
+      setInputValue(''); // Clear input value here
     }
-  }, [clear]);
+  }, [clear, clearMapInputs]);
 
   useEffect(() => {
     const loadCapitalCities = async () => {
@@ -156,11 +154,6 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     loadCapitalCities();
   }, []);
 
-  useEffect(() => {
-    const opts = JSON.stringify(options, null, 2);
-    if (open) {
-    }
-  }, [count, options, open]);
   return (
     <Autocomplete
       freeSolo
@@ -235,8 +228,6 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       renderOption={(props, option) => {
         const id = option.id;
 
-        const parts = parse(option, []);
-        // [0].text.mapbox_id
         return (
           <li {...props} key={id}>
             <Grid container alignItems="center">

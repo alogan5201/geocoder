@@ -45,7 +45,7 @@ function BlogCard({ image, category, title, description, author, raised, action,
           maxHeight: maxHeight,
           position: "relative",
           zIndex: "1",
-          borderRadius: "0.5rem",
+       
           boxShadow:
             "0rem 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0rem 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06)",
         }}></img>
@@ -62,7 +62,7 @@ function BlogCard({ image, category, title, description, author, raised, action,
           top: "0",
           background: "transparent",
           color: "#23262d",
-          borderRadius: "0.5rem",
+         
           filter:"blur(12px)",
           boxShadow:
             "0rem 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0rem 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06)",

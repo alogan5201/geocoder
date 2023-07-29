@@ -68,14 +68,11 @@ function Form() {
         const formattedMarkerData = formatMarkerData(markerData);
         updateMarkerData(formattedMarkerData);
         if (width < 992) {
-          console.log("🚀 ~ handleSubmit ~ width:", width)
-          
-  const mapElement = document.getElementById('map');
-  if (mapElement) {
-    console.log("🚀 ~ handleSubmit ~ mapElement:", mapElement)
-    const offset = 650; // change this to the offset that suits your needs
-    window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
-  }
+          const mapElement = document.getElementById('map');
+          if (mapElement) {
+            const offset = 650; // change this to the offset that suits your needs
+            window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+          }
         }
       } else {
         setErrorMessage(true);
@@ -95,7 +92,6 @@ function Form() {
           preventDefault: () => {},
         };
         const inputOne = e.target[0].value;
-        
 
         handleSubmit(e);
       } else {
@@ -106,7 +102,7 @@ function Form() {
           preventDefault: () => {},
         };
         const inputOne = e.target[0].value;
-        
+
         handleSubmit(e);
       }
     }

@@ -1,21 +1,21 @@
 // Material Kit 2 PRO React components
-import Box from "components/Box";
+import Box from 'components/Box';
 // Material Kit 2 PRO React components
-import Grid from "@mui/material/Grid";
-import AddressInput from "components/AddressInput";
-import Button from "components/Button";
-import LatLngInputs from "components/LatLngInputs";
-import Typography from "components/Typography";
-import { useEffect } from "react";
-import useStore from "store/mapStore";
-import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
-import { formatMarkerData, getCurrentTime } from "util/helpers";
-import { v4 as uuidv4 } from "uuid";
+import Grid from '@mui/material/Grid';
+import AddressInput from 'components/AddressInput';
+import Button from 'components/Button';
+import LatLngInputs from 'components/LatLngInputs';
+import Typography from 'components/Typography';
+import { useEffect } from 'react';
+import useStore from 'store/mapStore';
+import { convertLatLngToAddress, extractCityAndState } from 'util/geocoder';
+import { formatMarkerData, getCurrentTime } from 'util/helpers';
+import { v4 as uuidv4 } from 'uuid';
 import { useWindowSize } from 'react-use';
 
 function Form() {
   const markerData = useStore((state) => state.markerData);
-    const { width, height } = useWindowSize();
+  const { width, height } = useWindowSize();
 
   const locationMarkerData = useStore((state) => state.locationMarkerData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
@@ -51,8 +51,8 @@ function Form() {
         let lng = mapBoxData.features[0].geometry.coordinates[0];
 
         const cityAndState = extractCityAndState(mapBoxData);
-     const city = cityAndState && cityAndState.city ? cityAndState.city : null;
-     const state = cityAndState && cityAndState.state ? cityAndState.state : null;
+        const city = cityAndState && cityAndState.city ? cityAndState.city : null;
+        const state = cityAndState && cityAndState.state ? cityAndState.state : null;
 
         const address = mapBoxData.features[0].place_name;
         const wikiData = mapBoxData.features[0].properties.wikidata;
@@ -75,16 +75,13 @@ function Form() {
         setMapInputState(false);
         const formattedMarkerData = formatMarkerData(markerData);
         updateMarkerData(formattedMarkerData);
-             if (width < 992) {
-               console.log('🚀 ~ handleSubmit ~ width:', width);
-
-               const mapElement = document.getElementById('map');
-               if (mapElement) {
-                 console.log('🚀 ~ handleSubmit ~ mapElement:', mapElement);
-                 const offset = 650; // change this to the offset that suits your needs
-                 window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
-               }
-             }
+        if (width < 992) {
+          const mapElement = document.getElementById('map');
+          if (mapElement) {
+            const offset = 650; // change this to the offset that suits your needs
+            window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+          }
+        }
       } else {
         setErrorMessage(true);
         resetMapData();
@@ -97,7 +94,7 @@ function Form() {
   }
   useEffect(() => {
     if (userLocationActive === false) {
-      let leafletBarElement = document.querySelector(".leaflet-bar");
+      let leafletBarElement = document.querySelector('.leaflet-bar');
 
       if (leafletBarElement) {
         let classes = leafletBarElement.classList;
@@ -105,7 +102,7 @@ function Form() {
         let classesToRemove = [];
         // Loop through each class and if it contains 'locateActive', add it to classesToRemove
         for (let i = 0; i < classes.length; i++) {
-          if (classes[i].includes("locateActive")) {
+          if (classes[i].includes('locateActive')) {
             classesToRemove.push(classes[i]);
           }
         }
@@ -124,14 +121,14 @@ function Form() {
           Latitude & Longitude to Address
         </Typography>
         <Typography variant="body2" color="text" mb={1}>
-          To pinpoint a location, you can type in the latitude and longitude, or click the location
-          on the map to get the coordinates.
+          To pinpoint a location, you can type in the latitude and longitude, or click the location on the map to get
+          the coordinates.
         </Typography>
       </Box>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3.7 }}>
         <Grid container>
           {/* ============ LatLngInputs ============ */}
-          <LatLngInputs readOnly={false} defaultValue={["33.748992", "-84.390264"]} />
+          <LatLngInputs readOnly={false} defaultValue={['33.748992', '-84.390264']} />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">

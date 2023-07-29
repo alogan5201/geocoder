@@ -1,23 +1,21 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Divider from "@mui/material/Divider";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import { useLeafletContext } from "@react-leaflet/core";
-import { useEffect } from "react";
-import ReactDOM from "react-dom/client";
-import useStore from "store/mapStore";
-import { motion } from "framer-motion";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { useLeafletContext } from '@react-leaflet/core';
+import { useEffect } from 'react';
+import ReactDOM from 'react-dom/client';
+import useStore from 'store/mapStore';
+import { motion } from 'framer-motion';
 
 const LegendContent = ({ content }) => {
   const cardStyles = {
     minWidth: 180,
-   backgroundColor: "rgba(255,255,255,0.9)",
+    backgroundColor: 'rgba(255,255,255,0.9)',
     // transform: "rotate(180deg)",
   };
-useEffect(() => {
-  console.log(content)
-}, [content]);
+  useEffect(() => {}, [content]);
   return (
     <Card sx={cardStyles}>
       <CardContent>
@@ -92,12 +90,12 @@ function WeatherLegend({ L }) {
   const context = useLeafletContext();
 
   useEffect(() => {
-    const legendControl = L.control({ position: "bottomright" });
+    const legendControl = L.control({ position: 'bottomright' });
 
     if (weather) {
       setLoading(false);
       legendControl.onAdd = () => {
-        const div = L.DomUtil.create("div", "info legend");
+        const div = L.DomUtil.create('div', 'info legend');
 
         // Use createRoot API for rendering
         const root = ReactDOM.createRoot(div);

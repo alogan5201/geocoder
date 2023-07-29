@@ -1,27 +1,27 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import AddIcon from '@mui/icons-material/Add';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import AddressInput from 'components/AddressInput';
 import Box from 'components/Box';
 import Button from 'components/Button';
 import Typography from 'components/Typography';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useStore from 'store/mapStore';
 import { covertAddressToLatLng, extractCityAndState } from 'util/geocoder';
-import { extractWords, formatMarkerData } from 'util/helpers';
+import { formatMarkerData } from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
 import BookmarkTable from '../BookmarkTable';
-import AddressInput from 'components/AddressInput';
-import Stack from '@mui/material/Stack';
-
+import { alreadyBookmarked, handleBookmarkChange } from 'util/bookmarks';
 function AddNewBookmark({ onSubmit }) {
-  const [newLocation, setNewLocation] = useState('');
   const [toggleInput, setInputToggle] = useState(false);
   const handleNewBookmark = (e) => {
     e.preventDefault();
     setInputToggle(true);
   };
+  useEffect(() => {}, [toggleInput]);
   if (toggleInput) {
     return (
       <AddressInput
@@ -30,6 +30,7 @@ function AddNewBookmark({ onSubmit }) {
         variant="standard"
         onSubmit={onSubmit}
         autoFocus={true}
+        clear={true}
       />
     );
   } else {
@@ -48,42 +49,31 @@ function Form() {
   const [bookmarkState, setBookmarkState] = useState(JSON.parse(localStorage.getItem('bookmarks')) || []);
   const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation);
 
-  useEffect(() => {
-    if (bookmarkState) {
-    }
-  }, [bookmarkState]);
-  useEffect(() => {
-    window.addEventListener('storage', () => {
-      setBookmarkState(JSON.parse(localStorage.getItem('bookmarks')) || []);
-    });
-  }, []);
-
-  const [zoomState, setZoomState] = useState();
   const [coords, setCoords] = useGlobalValue();
-  const latInputElm = useRef(null);
-  const lngInputElm = useRef(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
-  const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
-  function handleZoomReset(e) {
-    e.preventDefault();
-    resetZoom(1);
-    setTimeout(() => {
-      resetZoom(0);
-    }, 2000);
-  }
 
+  useEffect(() => {
+    window.addEventListener('storage', () => {
+      setBookmarkState(JSON.parse(localStorage.getItem('bookmarks')) || []);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (bookmarkState.length === 0) {
+      
+      setMapInputState(true);
+    }
+  }, [bookmarkState]);
   async function handleSubmit(e) {
     e.preventDefault();
     const inputOne = e.target[0].value;
     if (inputOne) {
-      let extracted = extractWords(inputOne);
-      let withPlus = extracted.join('+');
       const mapBoxData = await covertAddressToLatLng(inputOne);
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];
@@ -111,14 +101,7 @@ function Form() {
         setMapInputState(false);
         const formattedMarkerData = formatMarkerData(markerData);
         updateMarkerData(formattedMarkerData);
-        if (bookmarkState.length > 0) {
-          const bookmarkExists = alreadyBookmarked(bookmarkState, markerData[0]);
-          if (bookmarkExists) {
-            return;
-          } else {
-            setBookmarkForLocation(true);
-          }
-        }
+        handleBookmarkChange(true, 'bookmarks', markerData[0]);
         // setBookmarkForLocation(true);
       }
     }
@@ -134,24 +117,14 @@ function Form() {
     }
     return false;
   };
-  const handleChildSubmit = (data, label) => {
+  const handleChildSubmit = (data) => {
     if (data) {
-      if (!label) {
-        const target = [{ value: data.name }];
-        const e = {
-          target: target,
-          preventDefault: () => {},
-        };
-        handleSubmit(e);
-      } else {
-        const target = [formRef.current[0], 1, { value: data.name }];
-
-        const e = {
-          target: target,
-          preventDefault: () => {},
-        };
-        handleSubmit(e);
-      }
+      const target = [{ value: data.name }];
+      const e = {
+        target: target,
+        preventDefault: () => {},
+      };
+      handleSubmit(e);
     }
 
     //    handleSubmit(e);

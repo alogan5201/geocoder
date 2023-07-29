@@ -14,7 +14,6 @@ function PopupMarkerContent({ content }) {
   const markerData = useStore((state) => state.markerData);
   const locationMarkerData = useStore((state) => state.locationMarkerData);
 
-  const setBookmarks = useStore((state) => state.setBookmarks);
   const setBookmarked = useStore((state) => state.setBookmarked);
   const bookmarked = useStore((state) => state.bookmarked);
   const bookmarkLocation = useStore((state) => state.bookmarkLocation);
@@ -68,11 +67,14 @@ function PopupMarkerContent({ content }) {
       let bookmarkData = locationMarkerData[content];
       //  setBookmarks();
       handleBookmarkChange(!bookmarked, 'bookmarks', bookmarkData);
+      
       setBookmarked(!bookmarked);
+      
     } else if (markerData) {
       let bookmarkData = markerData[content];
       //  setBookmarks();
       handleBookmarkChange(!bookmarked, 'bookmarks', bookmarkData);
+      
       setBookmarked(!bookmarked);
     }
   }

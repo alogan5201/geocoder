@@ -8,9 +8,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Popper from '@mui/material/Popper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { debounce } from '@mui/material/utils';
 import parse from 'autosuggest-highlight/parse';
-import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import useStore from 'store/mapStore';
 import { getCitiesStartWith, isCityCapital, reorderOrReplaceCityCapitalObjects } from 'util/geocoder';
 import { v4 as uuidv4 } from 'uuid';
@@ -23,7 +22,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   const [overrideInput, setOverrideInput] = useState(false);
   const [count, setCount] = useState(0);
   //const queryLengths = [1, 3, 6, 9];
-  const [queryLengths, setQueryLengths] = useState([1, 3, 6, 9]);
+  const [queryLengths] = useState([1, 3, 6, 9]);
   const [capitalCities, setCapitalCities] = useState([]);
 
   const modifiers = [
@@ -34,15 +33,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       },
     },
   ];
-  const fetch = useCallback(
-    () =>
-      debounce(async (request, callback) => {
-        const data = await getCitiesStartWith(request.input);
 
-        callback(data);
-      }, 400),
-    []
-  );
   const handleInputFocus = () => {
     if (inputValue.length > 2 && !overrideInput) {
       setOpen(true);
@@ -53,7 +44,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       return;
     }
     const displayName = `${newValue.city}, ${newValue.state}`;
-    const newQueryLengths = [1, 3, 6, 9, displayName.length];
+    //const newQueryLengths = [1, 3, 6, 9, displayName.length];
     //setQueryLengths(newQueryLengths);
     setInputValue(displayName);
     // setOptions(newValue ? [newValue, ...options] : options);
@@ -62,17 +53,9 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     setOpen(false);
     // * handleSubmit(formattedValue);
   };
-  const handleSubmit = (formattedValue, label) => {
-    if (submitOnSelect) {
-      onSubmit(formattedValue, label);
-    } else {
-      return;
-    }
-  };
+  
 
-  const fetchCityData = async () => {
-    const data = await getCitiesStartWith(request.input);
-  };
+
   useEffect(() => {
     let active;
     if (inputValue === '') {

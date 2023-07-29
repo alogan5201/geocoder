@@ -266,65 +266,10 @@ git config --global user.email "drewthomaslogan5201@gmail.com" && git config --g
 - [✅] Movie details— markers not showing up
 - [✅] Bookmarks page — adding a bookmark on mobile not work when submitting normally without autocomplete
 - [✅] All pages where theres a loading spinner for submit button — I need to call a return cleanup function on useEffect to make sure those get turned off
-
-          {/*         <Box component="section" py={{ xs: 2, sm: 6 }} position="relative">
-            <Box display="flex" alignItems="center" sx={{ px: { xs: 0, md: 3 }, py: { xs: 2, md: 5 } }}>
-              <Container>
-                <Grid container item xs={12} md={7} lg={6} flexDirection="column" justifyContent="center">
-                  <Typography
-                    variant="h4"
-                    mb={3}
-                    sx={({ breakpoints, typography: { size } }) => ({
-                      [breakpoints.down('md')]: {
-                        fontSize: size['3xl'],
-                      },
-                    })}
-                  >
-                    Movies Locations
-                  </Typography>
-                  <Typography variant="body2" opacity={0.8} pr={6} mr={6}>
-                    Movie locations with a map, and a list of their latitude and logitude coordinates
-                  </Typography>
-                </Grid>
-              </Container>
-            </Box>
-          </Box>
-          <Grid container justifyContent="center" spacing={5}>
-            {movies.map((data) => (
-              <Grid
-                key={data.id}
-                container
-                item
-                spacing={3}
-                sx={{ maxWidth: 400, py: { xs: 0, md: 5 }, px: { xs: 0, md: 5 } }}
-              >
-                <LazyImage
-                  src={data.image}
-                  alt={`${data.title} movie poster`}
-                  title={data.title}
-                  route={`/location/${data.slug}`}
-                  maxWidth={400}
-                  maxHeight={400}
-                />
-              </Grid>
-            ))}
-          </Grid>
-          <Box pt={6} px={1} mt={6}>
-            <Grid container justifyContent="center">
-              {paginationLength && pagIndex && (
-                <Pagination page={pagIndex} count={paginationLength} shape="rounded" onChange={handlePagination} />
-              )}
-            </Grid>
-          </Box> */}
-
-
-
-import {useWindowSize} from 'react-use';
-
-  const mapElement = document.getElementById("map");
-            if (mapElement) {
-              const offset = 650; // change this to the offset that suits your needs
-    window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
-            }
-
-            
+- [✅] The autocomplete popup is using stale data. I typed in Dallas, TX and its showing. 
+- [✅] BookmarksPage - Adding in a city doesn't automatically bookmark the location.
+- [] The mobile navbar could use some work
+- [] OPTIONAL: Bookmarks photos look a bit off on mobile 
+  - The tools drop down still has a lot of white space
+  - For some reason there is an empty dropdown four route planner?
+- [] OPTIONAL: but the offset for the scroll to map on mobile feature could be adjusted for better UX

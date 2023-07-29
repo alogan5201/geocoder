@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import Grid from '@mui/material/Grid';
 import Input from 'components/Input';
 // @mui material components
@@ -15,13 +16,21 @@ function AddressInput({ onSubmit, ...props }) {
   const addressInputElm = useRef(null);
   const [address, setAddress] = useState(null);
   const locationMarkerData = useStore((state) => state.locationMarkerData);
-
+  const [clear,setClear] = useState(false);
 
   useEffect(() => {
-    if (clearMapInputs && props.readOnly) {
-      addressInputElm.current.value = '';
-      setAddress(null);
+    if (clearMapInputs) {
+      if (props.readOnly) {
+        addressInputElm.current.value = '';
+        setAddress(null);
+
+      }
+      else if (props.clear) {
+        setClear(true);
+      }
+      
     }
+ 
   }, [clearMapInputs]);
 
   useEffect(() => {
@@ -85,7 +94,8 @@ function AddressInput({ onSubmit, ...props }) {
           label={props.label}
           submitOnSelect={props.submitOnSelect}
           onSubmit={onSubmit}
-          icon={props.icon ? props.icon : null}
+            icon={props.icon ? props.icon : null}
+            clear = {clear}
         />
       )}
     </Grid>

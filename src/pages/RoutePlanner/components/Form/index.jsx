@@ -80,12 +80,11 @@ function Form() {
   const handleFormInputs = async (inputOne, inputTwo) => {
     if (inputOne && inputTwo) {
       setLoading(true);
-    setTimeout(() => {
-      setLoading(false)
-    }, 2000);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
       const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
       const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
-   
 
       if (mapBoxDataOrigin && mapBoxDataDestination) {
         if (mapBoxDataOrigin.features.length > 0 && mapBoxDataDestination.features.length > 0) {
@@ -111,8 +110,7 @@ function Form() {
               const iconDestination = weatherDestination.weather[0].icon.slice(0, -1);
               const iconOriginUrl = retrieveWeatherIconUrl(iconOrigin);
               const iconDestinationUrl = retrieveWeatherIconUrl(iconDestination);
-              console.log("🚀 ~ handleFormInputs ~ iconDestinationUrl:", iconDestinationUrl)
-              
+
               const iconOriginPath = iconOriginUrl;
               const iconDestinationPath = iconDestinationUrl;
               const currentWeatherOrigin = weatherOrigin.main.temp;
@@ -148,7 +146,7 @@ function Form() {
         }
       }
     }
-   setLoading(false);
+    setLoading(false);
   };
   const handleChildSubmit = (data) => {
     if (data) {
@@ -294,8 +292,13 @@ function Form() {
           the map to get the coordinates.
         </Typography>
       </Box>
-      <Box px={{ xs: 0, sm: 3 }} py={{
-        xs: 2, sm: 1.6}}>
+      <Box
+        px={{ xs: 0, sm: 3 }}
+        py={{
+          xs: 2,
+          sm: 1.6,
+        }}
+      >
         <Grid container>
           {/* ============ ORGIN-AddressInput ============ */}
           <AddressInput

@@ -316,7 +316,9 @@ export async function getCitiesStartWith(letter) {
 
 export function isCityCapital(input, capitalCities) {
   // Format the input string
-  const formattedInput = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+  const firstThree = input.slice(0, 3); 
+  const formattedInput = firstThree.charAt(0).toUpperCase() + firstThree.slice(1).toLowerCase();
+ 
 
   // Check each city
   for (let i = 0; i < capitalCities.length; i++) {
