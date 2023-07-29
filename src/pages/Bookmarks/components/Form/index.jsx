@@ -15,6 +15,7 @@ import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
 import BookmarkTable from '../BookmarkTable';
 import { alreadyBookmarked, handleBookmarkChange } from 'util/bookmarks';
+import { useWindowSize, useMeasure } from 'react-use';
 
 function AddNewBookmark({ onSubmit, loaded }) {
   const [toggleInput, setInputToggle] = useState(false);
@@ -49,9 +50,12 @@ function AddNewBookmark({ onSubmit, loaded }) {
   }
 }
 function Form() {
+    const [ref, {  height }] = useMeasure();
+
   const [addressLoaded, setAddressLoaded] = useState(false);
   const [bookmarkState, setBookmarkState] = useState(JSON.parse(localStorage.getItem('bookmarks')) || []);
   const setBookmarkForLocation = useStore((state) => state.setBookmarkForLocation);
+  const { width } = useWindowSize();
 
   const [coords, setCoords] = useGlobalValue();
   const updateMarkerData = useStore((state) => state.setMarkerData);
@@ -118,6 +122,14 @@ function Form() {
         handleBookmarkChange(true, 'bookmarks', markerData[0]);
         setMapInputState(false);
         setAddressLoaded(true); 
+              if (width < 992) {
+                const mapElement = document.getElementById('map');
+                if (mapElement) {
+                 
+                  const offset = height+190; // change this to the offset that suits your needs
+                  window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+                }
+              }
       }
     }
   }
@@ -214,7 +226,7 @@ function Form() {
                 )}
 
                 {/* <AddNewBookmark onSubmit={handleChildSubmit} loaded={addressLoaded} toggleLoaded={handleToggleLoaded} /> */}
-                <BookmarkTable bookmarkState={bookmarkState} />
+                <BookmarkTable tableRef={ref} bookmarkState={bookmarkState} tableHeight={height} />
               </>
             ) : (
               <>

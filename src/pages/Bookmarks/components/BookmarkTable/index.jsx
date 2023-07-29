@@ -14,6 +14,7 @@ import TableRow from '@mui/material/TableRow';
 
 import Typography from 'components/Typography';
 import { formatMarkerData } from 'util/helpers';
+import { useWindowSize } from 'react-use';
 
 // BookmarkTable is a React functional component that displays a list of bookmarks
 // in a table format. The bookmarks are fetched from a given state and includes
@@ -25,10 +26,12 @@ import { formatMarkerData } from 'util/helpers';
 // State:
 // - rowData: an array holding the processed data to be displayed in the table.
 //
-function BookmarkTable({ bookmarkState }) {
+function BookmarkTable({ bookmarkState , tableRef, tableHeight}) {
   // rowData holds the processed data for the bookmarks to be displayed in the table.
   const [rowData, setRowData] = useState([]);
   const [loading, setLoading] = useState(true);
+    const { width } = useWindowSize();
+
   // This hook provides access to the setMarkerData action from the mapStore.
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const hideColumns = [0, 1];
@@ -78,7 +81,7 @@ function BookmarkTable({ bookmarkState }) {
               : 'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fplaceholder-images%2Fcity-locations%2Fconcept-of-travel-and-adventure-traveller-lifesty-2022-07-12-15-38-22-utc.jpg?alt=media&token=14c18b2f-45a2-440b-af78-d9e7297be52d';
           const photo = (
           
-              <img className="bookmark-image" src={imgSrc} alt="location-city"></img>
+              <img className="bookmark-image" src={imgSrc} alt="location-city" style={{marginRight:"4px"}}></img>
           
           );
 
@@ -135,6 +138,13 @@ function BookmarkTable({ bookmarkState }) {
     ];
     const formattedMarkerData = formatMarkerData(markerData);
     updateMarkerData(formattedMarkerData);
+        if (width < 992) {
+          const mapElement = document.getElementById('map');
+          if (mapElement) {
+            const offset = tableHeight + 190; // change this to the offset that suits your needs
+            window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+          }
+        }
   };
   // renderColumns maps through the columns and returns table header (th) elements.
   const renderColumns = columns.map(({ name, align, width }, key) => {
@@ -169,6 +179,7 @@ function BookmarkTable({ bookmarkState }) {
         '&:nth-of-type(odd)': { backgroundColor: '#f8f8f8' },
         '&:hover': { backgroundColor: '#eeeeee' },
         cursor: 'pointer',
+        maxWidth: '100%',
         minHeight: '50px', // Set minimum height
         maxHeight: '50px', // Set maximum height
       }}
@@ -177,7 +188,7 @@ function BookmarkTable({ bookmarkState }) {
         <Box
           key={index}
           component="td"
-          px={2}
+        
           textAlign={align}
           sx={({ borders: { borderWidth, borderColor } }) => ({
             borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
@@ -221,7 +232,7 @@ function BookmarkTable({ bookmarkState }) {
   if (bookmarkState && bookmarkState.length > 0) {
     return useMemo(
       () => (
-        <Grid container item xs={12} lg={12} mx="auto">
+        <Grid container item xs={12} lg={12} mx="auto" ref={tableRef}>
           {loading && (
             <TableContainer
               sx={{
@@ -246,23 +257,20 @@ function BookmarkTable({ bookmarkState }) {
                       }}
                     >
                       <Box component="td" px={2} textAlign={'left'}>
-                        <Typography
-                          variant="body2"
-                          fontWeight="regular"
-                          color="secondary"
+                        <Box
+                         
+                        
                           sx={{ display: 'inline-block', width: 'max-content' }}
                         >
                           <Stack spacing={0}>
                             <Skeleton animation="wave" height={10} width={70} />
                             <Skeleton animation="wave" height={10} width={40} />
                           </Stack>
-                        </Typography>
+                        </Box>
                       </Box>
                       <Box component="td" px={2} textAlign={'right'}>
-                        <Typography
-                          variant="body2"
-                          fontWeight="regular"
-                          color="secondary"
+                        <Box
+                         
                           sx={{ display: 'inline-block', width: 'max-content' }}
                         >
                           <Skeleton
@@ -272,7 +280,7 @@ function BookmarkTable({ bookmarkState }) {
                             height={100}
                             sx={{ borderRadius: '8px' }}
                           />
-                        </Typography>
+                        </Box>
                       </Box>
                     </TableRow>
                   ))}
