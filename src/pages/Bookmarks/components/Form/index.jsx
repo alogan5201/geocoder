@@ -19,7 +19,7 @@ import BookmarkTable from '../BookmarkTable';
 
 
 function Form() {
-    const [ref, {  height }] = useMeasure();
+  const [ref, { height }] = useMeasure();
 
   const [addressLoaded, setAddressLoaded] = useState(false);
   const [bookmarkState, setBookmarkState] = useState(JSON.parse(localStorage.getItem('bookmarks')) || []);
@@ -31,13 +31,15 @@ function Form() {
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
-    const [toggleInput, setInputToggle] = useState(false);
+  const [toggleInput, setInputToggle] = useState(false);
   const handleNewBookmark = (e) => {
     e.preventDefault();
-    setAddressLoaded(false)
+    setAddressLoaded(false);
     setInputToggle(true);
- 
   };
+
+  // Function to run when the scroll event is fired
+
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -50,7 +52,6 @@ function Form() {
 
   useEffect(() => {
     if (bookmarkState.length === 0) {
-      
       setMapInputState(true);
     }
   }, [bookmarkState]);
@@ -58,11 +59,10 @@ function Form() {
     e.preventDefault();
     const inputOne = e.target[0].value;
     if (inputOne) {
-    
       const mapBoxData = await covertAddressToLatLng(inputOne);
       if (mapBoxData && mapBoxData.features.length > 0) {
         setAddressLoaded(false);
-         setAddressLoaded(false);
+        setAddressLoaded(false);
         let lat = mapBoxData.features[0].geometry.coordinates[1];
         let lng = mapBoxData.features[0].geometry.coordinates[0];
         setCoords([coords]);
@@ -85,20 +85,19 @@ function Form() {
           },
         ];
         setUserLocationActive(false);
-        
+
         const formattedMarkerData = formatMarkerData(markerData);
         updateMarkerData(formattedMarkerData);
         handleBookmarkChange(true, 'bookmarks', markerData[0]);
         setMapInputState(false);
-        setAddressLoaded(true); 
-              if (width < 992) {
-                const mapElement = document.getElementById('map');
-                if (mapElement) {
-                 
-                  const offset = height+190; // change this to the offset that suits your needs
-                  window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
-                }
-              }
+        setAddressLoaded(true);
+        if (width < 992) {
+          const mapElement = document.getElementById('map');
+          if (mapElement) {
+            const offset = height + 190; // change this to the offset that suits your needs
+            window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+          }
+        }
       }
     }
   }
@@ -140,7 +139,6 @@ function Form() {
       setBookmarkForLocation(false);
     };
   }, [userLocationActive]);
-
 
   return (
     <Box

@@ -13,13 +13,12 @@ function BaseLayout({ children }) {
       <Box bgColor="white" shadow="sm" py={0.25}>
         <DefaultNavbar routes={routes} transparent relative />
       </Box>
-      <main style={{marginBottom:"5em", overflowY:"hidden"}}>
+      <main style={{marginBottom:"3em", overflowY:"hidden"}}>
 
 
       <Container maxWidth={false} px={2}>
-        <Grid container item xs={12} flexDirection="column" justifyContent="center" mx="auto">
           {children}
-        </Grid>
+     
       </Container>
       </main>
      <GuestFooter/>

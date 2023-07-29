@@ -24,7 +24,7 @@ export default function GuestFooter({ links, light }) {
     </Typography>
   ));
   return (
-    <Paper sx={{ marginTop: 'calc(10% + 60px)', bottom: 0, pt: 3 }} component="footer" square variant="outlined">
+    <Paper sx={{ marginTop: 'calc(5% + 60px)', bottom: 0, pt: 3 }} component="footer" square variant="outlined">
       <Container maxWidth="lg">
         <Box
           sx={{
