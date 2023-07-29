@@ -1,21 +1,6 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // @mui material components
-import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 
 export default styled(Typography)(({ theme, ownerState }) => {
   const { palette, typography, functions } = theme;
@@ -36,26 +21,26 @@ export default styled(Typography)(({ theme, ownerState }) => {
   // styles for the typography with textGradient={true}
   const gradientStyles = () => ({
     backgroundImage:
-      color !== "inherit" && color !== "text" && color !== "white" && gradients[color]
+      color !== 'inherit' && color !== 'text' && color !== 'white' && gradients[color]
         ? linearGradient(gradients[color].main, gradients[color].state)
         : linearGradient(gradients.dark.main, gradients.dark.state),
-    display: "inline-block",
-    WebkitBackgroundClip: "text",
+    display: 'inline-block',
+    WebkitBackgroundClip: 'text',
     WebkitTextFillColor: transparent.main,
-    position: "relative",
+    position: 'relative',
     zIndex: 1,
   });
 
   // color value
-  const colorValue = color === "inherit" || !palette[color] ? "inherit" : palette[color].main;
+  const colorValue = color === 'inherit' || !palette[color] ? 'inherit' : palette[color].main;
 
   return {
     opacity,
     textTransform,
     verticalAlign,
-    textDecoration: "none",
+    textDecoration: 'none',
     color: colorValue,
-    letterSpacing: "-0.125px",
+    letterSpacing: '-0.125px',
     fontWeight: fontWeights[fontWeight] && fontWeights[fontWeight],
     ...(textGradient && gradientStyles()),
   };

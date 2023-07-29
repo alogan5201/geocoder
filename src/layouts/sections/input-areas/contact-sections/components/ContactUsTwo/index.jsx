@@ -14,31 +14,23 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Input from "components/Input";
-import Button from "components/Button";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Input from 'components/Input';
+import Button from 'components/Button';
+import Typography from 'components/Typography';
 
 // Images
-import bgImage from "assets/images/examples/blog2.jpg";
+import bgImage from 'assets/images/examples/blog2.jpg';
 
 function ContactUsTwo() {
   return (
     <Box component="section" py={{ xs: 0, lg: 6 }}>
       <Container>
         <Grid container item px={6}>
-          <Box
-            width="100%"
-            bgColor="white"
-            borderRadius="xl"
-            shadow="xl"
-            mb={6}
-            sx={{ overflow: "hidden" }}
-          >
+          <Box width="100%" bgColor="white" borderRadius="xl" shadow="xl" mb={6} sx={{ overflow: 'hidden' }}>
             <Grid container spacing={3}>
               <Grid item xs={12} lg={7}>
                 <Box component="form" p={2} method="post">
@@ -82,15 +74,7 @@ function ContactUsTwo() {
                         />
                       </Grid>
                     </Grid>
-                    <Grid
-                      container
-                      item
-                      xs={12}
-                      md={6}
-                      justifyContent="flex-end"
-                      textAlign="right"
-                      ml="auto"
-                    >
+                    <Grid container item xs={12} md={6} justifyContent="flex-end" textAlign="right" ml="auto">
                       <Button variant="gradient" color="info">
                         Send Message
                       </Button>
@@ -105,24 +89,15 @@ function ContactUsTwo() {
                 position="relative"
                 px={0}
                 sx={{
-                  backgroundImage: ({
-                    palette: { gradients },
-                    functions: { rgba, linearGradient },
-                  }) =>
+                  backgroundImage: ({ palette: { gradients }, functions: { rgba, linearGradient } }) =>
                     `${linearGradient(
                       rgba(gradients.info.main, 0.8),
                       rgba(gradients.info.state, 0.8)
                     )}, url(${bgImage})`,
-                  backgroundSize: "cover",
+                  backgroundSize: 'cover',
                 }}
               >
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  width="100%"
-                  height="100%"
-                >
+                <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
                   <Box py={6} pl={6} pr={{ xs: 6, sm: 12 }} my="auto">
                     <Typography variant="h3" color="white" mb={1}>
                       Contact Information
@@ -177,16 +152,16 @@ function ContactUsTwo() {
                     </Box>
                     <Box mt={3}>
                       <Button variant="text" color="white" size="large" iconOnly>
-                        <i className="fab fa-facebook" style={{ fontSize: "1.25rem" }} />
+                        <i className="fab fa-facebook" style={{ fontSize: '1.25rem' }} />
                       </Button>
                       <Button variant="text" color="white" size="large" iconOnly>
-                        <i className="fab fa-twitter" style={{ fontSize: "1.25rem" }} />
+                        <i className="fab fa-twitter" style={{ fontSize: '1.25rem' }} />
                       </Button>
                       <Button variant="text" color="white" size="large" iconOnly>
-                        <i className="fab fa-dribbble" style={{ fontSize: "1.25rem" }} />
+                        <i className="fab fa-dribbble" style={{ fontSize: '1.25rem' }} />
                       </Button>
                       <Button variant="text" color="white" size="large" iconOnly>
-                        <i className="fab fa-instagram" style={{ fontSize: "1.25rem" }} />
+                        <i className="fab fa-instagram" style={{ fontSize: '1.25rem' }} />
                       </Button>
                     </Box>
                   </Box>

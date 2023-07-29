@@ -1,36 +1,20 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // react-router components
-import {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
-import Skeleton from "@mui/material/Skeleton";
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Skeleton from '@mui/material/Skeleton';
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import MuiLink from "@mui/material/Link";
+import Card from '@mui/material/Card';
+import MuiLink from '@mui/material/Link';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
-import Avatar from "components/Avatar";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
+import Avatar from 'components/Avatar';
 
-function DefaultBlogCard({ image, category, title, description, author, raised, action, maxWidth, maxHeight}) {
+function DefaultBlogCard({ image, category, title, description, author, raised, action, maxWidth, maxHeight }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState(null);
 
@@ -49,12 +33,12 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
       src={imageSrc}
       alt={title}
       borderRadius="lg"
-      shadow={raised ? "md" : "none"}
+      shadow={raised ? 'md' : 'none'}
       width="100%"
       height={maxHeight}
       position="relative"
       zIndex={1}
-      style={{ display: isImageLoaded ? "block" : "none" }}
+      style={{ display: isImageLoaded ? 'block' : 'none' }}
     />
   );
 
@@ -63,7 +47,7 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
   return (
     <Card sx={{ maxWidth: maxWidth }} p={0}>
       <Box position="relative" borderRadius="lg" mx={2} mt={raised ? -3 : 2}>
-        {action.type === "internal" ? (
+        {action.type === 'internal' ? (
           <Link to={action.route}>{isImageLoaded ? renderImage() : renderSkeleton()}</Link>
         ) : (
           <MuiLink href={action.route} target="_blank" rel="noreferrer">
@@ -79,19 +63,19 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
             textTransform="uppercase"
             fontWeight="medium"
             textGradient
-            sx={{ display: "block", fontWeight: 500 }}
+            sx={{ display: 'block', fontWeight: 500 }}
           >
             {category.label}
           </Typography>
         )}
-        {action.type === "internal" ? (
+        {action.type === 'internal' ? (
           <Link to={action.route}>
             <Typography
               align="center"
               variant="caption"
               textTransform="capitalize"
               my={1}
-              sx={{ display: "inline-block", fontWeight: 500 }}
+              sx={{ display: 'inline-block', fontWeight: 500 }}
             >
               {title}
             </Typography>
@@ -104,7 +88,7 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
               textTransform="capitalize"
               mt={2}
               mb={1}
-              sx={{ display: "inline-block" }}
+              sx={{ display: 'inline-block' }}
             >
               {title}
             </Typography>
@@ -117,12 +101,7 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
         )}
         {author && (
           <Box display="flex" alignItems="center" mt={3}>
-            <Avatar
-              src={author.image}
-              alt={author.name}
-              shadow="md"
-              variant={raised ? "circular" : "rounded"}
-            />
+            <Avatar src={author.image} alt={author.name} shadow="md" variant={raised ? 'circular' : 'rounded'} />
             <Box pl={2} lineHeight={0}>
               <Typography component="caption" variant="button" fontWeight="medium" gutterBottom>
                 {author.name}
@@ -143,8 +122,8 @@ DefaultBlogCard.defaultProps = {
   category: false,
   author: false,
   raised: true,
-  maxWidth: "100%",
-  maxHeight:300
+  maxWidth: '100%',
+  maxHeight: 300,
 };
 
 // Typechecking props for the DefaultBlogCard
@@ -152,15 +131,7 @@ DefaultBlogCard.propTypes = {
   image: PropTypes.string.isRequired,
   category: PropTypes.oneOfType([
     PropTypes.shape({
-      color: PropTypes.oneOf([
-        "primary",
-        "secondary",
-        "info",
-        "success",
-        "warning",
-        "error",
-        "dark",
-      ]).isRequired,
+      color: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'dark']).isRequired,
       label: PropTypes.string.isRequired,
     }),
     PropTypes.bool,
@@ -176,7 +147,7 @@ DefaultBlogCard.propTypes = {
   ]),
   raised: PropTypes.bool,
   action: PropTypes.shape({
-    type: PropTypes.oneOf(["external", "internal"]).isRequired,
+    type: PropTypes.oneOf(['external', 'internal']).isRequired,
     route: PropTypes.string.isRequired,
   }).isRequired,
 };

@@ -1,31 +1,13 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-import { forwardRef } from "react";
+import { forwardRef } from 'react';
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // Custom styles for Typography
-import MKTypographyRoot from "components/Typography/MKTypographyRoot";
+import MKTypographyRoot from 'components/Typography/MKTypographyRoot';
 
 const Typography = forwardRef(
-  (
-    { color, fontWeight, textTransform, verticalAlign, textGradient, opacity, children, ...rest },
-    ref
-  ) => (
+  ({ color, fontWeight, textTransform, verticalAlign, textGradient, opacity, children, ...rest }, ref) => (
     <MKTypographyRoot
       {...rest}
       ref={ref}
@@ -43,13 +25,13 @@ const Typography = forwardRef(
   )
 );
 
-Typography.displayName = "Typography";
+Typography.displayName = 'Typography';
 // Setting default values for the props of Typography
 Typography.defaultProps = {
-  color: "dark",
+  color: 'dark',
   fontWeight: false,
-  textTransform: "none",
-  verticalAlign: "unset",
+  textTransform: 'none',
+  verticalAlign: 'unset',
   textGradient: false,
   opacity: 1,
 };
@@ -57,30 +39,30 @@ Typography.defaultProps = {
 // Typechecking props for the Typography
 Typography.propTypes = {
   color: PropTypes.oneOf([
-    "inherit",
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "light",
-    "dark",
-    "text",
-    "white",
+    'inherit',
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'light',
+    'dark',
+    'text',
+    'white',
   ]),
-  fontWeight: PropTypes.oneOf([false, "light", "regular", "medium", "bold"]),
-  textTransform: PropTypes.oneOf(["none", "capitalize", "uppercase", "lowercase"]),
+  fontWeight: PropTypes.oneOf([false, 'light', 'regular', 'medium', 'bold']),
+  textTransform: PropTypes.oneOf(['none', 'capitalize', 'uppercase', 'lowercase']),
   verticalAlign: PropTypes.oneOf([
-    "unset",
-    "baseline",
-    "sub",
-    "super",
-    "text-top",
-    "text-bottom",
-    "middle",
-    "top",
-    "bottom",
+    'unset',
+    'baseline',
+    'sub',
+    'super',
+    'text-top',
+    'text-bottom',
+    'middle',
+    'top',
+    'bottom',
   ]),
   textGradient: PropTypes.bool,
   children: PropTypes.node.isRequired,

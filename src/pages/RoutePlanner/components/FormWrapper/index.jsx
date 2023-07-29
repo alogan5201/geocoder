@@ -1,45 +1,19 @@
 import Grid from "@mui/material/Grid";
+import mapPlaceHolderImg from 'assets/images/map_placeholder.png';
 import Box from "components/Box";
 import MapWithRoute from "components/Maps/MapWithRoute";
 import NoLocationFound from "components/Maps/components/NoLocationFound";
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import useStore from "store/mapStore";
-import { useGlobalGeoData, useGlobalValue } from "util/mapState";
-import mapPlaceHolderImg from 'assets/images/map_placeholder.png';
 
 
-function FormWrapper({ props, form, map }) {
-  /* -------------------------------------------------------------------------- */
-  /*                                    HOOKS                                   */
-  /* -------------------------------------------------------------------------- */
-  const { setErrorMessage, errorMessage } = useStore((state) => ({
-    setErrorMessage: state.setErrorMessage,
+function FormWrapper({  form }) {
+ 
+  const {  errorMessage } = useStore((state) => ({
     errorMessage: state.errorMessage,
   }));
   const [isMapLoaded, setMapLoaded] = useState(false);
-  const [coords, setCoords] = useGlobalValue();
-  const [geoData, setGeoData] = useGlobalGeoData();
-  const latInputElm = useRef(null);
-  const lngInputElm = useRef(null);
-  /* -------------------------------------------------------------------------- */
-  /*                                  FUNCTIONS                                 */
-  /* -------------------------------------------------------------------------- */
-  function handleSelect(e) {
-    setBlurred(false);
-    setSelected(true);
-  }
-  function handleBlur(e) {
-    setSelected(false);
-    setBlurred(true);
-  }
-  function handleChange(e) {
-    let val = e.target.value;
-    if (val.length === 0) {
-      latInputElm.current.value = '';
-      lngInputElm.current.value = '';
-    }
-  }
-
+ 
   return (
     <>
       <Box component="section" py={{ xs: 2, sm: 6 }}>

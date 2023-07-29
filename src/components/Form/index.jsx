@@ -1,15 +1,13 @@
-// Material Kit 2 PRO React components
-import Box from "components/Box";
+import Box from 'components/Box';
 
-// Material Kit 2 PRO React components
-import Grid from "@mui/material/Grid";
-import AddressInput from "components/AddressInput";
-import Button from "components/Button";
-import Input from "components/Input";
-import { useRef } from "react";
-import { extractWords } from "util/helpers";
-import { useGlobalGeoData, useGlobalValue } from "util/mapState";
-import Typography from "components/Typography";
+import Grid from '@mui/material/Grid';
+import AddressInput from 'components/AddressInput';
+import Button from 'components/Button';
+import Input from 'components/Input';
+import { useRef } from 'react';
+import { extractWords } from 'util/helpers';
+import { useGlobalGeoData, useGlobalValue } from 'util/mapState';
+import Typography from 'components/Typography';
 
 function Form() {
   const handleChild = (callback) => {
@@ -35,8 +33,8 @@ function Form() {
   function handleChange(e) {
     let val = e.target.value;
     if (val.length === 0) {
-      latInputElm.current.value = "";
-      lngInputElm.current.value = "";
+      latInputElm.current.value = '';
+      lngInputElm.current.value = '';
     }
   }
   async function handleSubmit(e) {
@@ -44,7 +42,7 @@ function Form() {
     const inputOne = e.target[0].value;
     if (inputOne) {
       let extracted = extractWords(inputOne);
-      let withPlus = extracted.join("+");
+      let withPlus = extracted.join('+');
       const response = await fetch(
         `https://nominatim.openstreetmap.org/?addressdetails=1&q=${withPlus}&format=json&limit=1`
       );
@@ -68,14 +66,14 @@ function Form() {
           Address to Latitude & Longitude
         </Typography>
         <Typography variant="body2" color="text" mb={2}>
-          To pinpoint a location, you can type in the name of a place, city, state, or address, or
-          click the location on the map to get the coordinates.
+          To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on
+          the map to get the coordinates.
         </Typography>
       </Box>
       <Box pt={0.5} pb={3} px={3}>
         <Grid container>
           {/* ============ AddressInput ============ */}
-          <AddressInput/>
+          <AddressInput />
           <Grid item xs={12} pr={1} mb={3}>
             <Button type="submit" variant="gradient" color="info">
               Submit
@@ -83,20 +81,10 @@ function Form() {
           </Grid>
 
           <Grid item xs={12} pr={1} mb={3}>
-            <Input
-              label={latInputElm ? "" : "Longitude"}
-              type="text"
-              fullWidth
-              inputRef={latInputElm}
-            />
+            <Input label={latInputElm ? '' : 'Longitude'} type="text" fullWidth inputRef={latInputElm} />
           </Grid>
           <Grid item xs={12} pr={1} mb={3}>
-            <Input
-              label={lngInputElm ? "" : "Longitude"}
-              type="text"
-              fullWidth
-              inputRef={lngInputElm}
-            />
+            <Input label={lngInputElm ? '' : 'Longitude'} type="text" fullWidth inputRef={lngInputElm} />
           </Grid>
         </Grid>
       </Box>

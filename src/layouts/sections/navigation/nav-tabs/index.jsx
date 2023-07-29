@@ -13,31 +13,27 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
+import Box from 'components/Box';
 
 // Sections components
-import BaseLayout from "layouts/sections/components/BaseLayout";
-import View from "layouts/sections/components/View";
+import BaseLayout from 'layouts/sections/components/BaseLayout';
+import View from 'layouts/sections/components/View';
 
 // Stats page components
-import TabsSimple from "layouts/sections/navigation/nav-tabs/components/TabsSimple";
-import TabsWithIcons from "layouts/sections/navigation/nav-tabs/components/TabsWithIcons";
-import TabsVertical from "layouts/sections/navigation/nav-tabs/components/TabsVertical";
+import TabsSimple from 'layouts/sections/navigation/nav-tabs/components/TabsSimple';
+import TabsWithIcons from 'layouts/sections/navigation/nav-tabs/components/TabsWithIcons';
+import TabsVertical from 'layouts/sections/navigation/nav-tabs/components/TabsVertical';
 
 // Stats page components code
-import tabsSimpleCode from "layouts/sections/navigation/nav-tabs/components/TabsSimple/code";
-import tabsWithIconsCode from "layouts/sections/navigation/nav-tabs/components/TabsWithIcons/code";
-import tabsVerticalCode from "layouts/sections/navigation/nav-tabs/components/TabsVertical/code";
+import tabsSimpleCode from 'layouts/sections/navigation/nav-tabs/components/TabsSimple/code';
+import tabsWithIconsCode from 'layouts/sections/navigation/nav-tabs/components/TabsWithIcons/code';
+import tabsVerticalCode from 'layouts/sections/navigation/nav-tabs/components/TabsVertical/code';
 
 function NavTabs() {
   return (
     <BaseLayout
       title="Nav Tabs"
-      breadcrumb={[
-        { label: "Page Sections", route: "/sections/navigation/nav-tabs" },
-        { label: "Nav Tabs" },
-      ]}
+      breadcrumb={[{ label: 'Page Sections', route: '/sections/navigation/nav-tabs' }, { label: 'Nav Tabs' }]}
     >
       <View title="Tabs simple" code={tabsSimpleCode}>
         <Box bgColor="white" py={6}>

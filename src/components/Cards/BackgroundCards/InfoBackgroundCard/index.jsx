@@ -1,53 +1,33 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
 
 function InfoBackgroundCard({ image, icon, title, label }) {
   return (
     <Card
-      sx={({
-        functions: { rgba, linearGradient },
-        palette: { gradients },
-        borders: { borderRadius },
-      }) => ({
+      sx={({ functions: { rgba, linearGradient }, palette: { gradients }, borders: { borderRadius } }) => ({
         backgroundImage: `${linearGradient(
           rgba(gradients.dark.main, 0.8),
           rgba(gradients.dark.state, 0.8)
         )}, url(${image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         borderRadius: borderRadius.xl,
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
       })}
     >
       <Box width="100%" p={3}>
         <Typography variant="h3" color="white">
-          {typeof icon === "string" ? <Icon>{icon}</Icon> : icon}
+          {typeof icon === 'string' ? <Icon>{icon}</Icon> : icon}
         </Typography>
       </Box>
       <Box width="100%" pt={1} pb={2} px={3} lineHeight={1}>
@@ -55,13 +35,7 @@ function InfoBackgroundCard({ image, icon, title, label }) {
           {title}
         </Typography>
         {label && (
-          <Typography
-            variant="caption"
-            textTransform="uppercase"
-            fontWeight="bold"
-            color="white"
-            opacity={0.7}
-          >
+          <Typography variant="caption" textTransform="uppercase" fontWeight="bold" color="white" opacity={0.7}>
             {label}
           </Typography>
         )}
@@ -72,7 +46,7 @@ function InfoBackgroundCard({ image, icon, title, label }) {
 
 // Setting default values for the props of InfoBackgroundCard
 InfoBackgroundCard.defaultProps = {
-  label: "",
+  label: '',
 };
 
 // Typechecking props for the InfoBackgroundCard

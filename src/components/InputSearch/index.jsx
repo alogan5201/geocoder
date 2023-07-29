@@ -1,11 +1,10 @@
 // @mui material components
-import InputAdornment from "@mui/material/InputAdornment";
+import InputAdornment from '@mui/material/InputAdornment';
 
 // @mui icons
-import SearchIcon from "@mui/icons-material/Search";
+import SearchIcon from '@mui/icons-material/Search';
 
-// Material Kit 2 PRO React components
-import Input from "components/Input";
+import Input from 'components/Input';
 
 function InputSearch() {
   return (

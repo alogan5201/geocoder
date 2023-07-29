@@ -13,33 +13,29 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
+import Box from 'components/Box';
 
 // Sections components
-import BaseLayout from "layouts/sections/components/BaseLayout";
-import View from "layouts/sections/components/View";
+import BaseLayout from 'layouts/sections/components/BaseLayout';
+import View from 'layouts/sections/components/View';
 
 // Stats page components
-import NavbarDark from "layouts/sections/navigation/navbars/components/NavbarDark";
-import NavbarLight from "layouts/sections/navigation/navbars/components/NavbarLight";
-import NavbarTransparent from "layouts/sections/navigation/navbars/components/NavbarTransparent";
-import NavbarBlur from "layouts/sections/navigation/navbars/components/NavbarBlur";
+import NavbarDark from 'layouts/sections/navigation/navbars/components/NavbarDark';
+import NavbarLight from 'layouts/sections/navigation/navbars/components/NavbarLight';
+import NavbarTransparent from 'layouts/sections/navigation/navbars/components/NavbarTransparent';
+import NavbarBlur from 'layouts/sections/navigation/navbars/components/NavbarBlur';
 
 // Stats page components code
-import navbarDarkCode from "layouts/sections/navigation/navbars/components/NavbarDark/code";
-import navbarLightCode from "layouts/sections/navigation/navbars/components/NavbarLight/code";
-import navbarTransparentCode from "layouts/sections/navigation/navbars/components/NavbarTransparent/code";
-import navbarBlurCode from "layouts/sections/navigation/navbars/components/NavbarBlur/code";
+import navbarDarkCode from 'layouts/sections/navigation/navbars/components/NavbarDark/code';
+import navbarLightCode from 'layouts/sections/navigation/navbars/components/NavbarLight/code';
+import navbarTransparentCode from 'layouts/sections/navigation/navbars/components/NavbarTransparent/code';
+import navbarBlurCode from 'layouts/sections/navigation/navbars/components/NavbarBlur/code';
 
 function Navbars() {
   return (
     <BaseLayout
       title="Navbars"
-      breadcrumb={[
-        { label: "Page Sections", route: "/sections/navigation/navbars" },
-        { label: "Navbars" },
-      ]}
+      breadcrumb={[{ label: 'Page Sections', route: '/sections/navigation/navbars' }, { label: 'Navbars' }]}
     >
       <View title="Navbar dark" code={navbarDarkCode}>
         <Box py={6}>

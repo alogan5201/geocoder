@@ -1,20 +1,5 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // react-router components
-import { useState, useEffect,lazy } from 'react';
+import { useState, useEffect, lazy } from 'react';
 import { Link } from 'react-router-dom';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -25,22 +10,30 @@ import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
 import MuiLink from '@mui/material/Link';
 
-// Material Kit 2 PRO React components
 import Box from 'components/Box';
 import Typography from 'components/Typography';
 import Avatar from 'components/Avatar';
 import useStore from 'store/mapStore';
 const { VITE_THE_MOVIE_DB_API_KEY } = import.meta.env;
 
-function MovieCard({ image, category, title, description, author, raised, action, maxWidth, maxHeight, allImagesLoaded }) {
+function MovieCard({
+  image,
+  category,
+  title,
+  description,
+  author,
+  raised,
+  action,
+  maxWidth,
+  maxHeight,
+  allImagesLoaded,
+}) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState(null);
-  const { imagesLoaded, setImagesLoaded ,} = useStore((state) => ({
+  const { imagesLoaded, setImagesLoaded } = useStore((state) => ({
     imagesLoaded: state.imagesLoaded,
     setImagesLoaded: state.setImagesLoaded,
   }));
-
-
 
   useEffect(() => {
     const img = new Image();
@@ -48,9 +41,8 @@ function MovieCard({ image, category, title, description, author, raised, action
     img.onload = () => {
       setIsImageLoaded(true);
       setImagesLoaded();
-      setImageSrc(image);      
+      setImageSrc(image);
     };
-
   }, [image]);
 
   const renderImage = () => (
@@ -104,7 +96,7 @@ function MovieCard({ image, category, title, description, author, raised, action
                 my={1}
                 sx={{ display: 'inline-block', fontWeight: 500 }}
               >
-              {title}
+                {title}
               </Typography>
             ) : (
               <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="50%" />

@@ -7,7 +7,7 @@ import Icon from "@mui/material/Icon";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-// Material Kit 2 PRO React components
+
 import Box from "components/Box";
 import Button from "components/Button";
 

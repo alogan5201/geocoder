@@ -1,55 +1,38 @@
 /* eslint-disable no-param-reassign */
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from 'react';
 
 // react-router components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // prop-types is a library for typechecking of props.
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 // @mui material components
-import Container from "@mui/material/Container";
-import Divider from "@mui/material/Divider";
-import Grid from "@mui/material/Grid";
-import Grow from "@mui/material/Grow";
-import Icon from "@mui/material/Icon";
-import MuiLink from "@mui/material/Link";
-import Popper from "@mui/material/Popper";
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Grow from '@mui/material/Grow';
+import Icon from '@mui/material/Icon';
+import MuiLink from '@mui/material/Link';
+import Popper from '@mui/material/Popper';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
 
-// Material Kit 2 PRO React examples
-import DefaultNavbarDropdown from "components/Navbars/DefaultNavbar/DefaultNavbarDropdown";
-import DefaultNavbarMobile from "components/Navbars/DefaultNavbar/DefaultNavbarMobile";
+import DefaultNavbarDropdown from 'components/Navbars/DefaultNavbar/DefaultNavbarDropdown';
+import DefaultNavbarMobile from 'components/Navbars/DefaultNavbar/DefaultNavbarMobile';
 
-// Material Kit 2 PRO React base styles
-import breakpoints from "assets/theme/base/breakpoints";
+import breakpoints from 'assets/theme/base/breakpoints';
 
-function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, center }) {
-  const [dropdown, setDropdown] = useState("");
-  const [dropdownEl, setDropdownEl] = useState("");
-  const [dropdownName, setDropdownName] = useState("");
-  const [nestedDropdown, setNestedDropdown] = useState("");
-  const [nestedDropdownEl, setNestedDropdownEl] = useState("");
-  const [nestedDropdownName, setNestedDropdownName] = useState("");
+function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, center }) {
+  const [dropdown, setDropdown] = useState('');
+  const [dropdownEl, setDropdownEl] = useState('');
+  const [dropdownName, setDropdownName] = useState('');
+  const [nestedDropdown, setNestedDropdown] = useState('');
+  const [nestedDropdownEl, setNestedDropdownEl] = useState('');
+  const [nestedDropdownName, setNestedDropdownName] = useState('');
   const [arrowRef, setArrowRef] = useState(null);
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
@@ -72,13 +55,13 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
      The event listener that's calling the displayMobileNavbar function when 
      resizing the window.
     */
-    window.addEventListener("resize", displayMobileNavbar);
+    window.addEventListener('resize', displayMobileNavbar);
 
     // Call the displayMobileNavbar function to set the state with the initial value.
     displayMobileNavbar();
 
     // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", displayMobileNavbar);
+    return () => window.removeEventListener('resize', displayMobileNavbar);
   }, []);
 
   const renderNavbarItems = routes.map(({ name, icon, href, route, collapse }) => (
@@ -126,14 +109,13 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
             const dividerKey = `divider-${key}`;
 
             return (
-              <Grid key={gridKey} item xs={12 / columns} sx={{ position: "relative" }}>
+              <Grid key={gridKey} item xs={12 / columns} sx={{ position: 'relative' }}>
                 {cols.map((col, index) => (
                   <Fragment key={col.name}>
                     <Typography
                       display="block"
                       variant="button"
                       fontWeight="bold"
-                      
                       py={1}
                       px={0.5}
                       mt={index !== 0 ? 2 : 0}
@@ -144,24 +126,23 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
                       <Typography
                         key={item.name}
                         component={item.route ? Link : MuiLink}
-                        to={item.route ? item.route : ""}
+                        to={item.route ? item.route : ''}
                         href={item.href ? item.href : (e) => e.preventDefault()}
-                        target={item.href ? "_blank" : ""}
-                        rel={item.href ? "noreferrer" : "noreferrer"}
+                        target={item.href ? '_blank' : ''}
+                        rel={item.href ? 'noreferrer' : 'noreferrer'}
                         minWidth="11.25rem"
                         display="block"
                         variant="button"
                         color="text"
-                        
                         fontWeight="regular"
                         py={0.625}
                         px={2}
                         sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
                           borderRadius: borderRadius.md,
-                          cursor: "pointer",
-                          transition: "all 300ms linear",
+                          cursor: 'pointer',
+                          transition: 'all 300ms linear',
 
-                          "&:hover": {
+                          '&:hover': {
                             backgroundColor: grey[200],
                             color: dark.main,
                           },
@@ -177,11 +158,11 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
                     key={dividerKey}
                     orientation="vertical"
                     sx={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "-4px",
-                      transform: "translateY(-45%)",
-                      height: "90%",
+                      position: 'absolute',
+                      top: '50%',
+                      left: '-4px',
+                      transform: 'translateY(-45%)',
+                      height: '90%',
                     }}
                   />
                 )}
@@ -197,8 +178,8 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
         const linkComponent = {
           component: MuiLink,
           href: item.href,
-          target: "_blank",
-          rel: "noreferrer",
+          target: '_blank',
+          rel: 'noreferrer',
         };
 
         const routeComponent = {
@@ -214,22 +195,21 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
             justifyContent="space-between"
             alignItems="center"
             variant="button"
-            
-            minWidth={item.description ? "14rem" : "12rem"}
-            color={item.description ? "dark" : "text"}
-            fontWeight={item.description ? "bold" : "regular"}
+            minWidth={item.description ? '14rem' : '12rem'}
+            color={item.description ? 'dark' : 'text'}
+            fontWeight={item.description ? 'bold' : 'regular'}
             py={item.description ? 1 : 0.625}
             px={2}
             sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
               borderRadius: borderRadius.md,
-              cursor: "pointer",
-              transition: "all 300ms linear",
+              cursor: 'pointer',
+              transition: 'all 300ms linear',
 
-              "&:hover": {
+              '&:hover': {
                 backgroundColor: grey[200],
                 color: dark.main,
 
-                "& *": {
+                '& *': {
                   color: dark.main,
                 },
               },
@@ -255,7 +235,7 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
                   variant="button"
                   color="text"
                   fontWeight="regular"
-                  sx={{ transition: "all 300ms linear" }}
+                  sx={{ transition: 'all 300ms linear' }}
                 >
                   {item.description}
                 </Typography>
@@ -264,10 +244,7 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
               item.name
             )}
             {item.collapse && (
-              <Icon
-                fontSize="small"
-                sx={{ fontWeight: "normal", verticalAlign: "middle", mr: -0.5 }}
-              >
+              <Icon fontSize="small" sx={{ fontWeight: 'normal', verticalAlign: 'middle', mr: -0.5 }}>
                 keyboard_arrow_right
               </Icon>
             )}
@@ -290,7 +267,7 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
       style={{ zIndex: 10 }}
       modifiers={[
         {
-          name: "arrow",
+          name: 'arrow',
           enabled: true,
           options: {
             element: arrowRef,
@@ -301,7 +278,7 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
       onMouseLeave={() => {
         if (!nestedDropdown) {
           setDropdown(null);
-          setDropdownName("");
+          setDropdownName('');
         }
       }}
     >
@@ -309,7 +286,7 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
         <Grow
           {...TransitionProps}
           sx={{
-            transformOrigin: "left top",
+            transformOrigin: 'left top',
             background: ({ palette: { white } }) => white.main,
           }}
         >
@@ -341,8 +318,8 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
                 const linkComponent = {
                   component: MuiLink,
                   href: item.href,
-                  target: "_blank",
-                  rel: "noreferrer",
+                  target: '_blank',
+                  rel: 'noreferrer',
                 };
 
                 const routeComponent = {
@@ -358,22 +335,21 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
                     justifyContent="space-between"
                     alignItems="center"
                     variant="button"
-                    
-                    minWidth={item.description ? "14rem" : "12rem"}
-                    color={item.description ? "dark" : "text"}
-                    fontWeight={item.description ? "bold" : "regular"}
+                    minWidth={item.description ? '14rem' : '12rem'}
+                    color={item.description ? 'dark' : 'text'}
+                    fontWeight={item.description ? 'bold' : 'regular'}
                     py={item.description ? 1 : 0.625}
                     px={2}
                     sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
                       borderRadius: borderRadius.md,
-                      cursor: "pointer",
-                      transition: "all 300ms linear",
+                      cursor: 'pointer',
+                      transition: 'all 300ms linear',
 
-                      "&:hover": {
+                      '&:hover': {
                         backgroundColor: grey[200],
                         color: dark.main,
 
-                        "& *": {
+                        '& *': {
                           color: dark.main,
                         },
                       },
@@ -387,7 +363,7 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
                           variant="button"
                           color="text"
                           fontWeight="regular"
-                          sx={{ transition: "all 300ms linear" }}
+                          sx={{ transition: 'all 300ms linear' }}
                         >
                           {item.description}
                         </Typography>
@@ -396,10 +372,7 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
                       item.name
                     )}
                     {item.collapse && (
-                      <Icon
-                        fontSize="small"
-                        sx={{ fontWeight: "normal", verticalAlign: "middle", mr: -0.5 }}
-                      >
+                      <Icon fontSize="small" sx={{ fontWeight: 'normal', verticalAlign: 'middle', mr: -0.5 }}>
                         keyboard_arrow_right
                       </Icon>
                     )}
@@ -427,7 +400,7 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
       }}
       onMouseLeave={() => {
         setNestedDropdown(null);
-        setNestedDropdownName("");
+        setNestedDropdownName('');
         setDropdown(null);
       }}
     >
@@ -435,7 +408,7 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
         <Grow
           {...TransitionProps}
           sx={{
-            transformOrigin: "left top",
+            transformOrigin: 'left top',
             background: ({ palette: { white } }) => white.main,
           }}
         >
@@ -450,22 +423,22 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
   );
 
   return (
-    <Container sx={sticky ? { position: "sticky", top: 0, zIndex: 10 } : null}>
+    <Container sx={sticky ? { position: 'sticky', top: 0, zIndex: 10 } : null}>
       <Box
         py={1}
         px={{ xs: 0, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}
         my={relative ? 0 : 2}
         mx={relative ? 0 : 3}
-        width={relative ? "100%" : "calc(100% - 48px)"}
+        width={relative ? '100%' : 'calc(100% - 48px)'}
         borderRadius="xl"
-        shadow={transparent ? "none" : "md"}
-        color={light ? "white" : "dark"}
-        position={relative ? "relative" : "absolute"}
+        shadow={transparent ? 'none' : 'md'}
+        color={light ? 'white' : 'dark'}
+        position={relative ? 'relative' : 'absolute'}
         left={0}
         zIndex={3}
         sx={({ palette: { transparent: transparentColor, white }, functions: { rgba } }) => ({
           backgroundColor: transparent ? transparentColor.main : rgba(white.main, 0.8),
-          backdropFilter: transparent ? "none" : `saturate(200%) blur(30px)`,
+          backdropFilter: transparent ? 'none' : `saturate(200%) blur(30px)`,
         })}
       >
         <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -485,42 +458,35 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
             <Typography
               variant="brand"
               fontWeight="bold"
-              
-              color={light ? "white" : "dark"}
-              sx={{ fontWeight: "100%", ml: 1, mr: 0.25 }}
+              color={light ? 'white' : 'dark'}
+              sx={{ fontWeight: '100%', ml: 1, mr: 0.25 }}
             >
               {brand}
             </Typography>
           </Box>
-          <Box
-            color="inherit"
-            display={{ xs: "none", lg: "flex" }}
-            ml="auto"
-            mr={center ? "auto" : 0}
-          >
+          <Box color="inherit" display={{ xs: 'none', lg: 'flex' }} ml="auto" mr={center ? 'auto' : 0}>
             {renderNavbarItems}
           </Box>
-     
+
           <Box
-            display={{ xs: "inline-block", lg: "none" }}
+            display={{ xs: 'inline-block', lg: 'none' }}
             lineHeight={0}
             py={1.5}
             pl={1.5}
-            color={transparent ? "dark" : "inherit"}
-            sx={{ cursor: "pointer" }}
+            color={transparent ? 'dark' : 'inherit'}
+            sx={{ cursor: 'pointer' }}
             onClick={openMobileNavbar}
           >
             {mobileNavbar ? <CloseIcon /> : <MenuIcon />}
-      
           </Box>
         </Box>
         <Box
-          bgColor={transparent ? "white" : "transparent"}
-          shadow={transparent ? "lg" : "none"}
+          bgColor={transparent ? 'white' : 'transparent'}
+          shadow={transparent ? 'lg' : 'none'}
           borderRadius="xl"
           px={transparent ? 2 : 0}
         >
-          {mobileView && <DefaultNavbarMobile routes={routes} open={mobileNavbar}  />}
+          {mobileView && <DefaultNavbarMobile routes={routes} open={mobileNavbar} />}
         </Box>
       </Box>
       {dropdownMenu}
@@ -531,7 +497,7 @@ function DefaultNavbar({ brand, routes, transparent, light,  sticky, relative, c
 
 // Setting default values for the props of DefaultNavbar
 DefaultNavbar.defaultProps = {
-  brand: "geotools",
+  brand: 'geotools',
   transparent: false,
   light: false,
   action: false,
@@ -549,21 +515,20 @@ DefaultNavbar.propTypes = {
   action: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.shape({
-      type: PropTypes.oneOf(["external", "internal"]).isRequired,
+      type: PropTypes.oneOf(['external', 'internal']).isRequired,
       route: PropTypes.string.isRequired,
       color: PropTypes.oneOf([
-        "primary",
-        "secondary",
-        "info",
-        "success",
-        "warning",
-        "error",
-        "dark",
-        "light",
-        "default",
-        "white",
+        'primary',
+        'secondary',
+        'info',
+        'success',
+        'warning',
+        'error',
+        'dark',
+        'light',
+        'default',
+        'white',
       ]),
-    
     }),
   ]),
   sticky: PropTypes.bool,

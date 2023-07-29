@@ -28,7 +28,8 @@ function BlogPostFour() {
             Movies Locations
           </Typography>
           <Typography variant="body2" color="text" mb={2}>
-            Discover where you're favorite flicks were filmed and bookmark them for your next trip!
+              Discover where you&apos;re favorite flicks were filmed and bookmark them for your next trip!
+
           </Typography>
         </Grid>
         <Grid container spacing={3} mt={3}>

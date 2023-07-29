@@ -14,12 +14,11 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
 
 function TypographyRoboto() {
   return (
@@ -103,10 +102,9 @@ function TypographyRoboto() {
 
           <Grid item xs={12} sm={9}>
             <Typography variant="body1" color="text">
-              I will be the leader of a company that ends up being worth billions of dollars,
-              because I got the answers. I understand culture. I am the nucleus. I think that&apos;s
-              a responsibility that I have, to push possibilities, to show people, this is the level
-              that things could be at.
+              I will be the leader of a company that ends up being worth billions of dollars, because I got the answers.
+              I understand culture. I am the nucleus. I think that&apos;s a responsibility that I have, to push
+              possibilities, to show people, this is the level that things could be at.
             </Typography>
           </Grid>
         </Grid>
@@ -119,10 +117,9 @@ function TypographyRoboto() {
 
           <Grid item xs={12} sm={9}>
             <Typography variant="body2" color="text">
-              I will be the leader of a company that ends up being worth billions of dollars,
-              because I got the answers. I understand culture. I am the nucleus. I think that&apos;s
-              a responsibility that I have, to push possibilities, to show people, this is the level
-              that things could be at.
+              I will be the leader of a company that ends up being worth billions of dollars, because I got the answers.
+              I understand culture. I am the nucleus. I think that&apos;s a responsibility that I have, to push
+              possibilities, to show people, this is the level that things could be at.
             </Typography>
           </Grid>
         </Grid>
@@ -135,10 +132,9 @@ function TypographyRoboto() {
 
           <Grid item xs={12} sm={9} lineHeight={1}>
             <Typography variant="button" color="text">
-              I will be the leader of a company that ends up being worth billions of dollars,
-              because I got the answers. I understand culture. I am the nucleus. I think that&apos;s
-              a responsibility that I have, to push possibilities, to show people, this is the level
-              that things could be at.
+              I will be the leader of a company that ends up being worth billions of dollars, because I got the answers.
+              I understand culture. I am the nucleus. I think that&apos;s a responsibility that I have, to push
+              possibilities, to show people, this is the level that things could be at.
             </Typography>
           </Grid>
         </Grid>
@@ -151,10 +147,9 @@ function TypographyRoboto() {
 
           <Grid item xs={12} sm={9} lineHeight={1}>
             <Typography variant="caption" color="text">
-              I will be the leader of a company that ends up being worth billions of dollars,
-              because I got the answers. I understand culture. I am the nucleus. I think that&apos;s
-              a responsibility that I have, to push possibilities, to show people, this is the level
-              that things could be at.
+              I will be the leader of a company that ends up being worth billions of dollars, because I got the answers.
+              I understand culture. I am the nucleus. I think that&apos;s a responsibility that I have, to push
+              possibilities, to show people, this is the level that things could be at.
             </Typography>
           </Grid>
         </Grid>

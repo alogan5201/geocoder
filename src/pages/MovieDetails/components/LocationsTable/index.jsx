@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import useStore from "store/mapStore";
-import { convertLatLngToAddress, extractCityAndState } from "util/geocoder";
+import { convertLatLngToAddress } from "util/geocoder";
 import { formatMarkerData, truncateToSixDecimals } from "util/helpers";
 import { v4 as uuidv4 } from "uuid";
 export default function LocationsTable({ locations }) {

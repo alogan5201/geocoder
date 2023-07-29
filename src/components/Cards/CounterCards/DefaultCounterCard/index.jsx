@@ -14,14 +14,13 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props.
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // react-countup component
-import CountUp from "react-countup";
+import CountUp from 'react-countup';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
 
 function DefaultCounterCard({ color, count, title, description, ...rest }) {
   return (
@@ -45,23 +44,14 @@ function DefaultCounterCard({ color, count, title, description, ...rest }) {
 
 // Setting default props for the DefaultCounterCard
 DefaultCounterCard.defaultProps = {
-  color: "info",
-  description: "",
-  title: "",
+  color: 'info',
+  description: '',
+  title: '',
 };
 
 // Typechecking props for the DefaultCounterCard
 DefaultCounterCard.propTypes = {
-  color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "light",
-    "dark",
-  ]),
+  color: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'light', 'dark']),
   count: PropTypes.number.isRequired,
   title: PropTypes.string,
   description: PropTypes.string,

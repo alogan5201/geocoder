@@ -1,41 +1,24 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
+import colors from 'assets/theme/base/colors';
 
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// Material Kit 2 PRO React base styles
-import colors from "assets/theme/base/colors";
-
-// Material Kit 2 PRO React helper functions
-import pxToRem from "assets/theme/functions/pxToRem";
-import boxShadow from "assets/theme/functions/boxShadow";
+import pxToRem from 'assets/theme/functions/pxToRem';
+import boxShadow from 'assets/theme/functions/boxShadow';
 
 const { white } = colors;
 
 export default {
   styleOverrides: {
     root: {
-      background: "#9fc9ff",
-      fill: "#9fc9ff",
-      stroke: "#9fc9ff",
+      background: '#9fc9ff',
+      fill: '#9fc9ff',
+      stroke: '#9fc9ff',
       strokeWidth: pxToRem(10),
       width: pxToRem(13),
       height: pxToRem(13),
-      borderRadius: "50%",
+      borderRadius: '50%',
       zIndex: 99,
-      transition: "all 200ms linear",
+      transition: 'all 200ms linear',
 
-      "&.Mui-active": {
+      '&.Mui-active': {
         background: white.main,
         fill: white.main,
         stroke: white.main,
@@ -43,7 +26,7 @@ export default {
         boxShadow: boxShadow([0, 0], [0, 2], white.main, 1),
       },
 
-      "&.Mui-completed": {
+      '&.Mui-completed': {
         background: white.main,
         fill: white.main,
         stroke: white.main,

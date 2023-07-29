@@ -6,7 +6,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 // @mui icons
 import SearchIcon from "@mui/icons-material/Search";
 
-// Material Kit 2 PRO React components
+
 import Box from "components/Box";
 import Input from "components/Input";
 

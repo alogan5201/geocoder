@@ -1,49 +1,33 @@
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-// Material Kit 2 PRO React components
-import Grid from "@mui/material/Grid";
-import Typography from "components/Typography";
-import { useEffect, useRef, useState } from "react";
-import useStore from "store/mapStore";
-import { covertAddressToLatLng, extractCityAndState } from "util/geocoder";
-import { extractWords, formatMarkerData, test } from "util/helpers";
-import { useGlobalValue } from "util/mapState";
-import { v4 as uuidv4 } from "uuid";
-import LocationsTable from "../LocationsTable";
+import Box from 'components/Box';
+
+import Grid from '@mui/material/Grid';
+import Typography from 'components/Typography';
+import { useEffect } from 'react';
+import useStore from 'store/mapStore';
+import { covertAddressToLatLng, extractCityAndState } from 'util/geocoder';
+import { formatMarkerData, test } from 'util/helpers';
+import { useGlobalValue } from 'util/mapState';
+import { v4 as uuidv4 } from 'uuid';
+import LocationsTable from '../LocationsTable';
 function Form() {
   useEffect(() => {
     test();
   }, []);
 
-  const [zoomState, setZoomState] = useState();
   const [coords, setCoords] = useGlobalValue();
-  const latInputElm = useRef(null);
-  const lngInputElm = useRef(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
-  const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
-    const setErrorMessage = useStore((state) => state.setErrorMessage);
-  const resetMapData = useStore((state) => state.resetMapData);
+  const setErrorMessage = useStore((state) => state.setErrorMessage);
 
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
-  function handleZoomReset(e) {
-    e.preventDefault();
-    resetZoom(1);
-    setTimeout(() => {
-      resetZoom(0);
-    }, 2000);
-  }
-
   async function handleSubmit(e) {
     e.preventDefault();
     const inputOne = e.target[0].value;
     if (inputOne) {
-      let extracted = extractWords(inputOne);
-      let withPlus = extracted.join("+");
       const mapBoxData = await covertAddressToLatLng(inputOne);
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];
@@ -55,8 +39,8 @@ function Form() {
         const uid = uuidv4();
         const cityAndState = extractCityAndState(mapBoxData);
 
-         const city = cityAndState && cityAndState.city ? cityAndState.city : null;
-         const state = cityAndState && cityAndState.state ? cityAndState.state : null;
+        const city = cityAndState && cityAndState.city ? cityAndState.city : null;
+        const state = cityAndState && cityAndState.state ? cityAndState.state : null;
 
         const markerData = [
           {
@@ -73,11 +57,11 @@ function Form() {
         ];
         setUserLocationActive(false);
         setMapInputState(false);
-           const formattedMarkerData = formatMarkerData(markerData);
-           updateMarkerData(formattedMarkerData);
+        const formattedMarkerData = formatMarkerData(markerData);
+        updateMarkerData(formattedMarkerData);
       } else {
         setErrorMessage(true);
-  
+
         setTimeout(() => {
           setErrorMessage(false);
         }, 500);
@@ -86,7 +70,7 @@ function Form() {
   }
   useEffect(() => {
     if (userLocationActive === false) {
-      let leafletBarElement = document.querySelector(".leaflet-bar");
+      let leafletBarElement = document.querySelector('.leaflet-bar');
 
       if (leafletBarElement) {
         let classes = leafletBarElement.classList;
@@ -94,7 +78,7 @@ function Form() {
         let classesToRemove = [];
         // Loop through each class and if it contains 'locateActive', add it to classesToRemove
         for (let i = 0; i < classes.length; i++) {
-          if (classes[i].includes("locateActive")) {
+          if (classes[i].includes('locateActive')) {
             classesToRemove.push(classes[i]);
           }
         }
@@ -109,13 +93,12 @@ function Form() {
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
-       Locations
+          Locations
         </Typography>
-    
       </Box>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 4 }}>
         <Grid container>
-    <LocationsTable />
+          <LocationsTable />
         </Grid>
       </Box>
     </Box>

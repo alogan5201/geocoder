@@ -1,32 +1,15 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
-import Icon from "@mui/material/Icon";
+import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
+import Icon from '@mui/material/Icon';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
 
-// Material Kit 2 PRO React base styles
-import typography from "assets/theme/base/typography";
+import typography from 'assets/theme/base/typography';
 
 function SimpleFooter({ company, links, light }) {
   const { href, name } = company;
@@ -34,15 +17,9 @@ function SimpleFooter({ company, links, light }) {
 
   const renderLinks = () =>
     links.map((link, key) => (
-      <Box
-        key={link.name}
-        component="li"
-        pl={key === 0 ? 0 : 2}
-        pr={key === links.length - 1 ? 0 : 2}
-        lineHeight={1}
-      >
+      <Box key={link.name} component="li" pl={key === 0 ? 0 : 2} pr={key === links.length - 1 ? 0 : 2} lineHeight={1}>
         <Link href={link.href} target="_blank">
-          <Typography variant="button" fontWeight="regular" color={light ? "white" : "text"}>
+          <Typography variant="button" fontWeight="regular" color={light ? 'white' : 'text'}>
             {link.name}
           </Typography>
         </Link>
@@ -54,7 +31,7 @@ function SimpleFooter({ company, links, light }) {
       <Box
         width="100%"
         display="flex"
-        flexDirection={{ xs: "column", lg: "row" }}
+        flexDirection={{ xs: 'column', lg: 'row' }}
         justifyContent="space-between"
         alignItems="center"
       >
@@ -63,18 +40,18 @@ function SimpleFooter({ company, links, light }) {
           justifyContent="center"
           alignItems="center"
           flexWrap="wrap"
-          color={light ? "white" : "text"}
+          color={light ? 'white' : 'text'}
           fontSize={size.sm}
         >
           &copy; {new Date().getFullYear()}, made with
-          <Box fontSize={size.md} color={light ? "white" : "text"} mb={-0.5} mx={0.25}>
+          <Box fontSize={size.md} color={light ? 'white' : 'text'} mb={-0.5} mx={0.25}>
             <Icon color="inherit" fontSize="inherit">
               favorite
             </Icon>
           </Box>
           by
           <Link href={href} target="_blank">
-            <Typography variant="button" fontWeight="medium" color={light ? "white" : "dark"}>
+            <Typography variant="button" fontWeight="medium" color={light ? 'white' : 'dark'}>
               &nbsp;{name}&nbsp;
             </Typography>
           </Link>
@@ -83,16 +60,16 @@ function SimpleFooter({ company, links, light }) {
         <Box
           component="ul"
           sx={({ breakpoints }) => ({
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "center",
-            listStyle: "none",
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'center',
+            listStyle: 'none',
             mt: 3,
             mb: 0,
             p: 0,
 
-            [breakpoints.up("lg")]: {
+            [breakpoints.up('lg')]: {
               mt: 0,
             },
           })}
@@ -106,12 +83,12 @@ function SimpleFooter({ company, links, light }) {
 
 // Setting default values for the props of SimpleFooter
 SimpleFooter.defaultProps = {
-  company: { href: "https://www.creative-tim.com/", name: "Creative Tim" },
+  company: { href: 'https://www.creative-tim.com/', name: 'Creative Tim' },
   links: [
-    { href: "https://www.creative-tim.com/", name: "Creative Tim" },
-    { href: "https://www.creative-tim.com/presentation", name: "About Us" },
-    { href: "https://www.creative-tim.com/blog", name: "Blog" },
-    { href: "https://www.creative-tim.com/license", name: "License" },
+    { href: 'https://www.creative-tim.com/', name: 'Creative Tim' },
+    { href: 'https://www.creative-tim.com/presentation', name: 'About Us' },
+    { href: 'https://www.creative-tim.com/blog', name: 'Blog' },
+    { href: 'https://www.creative-tim.com/license', name: 'License' },
   ],
   light: false,
 };

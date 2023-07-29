@@ -273,3 +273,6 @@ git config --global user.email "drewthomaslogan5201@gmail.com" && git config --g
   - The tools drop down still has a lot of white space
   - For some reason there is an empty dropdown four route planner?
 - [] OPTIONAL: but the offset for the scroll to map on mobile feature could be adjusted for better UX
+
+Eslint cleanup pages
+MovieDetails

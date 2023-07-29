@@ -1,23 +1,8 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // @mui material components
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 
-const MKAlertRoot =  styled(Box)(({ theme, ownerState }) => {
+const MKAlertRoot = styled(Box)(({ theme, ownerState }) => {
   const { palette, typography, borders, functions } = theme;
   const { color } = ownerState;
 
@@ -32,13 +17,13 @@ const MKAlertRoot =  styled(Box)(({ theme, ownerState }) => {
     : linearGradient(gradients.info.main, gradients.info.state);
 
   return {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     minHeight: pxToRem(60),
     backgroundImage: backgroundImageValue,
     color: white.main,
-    position: "relative",
+    position: 'relative',
     padding: pxToRem(16),
     marginBottom: pxToRem(16),
     borderRadius: borderRadius.md,

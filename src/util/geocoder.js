@@ -1,6 +1,5 @@
 import { endAt, get, limitToFirst, orderByKey, query, ref, startAt } from 'firebase/database';
 import { httpsCallable } from 'firebase/functions';
-import { v4 as uuidv4 } from 'uuid';
 import { database, functions } from './firebase';
 import { isNumber } from './helpers';
 const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.env;
@@ -8,9 +7,6 @@ const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.
 export const covertAddressToLatLng = async (address) => {
   let location = encodeURIComponent(address);
 
-  // https://api.mapbox.com/geocoding/v5/mapbox.places/austin%20texas.json?proximity=ip&access_token=pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Yao_mmdgrgjPA
-  // * https://api.mapbox.com/geocoding/v5/mapbox.places/aus.json?proximity=ip&access_token=pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQybTFoZzE0aDQyeXM1aGNmYnR1MnoifQ.4kRWNfEH_Yao_mmdgrgjPA
-  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?proximity=ip&access_token=${VITE_ACCESS_TOKEN}`;
 
   const response = await fetch(
     `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?proximity=ip&access_token=${VITE_ACCESS_TOKEN}`,
@@ -249,19 +245,12 @@ export async function getAddress(lat, lon) {
       return result;
     })
     .catch(function (error) {
+      console.log("🚀 ~ getAddress ~ error:", error)
       // Getting the Error details.
-      let code = error.code;
-      let message = error.message;
-      let details = error.details;
-      console.error('There was an error when calling the Cloud Function', error);
-      window.alert(
-        'There was an error when calling the Cloud Function:\n\nError Code: ' +
-          code +
-          '\nError Message:' +
-          message +
-          '\nError Details:' +
-          details
-      );
+      // let code = error.code;
+      // let message = error.message;
+      // let details = error.details;
+      
     });
 }
 export async function getPlacePhoto(data) {
@@ -271,25 +260,17 @@ export async function getPlacePhoto(data) {
       return result;
     })
     .catch(function (error) {
+      console.log("🚀 ~ getPlacePhoto ~ error:", error)
       // Getting the Error details.
-      let code = error.code;
-      let message = error.message;
-      let details = error.details;
-      console.error('There was an error when calling the Cloud Function', error);
-      window.alert(
-        'There was an error when calling the Cloud Function:\n\nError Code: ' +
-          code +
-          '\nError Message:' +
-          message +
-          '\nError Details:' +
-          details
-      );
+      // let code = error.code;
+      // let message = error.message;
+      // let details = error.details;
+
     });
 }
 
 export async function getCitiesStartWith(letter) {
   // Ensure first character is uppercase
-  const capitalizedLetter = letter.charAt(0).toUpperCase() + letter.slice(1);
   const formattedInput = letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase();
 
   const citiesRef = ref(database, 'cities');

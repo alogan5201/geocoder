@@ -1,15 +1,15 @@
-import Grid from "@mui/material/Grid";
-import Input from "components/Input";
-import { useEffect, useRef } from "react";
+/* eslint-disable jsx-a11y/no-autofocus */
+import Grid from '@mui/material/Grid';
+import Input from 'components/Input';
+import { useEffect, useRef } from 'react';
 // @mui material components
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
-import useStore from "store/mapStore";
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import useStore from 'store/mapStore';
 
 // @mui icons
-import SearchIcon from "@mui/icons-material/Search";
+import SearchIcon from '@mui/icons-material/Search';
 
-// Material Kit 2 PRO React components
 function AddressInput(props) {
   // Create a ref to the input element
   const inputRef = useRef(null);
@@ -19,17 +19,16 @@ function AddressInput(props) {
     // Use the ref to focus the input element
     inputRef.current.focus();
   };
-  const clearMapInputs = useStore((state) => state.clearMapInputs);
   const setMapInputState = useStore((state) => state.setMapInputState);
   function handleChange(e) {
     let val = e.target.value;
-  focusInput();
+    focusInput();
     if (val.length === 0 && props.readOnly === false) {
       setMapInputState(true);
     }
   }
   useEffect(() => {
-    focusInput()
+    focusInput();
   }, [props]);
   return (
     <Grid item xs={12} pr={1} mb={3}>

@@ -1,28 +1,12 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Stack from "@mui/material/Stack";
+import Stack from '@mui/material/Stack';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Avatar from "components/Avatar";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Avatar from 'components/Avatar';
+import Typography from 'components/Typography';
 
 function TransparentTeamCard({ image, name, position, description, socials }) {
   return (
@@ -35,7 +19,7 @@ function TransparentTeamCard({ image, name, position, description, socials }) {
           alt={name}
           sx={{
             borderRadius: ({ borders: { borderRadius } }) => borderRadius.xl,
-            position: "relative",
+            position: 'relative',
             zIndex: 2,
           }}
         />
@@ -50,9 +34,9 @@ function TransparentTeamCard({ image, name, position, description, socials }) {
           zIndex={1}
           sx={{
             backgroundImage: `url(${image})`,
-            transform: "scale(0.87)",
-            filter: "blur(12px)",
-            backgroundSize: "cover",
+            transform: 'scale(0.87)',
+            filter: 'blur(12px)',
+            backgroundSize: 'cover',
           }}
         />
       </Box>
@@ -74,8 +58,8 @@ function TransparentTeamCard({ image, name, position, description, socials }) {
 
 // Setting default props for the TransparentTeamCard
 TransparentTeamCard.defaultProps = {
-  description: "",
-  socials: "",
+  description: '',
+  socials: '',
 };
 
 // Typechecking props for the TransparentTeamCard

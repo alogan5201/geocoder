@@ -1,23 +1,8 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // @mui material components
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 
- const MKBoxRoot = styled(Box)(({ theme, ownerState }) => {
+const MKBoxRoot = styled(Box)(({ theme, ownerState }) => {
   const { palette, functions, borders, boxShadows } = theme;
   const { variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow } = ownerState;
 
@@ -27,59 +12,50 @@ import { styled } from "@mui/material/styles";
   const { colored } = boxShadows;
 
   const greyColors = {
-    "grey-100": grey[100],
-    "grey-200": grey[200],
-    "grey-300": grey[300],
-    "grey-400": grey[400],
-    "grey-500": grey[500],
-    "grey-600": grey[600],
-    "grey-700": grey[700],
-    "grey-800": grey[800],
-    "grey-900": grey[900],
+    'grey-100': grey[100],
+    'grey-200': grey[200],
+    'grey-300': grey[300],
+    'grey-400': grey[400],
+    'grey-500': grey[500],
+    'grey-600': grey[600],
+    'grey-700': grey[700],
+    'grey-800': grey[800],
+    'grey-900': grey[900],
   };
 
-  const validGradients = [
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "dark",
-    "light",
-  ];
+  const validGradients = ['primary', 'secondary', 'info', 'success', 'warning', 'error', 'dark', 'light'];
 
   const validColors = [
-    "transparent",
-    "white",
-    "black",
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "light",
-    "dark",
-    "text",
-    "grey-100",
-    "grey-200",
-    "grey-300",
-    "grey-400",
-    "grey-500",
-    "grey-600",
-    "grey-700",
-    "grey-800",
-    "grey-900",
+    'transparent',
+    'white',
+    'black',
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'light',
+    'dark',
+    'text',
+    'grey-100',
+    'grey-200',
+    'grey-300',
+    'grey-400',
+    'grey-500',
+    'grey-600',
+    'grey-700',
+    'grey-800',
+    'grey-900',
   ];
 
-  const validBorderRadius = ["xs", "sm", "md", "lg", "xl", "xxl", "section"];
-  const validBoxShadows = ["xs", "sm", "md", "lg", "xl", "xxl", "inset"];
+  const validBorderRadius = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'section'];
+  const validBoxShadows = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'inset'];
 
   // background value
   let backgroundValue = bgColor;
 
-  if (variant === "gradient") {
+  if (variant === 'gradient') {
     backgroundValue = validGradients.find((el) => el === bgColor)
       ? linearGradient(gradients[bgColor].main, gradients[bgColor].state)
       : white.main;
@@ -104,12 +80,12 @@ import { styled } from "@mui/material/styles";
   }
 
   // boxShadow value
-  let boxShadowValue = "none";
+  let boxShadowValue = 'none';
 
   if (validBoxShadows.find((el) => el === shadow)) {
     boxShadowValue = boxShadows[shadow];
   } else if (coloredShadow) {
-    boxShadowValue = colored[coloredShadow] ? colored[coloredShadow] : "none";
+    boxShadowValue = colored[coloredShadow] ? colored[coloredShadow] : 'none';
   }
 
   return {
@@ -121,4 +97,4 @@ import { styled } from "@mui/material/styles";
   };
 });
 
-export default MKBoxRoot
+export default MKBoxRoot;

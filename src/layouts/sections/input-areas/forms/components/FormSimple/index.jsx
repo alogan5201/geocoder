@@ -1,30 +1,14 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-import { useState } from "react";
+import { useState } from 'react';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Switch from "@mui/material/Switch";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Switch from '@mui/material/Switch';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Input from "components/Input";
-import Button from "components/Button";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Input from 'components/Input';
+import Button from 'components/Button';
+import Typography from 'components/Typography';
 
 function FormSimple() {
   const [checked, setChecked] = useState(true);
@@ -39,7 +23,7 @@ function FormSimple() {
             Contact Us
           </Typography>
         </Grid>
-        <Grid container item xs={12} lg={7} sx={{ mx: "auto" }}>
+        <Grid container item xs={12} lg={7} sx={{ mx: 'auto' }}>
           <Box width="100%" component="form" method="post" autoComplete="off">
             <Box p={3}>
               <Grid container spacing={3}>
@@ -62,18 +46,12 @@ function FormSimple() {
                     fontWeight="regular"
                     color="text"
                     ml={-1}
-                    sx={{ cursor: "pointer", userSelect: "none" }}
+                    sx={{ cursor: 'pointer', userSelect: 'none' }}
                     onClick={handleChecked}
                   >
                     &nbsp;&nbsp;I agree the&nbsp;
                   </Typography>
-                  <Typography
-                    component="a"
-                    href="#"
-                    variant="button"
-                    fontWeight="regular"
-                    color="dark"
-                  >
+                  <Typography component="a" href="#" variant="button" fontWeight="regular" color="dark">
                     Terms and Conditions
                   </Typography>
                 </Grid>

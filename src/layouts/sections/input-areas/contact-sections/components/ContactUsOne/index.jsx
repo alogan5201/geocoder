@@ -1,51 +1,26 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Input from "components/Input";
-import Button from "components/Button";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Input from 'components/Input';
+import Button from 'components/Button';
+import Typography from 'components/Typography';
 
 function ContactUsOne() {
   return (
     <Box component="section" py={12}>
       <Container>
-        <Grid
-          container
-          item
-          justifyContent="center"
-          xs={10}
-          lg={7}
-          mx="auto"
-          mb={{ xs: 0, md: 6 }}
-          textAlign="center"
-        >
+        <Grid container item justifyContent="center" xs={10} lg={7} mx="auto" mb={{ xs: 0, md: 6 }} textAlign="center">
           <Typography variant="h3" mb={1}>
             Contact Us
           </Typography>
           <Typography variant="body2" color="text">
-            For further questions, including partnership opportunities, please email
-            hello@creative-tim.com or contact using our contact form.
+            For further questions, including partnership opportunities, please email hello@creative-tim.com or contact
+            using our contact form.
           </Typography>
         </Grid>
-        <Grid container item xs={12} lg={8} sx={{ mx: "auto" }}>
+        <Grid container item xs={12} lg={8} sx={{ mx: 'auto' }}>
           <Box width="100%" component="form" method="post" autoComplete="off">
             <Box p={3}>
               <Grid container spacing={3}>

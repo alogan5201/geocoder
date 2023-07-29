@@ -14,27 +14,20 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Card from "@mui/material/Card";
+import Card from '@mui/material/Card';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
-import Avatar from "components/Avatar";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
+import Avatar from 'components/Avatar';
 
 function SimpleReviewCard({ image, name, username, review }) {
   return (
     <Card>
       <Box display="grid" justifyContent="center" position="relative" mt={-7}>
-        <Avatar
-          src={image}
-          alt={name}
-          size="xxl"
-          shadow="lg"
-          sx={{ position: "relative", zIndex: 2 }}
-        />
+        <Avatar src={image} alt={name} size="xxl" shadow="lg" sx={{ position: 'relative', zIndex: 2 }} />
         <Box
           width="6.875rem"
           height="6.875rem"
@@ -45,9 +38,9 @@ function SimpleReviewCard({ image, name, username, review }) {
           zIndex={1}
           sx={{
             backgroundImage: `url(${image})`,
-            backgroundSize: "cover",
-            transform: "translateX(-50%) scale(0.87)",
-            filter: "blur(12px)",
+            backgroundSize: 'cover',
+            transform: 'translateX(-50%) scale(0.87)',
+            filter: 'blur(12px)',
           }}
         />
       </Box>
@@ -92,7 +85,7 @@ function SimpleReviewCard({ image, name, username, review }) {
 
 // Setting default values for the props of SimpleReviewCard
 SimpleReviewCard.defaultProps = {
-  username: "",
+  username: '',
 };
 
 // Typechecking props for the SimpleReviewCard

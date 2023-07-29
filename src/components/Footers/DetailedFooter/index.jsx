@@ -14,19 +14,18 @@ Coded by www.creative-tim.com
 */
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // prop-types is a library for typechecking of props.
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Divider from "@mui/material/Divider";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
 
 function DetailedFooter({ content }) {
   const { brand, socials, menus, copyright } = content;
@@ -53,7 +52,7 @@ function DetailedFooter({ content }) {
                   variant="body2"
                   color="secondary"
                   mr={key === socials.length - 1 ? 0 : 3}
-                  sx={{ fontSize: "1.125rem" }}
+                  sx={{ fontSize: '1.125rem' }}
                 >
                   {icon}
                 </Typography>
@@ -61,17 +60,11 @@ function DetailedFooter({ content }) {
             </Box>
           </Grid>
           {menus.map(({ name: title, items }, key) => (
-            <Grid key={title} item xs={6} md={2} ml={key === 0 ? { xs: 0, lg: "auro" } : 0}>
-              <Typography
-                component="h6"
-                variant="button"
-                fontWeight="bold"
-                textTransform="capitalize"
-                mb={1}
-              >
+            <Grid key={title} item xs={6} md={2} ml={key === 0 ? { xs: 0, lg: 'auro' } : 0}>
+              <Typography component="h6" variant="button" fontWeight="bold" textTransform="capitalize" mb={1}>
                 {title}
               </Typography>
-              <Box component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
+              <Box component="ul" p={0} m={0} sx={{ listStyle: 'none' }}>
                 {items.map(({ name, route, href }) => (
                   <Box key={name} component="li" p={0} m={0} lineHeight={1.25}>
                     {href ? (
@@ -106,7 +99,7 @@ function DetailedFooter({ content }) {
               </Box>
             </Grid>
           ))}
-          <Grid item xs={12} pr={3} sx={{ textAlign: "center", mb: 3 }}>
+          <Grid item xs={12} pr={3} sx={{ textAlign: 'center', mb: 3 }}>
             <Divider />
             {copyright}
           </Grid>

@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 
-// Material Kit 2 PRO React components
+
 import Box from "components/Box";
 import Badge from "components/Badge";
 

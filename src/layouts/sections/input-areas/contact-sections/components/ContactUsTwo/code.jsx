@@ -1,12 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
-const bgImage =
-  "`${linearGradient(rgba(gradients.info.main, 0.8), rgba(gradients.info.state, 0.8))}, url(${bgImage})`";
+const bgImage = '`${linearGradient(rgba(gradients.info.main, 0.8), rgba(gradients.info.state, 0.8))}, url(${bgImage})`';
 
 const contactUsTwoCode = `// @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
-// Material Kit 2 PRO React components
+
 import Box from "components/Box";
 import Input from "components/Input";
 import Button from "components/Button";

@@ -1,5 +1,4 @@
 
-import { collection, getDocs, query } from "firebase/firestore";
 import { Suspense, useEffect } from "react";
 import useStore from "store/mapStore";
 // react-router components
@@ -9,9 +8,7 @@ import { useEffectOnce } from "react-use";
 // @mui material components
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import { db } from "util/firebase";
 
-// Material Kit 2 PRO React themes
 import theme from "assets/theme";
 import Loading from "components/Loading";
 import NotFoundPage from "pages/404";
@@ -19,10 +16,9 @@ import HomePage from "pages/HomePage";
 import MovieDetailPage from "pages/MovieDetails";
 import Movies from "pages/Movies";
 import "src/App.css";
-// Material Kit 2 PRO React routes
+import 'leaflet/dist/leaflet.css';
 import routes from "routes";
 import WebFont from 'webfontloader';
-import 'leaflet/dist/leaflet.css';
 export default function App() {
   const { pathname } = useLocation();
 

@@ -14,46 +14,44 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import MuiLink from "@mui/material/Link";
-import PropTypes from "prop-types";
+import MuiLink from '@mui/material/Link';
+import PropTypes from 'prop-types';
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // @mui material components
-import Icon from "@mui/material/Icon";
+import Icon from '@mui/material/Icon';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
 
 function FilledInfoCard({ variant, color, icon, title, description, action }) {
   const buttonStyles = {
-    width: "max-content",
-    display: "flex",
-    alignItems: "center",
+    width: 'max-content',
+    display: 'flex',
+    alignItems: 'center',
 
-    "& .material-icons-round": {
-      fontSize: "1.125rem",
+    '& .material-icons-round': {
+      fontSize: '1.125rem',
       transform: `translateX(3px)`,
-      transition: "transform 0.2s cubic-bezier(0.34, 1.61, 0.7, 1.3)",
+      transition: 'transform 0.2s cubic-bezier(0.34, 1.61, 0.7, 1.3)',
     },
 
-    "&:hover .material-icons-round, &:focus .material-icons-round": {
+    '&:hover .material-icons-round, &:focus .material-icons-round': {
       transform: `translateX(6px)`,
     },
   };
 
   let iconColor = color;
 
-  if (variant === "gradient" && color !== "light") {
-    iconColor = "white";
-  } else if (variant === "gradient" && color === "light") {
-    iconColor = "dark";
-  } else if (variant === "white" && color=== "dark"){
-    iconColor = "dark"
+  if (variant === 'gradient' && color !== 'light') {
+    iconColor = 'white';
+  } else if (variant === 'gradient' && color === 'light') {
+    iconColor = 'dark';
+  } else if (variant === 'white' && color === 'dark') {
+    iconColor = 'dark';
   }
-
 
   return (
     <Box
@@ -118,31 +116,22 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
 
 // Setting default props for the FilledInfoCard
 FilledInfoCard.defaultProps = {
-  variant: "contained",
-  color: "dark",
+  variant: 'contained',
+  color: 'dark',
   action: false,
 };
 
 // Typechecking props for the FilledInfoCard
 FilledInfoCard.propTypes = {
-  variant: PropTypes.oneOf(["contained", "gradient"]),
-  color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "light",
-    "dark",
-  ]),
+  variant: PropTypes.oneOf(['contained', 'gradient']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'light', 'dark']),
 
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   action: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.shape({
-      type: PropTypes.oneOf(["external", "internal"]).isRequired,
+      type: PropTypes.oneOf(['external', 'internal']).isRequired,
       route: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
     }),

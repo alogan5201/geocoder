@@ -1,46 +1,20 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // @mui material components
-import Collapse from "@mui/material/Collapse";
+import Collapse from '@mui/material/Collapse';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
 
-function DefaultNavbarDropdown({
-  name,
-  icon,
-  children,
-  collapseStatus,
-  light,
-  href,
-  route,
-  collapse,
-  ...rest
-}) {
+function DefaultNavbarDropdown({ name, icon, children, collapseStatus, light, href, route, collapse, ...rest }) {
   const linkComponent = {
-    component: "a",
+    component: 'a',
     href,
-    target: "_blank",
-    rel: "noreferrer",
+    target: '_blank',
+    rel: 'noreferrer',
   };
 
   const routeComponent = {
@@ -85,7 +59,6 @@ function DefaultNavbarDropdown({
             <ExpandMoreIcon sx={{ fontWeight: 'normal', verticalAlign: 'middle' }} />
           </Typography>
         )}
-      
       </Box>
       {children && collapse && (
         <Collapse in={Boolean(collapseStatus)} timeout={400} unmountOnExit>
@@ -101,8 +74,8 @@ DefaultNavbarDropdown.defaultProps = {
   children: false,
   collapseStatus: false,
   light: false,
-  href: "",
-  route: "",
+  href: '',
+  route: '',
 };
 
 // Typechecking props for the DefaultNavbarDropdown

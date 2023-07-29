@@ -1,23 +1,7 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // @mui material components
-import { styled } from "@mui/material/styles";
+import { styled } from '@mui/material/styles';
 
-// Material Kit 2 PRO React components
-import Button from "components/Button";
+import Button from 'components/Button';
 
 export default styled(Button)(({ theme, ownerState }) => {
   const { borders, functions, typography, palette } = theme;
@@ -31,16 +15,16 @@ export default styled(Button)(({ theme, ownerState }) => {
   // width, height, minWidth and minHeight values
   let sizeValue = pxToRem(36);
 
-  if (paginationSize === "small") {
+  if (paginationSize === 'small') {
     sizeValue = pxToRem(30);
-  } else if (paginationSize === "large") {
+  } else if (paginationSize === 'large') {
     sizeValue = pxToRem(46);
   }
 
   return {
     borderColor,
     margin: `0 ${pxToRem(2)}`,
-    pointerEvents: active ? "none" : "auto",
+    pointerEvents: active ? 'none' : 'auto',
     fontWeight: fontWeightRegular,
     fontSize: fontSize.sm,
     width: sizeValue,
@@ -48,13 +32,13 @@ export default styled(Button)(({ theme, ownerState }) => {
     height: sizeValue,
     minHeight: sizeValue,
 
-    "&:hover, &:focus, &:active": {
-      transform: "none",
-      boxShadow: (variant !== "gradient" || variant !== "contained") && "none !important",
-      opacity: "1 !important",
+    '&:hover, &:focus, &:active': {
+      transform: 'none',
+      boxShadow: (variant !== 'gradient' || variant !== 'contained') && 'none !important',
+      opacity: '1 !important',
     },
 
-    "&:hover": {
+    '&:hover': {
       backgroundColor: light.main,
       borderColor,
     },

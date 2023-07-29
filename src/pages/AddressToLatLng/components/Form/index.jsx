@@ -1,6 +1,5 @@
-// Material Kit 2 PRO React components
 import Box from 'components/Box';
-// Material Kit 2 PRO React components
+
 import Grid from '@mui/material/Grid';
 import AddressInput from 'components/AddressInput';
 import Button from 'components/Button';
@@ -17,7 +16,7 @@ import { useWindowSize } from 'react-use';
 
 function Form() {
   const formRef = useRef();
-  const { width, height } = useWindowSize();
+  const { width } = useWindowSize();
 
   const [coords, setCoords] = useGlobalValue();
   const updateMarkerData = useStore((state) => state.setMarkerData);
@@ -91,7 +90,6 @@ function Form() {
           target: target,
           preventDefault: () => {},
         };
-        const inputOne = e.target[0].value;
 
         handleSubmit(e);
       } else {
@@ -101,7 +99,6 @@ function Form() {
           target: target,
           preventDefault: () => {},
         };
-        const inputOne = e.target[0].value;
 
         handleSubmit(e);
       }

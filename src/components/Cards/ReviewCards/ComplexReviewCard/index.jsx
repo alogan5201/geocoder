@@ -14,32 +14,24 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Avatar from "components/Avatar";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Avatar from 'components/Avatar';
+import Typography from 'components/Typography';
 
 function ComplexReviewCard({ image, color, title, review, author }) {
   return (
     <Grid container alignItems="center" spacing={3}>
-      <Grid item xs={12} md={5} sx={{ ml: { xs: 0, lg: "auto" } }}>
+      <Grid item xs={12} md={5} sx={{ ml: { xs: 0, lg: 'auto' } }}>
         <Box p={{ xs: 0, lg: 6 }}>
-          <Box
-            component="img"
-            src={image}
-            alt={title}
-            width="100%"
-            borderRadius="md"
-            shadow="md"
-          />
+          <Box component="img" src={image} alt={title} width="100%" borderRadius="md" shadow="md" />
         </Box>
       </Grid>
-      <Grid item xs={12} md={7} lg={5} sx={{ mr: { xs: 0, lg: "auto" } }}>
+      <Grid item xs={12} md={7} lg={5} sx={{ mr: { xs: 0, lg: 'auto' } }}>
         <Typography variant="button" color="text" fontWeight="bold" mb={0.5}>
           - Customer Story
         </Typography>
@@ -50,14 +42,7 @@ function ComplexReviewCard({ image, color, title, review, author }) {
           <em>&quot;{review}&quot;</em>
         </Typography>
         <Box display="flex" alignItems="center">
-          <Avatar
-            src={author.logo}
-            alt="Logo"
-            size="md"
-            shadow="md"
-            bgColor={color}
-            sx={{ p: 0.5 }}
-          />
+          <Avatar src={author.logo} alt="Logo" size="md" shadow="md" bgColor={color} sx={{ p: 0.5 }} />
           <Box pl={1.5}>
             <Typography display="block" variant="button" color={color} fontWeight="bold">
               {author.name}
@@ -94,22 +79,13 @@ function ComplexReviewCard({ image, color, title, review, author }) {
 
 // Setting default props for the ComplexReviewCard
 ComplexReviewCard.defaultProps = {
-  color: "dark",
+  color: 'dark',
 };
 
 // Typechecking props for the ComplexReviewCard
 ComplexReviewCard.propTypes = {
   image: PropTypes.string.isRequired,
-  color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "error",
-    "warning",
-    "dark",
-    "light",
-  ]),
+  color: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'error', 'warning', 'dark', 'light']),
   title: PropTypes.string.isRequired,
   review: PropTypes.string.isRequired,
   author: PropTypes.shape({

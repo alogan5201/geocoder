@@ -13,18 +13,17 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+import { useState } from 'react';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Icon from "@mui/material/Icon";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Icon from '@mui/material/Icon';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Button from "components/Button";
+import Box from 'components/Box';
+import Button from 'components/Button';
 
 function DropdownAndDropup() {
   const [dropdown, setDropdown] = useState(null);
@@ -39,17 +38,17 @@ function DropdownAndDropup() {
   // Styles
   const iconStyles = {
     ml: 1,
-    fontWeight: "bold",
-    transition: "transform 200ms ease-in-out",
+    fontWeight: 'bold',
+    transition: 'transform 200ms ease-in-out',
   };
 
   const dropdownIconStyles = {
-    transform: dropdown ? "rotate(180deg)" : "rotate(0)",
+    transform: dropdown ? 'rotate(180deg)' : 'rotate(0)',
     ...iconStyles,
   };
 
   const dropupIconStyles = {
-    transform: dropup ? "rotate(180deg)" : "rotate(0)",
+    transform: dropup ? 'rotate(180deg)' : 'rotate(0)',
     ...iconStyles,
   };
 
@@ -75,12 +74,12 @@ function DropdownAndDropup() {
               anchorEl={dropup}
               open={Boolean(dropup)}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "left",
+                vertical: 'top',
+                horizontal: 'left',
               }}
               transformOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               onClose={closeDropup}
             >

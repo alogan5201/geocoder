@@ -1,34 +1,17 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
-import Stack from "@mui/material/Stack";
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
 
 // @mui icons
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
 
-function CenteredFooter({  links,  light }) {
-
+function CenteredFooter({ links, light }) {
   const year = new Date().getFullYear();
 
   const renderLinks = links.map((link) => (
@@ -37,33 +20,24 @@ function CenteredFooter({  links,  light }) {
       component={Link}
       href={link.href}
       variant="body2"
-      color={light ? "white" : "secondary"}
+      color={light ? 'white' : 'secondary'}
       fontWeight="regular"
     >
       {link.name}
     </Typography>
   ));
 
-
   return (
-    <Box component="footer" py={6} sx={{  position: "absolute",
- bottom: 0,
- width: "100%" }}>
+    <Box component="footer" py={6} sx={{ position: 'absolute', bottom: 0, width: '100%' }}>
       <Grid container justifyContent="center">
         <Grid item xs={10} lg={8}>
-          <Stack
-            direction="row"
-            flexWrap="wrap"
-            justifyContent="center"
-            spacing={{ xs: 2, lg: 3, xl: 6 }}
-            mb={3}
-          >
+          <Stack direction="row" flexWrap="wrap" justifyContent="center" spacing={{ xs: 2, lg: 3, xl: 6 }} mb={3}>
             {renderLinks}
           </Stack>
         </Grid>
 
-        <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
-          <Typography variant="body2" color={light ? "white" : "secondary"}>
+        <Grid item xs={12} lg={8} sx={{ textAlign: 'center' }}>
+          <Typography variant="body2" color={light ? 'white' : 'secondary'}>
             Copyright &copy; {year} Geotools
           </Typography>
         </Grid>
@@ -74,14 +48,14 @@ function CenteredFooter({  links,  light }) {
 
 // Setting default values for the props of CenteredFooter
 CenteredFooter.defaultProps = {
-  company: { href: "https://www.creative-tim.com/", name: "Creative Tim" },
+  company: { href: 'https://www.creative-tim.com/', name: 'Creative Tim' },
   links: [
-    { href: "/", name: "Geotools" },
-    { href: "/address-to-lat-lng", name: "Address to Latitude & Longitude" },
-    { href: "/lat-lng-to-address", name: "Latitude & Longtidue to Address" },
-    { href: "/route-planner", name: "Route Planner" },
-    { href: "/bookmarks", name: "Bookmarks" },
-    { href: "/movies/1", name: "Movies" },
+    { href: '/', name: 'Geotools' },
+    { href: '/address-to-lat-lng', name: 'Address to Latitude & Longitude' },
+    { href: '/lat-lng-to-address', name: 'Latitude & Longtidue to Address' },
+    { href: '/route-planner', name: 'Route Planner' },
+    { href: '/bookmarks', name: 'Bookmarks' },
+    { href: '/movies/1', name: 'Movies' },
   ],
   light: false,
 };

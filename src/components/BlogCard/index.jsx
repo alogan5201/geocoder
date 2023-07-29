@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // react-router components
 import PropTypes from 'prop-types';
 
@@ -27,52 +12,54 @@ import Typography from 'components/Typography';
 import Avatar from 'components/Avatar';
 
 function BlogCard({ image, category, title, description, author, raised, action, maxWidth, maxHeight, onLoad }) {
-  const handleLoad = () => { 
-  onLoad(false);
-  }
+  const handleLoad = () => {
+    onLoad(false);
+  };
   const imageTemplate = (
     <>
       <img
         src={image}
-         onLoad={onLoad}
+        onLoad={onLoad}
         alt={title}
         style={{
-          borderRadius: "lg",
-          shadow: "none",
-          width: "100%",
-          color: "#23262d",
+          borderRadius: 'lg',
+          shadow: 'none',
+          width: '100%',
+          color: '#23262d',
           maxWidth: maxWidth,
           maxHeight: maxHeight,
-          position: "relative",
-          zIndex: "1",
-       
+          position: 'relative',
+          zIndex: '1',
+
           boxShadow:
-            "0rem 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0rem 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06)",
-        }}></img>
+            '0rem 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0rem 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06)',
+        }}
+      ></img>
       <div
         style={{
-          borderRadius: "lg",
-          shadow: "none",
-          width: "100%",
-          height: "100%",
+          borderRadius: 'lg',
+          shadow: 'none',
+          width: '100%',
+          height: '100%',
           maxWidth: maxWidth,
           maxHeight: maxHeight,
-          position: "absolute",
-          left: "0",
-          top: "0",
-          background: "transparent",
-          color: "#23262d",
-         
-          filter:"blur(12px)",
+          position: 'absolute',
+          left: '0',
+          top: '0',
+          background: 'transparent',
+          color: '#23262d',
+
+          filter: 'blur(12px)',
           boxShadow:
-            "0rem 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0rem 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06)",
-        }}></div>
+            '0rem 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0rem 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06)',
+        }}
+      ></div>
     </>
   );
 
   return (
     <Card>
-      <Box position="relative" borderRadius="lg" mx={2} mt={raised ? -3 : 2} >
+      <Box position="relative" borderRadius="lg" mx={2} mt={raised ? -3 : 2}>
         {action.type === 'internal' ? (
           <Link to={action.route}>{imageTemplate}</Link>
         ) : (

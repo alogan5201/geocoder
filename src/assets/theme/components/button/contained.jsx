@@ -1,24 +1,7 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
+import colors from 'assets/theme/base/colors';
+import typography from 'assets/theme/base/typography';
 
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// Material Kit 2 PRO React Base Styles
-import colors from "assets/theme/base/colors";
-import typography from "assets/theme/base/typography";
-
-// Material Kit 2 PRO React Helper Functions
-import pxToRem from "assets/theme/functions/pxToRem";
+import pxToRem from 'assets/theme/functions/pxToRem';
 
 const { white, text, info, secondary } = colors;
 const { size } = typography;
@@ -30,15 +13,15 @@ export default {
     color: text.main,
     padding: `${pxToRem(10)} ${pxToRem(24)}`,
 
-    "&:hover": {
+    '&:hover': {
       backgroundColor: white.main,
     },
 
-    "&:active, &:active:focus, &:active:hover": {
+    '&:active, &:active:focus, &:active:hover': {
       opacity: 0.85,
     },
 
-    "& .material-icon, .material-icons-round, svg": {
+    '& .material-icon, .material-icons-round, svg': {
       fontSize: `${pxToRem(16)} !important`,
     },
   },
@@ -48,7 +31,7 @@ export default {
     padding: `${pxToRem(6)} ${pxToRem(16)}`,
     fontSize: size.xs,
 
-    "& .material-icon, .material-icons-round, svg": {
+    '& .material-icon, .material-icons-round, svg': {
       fontSize: `${pxToRem(12)} !important`,
     },
   },
@@ -58,7 +41,7 @@ export default {
     padding: `${pxToRem(12)} ${pxToRem(28)}`,
     fontSize: size.sm,
 
-    "& .material-icon, .material-icons-round, svg": {
+    '& .material-icon, .material-icons-round, svg': {
       fontSize: `${pxToRem(22)} !important`,
     },
   },
@@ -66,11 +49,11 @@ export default {
   primary: {
     backgroundColor: info.main,
 
-    "&:hover": {
+    '&:hover': {
       backgroundColor: info.main,
     },
 
-    "&:focus:not(:hover)": {
+    '&:focus:not(:hover)': {
       backgroundColor: info.focus,
     },
   },
@@ -78,11 +61,11 @@ export default {
   secondary: {
     backgroundColor: secondary.main,
 
-    "&:hover": {
+    '&:hover': {
       backgroundColor: secondary.main,
     },
 
-    "&:focus:not(:hover)": {
+    '&:focus:not(:hover)': {
       backgroundColor: secondary.focus,
     },
   },

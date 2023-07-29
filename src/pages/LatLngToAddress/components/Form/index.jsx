@@ -1,25 +1,23 @@
-// Material Kit 2 PRO React components
 import Box from 'components/Box';
-// Material Kit 2 PRO React components
+
 import Grid from '@mui/material/Grid';
 import AddressInput from 'components/AddressInput';
 import Button from 'components/Button';
 import LatLngInputs from 'components/LatLngInputs';
 import Typography from 'components/Typography';
 import { useEffect } from 'react';
+import { useWindowSize } from 'react-use';
 import useStore from 'store/mapStore';
 import { convertLatLngToAddress, extractCityAndState } from 'util/geocoder';
-import { formatMarkerData, getCurrentTime } from 'util/helpers';
+import { formatMarkerData } from 'util/helpers';
 import { v4 as uuidv4 } from 'uuid';
-import { useWindowSize } from 'react-use';
 
 function Form() {
   const markerData = useStore((state) => state.markerData);
-  const { width, height } = useWindowSize();
+  const { width } = useWindowSize();
 
   const locationMarkerData = useStore((state) => state.locationMarkerData);
   const updateMarkerData = useStore((state) => state.setMarkerData);
-  const resetZoom = useStore((state) => state.resetMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
@@ -30,13 +28,6 @@ function Form() {
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
-  function handleZoomReset(e) {
-    e.preventDefault();
-    resetZoom(1);
-    setTimeout(() => {
-      resetZoom(0);
-    }, 2000);
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();

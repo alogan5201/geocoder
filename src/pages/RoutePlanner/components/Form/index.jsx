@@ -1,6 +1,5 @@
-// Material Kit 2 PRO React components
 import Box from 'components/Box';
-// Material Kit 2 PRO React components
+
 import DirectionsIcon from '@mui/icons-material/Directions';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
@@ -13,13 +12,7 @@ import useStore from 'store/mapStore';
 import { covertAddressToLatLng, extractCityAndState, getDirections, metersToMiles } from 'util/geocoder';
 import { useWindowSize } from 'react-use';
 
-import {
-  extractWords,
-  fetchWeather,
-  formatMarkerData,
-  secondsToHoursMinutes,
-  retrieveWeatherIconUrl,
-} from 'util/helpers';
+import { fetchWeather, formatMarkerData, secondsToHoursMinutes, retrieveWeatherIconUrl } from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
 const OriginInputIcon = () => {
@@ -41,15 +34,13 @@ const DestinationInputIcon = () => {
 /* -------------------------------------------------------------------------- */
 function Form() {
   const formRef = useRef();
-  const { width, height } = useWindowSize();
+  const { width } = useWindowSize();
 
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
   const updateMarkerData = useStore((state) => state.setMarkerData);
-  const markerDataState = useStore((state) => state.markerData);
-  const { setWeather, weather } = useStore((state) => ({
+  const { setWeather } = useStore((state) => ({
     setWeather: state.setWeather,
-    weather: state.weather,
   }));
   const setMapZoom = useStore((state) => state.setMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -58,9 +49,8 @@ function Form() {
   const setRouteData = useStore((state) => state.setRouteData);
   const routeData = useStore((state) => state.routeData);
   const [directionsUrl, setDirectionsUrl] = useState(null);
-  const { setErrorMessage, errorMessage } = useStore((state) => ({
+  const { setErrorMessage } = useStore((state) => ({
     setErrorMessage: state.setErrorMessage,
-    errorMessage: state.errorMessage,
   }));
 
   const { setLoading, loading } = useStore((state) => ({
@@ -139,13 +129,13 @@ function Form() {
               };
 
               setWeather(weatherData);
-                   if (width < 992) {
-                     const mapElement = document.getElementById('map');
-                     if (mapElement) {
-                       const offset = 750; // change this to the offset that suits your needs
-                       window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
-                     }
-                   }
+              if (width < 992) {
+                const mapElement = document.getElementById('map');
+                if (mapElement) {
+                  const offset = 750; // change this to the offset that suits your needs
+                  window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+                }
+              }
             }
           } else {
             setErrorMessage(true);
@@ -283,14 +273,6 @@ function Form() {
       }
     }
   }, [routeData]);
-  useEffect(() => {
-    if (markerDataState) {
-      const cityOrigin = markerDataState[0].city;
-      const cityDestination = markerDataState[1].city;
-      if (cityOrigin == cityDestination) {
-      }
-    }
-  }, [markerDataState]);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>

@@ -8,47 +8,16 @@ import Box from 'components/Box';
 import Button from 'components/Button';
 import Typography from 'components/Typography';
 import { useEffect, useState } from 'react';
+import { useMeasure, useWindowSize } from 'react-use';
 import useStore from 'store/mapStore';
+import { handleBookmarkChange } from 'util/bookmarks';
 import { covertAddressToLatLng, extractCityAndState } from 'util/geocoder';
 import { formatMarkerData } from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
 import BookmarkTable from '../BookmarkTable';
-import { alreadyBookmarked, handleBookmarkChange } from 'util/bookmarks';
-import { useWindowSize, useMeasure } from 'react-use';
 
-function AddNewBookmark({ onSubmit, loaded }) {
-  const [toggleInput, setInputToggle] = useState(false);
-  const handleNewBookmark = (e) => {
-    e.preventDefault();
 
-    setInputToggle(true);
- 
-  };
- 
-  if (toggleInput && !loaded ) {
-    return (
-      <AddressInput
-        readOnly={false}
-        submitOnSelect={true}
-        variant="standard"
-        onSubmit={onSubmit}
-        autoFocus={true}
-        clear={true}
-      />
-    );
-  } else {
-    return (
-      <Grid item xs={12} pr={1} mb={0} pl={2}>
-        <Button color="white" size="large" sx={{ pl: 0 }} onClick={handleNewBookmark}>
-          {' '}
-          <AddIcon color="info" sx={{ mr: 1, my: 0.5 }} />{' '}
-          <Typography variant="body2"> Search for a location to add</Typography>{' '}
-        </Button>
-      </Grid>
-    );
-  }
-}
 function Form() {
     const [ref, {  height }] = useMeasure();
 
@@ -133,20 +102,7 @@ function Form() {
       }
     }
   }
-  const handleToggleLoaded = () => {
-    setAddressLoaded(!addressLoaded);
-  }
-  const alreadyBookmarked = (currentBookmarks, markerData) => {
-    for (let index = 0; index < currentBookmarks.length; index++) {
-      const element = currentBookmarks[index];
-      if (element.lat === markerData.lat && element.lng === markerData.lng) {
-        return true;
-      } else if (element.city === markerData.city && element.state === markerData.state) {
-        return true;
-      }
-    }
-    return false;
-  };
+
   const handleChildSubmit = (data) => {
     if (data) {
       const target = [{ value: data.name }];

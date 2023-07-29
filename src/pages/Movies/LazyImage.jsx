@@ -1,14 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
 import Skeleton from '@mui/material/Skeleton';
-import Typography from 'components/Typography';
 import BlogCard from 'components/BlogCard';
-import { Link } from 'react-router-dom';
-import Card from '@mui/material/Card';
-import MuiLink from '@mui/material/Link';
-import Box from 'components/Box';
-const LazyImage = ({ placeholderSrc, placeholderClassName, placeholderStyle, src, alt, className, style, maxWidth, maxHeight,title, route }) => {
+import { useEffect, useRef, useState } from 'react';
+const LazyImage = ({   src,  maxWidth, maxHeight,title, route }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [view, setView] = useState('');
+  const [, setView] = useState('');
   const placeholderRef = useRef(null);
 
   useEffect(() => {

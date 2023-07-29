@@ -1,44 +1,20 @@
 /* eslint-disable no-param-reassign */
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Icon from "@mui/material/Icon";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Icon from '@mui/material/Icon';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Input from "components/Input";
-import Button from "components/Button";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Input from 'components/Input';
+import Button from 'components/Button';
+import Typography from 'components/Typography';
 
 function NewsletterTwo() {
   return (
     <Box component="section" py={20}>
       <Container>
-        <Grid
-          container
-          item
-          xs={12}
-          lg={4}
-          flexDirection="column"
-          justifyContent="center"
-          textAlign="center"
-          mx="auto"
-        >
+        <Grid container item xs={12} lg={4} flexDirection="column" justifyContent="center" textAlign="center" mx="auto">
           <Box
             width="3rem"
             height="3rem"
@@ -62,23 +38,14 @@ function NewsletterTwo() {
             This is the paragraph where you can write more details about your product.
           </Typography>
         </Grid>
-        <Grid
-          container
-          item
-          xs={12}
-          lg={6}
-          flexDirection="column"
-          justifyContent="center"
-          mx="auto"
-          mt={6}
-        >
+        <Grid container item xs={12} lg={6} flexDirection="column" justifyContent="center" mx="auto" mt={6}>
           <Box component="form" method="" action="">
             <Grid container spacing={2}>
               <Grid item xs={12} sm={8}>
                 <Input label="Your Email..." fullWidth />
               </Grid>
               <Grid item xs={12} sm={4}>
-                <Button variant="gradient" color="warning" fullWidth sx={{ height: "100%" }}>
+                <Button variant="gradient" color="warning" fullWidth sx={{ height: '100%' }}>
                   Subscribe
                 </Button>
               </Grid>

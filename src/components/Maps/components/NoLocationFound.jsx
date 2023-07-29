@@ -1,17 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import useStore from "store/mapStore";
+import Container from '@mui/material/Container';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import useStore from 'store/mapStore';
 
 // @mui icons
-import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from '@mui/icons-material/Close';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Button from "components/Button";
+import Box from 'components/Box';
+import Button from 'components/Button';
 
 function NoLocationFound({ toggle }) {
   const [show, setShow] = useState(false);
@@ -24,7 +23,7 @@ function NoLocationFound({ toggle }) {
     typography: { size },
     boxShadows: { lg },
   }) => ({
-    "& .MuiPaper-root": {
+    '& .MuiPaper-root': {
       backgroundColor: error.main,
       borderRadius: borderRadius.lg,
       fontSize: size.sm,
@@ -38,7 +37,7 @@ function NoLocationFound({ toggle }) {
   useEffect(() => {
     if (toggle) {
       toggleSnackbar();
-      setLoading(false)
+      setLoading(false);
     }
   }, [toggle]);
 
@@ -55,10 +54,10 @@ function NoLocationFound({ toggle }) {
   );
 
   return (
-    <Box component="section" >
+    <Box component="section">
       <Container>
         <Snackbar
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           open={show}
           autoHideDuration={3000}
           onClose={toggleSnackbar}

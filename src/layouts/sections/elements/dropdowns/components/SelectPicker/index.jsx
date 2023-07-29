@@ -14,13 +14,12 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Autocomplete from "@mui/material/Autocomplete";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Autocomplete from '@mui/material/Autocomplete';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Input from "components/Input";
+import Box from 'components/Box';
+import Input from 'components/Input';
 
 function SelectPicker() {
   return (
@@ -29,7 +28,7 @@ function SelectPicker() {
         <Grid container justifyContent="center">
           <Autocomplete
             defaultValue="Washington"
-            options={["Brazil", "Bucharest", "London", "Washington"]}
+            options={['Brazil', 'Bucharest', 'London', 'Washington']}
             sx={{ width: 300 }}
             renderInput={(params) => <Input {...params} variant="standard" />}
           />

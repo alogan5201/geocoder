@@ -14,22 +14,21 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Icon from "@mui/material/Icon";
+import Icon from '@mui/material/Icon';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
 
 function SimpleInfoCard({ color, icon, title, description, direction }) {
-  let alignment = "flex-start";
+  let alignment = 'flex-start';
 
-  if (direction === "center") {
-    alignment = "center";
-  } else if (direction === "right") {
-    alignment = "flex-end";
+  if (direction === 'center') {
+    alignment = 'center';
+  } else if (direction === 'right') {
+    alignment = 'flex-end';
   }
 
   return (
@@ -38,7 +37,7 @@ function SimpleInfoCard({ color, icon, title, description, direction }) {
       flexDirection="column"
       alignItems={alignment}
       textAlign={direction}
-      p={direction === "center" ? 2 : 0}
+      p={direction === 'center' ? 2 : 0}
       lineHeight={1}
     >
       <Box
@@ -53,7 +52,7 @@ function SimpleInfoCard({ color, icon, title, description, direction }) {
         bgColor={color}
         coloredShadow={color}
       >
-        {typeof icon === "string" ? <Icon fontSize="small">{icon}</Icon> : icon}
+        {typeof icon === 'string' ? <Icon fontSize="small">{icon}</Icon> : icon}
       </Box>
       <Typography display="block" variant="5" fontWeight="bold" mt={2.5} mb={1.5}>
         {title}
@@ -67,26 +66,17 @@ function SimpleInfoCard({ color, icon, title, description, direction }) {
 
 // Setting default props for the SimpleInfoCard
 SimpleInfoCard.defaultProps = {
-  color: "info",
-  direction: "left",
+  color: 'info',
+  direction: 'left',
 };
 
 // Typechecking props for the SimpleInfoCard
 SimpleInfoCard.propTypes = {
-  color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "light",
-    "dark",
-  ]),
+  color: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'light', 'dark']),
   icon: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  direction: PropTypes.oneOf(["left", "right", "center"]),
+  direction: PropTypes.oneOf(['left', 'right', 'center']),
 };
 
 export default SimpleInfoCard;

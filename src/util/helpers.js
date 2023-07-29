@@ -1,6 +1,4 @@
 import useStore from "store/mapStore";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "util/firebase";
 
 const { VITE_THE_MOVIE_DB_API_KEY } = import.meta.env;
 
@@ -26,9 +24,7 @@ export const fetchMovieImage = async (movie) => {
 }
 export const lowercaseFirst = (str) => `${str.charAt(0).toLowerCase()}${str.slice(1)}`;
 
-export const tron = {
-  log: function (...args) {},
-};
+
 
 export function extractWords(str) {
   //Split string into array of words
@@ -59,46 +55,7 @@ export function handleMapInputState(markerData) {
 
 function latLngToAddressInputState(markerData) {
   const setMapInputState = useStore((state) => state.setMapInputState);
-  const inputState = {
-    addressInput: { readOnly: false, value: "Atlanta,GA", active: true },
-    latLngInputs: { active: true, readOnly: true, values: { lat: null, lng: null } },
-    dmsInputs: {
-      active: false,
-      readOnly: true,
-      values: {
-        degrees: 33,
-        minutes: 44,
-        seconds: 56.3712,
-        lat: 33.748992,
-        display: "33° 44' 56.37''",
-      },
-    },
-  };
-  const markerDataExample = [
-    {
-      id: "1",
-      lat: 33.748992,
-      lng: -84.390264,
-      title: "Atlanta, Georgia, United States",
-      userLocation: false,
-      dms: {
-        lat: {
-          degrees: 33,
-          minutes: 44,
-          seconds: 56.3712,
-          lat: 33.748992,
-          display: "33° 44' 56.37''",
-        },
-        lng: {
-          degrees: 84,
-          minutes: 23,
-          seconds: 24.9504,
-          lng: 84.390264,
-          display: "84° 23' 24.95''",
-        },
-      },
-    },
-  ];
+
   if (markerData) {
     const output = [];
     let obj = {};
@@ -121,46 +78,7 @@ function latLngToAddressInputState(markerData) {
   }
 }
 function addressToLatLngInputState(markerData) {
-  const inputState = {
-    addressInput: { readOnly: false, value: "Atlanta,GA", active: true },
-    latLngInputs: { active: true, readOnly: true, values: { lat: null, lng: null } },
-    dmsInputs: {
-      active: false,
-      readOnly: true,
-      values: {
-        degrees: 33,
-        minutes: 44,
-        seconds: 56.3712,
-        lat: 33.748992,
-        display: "33° 44' 56.37''",
-      },
-    },
-  };
-  const markerDataExample = [
-    {
-      id: "1",
-      lat: 33.748992,
-      lng: -84.390264,
-      title: "Atlanta, Georgia, United States",
-      userLocation: false,
-      dms: {
-        lat: {
-          degrees: 33,
-          minutes: 44,
-          seconds: 56.3712,
-          lat: 33.748992,
-          display: "33° 44' 56.37''",
-        },
-        lng: {
-          degrees: 84,
-          minutes: 23,
-          seconds: 24.9504,
-          lng: 84.390264,
-          display: "84° 23' 24.95''",
-        },
-      },
-    },
-  ];
+
   if (markerData) {
     const output = [];
     let obj = {};
@@ -196,37 +114,7 @@ function addressToLatLngInputState(markerData) {
   }
 }
 
-async function getWikidataImage(wikidataId) {
-  try {
-    // Step 1: Fetch image filename from Wikidata entity
-    const claimsUrl = `/wikidata-api?action=wbgetclaims&property=P18&entity=${wikidataId}&format=json`;
-    const claimsResponse = await fetch(claimsUrl);
 
-    const claimsText = await claimsResponse.text();
-    //
-
-    const claimsData = JSON.parse(claimsText); // Parse the text as JSON
-
-    const imageName = claimsData.claims.P18[0].mainsnak.datavalue.value;
-
-    // Step 2: Fetch the actual image URL from Wikimedia Commons
-    const imageUrl = `/commons-api?action=query&titles=File:${encodeURIComponent(
-      imageName
-    )}&prop=imageinfo&iiprop=url&format=json`;
-    const imageResponse = await fetch(imageUrl);
-    const imageData = await imageResponse.json();
-
-    // Extract image URL from the nested object
-    const pages = imageData.query.pages;
-    const firstPage = Object.keys(pages)[0];
-    const imageUrlFinal = pages[firstPage].imageinfo[0].url;
-
-    return imageUrlFinal;
-  } catch (error) {
-    console.error("Error fetching image: ", error);
-    return null;
-  }
-}
 
 export function secondsToHoursMinutes(seconds) {
   let totalMinutes = Math.floor(seconds / 60);
@@ -344,7 +232,6 @@ export function getCurrentTime() {
      let displayC = Number.isInteger(c) ? c : c.toFixed(2);
      let display = displayA + "° " + displayB + "' " + displayC + "''";
 
-     let text = a.toFixed(2);
 
      let latOutput = {
        degrees: a,
@@ -382,14 +269,13 @@ export function formatMarkerData(data){
        const markerData = [];
 
        for (let index = 0; index < data.length; index++) {
-         const element = data[index];
          let obj = data[index];
          let lat = obj["lat"];
          let lng = obj["lng"];
          let dms = convertLatLngToDMS(lat, lng);
 
          obj["dms"] = dms;
-         obj["userLocation"] = obj["userLocation"];
+        // obj["userLocation"] = obj["userLocation"];
          markerData.push(obj);
        }
        return markerData

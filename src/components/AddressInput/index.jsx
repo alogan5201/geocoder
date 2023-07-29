@@ -9,35 +9,29 @@ import useStore from 'store/mapStore';
 import Box from 'components/Box';
 import Typography from 'components/Typography';
 
-// Material Kit 2 PRO React components
 function AddressInput({ onSubmit, ...props }) {
   const markerData = useStore((state) => state.markerData);
   const clearMapInputs = useStore((state) => state.clearMapInputs);
   const addressInputElm = useRef(null);
   const [address, setAddress] = useState(null);
   const locationMarkerData = useStore((state) => state.locationMarkerData);
-  const [clear,setClear] = useState(false);
+  const [clear, setClear] = useState(false);
 
   useEffect(() => {
     if (clearMapInputs) {
       if (props.readOnly) {
         addressInputElm.current.value = '';
         setAddress(null);
-
-      }
-      else if (props.clear) {
+      } else if (props.clear) {
         setClear(true);
       }
-      
     }
- 
   }, [clearMapInputs]);
 
   useEffect(() => {
     if (locationMarkerData && props.label === 'Destination') {
       return;
-    } else if ( locationMarkerData) {
-
+    } else if (locationMarkerData) {
       const index = props.index ? props.index : 0;
 
       const addressData = locationMarkerData[index].title.includes(', United States')
@@ -45,22 +39,18 @@ function AddressInput({ onSubmit, ...props }) {
         : locationMarkerData[index].title;
 
       setAddress(addressData);
+    } else if (markerData && !locationMarkerData) {
+      const index = props.index ? props.index : 0;
 
-    
+      const addressData = markerData[index].title.includes(', United States')
+        ? markerData[index].title.replace(', United States', '')
+        : markerData[index].title;
+
+      setAddress(addressData);
     }
-    else if (markerData && !locationMarkerData) {
-            const index = props.index ? props.index : 0;
-
-            const addressData = markerData[index].title.includes(', United States')
-              ? markerData[index].title.replace(', United States', '')
-              : markerData[index].title;
-
-            setAddress(addressData);
-    }
-    return () => { 
+    return () => {
       setAddress(null);
- 
-    }
+    };
   }, [markerData, locationMarkerData]);
   useEffect(() => {
     if (address) {
@@ -94,8 +84,8 @@ function AddressInput({ onSubmit, ...props }) {
           label={props.label}
           submitOnSelect={props.submitOnSelect}
           onSubmit={onSubmit}
-            icon={props.icon ? props.icon : null}
-            clear = {clear}
+          icon={props.icon ? props.icon : null}
+          clear={clear}
         />
       )}
     </Grid>

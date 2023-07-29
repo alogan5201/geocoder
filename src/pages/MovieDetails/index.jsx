@@ -1,18 +1,16 @@
 import AddIcon from "@mui/icons-material/Add";
-import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
+import Box from "components/Box";
 import Button from "components/Button";
 import Loading from "components/Loading";
 import MapExternal from "components/Maps/MapExternal";
+import Typography from "components/Typography";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import BaseLayout from "layouts/sections/components/BaseLayout";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "util/firebase";
-import Box from "components/Box";
-import Typography from "components/Typography";
 import LocationsTable from "./components/LocationsTable";
-import Input from 'components/Input';
 function MovieDetailPage() {
   const [showMore, setShowMore] = useState(false);
   const { slug } = useParams();

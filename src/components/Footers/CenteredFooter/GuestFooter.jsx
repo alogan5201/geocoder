@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 
 // @mui icons
 
-// Material Kit 2 PRO React components
 export default function GuestFooter({ links, light }) {
   const year = new Date().getFullYear();
 
@@ -25,7 +24,7 @@ export default function GuestFooter({ links, light }) {
     </Typography>
   ));
   return (
-    <Paper sx={{ marginTop: 'calc(10% + 60px)', bottom: 0,pt:3 }} component="footer" square variant="outlined">
+    <Paper sx={{ marginTop: 'calc(10% + 60px)', bottom: 0, pt: 3 }} component="footer" square variant="outlined">
       <Container maxWidth="lg">
         <Box
           sx={{
@@ -58,14 +57,14 @@ export default function GuestFooter({ links, light }) {
 }
 // Setting default values for the props of GuestFooter
 GuestFooter.defaultProps = {
-  company: { href: "https://www.creative-tim.com/", name: "Creative Tim" },
+  company: { href: 'https://www.creative-tim.com/', name: 'Creative Tim' },
   links: [
-    { href: "/", name: "Geotools" },
-    { href: "/address-to-lat-lng", name: "Address to Latitude & Longitude" },
-    { href: "/lat-lng-to-address", name: "Latitude & Longtidue to Address" },
-    { href: "/route-planner", name: "Route Planner" },
-    { href: "/bookmarks", name: "Bookmarks" },
-    { href: "/movies/1", name: "Movies" },
+    { href: '/', name: 'Geotools' },
+    { href: '/address-to-lat-lng', name: 'Address to Latitude & Longitude' },
+    { href: '/lat-lng-to-address', name: 'Latitude & Longtidue to Address' },
+    { href: '/route-planner', name: 'Route Planner' },
+    { href: '/bookmarks', name: 'Bookmarks' },
+    { href: '/movies/1', name: 'Movies' },
   ],
   light: false,
 };

@@ -1,32 +1,16 @@
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // react-router components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import MuiLink from "@mui/material/Link";
+import Card from '@mui/material/Card';
+import MuiLink from '@mui/material/Link';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Typography from "components/Typography";
-import Button from "components/Button";
+import Box from 'components/Box';
+import Typography from 'components/Typography';
+import Button from 'components/Button';
 
 function SimpleBlogCard({ image, title, description, action }) {
   return (
@@ -52,9 +36,9 @@ function SimpleBlogCard({ image, title, description, action }) {
           top={0}
           sx={{
             backgroundImage: `url(${image})`,
-            transform: "scale(0.94)",
-            filter: "blur(12px)",
-            backgroundSize: "cover",
+            transform: 'scale(0.94)',
+            filter: 'blur(12px)',
+            backgroundSize: 'cover',
           }}
         />
       </Box>
@@ -67,7 +51,7 @@ function SimpleBlogCard({ image, title, description, action }) {
             {description}
           </Typography>
         </Box>
-        {action.type === "external" ? (
+        {action.type === 'external' ? (
           <Button
             component={MuiLink}
             href={action.route}
@@ -75,7 +59,7 @@ function SimpleBlogCard({ image, title, description, action }) {
             rel="noreferrer"
             variant="outlined"
             size="small"
-            color={action.color ? action.color : "dark"}
+            color={action.color ? action.color : 'dark'}
           >
             {action.label}
           </Button>
@@ -85,7 +69,7 @@ function SimpleBlogCard({ image, title, description, action }) {
             to={action.route}
             variant="outlined"
             size="small"
-            color={action.color ? action.color : "dark"}
+            color={action.color ? action.color : 'dark'}
           >
             {action.label}
           </Button>
@@ -101,18 +85,9 @@ SimpleBlogCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   action: PropTypes.shape({
-    type: PropTypes.oneOf(["external", "internal"]).isRequired,
+    type: PropTypes.oneOf(['external', 'internal']).isRequired,
     route: PropTypes.string.isRequired,
-    color: PropTypes.oneOf([
-      "primary",
-      "secondary",
-      "info",
-      "success",
-      "warning",
-      "error",
-      "dark",
-      "light",
-    ]),
+    color: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'dark', 'light']),
     label: PropTypes.string.isRequired,
   }).isRequired,
 };

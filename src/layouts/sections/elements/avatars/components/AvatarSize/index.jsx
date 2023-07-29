@@ -14,16 +14,15 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 
-// Material Kit 2 PRO React components
-import Box from "components/Box";
-import Avatar from "components/Avatar";
+import Box from 'components/Box';
+import Avatar from 'components/Avatar';
 
 // Images
-import team4 from "assets/images/team-4.jpg";
+import team4 from 'assets/images/team-4.jpg';
 
 function AvatarSize() {
   return (
