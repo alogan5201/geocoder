@@ -49,7 +49,7 @@ function DefaultNavbarMobile({ routes, open }) {
         route={route}
         collapse={Boolean(navCollapse)}
       >
-        <Box sx={{ height: "11rem", maxHeight: "15rem", overflowY: "scroll" }}>
+        <Box sx={{ height: "8rem", maxHeight: "15rem", overflowY: "scroll" }}>
           {routeCollapses &&
             routeCollapses.map((item) => (
               <Box key={item.name} px={2}>

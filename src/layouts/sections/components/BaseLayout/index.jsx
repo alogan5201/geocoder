@@ -14,7 +14,7 @@ function BaseLayout({ children }) {
       <Box bgColor="white" shadow="sm" py={0.25}>
         <DefaultNavbar routes={routes} transparent relative />
       </Box>
-      <main style={{marginBottom:"5em"}}>
+      <main style={{marginBottom:"5em", overflowY:"hidden"}}>
 
 
       <Container maxWidth={false} px={2}>

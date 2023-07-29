@@ -111,7 +111,7 @@ function MoviesPage() {
   useEffect(() => {
     if (loading) {
     setTimeout(() => {
-      setLoading(false)
+      //setLoading(false)
     }, 1500);
     }
   }, [loading]);
@@ -133,22 +133,42 @@ function MoviesPage() {
                 <Grid container spacing={5} mt={3}>
                   {Array.from({ length: 15 }).map((_, index) => (
                     <Grid key={index} item xs={12} lg={4}>
-                      <Skeleton
-                        animation="wave"
-                        variant="rectangular"
-                        width={274}
-                        height={417}
-                        sx={{ borderRadius: '8px' }}
-                      />
+                      <div style={{ paddingTop: '150%', position: 'relative' }}>
+                        <Skeleton
+                          animation="wave"
+                          variant="rectangular"
+                          sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            borderRadius: '8px',
+                          }}
+                        />
+                      </div>
                     </Grid>
                   ))}
                 </Grid>
               )}
+
               <Grid container spacing={5} mt={3} sx={loading ? { visibility: 'hidden' } : { visibility: 'visible' }}>
                 {movies.map((data) => (
                   <Grid key={data.id} item xs={12} lg={4}>
                     <Link to={`/location/${data.slug}`}>
-                      <img src={data.image} alt={`${data.title} movie poster`} width={'100%'} height={'100%'}></img>
+                      <div style={{ paddingTop: '150%', position: 'relative' }}>
+                        <img
+                          src={data.image}
+                          alt={`${data.title} movie poster`}
+                          style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                          }}
+                        />
+                      </div>
                     </Link>
                   </Grid>
                 ))}
