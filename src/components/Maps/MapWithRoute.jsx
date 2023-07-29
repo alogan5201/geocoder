@@ -1,5 +1,4 @@
 import L from "leaflet";
-import { useEffect } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "react-tabs/style/react-tabs.css";
 import useStore from "store/mapStore";

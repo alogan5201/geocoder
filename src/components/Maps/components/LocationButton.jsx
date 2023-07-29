@@ -13,7 +13,6 @@ const LocationButton = ({ L }) => {
   const map = useMap();
   const setLocationMarkerData = useStore((state) => state.setLocationMarkerData);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
-  const userLocationActive = useStore((state) => state.userLocationActive);
 const [location, setLocation] = useState(null);
   useEffect(() => {
     // create custom button
@@ -117,7 +116,7 @@ const [location, setLocation] = useState(null);
         // add legend
       },
       // on location error
-      onLocationError: function (e) {
+      onLocationError: function () {
         this.addLegend("Location access denied.");
       },
       // feature group

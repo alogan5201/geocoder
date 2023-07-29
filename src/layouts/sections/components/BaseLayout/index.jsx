@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from 'components/Box';
-import DefaultNavbar from 'components/Navbars/DefaultNavbar';
-import CenteredFooter from 'components/Footers/CenteredFooter';
 import GuestFooter from 'components/Footers/CenteredFooter/GuestFooter';
+import DefaultNavbar from 'components/Navbars/DefaultNavbar';
 import routes from 'routes';
 
 function BaseLayout({ children }) {

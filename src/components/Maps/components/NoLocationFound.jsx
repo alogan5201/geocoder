@@ -10,7 +10,6 @@ import useStore from 'store/mapStore';
 import CloseIcon from '@mui/icons-material/Close';
 
 import Box from 'components/Box';
-import Button from 'components/Button';
 
 function NoLocationFound({ toggle }) {
   const [show, setShow] = useState(false);

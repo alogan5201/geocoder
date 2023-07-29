@@ -29,6 +29,8 @@ Box.defaultProps = {
   coloredShadow: 'none',
 }; // Typechecking props for the Box
 
+Box.displayName = 'Box';
+
 Box.propTypes = {
   variant: PropTypes.oneOf(['contained', 'gradient']),
   bgColor: PropTypes.string,

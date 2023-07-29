@@ -1,18 +1,3 @@
-/*
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // react-router-dom components
 import { Link } from 'react-router-dom';
 
@@ -27,7 +12,7 @@ import Box from 'components/Box';
 import Typography from 'components/Typography';
 
 function DefaultFooter({ content }) {
-  const { brand, socials, menus, copyright } = content;
+  const { brand,  menus, copyright } = content;
 
   return (
     <Box component="footer">

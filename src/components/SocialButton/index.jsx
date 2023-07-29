@@ -26,7 +26,7 @@ SocialButton.defaultProps = {
   iconOnly: false,
   circular: false,
 };
-
+SocialButton.displayName = 'SocialButton';
 // Typechecking props for the SocialButton
 SocialButton.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),

@@ -28,7 +28,7 @@ Badge.defaultProps = {
   children: false,
   container: false,
 };
-
+Badge.displayName = 'Badge';
 // Typechecking props of the Badge
 Badge.propTypes = {
   color: PropTypes.oneOf(['white', 'primary', 'secondary', 'info', 'success', 'warning', 'error', 'light', 'dark']),

@@ -1,19 +1,4 @@
-/*
-=========================================================
-* Material Kit 2 PRO React - v2.1.0
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// prop-types is a library for typechecking of props
 import MuiLink from '@mui/material/Link';
 import PropTypes from 'prop-types';
 
@@ -21,12 +6,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 // @mui material components
-import Icon from '@mui/material/Icon';
 
 import Box from 'components/Box';
 import Typography from 'components/Typography';
 
-function FilledInfoCard({ variant, color, icon, title, description, action }) {
+function FilledInfoCard({ variant, color, title, description, action }) {
   const buttonStyles = {
     width: 'max-content',
     display: 'flex',
@@ -43,15 +27,8 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
     },
   };
 
-  let iconColor = color;
 
-  if (variant === 'gradient' && color !== 'light') {
-    iconColor = 'white';
-  } else if (variant === 'gradient' && color === 'light') {
-    iconColor = 'dark';
-  } else if (variant === 'white' && color === 'dark') {
-    iconColor = 'dark';
-  }
+
 
   return (
     <Box

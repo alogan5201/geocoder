@@ -1,6 +1,6 @@
 import Snackbar from "@mui/material/Snackbar";
 
-function MUISnackbar({TransitionComponent,autoHideDuration,anchorOrigin,action,...rest}){
+function MUISnackbar(){
     return(
         <Snackbar />
     )

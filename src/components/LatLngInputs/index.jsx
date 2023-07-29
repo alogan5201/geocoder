@@ -33,11 +33,7 @@ export default function LatLngInputs({ defaultValue, readOnly }) {
 
   // useEffect hook to update input values based on marker data and read-only state
   useEffect(() => {
-        const markerDataPoints = markerData
-          ? markerData
-          : locationMarkerData
-          ? locationMarkerData
-          : null;
+
 
     if (locationMarkerData) {
       const { lat, lng } = locationMarkerData[0];

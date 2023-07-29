@@ -28,6 +28,7 @@ Button.defaultProps = {
   iconOnly: false,
 };
 
+Button.displayName = 'Button';
 // Typechecking props for the Button
 Button.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),

@@ -13,7 +13,6 @@ import { useEffect, useState } from 'react';
 import useStore from 'store/mapStore';
 import { getCitiesStartWith, isCityCapital, reorderOrReplaceCityCapitalObjects } from 'util/geocoder';
 import { v4 as uuidv4 } from 'uuid';
-import { useLocation } from 'react-router-dom';
 
 export default function AutoCompleteAddress({ address, clear, submitOnSelect, onSubmit, icon, label, autoFocus }) {
   const [inputValue, setInputValue] = useState('');

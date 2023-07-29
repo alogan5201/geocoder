@@ -9,13 +9,13 @@ import MKAvatarRoot from 'components/Avatar/MKAvatarRoot';
 const Avatar = forwardRef(({ bgColor, size, shadow, ...rest }, ref) => (
   <MKAvatarRoot ref={ref} ownerState={{ shadow, bgColor, size }} {...rest} />
 ));
-
 // Setting default values for the props of Avatar
 Avatar.defaultProps = {
   bgColor: 'transparent',
   size: 'md',
   shadow: 'none',
 };
+Avatar.displayName = 'Avatar';
 
 // Typechecking props for the Avatar
 Avatar.propTypes = {

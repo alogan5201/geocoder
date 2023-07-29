@@ -27,6 +27,7 @@ Progress.defaultProps = {
   label: false,
 };
 
+Progress.displayName = 'Progress';
 // Typechecking props for the Progress
 Progress.propTypes = {
   variant: PropTypes.oneOf(['contained', 'gradient']),

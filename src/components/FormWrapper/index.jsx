@@ -7,18 +7,8 @@ import { useState } from 'react';
 import useStore from 'store/mapStore';
 function FormWrapper({ form }) {
   const errorMessage = useStore((state) => state.errorMessage);
-  const markerData = useStore((state) => state.markerData);
-  const locationMarkerData = useStore((state) => state.locationMarkerData);
   const [isMapLoaded, setMapLoaded] = useState(false);
 
-
-  /* -------------------------------------------------------------------------- */
-  /*                                  FUNCTIONS                                 */
-  /* -------------------------------------------------------------------------- */
-
-  /* -------------------------------------------------------------------------- */
-  /*                                   RETURN                                   */
-  /* -------------------------------------------------------------------------- */
   return (
     <>
       <Box component="section" py={{ xs: 2, sm: 6 }} sx={{ maxWidth: '100%' }}>

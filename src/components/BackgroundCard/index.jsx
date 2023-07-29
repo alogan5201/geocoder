@@ -5,9 +5,8 @@ import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
 
 import Box from 'components/Box';
-import Typography from 'components/Typography';
 
-function BackgroundCard({ image, title, description }) {
+function BackgroundCard({ image }) {
   return (
     <Card
       sx={({ functions: { rgba, linearGradient }, palette: { black }, borders: { borderRadius } }) => ({

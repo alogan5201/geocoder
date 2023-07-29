@@ -4,17 +4,14 @@ import PropTypes from 'prop-types';
 // prop-types is a library for typechecking of props
 
 // @mui material components
-import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import MuiLink from '@mui/material/Link';
 import Box from 'components/Box';
 import Typography from 'components/Typography';
-import Avatar from 'components/Avatar';
+import { Link } from 'react-router-dom';
 
-function BlogCard({ image, category, title, description, author, raised, action, maxWidth, maxHeight, onLoad }) {
-  const handleLoad = () => {
-    onLoad(false);
-  };
+function BlogCard({ image,  title,   raised, action, maxWidth, maxHeight, onLoad }) {
+  
   const imageTemplate = (
     <>
       <img

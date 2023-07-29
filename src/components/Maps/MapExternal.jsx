@@ -1,13 +1,12 @@
 import L from "leaflet";
-import { useEffect } from "react";
+import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
+import iconUrl from 'leaflet/dist/images/marker-icon.png';
+import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import { MapContainer, TileLayer } from "react-leaflet";
 import "react-tabs/style/react-tabs.css";
 import useStore from 'store/mapStore';
 import LocationButton from "./components/LocationButton";
 import Markers from "./components/Markers";
-import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
-import iconUrl from 'leaflet/dist/images/marker-icon.png';
-import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 const center = [37.09024, -95.712891];
 
 const MapExternal = ({ setMapLoaded }) => {

@@ -18,16 +18,8 @@ function PopupMarkerContent({ content }) {
   const bookmarked = useStore((state) => state.bookmarked);
   const bookmarkLocation = useStore((state) => state.bookmarkLocation);
   const [popupContent, setPopupcontent] = useState(null);
-  const [dmsDisplay, setDisplayDMS] = useState(null);
-  const markerPointData = markerData
-    ? markerData
-    : locationMarkerData
-    ? locationMarkerData
-    : localStorage.getItem('markerData')
-    ? JSON.parse(localStorage.getItem('markerData'))
-    : null;
-
-  const [bookMarkId, setBookMarkId] = useState();
+  const [, setDisplayDMS] = useState(null);
+  
   useEffect(() => {
     if (bookmarkLocation) {
       // const markerDataPoint

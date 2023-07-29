@@ -21,7 +21,7 @@ const Pagination = forwardRef(({ item, variant, color, size, active, children, p
   } else if (placement === 'center') {
     placementValue = 'center';
   }
-
+Pagination.displayName = 'Pagination';
   return (
     <Context.Provider value={{ variant, color, size }}>
       {item ? (
