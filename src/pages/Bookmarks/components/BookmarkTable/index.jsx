@@ -222,7 +222,7 @@ function BookmarkTable({ bookmarkState }) {
     return useMemo(
       () => (
         <Grid container item xs={12} lg={12} mx="auto">
-          {loading ? (
+          {loading && (
             <TableContainer
               sx={{
                 maxHeight: 440,
@@ -233,76 +233,86 @@ function BookmarkTable({ bookmarkState }) {
               }}
             >
               <MuiTable stickyHeader aria-label="sticky table">
-               
                 <TableBody>
-              
-
-                 
-            {Array.from({ length: bookmarkState.length }).map((_, index) => (
-                <TableRow
-                    key={index}
-                sx={{
-                  "&:nth-of-type(odd)": { backgroundColor: "#f8f8f8" },
-                  "&:hover": { backgroundColor: "#eeeeee" },
-                  cursor: "pointer",
-                  minHeight: "50px", // Set minimum height
-                  maxHeight: "50px", // Set maximum height
-                }}>
-                <Box component="td" px={2} textAlign={"left"}>
-                  <Typography
-                    variant="body2"
-                    fontWeight="regular"
-                    color="secondary"
-                    sx={{ display: "inline-block", width: "max-content" }}>
-                    <Stack spacing={0}>
-                      <Skeleton animation="wave" height={10} width={70} />
-                      <Skeleton animation="wave" height={10} width={40} />
-                    </Stack>
-                  </Typography>
-                </Box>
-                <Box component="td" px={2} textAlign={"right"}>
-                  <Typography
-                    variant="body2"
-                    fontWeight="regular"
-                    color="secondary"
-                    sx={{ display: "inline-block", width: "max-content" }}>
-                    <Skeleton
-                      animation="wave"
-                      variant="rectangular"
-                      width={100}
-                      height={100}
-                      sx={{ borderRadius: "8px" }}
-                    />
-                  </Typography>
-                </Box>
-              </TableRow>
-            ))}
-    
+                  {Array.from({ length: bookmarkState.length }).map((_, index) => (
+                    <TableRow
+                      key={index}
+                      sx={{
+                        '&:nth-of-type(odd)': { backgroundColor: '#f8f8f8' },
+                        '&:hover': { backgroundColor: '#eeeeee' },
+                        cursor: 'pointer',
+                        minHeight: '50px', // Set minimum height
+                        maxHeight: '50px', // Set maximum height
+                      }}
+                    >
+                      <Box component="td" px={2} textAlign={'left'}>
+                        <Typography
+                          variant="body2"
+                          fontWeight="regular"
+                          color="secondary"
+                          sx={{ display: 'inline-block', width: 'max-content' }}
+                        >
+                          <Stack spacing={0}>
+                            <Skeleton animation="wave" height={10} width={70} />
+                            <Skeleton animation="wave" height={10} width={40} />
+                          </Stack>
+                        </Typography>
+                      </Box>
+                      <Box component="td" px={2} textAlign={'right'}>
+                        <Typography
+                          variant="body2"
+                          fontWeight="regular"
+                          color="secondary"
+                          sx={{ display: 'inline-block', width: 'max-content' }}
+                        >
+                          <Skeleton
+                            animation="wave"
+                            variant="rectangular"
+                            width={100}
+                            height={100}
+                            sx={{ borderRadius: '8px' }}
+                          />
+                        </Typography>
+                      </Box>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </MuiTable>
             </TableContainer>
-          ) : (
-            <TableContainer
-              sx={{
-                maxHeight: 440,
-                overflowX: 'hidden',
-                border: 'none',
-                boxShadow: 'none',
-                borderRadius: '0',
-              }}
-            >
-              <MuiTable stickyHeader aria-label="sticky table">
-                <Box component="thead">
-                  {hideColumnRow && hideColumnRow === true ? (
-                    <TableRow sx={{ display: 'none' }}>{renderColumns}</TableRow>
-                  ) : (
-                    <TableRow>{renderColumns}</TableRow>
-                  )}
-                </Box>
-                <TableBody>{renderRows}</TableBody>
-              </MuiTable>
-            </TableContainer>
           )}
+
+          <TableContainer
+            sx={
+              loading
+                ? {
+                    maxHeight: 440,
+                    overflowX: 'hidden',
+                    border: 'none',
+                    boxShadow: 'none',
+                  borderRadius: '0',
+                    visibility: 'hidden',
+                  }
+                : {
+                    maxHeight: 440,
+                    overflowX: 'hidden',
+                    border: 'none',
+                    boxShadow: 'none',
+                  borderRadius: '0',
+                    visibility:"visible"
+                  }
+            }
+          >
+            <MuiTable stickyHeader aria-label="sticky table">
+              <Box component="thead">
+                {hideColumnRow && hideColumnRow === true ? (
+                  <TableRow sx={{ display: 'none' }}>{renderColumns}</TableRow>
+                ) : (
+                  <TableRow>{renderColumns}</TableRow>
+                )}
+              </Box>
+              <TableBody>{renderRows}</TableBody>
+            </MuiTable>
+          </TableContainer>
 
           <div style={{ fontSize: '14px', marginTop: '4em' }}></div>
         </Grid>
