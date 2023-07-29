@@ -36,7 +36,7 @@ function FormWrapper({ form }) {
               {/*================= RIGHT COLUMN - MAP ================= */}
               <Grid item xs={12} lg={7}>
                 <Box p={2}>
-                  <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
+                  <Box px={{ xs: 0, sm: 0 }} py={{ xs: 2, sm: 3 }}>
                   <div className="map-container">
                     {!isMapLoaded && (
                       // Your placeholder image here. Make sure it's styled to fill the space.

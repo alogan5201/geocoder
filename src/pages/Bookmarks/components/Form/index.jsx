@@ -179,7 +179,7 @@ function Form() {
       component="form"
       pl={{ xs: 0, sm: 2 }}
       pr={{ xs: 0, sm: 0 }}
-      py={{ xs: 0, sm: 2 }}
+      py={{ xs: 0, sm: 4 }}
       method="post"
       onSubmit={handleSubmit}
     >

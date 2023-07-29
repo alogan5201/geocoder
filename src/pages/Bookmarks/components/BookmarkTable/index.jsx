@@ -2,7 +2,9 @@ import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import TableContainer from '@mui/material/TableContainer';
 import Box from 'components/Box';
-import Spinner from 'components/Spinner';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
+
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import useStore from 'store/mapStore';
 import { getPlacePhoto } from 'util/geocoder';
@@ -76,9 +78,9 @@ function BookmarkTable({ bookmarkState }) {
               ? locationPhoto.data
               : 'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fplaceholder-images%2Fcity-locations%2Fconcept-of-travel-and-adventure-traveller-lifesty-2022-07-12-15-38-22-utc.jpg?alt=media&token=14c18b2f-45a2-440b-af78-d9e7297be52d';
           const photo = (
-            <IconButton aria-label="delete">
+          
               <img className="bookmark-image" src={imgSrc} alt="location-city"></img>
-            </IconButton>
+          
           );
 
           // Adding the processed data to obj.
@@ -95,7 +97,9 @@ function BookmarkTable({ bookmarkState }) {
 
         // Setting rowData state with the processed bookmark data.
         setRowData(bookmarkData);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       }
     };
 
@@ -168,8 +172,7 @@ function BookmarkTable({ bookmarkState }) {
         <Box
           key={index}
           component="td"
-          pl={2.5}
-          pr={3}
+          px={2}
           textAlign={align}
           sx={({ borders: { borderWidth, borderColor } }) => ({
             borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
@@ -215,9 +218,64 @@ function BookmarkTable({ bookmarkState }) {
       () => (
         <Grid container item xs={12} lg={12} mx="auto">
           {loading ? (
-            <Box mt={10} width="100%">
-              <Spinner />
-            </Box>
+            <TableContainer
+              sx={{
+                maxHeight: 440,
+                overflow: 'hidden',
+                border: 'none',
+                boxShadow: 'none',
+                borderRadius: '0',
+              }}
+            >
+              <MuiTable stickyHeader aria-label="sticky table">
+               
+                <TableBody>
+              
+
+                 
+            {Array.from({ length: bookmarkState.length }).map((_, index) => (
+                <TableRow
+                    key={index}
+                sx={{
+                  "&:nth-of-type(odd)": { backgroundColor: "#f8f8f8" },
+                  "&:hover": { backgroundColor: "#eeeeee" },
+                  cursor: "pointer",
+                  minHeight: "50px", // Set minimum height
+                  maxHeight: "50px", // Set maximum height
+                }}>
+                <Box component="td" px={2} textAlign={"left"}>
+                  <Typography
+                    variant="body2"
+                    fontWeight="regular"
+                    color="secondary"
+                    sx={{ display: "inline-block", width: "max-content" }}>
+                    <Stack spacing={0}>
+                      <Skeleton animation="wave" height={10} width={70} />
+                      <Skeleton animation="wave" height={10} width={40} />
+                    </Stack>
+                  </Typography>
+                </Box>
+                <Box component="td" px={2} textAlign={"right"}>
+                  <Typography
+                    variant="body2"
+                    fontWeight="regular"
+                    color="secondary"
+                    sx={{ display: "inline-block", width: "max-content" }}>
+                    <Skeleton
+                      animation="wave"
+                      variant="rectangular"
+                      width={100}
+                      height={100}
+                      sx={{ borderRadius: "8px" }}
+                    />
+                  </Typography>
+                </Box>
+              </TableRow>
+            ))}
+    
+                </TableBody>
+              </MuiTable>
+            </TableContainer>
           ) : (
             <TableContainer
               sx={{
