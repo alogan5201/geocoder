@@ -4,6 +4,8 @@ import useStore from 'store/mapStore';
 import PopupMarkerContent from './PopupMarkerContent';
 
 const PointMarker = ({ center, content, openPopup, L, origin, destination }) => {
+    const [currentMarker, setCurrentMarker] = useState(null);
+
   const [position] = useState(null);
   const [rendered, setRendered] = useState(false);
   const userLocationActive = useStore((state) => state.userLocationActive);
@@ -14,7 +16,7 @@ const PointMarker = ({ center, content, openPopup, L, origin, destination }) => 
   const hideAllLayers = useStore((state) => state.hideAllLayers);
   const [currentIcon, setCurrentIcon] = useState(null);
   const [animationFrameId, setAnimationFrameId] = useState(null);
-
+  
   const originMarker = L.divIcon({
     html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="marker"><path fill-opacity="0.25" d="M16 32s1.427-9.585 3.761-12.025c4.595-4.805 8.685-.99 8.685-.99s4.044 3.964-.526 8.743C25.514 30.245 16 32 16 32z"/><path stroke="#fff" fill="#1A73E8" d="M15.938 32S6 17.938 6 11.938C6 .125 15.938 0 15.938 0S26 .125 26 11.875C26 18.062 15.938 32 15.938 32zM16 6a4 4 0 100 8 4 4 0 000-8z"/></svg>`,
     className: 'custom-icon',
@@ -54,7 +56,7 @@ const PointMarker = ({ center, content, openPopup, L, origin, destination }) => 
     const lat = map.getCenter().lat * (1 - t) + targetCenter.lat * t;
     const lng = map.getCenter().lng * (1 - t) + targetCenter.lng * t;
 
-    map.setView([lat, lng], zoomLevel);
+    map.flyTo([lat, lng], zoomLevel);
 
     if (t < 1) {
       setAnimationFrameId(requestAnimationFrame(() => animateFlyTo(targetCenter, zoomLevel, startTime, duration)));
@@ -119,7 +121,13 @@ const PointMarker = ({ center, content, openPopup, L, origin, destination }) => 
       cancelAnimationFrame(animationFrameId);
     };
   }, [map, center, openPopup, rendered]);
-
+useEffect(() => {
+  if (content) {
+  
+   
+    
+  }
+}, [content]);
   return origin || destination ? (
     <Marker ref={markerRef} position={center} icon={origin ? originMarker : destinationMarker} autoPan={false}>
       <Popup minWidth={300} position={position} keepInView={true} className="map-popup-with-icon">
