@@ -5,7 +5,7 @@ import MapWithRoute from "components/Maps/MapWithRoute";
 import NoLocationFound from "components/Maps/components/NoLocationFound";
 import { useState } from 'react';
 import useStore from "store/mapStore";
-
+import Sandbox from "components/Sandbox"
 
 function FormWrapper({  form }) {
  
@@ -39,7 +39,6 @@ function FormWrapper({  form }) {
                           style={{ width: '600px', height: '400px' }}
                         />
                       )}
-
                       <MapWithRoute setMapLoaded={setMapLoaded} />
                     </div>
                   </Box>
@@ -47,6 +46,7 @@ function FormWrapper({  form }) {
               </Grid>
             </Grid>
           </Box>
+          <Sandbox />
         </Grid>
       </Box>
     </>

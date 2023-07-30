@@ -24,7 +24,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   const setMapInputState = useStore((state) => state.setMapInputState);
   const [overrideInput, setOverrideInput] = useState(false);
   //const queryLengths = [1, 3, 6, 9];
-  const [queryLengths] = useState([1, 3, 6,9,12]);
+  const [queryLengths] = useState([1, 3, 6, 9, 12]);
   const [capitalCities, setCapitalCities] = useState([]);
 
   const modifiers = [
@@ -157,10 +157,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
 
     loadCapitalCities();
   }, []);
-useEffect(() => {
-  console.log("🚀 ~ AutoCompleteAddress ~ options:", options)
-  
-}, [options, inputValue]);
+  useEffect(() => {}, [options, inputValue]);
   return (
     <Autocomplete
       freeSolo

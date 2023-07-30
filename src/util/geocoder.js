@@ -7,7 +7,6 @@ const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.
 export const covertAddressToLatLng = async (address) => {
   let location = encodeURIComponent(address);
 
-
   const response = await fetch(
     `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?proximity=ip&access_token=${VITE_ACCESS_TOKEN}`,
     { method: 'GET' }
@@ -245,12 +244,10 @@ export async function getAddress(lat, lon) {
       return result;
     })
     .catch(function (error) {
-      console.log("🚀 ~ getAddress ~ error:", error)
       // Getting the Error details.
       // let code = error.code;
       // let message = error.message;
       // let details = error.details;
-      
     });
 }
 export async function getPlacePhoto(data) {
@@ -260,12 +257,10 @@ export async function getPlacePhoto(data) {
       return result;
     })
     .catch(function (error) {
-      console.log("🚀 ~ getPlacePhoto ~ error:", error)
       // Getting the Error details.
       // let code = error.code;
       // let message = error.message;
       // let details = error.details;
-
     });
 }
 
@@ -297,9 +292,8 @@ export async function getCitiesStartWith(letter) {
 
 export function isCityCapital(input, capitalCities) {
   // Format the input string
-  const firstThree = input.slice(0, 3); 
+  const firstThree = input.slice(0, 3);
   const formattedInput = firstThree.charAt(0).toUpperCase() + firstThree.slice(1).toLowerCase();
- 
 
   // Check each city
   for (let i = 0; i < capitalCities.length; i++) {

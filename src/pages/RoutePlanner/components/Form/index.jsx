@@ -35,13 +35,13 @@ const DestinationInputIcon = () => {
 function Form() {
   const formRef = useRef();
   const { width } = useWindowSize();
-
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
-  const updateMarkerData = useStore((state) => state.setMarkerData);
+  const setMarkerData = useStore((state) => state.setMarkerData);
   const { setWeather } = useStore((state) => ({
     setWeather: state.setWeather,
   }));
+  const setHideAllLayers = useStore((state) => state.setHideAllLayers);
   const setMapZoom = useStore((state) => state.setMapZoom);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
@@ -62,10 +62,8 @@ function Form() {
   /* -------------------------------------------------------------------------- */
   async function handleSubmit(e) {
     e.preventDefault();
-
     const inputOne = e.target[0].value;
     const inputTwo = e.target[2].value;
-
     await handleFormInputs(inputOne, inputTwo);
     setLoading(false);
   }
@@ -78,43 +76,41 @@ function Form() {
       }, 2000);
       const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
       const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
-
       if (mapBoxDataOrigin && mapBoxDataDestination) {
         if (mapBoxDataOrigin.features.length > 0 && mapBoxDataDestination.features.length > 0) {
           setCoords([coords]);
-
+           setHideAllLayers(true);
           const markerDataOriginFormatted = generateMarkerDataOrigin(mapBoxDataOrigin);
           const markerDataDestinationFormatted = generateMarkerDataDestination(mapBoxDataDestination);
           const markerData = [markerDataOriginFormatted[0], markerDataDestinationFormatted[0]];
-
+          const formattedMarkerData = formatMarkerData(markerData);
           const updateRouteData = await updateRoute(markerData);
           if (updateRouteData) {
+            setMarkerData(formattedMarkerData);
+            setMapZoom(5);
             setUserLocationActive(false);
             setMapInputState(false);
-            const formattedMarkerData = formatMarkerData(markerData);
-            updateMarkerData(formattedMarkerData);
-            setMapZoom(5);
+         
+            console.log('setHideAllLayers = true' );
             const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
             setDirectionsUrl(googleMapsDirectionUrl);
+      
             const weatherOrigin = await fetchWeather(markerData[0].lat, markerData[0].lng);
             const weatherDestination = await fetchWeather(markerData[1].lat, markerData[1].lng);
+        
             if (weatherOrigin && weatherDestination) {
               const iconOrigin = weatherOrigin.weather[0].icon.slice(0, -1);
               const iconDestination = weatherDestination.weather[0].icon.slice(0, -1);
               const iconOriginUrl = retrieveWeatherIconUrl(iconOrigin);
               const iconDestinationUrl = retrieveWeatherIconUrl(iconDestination);
-
               const iconOriginPath = iconOriginUrl;
               const iconDestinationPath = iconDestinationUrl;
               const currentWeatherOrigin = weatherOrigin.main.temp;
               const currentWeatherDestination = weatherDestination.main.temp;
-
               const extractedAddressOrigin = extractCityAndState(mapBoxDataOrigin);
-
               const extractedAddressDestination = extractCityAndState(mapBoxDataDestination);
               const originCity = extractedAddressOrigin ? extractedAddressOrigin.city : '';
               const destinationCity = extractedAddressDestination ? extractedAddressDestination.city : '';
-
               const weatherData = {
                 origin: {
                   address: originCity,
@@ -127,8 +123,11 @@ function Form() {
                   temp: currentWeatherDestination,
                 },
               };
-
               setWeather(weatherData);
+               setTimeout(() => {
+                 setHideAllLayers(false);
+               }, 500);
+
               if (width < 992) {
                 const mapElement = document.getElementById('map');
                 if (mapElement) {
@@ -146,6 +145,7 @@ function Form() {
         }
       }
     }
+
     setLoading(false);
   };
   const handleChildSubmit = (data) => {

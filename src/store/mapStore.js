@@ -23,7 +23,10 @@ import { create } from 'zustand';
    locationMarkerData: null,
    imagesLoaded: 0,
    mapReady: false,
-
+   hideAllLayers: false,
+   setHideAllLayers: (data) => {
+     set(() => ({ hideAllLayers: data }));
+   },
    setMapReady: (data) => {
      set(() => ({ mapReady: data }));
    },
@@ -60,9 +63,8 @@ import { create } from 'zustand';
        locationMarkerData: null,
        routeData: null,
        imagesLoaded: 0,
-       weather: null
+       weather: null,
      });
-     
    },
    setBookmarks: () => {
      const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
@@ -73,7 +75,7 @@ import { create } from 'zustand';
      set({ zoom: data });
    },
    setBookmarked: (data) => {
-  set({ bookmarked: data });
+     set({ bookmarked: data });
    },
    setMapZoom: (data) => {
      set(() => ({ mapZoom: data }));
@@ -86,7 +88,6 @@ import { create } from 'zustand';
      set({ geoData: data });
    },
    setMapInputState: (data) => {
-
      set({ clearMapInputs: data });
    },
    setUserLocationActive: (data) => {

@@ -268,11 +268,11 @@ git config --global user.email "drewthomaslogan5201@gmail.com" && git config --g
 - [✅] All pages where theres a loading spinner for submit button — I need to call a return cleanup function on useEffect to make sure those get turned off
 - [✅] The autocomplete popup is using stale data. I typed in Dallas, TX and its showing. 
 - [✅] BookmarksPage - Adding in a city doesn't automatically bookmark the location.
-- [] The mobile navbar could use some work
-- [] OPTIONAL: Bookmarks photos look a bit off on mobile 
-  - The tools drop down still has a lot of white space
-  - For some reason there is an empty dropdown four route planner?
-- [] OPTIONAL: but the offset for the scroll to map on mobile feature could be adjusted for better UX
-
+- [✅] The mobile navbar could use some work
+- [✅] OPTIONAL: Bookmarks photos look a bit off on mobile 
+- [✅] The tools drop down still has a lot of white space
+- [✅] For some reason there is an empty dropdown four route planner?
+- [✅] OPTIONAL: but the offset for the scroll to map on mobile feature could be adjusted for better UX
+- [] See if you can make the placeholder transition better for bookmarks page. Theres a delay in loading between the placeholder and the actual image
 Eslint cleanup pages
 MovieDetails

@@ -13,7 +13,7 @@ const Markers = ({ L }) => {
   const [markerPoints, setMarkerPoints] = useState(null);
   const [popupOpen, setPopupOpen] = useState(false);
   const { pathname } = useLocation();
-  const [, setCustomMarker] = useState(null);
+  const [,setCustomMarker] = useState(null);
 
   useEffect(() => {
     if (locationMarkerData) {
@@ -25,7 +25,7 @@ const Markers = ({ L }) => {
         let lngOrigin = locationMarkerData[0].lng;
         let latDestination = locationMarkerData[1].lat;
         let lngDestination = locationMarkerData[1].lng;
-        map.fitBounds(
+        map.flyToBounds(
           [
             [latOrigin, lngOrigin],
             [latDestination, lngDestination],
@@ -47,14 +47,15 @@ const Markers = ({ L }) => {
         let lngOrigin = markerData[0].lng;
         let latDestination = markerData[1].lat;
         let lngDestination = markerData[1].lng;
-        map.fitBounds(
+        
+           map.fitBounds(
           [
             [latOrigin, lngOrigin],
             [latDestination, lngDestination],
           ],
           { padding: [50, 50], maxZoom: 13 }
-        );
-        setCustomMarker(true)
+        ); 
+        setCustomMarker(true);
         setPopupOpen(false);
       } else {
         setPopupOpen(true);

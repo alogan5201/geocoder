@@ -8,7 +8,9 @@ import { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import useStore from 'store/mapStore';
 import { motion } from 'framer-motion';
-
+import CloseIcon from '@mui/icons-material/Close'
+  import CardHeader from '@mui/material/CardHeader';
+;
 const LegendContent = ({ content }) => {
   const cardStyles = {
     minWidth: 180,
@@ -18,6 +20,12 @@ const LegendContent = ({ content }) => {
   useEffect(() => {}, [content]);
   return (
     <Card sx={cardStyles}>
+      <CardHeader
+        action={
+          <CloseIcon/>
+        }
+
+      />
       <CardContent>
         <Stack direction="column" spacing={0} alignItems="center">
           <Stack direction="row" spacing={0} sx={{ width: '100%' }} justifyContent="space-between" alignItems="center">

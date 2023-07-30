@@ -22,6 +22,7 @@ const PolyLineRoute = ({ L }) => {
       const polyline = new L.Polyline(
         route.map((coord) => [coord[1], coord[0]]),
         {
+          smoothFactor: 1,
           color: "#44afff",
           opacity: 0.7,
           weight: 5,
@@ -29,7 +30,6 @@ const PolyLineRoute = ({ L }) => {
       );
       setCurrentPolyline(polyline);
       setTimeout(() => {
-        
         polyline.addTo(map);
       }, 700);
     }
