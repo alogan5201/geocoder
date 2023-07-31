@@ -6,7 +6,6 @@ import NoLocationFound from "components/Maps/components/NoLocationFound";
 import { useState } from 'react';
 import useStore from "store/mapStore";
 import MapTest from "components/Maps/MapTest"
-import Sandbox from "components/Sandbox";
 function FormWrapper({  form }) {
  
   const {  errorMessage } = useStore((state) => ({
@@ -47,7 +46,6 @@ function FormWrapper({  form }) {
               </Grid>
             </Grid>
           </Box>
-          <Sandbox />
         </Grid>
       </Box>
     </>
