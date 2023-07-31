@@ -24,7 +24,7 @@ function MoviesPage() {
   const [imagesLoading, setImagesLoading] = useState(true);
   const [pagIndex, setPagIndex] = useState(null);
   const [paginationLength, setPaginationLength] = useState(null);
-  const [, setAllImagesLoaded] = useState(false);
+  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
   const { imagesLoaded } = useStore((state) => ({
     imagesLoaded: state.imagesLoaded,
   }));
@@ -44,6 +44,9 @@ function MoviesPage() {
      setTimeout(() => {
        setLoading(false);
      }, 300);
+    return () => { 
+      setAllImagesLoaded(false)
+    }
 }, [loading]);
   async function fetchMoviesInRange(start, end) {
     // Define the range of indexes
@@ -143,7 +146,7 @@ function MoviesPage() {
                 container
                 spacing={5}
                 mt={3}
-                sx={imagesLoading ? { visibility: 'hidden' } : { visibility: 'visible' }}
+                sx={allImagesLoaded ? { visibility: 'hidden' } : { visibility: 'visible' }}
               >
                 {movies.map((data) => (
                   <Grid key={data.id} item xs={12} lg={4}>
@@ -161,6 +164,12 @@ function MoviesPage() {
                           }}
                         />
                       </div>
+                      {/* Caption Underneath Image */}
+                      <Box sx={{ textAlign: 'center' }}>
+                        <Typography variant="caption" align="center">
+                          {data.title}
+                        </Typography>
+                      </Box>
                     </Link>
                   </Grid>
                 ))}

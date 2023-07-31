@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import TableContainer from '@mui/material/TableContainer';
 import Box from 'components/Box';
 
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState, useRef } from 'react';
 import useStore from 'store/mapStore';
 import { getPlacePhoto } from 'util/geocoder';
 
@@ -31,7 +31,8 @@ function BookmarkTable({ bookmarkState , tableRef, tableHeight}) {
   const [rowData, setRowData] = useState([]);
   const [loading, setLoading] = useState(true);
     const { width } = useWindowSize();
-
+  const imageRefs = useRef(new Map());
+const [imagesLoaded, setImagesLoaded] = useState(0);
   // This hook provides access to the setMarkerData action from the mapStore.
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const hideColumns = [0, 1];
@@ -80,9 +81,13 @@ function BookmarkTable({ bookmarkState , tableRef, tableHeight}) {
               ? locationPhoto.data
               : 'https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fplaceholder-images%2Fcity-locations%2Fconcept-of-travel-and-adventure-traveller-lifesty-2022-07-12-15-38-22-utc.jpg?alt=media&token=14c18b2f-45a2-440b-af78-d9e7297be52d';
           const photo = (
-          
-              <img className="bookmark-image" src={imgSrc} alt="location-city" style={{marginRight:"4px"}}></img>
-          
+            <img
+              className="bookmark-image"
+              src={imgSrc}
+              alt="location-city"
+              style={{ marginRight: '4px' }}
+              onLoad={() => setImagesLoaded((imagesLoaded) => imagesLoaded + 1)}
+            ></img>
           );
 
           // Adding the processed data to obj.
@@ -99,9 +104,8 @@ function BookmarkTable({ bookmarkState , tableRef, tableHeight}) {
 
         // Setting rowData state with the processed bookmark data.
         setRowData(bookmarkData);
-        setTimeout(() => {
-          setLoading(false);
-        }, 500);
+       
+       
       }
     };
 
@@ -114,9 +118,17 @@ function BookmarkTable({ bookmarkState , tableRef, tableHeight}) {
     if (loading) {
       setTimeout(() => {
         setLoading(false);
-      }, 1500);
+      }, 3000);
     }
   }, [loading]);
+
+  useEffect(() => {
+    if (imagesLoaded > 0 && bookmarkState.length > 0) {
+      if (imagesLoaded === bookmarkState.length) {
+       setLoading(false)
+     }
+    }
+  }, [imagesLoaded,bookmarkState]);
   // Column definitions for the Table.
   const { columns, rows } = {
     columns: [

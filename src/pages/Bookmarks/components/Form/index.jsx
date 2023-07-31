@@ -152,7 +152,7 @@ function Form() {
       <Stack spacing={2}>
         <Box pl={{ xs: 0, sm: 5 }} pr={{ xs: 0, sm: 0 }} py={{ xs: 0, sm: 1 }}>
           <Grid container>
-            <Box pl={{ xs: 0, sm: 3 }} pr={{ xs: 0, sm: 0 }} py={{ xs: 0, sm: 1 }}>
+            <Box pl={{ xs: 0, sm: 1 }} pr={{ xs: 0, sm: 0 }} py={{ xs: 0, sm: 1 }}>
               <Typography variant="h4" mb={1}>
                 Bookmarks
               </Typography>
@@ -170,7 +170,7 @@ function Form() {
                     clear={true}
                   />
                 ) : (
-                  <Grid item xs={12} pr={1} mb={0} pl={2}>
+                  <Grid item xs={12} pr={1} mb={0} pl={0}>
                     <Button color="white" size="large" sx={{ pl: 0 }} onClick={handleNewBookmark}>
                       {' '}
                       <AddIcon color="info" sx={{ mr: 1, my: 0.5 }} />{' '}
