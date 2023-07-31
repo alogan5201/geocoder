@@ -70,35 +70,17 @@ const Markers = ({ L }) => {
 
   useEffect(() => {
     removeMarkers();
-    if (pathname.includes('route-planner')) {
-      if (locationMarkerData) {
-        addMarkersToMap(locationMarkerData);
-      } else if (markerData) {
-        addMarkersToMap(markerData);
-      }
-    } else {
-      setPopupOpen(true);
-      if (locationMarkerData) {
-        localStorage.setItem('markerData', JSON.stringify(locationMarkerData));
-
-        setMarkerPoints(locationMarkerData);
-      } else if (markerData) {
-        localStorage.setItem('markerData', JSON.stringify(markerData));
-        setMarkerPoints(markerData);
-      }
-    }
+if (locationMarkerData) {
+  addMarkersToMap(locationMarkerData);
+} else if (markerData) {
+  addMarkersToMap(markerData);
+}
     return () => {
       setMarkers([]);
       removeMarkers();
       setMarkerPoints(null);
     };
   }, [markerData, locationMarkerData, map]);
-  if (markerPoints && markerPoints.length === 1) {
-    return markerPoints.map((item, index) => (
-      <PointMarker key={0} content={index} center={{ lat: item.lat, lng: item.lng }} openPopup={popupOpen} L={L} />
-    ));
-  } else {
-  }
   return null;
 };
 

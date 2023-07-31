@@ -108,9 +108,10 @@ function Form() {
     //    handleSubmit(e);
     //handleSubmit({ preventDefault: () => {} });
   };
-  useEffectOnce(() => {
-    resetMapData();
-  });
+useEffect(() => {
+  resetMapData()
+  return () => {  resetMapData();}
+}, []);
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector('.leaflet-bar');
