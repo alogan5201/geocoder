@@ -132,7 +132,7 @@ function Form() {
     setTimeout(() => {
       setLoading(false);
          if (width < 992) {
-           mobileScrollToMap(700);
+           mobileScrollToMap(500);
          }
     }, 3000);
   };

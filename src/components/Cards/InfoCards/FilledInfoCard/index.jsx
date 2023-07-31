@@ -36,17 +36,17 @@ function FilledInfoCard({ variant, color, title, description, action }) {
       variant={variant}
       bgColor={variant === 'contained' ? 'white' : color}
       borderRadius="xl"
-      pt={3.5}
-      pb={3}
-      px={3}
+      py={2}
+      px={0}
     >
-      <Box pt={{ xs: 3, md: 0 }} pl={{ xs: 0, md: 2 }} lineHeight={1}>
+      <Box pt={{ xs: 3, md: 0 }} pl={{ xs: 0, md: 0 }} lineHeight={1}>
         <Typography
           display="block"
           variant="5"
           color={variant === 'contained' || color === 'light' ? 'success' : 'white'}
           fontWeight="bold"
           mb={1}
+          align="left"
         >
           {title}
         </Typography>
