@@ -56,8 +56,8 @@ function Form() {
   const { setErrorMessage } = useStore((state) => ({
     setErrorMessage: state.setErrorMessage,
   }));
-const [loading, setLoading] = useState(false)
- 
+  const [loading, setLoading] = useState(false);
+
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -66,14 +66,12 @@ const [loading, setLoading] = useState(false)
     const inputOne = e.target[0].value;
     const inputTwo = e.target[2].value;
     await handleFormInputs(inputOne, inputTwo);
-
   }
 
   const handleFormInputs = async (inputOne, inputTwo) => {
     if (inputOne && inputTwo) {
       setTimeout(() => {
         setLoading(true);
-        
       }, 500);
       try {
         const [mapBoxDataOrigin, mapBoxDataDestination] = await Promise.all([
@@ -112,7 +110,6 @@ const [loading, setLoading] = useState(false)
             ]);
 
             if (weatherOrigin && weatherDestination) {
-              console.log("🚀 ~ handleFormInputs ~ weatherDestination:", weatherDestination)
               await setWeatherData(mapBoxDataOrigin, mapBoxDataDestination, weatherOrigin, weatherDestination);
               setTimeout(() => setHideAllLayers(false), 500);
 
@@ -129,11 +126,10 @@ const [loading, setLoading] = useState(false)
             setTimeout(() => setErrorMessage(false), 500);
           }
         }
-      } catch (error) {
-      } 
+      } catch (error) {}
     }
     setTimeout(() => {
-      setLoading(false)
+      setLoading(false);
     }, 2500);
   };
   const setWeatherData = async (mapBoxDataOrigin, mapBoxDataDestination, weatherOrigin, weatherDestination) => {
@@ -150,7 +146,6 @@ const [loading, setLoading] = useState(false)
 
     const extractedAddressOrigin = extractCityAndState(mapBoxDataOrigin);
     const extractedAddressDestination = extractCityAndState(mapBoxDataDestination);
-    console.log("🚀 ~ setWeatherData ~ mapBoxDataDestination:", mapBoxDataDestination)
 
     const originCity = extractedAddressOrigin ? extractedAddressOrigin.city : '';
     const destinationCity = extractedAddressDestination ? extractedAddressDestination.city : '';
@@ -303,10 +298,9 @@ const [loading, setLoading] = useState(false)
           ...duration,
           distance: distance,
         };
-      setTimeout(() => {
-        setRouteInfo(data);
-        
-      }, 3000);
+        setTimeout(() => {
+          setRouteInfo(data);
+        }, 3000);
       }
     }
   }, [routeData]);
@@ -383,35 +377,34 @@ const [loading, setLoading] = useState(false)
           <Grid item xs={12} pr={1} mb={2}>
             {routeInfo && (
               <Box
-  sx={{
-    transition: 'opacity 0.3s',
-    opacity: loading ? 0 : 1,
-  }}
->
-                
-  <FilledInfoCard
-    color="dark"
-    variant="contained"
-    title={
-      routeInfo.hours && routeInfo.minutes
-        ? `${routeInfo.hours} hours ${routeInfo.minutes} minutes`
-        : routeInfo.hours
-        ? `${routeInfo.hours} hours`
-        : `${routeInfo.minutes} minutes`
-    }
-    description={routeInfo.distance ? `${routeInfo.distance} miles` : ''}
-    action={
-      directionsUrl
-        ? {
-            type: 'external',
-            route: directionsUrl,
-            label: 'Directions',
-            iconComponent: <DirectionsIcon color="info" fontSize="large" sx={{ ml: '5px' }} />,
-          }
-        : null
-    }
-  />
-</Box>
+                sx={{
+                  transition: 'opacity 0.3s',
+                  opacity: loading ? 0 : 1,
+                }}
+              >
+                <FilledInfoCard
+                  color="dark"
+                  variant="contained"
+                  title={
+                    routeInfo.hours && routeInfo.minutes
+                      ? `${routeInfo.hours} hours ${routeInfo.minutes} minutes`
+                      : routeInfo.hours
+                      ? `${routeInfo.hours} hours`
+                      : `${routeInfo.minutes} minutes`
+                  }
+                  description={routeInfo.distance ? `${routeInfo.distance} miles` : ''}
+                  action={
+                    directionsUrl
+                      ? {
+                          type: 'external',
+                          route: directionsUrl,
+                          label: 'Directions',
+                          iconComponent: <DirectionsIcon color="info" fontSize="large" sx={{ ml: '5px' }} />,
+                        }
+                      : null
+                  }
+                />
+              </Box>
             )}
           </Grid>
         </Grid>

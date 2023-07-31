@@ -9,10 +9,10 @@ import { marker } from 'leaflet';
 
 const Markers = ({ L }) => {
   const map = useMap();
-    const { pathname } = useLocation();
+  const { pathname } = useLocation();
 
-    const [markerPoints, setMarkerPoints] = useState(null);
-    const [popupOpen, setPopupOpen] = useState(false);
+  const [markerPoints, setMarkerPoints] = useState(null);
+  const [popupOpen, setPopupOpen] = useState(false);
   const markerData = useStore((state) => state.markerData);
   const locationMarkerData = useStore((state) => state.locationMarkerData);
   const [markers, setMarkers] = useState([]);
@@ -25,8 +25,6 @@ const Markers = ({ L }) => {
   };
 
   const createMarkers = (dataArray, markerOptionsArray) => {
-    console.log("🚀 ~ createMarkers ~ dataArray:", dataArray)
-    
     return dataArray.map((data, index) => {
       const marker = markerOptionsArray[index]
         ? L.marker([data.lat, data.lng], markerOptionsArray[index])
@@ -67,20 +65,17 @@ const Markers = ({ L }) => {
     setTimeout(() => {
       newMarkers = createMarkers(currentMarkerData, markerOptionsArray);
       setMarkers(newMarkers);
-  }, 3500);
+    }, 3500);
   };
 
   useEffect(() => {
-     removeMarkers();
+    removeMarkers();
     if (pathname.includes('route-planner')) {
       if (locationMarkerData) {
         addMarkersToMap(locationMarkerData);
-     
       } else if (markerData) {
         addMarkersToMap(markerData);
-   
       }
-  
     } else {
       setPopupOpen(true);
       if (locationMarkerData) {
@@ -88,24 +83,23 @@ const Markers = ({ L }) => {
 
         setMarkerPoints(locationMarkerData);
       } else if (markerData) {
-            localStorage.setItem('markerData', JSON.stringify(markerData));
+        localStorage.setItem('markerData', JSON.stringify(markerData));
         setMarkerPoints(markerData);
-        
-          } 
-}
-    return () => {
-      setMarkers([])
-      removeMarkers();
-      setMarkerPoints(null)
-
+      }
     }
+    return () => {
+      setMarkers([]);
+      removeMarkers();
+      setMarkerPoints(null);
+    };
   }, [markerData, locationMarkerData, map]);
   if (markerPoints && markerPoints.length === 1) {
     return markerPoints.map((item, index) => (
       <PointMarker key={0} content={index} center={{ lat: item.lat, lng: item.lng }} openPopup={popupOpen} L={L} />
     ));
   } else {
-  } return null;
+  }
+  return null;
 };
 
 export default Markers;

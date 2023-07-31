@@ -15,29 +15,26 @@ import IconButton from '@mui/material/IconButton';
 function stringToHtml(input) {
   // Split the input string into an array of words
   if (input && input.includes(' ')) {
-    
     var words = input.split(' ');
-  
+
     // Map over the words and return each word as a text and add a <br/> if not the last word
     var html = words.map((word, index) => (
       <Fragment key={index}>
-        {word}{index !== words.length - 1 && <br />}
+        {word}
+        {index !== words.length - 1 && <br />}
       </Fragment>
     ));
-      return html;
+    return html;
+  } else {
+    return input;
   }
-  else {
-    return input
-}
-
-
 }
 const LegendContent = ({ content, handleClose }) => {
-const spring = {
-  type: 'spring',
-  stiffness: 260,
-  damping: 20,
-};
+  const spring = {
+    type: 'spring',
+    stiffness: 260,
+    damping: 20,
+  };
   const [weatherContentStyles, setWeatherContentStyles] = useState({
     minWidth: 180,
     backgroundColor: 'rgba(255,255,255,0.9)',
@@ -47,7 +44,6 @@ const spring = {
 
   useEffect(() => {
     if (content) {
-      console.log("🚀 ~ useEffect ~ content:", content)
       setWeatherContentStyles({
         minWidth: 180,
         backgroundColor: 'rgba(255,255,255,0.9)',
@@ -130,19 +126,17 @@ function WeatherLegend({ L }) {
   const legendControl = useRef(null);
   useEffect(() => {}, [closeWeatherContent]);
   useEffect(() => {
-    if (routeData) { 
+    if (routeData) {
       if (legendControl.current && legendControl.current.getContainer()) {
         legendControl.current.getContainer().style.opacity = '0';
       }
     }
     if (weather) {
-      console.log("🚀 ~ useEffect ~ weather:", weather)
       setLoading(false);
       if (legendControl.current) {
         legendControl.current.remove();
       }
       legendControl.current = L.control({ position: 'bottomright' });
-    
 
       legendControl.current.onAdd = () => {
         const div = L.DomUtil.create('div', 'info legend');
@@ -160,10 +154,10 @@ function WeatherLegend({ L }) {
 
       // Add the control to the leaflet map
       legendControl.current.addTo(context.map);
-        legendControl.current.getContainer().style.opacity = '0';
+      legendControl.current.getContainer().style.opacity = '0';
 
       setTimeout(() => {
-         legendControl.current.getContainer().style.opacity = '1'
+        legendControl.current.getContainer().style.opacity = '1';
       }, 3500);
     }
     // Create a leaflet control object
@@ -181,7 +175,7 @@ function WeatherLegend({ L }) {
         setCloseWeatherContent(false);
       }
     };
-  }, [ context.map, weather, closeWeatherContent, routeData]);
+  }, [context.map, weather, closeWeatherContent, routeData]);
 
   return null;
 }

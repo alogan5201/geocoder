@@ -15,7 +15,7 @@ const MapWithRoute = ({ setMapLoaded }) => {
       iconColor: 'red',
       position: [33.748992, -84.390264],
  
-      onClick: () => console.log('marker clicked'),
+      onClick: () => 
       tooltip: 'Hey!',
     },
     {
@@ -23,7 +23,7 @@ const MapWithRoute = ({ setMapLoaded }) => {
       iconColor: 'blue',
       position: [30.271129, -97.7437],
       popupOpen: false, // if popup has to be open by default
-      onClick: () => console.log('marker clicked'),
+      onClick: () => 
       tooltip: 'Nice!',
     },
   ];
