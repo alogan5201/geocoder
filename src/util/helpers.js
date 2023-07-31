@@ -318,3 +318,11 @@ export function retrieveWeatherIconUrl(icon) {
 }
 
 
+
+export const mobileScrollToMap = (offset) => {
+  const mapElement = document.getElementById('map');
+  if (mapElement) {
+ 
+    window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+  }
+}
