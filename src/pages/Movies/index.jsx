@@ -25,29 +25,46 @@ function MoviesPage() {
   const [pagIndex, setPagIndex] = useState(null);
   const [paginationLength, setPaginationLength] = useState(null);
   const [allImagesLoaded, setAllImagesLoaded] = useState(false);
-  const { imagesLoaded } = useStore((state) => ({
-    imagesLoaded: state.imagesLoaded,
-  }));
+const [imagesLoaded, setImagesLoaded] = useState(0);
+
   const handlePagination = (e, page) => {
     navigate(`/movies/${page}`);
     setImagesLoading(true);
     setLoading(true)
+
   };
   useEffect(() => {
-    if (imagesLoaded > movies.length - 2) {
-      setAllImagesLoaded(true);
-    } else {
-      setAllImagesLoaded(false);
-    }
+    if (imagesLoaded > 0 && movies.length > 0) {
+      if (imagesLoaded === movies.length) {
+        console.log("🚀 ~ useEffect ~ movies:", movies.length)
+        setTimeout(() => {
+          
+          //setAllImagesLoaded(true);
+        }, 2000);
+        
+      }
+    } 
+      return () => {
+        setImagesLoaded((imagesLoaded) => (imagesLoaded = 0));
+      };
   }, [imagesLoaded, movies]);
+
+
   useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000);
      setTimeout(() => {
-       setLoading(false);
-     }, 300);
-    return () => { 
-      setAllImagesLoaded(false)
-    }
-}, [loading]);
+       setImagesLoading(false);
+     }, 4000);
+      return () => {
+        setImagesLoaded((imagesLoaded) => (imagesLoaded = 0));
+      };
+  }, [loading, allImagesLoaded]);
+  
+  useEffect(() => {
+    console.log("🚀 ~ MoviesPage ~ [loading, imagesLoaded,allImagesLoaded]:", [loading, imagesLoaded,allImagesLoaded,movies.length, imagesLoading])
+  }, [loading, imagesLoaded,allImagesLoaded,movies.length, imagesLoading]);
   async function fetchMoviesInRange(start, end) {
     // Define the range of indexes
 
@@ -81,9 +98,7 @@ function MoviesPage() {
             setPaginationLength(generateRanges(movieLength).length);
             setMovies(moviesInRange);
 
-            setTimeout(() => {
-              setImagesLoading(false);
-            }, 500);
+           
           } else {
             navigate('/404');
           }
@@ -95,13 +110,7 @@ function MoviesPage() {
     fetchMovies();
   }, [navigate, slug]);
 
-  useEffect(() => {
-    if (imagesLoading) {
-      setTimeout(() => {
-       setImagesLoading(false)
-      }, 1500);
-    }
-  }, [imagesLoading]);
+
 
   return (
     <>
@@ -146,7 +155,7 @@ function MoviesPage() {
                 container
                 spacing={5}
                 mt={3}
-                sx={allImagesLoaded ? { visibility: 'hidden' } : { visibility: 'visible' }}
+                sx={imagesLoading ? { visibility: 'hidden' } : { visibility: 'visible' }}
               >
                 {movies.map((data) => (
                   <Grid key={data.id} item xs={12} lg={4}>
@@ -162,6 +171,7 @@ function MoviesPage() {
                             width: '100%',
                             height: '100%',
                           }}
+                          onLoad={() => setImagesLoaded((imagesLoaded) => imagesLoaded + 1)}
                         />
                       </div>
                       {/* Caption Underneath Image */}

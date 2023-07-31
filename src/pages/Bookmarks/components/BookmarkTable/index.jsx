@@ -114,13 +114,7 @@ const [imagesLoaded, setImagesLoaded] = useState(0);
 
     // Dependency array for useEffect, re-run when bookmarkState changes.
   }, [bookmarkState]);
-  useEffect(() => {
-    if (loading) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 3000);
-    }
-  }, [loading]);
+
 
   useEffect(() => {
     if (imagesLoaded > 0 && bookmarkState.length > 0) {
