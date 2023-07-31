@@ -1,5 +1,5 @@
 
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import useStore from "store/mapStore";
 // react-router components
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
@@ -21,7 +21,7 @@ import routes from "routes";
 import WebFont from 'webfontloader';
 export default function App() {
   const { pathname } = useLocation();
-
+const [reset, setReset] = useState(false)
 
   const resetMapData = useStore((state) => state.resetMapData);
   // Setting page scroll to 0 when changing the route
@@ -37,6 +37,8 @@ export default function App() {
       },
     });
     resetMapData();
+    setReset(true)
+    return () => { setReset(false)}
   }, [pathname]);
   useEffectOnce(() => {
     const setMovieList = async () => {
@@ -61,16 +63,18 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Suspense fallback={<Loading />}>
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="/" element={<HomePage />} />
-          <Route path="*" element={<Navigate to="/" />} />
-          <Route path="/location/:slug" element={<MovieDetailPage />} />
-          <Route path="/movies/:slug" element={<Movies />} />
-          <Route path="/404" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
+      {reset && (
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            {getRoutes(routes)}
+            <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/location/:slug" element={<MovieDetailPage />} />
+            <Route path="/movies/:slug" element={<Movies />} />
+            <Route path="/404" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      )}
     </ThemeProvider>
   );
 }

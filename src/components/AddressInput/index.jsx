@@ -16,6 +16,8 @@ function AddressInput({ onSubmit, ...props }) {
   const [address, setAddress] = useState(null);
   const locationMarkerData = useStore((state) => state.locationMarkerData);
   const [clear, setClear] = useState(false);
+  const updateMarkerData = useStore((state) => state.setMarkerData);
+
 
   useEffect(() => {
     if (clearMapInputs) {
@@ -27,6 +29,7 @@ function AddressInput({ onSubmit, ...props }) {
       }
     }
   }, [clearMapInputs]);
+
   /* 
   useEffect(() => {
     if (locationMarkerData && props.label === 'Destination') {

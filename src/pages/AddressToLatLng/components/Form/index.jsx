@@ -20,6 +20,7 @@ function Form() {
 
   const [coords, setCoords] = useGlobalValue();
   const updateMarkerData = useStore((state) => state.setMarkerData);
+  const markerData = useStore((state) => state.markerData);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
   const userLocationActive = useStore((state) => state.userLocationActive);
   const setMapInputState = useStore((state) => state.setMapInputState);
