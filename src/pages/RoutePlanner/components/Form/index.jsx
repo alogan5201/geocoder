@@ -134,7 +134,7 @@ function Form() {
          if (width < 992) {
            mobileScrollToMap(700);
          }
-    }, 2500);
+    }, 3000);
   };
   const setWeatherData = async (mapBoxDataOrigin, mapBoxDataDestination, weatherOrigin, weatherDestination) => {
     const iconOrigin = weatherOrigin.weather[0].icon.slice(0, -1);

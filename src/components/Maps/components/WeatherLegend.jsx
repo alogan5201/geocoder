@@ -43,7 +43,6 @@ const LegendContent = ({ content, handleClose }) => {
   });
 
   useEffect(() => {
-    console.log("WeatherLegend Rendered")
     if (content) {
       setWeatherContentStyles({
         minWidth: 180,
@@ -125,11 +124,11 @@ function WeatherLegend({ L }) {
     setCloseWeatherContent(true);
   };
   const legendControl = useRef(null);
-  useEffect(() => {}, [closeWeatherContent]);
+
   useEffect(() => {
     if (routeData) {
       if (legendControl.current && legendControl.current.getContainer()) {
-        legendControl.current.getContainer().style.opacity = '0';
+        //legendControl.current.getContainer().style.opacity = '0';
       }
     }
     if (weather) {
@@ -155,15 +154,13 @@ function WeatherLegend({ L }) {
 
       // Add the control to the leaflet map
       // legendControl.current.getContainer().style.opacity = '0';
-      
+
       setTimeout(() => {
         legendControl.current.addTo(context.map);
       }, 1750);
     }
     // Create a leaflet control object
     if (closeWeatherContent) {
-      legendControl.current.getContainer().style.opacity = '0';
-
       legendControl.current.remove();
     }
     // Cleanup

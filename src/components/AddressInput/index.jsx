@@ -17,7 +17,6 @@ function AddressInput({ onSubmit, ...props }) {
   const locationMarkerData = useStore((state) => state.locationMarkerData);
   const [clear, setClear] = useState(false);
 
-
   useEffect(() => {
     if (clearMapInputs) {
       if (props.readOnly) {
@@ -30,11 +29,9 @@ function AddressInput({ onSubmit, ...props }) {
   }, [clearMapInputs]);
   useEffect(() => {
     if (markerData) {
-      console.log("🚀 ~ AddressInput ~ markerData:", markerData)
-      
     }
   }, [markerData]);
-  /* 
+
   useEffect(() => {
     if (locationMarkerData && props.label === 'Destination') {
       return;
@@ -47,10 +44,8 @@ function AddressInput({ onSubmit, ...props }) {
 
       setAddress(addressData);
     } else if (markerData && markerData.length > 0 && !locationMarkerData) {
-      const index = props.index ? props.index : 0;
-      
-      
-    
+      const index = props.index === 1 && markerData.length > 1 ? props.index : 0;
+
       const addressData = markerData[index].title.includes(', United States')
         ? markerData[index].title.replace(', United States', '')
         : markerData[index].title;
@@ -60,7 +55,7 @@ function AddressInput({ onSubmit, ...props }) {
     return () => {
       setAddress(null);
     };
-  }, [markerData, locationMarkerData]); */
+  }, [markerData, locationMarkerData]);
   useEffect(() => {
     if (address) {
       if (props.readOnly) {
