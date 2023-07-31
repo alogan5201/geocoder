@@ -43,6 +43,7 @@ const LegendContent = ({ content, handleClose }) => {
   });
 
   useEffect(() => {
+    console.log("WeatherLegend Rendered")
     if (content) {
       setWeatherContentStyles({
         minWidth: 180,
@@ -56,7 +57,7 @@ const LegendContent = ({ content, handleClose }) => {
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       exit={{ scale: 0 }}
-      transition={{ ...spring, delay: 3.5 }}
+      transition={{ ...spring, delay: 1.75 }}
     >
       <Card sx={weatherContentStyles} className="weatherLegendCard">
         <CardHeader
@@ -153,12 +154,11 @@ function WeatherLegend({ L }) {
       };
 
       // Add the control to the leaflet map
-      legendControl.current.addTo(context.map);
-      legendControl.current.getContainer().style.opacity = '0';
-
+      // legendControl.current.getContainer().style.opacity = '0';
+      
       setTimeout(() => {
-        legendControl.current.getContainer().style.opacity = '1';
-      }, 3500);
+        legendControl.current.addTo(context.map);
+      }, 1750);
     }
     // Create a leaflet control object
     if (closeWeatherContent) {

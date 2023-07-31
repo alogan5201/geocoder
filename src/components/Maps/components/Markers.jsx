@@ -71,9 +71,23 @@ const Markers = ({ L }) => {
   useEffect(() => {
     removeMarkers();
 if (locationMarkerData) {
-  addMarkersToMap(locationMarkerData);
+  if (pathname.includes('route-planner')) {
+    addMarkersToMap(locationMarkerData);
+  } else {
+    localStorage.setItem('markerData', JSON.stringify(locationMarkerData));
+    setMarkerPoints(locationMarkerData);
+    setPopupOpen(true);
+  }
 } else if (markerData) {
-  addMarkersToMap(markerData);
+  if (pathname.includes('route-planner')) {
+    addMarkersToMap(markerData);
+  } else {
+    localStorage.setItem('markerData', JSON.stringify(markerData));
+    setMarkerPoints(markerData);
+    setPopupOpen(true);
+  }
+} else if (popupOpen) {
+  setPopupOpen(false);
 }
     return () => {
       setMarkers([]);
@@ -81,7 +95,14 @@ if (locationMarkerData) {
       setMarkerPoints(null);
     };
   }, [markerData, locationMarkerData, map]);
-  return null;
+  if (pathname.includes('route-planner')){
+    return null;
+  }
+  else if(markerPoints && markerPoints.length > 0) {
+    return (
+      <PointMarker key={0} content={0} center={{ lat: markerPoints[0].lat, lng: markerPoints[0].lng }} openPopup={popupOpen} L={L} />
+    );
+  }
 };
 
 export default Markers;

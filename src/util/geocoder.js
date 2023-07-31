@@ -144,7 +144,7 @@ export async function getCityPhoto(cityName) {
   const apiKey = VITE_FIREBASE_API_KEY;
   try {
     // Step 1: Search for the city and retrieve a photo_reference
-    const urlStartPoint = VITE_NODE_ENV === 'development' ? '/google-api' : 'https://maps.googleapis.com/maps/api';
+    const urlStartPoint = 'https://maps.googleapis.com/maps/api';
     const placeSearchUrl = `${urlStartPoint}/place/findplacefromtext/json?input=${encodeURIComponent(
       cityName
     )}&inputtype=textquery&fields=photos&key=${apiKey}`;
@@ -169,7 +169,7 @@ export async function getPhotoByCoordinates(latitude, longitude, city, state) {
   try {
     // Step 1: Search for the places near the given coordinates and retrieve a photo_reference
     // https://maps.googleapis.com/maps/api/place/photo?parameters
-    const urlStartPoint = VITE_NODE_ENV === 'development' ? '/google-api' : 'https://maps.googleapis.com/maps/api';
+    const urlStartPoint = 'https://maps.googleapis.com/maps/api';
     const placeSearchUrl = `${urlStartPoint}/place/nearbysearch/json?location=${latitude},${longitude}&radius=500&key=${apiKey}`;
     const placeSearchResponse = await fetch(placeSearchUrl);
     const placeSearchData = await placeSearchResponse.json();
