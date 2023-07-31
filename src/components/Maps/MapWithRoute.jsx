@@ -55,10 +55,11 @@ const MapWithRoute = ({ setMapLoaded }) => {
         />
         {/* <PolyLineRoute L={L} /> <Markers L={L} /> <WeatherLegend L={L} />*/}
         {/* <PolyLineRoute L={L} /> */}
-        <Markers L={L} />
-        <WeatherLegend L={L} />
-        {/* <PixiOverlay markers={markers} /> */}
         <Fly />
+        <WeatherLegend L={L} />
+        <Markers L={L} />
+        <PolyLineRoute L={L} />
+
         <LocationButton L={L} />
       </MapContainer>
     </>

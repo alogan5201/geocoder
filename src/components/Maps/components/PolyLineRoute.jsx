@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMap } from "react-leaflet";
 import useStore from "store/mapStore";
-
+import { getTimeStamp } from "util/helpers";
 const PolyLineRoute = ({ L }) => {
   const [currentPolyline, setCurrentPolyline] = useState(null);
   const routeData = useStore((state) => state.routeData);
@@ -29,7 +29,10 @@ const PolyLineRoute = ({ L }) => {
         }
       );
       setCurrentPolyline(polyline);
-   polyline.addTo(map);
+      setTimeout(() => {
+    console.log("polyLine added",getTimeStamp())
+     polyline.addTo(map);
+  }, 4700);
     }
   }, [routeData, map]);
 };
