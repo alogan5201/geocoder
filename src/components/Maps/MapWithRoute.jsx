@@ -44,7 +44,7 @@ const MapWithRoute = ({ setMapLoaded }) => {
         whenReady={setMap}
         center={center}
         zoom={3}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         zoomControl={false}
         id="map"
         preferCanvas={true}

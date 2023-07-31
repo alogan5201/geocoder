@@ -115,7 +115,7 @@ const LegendContent = ({ content, handleClose }) => {
 function WeatherLegend({ L }) {
   const weather = useStore((state) => state.weather);
   const routeData = useStore((state) => state.routeData);
-
+  const [currentLegend, setCurrentLegend] = useState(null);
   const [closeWeatherContent, setCloseWeatherContent] = useState(false);
   const setLoading = useStore((state) => state.setLoading);
   const context = useLeafletContext();
@@ -126,12 +126,14 @@ function WeatherLegend({ L }) {
   const legendControl = useRef(null);
 
   useEffect(() => {
-    if (routeData) {
-      if (legendControl.current && legendControl.current.getContainer()) {
-        //legendControl.current.getContainer().style.opacity = '0';
+    if (closeWeatherContent) {
+      const legend = legendControl.current ? legendControl.current : currentLegend ? currentLegend.control : null;
+      console.log('🚀 ~ useEffect ~ legend:', legend);
+      if (legend) {
+        legend.remove();
       }
     }
-    if (weather) {
+    else if (weather) {
       setLoading(false);
       if (legendControl.current) {
         legendControl.current.remove();
@@ -156,17 +158,20 @@ function WeatherLegend({ L }) {
       // legendControl.current.getContainer().style.opacity = '0';
 
       setTimeout(() => {
+        
+
+        setCurrentLegend(legendControl);
+
         legendControl.current.addTo(context.map);
       }, 1750);
     }
     // Create a leaflet control object
-    if (closeWeatherContent) {
-      legendControl.current.remove();
-    }
+
     // Cleanup
     return () => {
       if (legendControl.current) {
         legendControl.current.remove();
+        setCurrentLegend(null);
       }
       if (closeWeatherContent) {
         setCloseWeatherContent(false);
