@@ -79,7 +79,7 @@ function Form() {
       if (mapBoxDataOrigin && mapBoxDataDestination) {
         if (mapBoxDataOrigin.features.length > 0 && mapBoxDataDestination.features.length > 0) {
           setCoords([coords]);
-           setHideAllLayers(true);
+          setHideAllLayers(true);
           const markerDataOriginFormatted = generateMarkerDataOrigin(mapBoxDataOrigin);
           const markerDataDestinationFormatted = generateMarkerDataDestination(mapBoxDataDestination);
           const markerData = [markerDataOriginFormatted[0], markerDataDestinationFormatted[0]];
@@ -90,14 +90,13 @@ function Form() {
             setMapZoom(5);
             setUserLocationActive(false);
             setMapInputState(false);
-         
-            console.log('setHideAllLayers = true' );
+
             const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
             setDirectionsUrl(googleMapsDirectionUrl);
-      
+
             const weatherOrigin = await fetchWeather(markerData[0].lat, markerData[0].lng);
             const weatherDestination = await fetchWeather(markerData[1].lat, markerData[1].lng);
-        
+
             if (weatherOrigin && weatherDestination) {
               const iconOrigin = weatherOrigin.weather[0].icon.slice(0, -1);
               const iconDestination = weatherDestination.weather[0].icon.slice(0, -1);
@@ -124,9 +123,9 @@ function Form() {
                 },
               };
               setWeather(weatherData);
-               setTimeout(() => {
-                 setHideAllLayers(false);
-               }, 500);
+              setTimeout(() => {
+                setHideAllLayers(false);
+              }, 500);
 
               if (width < 992) {
                 const mapElement = document.getElementById('map');

@@ -24,6 +24,10 @@ import { create } from 'zustand';
    imagesLoaded: 0,
    mapReady: false,
    hideAllLayers: false,
+   currentMarkers: null,
+   setCurrentMarkers: (data) => {
+     set(() => ({ currentMarkers: data }));
+   },
    setHideAllLayers: (data) => {
      set(() => ({ hideAllLayers: data }));
    },

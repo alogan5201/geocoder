@@ -8,37 +8,37 @@ import { useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import useStore from 'store/mapStore';
 import { motion } from 'framer-motion';
-import CloseIcon from '@mui/icons-material/Close'
-  import CardHeader from '@mui/material/CardHeader';
+import CloseIcon from '@mui/icons-material/Close';
+import CardHeader from '@mui/material/CardHeader';
 import IconButton from '@mui/material/IconButton';
 
 const LegendContent = ({ content, handleClose }) => {
-  
   const [weatherContentStyles, setWeatherContentStyles] = useState({
     minWidth: 180,
     backgroundColor: 'rgba(255,255,255,0.9)',
-    visibility:"visible"
+    visibility: 'visible',
     // transform: "rotate(180deg)",
-  })
-  
+  });
 
   useEffect(() => {
-
     if (content) {
       setWeatherContentStyles({
         minWidth: 180,
         backgroundColor: 'rgba(255,255,255,0.9)',
-        visibility:"visible",
-      })
-      
+        visibility: 'visible',
+      });
     }
-  }, [content])
+  }, [content]);
   return (
     <Card sx={weatherContentStyles}>
       <CardHeader
-        sx={{ position: 'relative', padding: "3px" }}
+        sx={{ position: 'relative', padding: '3px' }}
         action={
-          <IconButton aria-label="close" sx={{ position: 'absolute', top: 0, right: 0, padding:"7px", opacity:0.8 }} onClick={handleClose}>
+          <IconButton
+            aria-label="close"
+            sx={{ position: 'absolute', top: 0, right: 0, padding: '7px', opacity: 0.8 }}
+            onClick={handleClose}
+          >
             <CloseIcon sx={{ fontSize: 15, color: '#333' }} />
           </IconButton>
         }
@@ -111,17 +111,15 @@ const LegendContent = ({ content, handleClose }) => {
 function WeatherLegend({ L }) {
   const weather = useStore((state) => state.weather);
 
-const [closeWeatherContent,setCloseWeatherContent]= useState(false)
+  const [closeWeatherContent, setCloseWeatherContent] = useState(false);
   const setLoading = useStore((state) => state.setLoading);
   const context = useLeafletContext();
   const handleCloseClick = (e) => {
     e.preventDefault();
-    setCloseWeatherContent(true)
+    setCloseWeatherContent(true);
   };
-    const legendControl = useRef(null);
-useEffect(() => {
-  console.log("closeWeatherContent", closeWeatherContent)
-}, [closeWeatherContent]);
+  const legendControl = useRef(null);
+  useEffect(() => {}, [closeWeatherContent]);
   useEffect(() => {
     if (weather) {
       setLoading(false);
@@ -147,7 +145,6 @@ useEffect(() => {
     }
     // Create a leaflet control object
     if (closeWeatherContent) {
-      console.log('🚀 ~ useEffect ~ closeWeatherContent:', closeWeatherContent);
       legendControl.current.getContainer().style.opacity = '0';
 
       legendControl.current.remove();
@@ -157,8 +154,8 @@ useEffect(() => {
       if (legendControl.current) {
         legendControl.current.remove();
       }
-      if(closeWeatherContent){
-        setCloseWeatherContent(false)
+      if (closeWeatherContent) {
+        setCloseWeatherContent(false);
       }
     };
   }, [L, context.map, weather, closeWeatherContent]);

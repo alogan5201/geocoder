@@ -4,17 +4,15 @@ import useStore from 'store/mapStore';
 import PopupMarkerContent from './PopupMarkerContent';
 
 const PointMarker = ({ center, content, openPopup, L, origin, destination }) => {
-    const [currentMarker, setCurrentMarker] = useState(null);
+  const map = useMap();
 
   const [position] = useState(null);
   const [rendered, setRendered] = useState(false);
   const userLocationActive = useStore((state) => state.userLocationActive);
-  const map = useMap();
+  const mapZoom = useStore((state) => state.mapZoom);
   const markerRef = useRef(null);
   let open = markerRef && markerRef.current ? markerRef.current.isPopupOpen() : null;
-  const mapZoom = useStore((state) => state.mapZoom);
-  const hideAllLayers = useStore((state) => state.hideAllLayers);
-  const [currentIcon, setCurrentIcon] = useState(null);
+
   const [animationFrameId, setAnimationFrameId] = useState(null);
   
   const originMarker = L.divIcon({
