@@ -25,6 +25,10 @@ import { create } from 'zustand';
    mapReady: false,
    hideAllLayers: false,
    currentMarkers: null,
+   routePlannerPromisesResolved: false,
+   setRoutePlannerPromisesResolved: (data) => {
+     set(() => ({ routePlannerPromisesResolved: data }));
+   },
    setCurrentMarkers: (data) => {
      set(() => ({ currentMarkers: data }));
    },

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useMap} from 'react-leaflet';
+import { useMap } from 'react-leaflet';
 import 'react-tabs/style/react-tabs.css';
 import useStore from 'store/mapStore';
 import { getTimeStamp } from 'util/helpers';
@@ -14,25 +14,20 @@ const Fly = () => {
 
   useEffect(() => {
     if (markerData) {
-      console.log(markerData);
       const origin = markerData[0];
       const destination = markerData[1];
-      console.log([origin.lat, origin.lng]);
-      console.log([destination.lat, destination.lng]);
+
       const a = true;
       const oCoords = a ? [origin.lat, origin.lng] : originCoords;
       const dCoords = a ? [destination.lat, destination.lng] : destinationCoords;
       setTimeout(() => {
-            console.log('map fly to', getTimeStamp());
-
-   map.flyToBounds([oCoords, dCoords], {
-     padding: [50, 50],
-     maxZoom: 13,
-   });
-}, 1700);
-  
+        map.flyToBounds([oCoords, dCoords], {
+          padding: [50, 50],
+          maxZoom: 13,
+        });
+      }, 2700);
     }
-  }, [markerData,map]);
+  }, [markerData, map]);
   return null;
 };
 

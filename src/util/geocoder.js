@@ -226,6 +226,7 @@ export function extractCityAndState(jsonObject) {
     if (cityName && stateName) {
       break;
     }
+    
   }
 
   return {

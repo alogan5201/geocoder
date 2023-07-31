@@ -11,10 +11,13 @@ import { useEffect, useRef, useState } from 'react';
 import useStore from 'store/mapStore';
 import { covertAddressToLatLng, extractCityAndState, getDirections, metersToMiles } from 'util/geocoder';
 import { useWindowSize } from 'react-use';
+import { ClipLoader } from 'react-spinners';
 
 import { fetchWeather, formatMarkerData, secondsToHoursMinutes, retrieveWeatherIconUrl } from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
+import { getTimeStamp } from 'util/helpers';
+
 const OriginInputIcon = () => {
   return (
     <Typography variant="h5" color="info">
@@ -38,6 +41,7 @@ function Form() {
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
   const setMarkerData = useStore((state) => state.setMarkerData);
+  const setRoutePlannerPromisesResolved = useStore((state) => state.setRoutePlannerPromisesResolved);
   const { setWeather } = useStore((state) => ({
     setWeather: state.setWeather,
   }));
@@ -52,11 +56,8 @@ function Form() {
   const { setErrorMessage } = useStore((state) => ({
     setErrorMessage: state.setErrorMessage,
   }));
-
-  const { setLoading, loading } = useStore((state) => ({
-    setLoading: state.setLoading,
-    loading: state.loading,
-  }));
+const [loading, setLoading] = useState(false)
+ 
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -65,25 +66,36 @@ function Form() {
     const inputOne = e.target[0].value;
     const inputTwo = e.target[2].value;
     await handleFormInputs(inputOne, inputTwo);
-    setLoading(false);
+
   }
 
   const handleFormInputs = async (inputOne, inputTwo) => {
     if (inputOne && inputTwo) {
-      setLoading(true);
       setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-      const mapBoxDataOrigin = await covertAddressToLatLng(inputOne);
-      const mapBoxDataDestination = await covertAddressToLatLng(inputTwo);
-      if (mapBoxDataOrigin && mapBoxDataDestination) {
-        if (mapBoxDataOrigin.features.length > 0 && mapBoxDataDestination.features.length > 0) {
+        setLoading(true);
+        
+      }, 500);
+      try {
+        const [mapBoxDataOrigin, mapBoxDataDestination] = await Promise.all([
+          covertAddressToLatLng(inputOne),
+          covertAddressToLatLng(inputTwo),
+        ]);
+
+        if (
+          mapBoxDataOrigin &&
+          mapBoxDataDestination &&
+          mapBoxDataOrigin.features.length > 0 &&
+          mapBoxDataDestination.features.length > 0
+        ) {
           setCoords([coords]);
           setHideAllLayers(true);
+
           const markerDataOriginFormatted = generateMarkerDataOrigin(mapBoxDataOrigin);
           const markerDataDestinationFormatted = generateMarkerDataDestination(mapBoxDataDestination);
+
           const markerData = [markerDataOriginFormatted[0], markerDataDestinationFormatted[0]];
           const formattedMarkerData = formatMarkerData(markerData);
+
           const updateRouteData = await updateRoute(markerData);
           if (updateRouteData) {
             setMarkerData(formattedMarkerData);
@@ -94,58 +106,69 @@ function Form() {
             const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
             setDirectionsUrl(googleMapsDirectionUrl);
 
-            const weatherOrigin = await fetchWeather(markerData[0].lat, markerData[0].lng);
-            const weatherDestination = await fetchWeather(markerData[1].lat, markerData[1].lng);
+            const [weatherOrigin, weatherDestination] = await Promise.all([
+              fetchWeather(markerData[0].lat, markerData[0].lng),
+              fetchWeather(markerData[1].lat, markerData[1].lng),
+            ]);
 
             if (weatherOrigin && weatherDestination) {
-              const iconOrigin = weatherOrigin.weather[0].icon.slice(0, -1);
-              const iconDestination = weatherDestination.weather[0].icon.slice(0, -1);
-              const iconOriginUrl = retrieveWeatherIconUrl(iconOrigin);
-              const iconDestinationUrl = retrieveWeatherIconUrl(iconDestination);
-              const iconOriginPath = iconOriginUrl;
-              const iconDestinationPath = iconDestinationUrl;
-              const currentWeatherOrigin = weatherOrigin.main.temp;
-              const currentWeatherDestination = weatherDestination.main.temp;
-              const extractedAddressOrigin = extractCityAndState(mapBoxDataOrigin);
-              const extractedAddressDestination = extractCityAndState(mapBoxDataDestination);
-              const originCity = extractedAddressOrigin ? extractedAddressOrigin.city : '';
-              const destinationCity = extractedAddressDestination ? extractedAddressDestination.city : '';
-              const weatherData = {
-                origin: {
-                  address: originCity,
-                  icon: iconOriginPath,
-                  temp: currentWeatherOrigin,
-                },
-                destination: {
-                  address: destinationCity,
-                  icon: iconDestinationPath,
-                  temp: currentWeatherDestination,
-                },
-              };
-              setWeather(weatherData);
-              setTimeout(() => {
-                setHideAllLayers(false);
-              }, 500);
+              console.log("🚀 ~ handleFormInputs ~ weatherDestination:", weatherDestination)
+              await setWeatherData(mapBoxDataOrigin, mapBoxDataDestination, weatherOrigin, weatherDestination);
+              setTimeout(() => setHideAllLayers(false), 500);
 
-              if (width < 992) {
-                const mapElement = document.getElementById('map');
-                if (mapElement) {
-                  const offset = 750; // change this to the offset that suits your needs
-                  window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
-                }
-              }
+              checkAllPromises([
+                mapBoxDataOrigin,
+                mapBoxDataDestination,
+                updateRouteData,
+                weatherOrigin,
+                weatherDestination,
+              ]);
             }
           } else {
             setErrorMessage(true);
-            setTimeout(() => {
-              setErrorMessage(false);
-            }, 500);
+            setTimeout(() => setErrorMessage(false), 500);
           }
         }
-      }
+      } catch (error) {
+      } 
     }
+    setTimeout(() => {
+      setLoading(false)
+    }, 2500);
+  };
+  const setWeatherData = async (mapBoxDataOrigin, mapBoxDataDestination, weatherOrigin, weatherDestination) => {
+    const iconOrigin = weatherOrigin.weather[0].icon.slice(0, -1);
+    const iconDestination = weatherDestination.weather[0].icon.slice(0, -1);
 
-    setLoading(false);
+    const [iconOriginUrl, iconDestinationUrl] = await Promise.all([
+      retrieveWeatherIconUrl(iconOrigin),
+      retrieveWeatherIconUrl(iconDestination),
+    ]);
+
+    const currentWeatherOrigin = weatherOrigin.main.temp;
+    const currentWeatherDestination = weatherDestination.main.temp;
+
+    const extractedAddressOrigin = extractCityAndState(mapBoxDataOrigin);
+    const extractedAddressDestination = extractCityAndState(mapBoxDataDestination);
+    console.log("🚀 ~ setWeatherData ~ mapBoxDataDestination:", mapBoxDataDestination)
+
+    const originCity = extractedAddressOrigin ? extractedAddressOrigin.city : '';
+    const destinationCity = extractedAddressDestination ? extractedAddressDestination.city : '';
+
+    const weatherData = {
+      origin: {
+        address: originCity,
+        icon: iconOriginUrl,
+        temp: currentWeatherOrigin,
+      },
+      destination: {
+        address: destinationCity,
+        icon: iconDestinationUrl,
+        temp: currentWeatherDestination,
+      },
+    };
+
+    setWeather(weatherData);
   };
   const handleChildSubmit = (data) => {
     if (data) {
@@ -235,6 +258,18 @@ function Form() {
 
     return `${baseUrl}${encodeURIComponent(location1)}/${encodeURIComponent(location2)}/`;
   };
+  const checkAllPromises = (promises) => {
+    Promise.all(
+      promises.map((promise) =>
+        Promise.resolve(promise).then(
+          () => true,
+          () => false
+        )
+      )
+    ).then((results) => {
+      if (results.every((result) => result)) setRoutePlannerPromisesResolved(true);
+    });
+  };
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector('.leaflet-bar');
@@ -268,7 +303,10 @@ function Form() {
           ...duration,
           distance: distance,
         };
+      setTimeout(() => {
         setRouteInfo(data);
+        
+      }, 3000);
       }
     }
   }, [routeData]);
@@ -296,7 +334,15 @@ function Form() {
             label="Origin"
             readOnly={false}
             defaultValue="Atlanta, GA"
-            icon={<OriginInputIcon />}
+            icon={
+              loading ? (
+                <Box sx={{ marginTop: '7px', marginRight: '-7px', opacity: 0.5 }}>
+                  <ClipLoader color="#1A73E8" size={20} />
+                </Box>
+              ) : (
+                <OriginInputIcon />
+              )
+            }
             disableChangeEventListener={true}
             index={0}
           />
@@ -306,23 +352,24 @@ function Form() {
             readOnly={false}
             disableChangeEventListener={true}
             defaultValue="Austin, TX"
-            icon={<DestinationInputIcon />}
+            icon={
+              loading ? (
+                <Box sx={{ marginTop: '7px', marginRight: '-7px', opacity: 0.5 }}>
+                  <ClipLoader color="#f44335" size={20} />
+                </Box>
+              ) : (
+                <DestinationInputIcon />
+              )
+            }
             submitOnSelect={true}
             onSubmit={handleChildSubmit}
             index={1}
           />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
-            {loading ? (
-              <Button type="button" variant="gradient" color="info">
-                <CircularProgress color="light" size={14} />
-                &nbsp; Submit
-              </Button>
-            ) : (
-              <Button type="submit" variant="gradient" color="info">
-                Submit
-              </Button>
-            )}
+            <Button type="submit" variant="gradient" color="info">
+              Submit
+            </Button>
           </Grid>
           {/* ============ Directions Card ============ */}
           {/*
@@ -335,28 +382,36 @@ function Form() {
             */}
           <Grid item xs={12} pr={1} mb={2}>
             {routeInfo && (
-              <FilledInfoCard
-                color="dark"
-                variant="contained"
-                title={
-                  routeInfo.hours && routeInfo.minutes
-                    ? `${routeInfo.hours} hours ${routeInfo.minutes} minutes`
-                    : routeInfo.hours
-                    ? `${routeInfo.hours} hours`
-                    : `${routeInfo.minutes} minutes`
-                }
-                description={routeInfo.distance ? `${routeInfo.distance} miles` : ''}
-                action={
-                  directionsUrl
-                    ? {
-                        type: 'external',
-                        route: directionsUrl,
-                        label: 'Directions',
-                        iconComponent: <DirectionsIcon color="info" fontSize="large" sx={{ ml: '5px' }} />,
-                      }
-                    : null
-                }
-              />
+              <Box
+  sx={{
+    transition: 'opacity 0.3s',
+    opacity: loading ? 0 : 1,
+  }}
+>
+                
+  <FilledInfoCard
+    color="dark"
+    variant="contained"
+    title={
+      routeInfo.hours && routeInfo.minutes
+        ? `${routeInfo.hours} hours ${routeInfo.minutes} minutes`
+        : routeInfo.hours
+        ? `${routeInfo.hours} hours`
+        : `${routeInfo.minutes} minutes`
+    }
+    description={routeInfo.distance ? `${routeInfo.distance} miles` : ''}
+    action={
+      directionsUrl
+        ? {
+            type: 'external',
+            route: directionsUrl,
+            label: 'Directions',
+            iconComponent: <DirectionsIcon color="info" fontSize="large" sx={{ ml: '5px' }} />,
+          }
+        : null
+    }
+  />
+</Box>
             )}
           </Grid>
         </Grid>

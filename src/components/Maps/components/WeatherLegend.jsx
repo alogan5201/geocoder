@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useLeafletContext } from '@react-leaflet/core';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
 import useStore from 'store/mapStore';
 import { motion } from 'framer-motion';
@@ -12,7 +12,32 @@ import CloseIcon from '@mui/icons-material/Close';
 import CardHeader from '@mui/material/CardHeader';
 import IconButton from '@mui/material/IconButton';
 
+function stringToHtml(input) {
+  // Split the input string into an array of words
+  if (input && input.includes(' ')) {
+    
+    var words = input.split(' ');
+  
+    // Map over the words and return each word as a text and add a <br/> if not the last word
+    var html = words.map((word, index) => (
+      <Fragment key={index}>
+        {word}{index !== words.length - 1 && <br />}
+      </Fragment>
+    ));
+      return html;
+  }
+  else {
+    return input
+}
+
+
+}
 const LegendContent = ({ content, handleClose }) => {
+const spring = {
+  type: 'spring',
+  stiffness: 260,
+  damping: 20,
+};
   const [weatherContentStyles, setWeatherContentStyles] = useState({
     minWidth: 180,
     backgroundColor: 'rgba(255,255,255,0.9)',
@@ -22,6 +47,7 @@ const LegendContent = ({ content, handleClose }) => {
 
   useEffect(() => {
     if (content) {
+      console.log("🚀 ~ useEffect ~ content:", content)
       setWeatherContentStyles({
         minWidth: 180,
         backgroundColor: 'rgba(255,255,255,0.9)',
@@ -30,86 +56,69 @@ const LegendContent = ({ content, handleClose }) => {
     }
   }, [content]);
   return (
-    <Card sx={weatherContentStyles}>
-      <CardHeader
-        sx={{ position: 'relative', padding: '3px' }}
-        action={
-          <IconButton
-            aria-label="close"
-            sx={{ position: 'absolute', top: 0, right: 0, padding: '7px', opacity: 0.8 }}
-            onClick={handleClose}
-          >
-            <CloseIcon sx={{ fontSize: 15, color: '#333' }} />
-          </IconButton>
-        }
-      />
-      <CardContent>
-        <Stack direction="column" spacing={0} alignItems="center">
-          <Stack direction="row" spacing={0} sx={{ width: '100%' }} justifyContent="space-between" alignItems="center">
-            <Typography sx={{ fontSize: 14 }} variant="body2" gutterBottom>
-              {content.origin.address} <br />
-              {Math.round(content.origin.temp)}°F
-            </Typography>
-            <motion.div
-              className="box animatedWeatherIcon"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.3,
-                ease: [0, 0.71, 0.2, 1.01],
-                scale: {
-                  type: 'spring',
-                  damping: 15,
-                  stiffness: 100,
-                  restDelta: 0.001,
-                },
-              }}
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      exit={{ scale: 0 }}
+      transition={{ ...spring, delay: 3.5 }}
+    >
+      <Card sx={weatherContentStyles} className="weatherLegendCard">
+        <CardHeader
+          sx={{ position: 'relative', padding: '3px' }}
+          action={
+            <IconButton
+              aria-label="close"
+              sx={{ position: 'absolute', top: 0, right: 0, padding: '7px', opacity: 0.8 }}
+              onClick={handleClose}
             >
+              <CloseIcon sx={{ fontSize: 15, color: '#333' }} />
+            </IconButton>
+          }
+        />
+        <CardContent>
+          <Stack direction="column" spacing={0} alignItems="center">
+            <Stack
+              direction="row"
+              spacing={0}
+              sx={{ width: '100%' }}
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography sx={{ fontSize: 14 }} variant="body2" gutterBottom>
+                {stringToHtml(content.origin.address)} <br />
+                <span style={{ fontWeight: 500 }}>{Math.round(content.origin.temp)}°F</span>
+              </Typography>
               <img alt="origin-weather-icon" src={content.origin.icon} loading="lazy" style={{ maxWidth: '40px' }} />
-            </motion.div>
-          </Stack>
-          <Divider sx={{ my: 0.5, width: '100%', color: 'red', opacity: 0.9 }} />
-          <Stack
-            direction="row"
-            spacing={5}
-            sx={{ flexGrow: 1, width: '100%' }}
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Typography sx={{ fontSize: 14 }} variant="body2" gutterBottom>
-              {content.destination.address} <br />
-              {Math.round(content.destination.temp)}°F
-            </Typography>
-            <motion.div
-              className="box animatedWeatherIcon"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.3,
-                ease: [0, 0.71, 0.2, 1.01],
-                scale: {
-                  type: 'spring',
-                  damping: 15,
-                  stiffness: 100,
-                  restDelta: 0.001,
-                },
-              }}
+            </Stack>
+            <Divider sx={{ my: 0.5, width: '100%', color: 'red', opacity: 0.9 }} />
+            <Stack
+              direction="row"
+              spacing={5}
+              sx={{ flexGrow: 1, width: '100%' }}
+              justifyContent="space-between"
+              alignItems="center"
             >
+              <Typography sx={{ fontSize: 14 }} variant="body2" gutterBottom>
+                {stringToHtml(content.destination.address)} <br />
+                <span style={{ fontWeight: 500 }}>{Math.round(content.destination.temp)}°F</span>
+              </Typography>
               <img
                 alt="destination-weather-icon"
                 src={content.destination.icon}
                 loading="lazy"
                 style={{ maxWidth: '40px' }}
               />
-            </motion.div>
+            </Stack>
           </Stack>
-        </Stack>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 };
+
 function WeatherLegend({ L }) {
   const weather = useStore((state) => state.weather);
+  const routeData = useStore((state) => state.routeData);
 
   const [closeWeatherContent, setCloseWeatherContent] = useState(false);
   const setLoading = useStore((state) => state.setLoading);
@@ -121,16 +130,25 @@ function WeatherLegend({ L }) {
   const legendControl = useRef(null);
   useEffect(() => {}, [closeWeatherContent]);
   useEffect(() => {
+    if (routeData) { 
+      if (legendControl.current && legendControl.current.getContainer()) {
+        legendControl.current.getContainer().style.opacity = '0';
+      }
+    }
     if (weather) {
+      console.log("🚀 ~ useEffect ~ weather:", weather)
       setLoading(false);
+      if (legendControl.current) {
+        legendControl.current.remove();
+      }
       legendControl.current = L.control({ position: 'bottomright' });
+    
 
       legendControl.current.onAdd = () => {
         const div = L.DomUtil.create('div', 'info legend');
 
         // Use createRoot API for rendering
         const root = ReactDOM.createRoot(div);
-
         root.render(
           <div>
             <LegendContent content={weather} handleClose={handleCloseClick} />
@@ -142,6 +160,11 @@ function WeatherLegend({ L }) {
 
       // Add the control to the leaflet map
       legendControl.current.addTo(context.map);
+        legendControl.current.getContainer().style.opacity = '0';
+
+      setTimeout(() => {
+         legendControl.current.getContainer().style.opacity = '1'
+      }, 3500);
     }
     // Create a leaflet control object
     if (closeWeatherContent) {
@@ -158,7 +181,7 @@ function WeatherLegend({ L }) {
         setCloseWeatherContent(false);
       }
     };
-  }, [L, context.map, weather, closeWeatherContent]);
+  }, [ context.map, weather, closeWeatherContent, routeData]);
 
   return null;
 }
