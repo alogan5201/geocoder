@@ -27,21 +27,21 @@ function FormWrapper({ form }) {
               <Grid item xs={12} lg={7}>
                 <Box p={2}>
                   <Box px={{ xs: 0, sm: 0 }} py={{ xs: 2, sm: 3 }}>
-                  <div className="map-container">
-                    {!isMapLoaded && (
-                      // Your placeholder image here. Make sure it's styled to fill the space.
-                      <img src={mapPlaceHolderImg} alt="Map placeholder" style={{ width: '600px', height: '400px' }} />
-                    )}
+                    <div className="map-container">
+                      <img
+                        fetchpriority="high"
+                        src={mapPlaceHolderImg}
+                        alt="Map placeholder"
+                        style={{ width: '600px', height: '400px' }}
+                      />
 
-                    <MapExternal setMapLoaded={setMapLoaded} />
-                  </div>
-                    
-                     </Box>
+                      <MapExternal setMapLoaded={setMapLoaded} />
+                    </div>
+                  </Box>
                 </Box>
               </Grid>
             </Grid>
           </Box>
-   
         </Grid>
       </Box>
     </>
