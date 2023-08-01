@@ -319,8 +319,8 @@ export function retrieveWeatherIconUrl(icon) {
 
 
 
-export const mobileScrollToMap = (offset) => {
-  const mapElement = document.getElementById('map');
+export const mobileScrollTo = (elm,offset) => {
+  const mapElement = document.getElementById(elm) ? document.getElementById(elm) : document.querySelector(`${elm}`);
   if (mapElement) {
  
     window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });

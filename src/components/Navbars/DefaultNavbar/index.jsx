@@ -103,7 +103,7 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
       }, []);
 
       template = (
-        <Grid key={name} container spacing={3} py={1} px={1.5}>
+        <Grid key={name} container spacing={3} py={1} px={1.5} >
           {calculateColumns.map((cols, key) => {
             const gridKey = `grid-${key}`;
             const dividerKey = `divider-${key}`;
@@ -423,7 +423,7 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
   );
 
   return (
-    <Container sx={sticky ? { position: 'sticky', top: 0, zIndex: 10 } : null}>
+    <Container sx={sticky ? { position: 'sticky', top: 0, zIndex: 10} : null}>
       <Box
         py={1}
         px={{ xs: 0, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}

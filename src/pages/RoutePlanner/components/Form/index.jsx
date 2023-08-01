@@ -13,7 +13,7 @@ import { covertAddressToLatLng, extractCityAndState, getDirections, metersToMile
 import { useWindowSize } from 'react-use';
 import { ClipLoader } from 'react-spinners';
 
-import { fetchWeather, formatMarkerData, secondsToHoursMinutes, retrieveWeatherIconUrl, mobileScrollToMap } from 'util/helpers';
+import { fetchWeather, formatMarkerData, secondsToHoursMinutes, retrieveWeatherIconUrl, mobileScrollTo } from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
 import { getTimeStamp } from 'util/helpers';
@@ -132,7 +132,7 @@ function Form() {
     setTimeout(() => {
       setLoading(false);
          if (width < 992) {
-           mobileScrollToMap(500);
+           mobileScrollTo('map',500);
          }
     }, 3000);
   };
