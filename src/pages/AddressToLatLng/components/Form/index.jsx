@@ -70,7 +70,7 @@ function Form() {
         if (width < 992) {
           const mapElement = document.getElementById('map');
           if (mapElement) {
-            const offset = 650; // change this to the offset that suits your needs
+            const offset = 620; // change this to the offset that suits your needs
             window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
           }
         }
@@ -108,10 +108,12 @@ function Form() {
     //    handleSubmit(e);
     //handleSubmit({ preventDefault: () => {} });
   };
-useEffect(() => {
-  resetMapData()
-  return () => {  resetMapData();}
-}, []);
+  useEffect(() => {
+    resetMapData();
+    return () => {
+      resetMapData();
+    };
+  }, []);
   useEffect(() => {
     if (userLocationActive === false) {
       let leafletBarElement = document.querySelector('.leaflet-bar');

@@ -279,3 +279,7 @@ git config --global user.email "drewthomaslogan5201@gmail.com" && git config --g
 - [] See if you can make the placeholder transition better for bookmarks page. Theres a delay in loading between the placeholder and the actual image
 Eslint cleanup pages
 MovieDetails
+
+
+scroll top button
+Homepage

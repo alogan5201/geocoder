@@ -318,7 +318,9 @@ export function retrieveWeatherIconUrl(icon) {
 }
 
 
-
+export const mobileScrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 export const mobileScrollTo = (elm,offset) => {
   const mapElement = document.getElementById(elm) ? document.getElementById(elm) : document.querySelector(`${elm}`);
   if (mapElement) {

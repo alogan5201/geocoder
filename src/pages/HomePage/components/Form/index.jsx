@@ -1,23 +1,24 @@
-import Box from 'components/Box';
-
+// Form.jsx
 import Grid from '@mui/material/Grid';
 import AddressInput from 'components/AddressInput';
+import Box from 'components/Box';
 import Button from 'components/Button';
 import LatLngInputs from 'components/LatLngInputs';
+import MobileScrollTopButton from 'components/MobileScrollTopButton';
 import Typography from 'components/Typography';
-import { useEffect, useRef } from 'react';
+import { useIsScrolledToBottom } from 'hooks/mobileHooks';
+import { lazy, useEffect, useRef, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 import useStore from 'store/mapStore';
 import { covertAddressToLatLng, extractCityAndState } from 'util/geocoder';
 import { formatMarkerData } from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
-import { useWindowSize } from 'react-use';
 
 function Form() {
   const formRef = useRef();
-  const { width } = useWindowSize();
-
+  const [isMobile, setIsMobile] = useState(false);
+  const [showScrollTopButton, setShowScrollTopButton] = useState(false);
   const [coords, setCoords] = useGlobalValue();
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -25,6 +26,7 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
+  const isAtBottom = useIsScrolledToBottom(100);
 
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
@@ -66,11 +68,12 @@ function Form() {
         setMapInputState(false);
         const formattedMarkerData = formatMarkerData(markerData);
         updateMarkerData(formattedMarkerData);
-        if (width < 992) {
+        if (isMobile) {
           const mapElement = document.getElementById('map');
           if (mapElement) {
-            const offset = 650; // change this to the offset that suits your needs
+            const offset = 620; // change this to the offset that suits your needs
             window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+    
           }
         }
       } else {
@@ -99,7 +102,6 @@ function Form() {
           target: target,
           preventDefault: () => {},
         };
-
         handleSubmit(e);
       }
     }
@@ -164,6 +166,7 @@ function Form() {
           <LatLngInputs readOnly={true} />
         </Grid>
       </Box>
+      <MobileScrollTopButton/>
     </Box>
   );
 }

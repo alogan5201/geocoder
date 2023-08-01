@@ -3,20 +3,18 @@ import NavigationIcon from '@mui/icons-material/Navigation';
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Box from 'components/Box'
-const ScrollTopButton = () => {
-    const mobileScrollTo = (offset) => {
-        window.scrollTo({ top: offset, behavior: 'smooth' });
-    }
+const ScrollTopButton = ({onClick}) => {
+
 
     return (
       <Fab
         aria-label="scroll-back-to-top"
-        onClick={() => mobileScrollTo(0)}
+        onClick={onClick}
         size="small"
         style={{
           backgroundColor: '#d5e8eb',
           position: 'fixed',
-          bottom: '20px',
+          bottom: '10em',
           right: '20px',
           zIndex: 2000, // a large number to ensure the button is not covered by other elements
         }}
