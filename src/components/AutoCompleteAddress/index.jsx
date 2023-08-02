@@ -20,7 +20,6 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const clearMapInputs = useStore((state) => state.clearMapInputs);
-  const locationMarkerData = useStore((state) => state.locationMarkerData);
   const setMapInputState = useStore((state) => state.setMapInputState);
   const [overrideInput, setOverrideInput] = useState(false);
   //const queryLengths = [1, 3, 6, 9];

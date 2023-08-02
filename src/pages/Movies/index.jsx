@@ -8,7 +8,6 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import BaseLayout from 'layouts/sections/components/BaseLayout';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import useStore from 'store/mapStore';
 import { db } from 'util/firebase';
 import { generateRanges, getMovieListLength, isInPaginationPosition } from 'util/helpers';
 import Loading from "components/Loading"

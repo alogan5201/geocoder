@@ -27,10 +27,7 @@ function AddressInput({ onSubmit, ...props }) {
       }
     }
   }, [clearMapInputs]);
-  useEffect(() => {
-    if (markerData) {
-    }
-  }, [markerData]);
+
 
   useEffect(() => {
     if (locationMarkerData && props.label === 'Destination') {
