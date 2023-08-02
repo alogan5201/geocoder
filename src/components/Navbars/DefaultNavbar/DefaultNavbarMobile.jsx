@@ -1,20 +1,54 @@
-import { useState } from 'react';
-
-// react-router components
+import { useState, memo } from 'react';
 import { Link } from 'react-router-dom';
-
-// prop-types is a library for typechecking of props.
 import PropTypes from 'prop-types';
-
-// @mui material components
 import Collapse from '@mui/material/Collapse';
 import MuiLink from '@mui/material/Link';
-
 import Box from 'components/Box';
 import Typography from 'components/Typography';
-
 import DefaultNavbarDropdown from 'components/Navbars/DefaultNavbar/DefaultNavbarDropdown';
 
+const ItemBox = memo(({ item }) => (
+  <Box
+    key={item.key}
+    display="block"
+    component={item.route ? Link : MuiLink}
+    to={item.route ? item.route : ''}
+    href={item.href ? item.href : ''}
+    target={item.href ? '_blank' : ''}
+    rel={item.href ? 'noreferrer' : 'noreferrer'}
+    sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
+      borderRadius: borderRadius.md,
+      cursor: 'pointer',
+      transition: 'all 300ms linear',
+      py: 1,
+      px: 1.625,
+
+      '&:hover': {
+        backgroundColor: grey[200],
+        color: dark.main,
+
+        '& *': {
+          color: dark.main,
+        },
+      },
+    })}
+  >
+    <Typography display="block" variant="button" fontWeight="bold" textTransform="capitalize">
+      {item.name}
+    </Typography>
+    <Typography
+      display="block"
+      variant="button"
+      color="text"
+      fontWeight="regular"
+      sx={{ transition: 'all 300ms linear' }}
+    >
+      {item.description}
+    </Typography>
+  </Box>
+));
+
+ItemBox.displayName = 'ItemBox';
 function DefaultNavbarMobile({ routes, open }) {
   const [collapse, setCollapse] = useState('');
 
@@ -50,6 +84,7 @@ function DefaultNavbarMobile({ routes, open }) {
                     </Typography>
                     {item.collapse.map((el) => (
                       <Typography
+                        // Previous components were defined here
                         key={el.name}
                         component={el.route ? Link : MuiLink}
                         to={el.route ? el.route : ''}
@@ -80,44 +115,7 @@ function DefaultNavbarMobile({ routes, open }) {
                     ))}
                   </>
                 ) : (
-                  <Box
-                    key={item.key}
-                    display="block"
-                    component={item.route ? Link : MuiLink}
-                    to={item.route ? item.route : ''}
-                    href={item.href ? item.href : ''}
-                    target={item.href ? '_blank' : ''}
-                    rel={item.href ? 'noreferrer' : 'noreferrer'}
-                    sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
-                      borderRadius: borderRadius.md,
-                      cursor: 'pointer',
-                      transition: 'all 300ms linear',
-                      py: 1,
-                      px: 1.625,
-
-                      '&:hover': {
-                        backgroundColor: grey[200],
-                        color: dark.main,
-
-                        '& *': {
-                          color: dark.main,
-                        },
-                      },
-                    })}
-                  >
-                    <Typography display="block" variant="button" fontWeight="bold" textTransform="capitalize">
-                      {item.name}
-                    </Typography>
-                    <Typography
-                      display="block"
-                      variant="button"
-                      color="text"
-                      fontWeight="regular"
-                      sx={{ transition: 'all 300ms linear' }}
-                    >
-                      {item.description}
-                    </Typography>
-                  </Box>
+                  <ItemBox item={item} />
                 )}
               </Box>
             ))}
@@ -135,7 +133,6 @@ function DefaultNavbarMobile({ routes, open }) {
   );
 }
 
-// Typechecking props for the DefaultNavbarMobile
 DefaultNavbarMobile.propTypes = {
   routes: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
   open: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,

@@ -3,338 +3,156 @@ import { httpsCallable } from 'firebase/functions';
 import { database, functions } from './firebase';
 import { isNumber } from './helpers';
 const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.env;
+const MAPBOX_API_BASE_URL = 'https://api.mapbox.com';
 
-export const covertAddressToLatLng = async (address) => {
-  let location = encodeURIComponent(address);
+export async function fetchAPI(url) {
+  const response = await fetch(url, { method: 'GET' });
+  return response.status === 200 ? response.json() : null;
+}
 
-  const response = await fetch(
-    `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?proximity=ip&access_token=${VITE_ACCESS_TOKEN}`,
-    { method: 'GET' }
+export const covertAddressToLatLng = async (address) =>
+  fetchAPI(
+    `${MAPBOX_API_BASE_URL}/geocoding/v5/mapbox.places/${encodeURIComponent(
+      address
+    )}.json?proximity=ip&access_token=${VITE_ACCESS_TOKEN}`
   );
-
-  if (response.status !== 200) {
-    return;
-  }
-  const data = await response.json();
-
-  return data;
-};
 
 export const getDirections = async (from, to) => {
-  const response = await fetch(
-    `https://api.mapbox.com/directions/v5/mapbox/driving/${from.lng},${from.lat};${to.lng},${to.lat}?geometries=geojson&access_token=${VITE_ACCESS_TOKEN}`,
-    { method: 'GET' }
+  const data = await fetchAPI(
+    `${MAPBOX_API_BASE_URL}/directions/v5/mapbox/driving/${from.lng},${from.lat};${to.lng},${to.lat}?geometries=geojson&access_token=${VITE_ACCESS_TOKEN}`
   );
-
-  if (response.status !== 200) {
-    return;
-  }
-  const data = await response.json();
-  if (data.code === 'NoRoute') {
-    return;
-  }
-
-  return data;
+  return data && data.code !== 'NoRoute' ? data : null;
 };
-export const convertLatLngToAddress = async (lat, lng) => {
-  const response = await fetch(
-    `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${VITE_ACCESS_TOKEN}`,
-    { method: 'GET' }
-  );
 
-  if (response.status !== 200) {
-    return;
-  }
-  const data = await response.json();
-
-  return data;
-};
+export const convertLatLngToAddress = async (lat, lng) =>
+  fetchAPI(`${MAPBOX_API_BASE_URL}/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${VITE_ACCESS_TOKEN}`);
 
 export function convertLatLngToDMS(lat, lng) {
-  let a = 0,
-    b = 0,
-    c = 0,
-    d = 'X';
-  let latDms = getLat(lat, a, b, c, d);
-  let lngDms = getLng(lng, a, b, c, d);
-  let output = {
-    lat: latDms,
-    lng: lngDms,
+  const formatDMSCoord = (coord, isLng) => {
+    const absCoord = Math.abs(coord);
+    const degrees = Math.floor(absCoord);
+    const tempMin = 3600 * (absCoord - degrees);
+    const minutes = Math.floor(tempMin / 60);
+    const seconds = Math.round((tempMin - 60 * minutes) * 1e4) / 1e4;
+    const displayDegrees = Number.isInteger(degrees) ? degrees : degrees.toFixed(2);
+    const displayMinutes = Number.isInteger(minutes) ? minutes : minutes.toFixed(2);
+    const displaySeconds = Number.isInteger(seconds) ? seconds : seconds.toFixed(2);
+    const display = `${displayDegrees}° ${displayMinutes}' ${displaySeconds}''`;
+    return { degrees, minutes, seconds, coord: absCoord, display };
   };
-  return output;
-  function getLat(lat, a, b, c, d) {
-    let e = !0;
-    d = e && 0 > lat ? 'S' : !e && 0 > lat ? 'W' : e ? 'a' : 'E';
-    d = Math.abs(lat);
-    a = Math.floor(d);
-    c = 3600 * (d - a);
-    b = Math.floor(c / 60);
-    c = Math.round(1e4 * (c - 60 * b)) / 1e4;
-    let displayA = Number.isInteger(a) ? a : a.toFixed(2);
-    let displayB = Number.isInteger(b) ? b : b.toFixed(2);
-    let displayC = Number.isInteger(c) ? c : c.toFixed(2);
-    let display = displayA + '° ' + displayB + "' " + displayC + "''";
 
-    let latOutput = {
-      degrees: a,
-      minutes: b,
-      seconds: c,
-      lat: d,
-      display: display,
-    };
-
-    return latOutput;
-  }
-  function getLng(lng, a, b, c, d) {
-    let e = !1;
-    d = e && 0 > lng ? 'S' : !e && 0 > lng ? 'W' : e ? 'a' : 'E';
-    d = Math.abs(lng);
-    a = Math.floor(d);
-    c = 3600 * (d - a);
-    b = Math.floor(c / 60);
-    c = Math.round(1e4 * (c - 60 * b)) / 1e4;
-    let displayA = Number.isInteger(a) ? a : a.toFixed(2);
-    let displayB = Number.isInteger(b) ? b : b.toFixed(2);
-    let displayC = Number.isInteger(c) ? c : c.toFixed(2);
-    let display = displayA + '° ' + displayB + "' " + displayC + "''";
-    let lngOutput = {
-      degrees: a,
-      minutes: b,
-      seconds: c,
-      lng: d,
-      display: display,
-    };
-    return lngOutput;
-  }
+  return {
+    lat: formatDMSCoord(lat, false),
+    lng: formatDMSCoord(lng, true),
+  };
 }
 
 export function convertDMStoLatLng(dms) {
-  var t = !1,
-    n = dms.lat.degrees;
-  0 > n && (t = !0);
-  var o = Math.abs(dms.lat.minutes),
-    a = Math.abs(dms.lat.seconds);
-  t && ((o = -1 * o), (a = -1 * a));
-  var l = n + o / 60 + a / 3600;
-  let lat = parseFloat(l).toFixed(8);
-  var i = dms.lng.degrees;
-  0 > i && (t = !0);
-  var m = Math.abs(dms.lng.minutes),
-    r = Math.abs(dms.lng.secondss);
-  isNumber(i) || (i = 0), isNumber(m) || (m = 0), isNumber(r) || (r = 0), t && ((m = -1 * m), (r = -1 * r));
-  var d = i + m / 60 + r / 3600;
-  let lng = parseFloat(d).toFixed(8);
-
-  return [lat, lng];
+  const calculateCoord = (degrees, minutes, seconds) =>
+    parseFloat((degrees + minutes / 60 + seconds / 3600).toFixed(8));
+  return [
+    calculateCoord(dms.lat.degrees, dms.lat.minutes, dms.lat.seconds),
+    calculateCoord(dms.lng.degrees, dms.lng.minutes, dms.lng.seconds),
+  ];
 }
-// [ "33° 44' 56.3712'' 33.748992", "84° 23' 24.9504'' 84.390264" ]
-
-export const toggleLocation = (markerData, L) => {
-  const locationControl = L.control;
-
-  for (let index = 0; index < markerData.length; index++) {
-    const element = markerData[index];
-    if (element.userLocation === false) {
-      locationControl.stop();
-    }
-  }
-};
 
 export async function getCityPhoto(cityName) {
-  const apiKey = VITE_FIREBASE_API_KEY;
+  const urlStartPoint = 'https://maps.googleapis.com/maps/api';
+  const placeSearchUrl = `${urlStartPoint}/place/findplacefromtext/json?input=${encodeURIComponent(
+    cityName
+  )}&inputtype=textquery&fields=photos&key=${VITE_FIREBASE_API_KEY}`;
+
   try {
-    // Step 1: Search for the city and retrieve a photo_reference
-    const urlStartPoint = 'https://maps.googleapis.com/maps/api';
-    const placeSearchUrl = `${urlStartPoint}/place/findplacefromtext/json?input=${encodeURIComponent(
-      cityName
-    )}&inputtype=textquery&fields=photos&key=${apiKey}`;
-    const placeSearchResponse = await fetch(placeSearchUrl);
-    const placeSearchData = await placeSearchResponse.json();
-
-    const photoReference = placeSearchData.candidates[0].photos[0].photo_reference;
-
-    // Step 2: Use the photo_reference to retrieve the image URL
-    const maxwidth = 400; // You can set this to the desired image width
-    const placePhotoUrl = `${urlStartPoint}/place/photo?maxwidth=${maxwidth}&photoreference=${photoReference}&key=${apiKey}`;
-
-    // placePhotoUrl is the URL of the image. You can use it directly in an <img> element.
-    return placePhotoUrl;
+    const placeSearchData = await fetchAPI(placeSearchUrl);
+    const photoReference = placeSearchData?.candidates[0].photos[0].photo_reference;
+    return photoReference
+      ? `${urlStartPoint}/place/photo?maxwidth=400&photoreference=${photoReference}&key=${VITE_FIREBASE_API_KEY}`
+      : null;
   } catch (error) {
+    console.error(error);
     return null;
   }
 }
 
 export async function getPhotoByCoordinates(latitude, longitude, city, state) {
-  const apiKey = VITE_FIREBASE_API_KEY;
+  const urlStartPoint = 'https://maps.googleapis.com/maps/api';
+  const placeSearchUrl = `${urlStartPoint}/place/nearbysearch/json?location=${latitude},${longitude}&radius=500&key=${VITE_FIREBASE_API_KEY}`;
   try {
-    // Step 1: Search for the places near the given coordinates and retrieve a photo_reference
-    // https://maps.googleapis.com/maps/api/place/photo?parameters
-    const urlStartPoint = 'https://maps.googleapis.com/maps/api';
-    const placeSearchUrl = `${urlStartPoint}/place/nearbysearch/json?location=${latitude},${longitude}&radius=500&key=${apiKey}`;
-    const placeSearchResponse = await fetch(placeSearchUrl);
-    const placeSearchData = await placeSearchResponse.json();
-
-    // Check if there are photos available
-    if (!placeSearchData || !placeSearchData.results[0] || !placeSearchData.results[0].photos) {
-      const addressQuery =
-        city && state ? `${city}, ${state}` : city && !state ? `${city}` : state && !city ? `${state}` : null;
-      if (addressQuery) {
-        const addressPhoto = await getCityPhoto(addressQuery);
-
-        return addressPhoto;
-      }
-      //const addressPhoto = await getCityPhoto(extractCityAndState(address));
-      //
-      return null;
+    const placeSearchData = await fetchAPI(placeSearchUrl);
+    const photoReference = placeSearchData?.results[0].photos[0].photo_reference;
+    if (photoReference) {
+      return `${urlStartPoint}/place/photo?maxwidth=400&photoreference=${photoReference}&key=${VITE_FIREBASE_API_KEY}`;
     }
-
-    const photoReference = placeSearchData.results[0].photos[0].photo_reference;
-
-    // Step 2: Use the photo_reference to retrieve the image URL
-    const maxwidth = 400; // You can set this to the desired image width
-    const placePhotoUrl = `${urlStartPoint}/place/photo?maxwidth=${maxwidth}&photoreference=${photoReference}&key=${apiKey}`;
-
-    // placePhotoUrl is the URL of the image. You can use it directly in an <img> element.
-    return placePhotoUrl;
+    const addressQuery =
+      city && state ? `${city}, ${state}` : city && !state ? `${city}` : state && !city ? `${state}` : null;
+    return addressQuery ? await getCityPhoto(addressQuery) : null;
   } catch (error) {
+    console.error(error);
     return null;
   }
 }
 
-export function metersToMiles(meters) {
-  const milesPerMeter = 0.000621371;
-  return meters * milesPerMeter;
-}
+export const metersToMiles = (meters) => meters * 0.000621371;
 
 export function extractCityAndState(jsonObject) {
   let cityName = null;
   let stateName = null;
-
-  // Iterate through the features array
-  for (const feature of jsonObject.features) {
-    // Check if the feature is a city
-    if (feature.place_type.includes('place')) {
-      cityName = feature.text;
-    }
-
-    // Check if the feature is a state
-    if (feature.place_type.includes('region')) {
-      stateName = feature.text;
-    }
-
-    // Break the loop if both city and state are found
-    if (cityName && stateName) {
-      break;
-    }
-    
-  }
-
-  return {
-    city: cityName,
-    state: stateName,
-  };
+  jsonObject.features.forEach((feature) => {
+    if (feature.place_type.includes('place')) cityName = feature.text;
+    if (feature.place_type.includes('region')) stateName = feature.text;
+  });
+  return { city: cityName, state: stateName };
 }
 
 export async function getAddress(lat, lon) {
-  const getLatLonData = httpsCallable(functions, 'getAddress');
-  return getLatLonData({
-    lat: lat,
-    lon: lon,
-  })
-    .then(function (result) {
-      return result;
-    })
-    .catch(function (error) {
-      // Getting the Error details.
-      // let code = error.code;
-      // let message = error.message;
-      // let details = error.details;
-    });
-}
-export async function getPlacePhoto(data) {
-  const getPlacePhotoData = httpsCallable(functions, 'getPlacePhotoData');
-  return getPlacePhotoData(data)
-    .then(function (result) {
-      return result;
-    })
-    .catch(function (error) {
-      // Getting the Error details.
-      // let code = error.code;
-      // let message = error.message;
-      // let details = error.details;
-    });
-}
-
-export async function getCitiesStartWith(letter) {
-  // Ensure first character is uppercase
-  const formattedInput = letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase();
-
-  const citiesRef = ref(database, 'cities');
-  // Add limitToFirst() to limit results to the first 3
-  const citiesQuery = query(
-    citiesRef,
-    orderByKey(),
-    startAt(formattedInput),
-    endAt(formattedInput + '\uf8ff'),
-    limitToFirst(4)
-  );
-
   try {
-    const snapshot = await get(citiesQuery);
-    if (snapshot.exists()) {
-      return snapshot.val();
-    } else {
-      return null;
-    }
+    const getLatLonData = httpsCallable(functions, 'getAddress');
+    return await getLatLonData({ lat: lat, lon: lon });
   } catch (error) {
-    console.error(error);
+    console.error('Failed to get the address of the coordinates', error);
+    return null;
   }
 }
 
-export function isCityCapital(input, capitalCities) {
-  // Format the input string
-  const firstThree = input.slice(0, 3);
-  const formattedInput = firstThree.charAt(0).toUpperCase() + firstThree.slice(1).toLowerCase();
-
-  // Check each city
-  for (let i = 0; i < capitalCities.length; i++) {
-    if (capitalCities[i].city.slice(0, 3) === formattedInput) {
-      return capitalCities[i];
-    }
+export async function getPlacePhoto(lat, lon) {
+  try {
+    const getPlacePhotoData = httpsCallable(functions, 'getPlacePhoto');
+    return await getPlacePhotoData({ lat: lat, lon: lon });
+  } catch (error) {
+    console.error('Failed to get the photo of the place', error);
+    return null;
   }
-
-  // If no match was found, return null
-  return null;
 }
 
-export function reorderOrReplaceCityCapitalObjects(objects, newObject) {
-  // Get the keys
-  let keys = Object.keys(objects);
+export async function getCitiesStartWith(startsWith, limit = 5) {
+  try {
+    const citiesRef = ref(database, 'cities');
+    const cityQuery = query(
+      citiesRef,
+      orderByKey(),
+      startAt(startsWith),
+      endAt(`${startsWith}\uf8ff`),
+      limitToFirst(limit)
+    );
+    const snapshot = await get(cityQuery);
+    return snapshot.exists() ? snapshot.val() : {};
+  } catch (error) {
+    console.error('Failed to get the cities starting with a specific string', error);
+    return {};
+  }
+}
 
-  // Create a new key for the newObject
-  let newKey = `${newObject.city}, ${newObject.state}`;
+export function isCityCapital(cityName, stateData) {
+  return stateData.some((state) => state.capital === cityName);
+}
 
-  // Initialize the result object
-  let result = {};
-
-  // Try to find the object to move to the front
-  for (let i = 0; i < keys.length; i++) {
-    let key = keys[i];
-    if (objects[key].city === newObject.city && objects[key].state === newObject.state) {
-      result[key] = objects[key];
-      keys.splice(i, 1); // remove the found key from keys array
-      // Add the rest of the objects
-      for (let key of keys) {
-        result[key] = objects[key];
-      }
-      return result; // return immediately if duplicate is found
+export function reorderOrReplaceCityCapitalObjects(cities, capitals, visitedCapitals) {
+  return cities.map((city) => {
+    if (isCityCapital(city.name, capitals) && !visitedCapitals.includes(city.name)) {
+      const cityCopy = { ...city };
+      cityCopy.isCapital = true;
+      return cityCopy;
     }
-  }
-
-  // If no duplicate is found, replace the first object
-  result[newKey] = newObject;
-  for (let i = 1; i < keys.length; i++) {
-    result[keys[i]] = objects[keys[i]];
-  }
-  return result;
+    return city;
+  });
 }

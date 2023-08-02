@@ -1,26 +1,30 @@
-// prop-types is a library for typechecking of props
 import PropTypes from 'prop-types';
-// react-router-dom components
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// @mui material components
 import Collapse from '@mui/material/Collapse';
 
 import Box from 'components/Box';
 import Typography from 'components/Typography';
 
 function DefaultNavbarDropdown({ name, icon, children, collapseStatus, light, href, route, collapse, ...rest }) {
-  const linkComponent = {
-    component: 'a',
-    href,
-    target: '_blank',
-    rel: 'noreferrer',
-  };
+  const [linkProps, setLinkProps] = useState({});
 
-  const routeComponent = {
-    component: Link,
-    to: route,
-  };
+  useEffect(() => {
+    if (route) {
+      setLinkProps({
+        component: Link,
+        to: route,
+      });
+    } else if (href) {
+      setLinkProps({
+        component: 'a',
+        href,
+        target: '_blank',
+        rel: 'noreferrer',
+      });
+    }
+  }, [href, route]);
 
   return (
     <>
@@ -34,8 +38,7 @@ function DefaultNavbarDropdown({ name, icon, children, collapseStatus, light, hr
         color={light ? 'white' : 'dark'}
         opacity={light ? 1 : 0.6}
         sx={{ cursor: 'pointer', userSelect: 'none' }}
-        {...(route && routeComponent)}
-        {...(href && linkComponent)}
+        {...linkProps}
       >
         <Typography
           variant="body2"
@@ -61,7 +64,7 @@ function DefaultNavbarDropdown({ name, icon, children, collapseStatus, light, hr
         )}
       </Box>
       {children && collapse && (
-        <Collapse in={Boolean(collapseStatus)} timeout={400} unmountOnExit>
+        <Collapse in={collapseStatus} timeout={400} unmountOnExit>
           {children}
         </Collapse>
       )}
@@ -69,7 +72,6 @@ function DefaultNavbarDropdown({ name, icon, children, collapseStatus, light, hr
   );
 }
 
-// Setting default values for the props of DefaultNavbarDropdown
 DefaultNavbarDropdown.defaultProps = {
   children: false,
   collapseStatus: false,
@@ -78,7 +80,6 @@ DefaultNavbarDropdown.defaultProps = {
   route: '',
 };
 
-// Typechecking props for the DefaultNavbarDropdown
 DefaultNavbarDropdown.propTypes = {
   name: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,

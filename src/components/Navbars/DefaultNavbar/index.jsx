@@ -1,10 +1,7 @@
-/* eslint-disable no-param-reassign */
-
+// index.jsx
 import { Fragment, useEffect, useState } from 'react';
-
 // react-router components
 import { Link } from 'react-router-dom';
-
 // prop-types is a library for typechecking of props.
 import PropTypes from 'prop-types';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -17,16 +14,13 @@ import Grow from '@mui/material/Grow';
 import Icon from '@mui/material/Icon';
 import MuiLink from '@mui/material/Link';
 import Popper from '@mui/material/Popper';
-
 import Box from 'components/Box';
 import Typography from 'components/Typography';
-
 import DefaultNavbarDropdown from 'components/Navbars/DefaultNavbar/DefaultNavbarDropdown';
 import DefaultNavbarMobile from 'components/Navbars/DefaultNavbar/DefaultNavbarMobile';
-
 import breakpoints from 'assets/theme/base/breakpoints';
-
 function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, center }) {
+
   const [dropdown, setDropdown] = useState('');
   const [dropdownEl, setDropdownEl] = useState('');
   const [dropdownName, setDropdownName] = useState('');
@@ -36,9 +30,10 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
   const [arrowRef, setArrowRef] = useState(null);
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
-
   const openMobileNavbar = () => setMobileNavbar(!mobileNavbar);
-
+  useEffect(() => {
+    console.log("navbar rendered")
+  }, []);
   useEffect(() => {
     // A function that sets the display state for the DefaultNavbarMobile.
     function displayMobileNavbar() {
@@ -51,19 +46,10 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
       }
     }
 
-    /** 
-     The event listener that's calling the displayMobileNavbar function when 
-     resizing the window.
-    */
     window.addEventListener('resize', displayMobileNavbar);
-
-    // Call the displayMobileNavbar function to set the state with the initial value.
     displayMobileNavbar();
-
-    // Remove event listener on cleanup
     return () => window.removeEventListener('resize', displayMobileNavbar);
   }, []);
-
   const renderNavbarItems = routes.map(({ name, icon, href, route, collapse }) => (
     <DefaultNavbarDropdown
       key={name}
@@ -83,31 +69,24 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
       light={light}
     />
   ));
-
   // Render the routes on the dropdown menu
   const renderRoutes = routes.map(({ name, collapse, columns, rowsPerColumn }) => {
     let template;
-
     // Render the dropdown menu that should be display as columns
     if (collapse && columns && name === dropdownName) {
       const calculateColumns = collapse.reduce((resultArray, item, index) => {
         const chunkIndex = Math.floor(index / rowsPerColumn);
-
         if (!resultArray[chunkIndex]) {
           resultArray[chunkIndex] = [];
         }
-
         resultArray[chunkIndex].push(item);
-
         return resultArray;
       }, []);
-
       template = (
         <Grid key={name} container spacing={3} py={1} px={1.5} >
           {calculateColumns.map((cols, key) => {
             const gridKey = `grid-${key}`;
             const dividerKey = `divider-${key}`;
-
             return (
               <Grid key={gridKey} item xs={12 / columns} sx={{ position: 'relative' }}>
                 {cols.map((col, index) => (
@@ -141,7 +120,6 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
                           borderRadius: borderRadius.md,
                           cursor: 'pointer',
                           transition: 'all 300ms linear',
-
                           '&:hover': {
                             backgroundColor: grey[200],
                             color: dark.main,
@@ -171,7 +149,6 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
           })}
         </Grid>
       );
-
       // Render the dropdown menu that should be display as list items
     } else if (collapse && name === dropdownName) {
       template = collapse.map((item) => {
@@ -181,12 +158,10 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
           target: '_blank',
           rel: 'noreferrer',
         };
-
         const routeComponent = {
           component: Link,
           to: item.route,
         };
-
         return (
           <Typography
             key={item.name}
@@ -204,11 +179,9 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
               borderRadius: borderRadius.md,
               cursor: 'pointer',
               transition: 'all 300ms linear',
-
               '&:hover': {
                 backgroundColor: grey[200],
                 color: dark.main,
-
                 '& *': {
                   color: dark.main,
                 },
@@ -252,10 +225,8 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
         );
       });
     }
-
     return template;
   });
-
   // Routes dropdown menu
   const dropdownMenu = (
     <Popper
@@ -304,13 +275,11 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
       )}
     </Popper>
   );
-
   // Render routes that are nested inside the dropdown menu routes
   const renderNestedRoutes = routes.map(({ collapse, columns }) =>
     collapse && !columns
       ? collapse.map(({ name: parentName, collapse: nestedCollapse }) => {
           let template;
-
           if (parentName === nestedDropdownName) {
             template =
               nestedCollapse &&
@@ -321,12 +290,10 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
                   target: '_blank',
                   rel: 'noreferrer',
                 };
-
                 const routeComponent = {
                   component: Link,
                   to: item.route,
                 };
-
                 return (
                   <Typography
                     key={item.name}
@@ -344,11 +311,9 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
                       borderRadius: borderRadius.md,
                       cursor: 'pointer',
                       transition: 'all 300ms linear',
-
                       '&:hover': {
                         backgroundColor: grey[200],
                         color: dark.main,
-
                         '& *': {
                           color: dark.main,
                         },
@@ -380,12 +345,10 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
                 );
               });
           }
-
           return template;
         })
       : null
   );
-
   // Dropdown menu for the nested dropdowns
   const nestedDropdownMenu = (
     <Popper
@@ -421,7 +384,6 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
       )}
     </Popper>
   );
-
   return (
     <Container sx={sticky ? { position: 'sticky', top: 0, zIndex: 10} : null}>
       <Box
@@ -467,7 +429,6 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
           <Box color="inherit" display={{ xs: 'none', lg: 'flex' }} ml="auto" mr={center ? 'auto' : 0}>
             {renderNavbarItems}
           </Box>
-
           <Box
             display={{ xs: 'inline-block', lg: 'none' }}
             lineHeight={0}
@@ -494,7 +455,6 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
     </Container>
   );
 }
-
 // Setting default values for the props of DefaultNavbar
 DefaultNavbar.defaultProps = {
   brand: 'geotools',
@@ -505,7 +465,6 @@ DefaultNavbar.defaultProps = {
   relative: false,
   center: false,
 };
-
 // Typechecking props for the DefaultNavbar
 DefaultNavbar.propTypes = {
   brand: PropTypes.string,
@@ -535,5 +494,4 @@ DefaultNavbar.propTypes = {
   relative: PropTypes.bool,
   center: PropTypes.bool,
 };
-
 export default DefaultNavbar;

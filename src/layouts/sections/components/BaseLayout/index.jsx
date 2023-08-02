@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import Box from 'components/Box';
 import GuestFooter from 'components/Footers/CenteredFooter/GuestFooter';
 import DefaultNavbar from 'components/Navbars/DefaultNavbar';
