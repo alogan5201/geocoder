@@ -290,4 +290,5 @@ form={<Form addressToLatLng={true} />}
 removing 'form' from HomePage 
 reduces google lighthouse score by 13 points
 
-al 
+If I fix issues with form I will save 13 points making my score 85
+

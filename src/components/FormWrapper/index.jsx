@@ -8,7 +8,7 @@ const MapExternal = lazy(() => import('components/Maps/MapExternal'));
 
 function FormWrapper({ form }) {
   const errorMessage = useStore((state) => state.errorMessage);
-  const [isMapLoaded, setMapLoaded] = useState(false);
+  const [, setMapLoaded] = useState(false);
 
   return (
     <>
@@ -29,7 +29,7 @@ function FormWrapper({ form }) {
                   <Box px={{ xs: 0, sm: 0 }} py={{ xs: 2, sm: 3 }}>
                     <div className="map-container">
                       <img
-                        fetchpriority="high"
+                  
                         src={mapPlaceHolderImg}
                         alt="Map placeholder"
                         style={{ width: '600px', height: '400px' }}
