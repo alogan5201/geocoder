@@ -283,3 +283,5 @@ MovieDetails
 
 scroll top button
 Homepage
+
+form={<Form addressToLatLng={true} />}

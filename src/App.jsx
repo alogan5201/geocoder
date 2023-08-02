@@ -12,7 +12,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "assets/theme";
 import Loading from "components/Loading";
 import NotFoundPage from "pages/404";
-//import HomePage from "pages/HomePage";
+import HomePage from "pages/HomePage";
 import MovieDetailPage from "pages/MovieDetails";
 import Movies from "pages/Movies";
 import "src/App.css";
@@ -47,9 +47,6 @@ const [reset, setReset] = useState(false)
     };
     setMovieList();
   });
-  const TestHomePage = () => {
-    return (<div>hello</div>)
-  }
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
       if (route.collapse) {
@@ -70,7 +67,7 @@ const [reset, setReset] = useState(false)
         <Suspense fallback={<Loading />}>
           <Routes>
             {getRoutes(routes)}
-            <Route path="/" element={<TestHomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/location/:slug" element={<MovieDetailPage />} />
             <Route path="/movies/:slug" element={<Movies />} />
