@@ -17,8 +17,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 function Form() {
   const formRef = useRef();
-  const [isMobile, setIsMobile] = useState(false);
-  const [showScrollTopButton, setShowScrollTopButton] = useState(false);
+  const [isMobile, ] = useState(false);
   const [coords, setCoords] = useGlobalValue();
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -26,7 +25,6 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
-  const isAtBottom = useIsScrolledToBottom(100);
 
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */

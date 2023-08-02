@@ -285,3 +285,9 @@ scroll top button
 Homepage
 
 form={<Form addressToLatLng={true} />}
+
+
+removing 'form' from HomePage 
+reduces google lighthouse score by 13 points
+
+al 

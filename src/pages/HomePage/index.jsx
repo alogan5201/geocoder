@@ -1,8 +1,8 @@
-// // Homepage.jsx
+ // Homepage.jsx
 import FormWrapper from "components/FormWrapper";
 import BaseLayout from "layouts/sections/components/BaseLayout";
 import { useLocation } from "react-router-dom";
-//import Form from "./components/Form";
+import Form from "./components/Form";
 
 function HomePage() {
   const { pathname } = useLocation();
@@ -10,7 +10,7 @@ function HomePage() {
   return (
     <>
       <BaseLayout>
-        <FormWrapper key={pathname}  />
+        <FormWrapper key={pathname} form={<Form addressToLatLng={true} />} />
       </BaseLayout>
     </>
   );
