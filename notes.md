@@ -291,4 +291,23 @@ removing 'form' from HomePage
 reduces google lighthouse score by 13 points
 
 If I fix issues with form I will save 13 points making my score 85
+# Before react-query:
+yarn run v1.22.19
+$ vite build
+vite v4.3.6 building for production...
+✓ 1704 modules transformed.
+dist/index.html                               0.70 kB │ gzip:   0.39 kB
+dist/assets/404-33abad45.png                 17.61 kB
+dist/assets/map_placeholder-97fc3713.png     81.97 kB
+dist/assets/index-00fa4094.css               24.17 kB │ gzip:   8.36 kB
+dist/assets/capitalCities-ebb4024b.js         2.37 kB │ gzip:   0.73 kB
+dist/assets/index-bc906aab.js             1,398.35 kB │ gzip: 406.70 kB
+
+(!) Some chunks are larger than 500 kBs after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 20.92s
+Done in 22.19s.
+a@pop-os:~/Desktop/geotools-react$ 
 

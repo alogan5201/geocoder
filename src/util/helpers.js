@@ -328,3 +328,5 @@ export const mobileScrollTo = (elm,offset) => {
     window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
   }
 }
+
+export const uppercaseFirst = (str) => `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
