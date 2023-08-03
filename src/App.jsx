@@ -18,7 +18,7 @@ import Movies from "pages/Movies";
 import "src/App.css";
 import 'leaflet/dist/leaflet.css';
 import routes from "routes";
-import WebFont from 'webfontloader';
+//import WebFont from 'webfontloader';
 export default function App() {
   const { pathname } = useLocation();
 const [reset, setReset] = useState(false)
@@ -31,11 +31,11 @@ const [reset, setReset] = useState(false)
 
     localStorage.setItem('markerData', '[]');
     // Roboto, Helvetica, Arial, sans-serif
-    WebFont.load({
+   /*  WebFont.load({
       google: {
         families: ['Roboto:300,400,500,700', 'Material+Icons', 'Lumanosimo:400'],
       },
-    });
+    }); */
     resetMapData();
     setReset(true)
     return () => { setReset(false)}
