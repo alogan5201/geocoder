@@ -1,16 +1,16 @@
-import { useEffect, useState, lazy } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { httpsCallable, getFunctions} from 'firebase/functions';
+import AddIcon from '@mui/icons-material/Add';
+import Grid from '@mui/material/Grid';
+import Box from 'components/Box';
+import Button from 'components/Button';
+import Loading from 'components/Loading';
+import MapExternal from 'components/Maps/MapExternal';
+import Typography from 'components/Typography';
+import BaseLayout from 'layouts/sections/components/BaseLayout';
+import LocationsTable from './components/LocationsTable';
 
-const AddIcon = lazy(() => import('@mui/icons-material/Add'));
-const Grid = lazy(() => import('@mui/material/Grid'));
-const Box = lazy(() => import('components/Box'));
-const Button = lazy(() => import('components/Button'));
-const Loading = lazy(() => import('components/Loading'));
-const MapExternal = lazy(() => import('components/Maps/MapExternal'));
-const Typography = lazy(() => import('components/Typography'));
-const BaseLayout = lazy(() => import('layouts/sections/components/BaseLayout'));
-const LocationsTable = lazy(() => import('./components/LocationsTable'));
 function MovieDetailPage() {
   const [showMore, setShowMore] = useState(false);
   const { slug } = useParams();
