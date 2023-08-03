@@ -37,7 +37,7 @@ function MoviesPage() {
   useEffect(() => {
     if (imagesLoaded > 0 && movies.length > 0) {
       if (imagesLoaded === movies.length) {
-        
+        console.log('🚀 ~ useEffect ~ movies:', movies.length);
         setTimeout(() => {
           //setAllImagesLoaded(true);
         }, 2000);
@@ -63,13 +63,7 @@ function MoviesPage() {
   }, [loading, allImagesLoaded]);
 
   useEffect(() => {
-    
-      loading,
-      imagesLoaded,
-      allImagesLoaded,
-      movies.length,
-      imagesLoading,
-    ]);
+
   }, [loading, imagesLoaded, allImagesLoaded, movies.length, imagesLoading]);
 
   async function getMoviesInRange(start, end) {
@@ -84,7 +78,7 @@ function MoviesPage() {
       var code = error.code;
       var message = error.message;
       var details = error.details;
-      
+      console.log(code, message, details);
     }
 
     // const moviesCollection = collection(db, 'films');
