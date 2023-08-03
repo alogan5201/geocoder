@@ -5,6 +5,7 @@ import { functions } from './firebase';
 const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN } = import.meta.env;
 const MAPBOX_API_BASE_URL = 'https://api.mapbox.com';
 
+connectFunctionsEmulator(functions, 'localhost', 5001);
 export async function fetchAPI(url) {
   const response = await fetch(url, { method: 'GET' });
   return response.status === 200 ? response.json() : null;
@@ -51,7 +52,6 @@ export async function getPlacePhoto(lat, lon) {
   }
 }
 export async function fetchMovieLocation(slug) { 
-    connectFunctionsEmulator(functions, 'localhost', 5001);
     
     try {
       const getFilms = httpsCallable(functions, 'fetchMovie');
@@ -75,7 +75,6 @@ export async function fetchMovieLocation(slug) {
     }
 }
 export async function getCitiesStartWith(startsWith, limit = 5) {
-    connectFunctionsEmulator(functions, 'localhost', 5001);
 
     try {
     const getCities = httpsCallable(functions, 'getCitiesStartWith');

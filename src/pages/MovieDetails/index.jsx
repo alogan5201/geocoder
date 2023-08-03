@@ -1,7 +1,7 @@
 import { useEffect, useState, lazy } from 'react';
-import { collection, getDocs, query, where } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
-import { db } from "util/firebase";
+import { httpsCallable, getFunctions} from 'firebase/functions';
+
 const AddIcon = lazy(() => import('@mui/icons-material/Add'));
 const Grid = lazy(() => import('@mui/material/Grid'));
 const Box = lazy(() => import('components/Box'));
@@ -18,22 +18,25 @@ function MovieDetailPage() {
   const navigate = useNavigate();
   useEffect(() => {
     const fetchMovie = async () => {
-      const moviesCollection = collection(db, "films");
-      const q = query(moviesCollection, where("slug", "==", slug));
-      const querySnapshot = await getDocs(q);
-
-      // As 'slug' is unique, there should be at most one match
-      querySnapshot.forEach((doc) => {
-        if (!doc.exists()) {
-          navigate("/404");
+      const functions = getFunctions()
+      const getMoviesWithSlug = httpsCallable(functions, 'getMoviesWithSlug');
+      try {
+        console.log("🚀 ~ fetchMovie ~ slug:", slug)
+        const result = await getMoviesWithSlug({ slug });
+        const movies = result.data;
+        if (movies.length === 0) {
+          navigate('/404');
+        } else {
+          setMovie(movies[0]);
         }
-
-        setMovie(doc.data());
-      });
+      } catch (error) {
+        console.error('Error calling getMoviesWithSlug function', error);
+        navigate('/404');
+      }
     };
-
     fetchMovie();
   }, [slug]);
+
   const handleShowMore = (e) => {
     e.preventDefault();
     setShowMore(!showMore);

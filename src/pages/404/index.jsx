@@ -6,7 +6,11 @@ import Grid from '@mui/material/Grid';
 import { Box, Typography } from '@mui/material';
 import notFoundImage from 'assets/images/404.png';
 import Button from 'components/Button';
+import { useNavigate } from 'react-router-dom';
+
 function NotFoundPage() {
+    const navigate = useNavigate();
+
   return (
     <>
       <BaseLayout>
