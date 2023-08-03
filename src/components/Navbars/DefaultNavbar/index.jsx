@@ -20,7 +20,6 @@ import DefaultNavbarDropdown from 'components/Navbars/DefaultNavbar/DefaultNavba
 import DefaultNavbarMobile from 'components/Navbars/DefaultNavbar/DefaultNavbarMobile';
 import breakpoints from 'assets/theme/base/breakpoints';
 function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, center }) {
-
   const [dropdown, setDropdown] = useState('');
   const [dropdownEl, setDropdownEl] = useState('');
   const [dropdownName, setDropdownName] = useState('');
@@ -31,9 +30,7 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
   const openMobileNavbar = () => setMobileNavbar(!mobileNavbar);
-  useEffect(() => {
-    console.log("navbar rendered")
-  }, []);
+  useEffect(() => {}, []);
   useEffect(() => {
     // A function that sets the display state for the DefaultNavbarMobile.
     function displayMobileNavbar() {
@@ -83,7 +80,7 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
         return resultArray;
       }, []);
       template = (
-        <Grid key={name} container spacing={3} py={1} px={1.5} >
+        <Grid key={name} container spacing={3} py={1} px={1.5}>
           {calculateColumns.map((cols, key) => {
             const gridKey = `grid-${key}`;
             const dividerKey = `divider-${key}`;
@@ -385,7 +382,7 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
     </Popper>
   );
   return (
-    <Container sx={sticky ? { position: 'sticky', top: 0, zIndex: 10} : null}>
+    <Container sx={sticky ? { position: 'sticky', top: 0, zIndex: 10 } : null}>
       <Box
         py={1}
         px={{ xs: 0, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}

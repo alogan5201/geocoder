@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
-import { httpsCallable, getFunctions} from 'firebase/functions';
+import { useNavigate, useParams } from 'react-router-dom';
+import { httpsCallable, getFunctions } from 'firebase/functions';
 import AddIcon from '@mui/icons-material/Add';
 import Grid from '@mui/material/Grid';
 import Box from 'components/Box';
@@ -18,10 +18,9 @@ function MovieDetailPage() {
   const navigate = useNavigate();
   useEffect(() => {
     const fetchMovie = async () => {
-      const functions = getFunctions()
+      const functions = getFunctions();
       const getMoviesWithSlug = httpsCallable(functions, 'getMoviesWithSlug');
       try {
-        console.log("🚀 ~ fetchMovie ~ slug:", slug)
         const result = await getMoviesWithSlug({ slug });
         const movies = result.data;
         if (movies.length === 0) {
@@ -101,9 +100,8 @@ function MovieDetailPage() {
         <Grid item xs={12} lg={12}>
           <Box px={{ xs: 0, sm: 5 }}>
             <Box px={{ xs: 0, sm: 5 }} py={{ xs: 2, sm: 3 }}>
-            <LocationsTable locations={movie.locations} />
-              
-             </Box>
+              <LocationsTable locations={movie.locations} />
+            </Box>
             {/* <LocationsTable data={movie.locations} /> */}
           </Box>
         </Grid>

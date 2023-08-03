@@ -1,8 +1,8 @@
-import { useEffect, useState , lazy} from 'react';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { lazy, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { db } from 'util/firebase';
 import { generateRanges, getMovieListLength, isInPaginationPosition } from 'util/helpers';
+import { httpsCallable, getFunctions } from 'firebase/functions';
+
 const Container = lazy(() => import('@mui/material/Container'));
 const Grid = lazy(() => import('@mui/material/Grid'));
 const Pagination = lazy(() => import('@mui/material/Pagination'));
@@ -24,58 +24,76 @@ function MoviesPage() {
   const [imagesLoading, setImagesLoading] = useState(true);
   const [pagIndex, setPagIndex] = useState(null);
   const [paginationLength, setPaginationLength] = useState(null);
-  const [allImagesLoaded, ] = useState(false);
-const [imagesLoaded, setImagesLoaded] = useState(0);
+  const [allImagesLoaded] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
+  const functions = getFunctions();
+  const fetchMoviesInRange = httpsCallable(functions, 'fetchMoviesInRange');
 
   const handlePagination = (e, page) => {
     navigate(`/movies/${page}`);
     setImagesLoading(true);
-    setLoading(true)
-
+    setLoading(true);
   };
   useEffect(() => {
     if (imagesLoaded > 0 && movies.length > 0) {
       if (imagesLoaded === movies.length) {
-        console.log("🚀 ~ useEffect ~ movies:", movies.length)
+        
         setTimeout(() => {
-          
           //setAllImagesLoaded(true);
         }, 2000);
-        
       }
-    } 
-      return () => {
-        setImagesLoaded((imagesLoaded) => (imagesLoaded = 0));
-      };
+    }
+    return () => {
+      // eslint-disable-next-line no-unused-vars
+      setImagesLoaded((imagesLoaded) => (imagesLoaded = 0));
+    };
   }, [imagesLoaded, movies]);
-
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false)
+      setLoading(false);
     }, 1000);
-     setTimeout(() => {
-       setImagesLoading(false);
-     }, 4000);
-      return () => {
-        setImagesLoaded((imagesLoaded) => (imagesLoaded = 0));
-      };
+    setTimeout(() => {
+      setImagesLoading(false);
+    }, 4000);
+    return () => {
+      // eslint-disable-next-line no-unused-vars
+      setImagesLoaded((imagesLoaded) => (imagesLoaded = 0));
+    };
   }, [loading, allImagesLoaded]);
-  
+
   useEffect(() => {
-    console.log("🚀 ~ MoviesPage ~ [loading, imagesLoaded,allImagesLoaded]:", [loading, imagesLoaded,allImagesLoaded,movies.length, imagesLoading])
-  }, [loading, imagesLoaded,allImagesLoaded,movies.length, imagesLoading]);
-  async function fetchMoviesInRange(start, end) {
-    // Define the range of indexes
+    
+      loading,
+      imagesLoaded,
+      allImagesLoaded,
+      movies.length,
+      imagesLoading,
+    ]);
+  }, [loading, imagesLoaded, allImagesLoaded, movies.length, imagesLoading]);
 
-    // Create a query against the collection
-    const moviesCollection = collection(db, 'films');
-    const q = query(moviesCollection, where('index', '>=', start), where('index', '<=', end));
+  async function getMoviesInRange(start, end) {
+    try {
+      const result = await fetchMoviesInRange({ start: start, end: end });
 
-    const querySnapshot = await getDocs(q);
-    const movies = querySnapshot.docs.map((doc) => doc.data());
+      // Read result of the Cloud Function.
+      const movies = result.data;
+      return movies
+    } catch (error) {
+      // Getting the Error details.
+      var code = error.code;
+      var message = error.message;
+      var details = error.details;
+      
+    }
 
-    return movies;
+    // const moviesCollection = collection(db, 'films');
+    // const q = query(moviesCollection, where('index', '>=', start), where('index', '<=', end));
+
+    // const querySnapshot = await getDocs(q);
+    // const movies = querySnapshot.docs.map((doc) => doc.data());
+
+    // return movies;
   }
   useEffect(() => {
     const fetchMovies = async () => {
@@ -92,13 +110,11 @@ const [imagesLoaded, setImagesLoaded] = useState(0);
           const rangeForNum = getRangeForPage(Number(movieLength), Number(slug));
           //
 
-          const moviesInRange = await fetchMoviesInRange(rangeForNum[0], rangeForNum[1]);
+          const moviesInRange = await getMoviesInRange(rangeForNum[0], rangeForNum[1]);
           if (moviesInRange) {
             setPagIndex(Number(slug));
             setPaginationLength(generateRanges(movieLength).length);
             setMovies(moviesInRange);
-
-           
           } else {
             navigate('/404');
           }
@@ -109,8 +125,6 @@ const [imagesLoaded, setImagesLoaded] = useState(0);
     };
     fetchMovies();
   }, [navigate, slug]);
-
-
 
   return (
     <>

@@ -128,12 +128,11 @@ function WeatherLegend({ L }) {
   useEffect(() => {
     if (closeWeatherContent) {
       const legend = legendControl.current ? legendControl.current : currentLegend ? currentLegend.control : null;
-      console.log('🚀 ~ useEffect ~ legend:', legend);
+
       if (legend) {
         legend.remove();
       }
-    }
-    else if (weather) {
+    } else if (weather) {
       setLoading(false);
       if (legendControl.current) {
         legendControl.current.remove();
@@ -158,8 +157,6 @@ function WeatherLegend({ L }) {
       // legendControl.current.getContainer().style.opacity = '0';
 
       setTimeout(() => {
-        
-
         setCurrentLegend(legendControl);
 
         legendControl.current.addTo(context.map);

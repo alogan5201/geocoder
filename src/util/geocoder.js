@@ -29,8 +29,6 @@ export const getDirections = async (from, to) => {
 export const convertLatLngToAddress = async (lat, lng) =>
   fetchAPI(`${MAPBOX_API_BASE_URL}/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${VITE_ACCESS_TOKEN}`);
 
-
-
 /* ----------------------- Firebase / Google functions ---------------------- */
 export async function getAddress(lat, lon) {
   try {
@@ -51,15 +49,13 @@ export async function getPlacePhoto(lat, lon) {
     return null;
   }
 }
-export async function fetchMovieLocation(slug) { 
-    
-    try {
-      const getFilms = httpsCallable(functions, 'fetchMovie');
-      const results = await getFilms({ slug });
-      console.log('🚀 ~ getCitiesStartWith ~ results:', results);
+export async function fetchMovieLocation(slug) {
+  try {
+    const getFilms = httpsCallable(functions, 'fetchMovie');
+    const results = await getFilms({ slug });
 
-      return results.data;
-      /*     const citiesRef = ref(database, 'cities');
+    return results.data;
+    /*     const citiesRef = ref(database, 'cities');
     const cityQuery = query(
       citiesRef,
       orderByKey(),
@@ -69,20 +65,18 @@ export async function fetchMovieLocation(slug) {
     );
     const snapshot = await get(cityQuery);
     return snapshot.exists() ? snapshot.val() : {}; */
-    } catch (error) {
-      console.error('Failed to get the cities starting with a specific string', error);
-      return {};
-    }
+  } catch (error) {
+    console.error('Failed to get the cities starting with a specific string', error);
+    return {};
+  }
 }
 export async function getCitiesStartWith(startsWith, limit = 5) {
-
-    try {
+  try {
     const getCities = httpsCallable(functions, 'getCitiesStartWith');
-       const results = await getCities({ startsWith: startsWith, limit });
-       console.log("🚀 ~ getCitiesStartWith ~ results:", results)
-      
-      return results.data;        
-/*     const citiesRef = ref(database, 'cities');
+    const results = await getCities({ startsWith: startsWith, limit });
+
+    return results.data;
+    /*     const citiesRef = ref(database, 'cities');
     const cityQuery = query(
       citiesRef,
       orderByKey(),
@@ -174,8 +168,6 @@ export function extractCityAndState(jsonObject) {
   });
   return { city: cityName, state: stateName };
 }
-
-
 
 export function isCityCapital(cityName, stateData) {
   return stateData.some((state) => state.capital === cityName);
