@@ -50,7 +50,30 @@ export async function getPlacePhoto(lat, lon) {
     return null;
   }
 }
+export async function fetchMovieLocation(slug) { 
+    connectFunctionsEmulator(functions, 'localhost', 5001);
+    
+    try {
+      const getFilms = httpsCallable(functions, 'fetchMovie');
+      const results = await getFilms({ slug });
+      console.log('🚀 ~ getCitiesStartWith ~ results:', results);
 
+      return results.data;
+      /*     const citiesRef = ref(database, 'cities');
+    const cityQuery = query(
+      citiesRef,
+      orderByKey(),
+      startAt(startsWith),
+      endAt(`${startsWith}\uf8ff`),
+      limitToFirst(limit)
+    );
+    const snapshot = await get(cityQuery);
+    return snapshot.exists() ? snapshot.val() : {}; */
+    } catch (error) {
+      console.error('Failed to get the cities starting with a specific string', error);
+      return {};
+    }
+}
 export async function getCitiesStartWith(startsWith, limit = 5) {
     connectFunctionsEmulator(functions, 'localhost', 5001);
 
