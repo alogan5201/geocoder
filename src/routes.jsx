@@ -1,15 +1,14 @@
 
 // routes.jsx
-import { lazy } from 'react'
-const BuildIcon = lazy(() => import('@mui/icons-material/Build'));
-const CollectionsBookmarkIcon = lazy(() => import('@mui/icons-material/CollectionsBookmark'));
-const DirectionsIcon = lazy(() => import('@mui/icons-material/Directions'));
-const VideocamIcon = lazy(() => import('@mui/icons-material/Videocam'));
-const AddressToLatLng = lazy(() => import('pages/AddressToLatLng'));
-const LatLngToAddress = lazy(() => import('pages/LatLngToAddress'));
-const Bookmarks = lazy(() => import('pages/Bookmarks'));
-const RoutePlanner = lazy(() => import('pages/RoutePlanner'));
-const Movies = lazy(() => import('pages/Movies'));
+import BuildIcon from '@mui/icons-material/Build';
+import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+import DirectionsIcon from '@mui/icons-material/Directions';
+import VideocamIcon from '@mui/icons-material/Videocam';
+import AddressToLatLng from 'pages/AddressToLatLng';
+import LatLngToAddress from 'pages/LatLngToAddress';
+import Bookmarks from 'pages/Bookmarks';
+import RoutePlanner from 'pages/RoutePlanner';
+import Movies from 'pages/Movies';
 
 
 const routes = [
