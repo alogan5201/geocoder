@@ -1,4 +1,5 @@
 import Grid from '@mui/material/Grid';
+import mapPlaceHolderImg from 'assets/images/map_placeholder.png';
 import Box from 'components/Box';
 import NoLocationFound from 'components/Maps/components/NoLocationFound';
 import { useState, lazy} from 'react';
@@ -7,7 +8,7 @@ const MapExternal = lazy(() => import('components/Maps/MapExternal'));
 
 function FormWrapper({ form }) {
   const errorMessage = useStore((state) => state.errorMessage);
-  const [, setMapLoaded] = useState(false);
+  const [loaded, setMapLoaded] = useState(false);
 
   return (
     <>
@@ -27,7 +28,7 @@ function FormWrapper({ form }) {
                 <Box p={2}>
                   <Box px={{ xs: 0, sm: 0 }} py={{ xs: 2, sm: 3 }}>
                     <div className="map-container">
-                    
+                  
 
                       <MapExternal setMapLoaded={setMapLoaded} />
                     </div>
