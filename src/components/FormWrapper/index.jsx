@@ -1,5 +1,4 @@
 import Grid from '@mui/material/Grid';
-import mapPlaceHolderImg from 'assets/images/map_placeholder.png';
 import Box from 'components/Box';
 import NoLocationFound from 'components/Maps/components/NoLocationFound';
 import { useState, lazy} from 'react';
@@ -28,12 +27,7 @@ function FormWrapper({ form }) {
                 <Box p={2}>
                   <Box px={{ xs: 0, sm: 0 }} py={{ xs: 2, sm: 3 }}>
                     <div className="map-container">
-                      <img
-                  
-                        src={mapPlaceHolderImg}
-                        alt="Map placeholder"
-                        style={{ width: '600px', height: '400px' }}
-                      />
+                    
 
                       <MapExternal setMapLoaded={setMapLoaded} />
                     </div>

@@ -18,6 +18,7 @@ import Movies from "pages/Movies";
 import "src/App.css";
 import 'leaflet/dist/leaflet.css';
 import routes from "routes";
+import DemoPage from "pages/Demo";
 //import WebFont from 'webfontloader';
 export default function App() {
   const { pathname } = useLocation();
@@ -68,6 +69,7 @@ const [reset, setReset] = useState(false)
           <Routes>
             {getRoutes(routes)}
             <Route path="/" element={<HomePage />} />
+            <Route path="/demo" element={<DemoPage />} />
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/location/:slug" element={<MovieDetailPage />} />
             <Route path="/movies/:slug" element={<Movies />} />
