@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 import useStore from "store/mapStore";
 
 // LatLngInputs functional component
-export default function LatLngInputs({ defaultValue, readOnly }) {
+export default function LatLngInputs({ defaultValue, readOnly, icon }) {
   // Utilize the state from the map store
   const clearMapInputs = useStore((state) => state.clearMapInputs);
   const setMapInputState = useStore((state) => state.setMapInputState);

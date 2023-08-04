@@ -5,12 +5,13 @@ import AddressInput from 'components/AddressInput';
 import Button from 'components/Button';
 import LatLngInputs from 'components/LatLngInputs';
 import Typography from 'components/Typography';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useWindowSize } from 'react-use';
 import useStore from 'store/mapStore';
 import { convertLatLngToAddress, extractCityAndState } from 'util/geocoder';
 import { formatMarkerData } from 'util/helpers';
 import { v4 as uuidv4 } from 'uuid';
+import { ClipLoader } from 'react-spinners';
 
 function Form() {
   const markerData = useStore((state) => state.markerData);
@@ -23,6 +24,7 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {}, [markerData, locationMarkerData]);
   /* -------------------------------------------------------------------------- */
@@ -35,6 +37,8 @@ function Form() {
     const inputTwo = e.target[2].value;
 
     if (inputOne && inputTwo) {
+            setLoading(true);
+
       const mapBoxData = await convertLatLngToAddress(inputOne, inputTwo);
 
       if (mapBoxData && mapBoxData.features.length > 0) {
@@ -66,6 +70,8 @@ function Form() {
         setMapInputState(false);
         const formattedMarkerData = formatMarkerData(markerData);
         updateMarkerData(formattedMarkerData);
+          setLoading(false);
+
         if (width < 992) {
           const mapElement = document.getElementById('map');
           if (mapElement) {
@@ -82,6 +88,11 @@ function Form() {
         }, 500);
       }
     }
+           if (loading) {
+             setTimeout(() => {
+               setLoading(false);
+             }, 2000);
+           }
   }
   useEffect(() => {
     if (userLocationActive === false) {
@@ -119,7 +130,15 @@ function Form() {
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3.7 }}>
         <Grid container>
           {/* ============ LatLngInputs ============ */}
-          <LatLngInputs readOnly={false} defaultValue={['33.748992', '-84.390264']} />
+          <LatLngInputs
+            readOnly={false}
+            defaultValue={['33.748992', '-84.390264']}
+            icon={
+              <Box sx={{ marginTop: '7px', marginRight: '-7px', opacity: 0.5 }}>
+                <ClipLoader color="#1A73E8" size={20} />
+              </Box>
+            }
+          />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">

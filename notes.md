@@ -319,5 +319,50 @@ It was 82 but something about the webfont loader makes it much slower for some r
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # TODO:
+
 Set a loading spinner for each forms AdressInput
+Set mobilescroll top for all pages (this can be done later)
+Remove the local dev config that connects to the emulator
