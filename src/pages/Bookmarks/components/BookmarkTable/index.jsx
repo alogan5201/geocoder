@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import TableContainer from '@mui/material/TableContainer';
 import Box from 'components/Box';
 
-import { Fragment, useEffect, useMemo, useState, useRef } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import useStore from 'store/mapStore';
 import { getPlacePhoto } from 'util/geocoder';
 
@@ -31,7 +31,6 @@ function BookmarkTable({ bookmarkState , tableRef, tableHeight}) {
   const [rowData, setRowData] = useState([]);
   const [loading, setLoading] = useState(true);
     const { width } = useWindowSize();
-  const imageRefs = useRef(new Map());
 const [imagesLoaded, setImagesLoaded] = useState(0);
   // This hook provides access to the setMarkerData action from the mapStore.
   const updateMarkerData = useStore((state) => state.setMarkerData);

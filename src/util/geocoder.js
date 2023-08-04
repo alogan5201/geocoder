@@ -43,14 +43,27 @@ export async function getAddress(lat, lon) {
   }
 }
 
-export async function getPlacePhoto(lat, lon) {
-  try {
-    const getPlacePhotoData = httpsCallable(functions, 'getPlacePhoto');
-    return await getPlacePhotoData({ lat: lat, lon: lon });
-  } catch (error) {
-    console.error('Failed to get the photo of the place', error);
-    return null;
-  }
+export async function getPlacePhoto(data) {
+  const getPlacePhotoData = httpsCallable(functions, 'getPlacePhotoData');
+  return getPlacePhotoData(data)
+    .then(function (result) {
+      return result;
+    })
+    .catch(function (error) {
+      // Getting the Error details.
+      let code = error.code;
+      let message = error.message;
+      let details = error.details;
+      console.error('There was an error when calling the Cloud Function', error);
+      window.alert(
+        'There was an error when calling the Cloud Function:\n\nError Code: ' +
+          code +
+          '\nError Message:' +
+          message +
+          '\nError Details:' +
+          details
+      );
+    });
 }
 export async function fetchMovieLocation(slug) {
   try {
