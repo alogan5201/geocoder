@@ -2,9 +2,9 @@ import Grid from '@mui/material/Grid';
 import mapPlaceHolderImg from 'assets/images/map_placeholder.png';
 import Box from 'components/Box';
 import NoLocationFound from 'components/Maps/components/NoLocationFound';
-import { useState, lazy} from 'react';
+import { useState} from 'react';
 import useStore from 'store/mapStore';
-const MapExternal = lazy(() => import('components/Maps/MapExternal'));
+import MapExternal from 'components/Maps/MapExternal';
 
 function FormWrapper({ form }) {
   const errorMessage = useStore((state) => state.errorMessage);
