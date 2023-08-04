@@ -1,16 +1,16 @@
-import { lazy, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { generateRanges, getMovieListLength, isInPaginationPosition } from 'util/helpers';
 import { httpsCallable, getFunctions } from 'firebase/functions';
 
-const Container = lazy(() => import('@mui/material/Container'));
-const Grid = lazy(() => import('@mui/material/Grid'));
-const Pagination = lazy(() => import('@mui/material/Pagination'));
-const Skeleton = lazy(() => import('@mui/material/Skeleton'));
-const Box = lazy(() => import('components/Box'));
-const BaseLayout = lazy(() => import('layouts/sections/components/BaseLayout'));
-const Loading = lazy(() => import('components/Loading'));
-const Typography = lazy(() => import('components/Typography'));
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Pagination from '@mui/material/Pagination';
+import Skeleton from '@mui/material/Skeleton';
+import Box from 'components/Box';
+import BaseLayout from 'layouts/sections/components/BaseLayout';
+import Loading from 'components/Loading';
+import Typography from 'components/Typography';
 
 function getRangeForPage(n, pageIndex) {
   const ranges = generateRanges(n);
