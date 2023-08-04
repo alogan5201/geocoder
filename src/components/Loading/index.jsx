@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 import { PuffLoader } from "react-spinners";
 
 import Container from '@mui/material/Container';
-import GuestFooter from 'components/Footers/CenteredFooter/GuestFooter';
 import DefaultNavbar from 'components/Navbars/DefaultNavbar';
 import routes from 'routes';
 function Loading() {

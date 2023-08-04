@@ -1,6 +1,6 @@
 
 // routes.jsx
-import {lazy} from 'react'
+import { lazy } from 'react'
 const BuildIcon = lazy(() => import('@mui/icons-material/Build'));
 const CollectionsBookmarkIcon = lazy(() => import('@mui/icons-material/CollectionsBookmark'));
 const DirectionsIcon = lazy(() => import('@mui/icons-material/Directions'));

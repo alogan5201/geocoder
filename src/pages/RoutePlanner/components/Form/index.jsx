@@ -1,7 +1,6 @@
 import Box from 'components/Box';
 
 import DirectionsIcon from '@mui/icons-material/Directions';
-import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 import AddressInput from 'components/AddressInput';
 import Button from 'components/Button';
@@ -16,7 +15,6 @@ import { ClipLoader } from 'react-spinners';
 import { fetchWeather, formatMarkerData, secondsToHoursMinutes, retrieveWeatherIconUrl, mobileScrollTo } from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
-import { getTimeStamp } from 'util/helpers';
 
 const OriginInputIcon = () => {
   return (
@@ -127,11 +125,14 @@ function Form() {
             setTimeout(() => setErrorMessage(false), 500);
           }
         }
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     }
     setTimeout(() => {
       setLoading(false);
          if (width < 992) {
+          
            mobileScrollTo('map',500);
          }
     }, 3000);

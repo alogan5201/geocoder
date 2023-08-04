@@ -13,7 +13,6 @@ import { useEffect, useState } from 'react';
 import useStore from 'store/mapStore';
 import { getCitiesStartWith, isCityCapital, reorderOrReplaceCityCapitalObjects } from 'util/geocoder';
 import { v4 as uuidv4 } from 'uuid';
-import { useQuery } from 'react-query';
 
 export default function AutoCompleteAddress({ address, clear, submitOnSelect, onSubmit, icon, label, autoFocus }) {
   const [inputValue, setInputValue] = useState('');
@@ -170,13 +169,14 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       disableClearable
       PopperComponent={(props) => (
         <Popper
+        id="autocomplete-dropdown"
           {...props}
           open={open}
           modifiers={modifiers}
           popperOptions={{
             placement: 'bottom',
           }}
-          sx={{ marginTop: 10 }}
+          sx={{ marginTop: 10, padding:0 }}
         />
       )}
       sx={{

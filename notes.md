@@ -311,3 +311,13 @@ dist/assets/index-bc906aab.js             1,398.35 kB │ gzip: 406.70 kB
 Done in 22.19s.
 a@pop-os:~/Desktop/geotools-react$ 
 
+
+
+# Lighthouse
+- Score is currently 89. 
+It was 82 but something about the webfont loader makes it much slower for some reason.
+
+
+
+# TODO:
+Set a loading spinner for each forms AdressInput

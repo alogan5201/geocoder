@@ -10,13 +10,18 @@ import { useEffect, useRef, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 import useStore from 'store/mapStore';
 import { covertAddressToLatLng, extractCityAndState } from 'util/geocoder';
-import { formatMarkerData } from 'util/helpers';
+import { formatMarkerData, mobileScrollTo } from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
+import { ClipLoader } from 'react-spinners';
+import IconButton from '@mui/material/IconButton';
+import { useWindowSize } from 'react-use';
+
+import SearchIcon from '@mui/icons-material/Search';
 
 function Form() {
+  const { width } = useWindowSize();
   const formRef = useRef();
-  const [isMobile, ] = useState(false);
   const [coords, setCoords] = useGlobalValue();
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const setUserLocationActive = useStore((state) => state.setUserLocationActive);
@@ -24,7 +29,7 @@ function Form() {
   const setMapInputState = useStore((state) => state.setMapInputState);
   const setErrorMessage = useStore((state) => state.setErrorMessage);
   const resetMapData = useStore((state) => state.resetMapData);
-
+  const [loading, setLoading] = useState(false);
   /* -------------------------------------------------------------------------- */
   /*                                  FUNCTIONS                                 */
   /* -------------------------------------------------------------------------- */
@@ -34,6 +39,7 @@ function Form() {
 
     const inputOne = e.target[0].value;
     if (inputOne) {
+      setLoading(true);
       const mapBoxData = await covertAddressToLatLng(inputOne);
       if (mapBoxData && mapBoxData.features.length > 0) {
         let lat = mapBoxData.features[0].geometry.coordinates[1];
@@ -65,12 +71,13 @@ function Form() {
         setMapInputState(false);
         const formattedMarkerData = formatMarkerData(markerData);
         updateMarkerData(formattedMarkerData);
-        if (isMobile) {
+           setLoading(false);
+         if (width < 992) {
           const mapElement = document.getElementById('map');
           if (mapElement) {
-            const offset = 620; // change this to the offset that suits your needs
-            window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
-    
+            const offset = 500; // change this to the offset that suits your needs
+           mobileScrollTo('map',offset);
+            
           }
         }
       } else {
@@ -80,7 +87,13 @@ function Form() {
           setErrorMessage(false);
         }, 500);
       }
+
     }
+        if (loading) {
+          setTimeout(() => {
+            setLoading(false);
+          }, 2000);
+        }
   }
   const handleChildSubmit = (data, label) => {
     if (data) {
@@ -152,7 +165,24 @@ function Form() {
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 1 }}>
         <Grid container>
           {/* ============ AddressInput ============ */}
-          <AddressInput key="2" label="Address" readOnly={false} submitOnSelect={true} onSubmit={handleChildSubmit} />
+          <AddressInput
+            key="2"
+            label="Address"
+            readOnly={false}
+            submitOnSelect={true}
+            onSubmit={handleChildSubmit}
+            icon={
+              loading ? (
+                <Box sx={{ marginTop: '7px', marginRight: '-7px', opacity: 0.5 }}>
+                  <ClipLoader color="#1A73E8" size={20} />
+                </Box>
+              ) : (
+                <IconButton type="submit" sx={{ pr: 2 }}>
+                  <SearchIcon fontSize="medium" color="info" />
+                </IconButton>
+              )
+            }
+          />
           {/* ============ Submit ============ */}
           <Grid item xs={12} pr={1} mb={2}>
             <Button type="submit" variant="gradient" color="info">
@@ -163,7 +193,7 @@ function Form() {
           <LatLngInputs readOnly={true} />
         </Grid>
       </Box>
-      <MobileScrollTopButton/>
+      <MobileScrollTopButton />
     </Box>
   );
 }

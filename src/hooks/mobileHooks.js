@@ -11,8 +11,7 @@ export const useIsScrolledToBottom = (offset = 0) => {
     const scrolledToBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight - offset;
 
     setIsAtBottom(scrolledToBottom);
-  };
-
+  }
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {

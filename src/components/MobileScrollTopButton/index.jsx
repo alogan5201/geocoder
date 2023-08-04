@@ -9,7 +9,7 @@ import { mobileScrollToTop } from 'util/helpers';
 const MobileScrollTopButton = () => {
   const { width } = useWindowSize();
   const [isMobile, setIsMobile] = useState(false);
-  const isAtBottom = useIsScrolledToBottom(200);
+  const isAtBottom = useIsScrolledToBottom(300);
   const handleScrollClick = () => { 
     
    mobileScrollToTop();
@@ -37,7 +37,7 @@ const MobileScrollTopButton = () => {
       style={{
         backgroundColor: '#d5e8eb',
         position: 'fixed',
-        bottom: '10em',
+        bottom: '1em',
         right: '20px',
         zIndex: 2000, // a large number to ensure the button is not covered by other elements
       }}
