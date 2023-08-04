@@ -1,5 +1,5 @@
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect } from "react";
 import useStore from "store/mapStore";
 // react-router components
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
@@ -8,7 +8,6 @@ import { useEffectOnce } from "react-use";
 // @mui material components
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-
 import theme from "assets/theme";
 import Loading from "components/Loading";
 import NotFoundPage from "pages/404";
@@ -22,7 +21,7 @@ import DemoPage from "pages/Demo";
 //import WebFont from 'webfontloader';
 export default function App() {
   const { pathname } = useLocation();
-const [reset, setReset] = useState(false)
+//const [reset, setReset] = useState(false)
 
   const resetMapData = useStore((state) => state.resetMapData);
   // Setting page scroll to 0 when changing the route
@@ -32,14 +31,18 @@ const [reset, setReset] = useState(false)
 
     localStorage.setItem('markerData', '[]');
     // Roboto, Helvetica, Arial, sans-serif
-   /*  WebFont.load({
+    /*  WebFont.load({
       google: {
         families: ['Roboto:300,400,500,700', 'Material+Icons', 'Lumanosimo:400'],
       },
-    }); */
-    resetMapData();
-    setReset(true)
+    }); 
+        setTimeout(() => {
+      
+      setReset(true);
+    }, 1000);
     return () => { setReset(false)}
+    */
+    resetMapData();
   }, [pathname]);
   useEffectOnce(() => {
     const setMovieList = async () => {
@@ -64,7 +67,7 @@ const [reset, setReset] = useState(false)
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {reset && (
+ 
         <Suspense fallback={<Loading />}>
           <Routes>
             {getRoutes(routes)}
@@ -76,7 +79,7 @@ const [reset, setReset] = useState(false)
             <Route path="/404" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
-      )}
+      
     </ThemeProvider>
   );
 }

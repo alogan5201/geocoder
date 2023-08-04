@@ -36,7 +36,6 @@ function Form() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     const inputOne = e.target[0].value;
     if (inputOne) {
       setLoading(true);
@@ -191,6 +190,7 @@ function Form() {
           </Grid>
           {/* ============ LatLngInputs ============ */}
           <LatLngInputs readOnly={true} />
+        
         </Grid>
       </Box>
       <MobileScrollTopButton />

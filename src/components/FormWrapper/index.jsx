@@ -1,15 +1,33 @@
 import Grid from '@mui/material/Grid';
-import mapPlaceHolderImg from 'assets/images/map_placeholder.png';
+//import mapPlaceHolderImg from 'assets/images/map_placeholder.png';
 import Box from 'components/Box';
 import NoLocationFound from 'components/Maps/components/NoLocationFound';
-import { useState, lazy} from 'react';
+import { useState, lazy, useEffect} from 'react';
 import useStore from 'store/mapStore';
+//import Button from 'components/Button';
+
 const MapExternal = lazy(() => import('components/Maps/MapExternal'));
 
 function FormWrapper({ form }) {
   const errorMessage = useStore((state) => state.errorMessage);
   const [loaded, setMapLoaded] = useState(false);
+  const [documentReady, setDocumentReady] = useState(false);
 
+    useEffect(() => {
+      if (document.readyState === 'complete') {
+        setDocumentReady(true);
+      } else {
+        const handleLoad = () => setDocumentReady(true);
+        window.addEventListener('load', handleLoad);
+
+        return () => window.removeEventListener('load', handleLoad);
+      }
+    }, []);
+/*   const handleTest = (e) => {
+    e.preventDefault();
+    console.log('test');
+    setDocumentReady(documentReady => !documentReady)
+  }; */
   return (
     <>
       <Box component="section" py={{ xs: 2, sm: 6 }} sx={{ maxWidth: '100%' }}>
@@ -28,13 +46,15 @@ function FormWrapper({ form }) {
                 <Box p={2}>
                   <Box px={{ xs: 0, sm: 0 }} py={{ xs: 2, sm: 3 }}>
                     <div className="map-container">
-                  
-
-                      <MapExternal setMapLoaded={setMapLoaded} />
+                      <MapExternal setMapLoaded={setMapLoaded} loaded={loaded} />
+                      <div id="static"></div>
+                      {documentReady && <MapExternal setMapLoaded={setMapLoaded} loaded={loaded} />}
+                 
                     </div>
                   </Box>
                 </Box>
               </Grid>
+             
             </Grid>
           </Box>
         </Grid>
