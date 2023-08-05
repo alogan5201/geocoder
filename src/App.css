@@ -494,8 +494,12 @@ body.hide-layers .no-opacity {
 }
 
 div {
-  caret-color: transparent
+  caret-color: transparent !important
 }
-div input{
+.MuiInputBase-input {
+  caret-color: transparent !important;
+}
+
+.MuiInputBase-input:focus {
   caret-color: #333 !important;
 }

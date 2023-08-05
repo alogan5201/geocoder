@@ -86,6 +86,7 @@ export async function fetchMovieLocation(slug) {
     return {};
   }
 }
+
 export async function getCitiesStartWith(startsWith, limit = 5) {
   try {
     const getCities = httpsCallable(functions, 'getCitiesStartWith');
@@ -199,3 +200,4 @@ export function reorderOrReplaceCityCapitalObjects(cities, capitals, visitedCapi
     return city;
   });
 }
+

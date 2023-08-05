@@ -38,9 +38,8 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   ];
 
   const handleInputFocus = () => {
-  
-    console.log("🚀 ~ handleInputFocus ~ overrideInput:", overrideInput)
-    if (inputValue.length > 2 ) {
+    
+    if (inputValue.length > 2) {
       setOpen(true);
     }
   };
@@ -76,8 +75,40 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     }
   };
 
-  // ...
 
+
+  function isCityCapital(shortHand, cityArray) {
+    if (shortHand.length < 3) return false;
+    // Format the shorthand to have the first letter uppercase and the rest lowercase
+    const formattedShortHand = shortHand.charAt(0).toUpperCase() + shortHand.slice(1).toLowerCase();
+
+    // Find and return the city object whose name starts with the formatted shorthand
+    const match = cityArray.find((cityObject) => cityObject.city.startsWith(formattedShortHand));
+    return match ? match : false;
+  }
+function reorderCities(targetCity, citiesObj) {
+  // Convert the citiesObj to an array
+  const citiesArr = Object.entries(citiesObj);
+
+  // Find the index of the target city in the array
+  const targetIndex = citiesArr.findIndex(
+    ([key, value]) => value.city === targetCity.city && value.state === targetCity.state
+  );
+
+  // If the target city is not found, return the original object
+  if (targetIndex === -1) return citiesObj;
+
+  // Remove the target city from the array
+  const [targetKey, targetValue] = citiesArr.splice(targetIndex, 1)[0];
+
+  // Add the target city to the beginning of the array
+  citiesArr.unshift([targetKey, targetValue]);
+
+  // Convert the array back to an object
+  const reorderedCities = Object.fromEntries(citiesArr);
+
+  return reorderedCities;
+}
   useEffect(() => {
     let active;
     if (inputValue === '') {
@@ -94,21 +125,36 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
 
           if (results) {
             const capitalCity = isCityCapital(inputValue, capitalCities);
-            if (capitalCity) {
-              const uid = uuidv4();
-              const displayName = `${capitalCity.city}, ${capitalCity.state}`;
-              const newOption = { ...capitalCity, id: uid, name: displayName };
-              const reorderedCities = reorderOrReplaceCityCapitalObjects(results, newOption);
 
-              newOptions = [...newOptions, ...Object.values(reorderedCities)];
+            if (capitalCity) {
+              
+              const uid = uuidv4();
+             //const displayName = `${capitalCity.city}, ${capitalCity.state}`;
+              const newOption = { ...capitalCity, id: uid, name: `${capitalCity.city}, ${capitalCity.state}` };
+              
+              const reorderedCities = reorderCities(newOption, results);
+              
+              
+                  // const reorderedCities = reorderOrReplaceCityCapitalObjects(results, newOption);
+
+                  // const arrayCities = Object.values(reorderedCities);
+                  // newOptions = [...newOptions, ...arrayCities];
+
+                  //setOptions(newOptions);
+              newOptions = Object.values(reorderedCities).map((reorderedCity) => ({
+                ...reorderedCity,
+                name: `${reorderedCity.city}, ${reorderedCity.state}`,
+              }));
+                setOptions(newOptions);
             } else {
               newOptions = Object.values(results).map((result) => ({
                 ...result,
                 name: `${result.city}, ${result.state}`,
               }));
+                setOptions(newOptions);
             }
 
-            setOptions(newOptions);
+          
           }
         })();
       }
@@ -129,10 +175,6 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       }
       setOverrideInput(true);
       setValue(newInputValue);
-      //setOptions(newInputValue)
-      //setInputValue(address)
-      // setValue(newInputValue);
-      
     }
   }, [address, label]);
   useEffect(() => {
@@ -247,7 +289,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
                 }}
               >
                 <Typography variant="body2" color="text.secondary">
-                {option.name}
+                  {option.name}
                 </Typography>
               </Grid>
             </Grid>
