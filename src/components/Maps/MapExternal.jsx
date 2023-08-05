@@ -7,13 +7,14 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import 'react-tabs/style/react-tabs.css';
 import LocationButton from './components/LocationButton';
 import Markers from './components/Markers';
+import LocationButtonIcon from 'components/LocationButtonIcon';
 
 const center = [37.09024, -95.712891];
 function MapPlaceholder() {
   return (
-    <p>
-      Map of London. <noscript>You need to enable JavaScript to see this map.</noscript>
-    </p>
+    <div id="static">
+      <LocationButtonIcon />
+    </div>
   );
 }
 
@@ -37,7 +38,7 @@ const MapExternal = ({ setMapLoaded}) => {
         zoomControl={false}
         id="map"
         attributionControl={false}
-        placeholder={<MapPlaceholder />}
+    
       >
         <TileLayer attribution="" url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`} />
         <Markers L={L} />

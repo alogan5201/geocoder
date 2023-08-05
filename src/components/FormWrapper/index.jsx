@@ -24,6 +24,13 @@ function FormWrapper({ form }) {
         return () => window.removeEventListener('load', handleLoad);
       }
     }, []);
+  
+  useEffect(() => {
+    if(mapLoaded) {
+      console.log("🚀 ~ useEffect ~ mapLoaded:", mapLoaded)
+      console.log('map loaded')
+    }
+  }, [mapLoaded]);
 /*   const handleTest = (e) => {
     e.preventDefault();
     console.log('test');
@@ -32,6 +39,13 @@ function FormWrapper({ form }) {
   const toggleMapVisibility = (e) => {
     e.preventDefault()
     setMapLoaded(mapLoaded => !mapLoaded)
+  }
+
+  const handleMapLoad = () => {
+    console.log("handling map load")
+    setTimeout(() => {
+      setMapLoaded(true)
+    }, 500);
   }
   return (
     <>
@@ -57,12 +71,11 @@ function FormWrapper({ form }) {
                  
                     </div> */}
                     <div className="map-container">
-                      <MapExternal setMapLoaded={setMapLoaded} />
-                      <div id="static" style={mapLoaded ? { zIndex: 1 } : { zIndex: 3 }}>
+                     <div id="static" style={mapLoaded ? { zIndex: 1 } : { zIndex: 3 }}>
                         <LocationButtonIcon />
                     
                       </div>
-                      {documentReady && <MapExternal setMapLoaded={setMapLoaded} />}
+                      {documentReady && <MapExternal setMapLoaded={handleMapLoad} />}
                     </div>
                   </Box>
                 </Box>

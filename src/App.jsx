@@ -67,19 +67,16 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
- 
-        <Suspense fallback={<Loading />}>
-          <Routes>
-            {getRoutes(routes)}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/demo" element={<DemoPage />} />
-            <Route path="*" element={<Navigate to="/" />} />
-            <Route path="/location/:slug" element={<MovieDetailPage />} />
-            <Route path="/movies/:slug" element={<Movies />} />
-            <Route path="/404" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      
+
+      <Routes>
+        {getRoutes(routes)}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/demo" element={<DemoPage />} />
+        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/location/:slug" element={<MovieDetailPage />} />
+        <Route path="/movies/:slug" element={<Movies />} />
+        <Route path="/404" element={<NotFoundPage />} />
+      </Routes>
     </ThemeProvider>
   );
 }
