@@ -27,7 +27,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   //const [queryLengths] = useState([1, 3, 6, 9, 12]);
   const [capitalCities, setCapitalCities] = useState([]);
   const loading = open && options.length === 0;
-
+  const popperVisibility = loading ? "hidden" : "visible"
   const modifiers = [
     {
       name: 'flip',
@@ -217,7 +217,7 @@ function reorderCities(targetCity, citiesObj) {
           popperOptions={{
             placement: 'bottom',
           }}
-          sx={{ marginTop: 10, padding: 0 }}
+          sx={{ marginTop: 10, padding: 0,visibility:popperVisibility }}
         />
       )}
       sx={{
@@ -252,11 +252,11 @@ function reorderCities(targetCity, citiesObj) {
               <>
                 <InputAdornment position="end">
                   {loading ? (
-                    <Box sx={{ marginTop: '7px', marginRight: '7px', opacity: 0.5 }}>
+                    <Box sx={{ py: '8px', pl: '8px', pr:'18px', opacity: 0.5 }}>
                       <ClipLoader color="#1A73E8" size={20} />
                     </Box>
                   ) : icon ? (
-                    <Box sx={{ pr: 2 }}>{icon}</Box>
+                    <Box sx={{ pr: 0 }}>{icon}</Box>
                   ) : (
                     <IconButton type="submit" sx={{ pr: 2 }}>
                       <SearchIcon fontSize="medium" color="info" />

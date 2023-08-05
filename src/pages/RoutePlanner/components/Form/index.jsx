@@ -339,11 +339,13 @@ function Form() {
             defaultValue="Atlanta, GA"
             icon={
               loading ? (
-                <Box sx={{ marginTop: '7px', marginRight: '-7px', opacity: 0.5 }}>
+                <Box sx={{ py: '8px', pl: '8px', pr: '18px', opacity: 0.5 }}>
                   <ClipLoader color="#1A73E8" size={20} />
                 </Box>
               ) : (
-                <OriginInputIcon />
+                <Box sx={{ py: '8px', pl: '8px', pr: '16px' }}>
+                  <OriginInputIcon />
+                </Box>
               )
             }
             disableChangeEventListener={true}
@@ -357,11 +359,13 @@ function Form() {
             defaultValue="Austin, TX"
             icon={
               loading ? (
-                <Box sx={{ marginTop: '7px', marginRight: '-7px', opacity: 0.5 }}>
+                  <Box sx={{ py: '8px', pl: '8px', pr: '18px', opacity: 0.5 }}>
                   <ClipLoader color="#f44335" size={20} />
                 </Box>
               ) : (
-                <DestinationInputIcon />
+                <Box sx={{ py: '8px', pl: '8px', pr: '16px' }}>
+                  <DestinationInputIcon />
+                </Box>
               )
             }
             submitOnSelect={true}

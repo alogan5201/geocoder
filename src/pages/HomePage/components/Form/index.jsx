@@ -172,7 +172,7 @@ function Form() {
             onSubmit={handleChildSubmit}
             icon={
               loading ? (
-                <Box sx={{ marginTop: '7px', marginRight: '-7px', opacity: 0.5 }}>
+                <Box sx={{ py: '8px', pl: '8px', pr: '18px', opacity: 0.5 }}>
                   <ClipLoader color="#1A73E8" size={20} />
                 </Box>
               ) : (
@@ -190,7 +190,6 @@ function Form() {
           </Grid>
           {/* ============ LatLngInputs ============ */}
           <LatLngInputs readOnly={true} />
-        
         </Grid>
       </Box>
       <MobileScrollTopButton />

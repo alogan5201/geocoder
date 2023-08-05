@@ -52,7 +52,7 @@ function FormWrapper({ form }) {
                   justifyContent: 'center',
                   alignItems: 'center',
                   width: '100%',
-                  minHeight: '50vh',
+                  minHeight: '65vh',
                   overflowY: 'hidden',
                 }}
               >
