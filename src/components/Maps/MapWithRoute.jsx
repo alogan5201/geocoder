@@ -1,47 +1,17 @@
-import L from "leaflet";
-import { MapContainer, TileLayer } from "react-leaflet";
-import "react-tabs/style/react-tabs.css";
-import useStore from "store/mapStore";
-import Fly from "./components/Fly";
-import LocationButton from "./components/LocationButton";
-import Markers from "./components/Markers";
-import PolyLineRoute from "./components/PolyLineRoute";
-import WeatherLegend from "./components/WeatherLegend";
+import L from 'leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import 'react-tabs/style/react-tabs.css';
+import Fly from './components/Fly';
+import LocationButton from './components/LocationButton';
+import Markers from './components/Markers';
+import PolyLineRoute from './components/PolyLineRoute';
+import WeatherLegend from './components/WeatherLegend';
 const center = [37.09024, -95.712891];
 const MapWithRoute = ({ setMapLoaded }) => {
-  const markers = [
-    {
-      id: 'randomStringOrNumber',
-      iconColor: 'red',
-      position: [33.748992, -84.390264],
- 
- 
-      tooltip: 'Hey!',
-    },
-    {
-      id: '2',
-      iconColor: 'blue',
-      position: [30.271129, -97.7437],
-      popupOpen: false, // if popup has to be open by default
-   
-      tooltip: 'Nice!',
-    },
-  ];
-
-  const setMapReady = useStore((state) => state.setMapReady);
-  const setMap = () => {
-    setMapReady(true);
-    if (setMapLoaded) {
-      setMapLoaded(true);
-    }
-    //setMapLoaded(true); // pass the state up to the parent
-  };
-
-
   return (
     <>
       <MapContainer
-        whenReady={setMap}
+        whenReady={setMapLoaded}
         center={center}
         zoom={3}
         scrollWheelZoom={true}

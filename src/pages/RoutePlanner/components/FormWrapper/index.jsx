@@ -1,19 +1,57 @@
 import Grid from "@mui/material/Grid";
-import mapPlaceHolderImg from 'assets/images/map_placeholder.png';
 import Box from "components/Box";
-import MapWithRoute from "components/Maps/MapWithRoute";
 import NoLocationFound from "components/Maps/components/NoLocationFound";
-import { useState } from 'react';
+import { useState, useEffect, lazy} from 'react';
 import useStore from "store/mapStore";
+import { SyncLoader } from 'react-spinners';
+const MapWithRoute = lazy(() => import("components/Maps/MapWithRoute"));
+
 function FormWrapper({  form }) {
- 
+   const [mapLoaded, setMapLoaded] = useState(false);
+
   const {  errorMessage } = useStore((state) => ({
     errorMessage: state.errorMessage,
   }));
-  const [isMapLoaded, setMapLoaded] = useState(false);
- 
+   const [documentReady, setDocumentReady] = useState(false);
+  useEffect(() => {
+    if (document.readyState === 'complete') {
+      setDocumentReady(true);
+    } else {
+      const handleLoad = () => setDocumentReady(true);
+      window.addEventListener('load', handleLoad);
+
+      return () => window.removeEventListener('load', handleLoad);
+    }
+  }, []);
+    const handleMapLoad = () => {
+      setTimeout(() => {
+        setMapLoaded(true);
+      }, 500);
+    };
   return (
     <>
+      {!mapLoaded && (
+        <Grid container item px={0}>
+          <Box width="100%" bgColor="white" mt={4} mb={6} sx={{ overflow: 'hidden' }}>
+            <Grid container spacing={0}>
+              <Box
+                px={{ xs: 1, sm: 3 }}
+                py={{ xs: 0, sm: 0 }}
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                  minHeight: '65vh',
+                  overflowY: 'hidden',
+                }}
+              >
+                <SyncLoader color="#1A73E8" />
+              </Box>
+            </Grid>
+          </Box>
+        </Grid>
+      )}
       <Box component="section" py={{ xs: 2, sm: 6 }}>
         <NoLocationFound toggle={errorMessage} />
         <Grid container item px={0}>
@@ -27,19 +65,14 @@ function FormWrapper({  form }) {
               {/*================= RIGHT COLUMN - MAP ================= */}
               <Grid item xs={12} lg={7}>
                 <Box p={2}>
-                  <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
-                    <div className="map-container">
-                      {!isMapLoaded && (
-                        // Your placeholder image here. Make sure it's styled to fill the space.
-                        <img
-                          src={mapPlaceHolderImg}
-                          alt="Map placeholder"
-                          style={{ width: '600px', height: '400px' }}
-                        />
-                      )}
-                      <MapWithRoute setMapLoaded={setMapLoaded} />
-                  
-                    </div>
+                  <Box px={{ xs: 0, sm: 0 }} py={{ xs: 2, sm: 3 }}>
+                    {/*    <div className="map-container">
+                      <MapExternal setMapLoaded={setMapLoaded} loaded={loaded} />
+                      <div id="static"></div>
+                      {documentReady && <MapExternal setMapLoaded={setMapLoaded} loaded={loaded} />}
+                 
+                    </div> */}
+                    <div className="map-container">{documentReady && <MapWithRoute setMapLoaded={handleMapLoad} />}</div>
                   </Box>
                 </Box>
               </Grid>

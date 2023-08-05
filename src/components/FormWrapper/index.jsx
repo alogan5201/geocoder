@@ -2,10 +2,9 @@ import Grid from '@mui/material/Grid';
 //import mapPlaceHolderImg from 'assets/images/map_placeholder.png';
 import Box from 'components/Box';
 import NoLocationFound from 'components/Maps/components/NoLocationFound';
-import { useState, lazy, useEffect } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import useStore from 'store/mapStore';
 //import Button from 'components/Button';
-import LocationButtonIcon from 'components/LocationButtonIcon';
 import { SyncLoader } from 'react-spinners';
 
 const MapExternal = lazy(() => import('components/Maps/MapExternal'));
@@ -91,7 +90,6 @@ function FormWrapper({ form }) {
                   </Box>
                 </Box>
               </Grid>
-            
             </Grid>
           </Box>
         </Grid>
