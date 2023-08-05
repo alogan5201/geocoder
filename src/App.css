@@ -373,6 +373,25 @@ html, body {margin: 0; padding: 0; overflow-x:hidden}
     width: 100%;
     z-index: 2;
 }
+.map-wrapper {
+  position: relative;
+  height: 100%; /* Adjust as needed */
+  width: 100%;  /* Adjust as needed */
+}
+
+.map-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ background-image: url('https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fplaceholder-images%2Fmap-placeholder%2Fmap_placeholder.png?alt=media&token=7ad39567-6788-4598-83d9-ca6314f6dac8'); /* Your placeholder color or image */
+  background-repeat: no-repeat;
+  transition: opacity 0.2s ease-out; /* Transition effect */
+}
 
 .map-container {
   position: relative;
@@ -393,7 +412,8 @@ html, body {margin: 0; padding: 0; overflow-x:hidden}
     max-width: 700px!important;
     /* max-width: 700px!important; */
     background-repeat: no-repeat;
-    background-position: 71% 0%;
+    background-position: 58% 0%;
+      transition: opacity 0.2s ease-out; 
       }
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
@@ -438,3 +458,37 @@ body.hide-layers .no-opacity {
 
     background-color: rgb(255, 255, 255) !important;
 }
+.placeholder_attribution {
+      -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-weight: 400;
+    letter-spacing: 0.00938em;
+    color: #23262d;
+    -webkit-tap-highlight-color: transparent;
+    cursor: grab;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  
+	font-size: 12px;
+  width: 100% ;
+  text-align: left !important;
+  left:21px;
+    line-height: 1.5;
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 1000;
+    pointer-events: none;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 1px !important;
+}
+
+#static a {
+  color: #0078A8
+}
+
+.leaflet-control-attribution .leaflet-control{
+  display: none !important;
+}
+

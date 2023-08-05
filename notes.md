@@ -365,4 +365,26 @@ It was 82 but something about the webfont loader makes it much slower for some r
 
 Set a loading spinner for each forms AdressInput
 Set mobilescroll top for all pages (this can be done later)
-Remove the local dev config that connects to the emulator
+Remove the local dev config that connects to the emulator'
+
+
+#ff0000
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-weight: 400;
+    letter-spacing: 0.00938em;
+    color: #23262d;
+    -webkit-tap-highlight-color: transparent;
+    cursor: grab;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 1000;
+    pointer-events: none;
+    right: 0;
+    bottom: 0;

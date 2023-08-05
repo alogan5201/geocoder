@@ -5,8 +5,7 @@ import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'react-tabs/style/react-tabs.css';
-import useStore from 'store/mapStore';
-//import LocationButton from './components/LocationButton';
+import LocationButton from './components/LocationButton';
 import Markers from './components/Markers';
 
 const center = [37.09024, -95.712891];
@@ -19,18 +18,7 @@ function MapPlaceholder() {
 }
 
 const MapExternal = ({ setMapLoaded}) => {
-  const setMapReady = useStore((state) => state.setMapReady);
 
-
-
-  const setMap = () => {
-    setMapReady(true);
-    if (setMapLoaded) {
-      setTimeout(() => {
-        setMapLoaded(true);
-      }, 5000);
-    }
-  };
 
   delete L.Icon.Default.prototype._getIconUrl;
   L.Icon.Default.mergeOptions({
@@ -41,16 +29,20 @@ const MapExternal = ({ setMapLoaded}) => {
 
   return (
     <>
-   
-        <MapContainer whenReady={setMap} center={center} zoom={3} scrollWheelZoom={false} zoomControl={false} id="map" placeholder={<MapPlaceholder />}>
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-            url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
-          />
-          <Markers L={L} />
-          {/* <LocationButton L={L} /> */}
-        </MapContainer>
-  
+      <MapContainer
+        whenReady={setMapLoaded}
+        center={center}
+        zoom={3}
+        scrollWheelZoom={false}
+        zoomControl={false}
+        id="map"
+        attributionControl={false}
+        placeholder={<MapPlaceholder />}
+      >
+        <TileLayer attribution="" url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`} />
+        <Markers L={L} />
+        <LocationButton L={L} />
+      </MapContainer>
     </>
   );
 };
