@@ -2,7 +2,7 @@ import Box from 'components/Box';
 
 import DirectionsIcon from '@mui/icons-material/Directions';
 import Grid from '@mui/material/Grid';
-import AddressInput from 'components/AddressInput';
+import AddressInput from './AddressInput';
 import Button from 'components/Button';
 import Typography from 'components/Typography';
 import FilledInfoCard from 'components/Cards/InfoCards/FilledInfoCard';
@@ -11,6 +11,7 @@ import useStore from 'store/mapStore';
 import { covertAddressToLatLng, extractCityAndState, getDirections, metersToMiles } from 'util/geocoder';
 import { useWindowSize } from 'react-use';
 import { ClipLoader } from 'react-spinners';
+import Stack from '@mui/material/Stack';
 
 import {
   fetchWeather,
@@ -313,67 +314,55 @@ function Form() {
   }, [routeData]);
   return (
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
-      <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
-        <Typography variant="h4" mb={1}>
-          Route Planner
-        </Typography>
-        <Typography variant="body2" color="text" mb={1}>
-          To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on
-          the map to get the coordinates.
-        </Typography>
-      </Box>
-      <Box
-        px={{ xs: 0, sm: 3 }}
-        py={{
-          xs: 2,
-          sm: 1.6,
-        }}
-      >
-        <Grid container>
-          {/* ============ ORGIN-AddressInput ============ */}
-          <AddressInput
-            label="Origin"
-            readOnly={false}
-            defaultValue="Atlanta, GA"
-            icon={
-              loading ? (
-                <Box sx={{ marginTop: '7px', marginRight: '-7px', opacity: 0.5 }}>
-                  <ClipLoader color="#1A73E8" size={20} />
-                </Box>
-              ) : (
+      <Stack direction="row" sx={{width:'100%'}}>
+        {/* ============ ORGIN-AddressInput ============ */}
+        <AddressInput
+          label="Origin"
+          readOnly={false}
+          defaultValue="Atlanta, GA"
+          icon={
+            loading ? (
+              <Box sx={{ py: '8px', pl: '8px', pr: '18px', opacity: 0.5 }}>
+                <ClipLoader color="#1A73E8" size={20} />
+              </Box>
+            ) : (
+              <Box sx={{ py: '8px', pl: '8px', pr: '16px' }}>
                 <OriginInputIcon />
-              )
-            }
-            disableChangeEventListener={true}
-            index={0}
-          />
-          {/* ============ DESTINATION-AddressInput ============ */}
-          <AddressInput
-            label="Destination"
-            readOnly={false}
-            disableChangeEventListener={true}
-            defaultValue="Austin, TX"
-            icon={
-              loading ? (
-                <Box sx={{ marginTop: '7px', marginRight: '-7px', opacity: 0.5 }}>
-                  <ClipLoader color="#f44335" size={20} />
-                </Box>
-              ) : (
+              </Box>
+            )
+          }
+          disableChangeEventListener={true}
+          index={0}
+        />
+        {/* ============ DESTINATION-AddressInput ============ */}
+        <AddressInput
+          label="Destination"
+          readOnly={false}
+          disableChangeEventListener={true}
+          defaultValue="Austin, TX"
+          icon={
+            loading ? (
+              <Box sx={{ py: '8px', pl: '8px', pr: '18px', opacity: 0.5 }}>
+                <ClipLoader color="#f44335" size={20} />
+              </Box>
+            ) : (
+              <Box sx={{ py: '8px', pl: '8px', pr: '16px' }}>
                 <DestinationInputIcon />
-              )
-            }
-            submitOnSelect={true}
-            onSubmit={handleChildSubmit}
-            index={1}
-          />
-          {/* ============ Submit ============ */}
-          <Grid item xs={12} pr={1} mb={2}>
-            <Button type="submit" variant="gradient" color="info">
-              Submit
-            </Button>
-          </Grid>
-          {/* ============ Directions Card ============ */}
-          {/*
+              </Box>
+            )
+          }
+          submitOnSelect={true}
+          onSubmit={handleChildSubmit}
+          index={1}
+        />
+        {/* ============ Submit ============ */}
+        <Grid item xs={12} pr={1} mb={2}>
+          <Button type="submit" variant="gradient" color="info">
+            Submit
+          </Button>
+        </Grid>
+        {/* ============ Directions Card ============ */}
+        {/*
           
            {
             "hours": 14, (hours could be null)
@@ -381,41 +370,42 @@ function Form() {
             "distance": 925
             } 
             */}
-          <Grid item xs={12} pr={1} mb={2}>
-            {routeInfo && (
-              <Box
-                sx={{
-                  transition: 'opacity 0.3s',
-                  opacity: loading ? 0 : 1,
-                }}
-              >
-                <FilledInfoCard
-                  color="dark"
-                  variant="contained"
-                  title={
-                    routeInfo.hours && routeInfo.minutes
-                      ? `${routeInfo.hours} hours ${routeInfo.minutes} minutes`
-                      : routeInfo.hours
-                      ? `${routeInfo.hours} hours`
-                      : `${routeInfo.minutes} minutes`
-                  }
-                  description={routeInfo.distance ? `${routeInfo.distance} miles` : ''}
-                  action={
-                    directionsUrl
-                      ? {
-                          type: 'external',
-                          route: directionsUrl,
-                          label: 'Directions',
-                          iconComponent: <DirectionsIcon color="info" fontSize="large" sx={{ ml: '5px' }} />,
-                        }
-                      : null
-                  }
-                />
-              </Box>
-            )}
-          </Grid>
+      </Stack>
+      <Grid container>
+        <Grid item xs={12} pr={1} mb={2}>
+          {routeInfo && (
+            <Box
+              sx={{
+                transition: 'opacity 0.3s',
+                opacity: loading ? 0 : 1,
+              }}
+            >
+              <FilledInfoCard
+                color="dark"
+                variant="contained"
+                title={
+                  routeInfo.hours && routeInfo.minutes
+                    ? `${routeInfo.hours} hours ${routeInfo.minutes} minutes`
+                    : routeInfo.hours
+                    ? `${routeInfo.hours} hours`
+                    : `${routeInfo.minutes} minutes`
+                }
+                description={routeInfo.distance ? `${routeInfo.distance} miles` : ''}
+                action={
+                  directionsUrl
+                    ? {
+                        type: 'external',
+                        route: directionsUrl,
+                        label: 'Directions',
+                        iconComponent: <DirectionsIcon color="info" fontSize="large" sx={{ ml: '5px' }} />,
+                      }
+                    : null
+                }
+              />
+            </Box>
+          )}
         </Grid>
-      </Box>
+      </Grid>
     </Box>
   );
 }

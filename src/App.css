@@ -404,6 +404,12 @@ body {
   width: 100%;
   max-height: 500px;
 }
+.map-container-demo {
+  position: relative;
+  height: 100%;
+  width: 100;
+ 
+}
 #static {
   background-image: url('https://firebasestorage.googleapis.com/v0/b/geotools-bc75a.appspot.com/o/images%2Fplaceholder-images%2Fmap-placeholder%2Fmap_placeholder.png?alt=media&token=55984020-7a2a-4e5d-aabb-a82556139b24');
   background-repeat: no-repeat;

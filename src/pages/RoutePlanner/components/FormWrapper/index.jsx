@@ -66,13 +66,10 @@ function FormWrapper({  form }) {
               <Grid item xs={12} lg={7}>
                 <Box p={2}>
                   <Box px={{ xs: 0, sm: 0 }} py={{ xs: 2, sm: 3 }}>
-                    {/*    <div className="map-container">
-                      <MapExternal setMapLoaded={setMapLoaded} loaded={loaded} />
-                      <div id="static"></div>
-                      {documentReady && <MapExternal setMapLoaded={setMapLoaded} loaded={loaded} />}
-                 
-                    </div> */}
-                    <div className="map-container">{documentReady && <MapWithRoute setMapLoaded={handleMapLoad} />}</div>
+                  
+                    <div className="map-container">
+                      {documentReady && <MapWithRoute setMapLoaded={handleMapLoad} />}
+                    </div>
                   </Box>
                 </Box>
               </Grid>
