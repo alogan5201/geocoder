@@ -63,7 +63,7 @@ function AddressInput({ onSubmit, ...props }) {
   return (
     <Grid item xs={12} pr={1} mb={2}>
       {props.label && (
-        <Box>
+        <Box > 
           <Typography display="inline" variant="h6" fontWeight="regular" color="secondary">
             {props.label}
           </Typography>

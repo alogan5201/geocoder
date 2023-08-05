@@ -24,9 +24,9 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   const setMapInputState = useStore((state) => state.setMapInputState);
   const [overrideInput, setOverrideInput] = useState(false);
   //const queryLengths = [1, 3, 6, 9];
-  const [queryLengths] = useState([1, 3, 6, 9, 12]);
+  //const [queryLengths] = useState([1, 3, 6, 9, 12]);
   const [capitalCities, setCapitalCities] = useState([]);
-    const loading = open && options.length === 0;
+  const loading = open && options.length === 0;
 
   const modifiers = [
     {
@@ -38,7 +38,9 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   ];
 
   const handleInputFocus = () => {
-    if (inputValue.length > 2 && !overrideInput) {
+  
+    console.log("🚀 ~ handleInputFocus ~ overrideInput:", overrideInput)
+    if (inputValue.length > 2 ) {
       setOpen(true);
     }
   };
@@ -62,6 +64,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     //  const newQueryLengths = [1, 3, 6, 9, displayName.length];
     //setQueryLengths(newQueryLengths);
     // setOptions(newValue ? [newValue, ...options] : options);
+    setOptions(options.filter((option) => option.id !== newValue.id));
 
     handleSubmit(newValueData, label);
   };
@@ -73,52 +76,39 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
     }
   };
 
+  // ...
+
   useEffect(() => {
     let active;
     if (inputValue === '') {
       setMapInputState(true);
-      //setOptions(value ? [value] : []);
       return undefined;
     }
-    if (inputValue.length > 2 && queryLengths.includes(inputValue.length)) {
+    if (inputValue.length > 2) {
       active = true;
 
       if (active) {
         (async function () {
           let newOptions = [];
           const results = await getCitiesStartWith(inputValue);
-          
+
           if (results) {
             const capitalCity = isCityCapital(inputValue, capitalCities);
             if (capitalCity) {
               const uid = uuidv4();
               const displayName = `${capitalCity.city}, ${capitalCity.state}`;
-
-              const newOption = { ...capitalCity, id: uid, name: `${capitalCity.city}, ${capitalCity.state}` };
+              const newOption = { ...capitalCity, id: uid, name: displayName };
               const reorderedCities = reorderOrReplaceCityCapitalObjects(results, newOption);
 
-              const arrayCities = Object.values(reorderedCities);
-              newOptions = [...newOptions, ...arrayCities];
-
-              setOptions(newOptions);
-
-              //setValue(displayName)
-              setInputValue(displayName);
+              newOptions = [...newOptions, ...Object.values(reorderedCities)];
             } else {
-              const arrayCities = Object.values(results);
-              newOptions = [...newOptions, ...arrayCities];
-              setOptions(newOptions);
+              newOptions = Object.values(results).map((result) => ({
+                ...result,
+                name: `${result.city}, ${result.state}`,
+              }));
             }
 
-            //  const uid = uuidv4();
-            /* let resultsWithId = results.map(({ city, id }) => ({
-                name,
-                mapbox_id,
-              }));
-  
-              newOptions = [...newOptions, ...resultsWithId];
-             */
-            //setOptions(newOptions);
+            setOptions(newOptions);
           }
         })();
       }
@@ -127,6 +117,9 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       active = false;
     };
   }, [inputValue]);
+
+  // ...
+
   useEffect(() => {
     if (address && label !== 'Destination') {
       const uid = uuidv4();
@@ -139,6 +132,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       //setOptions(newInputValue)
       //setInputValue(address)
       // setValue(newInputValue);
+      
     }
   }, [address, label]);
   useEffect(() => {
@@ -147,6 +141,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       setValue('');
       setInputValue(''); // Clear input value here
     }
+    setOverrideInput(false);
   }, [clear, clearMapInputs]);
 
   useEffect(() => {
@@ -158,7 +153,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
 
     loadCapitalCities();
   }, []);
-  useEffect(() => {}, [options, inputValue]);
+
   return (
     <Autocomplete
       freeSolo
@@ -168,6 +163,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       filterOptions={(x) => x}
       options={options}
       loading={loading}
+      loadingText="..."
       autoComplete
       disableClearable
       PopperComponent={(props) => (
@@ -213,10 +209,11 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
             endAdornment: (
               <>
                 <InputAdornment position="end">
-                  {loading ?
-                    <Box sx={{ marginTop: '7px', marginRight: '-7px', opacity: 0.5 }}>
-                  <ClipLoader color="#1A73E8" size={20} />
-                </Box> : icon ? (
+                  {loading ? (
+                    <Box sx={{ marginTop: '7px', marginRight: '7px', opacity: 0.5 }}>
+                      <ClipLoader color="#1A73E8" size={20} />
+                    </Box>
+                  ) : icon ? (
                     <Box sx={{ pr: 2 }}>{icon}</Box>
                   ) : (
                     <IconButton type="submit" sx={{ pr: 2 }}>
@@ -235,11 +232,9 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
           onFocus={handleInputFocus}
         />
       )}
-      renderOption={(props, option) => {
-        const id = option.id;
-
+      renderOption={(props, option, { index }) => {
         return (
-          <li {...props} key={id}>
+          <li {...props} key={index}>
             <Grid container alignItems="center">
               <Grid item sx={{ display: 'flex', width: 44 }}>
                 <LocationOnIcon sx={{ color: 'text.secondary' }} />
@@ -252,8 +247,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
                 }}
               >
                 <Typography variant="body2" color="text.secondary">
-                  {option.city}, {option.state}
-                  {/* {option.formatted_address} */}
+                {option.name}
                 </Typography>
               </Grid>
             </Grid>

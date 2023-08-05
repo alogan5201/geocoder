@@ -492,3 +492,10 @@ body.hide-layers .no-opacity {
 .leaflet-control-attribution .leaflet-control {
   display: none !important;
 }
+
+div {
+  caret-color: transparent
+}
+div input{
+  caret-color: #333 !important;
+}
