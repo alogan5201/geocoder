@@ -26,12 +26,12 @@ import { useWindowSize } from 'react-use';
 // State:
 // - rowData: an array holding the processed data to be displayed in the table.
 //
-function BookmarkTable({ bookmarkState , tableRef, tableHeight}) {
+function BookmarkTable({ bookmarkState, tableRef, tableHeight }) {
   // rowData holds the processed data for the bookmarks to be displayed in the table.
   const [rowData, setRowData] = useState([]);
   const [loading, setLoading] = useState(true);
-    const { width } = useWindowSize();
-const [imagesLoaded, setImagesLoaded] = useState(0);
+  const { width } = useWindowSize();
+  const [imagesLoaded, setImagesLoaded] = useState(0);
   // This hook provides access to the setMarkerData action from the mapStore.
   const updateMarkerData = useStore((state) => state.setMarkerData);
   const hideColumns = [0, 1];
@@ -103,8 +103,6 @@ const [imagesLoaded, setImagesLoaded] = useState(0);
 
         // Setting rowData state with the processed bookmark data.
         setRowData(bookmarkData);
-       
-       
       }
     };
 
@@ -114,14 +112,13 @@ const [imagesLoaded, setImagesLoaded] = useState(0);
     // Dependency array for useEffect, re-run when bookmarkState changes.
   }, [bookmarkState]);
 
-
   useEffect(() => {
     if (imagesLoaded > 0 && bookmarkState.length > 0) {
       if (imagesLoaded === bookmarkState.length) {
-       setLoading(false)
-     }
+        setLoading(false);
+      }
     }
-  }, [imagesLoaded,bookmarkState]);
+  }, [imagesLoaded, bookmarkState]);
   // Column definitions for the Table.
   const { columns, rows } = {
     columns: [
@@ -143,13 +140,13 @@ const [imagesLoaded, setImagesLoaded] = useState(0);
     ];
     const formattedMarkerData = formatMarkerData(markerData);
     updateMarkerData(formattedMarkerData);
-        if (width < 992) {
-          const mapElement = document.getElementById('map');
-          if (mapElement) {
-            const offset = tableHeight + 190; // change this to the offset that suits your needs
-            window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
-          }
-        }
+    if (width < 992) {
+      const mapElement = document.getElementById('map');
+      if (mapElement) {
+        const offset = tableHeight + 190; // change this to the offset that suits your needs
+        window.scrollTo({ top: mapElement.offsetTop + offset, behavior: 'smooth' });
+      }
+    }
   };
   // renderColumns maps through the columns and returns table header (th) elements.
   const renderColumns = columns.map(({ name, align, width }, key) => {
@@ -193,7 +190,6 @@ const [imagesLoaded, setImagesLoaded] = useState(0);
         <Box
           key={index}
           component="td"
-        
           textAlign={align}
           sx={({ borders: { borderWidth, borderColor } }) => ({
             borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
@@ -262,11 +258,7 @@ const [imagesLoaded, setImagesLoaded] = useState(0);
                       }}
                     >
                       <Box component="td" px={2} textAlign={'left'}>
-                        <Box
-                         
-                        
-                          sx={{ display: 'inline-block', width: 'max-content' }}
-                        >
+                        <Box sx={{ display: 'inline-block', width: 'max-content' }}>
                           <Stack spacing={0}>
                             <Skeleton animation="wave" height={10} width={70} />
                             <Skeleton animation="wave" height={10} width={40} />
@@ -274,10 +266,7 @@ const [imagesLoaded, setImagesLoaded] = useState(0);
                         </Box>
                       </Box>
                       <Box component="td" px={2} textAlign={'right'}>
-                        <Box
-                         
-                          sx={{ display: 'inline-block', width: 'max-content' }}
-                        >
+                        <Box sx={{ display: 'inline-block', width: 'max-content' }}>
                           <Skeleton
                             animation="wave"
                             variant="rectangular"
@@ -302,16 +291,16 @@ const [imagesLoaded, setImagesLoaded] = useState(0);
                     overflowX: 'hidden',
                     border: 'none',
                     boxShadow: 'none',
-                  borderRadius: '0',
-                    visibility: 'hidden',
+                    borderRadius: '0',
+                    display:'none'
                   }
                 : {
                     maxHeight: 440,
                     overflowX: 'hidden',
                     border: 'none',
                     boxShadow: 'none',
-                  borderRadius: '0',
-                    visibility:"visible"
+                    borderRadius: '0',
+                    display:'block'
                   }
             }
           >
@@ -326,8 +315,6 @@ const [imagesLoaded, setImagesLoaded] = useState(0);
               <TableBody>{renderRows}</TableBody>
             </MuiTable>
           </TableContainer>
-
-          <div style={{ fontSize: '14px', marginTop: '4em' }}></div>
         </Grid>
       ),
       [columns, rows]
