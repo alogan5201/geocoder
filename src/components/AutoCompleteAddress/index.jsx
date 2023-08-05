@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import useStore from 'store/mapStore';
 import { getCitiesStartWith, isCityCapital, reorderOrReplaceCityCapitalObjects } from 'util/geocoder';
 import { v4 as uuidv4 } from 'uuid';
+import { ClipLoader } from 'react-spinners';
 
 export default function AutoCompleteAddress({ address, clear, submitOnSelect, onSubmit, icon, label, autoFocus }) {
   const [inputValue, setInputValue] = useState('');
@@ -25,6 +26,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   //const queryLengths = [1, 3, 6, 9];
   const [queryLengths] = useState([1, 3, 6, 9, 12]);
   const [capitalCities, setCapitalCities] = useState([]);
+    const loading = open && options.length === 0;
 
   const modifiers = [
     {
@@ -85,7 +87,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
         (async function () {
           let newOptions = [];
           const results = await getCitiesStartWith(inputValue);
-
+          
           if (results) {
             const capitalCity = isCityCapital(inputValue, capitalCities);
             if (capitalCity) {
@@ -165,18 +167,19 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       getOptionLabel={(option) => (option && option.name ? option.name : inputValue)}
       filterOptions={(x) => x}
       options={options}
+      loading={loading}
       autoComplete
       disableClearable
       PopperComponent={(props) => (
         <Popper
-        id="autocomplete-dropdown"
+          id="autocomplete-dropdown"
           {...props}
           open={open}
           modifiers={modifiers}
           popperOptions={{
             placement: 'bottom',
           }}
-          sx={{ marginTop: 10, padding:0 }}
+          sx={{ marginTop: 10, padding: 0 }}
         />
       )}
       sx={{
@@ -210,7 +213,10 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
             endAdornment: (
               <>
                 <InputAdornment position="end">
-                  {icon ? (
+                  {loading ?
+                    <Box sx={{ marginTop: '7px', marginRight: '-7px', opacity: 0.5 }}>
+                  <ClipLoader color="#1A73E8" size={20} />
+                </Box> : icon ? (
                     <Box sx={{ pr: 2 }}>{icon}</Box>
                   ) : (
                     <IconButton type="submit" sx={{ pr: 2 }}>

@@ -68,7 +68,9 @@ function FormWrapper({ form }) {
                   </Box>
                 </Box>
               </Grid>
-            </Grid>
+        {/*       <Grid item xs={12} lg={5}><button type='button' onClick={() => setMapLoaded(!mapLoaded)}>
+              Toggle Map Visibility</button></Grid>
+            </Grid> */}
           </Box>
         </Grid>
       </Box>

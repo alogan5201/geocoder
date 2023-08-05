@@ -1,5 +1,5 @@
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import useStore from "store/mapStore";
 // react-router components
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
@@ -71,7 +71,6 @@ export default function App() {
         {getRoutes(routes)}
         <Route path="/" element={<HomePage />} />
         <Route path="/demo" element={<DemoPage />} />
-        <Route path="*" element={<Navigate to="/" />} />
         <Route path="/location/:slug" element={<MovieDetailPage />} />
         <Route path="/movies/:slug" element={<Movies />} />
         <Route path="/404" element={<NotFoundPage />} />

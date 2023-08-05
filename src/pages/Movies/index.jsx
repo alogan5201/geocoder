@@ -71,9 +71,7 @@ function MoviesPage() {
       return movies;
     } catch (error) {
       // Getting the Error details.
-      var code = error.code;
-      var message = error.message;
-      var details = error.details;
+   
     }
 
     // const moviesCollection = collection(db, 'films');
