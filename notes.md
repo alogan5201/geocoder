@@ -388,3 +388,7 @@ Remove the local dev config that connects to the emulator'
     pointer-events: none;
     right: 0;
     bottom: 0;
+
+
+
+padding right    4px for bookmark skeleton

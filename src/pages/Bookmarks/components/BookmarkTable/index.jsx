@@ -265,7 +265,7 @@ function BookmarkTable({ bookmarkState, tableRef, tableHeight }) {
                           </Stack>
                         </Box>
                       </Box>
-                      <Box component="td" px={2} textAlign={'right'}>
+                      <Box component="td" pl={1} pr="4px" textAlign={'right'}>
                         <Box sx={{ display: 'inline-block', width: 'max-content' }}>
                           <Skeleton
                             animation="wave"
@@ -315,6 +315,7 @@ function BookmarkTable({ bookmarkState, tableRef, tableHeight }) {
               <TableBody>{renderRows}</TableBody>
             </MuiTable>
           </TableContainer>
+          <button type="button" onClick={()=> setLoading(loading => !loading)}>Toggle Loading!</button>
         </Grid>
       ),
       [columns, rows]
