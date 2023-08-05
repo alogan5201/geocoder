@@ -1,5 +1,5 @@
 
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import useStore from "store/mapStore";
 // react-router components
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
@@ -9,15 +9,14 @@ import { useEffectOnce } from "react-use";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "assets/theme";
-import Loading from "components/Loading";
+import 'leaflet/dist/leaflet.css';
 import NotFoundPage from "pages/404";
+import DemoPage from "pages/Demo";
 import HomePage from "pages/HomePage";
 import MovieDetailPage from "pages/MovieDetails";
 import Movies from "pages/Movies";
-import "src/App.css";
-import 'leaflet/dist/leaflet.css';
 import routes from "routes";
-import DemoPage from "pages/Demo";
+import "src/App.css";
 //import WebFont from 'webfontloader';
 export default function App() {
   const { pathname } = useLocation();

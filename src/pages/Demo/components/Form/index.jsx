@@ -12,7 +12,13 @@ import { covertAddressToLatLng, extractCityAndState, getDirections, metersToMile
 import { useWindowSize } from 'react-use';
 import { ClipLoader } from 'react-spinners';
 
-import { fetchWeather, formatMarkerData, secondsToHoursMinutes, retrieveWeatherIconUrl, mobileScrollTo } from 'util/helpers';
+import {
+  fetchWeather,
+  formatMarkerData,
+  secondsToHoursMinutes,
+  retrieveWeatherIconUrl,
+  mobileScrollTo,
+} from 'util/helpers';
 import { useGlobalValue } from 'util/mapState';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -118,23 +124,19 @@ function Form() {
                 weatherOrigin,
                 weatherDestination,
               ]);
-           
             }
           } else {
             setErrorMessage(true);
             setTimeout(() => setErrorMessage(false), 500);
           }
         }
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     }
     setTimeout(() => {
       setLoading(false);
-         if (width < 992) {
-          
-           mobileScrollTo('map',500);
-         }
+      if (width < 992) {
+        mobileScrollTo('map', 500);
+      }
     }, 3000);
   };
   const setWeatherData = async (mapBoxDataOrigin, mapBoxDataDestination, weatherOrigin, weatherDestination) => {

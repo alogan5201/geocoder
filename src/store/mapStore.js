@@ -26,11 +26,15 @@ import { create } from 'zustand';
    hideAllLayers: false,
    currentMarkers: null,
    routePlannerPromisesResolved: false,
-   setRoutePlannerPromisesResolved: (data) => {
-     set(() => ({ routePlannerPromisesResolved: data }));
+   fetching: false,
+   setFetching: (data) => {
+     set(() => ({ fetching: data }));
    },
    setCurrentMarkers: (data) => {
      set(() => ({ currentMarkers: data }));
+   },
+   setRoutePlannerPromisesResolved: (data) => {
+     set(() => ({ routePlannerPromisesResolved: data }));
    },
    setHideAllLayers: (data) => {
      set(() => ({ hideAllLayers: data }));

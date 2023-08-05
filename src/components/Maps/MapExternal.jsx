@@ -7,16 +7,9 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import 'react-tabs/style/react-tabs.css';
 import LocationButton from './components/LocationButton';
 import Markers from './components/Markers';
-import LocationButtonIcon from 'components/LocationButtonIcon';
 
 const center = [37.09024, -95.712891];
-function MapPlaceholder() {
-  return (
-    <div id="static">
-      <LocationButtonIcon />
-    </div>
-  );
-}
+
 
 const MapExternal = ({ setMapLoaded}) => {
 
