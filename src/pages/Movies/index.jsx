@@ -51,13 +51,17 @@ function MoviesPage() {
     setTimeout(() => {
       setImagesLoading(false);
     }, 2000);
-    return () => {
-      // eslint-disable-next-line no-unused-vars
-      setImagesLoaded((imagesLoaded) => (imagesLoaded = 0));
-    };
+    
   }, [ allImagesLoaded]);
 
-
+useEffect(() => {
+  if (imagesLoading) {
+    setTimeout(() => {
+      setImagesLoading(false);
+      
+    }, 2000);
+  }
+}, [imagesLoading]);
   async function getMoviesInRange(start, end) {
     try {
       const result = await fetchMoviesInRange({ start: start, end: end });
