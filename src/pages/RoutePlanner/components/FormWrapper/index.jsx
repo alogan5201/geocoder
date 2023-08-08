@@ -52,7 +52,7 @@ function FormWrapper({  form }) {
           </Box>
         </Grid>
       )}
-      <Box component="section" py={{ xs: 2, sm: 6 }}>
+      <Box component="section" py={{ xs: 2, sm: 6 }} sx={mapLoaded ? {visibility:"visible"} : {visibility:"hidden"}}>
         <NoLocationFound toggle={errorMessage} />
         <Grid container item px={0}>
           <Box width="100%" bgColor="white" borderRadius="xl" shadow="xl" mb={6} sx={{ overflow: 'hidden' }}>
@@ -72,7 +72,7 @@ function FormWrapper({  form }) {
                       {documentReady && <MapExternal setMapLoaded={setMapLoaded} loaded={loaded} />}
                  
                     </div> */}
-                    <div className="map-container">{documentReady && <MapWithRoute setMapLoaded={handleMapLoad} />}</div>
+                    <div className="map-container" style={documentReady ? {display:"block"} : {display: "none"}}>{documentReady && <MapWithRoute setMapLoaded={handleMapLoad} />}</div>
                   </Box>
                 </Box>
               </Grid>
