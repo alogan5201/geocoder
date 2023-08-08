@@ -315,7 +315,6 @@ function BookmarkTable({ bookmarkState, tableRef, tableHeight }) {
               <TableBody>{renderRows}</TableBody>
             </MuiTable>
           </TableContainer>
-          <button type="button" onClick={()=> setLoading(loading => !loading)}>Toggle Loading!</button>
         </Grid>
       ),
       [columns, rows]
