@@ -34,19 +34,7 @@ function MoviesPage() {
     setImagesLoading(true);
     setLoading(true);
   };
-  useEffect(() => {
-    if (imagesLoaded > 0 && movies.length > 0) {
-      if (imagesLoaded === movies.length) {
-        setTimeout(() => {
-          //setAllImagesLoaded(true);
-        }, 2000);
-      }
-    }
-    return () => {
-      // eslint-disable-next-line no-unused-vars
-      setImagesLoaded((imagesLoaded) => (imagesLoaded = 0));
-    };
-  }, [imagesLoaded, movies]);
+
 
   useEffect(() => {
     setTimeout(() => {
