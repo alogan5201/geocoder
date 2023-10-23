@@ -46,9 +46,7 @@ function MoviesPage() {
       setLoading(false);
     }, 500);
   }, [loading]);
-  useEffect(() => {
-    console.log('🚀 ~ MoviesPage ~ imagesLoaded:', imagesLoaded);
-  }, [imagesLoaded]);
+
   async function getMoviesInRange(start, end) {
     try {
       const result = await fetchMoviesInRange({ start: start, end: end });
