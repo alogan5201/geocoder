@@ -11,6 +11,7 @@ import Box from 'components/Box';
 import BaseLayout from 'layouts/sections/components/BaseLayout';
 import Loading from 'components/Loading';
 import Typography from 'components/Typography';
+import LazyLoad from 'react-lazyload';
 
 function getRangeForPage(n, pageIndex) {
   const ranges = generateRanges(n);
@@ -31,21 +32,23 @@ function MoviesPage() {
 
   const handlePagination = (e, page) => {
     navigate(`/movies/${page}`);
-    setImagesLoading(true);
-    setLoading(true);
+    setImagesLoaded(0)
+    if (!loading) {
+      setLoading(true);
+    }
   };
 
-
+  const handleImageLoad = () => {
+    setImagesLoaded((prev) => prev + 1);
+  };
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
-    setTimeout(() => {
-      setImagesLoading(false);
-    }, 0);
- 
-  }, [loading, allImagesLoaded]);
-
+  }, [loading]);
+  useEffect(() => {
+    console.log('🚀 ~ MoviesPage ~ imagesLoaded:', imagesLoaded);
+  }, [imagesLoaded]);
   async function getMoviesInRange(start, end) {
     try {
       const result = await fetchMoviesInRange({ start: start, end: end });
@@ -56,14 +59,6 @@ function MoviesPage() {
     } catch (error) {
       // Getting the Error details.
     }
-
-    // const moviesCollection = collection(db, 'films');
-    // const q = query(moviesCollection, where('index', '>=', start), where('index', '<=', end));
-
-    // const querySnapshot = await getDocs(q);
-    // const movies = querySnapshot.docs.map((doc) => doc.data());
-
-    // return movies;
   }
   useEffect(() => {
     const fetchMovies = async () => {
@@ -112,51 +107,73 @@ function MoviesPage() {
                   Discover where you&apos;re favorite flicks were filmed and bookmark them for your next trip!
                 </Typography>
               </Grid>
-              {imagesLoading && (
-                <Grid container spacing={5} mt={3}>
-                  {Array.from({ length: 15 }).map((_, index) => (
-                    <Grid key={index} item xs={12} lg={4}>
-                      <div style={{ paddingTop: '150%', position: 'relative' }}>
-                        <Skeleton
-                          animation="wave"
-                          variant="rectangular"
-                          sx={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '100%',
-                            height: '100%',
-                            borderRadius: '8px',
-                          }}
-                        />
-                      </div>
-                    </Grid>
-                  ))}
-                </Grid>
-              )}
 
-              <Grid
-                container
-                spacing={5}
-                mt={3}
-                sx={imagesLoading ? { visibility: 'hidden' } : { visibility: 'visible' }}
-              >
-                {movies.map((data) => (
+              <Grid container spacing={5} mt={3}>
+                {movies.map((data, index) => (
                   <Grid key={data.id} item xs={12} lg={4}>
                     <Link to={`/location/${data.slug}`}>
                       <div style={{ paddingTop: '150%', position: 'relative' }}>
-                        <img
-                          src={data.image}
-                          alt={`${data.title} movie poster`}
-                          style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '100%',
-                            height: '100%',
-                          }}
-                          onLoad={() => setImagesLoaded((imagesLoaded) => imagesLoaded + 1)}
-                        />
+                        {index < 6 ? (
+                          <>
+                            {imagesLoaded <= index ? (
+                              <Skeleton
+                                animation="wave"
+                                variant="rectangular"
+                                sx={{
+                                  position: 'absolute',
+                                  top: 0,
+                                  left: 0,
+                                  width: '100%',
+                                  height: '100%',
+                                  borderRadius: '8px',
+                                }}
+                              />
+                            ) : null}
+                            <img
+                              src={data.image}
+                              alt={`${data.title} movie poster`}
+                              onLoad={handleImageLoad}
+                              style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                              }}
+                            />
+                          </>
+                        ) : (
+                          <LazyLoad
+                            height={200}
+                            offset={100}
+                            placeholder={
+                              <Skeleton
+                                animation="wave"
+                                variant="rectangular"
+                                sx={{
+                                  position: 'absolute',
+                                  top: 0,
+                                  left: 0,
+                                  width: '100%',
+                                  height: '100%',
+                                  borderRadius: '8px',
+                                }}
+                              />
+                            }
+                          >
+                            <img
+                              src={data.image}
+                              alt={`${data.title} movie poster`}
+                              style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                              }}
+                            />
+                          </LazyLoad>
+                        )}
                       </div>
                       {/* Caption Underneath Image */}
                       <Box sx={{ textAlign: 'center' }}>
