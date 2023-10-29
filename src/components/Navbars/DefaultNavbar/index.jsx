@@ -19,6 +19,7 @@ import Typography from 'components/Typography';
 import DefaultNavbarDropdown from 'components/Navbars/DefaultNavbar/DefaultNavbarDropdown';
 import DefaultNavbarMobile from 'components/Navbars/DefaultNavbar/DefaultNavbarMobile';
 import breakpoints from 'assets/theme/base/breakpoints';
+
 function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState('');
   const [dropdownEl, setDropdownEl] = useState('');
@@ -30,7 +31,6 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
   const openMobileNavbar = () => setMobileNavbar(!mobileNavbar);
-  useEffect(() => {}, []);
   useEffect(() => {
     // A function that sets the display state for the DefaultNavbarMobile.
     function displayMobileNavbar() {
