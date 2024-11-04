@@ -7,7 +7,6 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import AddressToLatLng from 'pages/AddressToLatLng';
 import LatLngToAddress from 'pages/LatLngToAddress';
 import Bookmarks from 'pages/Bookmarks';
-import RoutePlanner from 'pages/RoutePlanner';
 import Movies from 'pages/Movies';
 
 
@@ -31,13 +30,6 @@ const routes = [
         key: "latLngToAddress",
       }
     ],
-  },
-  {
-    name: "routePlanner",
-    icon: <DirectionsIcon />,
-    route: "/route-planner",
-    component: <RoutePlanner />,
-    key: "routePlanner",
   },
   {
     name: "bookmarks",
