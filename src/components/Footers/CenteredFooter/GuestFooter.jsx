@@ -62,7 +62,6 @@ GuestFooter.defaultProps = {
     { href: '/', name: 'Geotools' },
     { href: '/address-to-lat-lng', name: 'Address to Latitude & Longitude' },
     { href: '/lat-lng-to-address', name: 'Latitude & Longtidue to Address' },
-    { href: '/route-planner', name: 'Route Planner' },
     { href: '/bookmarks', name: 'Bookmarks' },
     { href: '/movies/1', name: 'Movies' },
   ],
