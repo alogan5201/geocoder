@@ -454,7 +454,7 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
 }
 // Setting default values for the props of DefaultNavbar
 DefaultNavbar.defaultProps = {
-  brand: 'geotools',
+  brand: 'movielatlng',
   transparent: false,
   light: false,
   action: false,
