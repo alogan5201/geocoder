@@ -1,10 +1,6 @@
-// react-router-dom components
 import { Link } from 'react-router-dom';
-
 import PropTypes from 'prop-types';
-
 import Card from '@mui/material/Card';
-
 import Box from 'components/Box';
 import Button from 'components/Button';
 import Typography from 'components/Typography';
