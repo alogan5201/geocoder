@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 // react-router-dom components
 import { Link } from 'react-router-dom';
 
-// @mui material components
 import MuiLink from '@mui/material/Link';
 
 import Box from 'components/Box';

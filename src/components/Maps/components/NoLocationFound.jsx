@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-// @mui material components
 import Container from '@mui/material/Container';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';

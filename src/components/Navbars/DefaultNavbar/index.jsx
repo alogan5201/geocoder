@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-// @mui material components
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';

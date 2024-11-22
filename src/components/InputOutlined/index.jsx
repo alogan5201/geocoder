@@ -1,4 +1,3 @@
-// @mui material components
 
 import Input from 'components/Input';
 

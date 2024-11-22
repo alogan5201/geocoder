@@ -6,7 +6,6 @@ import Button from 'components/Button';
 import LatLngInputs from 'components/LatLngInputs';
 import Typography from 'components/Typography';
 import { useEffect, useRef } from 'react';
-import { useEffectOnce } from 'react-use';
 import useStore from 'store/mapStore';
 import { covertAddressToLatLng, extractCityAndState } from 'util/geocoder';
 import { formatMarkerData } from 'util/helpers';

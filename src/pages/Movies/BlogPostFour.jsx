@@ -1,7 +1,6 @@
 // react-router-dom components
 import { Link } from 'react-router-dom';
 
-// @mui material components
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 

@@ -1,7 +1,6 @@
 // prop-types is library for typechecking of props
 import PropTypes from 'prop-types';
 
-// @mui material components
 import Icon from '@mui/material/Icon';
 
 import Box from 'components/Box';

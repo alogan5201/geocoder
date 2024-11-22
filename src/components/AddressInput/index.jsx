@@ -5,7 +5,6 @@ import Input from 'components/Input';
 import AutoCompleteAddress from 'components/AutoCompleteAddress';
 import { useEffect, useRef, useState } from 'react';
 import useStore from 'store/mapStore';
-// @mui icons
 import Box from 'components/Box';
 import Typography from 'components/Typography';
 

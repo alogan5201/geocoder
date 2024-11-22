@@ -12,7 +12,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-// @mui material components
 import Grid from '@mui/material/Grid';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';

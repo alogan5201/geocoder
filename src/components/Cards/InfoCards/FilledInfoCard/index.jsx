@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 // react-router-dom components
 import { Link } from 'react-router-dom';
 
-// @mui material components
 
 import Box from 'components/Box';
 import Typography from 'components/Typography';

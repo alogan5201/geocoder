@@ -1,4 +1,3 @@
-// @mui material components
 import Fade from '@mui/material/Fade';
 
 import colors from 'assets/theme/base/colors';

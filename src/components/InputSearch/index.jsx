@@ -1,4 +1,3 @@
-// @mui material components
 import InputAdornment from '@mui/material/InputAdornment';
 
 // @mui icons

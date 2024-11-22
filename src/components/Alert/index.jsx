@@ -1,14 +1,7 @@
 import { useState } from 'react';
-
-// prop-types is a library for typechecking of props
 import PropTypes from 'prop-types';
-
-// @mui material components
 import Fade from '@mui/material/Fade';
-
 import Box from 'components/Box';
-
-// Custom styles for the Alert
 import MKAlertRoot from 'components/Alert/MKAlertRoot';
 import MKAlertCloseIcon from 'components/Alert/MKAlertCloseIcon';
 

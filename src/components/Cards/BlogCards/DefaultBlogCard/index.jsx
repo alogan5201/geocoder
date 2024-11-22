@@ -6,7 +6,6 @@ import Skeleton from '@mui/material/Skeleton';
 // prop-types is a library for typechecking of props
 import PropTypes from 'prop-types';
 
-// @mui material components
 import Card from '@mui/material/Card';
 import MuiLink from '@mui/material/Link';
 

@@ -5,7 +5,6 @@ import useStore from "store/mapStore";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffectOnce } from "react-use";
 
-// @mui material components
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "assets/theme";

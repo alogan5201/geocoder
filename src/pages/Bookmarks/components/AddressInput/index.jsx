@@ -2,7 +2,6 @@
 import Grid from '@mui/material/Grid';
 import Input from 'components/Input';
 import { useEffect, useRef } from 'react';
-// @mui material components
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import useStore from 'store/mapStore';
