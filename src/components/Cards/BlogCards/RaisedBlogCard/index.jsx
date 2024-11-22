@@ -3,7 +3,6 @@
 // react-router components
 import { Link } from 'react-router-dom';
 
-// prop-types is a library for typechecking of props
 import PropTypes from 'prop-types';
 
 import Card from '@mui/material/Card';

@@ -1,9 +1,7 @@
 import { forwardRef } from 'react';
 
-// prop-types is a library for typechecking of props
 import PropTypes from 'prop-types';
 
-// Custom styles for the Badge
 import MKBadgeRoot from 'components/Badge/MKBadgeRoot';
 
 const Badge = forwardRef(({ color, variant, size, circular, indicator, border, container, children, ...rest }, ref) => (

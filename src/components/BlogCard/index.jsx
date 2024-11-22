@@ -1,8 +1,4 @@
-// react-router components
 import PropTypes from 'prop-types';
-
-// prop-types is a library for typechecking of props
-
 import Card from '@mui/material/Card';
 import MuiLink from '@mui/material/Link';
 import Box from 'components/Box';

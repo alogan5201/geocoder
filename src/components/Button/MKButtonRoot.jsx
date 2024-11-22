@@ -6,7 +6,6 @@ import { styled } from '@mui/material/styles';
 export default styled(Button)(({ theme, ownerState }) => {
   const { palette, functions, borders, boxShadows } = theme;
   const { color, variant, size, circular, iconOnly } = ownerState;
-const a = 'true'
   const { white, text, transparent, gradients, dark } = palette;
   const { boxShadow, linearGradient, pxToRem, rgba } = functions;
   const { borderRadius } = borders;
@@ -190,12 +189,9 @@ const a = 'true'
     };
   };
 
-  // styles for the button with variant="text"
   const textStyles = () => {
-    // color value
     const colorValue = palette[color] ? palette[color].main : white.main;
 
-    // color value when button is focused
     const focusedColorValue = palette[color] ? palette[color].focus : white.focus;
 
     return {
