@@ -13,7 +13,6 @@ const center = [37.09024, -95.712891];
 
 const MapExternal = ({ setMapLoaded}) => {
 
-
   delete L.Icon.Default.prototype._getIconUrl;
   L.Icon.Default.mergeOptions({
     iconRetinaUrl,

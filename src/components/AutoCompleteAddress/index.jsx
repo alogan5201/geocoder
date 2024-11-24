@@ -10,10 +10,10 @@ import Popper from '@mui/material/Popper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useEffect, useState } from 'react';
-import useStore from 'store/mapStore';
-import { getCitiesStartWith, isCityCapital, reorderOrReplaceCityCapitalObjects } from 'util/geocoder';
-import { v4 as uuidv4 } from 'uuid';
 import { ClipLoader } from 'react-spinners';
+import useStore from 'store/mapStore';
+import { getCitiesStartWith } from 'util/geocoder';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function AutoCompleteAddress({ address, clear, submitOnSelect, onSubmit, icon, label, autoFocus }) {
   const [inputValue, setInputValue] = useState('');
@@ -23,8 +23,7 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
   const clearMapInputs = useStore((state) => state.clearMapInputs);
   const setMapInputState = useStore((state) => state.setMapInputState);
   const [overrideInput, setOverrideInput] = useState(false);
-  //const queryLengths = [1, 3, 6, 9];
-  //const [queryLengths] = useState([1, 3, 6, 9, 12]);
+
   const [capitalCities, setCapitalCities] = useState([]);
   const loading = open && options.length === 0;
   const popperVisibility = loading ? "hidden" : "visible"
@@ -48,21 +47,12 @@ export default function AutoCompleteAddress({ address, clear, submitOnSelect, on
       return;
     }
 
-    /* const displayName = `${newValue.city}, ${newValue.state}`;
-    setOverrideInput(true);
-    setInputValue(displayName);
-    const newValueData = { ...newValue, name: displayName };
-    setOpen(false);
-     */
     const displayName = `${newValue.city}, ${newValue.state}`;
     setInputValue(displayName);
     setValue(newValue); // Add this line
     setOverrideInput(false);
     const newValueData = { ...newValue, name: displayName };
     setOpen(false);
-    //  const newQueryLengths = [1, 3, 6, 9, displayName.length];
-    //setQueryLengths(newQueryLengths);
-    // setOptions(newValue ? [newValue, ...options] : options);
     setOptions(options.filter((option) => option.id !== newValue.id));
 
     handleSubmit(newValueData, label);
@@ -129,18 +119,8 @@ function reorderCities(targetCity, citiesObj) {
             if (capitalCity) {
               
               const uid = uuidv4();
-             //const displayName = `${capitalCity.city}, ${capitalCity.state}`;
               const newOption = { ...capitalCity, id: uid, name: `${capitalCity.city}, ${capitalCity.state}` };
-              
               const reorderedCities = reorderCities(newOption, results);
-              
-              
-                  // const reorderedCities = reorderOrReplaceCityCapitalObjects(results, newOption);
-
-                  // const arrayCities = Object.values(reorderedCities);
-                  // newOptions = [...newOptions, ...arrayCities];
-
-                  //setOptions(newOptions);
               newOptions = Object.values(reorderedCities).map((reorderedCity) => ({
                 ...reorderedCity,
                 name: `${reorderedCity.city}, ${reorderedCity.state}`,
@@ -154,7 +134,6 @@ function reorderCities(targetCity, citiesObj) {
                 setOptions(newOptions);
             }
 
-          
           }
         })();
       }
