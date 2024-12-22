@@ -1,6 +1,14 @@
-# Geocoding tool
+# Geocoder
 
-A React application that enables users to discover filming locations of movies, plan routes, and manage location bookmarks. Built with [React](https://react.dev/) and [Vite](https://vitejs.dev/), it features an interactive map interface powered by [Leaflet](https://leafletjs.com/) and integrates with multiple APIs for comprehensive location data.
+A web app that lets users discover filming locations of movies, plan routes, and manage location bookmarks.
+- [React 18](https://react.dev/) with [Vite](https://vitejs.dev/)
+- [Material-UI (MUI)](https://mui.com/)
+- [Zustand](https://github.com/pmndrs/zustand)
+- [Leaflet](https://leafletjs.com/)/[React-Leaflet](https://react-leaflet.js.org/)
+- [Mapbox](https://www.mapbox.com/) for geocoding
+- [TheMovieDB](https://www.themoviedb.org/documentation/api) for movie data
+- [OpenWeather](https://openweathermap.org/api) for weather info
+- **Backend**: [Firebase](https://firebase.google.com/)
 
 🚀 **[Live Demo](https://movielatlong.com/)**
 
@@ -12,16 +20,6 @@ A React application that enables users to discover filming locations of movies, 
 - Save favorite locations with custom notes
 - Real-time weather data
 
-## Technology Stack
-- **Frontend**: [React 18](https://react.dev/) with [Vite](https://vitejs.dev/)
-- **UI Framework**: [Material-UI (MUI)](https://mui.com/)
-- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
-- **Maps**: [Leaflet](https://leafletjs.com/)/[React-Leaflet](https://react-leaflet.js.org/)
-- **APIs**: 
-  - [Mapbox](https://www.mapbox.com/) for geocoding
-  - [TheMovieDB](https://www.themoviedb.org/documentation/api) for movie data
-  - [OpenWeather](https://openweathermap.org/api) for weather info
-- **Backend**: [Firebase](https://firebase.google.com/)
 
 ## Getting Started
 
@@ -65,15 +63,4 @@ yarn dev
 
 Visit `http://localhost:3000` to view the application.
 
-## Project Structure
-
-```
-src/
-├── components/    # Reusable UI components
-├── pages/        # Route components
-├── layouts/      # Layout templates
-├── util/         # Helper functions
-├── store/        # Zustand state management
-└── hooks/        # Custom React hooks
-```
 
