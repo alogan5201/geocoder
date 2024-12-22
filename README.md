@@ -14,6 +14,7 @@ Built with React and Firebase, geocoder is a tool for converting geographic data
 - 🎬 **Explore movie locations on the interactive web map**
 
 - 🚗 **Plan routes and save them to your account**
+
 ### Prerequisites
 - [Node.js](https://nodejs.org/) version 14 or higher
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
