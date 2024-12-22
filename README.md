@@ -2,13 +2,13 @@
 
 A web app that lets users discover filming locations of movies, plan routes, and manage location bookmarks.
 - [React 18](https://react.dev/) with [Vite](https://vitejs.dev/)
-- [Material-UI (MUI)](https://mui.com/)
+- [Material UI](https://mui.com/)
 - [Zustand](https://github.com/pmndrs/zustand)
-- [Leaflet](https://leafletjs.com/)/[React-Leaflet](https://react-leaflet.js.org/)
+- [React Leaflet](https://react-leaflet.js.org/)
 - [Mapbox](https://www.mapbox.com/) for geocoding
 - [TheMovieDB](https://www.themoviedb.org/documentation/api) for movie data
 - [OpenWeather](https://openweathermap.org/api) for weather info
-- **Backend**: [Firebase](https://firebase.google.com/)
+- [Firebase](https://firebase.google.com/)
 
 🚀 **[Live Demo](https://movielatlong.com/)**
 
@@ -19,31 +19,6 @@ A web app that lets users discover filming locations of movies, plan routes, and
  - Browse filming locations with interactive maps
  - Save favorite locations
  - Real-time weather information
-
-## Technology Stack
-
-### Frontend
-- [React 18](https://react.dev/) with [Vite](https://vitejs.dev/)
-
-### UI Framework
-- [Material-UI (MUI)](https://mui.com/)
-
-### State Management
-- [Zustand](https://github.com/pmndrs/zustand)
-
-### Maps
-- [Leaflet](https://leafletjs.com/)
-- [React-Leaflet](https://react-leaflet.js.org/)
-
-### APIs
-- [Mapbox](https://www.mapbox.com/) for geocoding
-- [TheMovieDB](https://www.themoviedb.org/documentation/api) for movie data
-- [OpenWeather](https://openweathermap.org/api) for weather info
-
-### Backend
-- [Firebase](https://firebase.google.com/)
-
-## Getting Started
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) (v14+)
@@ -102,16 +77,10 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## Acknowledgements
 
-This project was created using React and Firebase platform.
+- Built with [React](https://react.dev/), [Vite](https://vitejs.dev/),and [Firebase](https://firebase.google.com/)
+- UI components from [Material UI](https://mui.com/)
+- State management using [Zustand](https://github.com/pmndrs/zustand)
+- Map functionality provided by [Leaflet](https://leafletjs.com/) and [Mapbox](https://www.mapbox.com/)
+- Movie data courtesy of [TheMovieDB API](https://www.themoviedb.org/)
+- Weather information from [OpenWeather API](https://openweathermap.org/)
 
-## Resources
-
-- [React.js Documentation](https://react.dev/)
-- [Firebase Documentation](https://firebase.google.com/docs)
-- [Material UI Documentation](https://mui.com/material-ui/getting-started/)
-- [Leaflet Documentation](https://leafletjs.com/reference.html)
-- [React Leaflet Documentation](https://react-leaflet.js.org/)
-- [Zustand Documentation](https://docs.pmnd.rs/)
-- [Mapbox Documentation](https://docs.mapbox.com/)
-- [OpenWeather Documentation](https://openweathermap.org/api)
-- [TheMovieDB Documentation](https://developer.themoviedb.org/docs)
