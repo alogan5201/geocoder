@@ -1,5 +1,5 @@
 # 🌍 geocoder 
-Geocoder is an interactive application built with React, Material UI, Firebase, and Vite for converting geographic data, planning routes, bookmarking locations, exploring movie locations, and more!
+Geocoder is an app built with React, Material UI, Firebase, and Vite for converting geographic data, planning routes, bookmarking locations, exploring movie locations, and more!
 
 🚀 **[Live Demo](https://movielatlong.com/)**
 
