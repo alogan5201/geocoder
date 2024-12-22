@@ -7,28 +7,12 @@ A React application that enables users to discover filming locations of movies, 
 ![Demo](demo.gif)
 
 ## Features
-
-### Location Tools
-- Convert addresses to/from coordinates
-- Interactive map selection
-- Location search with autocomplete
-- Route planning with distance calculations
-- Real-time weather information
-
-### Movie Location Discovery
 - Browse filming locations with interactive maps
-- Movie details with plot summaries and posters
-- Location bookmarking system
-- Direct integration with mapping services
-
-### Data Management
+- Convert addresses to/from coordinates
 - Save favorite locations with custom notes
-- Organize locations with tags
-- View weather data for saved spots
-- Export location data in multiple formats
+- Real-time weather data
 
 ## Technology Stack
-
 - **Frontend**: [React 18](https://react.dev/) with [Vite](https://vitejs.dev/)
 - **UI Framework**: [Material-UI (MUI)](https://mui.com/)
 - **State Management**: [Zustand](https://github.com/pmndrs/zustand)
