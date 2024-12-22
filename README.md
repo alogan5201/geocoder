@@ -4,7 +4,14 @@ A React application for discovering movie filming locations and exploring geogra
 
 ## Overview
 
-Enables users to discover filming locations of movies, plan routes, and manage location bookmarks. Built with React and Vite, it features an interactive map interface powered by Leaflet and integrates with multiple APIs for comprehensive location data.
+Enables users to discover filming locations of movies, plan routes, and manage location bookmarks. Built with [React](https://react.dev/) and [Vite](https://vitejs.dev/), it features an interactive map interface powered by [Leaflet](https://leafletjs.com/) and integrates with multiple APIs for comprehensive location data.
+
+🚀 **[Live Demo](https://movielatlong.com/)**
+
+## Demo Preview
+
+![Demo](demo.gif)
+*Discover filming locations, plan routes between cities, and explore geographical coordinates with an interactive map interface*
 
 ## Features
 
@@ -34,22 +41,22 @@ Enables users to discover filming locations of movies, plan routes, and manage l
 
 ## Technology Stack
 
-- **Frontend**: React 18 with Vite
-- **UI Framework**: Material-UI (MUI)
-- **State Management**: Zustand
-- **Maps**: Leaflet/React-Leaflet
+- **Frontend**: [React 18](https://react.dev/) with [Vite](https://vitejs.dev/)
+- **UI Framework**: [Material-UI (MUI)](https://mui.com/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+- **Maps**: [Leaflet](https://leafletjs.com/)/[React-Leaflet](https://react-leaflet.js.org/)
 - **APIs**: 
-  - Mapbox for geocoding
-  - TheMovieDB for movie data
-  - OpenWeather for weather info
-- **Backend**: Firebase
+  - [Mapbox](https://www.mapbox.com/) for geocoding
+  - [TheMovieDB](https://www.themoviedb.org/documentation/api) for movie data
+  - [OpenWeather](https://openweathermap.org/api) for weather info
+- **Backend**: [Firebase](https://firebase.google.com/)
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js (v14+)
-- npm or yarn
-- Firebase account
+- [Node.js](https://nodejs.org/) (v14+)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [Firebase](https://firebase.google.com/) account
 - Required API keys:
   - VITE_FIREBASE_API_KEY
   - VITE_MAPBOX_ACCESS_TOKEN (Mapbox)
@@ -59,8 +66,8 @@ Enables users to discover filming locations of movies, plan routes, and manage l
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/geocodingtool.git
-cd geocodingtool
+git clone https://github.com/yourusername/geocoding_tool.git
+cd geocoding_tool
 ```
 
 2. Install dependencies:
