@@ -1,5 +1,5 @@
 # 🌍 geocoder 
-Geocoder is an app built with React, Material UI, Firebase, and Vite for converting geographic data, planning routes, bookmarking locations, exploring movie locations, and more!
+Built with React and Firebase, geocoder is a tool for converting geographic data, bookmarking locations, exploring movie locations, and more!
 
 🚀 **[Live Demo](https://movielatlong.com/)**
 
@@ -7,18 +7,13 @@ Geocoder is an app built with React, Material UI, Firebase, and Vite for convert
 
 ### ✨ Features
 
-- 🗺️ **Convert Geographic Data**
-  - Convert between addresses and coordinates
-  - Convert between coordinates and addresses
+- 🗺️ **Convert Address to Lat/Long and Lat/Long to Address**
 
-- 📍 **Location Management**
-  - Save and manage favorite locations
+- 📍 **Bookmark favorite locations**
 
-- 🎬 **Movie Locations**
-  - Browse filming locations on interactive map
+- 🎬 **Explore movie locations on the interactive web map**
 
-
-
+- 🚗 **Plan routes and save them to your account**
 ### Prerequisites
 - [Node.js](https://nodejs.org/) version 14 or higher
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)

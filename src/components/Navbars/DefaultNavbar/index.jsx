@@ -453,7 +453,7 @@ function DefaultNavbar({ brand, routes, transparent, light, sticky, relative, ce
 }
 // Setting default values for the props of DefaultNavbar
 DefaultNavbar.defaultProps = {
-  brand: 'geocodingtool',
+  brand: 'geocoder',
   transparent: false,
   light: false,
   action: false,
