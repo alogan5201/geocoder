@@ -2,7 +2,7 @@
 // geocoder.js
 import { httpsCallable, connectFunctionsEmulator } from 'firebase/functions';
 import { functions } from './firebase';
-const { VITE_FIREBASE_API_KEY, VITE_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.env;
+const { VITE_FIREBASE_API_KEY, VITE_MAPBOX_ACCESS_TOKEN, VITE_NODE_ENV } = import.meta.env;
 const MAPBOX_API_BASE_URL = 'https://api.mapbox.com';
 
 if (VITE_NODE_ENV === 'development') {
@@ -19,18 +19,18 @@ export const covertAddressToLatLng = async (address) =>
   fetchAPI(
     `${MAPBOX_API_BASE_URL}/geocoding/v5/mapbox.places/${encodeURIComponent(
       address
-    )}.json?proximity=ip&access_token=${VITE_ACCESS_TOKEN}`
+    )}.json?proximity=ip&access_token=${VITE_MAPBOX_ACCESS_TOKEN}`
   );
 
 export const getDirections = async (from, to) => {
   const data = await fetchAPI(
-    `${MAPBOX_API_BASE_URL}/directions/v5/mapbox/driving/${from.lng},${from.lat};${to.lng},${to.lat}?geometries=geojson&access_token=${VITE_ACCESS_TOKEN}`
+    `${MAPBOX_API_BASE_URL}/directions/v5/mapbox/driving/${from.lng},${from.lat};${to.lng},${to.lat}?geometries=geojson&access_token=${VITE_MAPBOX_ACCESS_TOKEN}`
   );
   return data && data.code !== 'NoRoute' ? data : null;
 };
 
 export const convertLatLngToAddress = async (lat, lng) =>
-  fetchAPI(`${MAPBOX_API_BASE_URL}/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${VITE_ACCESS_TOKEN}`);
+  fetchAPI(`${MAPBOX_API_BASE_URL}/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${VITE_MAPBOX_ACCESS_TOKEN}`);
 
 /* ----------------------- Firebase / Google functions ---------------------- */
 export async function getAddress(lat, lon) {
