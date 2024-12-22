@@ -1,43 +1,31 @@
 # Geocoding tool
 
-A React application for discovering movie filming locations and exploring geographical coordinates.
-
-## Overview
-
-Enables users to discover filming locations of movies, plan routes, and manage location bookmarks. Built with [React](https://react.dev/) and [Vite](https://vitejs.dev/), it features an interactive map interface powered by [Leaflet](https://leafletjs.com/) and integrates with multiple APIs for comprehensive location data.
+A React application that enables users to discover filming locations of movies, plan routes, and manage location bookmarks. Built with [React](https://react.dev/) and [Vite](https://vitejs.dev/), it features an interactive map interface powered by [Leaflet](https://leafletjs.com/) and integrates with multiple APIs for comprehensive location data.
 
 🚀 **[Live Demo](https://movielatlong.com/)**
 
-## Demo Preview
-
 ![Demo](demo.gif)
-*Discover filming locations, plan routes between cities, and explore geographical coordinates with an interactive map interface*
 
 ## Features
 
-### Movie Location Discovery
-- Browse curated movies with their filming locations
-- Interactive map visualization of filming spots
-- Detailed movie information with plot summaries and posters
-- Location bookmarking for future reference
-
-### Geocoding Tools
-- Convert addresses to latitude/longitude coordinates
-- Reverse geocoding (coordinates to address)
-- Interactive map selection for coordinates
+### Location Tools
+- Convert addresses to/from coordinates
+- Interactive map selection
 - Location search with autocomplete
+- Route planning with distance calculations
+- Real-time weather information
 
-### Route Planning
-- Calculate distances between locations
-- Get real-time weather information
-- View route visualization on map
+### Movie Location Discovery
+- Browse filming locations with interactive maps
+- Movie details with plot summaries and posters
+- Location bookmarking system
 - Direct integration with mapping services
 
-### Location Management
+### Data Management
 - Save favorite locations with custom notes
-- View weather information for saved spots
 - Organize locations with tags
-- Export location data
+- View weather data for saved spots
+- Export location data in multiple formats
 
 ## Technology Stack
 
