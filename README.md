@@ -5,15 +5,17 @@ Built with React and Firebase, geocoder is a tool for converting geographic data
 
 ![Demo](demo.gif)
 
+## 🎯 Motivation
+
+The motivation to build geocoder emerged from a deep fascination with geospatial technology and how it can be used to solve real-world problems. After being inspired by the [MapScaping](https://www.mapscaping.com/) podcast and seeing the growing importance of location-based services, I recognized an opportunity to create a tool that simplifies geographic data handling.
+
 ### ✨ Features
 
-- 🗺️ **Convert Address to Lat/Long and Lat/Long to Address**
+- 🗺️ **Convert an address to latitude/longitude and vice versa**
+
+- 🎬 **Explore movie locations with an interactive web map**
 
 - 📍 **Bookmark favorite locations**
-
-- 🎬 **Explore movie locations on the interactive web map**
-
-- 🚗 **Plan routes and save them to your account**
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) version 14 or higher
