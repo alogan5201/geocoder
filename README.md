@@ -72,12 +72,11 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## Acknowledgements
 
-This project was built using the following technologies and resources:
+- [React.js](https://react.dev/)
+- [Firebase](https://firebase.google.com/docs)
+- [Material UI](https://mui.com/material-ui/getting-started/)
+- [Leaflet](https://leafletjs.com/reference.html) and [React Leaflet](https://react-leaflet.js.org/)  
+- [Zustand](https://docs.pmnd.rs/)
+- [OpenWeather](https://openweathermap.org/api)
+- [TheMovieDB](https://developer.themoviedb.org/docs)
 
-- [React.js](https://react.dev/) for building the UI.
-- [Firebase](https://firebase.google.com/docs) for data storage.
-- [Material UI](https://mui.com/material-ui/getting-started/) for UI components.
-- [Leaflet](https://leafletjs.com/reference.html) and [React Leaflet](https://react-leaflet.js.org/) for interactive maps.
-- [Zustand](https://docs.pmnd.rs/) for state management.
-- [OpenWeather](https://openweathermap.org/api) for weather data.
-- [TheMovieDB](https://developer.themoviedb.org/docs) for movie data.
