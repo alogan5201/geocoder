@@ -1,13 +1,9 @@
 # 🌍 geocoder 
 Built with React and Firebase, geocoder is a tool for converting geographic data, bookmarking locations, exploring movie locations, and more!
 
-🚀 **[Live Demo](https://movielatlong.com/)**
+🚀 **[Live Demo](https://geocoder-react.netlify.app/)**
 
 ![Demo](demo.gif)
-
-## 🎯 Motivation
-
-The motivation to build geocoder emerged from a deep fascination with geospatial technology and how it can be used to solve real-world problems. After being inspired by the [MapScaping](https://www.mapscaping.com/) podcast and seeing the growing importance of location-based services, I recognized an opportunity to create a tool that simplifies geographic data handling.
 
 ### ✨ Features
 
