@@ -98,7 +98,7 @@ const Markers = ({ L }) => {
 if (locationMarkerData) {
   if (pathname.includes('journey-insights')) {
     addMarkersToMap(locationMarkerData);
-    console.log(markerData);
+    
   } else {
     localStorage.setItem('markerData', JSON.stringify(locationMarkerData));
     setMarkerPoints(locationMarkerData);
@@ -107,7 +107,7 @@ if (locationMarkerData) {
 } else if (markerData) {
   if (pathname.includes('journey-insights')) {
     addMarkersToMap(markerData);
-    console.log(markerData);
+    
   } else {
     localStorage.setItem('markerData', JSON.stringify(markerData));
     setMarkerPoints(markerData);
@@ -127,14 +127,6 @@ if (locationMarkerData) {
   }
   else if(markerPoints && markerPoints.length > 0) {
     return (
-      console.log(
-        "%c markerPoints: %o\n%c timestamp: %c%s",
-        "color: #44afff; font-weight: bold",
-        markerPoints,
-        "color: #f44335; font-weight: bold",
-        "color: #4caf50",
-        new Date().toLocaleString()
-      ),
       <PointMarker key={0} content={0} center={{ lat: markerPoints[0].lat, lng: markerPoints[0].lng }} openPopup={popupOpen} L={L} />
     );
   }

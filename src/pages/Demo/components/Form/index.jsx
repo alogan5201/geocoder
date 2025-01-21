@@ -405,7 +405,7 @@ function Form() {
                       ? {
                           type: 'external',
                           route: directionsUrl,
-                          label: 'Directions',
+                          label: 'Google MapsDirections',
                           iconComponent: <DirectionsIcon color="info" fontSize="large" sx={{ ml: '5px' }} />,
                         }
                       : null

@@ -1,32 +1,45 @@
 # 🌍 geocoder 
-Built with React and Firebase, geocoder is a tool for converting geographic data, bookmarking locations, exploring movie locations, and more!
+A powerful geospatial toolkit built with React and Firebase that helps you convert geographic coordinates, bookmark locations, plan journeys, and explore famous movie filming locations - all in one place!
 
 🚀 **[Live Demo](https://geocoder-react.netlify.app/)**
 
 ![Demo](demo.gif)
 
-### ✨ Features
+## ✨ Features
 
-- 🗺️ **Convert an address to latitude/longitude and vice versa**
+- 🗺️ **Geospatial Data Conversion**
+  - Convert addresses to latitude/longitude coordinates
+  - Reverse geocode coordinates to addresses
+  - Transform addresses to DMS (Degrees, Minutes, Seconds)
+  - Convert latitude/longitude to DMS format
+- 📍 **Location Management**
+  - Bookmark locations with a single click
+  - Organize and manage your saved locations
+- 🚗 **Journey Planning**
+  - Get real-time weather updates for start and end points
+  - Calculate precise distances between locations
+  - View estimated travel times and routes
+- 🎬 **Movie Location Explorer**
+  - Discover and explore real filming locations from popular movies
+  - Interactive map interface with location details
 
-- 🎬 **Explore movie locations with an interactive web map**
-
-- 📍 **Bookmark favorite locations**
+## 🚀 Getting Started
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) version 14 or higher
+- [Node.js](https://nodejs.org/) (v14 or higher)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
-- [Firebase](https://firebase.google.com/) account
-- Required API keys:
-  - VITE_FIREBASE_API_KEY ([Firebase](https://firebase.google.com/))
-  - VITE_THE_MOVIE_DB_API_KEY ([TheMovieDB](https://developer.themoviedb.org/docs/getting-started))
-  - VITE_OPEN_WEATHER_API_KEY ([OpenWeather](https://openweathermap.org/api))
+
+### Required API Keys
+Create accounts and obtain API keys from:
+- [Firebase](https://firebase.google.com/) - Authentication and database
+- [TheMovieDB](https://developer.themoviedb.org/docs/getting-started) - Movie data
+- [OpenWeather](https://openweathermap.org/api) - Weather information
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/geocoder.git
+git clone https://github.com/alogan5201/geocoder.git
 cd geocoder
 ```
 
@@ -37,7 +50,7 @@ npm install
 yarn
 ```
 
-3. Create a `.env` file with required API keys:
+3. Create a `.env` file in the root directory:
 ```bash
 VITE_FIREBASE_API_KEY=your_firebase_key
 VITE_THE_MOVIE_DB_API_KEY=your_moviedb_key
@@ -51,9 +64,9 @@ npm run dev
 yarn dev
 ```
 
-Visit `http://localhost:5173` to view the application.
+The application will be available at `http://localhost:5173`
 
-### Building for Production
+## 🏗️ Deployment
 
 1. Create a production build:
 ```bash
@@ -64,7 +77,7 @@ yarn build
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
