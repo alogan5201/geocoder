@@ -25,7 +25,7 @@ import { create } from 'zustand';
    mapReady: false,
    hideAllLayers: false,
    currentMarkers: null,
-   routePlannerPromisesResolved: false,
+   JourneyInsightsPromisesResolved: false,
    fetching: false,
    setFetching: (data) => {
      set(() => ({ fetching: data }));
@@ -33,8 +33,8 @@ import { create } from 'zustand';
    setCurrentMarkers: (data) => {
      set(() => ({ currentMarkers: data }));
    },
-   setRoutePlannerPromisesResolved: (data) => {
-     set(() => ({ routePlannerPromisesResolved: data }));
+   setJourneyInsightsPromisesResolved: (data) => {
+     set(() => ({ JourneyInsightsPromisesResolved: data }));
    },
    setHideAllLayers: (data) => {
      set(() => ({ hideAllLayers: data }));

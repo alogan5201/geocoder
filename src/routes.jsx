@@ -1,4 +1,3 @@
-
 // routes.jsx
 import BuildIcon from '@mui/icons-material/Build';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
@@ -8,6 +7,7 @@ import AddressToLatLng from 'pages/AddressToLatLng';
 import LatLngToAddress from 'pages/LatLngToAddress';
 import Bookmarks from 'pages/Bookmarks';
 import Movies from 'pages/Movies';
+import JourneyInsightsPage from 'pages/JourneyInsights';
 
 
 const routes = [
@@ -28,6 +28,13 @@ const routes = [
         route: "/lat-lng-to-address",
         component: <LatLngToAddress  />,
         key: "latLngToAddress",
+      },
+      {
+        name: "Journey Insights",
+        description: "Analyze your journey",
+        route: "/journey-analyzer",
+        component: <JourneyInsightsPage />,
+        key: "JourneyInsights",
       }
     ],
   },

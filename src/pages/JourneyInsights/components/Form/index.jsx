@@ -45,7 +45,7 @@ function Form() {
   const [coords, setCoords] = useGlobalValue();
   const [routeInfo, setRouteInfo] = useState(null);
   const setMarkerData = useStore((state) => state.setMarkerData);
-  const setRoutePlannerPromisesResolved = useStore((state) => state.setRoutePlannerPromisesResolved);
+  const setJourneyInsightsPromisesResolved = useStore((state) => state.setJourneyInsightsPromisesResolved);
   const { setWeather } = useStore((state) => ({
     setWeather: state.setWeather,
   }));
@@ -271,7 +271,7 @@ function Form() {
         )
       )
     ).then((results) => {
-      if (results.every((result) => result)) setRoutePlannerPromisesResolved(true);
+      if (results.every((result) => result)) setJourneyInsightsPromisesResolved(true);
     });
   };
   useEffect(() => {
@@ -317,11 +317,10 @@ function Form() {
     <Box component="form" p={2} method="post" onSubmit={handleSubmit} ref={formRef}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
-          Route Planner
+          Journey Insights
         </Typography>
         <Typography variant="body2" color="text" mb={1}>
-          To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on
-          the map to get the coordinates.
+          Plan your journey with real-time weather updates, precise distance calculations, and estimated travel times between any two locations.
         </Typography>
       </Box>
       <Box

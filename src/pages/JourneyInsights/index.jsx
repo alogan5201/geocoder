@@ -2,7 +2,7 @@ import BaseLayout from "layouts/sections/components/BaseLayout";
 import Form from "./components/Form";
 import FormWrapper from "./components/FormWrapper";
 
-function RoutePlannerPage() {
+function JourneyInsightsPage() {
   return (
     <>
       <BaseLayout>
@@ -11,4 +11,4 @@ function RoutePlannerPage() {
     </>
   );
 }
-export default RoutePlannerPage;
+export default JourneyInsightsPage;
