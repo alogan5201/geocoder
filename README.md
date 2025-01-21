@@ -43,7 +43,6 @@ VITE_FIREBASE_API_KEY=your_firebase_key
 VITE_THE_MOVIE_DB_API_KEY=your_moviedb_key
 VITE_OPEN_WEATHER_API_KEY=your_openweather_key
 VITE_MAPBOX_ACCESS_TOKEN=your_mapbox_token
-VITE_NODE_ENV=development
 ```
 
 ### Installation
