@@ -1,0 +1,15 @@
+{
+  "firebase": {
+    "projectId": "geotools-bc75a",
+    "databaseURL": "https://geotools-bc75a-default-rtdb.firebaseio.com",
+    "storageBucket": "geotools-bc75a.appspot.com",
+    "locationId": "us-central"
+  },
+  "someservice": {
+    "key": "pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQycnlhMDBlb2kydXBwZHoyOGNsY3EifQ.E8N4lPy6tiI0xY3nor3MTg",
+    "id": "mapbox-key"
+  },
+  "mapbox": {
+    "key": "pk.eyJ1IjoibG9nYW41MjAxIiwiYSI6ImNrcTQycnlhMDBlb2kydXBwZHoyOGNsY3EifQ.E8N4lPy6tiI0xY3nor3MTg"
+  }
+}

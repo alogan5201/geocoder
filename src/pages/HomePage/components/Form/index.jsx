@@ -80,6 +80,10 @@ function Form() {
           }
         }
       } else {
+        if(loading){
+          setLoading(false);
+        }
+        
         setErrorMessage(true);
 
         setTimeout(() => {

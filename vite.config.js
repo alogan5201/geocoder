@@ -26,7 +26,7 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/commons-api/, '/w/api.php'),
       },
     },
-    host: '0.0.0.0',
+    host: '0.0.0.0'
   },
   plugins: [visualizer({ open: true, brotliSize: true }), react()],
   resolve: {
