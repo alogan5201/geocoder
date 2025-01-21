@@ -92,7 +92,7 @@ FormWrapper.defaultProps = {
       },
     },
   },
-  name: "Address to Latitude & Longitude",
+  name: "Address to Latitude/Longitude",
   description:
     "To pinpoint a location, you can type in the name of a place, city, state, or address, or click the location on the map to get the coordinates.",
   map: false,

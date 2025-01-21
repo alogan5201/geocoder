@@ -45,7 +45,7 @@ function DetailedFooter({ content }) {
           </Grid>
           {menus.map(({ name: title, items }, key) => (
             <Grid key={title} item xs={6} md={2} ml={key === 0 ? { xs: 0, lg: 'auro' } : 0}>
-              <Typography component="h6" variant="button" fontWeight="bold" textTransform="capitalize" mb={1}>
+              <Typography component="h6" variant="button" fontWeight="bold" textTransform="lowercase" mb={1}>
                 {title}
               </Typography>
               <Box component="ul" p={0} m={0} sx={{ listStyle: 'none' }}>
@@ -60,7 +60,7 @@ function DetailedFooter({ content }) {
                         variant="button"
                         color="secondary"
                         fontWeight="regular"
-                        textTransform="capitalize"
+                        textTransform="lowercase"
                         pb={0.5}
                       >
                         {name}
@@ -72,7 +72,7 @@ function DetailedFooter({ content }) {
                         variant="button"
                         color="secondary"
                         fontWeight="regular"
-                        textTransform="capitalize"
+                        textTransform="lowercase"
                         pb={0.5}
                       >
                         {name}

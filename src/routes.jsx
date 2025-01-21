@@ -16,25 +16,25 @@ const routes = [
     icon: <BuildIcon />,
     collapse: [
       {
-        name: "Address to Latitude & Longitude",
-        description: "Convert an address to Latitude and Longitude",
+        name: "address to latitude/longitude",
+        description: "convert an address to latitude/longitude",
         route: "/address-to-lat-lng",
         component: <AddressToLatLng />,
         key: "addressToLatLng",
       },
       {
-        name: "Latitude & Longitude to Address",
-        description: "Convert Latitude and Longitude to an address",
+        name: "latitude/longitude to address", 
+        description: "convert latitude and longitude to an address",
         route: "/lat-lng-to-address",
         component: <LatLngToAddress  />,
         key: "latLngToAddress",
       },
       {
-        name: "Journey Insights",
-        description: "Analyze your journey",
+        name: "journey insights",
+        description: "plan your trip with helpful insights",
         route: "/journey-insights",
         component: <JourneyInsightsPage />,
-        key: "JourneyInsights",
+        key: "journeyInsights",
       }
     ],
   },

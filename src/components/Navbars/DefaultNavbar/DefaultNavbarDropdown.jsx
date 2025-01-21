@@ -51,7 +51,7 @@ function DefaultNavbarDropdown({ name, icon, children, collapseStatus, light, hr
         <Typography
           variant="button"
           fontWeight="regular"
-          textTransform="capitalize"
+          textTransform="lowercase"
           color={light ? 'white' : 'dark'}
           sx={{ fontWeight: '100%', ml: 1, mr: 0.25 }}
         >

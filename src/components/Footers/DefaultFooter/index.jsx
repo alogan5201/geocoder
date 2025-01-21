@@ -24,7 +24,7 @@ function DefaultFooter({ content }) {
           </Grid>
           {menus.map(({ name: title, items }) => (
             <Grid key={title} item xs={6} md={2} sx={{ mb: 3 }}>
-              <Typography display="block" variant="button" fontWeight="bold" textTransform="capitalize" mb={1}>
+              <Typography display="block" variant="button" fontWeight="bold" textTransform="lowercase" mb={1}>
                 {title}
               </Typography>
               <Box component="ul" p={0} m={0} sx={{ listStyle: 'none' }}>
@@ -38,7 +38,7 @@ function DefaultFooter({ content }) {
                         rel="noreferrer"
                         variant="button"
                         fontWeight="regular"
-                        textTransform="capitalize"
+                        textTransform="lowercase"
                       >
                         {name}
                       </Typography>
@@ -48,7 +48,7 @@ function DefaultFooter({ content }) {
                         to={route}
                         variant="button"
                         fontWeight="regular"
-                        textTransform="capitalize"
+                        textTransform="lowercase"
                       >
                         {name}
                       </Typography>

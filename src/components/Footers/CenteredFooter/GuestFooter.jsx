@@ -60,10 +60,10 @@ GuestFooter.defaultProps = {
   company: { href: 'https://www.creative-tim.com/', name: 'Creative Tim' },
   links: [
     { href: '/', name: 'geocoder' },
-    { href: '/address-to-lat-lng', name: 'Address to Latitude & Longitude' },
-    { href: '/lat-lng-to-address', name: 'Latitude & Longtidue to Address' },
-    { href: '/bookmarks', name: 'Bookmarks' },
-    { href: '/movies/1', name: 'Movies' },
+    { href: '/address-to-lat-lng', name: 'address to latitude/longitude' },
+    { href: '/lat-lng-to-address', name: 'latitude/longitude to address' },
+    { href: '/bookmarks', name: 'bookmarks' },
+    { href: '/movies/1', name: 'movies' },
   ],
   light: false,
 };

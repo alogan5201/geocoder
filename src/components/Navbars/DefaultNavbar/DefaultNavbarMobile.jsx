@@ -33,7 +33,7 @@ const ItemBox = memo(({ item }) => (
       },
     })}
   >
-    <Typography display="block" variant="button" fontWeight="bold" textTransform="capitalize">
+    <Typography display="block" variant="button" fontWeight="bold" textTransform="lowercase">
       {item.name}
     </Typography>
     <Typography
@@ -76,7 +76,7 @@ function DefaultNavbarMobile({ routes, open }) {
                       display="block"
                       variant="button"
                       fontWeight="bold"
-                      textTransform="capitalize"
+                      textTransform="lowercase"
                       py={1}
                       px={0.5}
                     >
@@ -95,7 +95,7 @@ function DefaultNavbarMobile({ routes, open }) {
                         display="block"
                         variant="button"
                         color="text"
-                        textTransform="capitalize"
+                        textTransform="lowercase"
                         fontWeight="regular"
                         py={0.625}
                         px={2}
