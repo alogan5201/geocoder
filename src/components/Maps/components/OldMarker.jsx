@@ -19,7 +19,7 @@ const Markers = ({ L }) => {
     if (locationMarkerData) {
       localStorage.setItem('markerData', JSON.stringify(locationMarkerData));
       setMarkerPoints(locationMarkerData);
-      if (pathname.includes('route-planner') && locationMarkerData.length > 1) {
+      if (pathname.includes('journey-insights') && locationMarkerData.length > 1) {
         let latOrigin = locationMarkerData[0].lat;
         let lngOrigin = locationMarkerData[0].lng;
         let latDestination = locationMarkerData[1].lat;
@@ -39,7 +39,7 @@ const Markers = ({ L }) => {
     } else if (markerData) {
       localStorage.setItem('markerData', JSON.stringify(markerData));
       setMarkerPoints(markerData);
-      if (pathname.includes('route-planner') && markerData.length > 1) {
+      if (pathname.includes('journey-insights') && markerData.length > 1) {
         let latOrigin = markerData[0].lat;
         let lngOrigin = markerData[0].lng;
         let latDestination = markerData[1].lat;

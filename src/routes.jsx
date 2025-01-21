@@ -32,7 +32,7 @@ const routes = [
       {
         name: "Journey Insights",
         description: "Analyze your journey",
-        route: "/journey-analyzer",
+        route: "/journey-insights",
         component: <JourneyInsightsPage />,
         key: "JourneyInsights",
       }

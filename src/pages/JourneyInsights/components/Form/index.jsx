@@ -74,9 +74,7 @@ function Form() {
 
   const handleFormInputs = async (inputOne, inputTwo) => {
     if (inputOne && inputTwo) {
-      setTimeout(() => {
-        setLoading(true);
-      }, 500);
+      setLoading(true);
       try {
         const [mapBoxDataOrigin, mapBoxDataDestination] = await Promise.all([
           covertAddressToLatLng(inputOne),
@@ -89,25 +87,31 @@ function Form() {
           mapBoxDataOrigin.features.length > 0 &&
           mapBoxDataDestination.features.length > 0
         ) {
-          setCoords([coords]);
           setHideAllLayers(true);
 
           const markerDataOriginFormatted = generateMarkerDataOrigin(mapBoxDataOrigin);
           const markerDataDestinationFormatted = generateMarkerDataDestination(mapBoxDataDestination);
 
           const markerData = [markerDataOriginFormatted[0], markerDataDestinationFormatted[0]];
+          
+          // First set the marker data
           const formattedMarkerData = formatMarkerData(markerData);
+          setMarkerData(formattedMarkerData);
+          
+          // Then update map view
+          setMapZoom(5);
+          setUserLocationActive(false);
+          setMapInputState(false);
 
+          // Generate Google Maps URL
+          const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
+          setDirectionsUrl(googleMapsDirectionUrl);
+
+          // Update route after markers are set
           const updateRouteData = await updateRoute(markerData);
+          
           if (updateRouteData) {
-            setMarkerData(formattedMarkerData);
-            setMapZoom(5);
-            setUserLocationActive(false);
-            setMapInputState(false);
-
-            const googleMapsDirectionUrl = generateGoogleMapsUrl(markerData);
-            setDirectionsUrl(googleMapsDirectionUrl);
-
+            // Fetch weather data after route is updated
             const [weatherOrigin, weatherDestination] = await Promise.all([
               fetchWeather(markerData[0].lat, markerData[0].lng),
               fetchWeather(markerData[1].lat, markerData[1].lng),
@@ -115,7 +119,11 @@ function Form() {
 
             if (weatherOrigin && weatherDestination) {
               await setWeatherData(mapBoxDataOrigin, mapBoxDataDestination, weatherOrigin, weatherDestination);
-              setTimeout(() => setHideAllLayers(false), 500);
+              
+              // Show layers after all data is loaded
+              setTimeout(() => {
+                setHideAllLayers(false);
+              }, 500);
 
               checkAllPromises([
                 mapBoxDataOrigin,
@@ -131,15 +139,16 @@ function Form() {
           }
         }
       } catch (error) {
-        return
+        console.error('Error:', error);
+      } finally {
+        setTimeout(() => {
+          setLoading(false);
+          if (width < 992) {
+            mobileScrollTo('map', 500);
+          }
+        }, 3000);
       }
     }
-    setTimeout(() => {
-      setLoading(false);
-      if (width < 992) {
-        mobileScrollTo('map', 500);
-      }
-    }, 3000);
   };
   const setWeatherData = async (mapBoxDataOrigin, mapBoxDataDestination, weatherOrigin, weatherDestination) => {
     const iconOrigin = weatherOrigin.weather[0].icon.slice(0, -1);
