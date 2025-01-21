@@ -36,7 +36,7 @@ function CenteredFooter({ links, light }) {
 
         <Grid item xs={12} lg={8} sx={{ textAlign: 'center' }}>
           <Typography variant="body2" color={light ? 'white' : 'secondary'}>
-            Copyright &copy; {year} Geotools
+            Copyright &copy; {year} geocoder
           </Typography>
         </Grid>
       </Grid>
@@ -48,7 +48,7 @@ function CenteredFooter({ links, light }) {
 CenteredFooter.defaultProps = {
   company: { href: 'https://www.creative-tim.com/', name: 'Creative Tim' },
   links: [
-    { href: '/', name: 'Geotools' },
+    { href: '/', name: 'geocoder' },
     { href: '/address-to-lat-lng', name: 'Address to Latitude & Longitude' },
     { href: '/lat-lng-to-address', name: 'Latitude & Longtidue to Address' },
     { href: '/bookmarks', name: 'Bookmarks' },

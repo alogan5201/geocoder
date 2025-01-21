@@ -48,7 +48,7 @@ export default function GuestFooter({ links, light }) {
           }}
         >
           <Typography variant="body2" color={light ? 'white' : 'secondary'}>
-            Copyright &copy; {year} Geotools
+            Copyright &copy; {year} geocoder
           </Typography>
         </Box>
       </Container>
@@ -59,7 +59,7 @@ export default function GuestFooter({ links, light }) {
 GuestFooter.defaultProps = {
   company: { href: 'https://www.creative-tim.com/', name: 'Creative Tim' },
   links: [
-    { href: '/', name: 'Geotools' },
+    { href: '/', name: 'geocoder' },
     { href: '/address-to-lat-lng', name: 'Address to Latitude & Longitude' },
     { href: '/lat-lng-to-address', name: 'Latitude & Longtidue to Address' },
     { href: '/bookmarks', name: 'Bookmarks' },

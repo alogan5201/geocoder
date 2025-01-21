@@ -1,5 +1,5 @@
 # 🌍 geocoder 
-A powerful geospatial toolkit built with React and Firebase that helps you convert geographic coordinates, bookmark locations, plan journeys, and explore famous movie filming locations - all in one place!
+A powerful geospatial toolkit built with React and Firebase that helps you convert geographic coordinates, bookmark locations, plan journeys, and explore famous movie filming locations
 
 🚀 **[Live Demo](https://geocoder-react.netlify.app/)**
 
@@ -34,6 +34,17 @@ Create accounts and obtain API keys from:
 - [Firebase](https://firebase.google.com/) - Authentication and database
 - [TheMovieDB](https://developer.themoviedb.org/docs/getting-started) - Movie data
 - [OpenWeather](https://openweathermap.org/api) - Weather information
+- [Mapbox](https://www.mapbox.com/) - Geocoding and mapping services
+
+### Environment Variables
+Create a `.env` file in the root directory:
+```bash
+VITE_FIREBASE_API_KEY=your_firebase_key
+VITE_THE_MOVIE_DB_API_KEY=your_moviedb_key
+VITE_OPEN_WEATHER_API_KEY=your_openweather_key
+VITE_MAPBOX_ACCESS_TOKEN=your_mapbox_token
+VITE_NODE_ENV=development
+```
 
 ### Installation
 
@@ -50,14 +61,7 @@ npm install
 yarn
 ```
 
-3. Create a `.env` file in the root directory:
-```bash
-VITE_FIREBASE_API_KEY=your_firebase_key
-VITE_THE_MOVIE_DB_API_KEY=your_moviedb_key
-VITE_OPEN_WEATHER_API_KEY=your_openweather_key
-```
-
-4. Start the development server:
+3. Start the development server:
 ```bash
 npm run dev
 # or
@@ -66,7 +70,7 @@ yarn dev
 
 The application will be available at `http://localhost:5173`
 
-## 🏗️ Deployment
+## Deployment
 
 1. Create a production build:
 ```bash
@@ -88,4 +92,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [Zustand](https://docs.pmnd.rs/)
 - [OpenWeather](https://openweathermap.org/api)
 - [TheMovieDB](https://developer.themoviedb.org/docs)
+- [Mapbox](https://www.mapbox.com/)
 
