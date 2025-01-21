@@ -120,7 +120,7 @@ function Form() {
     <Box component="form" p={2} method="post" onSubmit={handleSubmit}>
       <Box px={{ xs: 0, sm: 3 }} py={{ xs: 2, sm: 3 }}>
         <Typography variant="h4" mb={1}>
-          latitude/longitude to address
+          Latitude/longitude to address
         </Typography>
         <Typography variant="body2" color="text" mb={1}>
           To pinpoint a location, you can type in the latitude and longitude, or click the location on the map to get
