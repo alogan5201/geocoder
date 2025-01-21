@@ -80,7 +80,7 @@ function PopupMarkerContent({ content }) {
       </List>
       <Divider />
 
-      <List>
+      <List sx={{ '& .MuiListItem-root': { mb: 1 } }}>
         <ListItem disablePadding>
           <span style={{ fontSize: '16px' }}>Latitude: {popupContent.lat}</span>
         </ListItem>
@@ -89,7 +89,7 @@ function PopupMarkerContent({ content }) {
         </ListItem>
 
         <ListItem disablePadding style={{ fontSize: '16px' }}>
-          {`${popupContent.dms.lat.display} ${popupContent.dms.lng.display}`}
+          DMS: {`${popupContent.dms.lat.display} ${popupContent.dms.lng.display}`}
 
           {/*    <span style={{ fontSize: "16px" }}>{popupContent.dms.lat.display} {popupContent.dms.lng.display}</span> */}
         </ListItem>
