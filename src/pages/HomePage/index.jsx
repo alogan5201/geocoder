@@ -2,7 +2,7 @@
 import FormWrapper from "components/FormWrapper";
 import BaseLayout from "layouts/sections/components/BaseLayout";
 import { useLocation } from "react-router-dom";
-import Form from "./components/Form";
+import Form from "pages/AddressToLatLng/components/Form";
 
 
 function HomePage() {
@@ -11,7 +11,7 @@ function HomePage() {
   return (
     <>
       <BaseLayout>
-        <FormWrapper key={pathname} form={<Form addressToLatLng={true} />} />
+        <FormWrapper key={pathname} form={<Form />} />
       </BaseLayout>
     </>
   );

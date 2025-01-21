@@ -6,7 +6,7 @@ function DemoPage() {
   return (
     <>
       <BaseLayout>
-        <FormWrapper form={<Form addressToLatLng={true} />} />
+        <FormWrapper form={<Form />} />
       </BaseLayout>
     </>
   );

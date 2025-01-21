@@ -8,7 +8,7 @@ function AddressToLatLngPage() {
   return (
     <>
       <BaseLayout>
-        <FormWrapper key={pathname} form={<Form addressToLatLng={true} />} />
+        <FormWrapper key={pathname} form={<Form />} />
       </BaseLayout>
     </>
   );
